@@ -19,13 +19,13 @@
 
 .logo {
   font-size: $size-large;
+  display: flex;
   font-weight: bold;
   margin-right: 1rem;
 }
 
 .plus {
   color: $red;
-  position: absolute;
   margin-top: -10px;
 }
 
