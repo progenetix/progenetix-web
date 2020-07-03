@@ -1,0 +1,38 @@
+@import "../variables";
+
+.header {
+  composes: section from global;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid $border;
+}
+
+.nav {
+  composes: container from global;
+  display: flex;
+  align-items: baseline;
+}
+
+.links {
+  display: flex;
+}
+
+.logo {
+  font-size: $size-large;
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+.plus {
+  color: $red;
+  position: absolute;
+  margin-top: -10px;
+}
+
+.link {
+  composes: navbar-item from global;
+}
+
+.active {
+  color: $info;
+}
