@@ -149,7 +149,7 @@ function Results({ data, type }) {
       return noResults
     }
     // replace url because cors on dev
-    const url = response.url.replace("http://progenetix.org", "/progenetix")
+    const url = response.url.replace("http://progenetix.org", "api/progenetix")
     return <BiosamplesDataTable url={url} />
   } else if (type === "cnvHistogram") {
     const response = data.datasetAlleleResponses[0].datasetHandover.find(
@@ -159,7 +159,7 @@ function Results({ data, type }) {
       return noResults
     }
     // replace url because cors on dev
-    const url = response.url.replace("http://progenetix.org", "/progenetix")
+    const url = response.url.replace("http://progenetix.org", "api/progenetix")
     return <CnvHistogram url={url} />
   } else return <div>To be implemented...</div>
 }

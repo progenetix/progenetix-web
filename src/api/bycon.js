@@ -1,12 +1,12 @@
 import useSWR from "swr"
 
 export function useDatasets() {
-  return useSWR("/cgi/bycon/bin/byconplus.py/get-datasetids/")
+  return useSWR("api/cgi/bycon/bin/byconplus.py/get-datasetids/")
 }
 
 export function useFilteringTerms(prefixes) {
   return useSWR(
-    `/cgi/bycon/bin/byconplus.py/filtering_terms?prefixes=${prefixes}`
+    `api/cgi/bycon/bin/byconplus.py/filtering_terms?prefixes=${prefixes}`
   )
 }
 
@@ -19,7 +19,7 @@ export function useBeaconQuery(queryData) {
     const datasetsQuery = datasetIds.map((d) => `datasetIds=${d}`).join("&")
     const filtersQuery = filters.map((f) => `filters=${f}`).join("&")
     const requestType = `variantAlleleRequest`
-    return `/cgi/bycon/bin/byconplus.py?${datasetsQuery}&assemblyId=${assemblyId}&includeDatasetResponses=ALL&requestType=${requestType}&referenceName=${referenceName}&${filtersQuery}`
+    return `api/cgi/bycon/bin/byconplus.py?${datasetsQuery}&assemblyId=${assemblyId}&includeDatasetResponses=ALL&requestType=${requestType}&referenceName=${referenceName}&${filtersQuery}`
   }
 
   return useSWR(queryData ? buildQuery() : null)

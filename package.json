@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "dev": "node server.js",
+    "dev": "next",
     "build": "next build",
     "start": "next start"
   },
@@ -20,7 +20,6 @@
     "bulma": "^0.9.0",
     "eslint": "^7.3.1",
     "eslint-plugin-react": "^7.20.3",
-    "express": "^4.17.1",
     "http-proxy-middleware": "^1.0.4",
     "prettier": "2.0.5"
   }
