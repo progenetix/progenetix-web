@@ -6,7 +6,7 @@ export function useDatasets() {
 
 export function useFilteringTerms(prefixes) {
   return useSWR(
-    `api/cgi/bycon/bin/byconplus.py/filtering_terms?prefixes=${prefixes}`
+    `api/cgi/bycon/bin/byconplus.py/filtering_terms?prefixes=${prefixes}&datasetIds=progenetix`
   )
 }
 

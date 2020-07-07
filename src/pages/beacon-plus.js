@@ -84,9 +84,18 @@ function Form({ handleSubmit, onSubmit, register, errors }) {
           placeholder="example: 7577121"
         />
       </Field>
+      <Field label="End">
+        <input
+          name="end"
+          ref={register}
+          className="input"
+          type="text"
+          placeholder="example: 7577166"
+        />
+      </Field>
       <Field label="Ref. Base(s)">
         <input
-          name="start"
+          name="referenceBases"
           ref={register}
           className="input"
           type="text"
@@ -95,7 +104,7 @@ function Form({ handleSubmit, onSubmit, register, errors }) {
       </Field>
       <Field label="Alt. Base(s)">
         <input
-          name="start"
+          name="alternateBases"
           ref={register}
           className="input"
           type="text"
