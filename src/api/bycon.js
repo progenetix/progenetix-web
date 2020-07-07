@@ -22,7 +22,7 @@ export function useBeaconQuery(queryData) {
     const datasetsQuery = datasetIds.map((d) => `datasetIds=${d}`).join("&")
     const filtersQuery = filters.map((f) => `filters=${f}`).join("&")
     const requestType = `variantAlleleRequest`
-    return `${basePath}/cgi/bycon/bin/byconplus.py?${datasetsQuery}&assemblyId=${assemblyId}&includeDatasetResponses=ALL&requestType=${requestType}&referenceName=${referenceName}&${filtersQuery}`
+    return `${basePath}cgi/bycon/bin/byconplus.py?${datasetsQuery}&assemblyId=${assemblyId}&includeDatasetResponses=ALL&requestType=${requestType}&referenceName=${referenceName}&${filtersQuery}`
   }
 
   return useSWR(queryData ? buildQuery() : null)
