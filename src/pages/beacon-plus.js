@@ -167,8 +167,11 @@ function Results({ data, type }) {
     if (!response) {
       return noResults
     }
+
     // replace url because cors on dev
-    const url = response.url.replace("http://progenetix.org", "api/progenetix")
+    const url = document.location.host.includes(".progenetix.org")
+      ? response.url
+      : response.url.replace("http://progenetix.org", "api/progenetix")
     return <CnvHistogram url={url} />
   } else return <div>To be implemented...</div>
 }
