@@ -17,7 +17,12 @@ export default function Nav() {
         <div className={styles.links}>
           <ActiveLink label="Home" href="/" />
           <ActiveLink label="About" href="/about" />
-          <ActiveLink label="Help" href="https://info.progenetix.org/categories/howto.html" />
+          <a
+            href="https://info.progenetix.org/categories/howto.html"
+            className={`${styles.link}`}
+          >
+            Help
+          </a>
         </div>
       </nav>
     </header>
