@@ -1,22 +1,39 @@
 import React, { useState } from "react"
 import { useForm } from "react-hook-form"
-import { useDatasets, useFilteringTerms, useBeaconQuery } from "../api/bycon"
+import { useBeaconQuery, useDatasets, useFilteringTerms } from "../api/bycon"
 import Field from "../components/Field"
 import DataFetchSelect from "../components/DataFetchSelect"
 import BiosamplesDataTable from "../components/BiosamplesDataTable"
 import CnvHistogram from "../components/CnvHistogram"
 import Nav from "../components/Nav"
+import requestTypesConfig from "../../config/beacon-plus/requestTypes.yaml"
+import examplesConfig from "../../config/beacon-plus/examples.yaml"
+import { markdownToReact } from "../md"
 
 export default function BeaconPlus() {
-  const { register, handleSubmit, errors, getValues } = useForm()
-  const resultType = getValues("resultType")
+  const { register, handleSubmit, errors, getValues, reset } = useForm()
   const [query, setQuery] = useState(null) // actual valid query
+  // could be the example of the requestType as they have the same shape and effect
+  const [requestConfig, setRequestConfig] = useState(null)
   const { data, error, mutate } = useBeaconQuery(query)
+
+  const resultType = getValues("resultType")
   const isLoading = !data && !error && !!query
   const onSubmit = (formValues) => {
     mutate(null) // mutate and clear current results
-    const { datasetIds, assemblyId, referenceName, filters } = formValues
-    setQuery({ datasetIds, assemblyId, referenceName, filters })
+    setQuery(formValues)
+  }
+
+  const setRequestType = (requestType) => {
+    reset()
+    setRequestConfig(requestType)
+  }
+  const setExample = (example) => {
+    const newParams = Object.fromEntries(
+      Object.entries(example.parameters).map(([k, v]) => [k, v.examplevalue])
+    )
+    reset(newParams)
+    setRequestConfig(example)
   }
 
   return (
@@ -24,7 +41,44 @@ export default function BeaconPlus() {
       <Nav />
       <section className="section">
         <div className="container">
+          <article className="message is-dark">
+            <div className="message-body">
+              {requestConfig?.description ? (
+                markdownToReact(requestConfig?.description)
+              ) : (
+                <span>
+                  This forward looking Beacon interface implements additional,
+                  planned features beyond the current Beacon specifications.
+                  Further information can be found through the{" "}
+                  <a href="http://beacon-project.io/">ELIXIR Beacon website</a>.
+                </span>
+              )}
+            </div>
+          </article>
+          <div className="buttons">
+            {Object.entries(requestTypesConfig).map(([id, value]) => (
+              <button
+                key={id}
+                className={`button`}
+                onClick={() => setRequestType(value)}
+              >
+                {value.label}
+              </button>
+            ))}
+          </div>
+          <div className="buttons">
+            {Object.entries(examplesConfig).map(([id, value]) => (
+              <button
+                key={id}
+                className={`button`}
+                onClick={() => setExample(value)}
+              >
+                {value.label}
+              </button>
+            ))}
+          </div>
           <Form
+            requestConfig={requestConfig}
             handleSubmit={handleSubmit}
             onSubmit={onSubmit}
             register={register}
@@ -45,88 +99,99 @@ export default function BeaconPlus() {
   )
 }
 
-function Form({ handleSubmit, onSubmit, register, errors }) {
+function Form({ requestConfig, handleSubmit, onSubmit, register, errors }) {
+  const parameters = requestConfig?.parameters ?? {}
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <DataFetchSelect
-        name="datasetIds"
-        label="Dataset"
-        required
-        autoSelectFirst
-        useFetch={useSelectDatasets}
-        register={register}
-        errors={errors}
-      />
-      <Field label="Genome Assembly" required>
-        <div className="select is-fullwidth">
-          <select name="assemblyId" ref={register({ required: true })}>
-            <option value="GRCh38">GRCh38 / hg38</option>
-          </select>
-        </div>
-      </Field>
-      <Field label="Reference name" required>
-        <div className="select is-fullwidth">
-          <select name="referenceName" ref={register({ required: true })}>
-            {referenceNames.map((rn) => (
-              <option key={rn} value={rn}>
-                {rn}
-              </option>
-            ))}
-          </select>
-        </div>
-      </Field>
-      <Field label="Start">
-        <input
-          name="start"
-          ref={register}
-          className="input"
-          type="text"
-          placeholder="example: 7577121"
+      {!parameters.datasetIds?.hide && (
+        <DataFetchSelect
+          name="datasetIds"
+          label="Dataset"
+          required
+          autoSelectFirst
+          useFetch={useSelectDatasets}
+          register={register}
+          errors={errors}
         />
-      </Field>
-      <Field label="End">
-        <input
-          name="end"
-          ref={register}
-          className="input"
-          type="text"
-          placeholder="example: 7577166"
+      )}
+      {!parameters.assemblyId?.hide && (
+        <Field label="Genome Assembly" required>
+          <div className="select is-fullwidth">
+            <select name="assemblyId" ref={register({ required: true })}>
+              <option value="GRCh38">GRCh38 / hg38</option>
+            </select>
+          </div>
+        </Field>
+      )}
+      {!parameters.referenceName?.hide && (
+        <Field label="Reference name" required>
+          <div className="select is-fullwidth">
+            <select name="referenceName" ref={register({ required: true })}>
+              {referenceNames.map((rn) => (
+                <option key={rn} value={rn}>
+                  {rn}
+                </option>
+              ))}
+            </select>
+          </div>
+        </Field>
+      )}
+      {!parameters.start?.hide && (
+        <Field label="Start">
+          <input
+            name="start"
+            ref={register}
+            className="input"
+            type="text"
+            placeholder={
+              parameters.start?.placeholder ??
+              "exact position or start of interval"
+            }
+          />
+        </Field>
+      )}
+      {!parameters.end?.hide && (
+        <Field label="End">
+          <input
+            name="end"
+            ref={register}
+            className="input"
+            type="text"
+            placeholder="example: 7577166"
+          />
+        </Field>
+      )}
+      {!parameters.referenceBases?.hide && (
+        <Field label="Ref. Base(s)">
+          <input
+            name="referenceBases"
+            ref={register}
+            className="input"
+            type="text"
+            placeholder="example: G"
+          />
+        </Field>
+      )}
+      {!parameters.alternateBases?.hide && (
+        <Field label="Alt. Base(s)">
+          <input
+            name="alternateBases"
+            ref={register}
+            className="input"
+            type="text"
+            placeholder="example: A"
+          />
+        </Field>
+      )}
+      {!parameters.filters?.hide && (
+        <DataFetchSelect
+          name="filters"
+          label="Bio-ontology"
+          useFetch={useSelectFilteringTerms}
+          register={register}
+          errors={errors}
         />
-      </Field>
-      <Field label="Ref. Base(s)">
-        <input
-          name="referenceBases"
-          ref={register}
-          className="input"
-          type="text"
-          placeholder="example: G"
-        />
-      </Field>
-      <Field label="Alt. Base(s)">
-        <input
-          name="alternateBases"
-          ref={register}
-          className="input"
-          type="text"
-          placeholder="example: A"
-        />
-      </Field>
-      <DataFetchSelect
-        name="filters"
-        label="Bio-ontology"
-        useFetch={useSelectFilteringTerms}
-        register={register}
-        errors={errors}
-      />
-      <Field label="Result type" required>
-        <div className="select is-fullwidth">
-          <select name="resultType" ref={register({ required: true })}>
-            <option value="biosamplesData">Biosamples Data</option>
-            <option value="cnvHistogram">CNV Histogram</option>
-          </select>
-        </div>
-      </Field>
-
+      )}
       <div className="field is-horizontal">
         <div className="field-label" />
         <div className="field-body">

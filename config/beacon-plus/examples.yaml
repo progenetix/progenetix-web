@@ -1,0 +1,188 @@
+---
+exampleValuesCNV:
+  note: "Example for focal CDKN2A deletion matches."
+  label: "CNV Example"
+  description: |
+    This example shows the query for CNV deletion variants overlapping the
+    CDKN2A gene's coding region with at least a single base, but limited
+    to "focal" hits (here i.e. <= ~4Mbp in size). The query is against the
+    arrayMap collection and can be modified e.g. through changing the position
+    parameters or data source.
+  parameters:
+    datasetIds: 
+      examplevalue: "arraymap"
+    includeDatasetResponses:
+      examplevalue: "ALL"
+      hide: true
+    requestType:
+      examplevalue: "variantCNVrequest"
+    assemblyId: 
+      examplevalue: "GRCh38"
+    geneinputField: 
+      examplevalue: "CDKN2A"
+    referenceName: 
+      examplevalue: 9
+    start: 
+      examplevalue: 19000001
+    startMax: 
+      examplevalue: 21975098
+    endMin: 
+      examplevalue: 21967753
+    end: 
+      examplevalue: 24000000
+    variantType: 
+      examplevalue: "DEL"
+    alternateBases: 
+      examplevalue: ""
+      hide: true
+    referenceBases: 
+      examplevalue: "N"
+      hide: true
+    materialtype:
+      examplevalue: "" #"EFO:0009656"
+      hide: true
+    freeFilters:
+      examplevalue: ""
+      hide: true
+  ontology_queries:
+    - "icdom-94403"
+    - "icdom"
+
+exampleValuesSNVrange:
+  note: "Example for EIF4A1 transcript region matches (precise variants)"
+  label: "SNV Range Example"
+  description: |
+    As in the standard SNV query, this example shows a Beacon query against
+    mutations in the EIF4A1 gene in the DIPG childhood brain tumor dataset.
+    However, this range + wildcard query will return any variant with a *single*
+    alternate base (indicated through "N").
+    The exact variants which were being found can be retrieved through the variant
+    handover [H—>O] link.
+  parameters:
+    datasetIds: 
+      examplevalue: "dipg"
+    includeDatasetResponses:
+      examplevalue: "ALL"
+      hide: true
+    requestType:
+      examplevalue: "variantRangeRequest"    
+    assemblyId: 
+      examplevalue: "GRCh38"
+    geneinputField: 
+      examplevalue: "EIF4A1"
+    referenceName: 
+      examplevalue: 17
+    start: 
+      examplevalue: 7572826
+    startMax: 
+      examplevalue: ""
+    endMin: 
+      examplevalue: ""
+    end: 
+      examplevalue: 7579005
+    variantType: 
+      examplevalue: ""
+    alternateBases: 
+      examplevalue: "N"
+    referenceBases: 
+      examplevalue: "N"
+  ontology_queries:
+    - "NCIT"
+    - "icdom"
+    - "icdot"
+
+exampleValuesSNV:
+  note: "Example for specific EIF4A1 mutation"
+  label: "SNV Example"
+  description: |
+    This example shows a core Beacon query, against a specific
+    mutation in the EIF4A1 gene, in the DIPG childhood brain tumor dataset.
+  parameters:
+    datasetIds: 
+      examplevalue: "dipg"
+    includeDatasetResponses:
+      examplevalue: "ALL"
+      hide: true
+    requestType:
+      examplevalue: "variantAlleleRequest"    
+    assemblyId: 
+      examplevalue: "GRCh38"
+    geneinputField: 
+      examplevalue: "EIF4A1"
+      hide: true
+    cytoinputField: 
+      examplevalue: ""
+    referenceName: 
+      examplevalue: 17
+    start: 
+      examplevalue: 7577121
+    startMax: 
+      examplevalue: ""
+    endMin: 
+      examplevalue: ""
+    end: 
+      examplevalue: ""
+    variantType: 
+      examplevalue: ""
+    alternateBases: 
+      examplevalue: "A"
+    referenceBases: 
+      examplevalue: "G"
+    materialtype:
+      examplevalue: ""
+      hide: true
+    freeFilters:
+      examplevalue: ""
+      hide: true
+  ontology_queries:
+    - "icdot-C71.7"
+    - "NCIT"
+    - "icdom"
+    - "icdot"
+
+exampleValuesClinVar:
+  note: "Example for TP53 mutation (ClinVar annotated) in a cell line"
+  label: "ClinVar Example"
+  description: |
+    This example shows a core Beacon query, against a specific
+    mutation in the TP53 gene, in cellosaurus, with ClinVar data.
+  parameters:
+    datasetIds: 
+      examplevalue: "cellosaurus"
+    includeDatasetResponses:
+      examplevalue: "ALL"
+      hide: true
+    requestType:
+      examplevalue: "variantAlleleRequest"    
+    assemblyId: 
+      examplevalue: "GRCh38"
+    geneinputField: 
+      examplevalue: "TP53"
+    cytoinputField: 
+      examplevalue: "17p13.1"
+    referenceName: 
+      examplevalue: 17
+    start: 
+      examplevalue: 7673767
+    startMax: 
+      examplevalue: ""
+    endMin: 
+      examplevalue: ""
+    end: 
+      examplevalue: ""
+    variantType: 
+      examplevalue: ""
+    alternateBases: 
+      examplevalue: "T"
+    referenceBases: 
+      examplevalue: "C"
+    materialtype:
+      examplevalue: ""
+      hide: true
+    freeFilters:
+      examplevalue: ""
+      hide: true
+  ontology_queries:
+    - "NCIT"
+      
+
