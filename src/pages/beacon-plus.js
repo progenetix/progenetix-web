@@ -123,6 +123,40 @@ function Form({ requestConfig, handleSubmit, onSubmit, register, errors }) {
           </div>
         </Field>
       )}
+      {!parameters.includeDatasetResonses?.hide && (
+        <Field label="Dataset Responses">
+          <div className="select is-fullwidth">
+            <select
+              name="includeDatasetResponses"
+              ref={register({ required: true })}
+            >
+              <option value="HIT">Datasets With Hits</option>
+              <option value="ALL" selected="selected">
+                All Selected Datasets
+              </option>
+              <option value="MISS">Datasets Without Hits</option>
+            </select>
+          </div>
+        </Field>
+      )}
+      {!parameters.requestType?.hide && (
+        <Field label="Variant Request Type">
+          <div className="select is-fullwidth">
+            <select
+              id="requestType"
+              name="requestType"
+              ref={register({ required: true })}
+            >
+              <option value="variantAlleleRequest">variantAlleleRequest</option>
+              <option value="variantCNVrequest" selected="selected">
+                variantCNVrequest
+              </option>
+              <option value="variantRangeRequest">variantRangeRequest</option>
+              <option value="variantFusionRequest">variantFusionRequest</option>
+            </select>
+          </div>
+        </Field>
+      )}
       {!parameters.referenceName?.hide && (
         <Field label="Reference name" required>
           <div className="select is-fullwidth">
@@ -132,6 +166,17 @@ function Form({ requestConfig, handleSubmit, onSubmit, register, errors }) {
                   {rn}
                 </option>
               ))}
+            </select>
+          </div>
+        </Field>
+      )}
+      {!parameters.variantType?.hide && (
+        <Field label="(structural) variantType">
+          <div className="select is-fullwidth" ref={register}>
+            <select name="variantType">
+              <option value="DEL">DEL (Deletion)</option>
+              <option value="DUP">DUP (Duplication)</option>
+              <option value="BND">BND (Break/Fusion)</option>
             </select>
           </div>
         </Field>
