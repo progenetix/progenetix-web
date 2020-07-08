@@ -24,44 +24,29 @@ export default function BiosamplesDataTable({ url }) {
           {
             Header: "Description",
             accessor: "description"
-          }
+          },
+          {
+            Header: "Classifications",
+            accessor: (row) => row.biocharacteristics.map((r) => r.type.id+": "+r.type.label), // map to an array of type id
+            Cell: ({ value }) => value.map((v, i) => <tr key={i}>{v}</tr>)
+          },
         ]
       },
       {
-        Header: "CNV Statistics",
+        Header: "CNV Statistics (Genome Fractions)",
         columns: [
           {
-            Header: "del coverage",
-            accessor: "info.cnvstatistics.delcoverage"
-          },
-          {
-            Header: "del coverage",
+            Header: "DEL",
             accessor: "info.cnvstatistics.delfraction"
           },
           {
-            Header: "cnv fraction",
+            Header: "DEL",
+            accessor: "info.cnvstatistics.dupfraction"
+          },
+          {
+            Header: "CNV",
             accessor: "info.cnvstatistics.cnvfraction"
           },
-          {
-            Header: "cnv coverage",
-            accessor: "info.cnvstatistics.cnvcoverage"
-          }
-        ]
-      },
-      {
-        Header: "External References",
-        columns: [
-          {
-            Header: "Type",
-            accessor: (row) => row.external_references.map((r) => r.type.id), // map to an array of type id
-            Cell: ({ value }) => value.map((v, i) => <tr key={i}>{v}</tr>)
-          },
-          {
-            Header: "Description",
-            accessor: (row) =>
-              row.external_references.map((r) => r.description),
-            Cell: ({ value }) => value.map((v, i) => <tr key={i}>{v}</tr>)
-          }
         ]
       }
     ],
