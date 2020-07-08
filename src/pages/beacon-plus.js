@@ -59,7 +59,7 @@ export default function BeaconPlus() {
             {Object.entries(requestTypesConfig).map(([id, value]) => (
               <button
                 key={id}
-                className={`button`}
+                className="button is-light"
                 onClick={() => setRequestType(value)}
               >
                 {value.label}
@@ -70,7 +70,7 @@ export default function BeaconPlus() {
             {Object.entries(examplesConfig).map(([id, value]) => (
               <button
                 key={id}
-                className={`button`}
+                className="button is-light"
                 onClick={() => setExample(value)}
               >
                 {value.label}
