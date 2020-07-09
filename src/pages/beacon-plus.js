@@ -59,7 +59,7 @@ export default function BeaconPlus() {
             {Object.entries(requestTypesConfig).map(([id, value]) => (
               <button
                 key={id}
-                className="button is-light"
+                className="button is-light is-info"
                 onClick={() => setRequestType(value)}
               >
                 {value.label}
