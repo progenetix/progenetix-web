@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Field from "./Field"
+import cn from "classnames"
 
 /*
  * Fetch data and generate a select.
@@ -26,9 +27,9 @@ export default function DataFetchSelect({
   return (
     <Field label={label} required={required}>
       <div
-        className={`select is-fullwidth is-multiple ${
-          errors[name] && " is-danger"
-        }`}
+        className={cn("select", "is-fullwidth", "is-multiple", {
+          "is-danger": errors[name]
+        })}
       >
         {data ? (
           <select name={name} multiple ref={register({ required: required })}>

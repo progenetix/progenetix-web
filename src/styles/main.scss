@@ -1,6 +1,11 @@
 // variables is put in a separate file so we can reuse then in scoped css modules.
 @import "./variables";
 
+@import "components/BiosamplesDataTable";
+@import "components/Nav";
+
+@import "pages/beacon-plus";
+
 @import "~bulma/sass/base/_all";
 @import "~bulma/sass/elements/_all";
 @import "~bulma/sass/form/_all";
