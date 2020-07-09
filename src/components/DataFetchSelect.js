@@ -18,11 +18,7 @@ export default function DataFetchSelect({
 }) {
   const { data, error } = useFetch()
   if (error)
-    return (
-      <div className="message is-danger">
-        <span className="message-body">Could not load data.</span>
-      </div>
-    )
+    return <div className="notification is-warning">Could not load data.</div>
 
   return (
     <Field label={label} required={required}>

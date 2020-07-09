@@ -2,6 +2,7 @@ import React from "react"
 import useSWR from "swr"
 import PropTypes from "prop-types"
 import { useTable, usePagination } from "react-table"
+import { Spinner } from "../Spinner"
 
 export default function BiosamplesDataTable({ url }) {
   const { data, error } = useSWR(url)
@@ -44,10 +45,20 @@ export default function BiosamplesDataTable({ url }) {
   )
 
   if (isLoading) {
-    return <div>Loading Biosamples Data...</div>
+    return (
+      <div className="level">
+        <span className="level-item is-centered">
+          <Spinner />
+        </span>
+      </div>
+    )
   }
   if (error) {
-    return <div className="is-danger">Error while loading BiosamplesData</div>
+    return (
+      <div className="notification is-warning">
+        Error while loading BiosamplesData.
+      </div>
+    )
   }
 
   return <Table columns={columns} data={data} />
