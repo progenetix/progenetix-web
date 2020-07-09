@@ -1,38 +1,32 @@
 @import "../variables";
 
-.header {
-  composes: section from global;
+.section.Nav__header {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid $border;
 }
 
-.nav {
-  composes: container from global;
+.Nav__wrapper {
   display: flex;
   align-items: baseline;
 }
 
-.links {
+.Nav__links {
   display: flex;
 }
 
-.logo {
+.Nav__logo {
   font-size: $size-large;
   display: flex;
   font-weight: bold;
   margin-right: 1rem;
 }
 
-.plus {
+.Nav__plus {
   color: $red;
   margin-top: -10px;
 }
 
-.link {
-  composes: navbar-item from global;
-}
-
-.active {
+.Nav__link--active {
   color: $info;
 }

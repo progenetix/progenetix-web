@@ -2,7 +2,7 @@ import React from "react"
 import useSWR from "swr"
 import PropTypes from "prop-types"
 import { useTable, usePagination } from "react-table"
-import styles from "./BiosamplesDataTable.module.scss"
+import { Spinner } from "../Spinner"
 
 export default function BiosamplesDataTable({ url }) {
   const { data, error } = useSWR(url)
@@ -11,53 +11,54 @@ export default function BiosamplesDataTable({ url }) {
   const columns = React.useMemo(
     () => [
       {
-        Header: "General",
-        columns: [
-          {
-            Header: "Id",
-            accessor: "id"
-          },
-          {
-            Header: "Project Id",
-            accessor: "project_id"
-          },
-          {
-            Header: "Description",
-            accessor: "description"
-          },
-          {
-            Header: "Classifications",
-            accessor: (row) => row.biocharacteristics.map((r) => r.type.id+": "+r.type.label), // map to an array of type id
-            Cell: ({ value }) => value.map((v, i) => <tr key={i}>{v}</tr>)
-          },
-        ]
+        Header: "Id",
+        accessor: "id"
       },
       {
-        Header: "CNV Statistics (Genome Fractions)",
-        columns: [
-          {
-            Header: "DEL",
-            accessor: "info.cnvstatistics.delfraction"
-          },
-          {
-            Header: "DEL",
-            accessor: "info.cnvstatistics.dupfraction"
-          },
-          {
-            Header: "CNV",
-            accessor: "info.cnvstatistics.cnvfraction"
-          },
-        ]
+        Header: "Project Id",
+        accessor: "project_id"
+      },
+      {
+        Header: "Description",
+        accessor: "description"
+      },
+      {
+        Header: "Classifications",
+        accessor: (row) =>
+          row.biocharacteristics.map((r) => r.type.id + ": " + r.type.label), // map to an array of type id
+        Cell: ({ value }) => value.map((v, i) => <tr key={i}>{v}</tr>)
+      },
+      {
+        Header: "DEL",
+        accessor: "info.cnvstatistics.delfraction"
+      },
+      {
+        Header: "DEL",
+        accessor: "info.cnvstatistics.dupfraction"
+      },
+      {
+        Header: "CNV",
+        accessor: "info.cnvstatistics.cnvfraction"
       }
     ],
     []
   )
 
   if (isLoading) {
-    return <div>Loading Biosamples Data...</div>
+    return (
+      <div className="level">
+        <span className="level-item is-centered">
+          <Spinner />
+        </span>
+      </div>
+    )
   }
   if (error) {
-    return <div className="is-danger">Error while loading BiosamplesData</div>
+    return (
+      <div className="notification is-warning">
+        Error while loading BiosamplesData.
+      </div>
+    )
   }
 
   return <Table columns={columns} data={data} />
@@ -77,13 +78,12 @@ function Table({ columns, data }) {
     gotoPage,
     nextPage,
     previousPage,
-    setPageSize,
-    state: { pageIndex, pageSize }
+    state: { pageIndex }
   } = useTable(
     {
       columns,
       data,
-      initialState: { pageIndex: 0 }
+      initialState: { pageIndex: 0, pageSize: 5 }
     },
     usePagination
   )
@@ -92,7 +92,7 @@ function Table({ columns, data }) {
     <>
       {/* eslint-disable react/jsx-key */}
       <table
-        className="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
+        className="table is-narrow is-hoverable is-fullwidth"
         {...getTableProps()}
       >
         <thead>
@@ -118,8 +118,7 @@ function Table({ columns, data }) {
         </tbody>
       </table>
       {/* eslint-enable react/jsx-key */}
-
-      <div className={styles.pagination}>
+      <div className="BiosamplesDataTable__pagination">
         <span>
           <button
             className="button is-small"
@@ -155,33 +154,6 @@ function Table({ columns, data }) {
           <strong>
             {pageIndex + 1} of {pageOptions.length}
           </strong>
-        </span>
-        <span>
-          <span>Go to page</span>{" "}
-          <input
-            className="input is-small"
-            type="number"
-            defaultValue={pageIndex + 1}
-            onChange={(e) => {
-              const page = e.target.value ? Number(e.target.value) - 1 : 0
-              gotoPage(page)
-            }}
-            style={{ width: "100px" }}
-          />
-        </span>
-        <span className="select is-small">
-          <select
-            value={pageSize}
-            onChange={(e) => {
-              setPageSize(Number(e.target.value))
-            }}
-          >
-            {[10, 20, 30, 40, 50].map((pageSize) => (
-              <option key={pageSize} value={pageSize}>
-                Show {pageSize}
-              </option>
-            ))}
-          </select>
         </span>
       </div>
     </>

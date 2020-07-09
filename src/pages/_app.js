@@ -1,4 +1,4 @@
-import "../styles.scss"
+import "../styles/main.scss"
 import { SWRConfig } from "swr"
 import fetcher from "../api/fetcher"
 
