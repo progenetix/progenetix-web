@@ -82,9 +82,10 @@ export function Form({
         </Field>
       )}
       {!parameters.variantType?.hide && (
-        <Field label="(structural) variantType">
+        <Field label="(Structural) Variant">
           <div className="select is-fullwidth" ref={register}>
             <select name="variantType">
+              <option value="">Not a structural variant</option>
               <option value="DEL">DEL (Deletion)</option>
               <option value="DUP">DUP (Duplication)</option>
               <option value="BND">BND (Break/Fusion)</option>
