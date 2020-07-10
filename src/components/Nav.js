@@ -18,6 +18,12 @@ export default function Nav() {
           <ActiveLink label="Home" href="/" />
           <ActiveLink label="About" href="/about" />
           <a
+            href="https://progenetix.org"
+            className="navbar-item"
+          >
+            Progenetix
+          </a>
+          <a
             href="https://info.progenetix.org/categories/howto.html"
             className="navbar-item"
           >

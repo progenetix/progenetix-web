@@ -149,8 +149,6 @@ exampleValuesClinVar:
       examplevalue: 17
     start:
       examplevalue: 7673767
-    endMin:
-      examplevalue: ""
     end:
       examplevalue: ""
     variantType:
