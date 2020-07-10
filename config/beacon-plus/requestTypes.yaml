@@ -7,7 +7,7 @@ variantAlleleRequest:
     variants with a specific combination of reference and alternate bases are being
     matched. "N" here can stand in as wildcard nucleotide.
   parameters:
-    datasetIds: 
+    datasetIds:
       placeholder: "dipg"
     includeDatasetResponses:
       placeholder: "ALL"
@@ -15,46 +15,35 @@ variantAlleleRequest:
     requestType:
       value: "variantAlleleRequest"
       hide: true
-    assemblyId: 
+    assemblyId:
       placeholder: "GRCh38"
       hide: true
-    geneinputField: 
+    geneinputField:
       placeholder: ""
       hide: true
-    cytoinputField: 
+    cytoinputField:
       placeholder: ""
       hide: true
-    referenceName: 
+    referenceName:
       placeholder: 17
-    start: 
+    start:
       placeholder: 7577121
-    startMax: 
+    end:
       placeholder: ""
       hide: true
-    endMin: 
+    variantType:
       placeholder: ""
       hide: true
-    end: 
-      placeholder: ""
-      hide: true
-    variantType: 
-      placeholder: ""
-      hide: true
-    alternateBases: 
+    alternateBases:
       placeholder: "A"
-    referenceBases: 
+    referenceBases:
       placeholder: "G"
     materialtype:
       placeholder: ""
       hide: true
-    freeFilters:
+    filters:
       placeholder: ""
       hide: true
-  ontology_queries:
-    - "icdot-C71.7"
-    - "NCIT"
-    - "icdom"
-    - "icdot"
 
 variantCNVrequest:
   note: ""
@@ -63,7 +52,7 @@ variantCNVrequest:
     This query type is for copy number queries ("variantCNVrequest"), e.g. using fuzzy
     ranges for start and end positions to capture a set of similar variants.
   parameters:
-    datasetIds: 
+    datasetIds:
       placeholder: ""
     includeDatasetResponses:
       placeholder: "ALL"
@@ -71,37 +60,32 @@ variantCNVrequest:
     requestType:
       value: "variantCNVrequest"
       hide: true
-    assemblyId: 
+    assemblyId:
       placeholder: "GRCh38"
-    geneinputField: 
+    geneinputField:
       placeholder: "CDKN2A"
       hide: true
-    cytoinputField: 
+    cytoinputField:
       placeholder: ""
       hide: true
-    referenceName: 
+    referenceName:
       placeholder: 9
-    start: 
-      placeholder: 19000001
-    startMax: 
-      placeholder: 21975098
-    endMin: 
-      placeholder: 21967753
-    end: 
-      placeholder: 24000000
-    variantType: 
+    start:
+      placeholder: "19000001-21975098"
+    end:
+      placeholder: "21967753-24000000"
+    variantType:
       placeholder: "DEL"
-      hide: true
-    alternateBases: 
+    alternateBases:
       placeholder: ""
       hide: true
-    referenceBases: 
+    referenceBases:
       placeholder: "N"
       hide: true
     materialtype:
       placeholder: "" #"EFO:0009656"
       hide: true
-    freeFilters:
+    filters:
       placeholder: ""
       hide: true
 
@@ -114,7 +98,7 @@ variantRangeRequest:
     The exact variants which were being found can be retrieved through the variant
     handover [H—>O] link.
   parameters:
-    datasetIds: 
+    datasetIds:
       placeholder: ""
     includeDatasetResponses:
       placeholder: "ALL"
@@ -122,31 +106,25 @@ variantRangeRequest:
     requestType:
       value: "variantRangeRequest"
       hide: true
-    assemblyId: 
+    assemblyId:
       placeholder: "GRCh38"
-    geneinputField: 
+    geneinputField:
       placeholder: ""
       hide: true
-    cytoinputField: 
+    cytoinputField:
       placeholder: ""
       hide: true
-    referenceName: 
+    referenceName:
       placeholder: 17
-    start: 
+    start:
       placeholder: 7572826
-    startMax: 
-      placeholder: ""
-      hide: true
-    endMin: 
-      placeholder: ""
-      hide: true
-    end: 
+    end:
       placeholder: 7579005
-    variantType: 
+    variantType:
       placeholder: ""
-    alternateBases: 
+    alternateBases:
       placeholder: "N"
-    referenceBases: 
+    referenceBases:
       placeholder: "N"
 
 emptyRequest:
@@ -155,36 +133,35 @@ emptyRequest:
   description: |
     All form fields for composing your own queries.
   parameters:
-    datasetIds: 
+    datasetIds:
       placeholder: ""
     includeDatasetResponses:
       placeholder: "ALL"
     requestType:
       value: ""
-    assemblyId: 
+    assemblyId:
       placeholder: "GRCh38"
-    geneinputField: 
+    geneinputField:
       placeholder: "CDKN2A"
-    cytoinputField: 
+    cytoinputField:
       placeholder: "9p13.1"
-    referenceName: 
+    referenceName:
       placeholder: 9
-    start: 
-      placeholder: 19000001
-    startMax: 
+    start:
+      placeholder: "20000001-21975098"
+    startMax:
       placeholder: 21975098
-    endMin: 
+    endMin:
       placeholder: 21967753
-    end: 
-      placeholder: 24000000
-    variantType: 
+    end:
+      placeholder: "21967753-23000000"
+    variantType:
       placeholder: "DEL"
-    alternateBases: 
+    alternateBases:
       placeholder: "A"
-    referenceBases: 
+    referenceBases:
       placeholder: "G"
-    freeFilters:
+    filters:
       placeholder: "" # "geolat:49,geolong:8.69,geodist:2000000"
     materialtype:
       placeholder: "" #"EFO:0009656"
-

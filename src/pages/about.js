@@ -7,7 +7,12 @@ export default function About() {
       <Nav />
       <section className="section">
         <div className="container">
-          This is just to show that we can display multiple pages.
+          This version of the Beacon <span className="Nav__plus">+</span> genome
+          variation service tests experimental features and proposed
+          extensions to the <a href="http://beacon-project.io">Beacon</a> protocol.
+          The service is implemented using the <a href="http://">bycon</a> backend
+          and allows access to the various datasets represented through the
+          <a href="http://progenetix.org">Progenetix</a> resource.
         </div>
       </section>
     </>

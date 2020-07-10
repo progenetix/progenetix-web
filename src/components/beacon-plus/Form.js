@@ -102,7 +102,7 @@ export function Form({
             type="text"
             placeholder={
               parameters.start?.placeholder ??
-              "exact position or start of interval"
+              "exact position or interval for start of variant (e.g. 19000001-21500000)"
             }
           />
         </Field>
@@ -114,7 +114,7 @@ export function Form({
             ref={register}
             className="input"
             type="text"
-            placeholder="example: 7577166"
+            placeholder="end of match range or of interval for position of variant's end"
           />
         </Field>
       )}
@@ -137,6 +137,17 @@ export function Form({
             className="input"
             type="text"
             placeholder="example: A"
+          />
+        </Field>
+      )}
+      {!parameters.filters?.hide && (
+        <Field label="Filters">
+          <input
+            name="filters"
+            ref={register}
+            className="input"
+            type="text"
+            placeholder="icdom-94403"
           />
         </Field>
       )}
