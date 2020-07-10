@@ -21,5 +21,4 @@ Export a static build with
 ```bash
 npm run build
 npm run export
-``
-
+```
