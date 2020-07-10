@@ -13,8 +13,7 @@ export default function DataFetchSelect({
   label,
   required,
   register,
-  errors,
-  autoSelectFirst
+  errors
 }) {
   const { data, error } = useFetch()
   if (error)
@@ -29,12 +28,8 @@ export default function DataFetchSelect({
       >
         {data ? (
           <select name={name} multiple ref={register({ required: required })}>
-            {data.map((ds, i) => (
-              <option
-                key={ds.id}
-                value={ds.id}
-                selected={autoSelectFirst && i === 0}
-              >
+            {data.map((ds) => (
+              <option key={ds.id} value={ds.id}>
                 {ds.label}
               </option>
             ))}

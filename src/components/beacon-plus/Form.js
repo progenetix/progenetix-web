@@ -19,7 +19,6 @@ export function Form({
           name="datasetIds"
           label="Dataset"
           required
-          autoSelectFirst
           useFetch={useSelectDatasets}
           register={register}
           errors={errors}
@@ -38,13 +37,12 @@ export function Form({
         <Field label="Dataset Responses">
           <div className="select is-fullwidth">
             <select
+              defaultValue="ALL"
               name="includeDatasetResponses"
               ref={register({ required: true })}
             >
               <option value="HIT">Datasets With Hits</option>
-              <option value="ALL" selected="selected">
-                All Selected Datasets
-              </option>
+              <option value="ALL">All Selected Datasets</option>
               <option value="MISS">Datasets Without Hits</option>
             </select>
           </div>
@@ -56,12 +54,11 @@ export function Form({
             <select
               id="requestType"
               name="requestType"
+              defaultValue="variantCNVrequest"
               ref={register({ required: true })}
             >
               <option value="variantAlleleRequest">variantAlleleRequest</option>
-              <option value="variantCNVrequest" selected="selected">
-                variantCNVrequest
-              </option>
+              <option value="variantCNVrequest">variantCNVrequest</option>
               <option value="variantRangeRequest">variantRangeRequest</option>
               <option value="variantFusionRequest">variantFusionRequest</option>
             </select>
@@ -83,8 +80,12 @@ export function Form({
       )}
       {!parameters.variantType?.hide && (
         <Field label="(Structural) Variant">
-          <div className="select is-fullwidth" ref={register}>
-            <select name="variantType">
+          <div
+            className={cn("select", "is-fullwidth", {
+              "is-danger": errors.variantType
+            })}
+          >
+            <select name="variantType" ref={register}>
               <option value="">Not a structural variant</option>
               <option value="DEL">DEL (Deletion)</option>
               <option value="DUP">DUP (Duplication)</option>
