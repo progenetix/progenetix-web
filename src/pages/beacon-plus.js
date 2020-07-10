@@ -50,15 +50,16 @@ export default function BeaconPlus() {
         missingParameters.push("referenceBases", "alternateBases", "start")
       }
     } else if (requestType === "variantCNVrequest") {
-      if (!start || !startMax || !endMin || !end) {
-        missingParameters.push("start", "startMax", "endMin", "end")
+      if (!start || !startMax || !endMin || !end || !variantType) {
+        missingParameters.push("start", "startMax", "endMin", "end", "variantType")
       }
     } else if (requestType === "variantRangeRequest") {
-      if (referenceBases && alternateBases) {
+      if (variantType && (referenceBases || alternateBases)) {
         const error = {
           type: "manual",
-          message: "Ref. Base(s) and Alt. Base(s) are mutually exclusive."
+          message: "Use either Variant Type or Ref. Base(s) and Alt. Base(s)."
         }
+        setError("variantType", error)
         setError("referenceBases", error)
         setError("alternateBases", error)
         return
