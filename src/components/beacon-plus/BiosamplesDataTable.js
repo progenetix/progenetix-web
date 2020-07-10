@@ -26,7 +26,7 @@ export default function BiosamplesDataTable({ url }) {
         Header: "Classifications",
         accessor: (row) =>
           row.biocharacteristics.map((r) => r.type.id + ": " + r.type.label), // map to an array of type id
-        Cell: ({ value }) => value.map((v, i) => <tr key={i}>{v}</tr>)
+        Cell: ({ value }) => value.map((v, i) => <div key={i}>{v}</div>)
       },
       {
         Header: "DEL",
@@ -45,13 +45,7 @@ export default function BiosamplesDataTable({ url }) {
   )
 
   if (isLoading) {
-    return (
-      <div className="level">
-        <span className="level-item is-centered">
-          <Spinner />
-        </span>
-      </div>
-    )
+    return <Spinner centered />
   }
   if (error) {
     return (

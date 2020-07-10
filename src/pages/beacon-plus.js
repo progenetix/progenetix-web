@@ -5,11 +5,19 @@ import examplesConfig from "../../config/beacon-plus/examples.yaml"
 import { useBeaconQuery } from "../api/bycon"
 import { markdownToReact } from "../utils/md"
 import Nav from "../components/Nav"
-import { Form } from "../components/beacon-plus/Form"
+import { BeaconForm } from "../components/beacon-plus/BeaconForm"
 import { DatasetResultBox } from "../components/beacon-plus/DatasetResultBox"
 
 export default function BeaconPlus() {
-  const { register, handleSubmit, errors, reset } = useForm()
+  const {
+    register,
+    handleSubmit,
+    errors,
+    reset,
+    setError,
+    clearErrors,
+    getValues
+  } = useForm()
   const [query, setQuery] = useState(null) // actual valid query
   // could be the example of the requestType as they have the same shape and effect
   const [requestConfig, setRequestConfig] = useState(null)
@@ -19,20 +27,77 @@ export default function BeaconPlus() {
     mutate: mutateQuery
   } = useBeaconQuery(query)
 
+  console.log(errors)
   const isLoading = !queryResponse && !queryError && !!query
+
   const onSubmit = (formValues) => {
+    clearErrors()
+    console.log(getValues())
+    console.log("formValues", formValues)
+    // At this stage individual parameters are already validated.
+    const {
+      requestType,
+      variantType,
+      referenceBases,
+      alternateBases,
+      start,
+      startMax,
+      endMin,
+      end
+    } = formValues
+
+    const missingParameters = []
+
+    if (requestType === "variantAlleleRequest") {
+      if (!referenceBases || !alternateBases || !start) {
+        missingParameters.push("referenceBases", "alternateBases", "start")
+      }
+    } else if (requestType === "variantCNVrequest") {
+      if (!start || !startMax || !endMin || !end) {
+        missingParameters.push("start", "startMax", "endMin", "end")
+      }
+    } else if (requestType === "variantRangeRequest") {
+      if (referenceBases && alternateBases) {
+        const error = {
+          type: "manual",
+          message: "Ref. Base(s) and Alt. Base(s) are mutually exclusive."
+        }
+        setError("referenceBases", error)
+        setError("alternateBases", error)
+        return
+      }
+
+      if (!variantType && !(referenceBases || alternateBases)) {
+        missingParameters.push(
+          "variantType",
+          "referenceBases",
+          "alternateBases"
+        )
+      }
+    } else if (requestType === "variantFusionRequest") {
+      //
+    }
+    if (missingParameters.length > 0) {
+      missingParameters.forEach((name) =>
+        setError(name, { type: "manual", message: "Parameter is missig" })
+      )
+      return
+    }
+
     mutateQuery(null) // mutateQuery and clear current results
     setQuery(formValues)
   }
 
   const setRequestType = (requestType) => {
-    reset()
+    reset({})
     setRequestConfig(requestType)
   }
+
   const setExample = (example) => {
     const newParams = Object.fromEntries(
       Object.entries(example.parameters).map(([k, v]) => [k, v.examplevalue])
     )
+
     reset(newParams)
     setRequestConfig(example)
   }
@@ -58,7 +123,7 @@ export default function BeaconPlus() {
             setExample={setExample}
             setRequestType={setRequestType}
           />
-          <Form
+          <BeaconForm
             requestConfig={requestConfig}
             handleSubmit={handleSubmit}
             onSubmit={onSubmit}

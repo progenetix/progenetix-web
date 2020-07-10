@@ -1,13 +1,15 @@
 import React from "react"
-import PropTypes from "prop-types"
+import cn from "classnames"
 
-export default function Field({ label, required, children }) {
+export default function Field({ label, required, children, help, hidden }) {
   return (
-    <div className="field is-horizontal">
+    <div className={cn("field is-horizontal", { "is-hidden": hidden })}>
       <div className="field-label is-normal">
         <label className="label">
           {label}
-          <span className={`has-text-danger ${!required && "is-invisible"}`}>
+          <span
+            className={cn("has-text-danger", { "is-invisible": !required })}
+          >
             *
           </span>
         </label>
@@ -15,14 +17,9 @@ export default function Field({ label, required, children }) {
       <div className="field-body">
         <div className="field">
           <div className="control">{children}</div>
+          {help && <p className="help is-danger">{help}</p>}
         </div>
       </div>
     </div>
   )
-}
-
-Field.propTypes = {
-  label: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
-  required: PropTypes.bool
 }

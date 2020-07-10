@@ -33,7 +33,7 @@ export function DatasetResultBox({ data, query }) {
   }
   return (
     <div className="box">
-      <h2 className="is-size-3 mb-3 has-text-dark">{data.datasetId}</h2>
+      <h2 className="subtitle has-text-dark">{data.datasetId}</h2>
       <div className="columns">
         <div className="column is-narrow">
           <div>
@@ -73,15 +73,16 @@ export function DatasetResultBox({ data, query }) {
               <FaExternalLinkAlt className="icon has-text-info is-small" />
             </div>
           )}
-        </div>
-        <div className="column is-right">
-          <button
-            onClick={() => initiateSaveAsJson(data, "query.json")}
-            className="button"
-          >
-            <FaDownload className="icon is-small" />
-            <span>Download JSON</span>
-          </button>
+          <div>
+            <a
+              onClick={() => initiateSaveAsJson(data, "query.json")}
+              rel="noreferrer"
+              target="_blank"
+            >
+              Download JSON
+            </a>{" "}
+            <FaDownload className="icon has-text-info is-small" />
+          </div>
         </div>
       </div>
       {selectableHandovers?.length > 0 ? (
