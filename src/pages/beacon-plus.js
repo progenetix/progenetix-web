@@ -54,28 +54,10 @@ export default function BeaconPlus() {
               </span>
             )}
           </div>
-          <div className="buttons">
-            {Object.entries(requestTypesConfig).map(([id, value]) => (
-              <button
-                key={id}
-                className="button is-light is-info"
-                onClick={() => setRequestType(value)}
-              >
-                {value.label}
-              </button>
-            ))}
-          </div>
-          <div className="buttons">
-            {Object.entries(examplesConfig).map(([id, value]) => (
-              <button
-                key={id}
-                className="button is-light"
-                onClick={() => setExample(value)}
-              >
-                {value.label}
-              </button>
-            ))}
-          </div>
+          <RequestConfig
+            setExample={setExample}
+            setRequestType={setRequestType}
+          />
           <Form
             requestConfig={requestConfig}
             handleSubmit={handleSubmit}
@@ -89,6 +71,35 @@ export default function BeaconPlus() {
           <Results response={queryResponse} error={queryError} query={query} />
         </div>
       </section>
+    </>
+  )
+}
+
+function RequestConfig({ setRequestType, setExample }) {
+  return (
+    <>
+      <div className="buttons">
+        {Object.entries(requestTypesConfig).map(([id, value]) => (
+          <button
+            key={id}
+            className="button is-light is-info"
+            onClick={() => setRequestType(value)}
+          >
+            {value.label}
+          </button>
+        ))}
+      </div>
+      <div className="buttons">
+        {Object.entries(examplesConfig).map(([id, value]) => (
+          <button
+            key={id}
+            className="button is-light"
+            onClick={() => setExample(value)}
+          >
+            {value.label}
+          </button>
+        ))}
+      </div>
     </>
   )
 }
