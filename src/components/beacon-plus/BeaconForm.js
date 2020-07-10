@@ -108,44 +108,8 @@ export function BeaconForm({
         <option value="BND">BND (Break/Fusion)</option>{" "}
       </SelectField>
       <InputField
-        name="geneinputField"
-        label="Gene Coordinates"
-        parameters={parameters}
-        errors={errors}
-        register={register}
-      />
-      <InputField
-        name="cytoinputField"
-        label="Cytoband(s)"
-        parameters={parameters}
-        errors={errors}
-        register={register}
-      />
-      <InputField
         name="start"
         label="Start"
-        parameters={parameters}
-        errors={errors}
-        register={register}
-      />
-      <InputField
-        name="startMax"
-        label={
-          <label>
-            Start <i>max</i> Position
-          </label>
-        }
-        parameters={parameters}
-        errors={errors}
-        register={register}
-      />
-      <InputField
-        name="endMin"
-        label={
-          <label>
-            End <i>min</i> Position
-          </label>
-        }
         parameters={parameters}
         errors={errors}
         register={register}
@@ -337,3 +301,45 @@ const REFERENCE_NAMES = [
   "X",
   "Y"
 ]
+
+// <!--
+//       <InputField
+//         name="geneinputField"
+//         label="Gene Coordinates"
+//         parameters={parameters}
+//         errors={errors}
+//         register={register}
+//       />
+//       <InputField
+//         name="cytoinputField"
+//         label="Cytoband(s)"
+//         parameters={parameters}
+//         errors={errors}
+//         register={register}
+//       />
+// -->
+//
+// <!--
+//       <InputField
+//         name="startMax"
+//         label={
+//           <label>
+//             Start <i>max</i> Position
+//           </label>
+//         }
+//         parameters={parameters}
+//         errors={errors}
+//         register={register}
+//       />
+//       <InputField
+//         name="endMin"
+//         label={
+//           <label>
+//             End <i>min</i> Position
+//           </label>
+//         }
+//         parameters={parameters}
+//         errors={errors}
+//         register={register}
+//       />
+// -->
