@@ -199,8 +199,8 @@ export function BeaconForm({
         <option value="EFO:0009654">reference sample</option>
       </SelectField>
       <InputField
-        name="freeFilters"
-        label="Other Filters"
+        name="filters"
+        label="Filters"
         parameters={parameters}
         errors={errors}
         register={register}
