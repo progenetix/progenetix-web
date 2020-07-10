@@ -27,13 +27,10 @@ export default function BeaconPlus() {
     mutate: mutateQuery
   } = useBeaconQuery(query)
 
-  console.log(errors)
   const isLoading = !queryResponse && !queryError && !!query
 
   const onSubmit = (formValues) => {
     clearErrors()
-    console.log(getValues())
-    console.log("formValues", formValues)
     // At this stage individual parameters are already validated.
     const {
       requestType,
