@@ -103,7 +103,7 @@ export default function BeaconPlus() {
     <>
       <Nav />
       <section className="section">
-        <div className="container">
+        <div className="container mb-5">
           <div className="notification is-info is-light">
             {requestConfig?.description ? (
               markdownToReact(requestConfig?.description)
