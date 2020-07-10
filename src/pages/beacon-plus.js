@@ -38,8 +38,6 @@ export default function BeaconPlus() {
       referenceBases,
       alternateBases,
       start,
-      startMax,
-      endMin,
       end
     } = formValues
 
@@ -50,8 +48,8 @@ export default function BeaconPlus() {
         missingParameters.push("referenceBases", "alternateBases", "start")
       }
     } else if (requestType === "variantCNVrequest") {
-      if (!start || !startMax || !endMin || !end || !variantType) {
-        missingParameters.push("start", "startMax", "endMin", "end", "variantType")
+      if (!start || !end || !variantType) {
+        missingParameters.push("start", "end", "variantType")
       }
     } else if (requestType === "variantRangeRequest") {
       if (variantType && (referenceBases || alternateBases)) {
@@ -64,7 +62,6 @@ export default function BeaconPlus() {
         setError("alternateBases", error)
         return
       }
-
       if (!variantType && !(referenceBases || alternateBases)) {
         missingParameters.push(
           "variantType",
