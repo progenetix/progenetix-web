@@ -25,6 +25,7 @@ export function useBeaconQuery(queryData) {
     const { datasetIds, assemblyId, requestType, referenceName, bioontology, variantType, referenceBases, alternateBases, start, end } = queryData
     const datasetsQuery = datasetIds.map((d) => `datasetIds=${d}`).join("&")
     const filtersQuery = bioontology.map((f) => `filters=${f}`).join("&")
+    // positions from the form have to be -1 adjusted (only first value if interval)
     var starts = start.split("-")
     starts[0] = starts[0] - 1
     var ends = end.split("-")

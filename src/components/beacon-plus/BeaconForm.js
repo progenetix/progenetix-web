@@ -267,7 +267,7 @@ function useSelectFilteringTerms() {
       data &&
       data.filteringTerms.map((value) => ({
         id: value.id,
-        label: `${value.id}: ${value.label}`
+        label: `${value.id}: ${value.label} (${value.count})`
       })),
     error
   }
