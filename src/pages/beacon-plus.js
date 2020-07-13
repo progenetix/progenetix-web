@@ -204,10 +204,16 @@ function QuerySummary({ query }) {
   if (query.freeFilters) {
     filters = [...filters, query.freeFilters]
   }
+  // TODO: Only show each parameter if it has a value
   return (
     <>
       <span>Assembly: {query.assemblyId}</span> |{" "}
       <span>Chro: {query.referenceName}</span> |{" "}
+      <span>Start: {query.start}</span> |{" "}
+      <span>End: {query.end}</span> |{" "}
+      <span>Type: {query.variantType}</span> |{" "}
+      <span>Ref. Base(s): {query.referenceBases}</span> |{" "}
+      <span>Alt. Base(s): {query.alternateBases}</span> |{" "}
       <span>Filters: {filters.join(", ")}</span>
     </>
   )
