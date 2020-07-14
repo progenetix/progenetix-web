@@ -11,7 +11,7 @@ export function useDatasets() {
 
 export function useFilteringTerms(prefixes) {
   return useSWR(
-    `${basePath}cgi/bycon/bin/byconplus.py/filtering_terms?prefixes=${prefixes}`
+    `${basePath}cgi/bycon/bin/byconplus.py/filtering_terms?filters=${prefixes}`
   )
 }
 

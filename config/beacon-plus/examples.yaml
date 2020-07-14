@@ -23,7 +23,7 @@ exampleValuesCNV:
     referenceName:
       examplevalue: 9
     start:
-      examplevalue: "20000001-21975098"
+      examplevalue: "21000001-21975098"
     end:
       examplevalue: "21967753-23000000"
     variantType:
@@ -34,12 +34,14 @@ exampleValuesCNV:
     referenceBases:
       examplevalue: "N"
       hide: true
+    bioontology:
+      examplevalue: NCIT:C3058
     freeFilters:
       examplevalue: ""
       hide: true
   ontology_queries:
-    - "icdom-94403"
     - "icdom"
+    - "NCIT"
 
 exampleValuesSNVrange:
   note: "Example for EIF4A1 transcript region matches (precise variants)"

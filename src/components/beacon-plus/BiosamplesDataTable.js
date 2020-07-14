@@ -29,6 +29,12 @@ export default function BiosamplesDataTable({ url }) {
         Cell: ({ value }) => value.map((v, i) => <div key={i}>{v}</div>)
       },
       {
+        Header: "Identifiers",
+        accessor: (row) =>
+          row.external_references.map((r) => r.type.id), // map to an array of type id
+        Cell: ({ value }) => value.map((v, i) => <div key={i}>{v}</div>)
+      },
+      {
         Header: "DEL",
         accessor: "info.cnvstatistics.delfraction"
       },

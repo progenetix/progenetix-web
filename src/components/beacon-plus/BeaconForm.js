@@ -261,7 +261,7 @@ function useSelectDatasets() {
 
 // Maps FilteringTerms hook to data usable by DataFetchSelect
 function useSelectFilteringTerms() {
-  const { data, error } = useFilteringTerms("NCIT")
+  const { data, error } = useFilteringTerms("NCIT,icdom")
   return {
     data:
       data &&
