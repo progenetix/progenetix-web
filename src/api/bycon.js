@@ -31,12 +31,13 @@ export function useBeaconQuery(queryData) {
 export function buildQueryParameters(queryData) {
   const { start, end, ...otherParams } = queryData
   // positions from the form have to be -1 adjusted (only first value if interval)
-  const starts = start.split("-")
-  starts[0] = starts[0] - 1
-  const ends = end.split("-")
-  if (ends[0] > 0) {
-    ends[0] = ends[0] - 1
-  }
+  const [, start0, start1] = INTEGER_RANGE_REGEX.exec(start)
+  const starts = [start0 - 1]
+  start1 && starts.push(start1)
+
+  const [, end0, end1] = INTEGER_RANGE_REGEX.exec(end)
+  const ends = [end0 > 0 ? end0 - 1 : end0]
+  end1 && ends.push(end1)
 
   return new URLSearchParams(
     flattenParams([
@@ -57,6 +58,8 @@ function flattenParams(paramArray) {
     }
   })
 }
+
+export const INTEGER_RANGE_REGEX = /^(\d+)(?:[-,;])?(\d+)?$/
 
 export function replaceWithProxy(url) {
   if (!useProxy) return url

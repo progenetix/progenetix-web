@@ -1,6 +1,10 @@
 import Field from "../form/Field"
 import cn from "classnames"
-import { useDatasets, useFilteringTerms } from "../../api/bycon"
+import {
+  INTEGER_RANGE_REGEX,
+  useDatasets,
+  useFilteringTerms
+} from "../../api/bycon"
 import React from "react"
 import { Spinner } from "../Spinner"
 
@@ -112,14 +116,18 @@ export function BeaconForm({
         label="Start"
         parameters={parameters}
         errors={errors}
-        register={register}
+        register={register({
+          validate: checkIntegerRange
+        })}
       />
       <InputField
         name="end"
         label="End Position"
         parameters={parameters}
         errors={errors}
-        register={register}
+        register={register({
+          validate: checkIntegerRange
+        })}
       />
       <InputField
         name="referenceBases"
@@ -208,6 +216,15 @@ function InputField({ name, label, parameters, errors, register }) {
       />
     </Field>
   )
+}
+
+export const checkIntegerRange = (value) => {
+  if (!value) return
+  const match = INTEGER_RANGE_REGEX.exec(value)
+  if (!match) return "Input should be a range (ex: 1-5) or a single value"
+  const [, range0, range1] = match
+  if (range1 && range0 > range1)
+    return "Incorrect range input, max should be greater than min"
 }
 
 function SelectField({
@@ -301,45 +318,3 @@ const REFERENCE_NAMES = [
   "X",
   "Y"
 ]
-
-// <!--
-//       <InputField
-//         name="geneinputField"
-//         label="Gene Coordinates"
-//         parameters={parameters}
-//         errors={errors}
-//         register={register}
-//       />
-//       <InputField
-//         name="cytoinputField"
-//         label="Cytoband(s)"
-//         parameters={parameters}
-//         errors={errors}
-//         register={register}
-//       />
-// -->
-//
-// <!--
-//       <InputField
-//         name="startMax"
-//         label={
-//           <label>
-//             Start <i>max</i> Position
-//           </label>
-//         }
-//         parameters={parameters}
-//         errors={errors}
-//         register={register}
-//       />
-//       <InputField
-//         name="endMin"
-//         label={
-//           <label>
-//             End <i>min</i> Position
-//           </label>
-//         }
-//         parameters={parameters}
-//         errors={errors}
-//         register={register}
-//       />
-// -->
