@@ -15,8 +15,7 @@ export default function BeaconPlus() {
     errors,
     reset,
     setError,
-    clearErrors,
-    getValues
+    clearErrors
   } = useForm()
   const [query, setQuery] = useState(null) // actual valid query
   // could be the example of the requestType as they have the same shape and effect
@@ -209,8 +208,7 @@ function QuerySummary({ query }) {
     <>
       <span>Assembly: {query.assemblyId}</span> |{" "}
       <span>Chro: {query.referenceName}</span> |{" "}
-      <span>Start: {query.start}</span> |{" "}
-      <span>End: {query.end}</span> |{" "}
+      <span>Start: {query.start}</span> | <span>End: {query.end}</span> |{" "}
       <span>Type: {query.variantType}</span> |{" "}
       <span>Ref. Base(s): {query.referenceBases}</span> |{" "}
       <span>Alt. Base(s): {query.alternateBases}</span> |{" "}
