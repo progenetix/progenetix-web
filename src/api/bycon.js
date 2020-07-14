@@ -17,28 +17,45 @@ export function useFilteringTerms(prefixes) {
 
 /**
  * When param is null no query will be triggered.
- * TODO: better predefinition of the parameters being used or possible (no hard coding)
  */
-
 export function useBeaconQuery(queryData) {
-  function buildQuery() {
-    const { datasetIds, assemblyId, requestType, referenceName, bioontology, variantType, referenceBases, alternateBases, start, end } = queryData
-    const datasetsQuery = datasetIds.map((d) => `datasetIds=${d}`).join("&")
-    const filtersQuery = bioontology.map((f) => `filters=${f}`).join("&")
-    // positions from the form have to be -1 adjusted (only first value if interval)
-    var starts = start.split("-")
-    starts[0] = starts[0] - 1
-    var ends = end.split("-")
-    if (ends[0] > 0) {
-      ends[0] = ends[0] - 1
-    }
-    const startsQuery = starts.map((s) => `start=${s}`).join("&")
-    const endsQuery = ends.map((e) => `end=${e}`).join("&")
-    // const requestType = `variantAlleleRequest`
-    return `${basePath}cgi/bycon/bin/byconplus.py?${datasetsQuery}&${filtersQuery}&${startsQuery}&${endsQuery}&assemblyId=${assemblyId}&referenceBases=${referenceBases}&alternateBases=${alternateBases}&includeDatasetResponses=ALL&requestType=${requestType}&variantType=${variantType}&referenceName=${referenceName}`
+  return useSWR(
+    queryData
+      ? `${basePath}cgi/bycon/bin/byconplus.py?${buildQueryParameters(
+          queryData
+        )}`
+      : null
+  )
+}
+
+export function buildQueryParameters(queryData) {
+  const { start, end, ...otherParams } = queryData
+  // positions from the form have to be -1 adjusted (only first value if interval)
+  const starts = start.split("-")
+  starts[0] = starts[0] - 1
+  const ends = end.split("-")
+  if (ends[0] > 0) {
+    ends[0] = ends[0] - 1
   }
 
-  return useSWR(queryData ? buildQuery() : null)
+  return new URLSearchParams(
+    flattenParams([
+      ...Object.entries(otherParams),
+      ["start", starts],
+      ["end", ends]
+    ])
+  ).toString()
+}
+
+// Transforms [[k1, v1], [k2, [v2, v3]]] into [[k1, v1], [k2, v2], [k3, v3]]
+function flattenParams(paramArray) {
+  return paramArray.flatMap(([key, value]) => {
+    if (Array.isArray(value)) {
+      return value.map((v) => [key, v])
+    } else {
+      return [[key, value]]
+    }
+  })
 }
 
 export function replaceWithProxy(url) {
