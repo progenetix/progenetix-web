@@ -12,7 +12,7 @@ export default function Nav() {
         aria-label="main navigation"
       >
         <span className="Nav__logo">
-          Beacon <span className="Nav__plus">+</span>
+          Beacon <sup className="Nav__plus">+</sup>
         </span>
         <div className="Nav__links">
           <ActiveLink label="Home" href="/" />
