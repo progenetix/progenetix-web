@@ -24,14 +24,36 @@ export default function BiosamplesDataTable({ url }) {
       },
       {
         Header: "Classifications",
-        accessor: (row) =>
-          row.biocharacteristics.map((r) => r.type.id + ": " + r.type.label), // map to an array of type id
-        Cell: ({ value }) => value.map((v, i) => <div key={i}>{v}</div>)
+        accessor: "biocharacteristics",
+        Cell: ({ value: biocharacteristics }) =>
+          biocharacteristics.map((biocharacteristic, i) => (
+            <div key={i} title={biocharacteristic.description}>
+              <a
+                href={`https://progenetix.org/do/pgx_subsets/filters=${biocharacteristic.type.id}`}
+                rel="noreferrer"
+                target="_blank"
+              >
+                {biocharacteristic.type.id}
+              </a>{" "}
+              {biocharacteristic.type.label}
+            </div>
+          ))
       },
       {
         Header: "Identifiers",
-        accessor: (row) => row.external_references.map((r) => r.type.id), // map to an array of type id
-        Cell: ({ value }) => value.map((v, i) => <div key={i}>{v}</div>)
+        accessor: "external_references",
+        Cell: ({ value: externalReferences }) =>
+          externalReferences.map((externalReference, i) => (
+            <div key={i}>
+              <a
+                href={`https://info.progenetix.org/publication-details.html?scope=datacollections&id=${externalReference.type.id}`}
+                rel="noreferrer"
+                target="_blank"
+              >
+                {externalReference.type.id}
+              </a>
+            </div>
+          ))
       },
       {
         Header: "DEL",
