@@ -156,7 +156,7 @@ export function BeaconForm({
               register={register}
               defaultValue="variantCNVrequest"
             >
-              <option value="">Not a structural variant</option>
+              <option value="">No structural variant specified</option>
               <option value="DEL">DEL (Deletion)</option>
               <option value="DUP">DUP (Duplication)</option>
               <option value="BND">BND (Break/Fusion)</option>{" "}
