@@ -6,18 +6,27 @@ import cn from "classnames"
 import BiosamplesDataTable from "./BiosamplesDataTable"
 import VariantsDataTable from "./VariantsDataTable"
 
-export function DatasetResultBox({ data, query }) {
-  const selectableHandovers = data.datasetHandover.filter(
+export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
+  const {
+    datasetId,
+    datasetHandover,
+    variantCount,
+    callCount,
+    sampleCount,
+    frequency
+  } = datasetAlleleResponse
+
+  const selectableHandovers = datasetHandover.filter(
     // exclude cnvhistogram
     ({ handoverType: { id } }) => id !== HANDOVER_IDS.progenetixtools
   )
   const [selectedHandoverId, setSelectedHandoverId] = useState(
     selectableHandovers[0]?.handoverType?.id
   )
-  const selectedHandover = data.datasetHandover.find(
+  const selectedHandover = datasetHandover.find(
     ({ handoverType: { id } }) => id === selectedHandoverId
   )
-  const progenetixtools = data.datasetHandover.find(
+  const progenetixtools = datasetHandover.find(
     ({ handoverType: { id } }) => id === HANDOVER_IDS.progenetixtools
   )
 
@@ -28,7 +37,7 @@ export function DatasetResultBox({ data, query }) {
     selectedHandover?.handoverType?.id === HANDOVER_IDS.biosamplesdata
   ) {
     const url = replaceWithProxy(selectedHandover.url)
-    handoverComponent = <BiosamplesDataTable url={url} />
+    handoverComponent = <BiosamplesDataTable url={url} datasetId={datasetId} />
   } else if (selectedHandover?.handoverType?.id === HANDOVER_IDS.variantsdata) {
     const url = replaceWithProxy(selectedHandover.url)
     handoverComponent = <VariantsDataTable url={url} />
@@ -39,22 +48,23 @@ export function DatasetResultBox({ data, query }) {
       </div>
     )
   }
+
   return (
     <div className="box">
-      <h2 className="subtitle has-text-dark">{data.datasetId}</h2>
+      <h2 className="subtitle has-text-dark">{datasetId}</h2>
       <div className="columns">
         <div className="column is-narrow">
           <div>
             <b>Variants: </b>
-            {data.variantCount}
+            {variantCount}
           </div>
           <div>
             <b>Calls: </b>
-            {data.callCount}
+            {callCount}
           </div>
           <div>
             <b>Samples:</b>
-            {data.sampleCount}
+            {sampleCount}
           </div>
         </div>
         <div className="column is-narrow">
@@ -63,7 +73,7 @@ export function DatasetResultBox({ data, query }) {
               <i>f</i>
               <sub>alleles</sub>:{" "}
             </b>
-            {data.frequency}
+            {frequency}
           </div>
         </div>
         <div className="column is-narrow">
@@ -83,7 +93,9 @@ export function DatasetResultBox({ data, query }) {
           )}
           <div>
             <a
-              onClick={() => initiateSaveAsJson(data, "query.json")}
+              onClick={() =>
+                initiateSaveAsJson(datasetAlleleResponse, "query.json")
+              }
               rel="noreferrer"
               target="_blank"
             >
