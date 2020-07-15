@@ -64,8 +64,6 @@ export default function BeaconPlus() {
       <Nav />
       <section className="section">
         <div className="container mb-5">
-          <div className="content mb-6">
-          </div>
           <Tabs
             requestType={requestType}
             onRequestTypeClicked={handleRequestTypeClicked}
