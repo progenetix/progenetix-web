@@ -37,16 +37,26 @@ export function buildQueryParameters(queryData) {
     freeFilters,
     ...otherParams
   } = queryData
+
   // positions from the form have to be -1 adjusted (only first value if interval)
-  const [, start0, start1] = INTEGER_RANGE_REGEX.exec(start)
-  const starts = [start0 - 1]
-  start1 && starts.push(start1)
-
-  const [, end0, end1] = INTEGER_RANGE_REGEX.exec(end)
-  const ends = [end0 > 0 ? end0 - 1 : end0]
-  end1 && ends.push(end1)
-
+  const starts = []
+  if (start) {
+    const match = INTEGER_RANGE_REGEX.exec(start)
+    if (!match) throw new Error("incorrect start range")
+    const [, start0, start1] = match
+    starts.push(start0 - 1)
+    start1 && starts.push(start1)
+  }
+  const ends = []
+  if (end) {
+    const match = INTEGER_RANGE_REGEX.exec(end)
+    if (!match) throw new Error("incorrect end range")
+    const [, end0, end1] = match
+    ends.push(end0 > 0 ? end0 - 1 : end0)
+    end1 && ends.push(end1)
+  }
   let parsedFreeFilters = freeFilters?.split(",").map((ff) => ff.trim()) ?? []
+
   const filters = [
     bioontology ?? [],
     materialtype ?? [],

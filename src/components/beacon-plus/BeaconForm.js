@@ -77,7 +77,7 @@ export function BeaconForm({
         parameters={parameters}
         errors={errors}
         register={register}
-        defaultValue="variantCNVrequest"
+        defaultValue={parameters.requestType?.value ?? "variantAlleleRequest"}
       >
         <option value="variantAlleleRequest">variantAlleleRequest</option>
         <option value="variantCNVrequest">variantCNVrequest</option>

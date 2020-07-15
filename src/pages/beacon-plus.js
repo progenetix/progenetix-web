@@ -214,7 +214,6 @@ function handleFormSubmit(clearErrors, setError, mutateQuery, setQuery) {
     } = formValues
 
     const missingParameters = []
-
     if (requestType === "variantAlleleRequest") {
       if (!referenceBases || !alternateBases || !start) {
         missingParameters.push("referenceBases", "alternateBases", "start")
