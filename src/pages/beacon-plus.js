@@ -200,56 +200,62 @@ function QuerySummary({ query }) {
   )
 }
 
+function validateForm(formValues) {
+  const {
+    requestType,
+    variantType,
+    referenceBases,
+    alternateBases,
+    start,
+    end
+  } = formValues
+
+  const errors = []
+  const setMissing = (name) =>
+    errors.push([name, { type: "manual", message: "Parameter is missing" }])
+
+  if (requestType === "variantAlleleRequest") {
+    if (!referenceBases || !alternateBases || !start) {
+      !referenceBases && setMissing("referenceBases")
+      !alternateBases && setMissing("alternateBases")
+      !start && setMissing("start")
+    }
+  } else if (requestType === "variantCNVrequest") {
+    if (!start || !end || !variantType) {
+      !start && setMissing("start")
+      !end && setMissing("end")
+      !variantType && setMissing("variantType")
+    }
+  } else if (requestType === "variantRangeRequest") {
+    if (variantType && (referenceBases || alternateBases)) {
+      const error = {
+        type: "manual",
+        message: "Use either Variant Type or Ref. Base(s) and Alt. Base(s)."
+      }
+      errors.push(["variantType", error])
+      errors.push(["referenceBases", error])
+      errors.push(["alternateBases", error])
+    }
+    if (!variantType && !(referenceBases || alternateBases)) {
+      setMissing("variantType")
+      setMissing("referenceBases")
+      setMissing("alternateBases")
+    }
+  } else if (requestType === "variantFusionRequest") {
+    //
+  }
+  return errors
+}
+
 function handleFormSubmit(clearErrors, setError, mutateQuery, setQuery) {
   return (formValues) => {
     clearErrors()
     // At this stage individual parameters are already validated.
-    const {
-      requestType,
-      variantType,
-      referenceBases,
-      alternateBases,
-      start,
-      end
-    } = formValues
-
-    const missingParameters = []
-    if (requestType === "variantAlleleRequest") {
-      if (!referenceBases || !alternateBases || !start) {
-        missingParameters.push("referenceBases", "alternateBases", "start")
-      }
-    } else if (requestType === "variantCNVrequest") {
-      if (!start || !end || !variantType) {
-        missingParameters.push("start", "end", "variantType")
-      }
-    } else if (requestType === "variantRangeRequest") {
-      if (variantType && (referenceBases || alternateBases)) {
-        const error = {
-          type: "manual",
-          message: "Use either Variant Type or Ref. Base(s) and Alt. Base(s)."
-        }
-        setError("variantType", error)
-        setError("referenceBases", error)
-        setError("alternateBases", error)
-        return
-      }
-      if (!variantType && !(referenceBases || alternateBases)) {
-        missingParameters.push(
-          "variantType",
-          "referenceBases",
-          "alternateBases"
-        )
-      }
-    } else if (requestType === "variantFusionRequest") {
-      //
-    }
-    if (missingParameters.length > 0) {
-      missingParameters.forEach((name) =>
-        setError(name, { type: "manual", message: "Parameter is missing" })
-      )
+    const errors = validateForm(formValues)
+    if (errors.length > 0) {
+      errors.forEach(([name, error]) => setError(name, error))
       return
     }
-
     mutateQuery(null) // mutateQuery and clear current results
     setQuery(formValues)
   }
