@@ -1,7 +1,7 @@
 // variables is put in a separate file so we can reuse then in scoped css modules.
 @import "./variables";
 
-@import "components/BiosamplesDataTable";
+@import "components/DataTable";
 @import "components/Nav";
 
 @import "pages/beacon-plus";

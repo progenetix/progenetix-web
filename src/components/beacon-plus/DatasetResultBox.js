@@ -4,6 +4,7 @@ import { FaDownload, FaExternalLinkAlt } from "react-icons/fa"
 import { initiateSaveAsJson } from "../../utils/download"
 import cn from "classnames"
 import BiosamplesDataTable from "./BiosamplesDataTable"
+import VariantsDataTable from "./VariantsDataTable"
 
 export function DatasetResultBox({ data, query }) {
   const selectableHandovers = data.datasetHandover.filter(
@@ -28,8 +29,15 @@ export function DatasetResultBox({ data, query }) {
   ) {
     const url = replaceWithProxy(selectedHandover.url)
     handoverComponent = <BiosamplesDataTable url={url} />
+  } else if (selectedHandover?.handoverType?.id === HANDOVER_IDS.variantsdata) {
+    const url = replaceWithProxy(selectedHandover.url)
+    handoverComponent = <VariantsDataTable url={url} />
   } else if (selectedHandover?.handoverType?.id) {
-    handoverComponent = <div>Not yet implemented...</div>
+    handoverComponent = (
+      <div>
+        No handover display implemented for {selectedHandover.handoverType.id}
+      </div>
+    )
   }
   return (
     <div className="box">
