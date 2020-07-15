@@ -1,6 +1,6 @@
 import React from "react"
 
-export function Spinner({ centered }) {
+export function Spinner({ centered = true }) {
   const component = <span className="is-size-3 loader is-loading" />
   if (centered)
     return (

@@ -6,10 +6,10 @@ import {
   useFilteringTerms
 } from "../../api/bycon"
 import React, { useState } from "react"
-import { Spinner } from "../Spinner"
 import { markdownToReact } from "../../utils/md"
 import requestTypesConfig from "../../../config/beacon-plus/requestTypes.yaml"
 import { useForm } from "react-hook-form"
+import { Loader } from "../Loader"
 
 export function BeaconForm({ isLoading, onValidFormQuery }) {
   const {
@@ -61,190 +61,190 @@ export function BeaconForm({ isLoading, onValidFormQuery }) {
     onValidFormQuery(formValues)
   }
 
-  if (datasetsError || filteringTermsError)
-    return (
-      <div className="notification is-warning">Could not load form data.</div>
-    )
-  if (!datasets || !filteringTerms)
-    return (
-      <div className="notification is-info is-light">
-        <div className="has-text-centered subtitle">Loading form data...</div>
-        <Spinner centered />
-      </div>
-    )
-
   return (
-    <>
-      <Tabs
-        requestType={requestType}
-        onRequestTypeClicked={handleRequestTypeClicked}
-      />
-      <RequestDescription
-        requestConfig={requestConfig}
-        example={example}
-        onExampleClicked={handleExampleClicked}
-      />
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <SelectField
-          name="datasetIds"
-          label="Dataset"
-          parameters={parameters}
-          errors={errors}
-          register={register({ required: true })}
-          multiple
-        >
-          {datasets.map((ds) => (
-            <option key={ds.id} value={ds.id}>
-              {ds.label}
-            </option>
-          ))}
-        </SelectField>
-        <SelectField
-          name="assemblyId"
-          label="Genome Assembly"
-          parameters={parameters}
-          errors={errors}
-          register={register}
-        >
-          <option value="GRCh38">GRCh38 / hg38</option>
-        </SelectField>
-        <SelectField
-          name="includeDatasetResonses"
-          label="Dataset Responses"
-          parameters={parameters}
-          errors={errors}
-          register={register}
-          defaultValue="ALL"
-        >
-          <option value="HIT">Datasets With Hits</option>
-          <option value="ALL">All Selected Datasets</option>
-          <option value="MISS">Datasets Without Hits</option>{" "}
-        </SelectField>
-        <SelectField
-          name="requestType"
-          label="Variant Request Type"
-          parameters={parameters}
-          errors={errors}
-          register={register}
-          defaultValue={parameters.requestType?.value ?? "variantAlleleRequest"}
-        >
-          <option value="variantAlleleRequest">variantAlleleRequest</option>
-          <option value="variantCNVrequest">variantCNVrequest</option>
-          <option value="variantRangeRequest">variantRangeRequest</option>
-          <option value="variantFusionRequest">variantFusionRequest</option>
-        </SelectField>
-        <SelectField
-          name="referenceName"
-          label="Reference name"
-          parameters={parameters}
-          errors={errors}
-          register={register}
-          defaultValue="variantCNVrequest"
-        >
-          {REFERENCE_NAMES.map((rn) => (
-            <option key={rn} value={rn}>
-              {rn}
-            </option>
-          ))}
-        </SelectField>
-        <SelectField
-          name="variantType"
-          label="(Structural) Variant"
-          parameters={parameters}
-          errors={errors}
-          register={register}
-          defaultValue="variantCNVrequest"
-        >
-          <option value="">Not a structural variant</option>
-          <option value="DEL">DEL (Deletion)</option>
-          <option value="DUP">DUP (Duplication)</option>
-          <option value="BND">BND (Break/Fusion)</option>{" "}
-        </SelectField>
-        <InputField
-          name="start"
-          label="Start"
-          parameters={parameters}
-          errors={errors}
-          register={register({
-            validate: checkIntegerRange
-          })}
-        />
-        <InputField
-          name="end"
-          label="End Position"
-          parameters={parameters}
-          errors={errors}
-          register={register({
-            validate: checkIntegerRange
-          })}
-        />
-        <InputField
-          name="referenceBases"
-          label="Ref. Base(s)"
-          parameters={parameters}
-          errors={errors}
-          register={register}
-        />
-        <InputField
-          name="alternateBases"
-          label="Alt. Base(s)"
-          parameters={parameters}
-          errors={errors}
-          register={register}
-        />
-        <SelectField
-          name="bioontology"
-          label="Bio-ontology"
-          parameters={parameters}
-          errors={errors}
-          register={register}
-          multiple
-        >
-          <option value="">{noSelection}</option>
-          {filteringTerms.map((ds) => (
-            <option key={ds.id} value={ds.id}>
-              {ds.label}
-            </option>
-          ))}
-        </SelectField>
-        <SelectField
-          name="materialtype"
-          label="Biosample Type"
-          parameters={parameters}
-          errors={errors}
-          register={register}
-          defaultValue=""
-        >
-          <option value="">{noSelection}</option>
-          <option value="EFO:0009656">neoplastic sample</option>
-          <option value="EFO:0009654">reference sample</option>
-        </SelectField>
-        <InputField
-          name="freeFilters"
-          label="Filters"
-          parameters={parameters}
-          errors={errors}
-          register={register}
-        />
-        <div className="field is-horizontal">
-          <div className="field-label" />
-          <div className="field-body">
-            <div className="field">
-              <div className="control">
-                <button
-                  type="submit"
-                  className={cn("button", "is-primary", {
-                    "is-loading": isLoading
-                  })}
-                >
-                  Beacon Query
-                </button>
+    <Loader
+      hasError={datasetsError || filteringTermsError}
+      isLoading={!datasets || !filteringTerms}
+      colored
+      loadingMessage="Loading form data..."
+      errorMessage="Could not load form data."
+    >
+      {() => (
+        <>
+          <Tabs
+            requestType={requestType}
+            onRequestTypeClicked={handleRequestTypeClicked}
+          />
+          <RequestDescription
+            requestConfig={requestConfig}
+            example={example}
+            onExampleClicked={handleExampleClicked}
+          />
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <SelectField
+              name="datasetIds"
+              label="Dataset"
+              parameters={parameters}
+              errors={errors}
+              register={register({ required: true })}
+              multiple
+            >
+              {datasets.map((ds) => (
+                <option key={ds.id} value={ds.id}>
+                  {ds.label}
+                </option>
+              ))}
+            </SelectField>
+            <SelectField
+              name="assemblyId"
+              label="Genome Assembly"
+              parameters={parameters}
+              errors={errors}
+              register={register}
+            >
+              <option value="GRCh38">GRCh38 / hg38</option>
+            </SelectField>
+            <SelectField
+              name="includeDatasetResonses"
+              label="Dataset Responses"
+              parameters={parameters}
+              errors={errors}
+              register={register}
+              defaultValue="ALL"
+            >
+              <option value="HIT">Datasets With Hits</option>
+              <option value="ALL">All Selected Datasets</option>
+              <option value="MISS">Datasets Without Hits</option>{" "}
+            </SelectField>
+            <SelectField
+              name="requestType"
+              label="Variant Request Type"
+              parameters={parameters}
+              errors={errors}
+              register={register}
+              defaultValue={
+                parameters.requestType?.value ?? "variantAlleleRequest"
+              }
+            >
+              <option value="variantAlleleRequest">variantAlleleRequest</option>
+              <option value="variantCNVrequest">variantCNVrequest</option>
+              <option value="variantRangeRequest">variantRangeRequest</option>
+              <option value="variantFusionRequest">variantFusionRequest</option>
+            </SelectField>
+            <SelectField
+              name="referenceName"
+              label="Reference name"
+              parameters={parameters}
+              errors={errors}
+              register={register}
+              defaultValue="variantCNVrequest"
+            >
+              {REFERENCE_NAMES.map((rn) => (
+                <option key={rn} value={rn}>
+                  {rn}
+                </option>
+              ))}
+            </SelectField>
+            <SelectField
+              name="variantType"
+              label="(Structural) Variant"
+              parameters={parameters}
+              errors={errors}
+              register={register}
+              defaultValue="variantCNVrequest"
+            >
+              <option value="">Not a structural variant</option>
+              <option value="DEL">DEL (Deletion)</option>
+              <option value="DUP">DUP (Duplication)</option>
+              <option value="BND">BND (Break/Fusion)</option>{" "}
+            </SelectField>
+            <InputField
+              name="start"
+              label="Start"
+              parameters={parameters}
+              errors={errors}
+              register={register({
+                validate: checkIntegerRange
+              })}
+            />
+            <InputField
+              name="end"
+              label="End Position"
+              parameters={parameters}
+              errors={errors}
+              register={register({
+                validate: checkIntegerRange
+              })}
+            />
+            <InputField
+              name="referenceBases"
+              label="Ref. Base(s)"
+              parameters={parameters}
+              errors={errors}
+              register={register}
+            />
+            <InputField
+              name="alternateBases"
+              label="Alt. Base(s)"
+              parameters={parameters}
+              errors={errors}
+              register={register}
+            />
+            <SelectField
+              name="bioontology"
+              label="Bio-ontology"
+              parameters={parameters}
+              errors={errors}
+              register={register}
+              multiple
+            >
+              <option value="">{noSelection}</option>
+              {filteringTerms.map((ds) => (
+                <option key={ds.id} value={ds.id}>
+                  {ds.label}
+                </option>
+              ))}
+            </SelectField>
+            <SelectField
+              name="materialtype"
+              label="Biosample Type"
+              parameters={parameters}
+              errors={errors}
+              register={register}
+              defaultValue=""
+            >
+              <option value="">{noSelection}</option>
+              <option value="EFO:0009656">neoplastic sample</option>
+              <option value="EFO:0009654">reference sample</option>
+            </SelectField>
+            <InputField
+              name="freeFilters"
+              label="Filters"
+              parameters={parameters}
+              errors={errors}
+              register={register}
+            />
+            <div className="field is-horizontal">
+              <div className="field-label" />
+              <div className="field-body">
+                <div className="field">
+                  <div className="control">
+                    <button
+                      type="submit"
+                      className={cn("button", "is-primary", {
+                        "is-loading": isLoading
+                      })}
+                    >
+                      Beacon Query
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </form>
-    </>
+          </form>
+        </>
+      )}
+    </Loader>
   )
 }
 
