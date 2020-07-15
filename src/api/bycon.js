@@ -29,7 +29,14 @@ export function useBeaconQuery(queryData) {
 }
 
 export function buildQueryParameters(queryData) {
-  const { start, end, ...otherParams } = queryData
+  const {
+    start,
+    end,
+    bioontology,
+    materialtype,
+    freeFilters,
+    ...otherParams
+  } = queryData
   // positions from the form have to be -1 adjusted (only first value if interval)
   const [, start0, start1] = INTEGER_RANGE_REGEX.exec(start)
   const starts = [start0 - 1]
@@ -39,11 +46,19 @@ export function buildQueryParameters(queryData) {
   const ends = [end0 > 0 ? end0 - 1 : end0]
   end1 && ends.push(end1)
 
+  let parsedFreeFilters = freeFilters?.split(",").map((ff) => ff.trim()) ?? []
+  const filters = [
+    bioontology ?? [],
+    materialtype ?? [],
+    parsedFreeFilters
+  ].flat()
+
   return new URLSearchParams(
     flattenParams([
       ...Object.entries(otherParams),
       ["start", starts],
-      ["end", ends]
+      ["end", ends],
+      ["filters", filters]
     ])
   ).toString()
 }

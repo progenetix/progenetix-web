@@ -41,7 +41,7 @@ variantAlleleRequest:
     materialtype:
       placeholder: ""
       hide: true
-    filters:
+    freeFilters:
       placeholder: ""
       hide: true
   examples:
@@ -75,7 +75,7 @@ variantAlleleRequest:
           value: "A"
         referenceBases:
           value: "G"
-        filters:
+        freeFilters:
           value: ""
       ontology_queries:
         - "icdot-C71.7"
@@ -116,7 +116,7 @@ variantAlleleRequest:
         materialtype:
           value: ""
           hide: true
-        filters:
+        freeFilters:
           value: ""
       ontology_queries:
         - "NCIT"
@@ -161,7 +161,7 @@ variantCNVrequest:
     materialtype:
       placeholder: "" #"EFO:0009656"
       hide: true
-    filters:
+    freeFilters:
       placeholder: ""
       hide: true
   examples:
@@ -277,7 +277,7 @@ variantRangeRequest:
           value: "N"
         referenceBases:
           value: "N"
-        filters:
+        freeFilters:
           value: ""
       ontology_queries:
         - "NCIT"
@@ -318,7 +318,7 @@ allFieldsRequest:
       placeholder: "A"
     referenceBases:
       placeholder: "G"
-    filters:
+    freeFilters:
       placeholder: "" # "geolat:49,geolong:8.69,geodist:2000000"
     materialtype:
       placeholder: "" #"EFO:0009656"

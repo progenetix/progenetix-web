@@ -92,7 +92,7 @@ export default function BeaconPlus() {
 
 function Tabs({ requestType, onRequestTypeClicked }) {
   return (
-    <div className="tabs is-fullwidth">
+    <div className="tabs">
       <ul>
         {Object.entries(requestTypesConfig).map(([id, value]) => (
           <li
