@@ -11,39 +11,39 @@ variantAlleleRequest:
       placeholder: "dipg"
     includeDatasetResponses:
       placeholder: "ALL"
-      hide: false
+      hide: true
     requestType:
       value: "variantAlleleRequest"
-      hide: false
+      hide: true
     assemblyId:
       placeholder: "GRCh38"
-      hide: false
+      hide: true
     geneinputField:
       placeholder: ""
-      hide: false
+      hide: true
     cytoinputField:
       placeholder: ""
-      hide: false
+      hide: true
     referenceName:
       placeholder: 17
     start:
       placeholder: 7577121
     end:
       placeholder: ""
-      hide: false
+      hide: true
     variantType:
       placeholder: ""
-      hide: false
+      hide: true
     alternateBases:
       placeholder: "A"
     referenceBases:
       placeholder: "G"
     materialtype:
       placeholder: ""
-      hide: false
+      hide: true
     filters:
       placeholder: ""
-      hide: false
+      hide: true
   examples:
     - label: "SNV Example"
       note: "Example for specific EIF4A1 mutation"
@@ -55,12 +55,12 @@ variantAlleleRequest:
           value: "dipg"
         includeDatasetResponses:
           value: "ALL"
-          hide: false
+          hide: true
         assemblyId:
           value: "GRCh38"
         geneinputField:
           value: "EIF4A1"
-          hide: false
+          hide: true
         cytoinputField:
           value: ""
         referenceName:
@@ -92,7 +92,7 @@ variantAlleleRequest:
           value: "cellosaurus"
         includeDatasetResponses:
           value: "ALL"
-          hide: false
+          hide: true
         assemblyId:
           value: "GRCh38"
         geneinputField:
@@ -115,7 +115,7 @@ variantAlleleRequest:
           value: "C"
         materialtype:
           value: ""
-          hide: false
+          hide: true
         filters:
           value: ""
       ontology_queries:
@@ -132,18 +132,18 @@ variantCNVrequest:
       placeholder: ""
     includeDatasetResponses:
       placeholder: "ALL"
-      hide: false
+      hide: true
     requestType:
       value: "variantCNVrequest"
-      hide: false
+      hide: true
     assemblyId:
       placeholder: "GRCh38"
     geneinputField:
       placeholder: "CDKN2A"
-      hide: false
+      hide: true
     cytoinputField:
       placeholder: ""
-      hide: false
+      hide: true
     referenceName:
       placeholder: 9
     start:
@@ -154,16 +154,16 @@ variantCNVrequest:
       placeholder: "DEL"
     alternateBases:
       placeholder: ""
-      hide: false
+      hide: true
     referenceBases:
       placeholder: "N"
-      hide: false
+      hide: true
     materialtype:
       placeholder: "" #"EFO:0009656"
-      hide: false
+      hide: true
     filters:
       placeholder: ""
-      hide: false
+      hide: true
   examples:
     - label: "CNV Example"
       note: "Example for focal CDKN2A deletion matches."
@@ -178,7 +178,7 @@ variantCNVrequest:
           value: "arraymap"
         includeDatasetResponses:
           value: "ALL"
-          hide: false
+          hide: true
         assemblyId:
           value: "GRCh38"
         geneinputField:
@@ -193,15 +193,15 @@ variantCNVrequest:
           value: "DEL"
         alternateBases:
           value: ""
-          hide: false
+          hide: true
         referenceBases:
           value: "N"
-          hide: false
+          hide: true
         bioontology:
           value: NCIT:C3058
         freeFilters:
           value: ""
-          hide: false
+          hide: true
       ontology_queries:
         - "icdom"
         - "NCIT"
@@ -219,18 +219,18 @@ variantRangeRequest:
       placeholder: ""
     includeDatasetResponses:
       placeholder: "ALL"
-      hide: false
+      hide: true
     requestType:
       value: "variantRangeRequest"
-      hide: false
+      hide: true
     assemblyId:
       placeholder: "GRCh38"
     geneinputField:
       placeholder: ""
-      hide: false
+      hide: true
     cytoinputField:
       placeholder: ""
-      hide: false
+      hide: true
     referenceName:
       placeholder: 17
     start:
@@ -260,7 +260,7 @@ variantRangeRequest:
           value: "dipg"
         includeDatasetResponses:
           value: "ALL"
-          hide: false
+          hide: true
         assemblyId:
           value: "GRCh38"
         geneinputField:
