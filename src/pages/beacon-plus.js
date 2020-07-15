@@ -59,10 +59,6 @@ export default function BeaconPlus() {
       <section className="section">
         <div className="container mb-5">
           <div className="content mb-6">
-            This forward looking Beacon interface implements additional, planned
-            features beyond the current Beacon specifications. <br />
-            Further information can be found through the{" "}
-            <a href="http://beacon-project.io/">ELIXIR Beacon website</a>.
           </div>
           <div className="tabs is-fullwidth">
             <ul>
