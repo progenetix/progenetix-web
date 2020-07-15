@@ -7,11 +7,14 @@ import {
 } from "../../api/bycon"
 import React, { useState } from "react"
 import { markdownToReact } from "../../utils/md"
-import requestTypesConfig from "../../../config/beacon-plus/requestTypes.yaml"
 import { useForm } from "react-hook-form"
 import { Loader } from "../Loader"
 
-export function BeaconForm({ isLoading, onValidFormQuery }) {
+export function BeaconForm({
+  isLoading,
+  onValidFormQuery,
+  requestTypesConfig
+}) {
   const {
     register,
     handleSubmit,
@@ -72,7 +75,7 @@ export function BeaconForm({ isLoading, onValidFormQuery }) {
       {() => (
         <>
           <Tabs
-            requestType={requestType}
+            requestTypesConfig={requestTypesConfig}requestType={requestType}
             onRequestTypeClicked={handleRequestTypeClicked}
           />
           <RequestDescription
@@ -248,7 +251,7 @@ export function BeaconForm({ isLoading, onValidFormQuery }) {
   )
 }
 
-function Tabs({ requestType, onRequestTypeClicked }) {
+function Tabs({ requestTypesConfig, requestType, onRequestTypeClicked }) {
   return (
     <div className="tabs">
       <ul>
