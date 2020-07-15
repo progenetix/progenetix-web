@@ -1,30 +1,11 @@
 import React, { useState } from "react"
-import { useForm } from "react-hook-form"
-import requestTypesConfig from "../../config/beacon-plus/requestTypes.yaml"
 import { useBeaconQuery } from "../api/bycon"
-import { markdownToReact } from "../utils/md"
 import Nav from "../components/Nav"
 import { BeaconForm } from "../components/beacon-plus/BeaconForm"
 import { DatasetResultBox } from "../components/beacon-plus/DatasetResultBox"
-import cn from "classnames"
 
 export default function BeaconPlus() {
-  const {
-    register,
-    handleSubmit,
-    errors,
-    reset,
-    setError,
-    setValue,
-    clearErrors
-  } = useForm()
   const [query, setQuery] = useState(null) // actual valid query
-
-  const [requestType, setRequestType] = useState(
-    Object.entries(requestTypesConfig)[0][0] // auto select first requestType from the file
-  )
-
-  const [example, setExample] = useState(null)
 
   const {
     data: queryResponse,
@@ -34,29 +15,9 @@ export default function BeaconPlus() {
 
   const isLoading = !queryResponse && !queryError && !!query
 
-  const requestConfig = requestTypesConfig[requestType]
-
-  const onSubmit = handleFormSubmit(
-    clearErrors,
-    setError,
-    mutateQuery,
-    setQuery
-  )
-
-  const handleRequestTypeClicked = (requestTypeId) => {
-    setExample(null)
-    const newParams = Object.fromEntries(
-      Object.entries(
-        requestTypesConfig[requestTypeId].parameters
-      ).map(([k, v]) => [k, v?.value])
-    )
-    reset(newParams)
-    setRequestType(requestTypeId)
-  }
-
-  const handleExampleClicked = (example) => {
-    setExample(example)
-    Object.entries(example.parameters).forEach(([k, v]) => setValue(k, v.value))
+  const handleValidFormQuery = (formValues) => {
+    mutateQuery(null) // mutateQuery and clear current results
+    setQuery(formValues)
   }
 
   return (
@@ -64,84 +25,15 @@ export default function BeaconPlus() {
       <Nav />
       <section className="section">
         <div className="container mb-5">
-          <Tabs
-            requestType={requestType}
-            onRequestTypeClicked={handleRequestTypeClicked}
-          />
-          <RequestDescription
-            requestConfig={requestConfig}
-            example={example}
-            onExampleClicked={handleExampleClicked}
-          />
           <BeaconForm
-            requestConfig={requestConfig}
-            handleSubmit={handleSubmit}
-            onSubmit={onSubmit}
-            register={register}
-            errors={errors}
             isLoading={isLoading}
+            onValidFormQuery={handleValidFormQuery}
           />
         </div>
         <div className="container">
           <Results response={queryResponse} error={queryError} query={query} />
         </div>
       </section>
-    </>
-  )
-}
-
-function Tabs({ requestType, onRequestTypeClicked }) {
-  return (
-    <div className="tabs">
-      <ul>
-        {Object.entries(requestTypesConfig).map(([id, value]) => (
-          <li
-            className={cn({ "is-active": id === requestType })}
-            key={id}
-            onClick={() => onRequestTypeClicked(id)}
-          >
-            <a>{value.label}</a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
-}
-
-function RequestDescription({ requestConfig, onExampleClicked, example }) {
-  return (
-    <>
-      <article className="message">
-        <div className="message-body">
-          <div className="content">
-            {requestConfig.description &&
-              markdownToReact(requestConfig?.description)}
-            <div className="buttons">
-              {Object.entries(requestConfig.examples || []).map(
-                ([id, value]) => (
-                  <button
-                    key={id}
-                    className="button is-info is-outlined"
-                    onClick={() => onExampleClicked(value)}
-                  >
-                    {value.label}
-                  </button>
-                )
-              )}
-            </div>
-          </div>
-        </div>
-      </article>
-
-      {example?.description && (
-        <article className="message is-info">
-          <div className="message-body">
-            <div className="content">
-              {markdownToReact(example?.description)}
-            </div>
-          </div>
-        </article>
-      )}
     </>
   )
 }
@@ -198,65 +90,4 @@ function QuerySummary({ query }) {
       <span>Filters: {filters.join(", ")}</span>
     </>
   )
-}
-
-function validateForm(formValues) {
-  const {
-    requestType,
-    variantType,
-    referenceBases,
-    alternateBases,
-    start,
-    end
-  } = formValues
-
-  const errors = []
-  const setMissing = (name) =>
-    errors.push([name, { type: "manual", message: "Parameter is missing" }])
-
-  if (requestType === "variantAlleleRequest") {
-    if (!referenceBases || !alternateBases || !start) {
-      !referenceBases && setMissing("referenceBases")
-      !alternateBases && setMissing("alternateBases")
-      !start && setMissing("start")
-    }
-  } else if (requestType === "variantCNVrequest") {
-    if (!start || !end || !variantType) {
-      !start && setMissing("start")
-      !end && setMissing("end")
-      !variantType && setMissing("variantType")
-    }
-  } else if (requestType === "variantRangeRequest") {
-    if (variantType && (referenceBases || alternateBases)) {
-      const error = {
-        type: "manual",
-        message: "Use either Variant Type or Ref. Base(s) and Alt. Base(s)."
-      }
-      errors.push(["variantType", error])
-      errors.push(["referenceBases", error])
-      errors.push(["alternateBases", error])
-    }
-    if (!variantType && !(referenceBases || alternateBases)) {
-      setMissing("variantType")
-      setMissing("referenceBases")
-      setMissing("alternateBases")
-    }
-  } else if (requestType === "variantFusionRequest") {
-    //
-  }
-  return errors
-}
-
-function handleFormSubmit(clearErrors, setError, mutateQuery, setQuery) {
-  return (formValues) => {
-    clearErrors()
-    // At this stage individual parameters are already validated.
-    const errors = validateForm(formValues)
-    if (errors.length > 0) {
-      errors.forEach(([name, error]) => setError(name, error))
-      return
-    }
-    mutateQuery(null) // mutateQuery and clear current results
-    setQuery(formValues)
-  }
 }
