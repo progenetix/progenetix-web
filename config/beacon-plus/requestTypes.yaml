@@ -11,39 +11,115 @@ variantAlleleRequest:
       placeholder: "dipg"
     includeDatasetResponses:
       placeholder: "ALL"
-      hide: true
+      hide: false
     requestType:
       value: "variantAlleleRequest"
-      hide: true
+      hide: false
     assemblyId:
       placeholder: "GRCh38"
-      hide: true
+      hide: false
     geneinputField:
       placeholder: ""
-      hide: true
+      hide: false
     cytoinputField:
       placeholder: ""
-      hide: true
+      hide: false
     referenceName:
       placeholder: 17
     start:
       placeholder: 7577121
     end:
       placeholder: ""
-      hide: true
+      hide: false
     variantType:
       placeholder: ""
-      hide: true
+      hide: false
     alternateBases:
       placeholder: "A"
     referenceBases:
       placeholder: "G"
     materialtype:
       placeholder: ""
-      hide: true
+      hide: false
     filters:
       placeholder: ""
-      hide: true
+      hide: false
+  examples:
+    - label: "SNV Example"
+      note: "Example for specific EIF4A1 mutation"
+      description: |
+        This example shows a core Beacon query, against a specific
+        mutation in the EIF4A1 gene, in the DIPG childhood brain tumor dataset.
+      parameters:
+        datasetIds:
+          value: "dipg"
+        includeDatasetResponses:
+          value: "ALL"
+          hide: false
+        assemblyId:
+          value: "GRCh38"
+        geneinputField:
+          value: "EIF4A1"
+          hide: false
+        cytoinputField:
+          value: ""
+        referenceName:
+          value: 17
+        start:
+          value: 7577121
+        end:
+          value: ""
+        variantType:
+          value: ""
+        alternateBases:
+          value: "A"
+        referenceBases:
+          value: "G"
+        filters:
+          value: ""
+      ontology_queries:
+        - "icdot-C71.7"
+        - "NCIT"
+        - "icdom"
+        - "icdot"
+    - label: "ClinVar Example"
+      note: "Example for TP53 mutation (ClinVar annotated) in a cell line"
+      description: |
+        This example shows a core Beacon query, against a specific
+        mutation in the TP53 gene, in cellosaurus, with ClinVar data.
+      parameters:
+        datasetIds:
+          value: "cellosaurus"
+        includeDatasetResponses:
+          value: "ALL"
+          hide: false
+        assemblyId:
+          value: "GRCh38"
+        geneinputField:
+          value: "TP53"
+        cytoinputField:
+          value: "17p13.1"
+        referenceName:
+          value: 17
+        start:
+          value: 7673767
+        endMin:
+          value: ""
+        end:
+          value: ""
+        variantType:
+          value: ""
+        alternateBases:
+          value: "T"
+        referenceBases:
+          value: "C"
+        materialtype:
+          value: ""
+          hide: false
+        filters:
+          value: ""
+      ontology_queries:
+        - "NCIT"
 
 variantCNVrequest:
   note: ""
@@ -56,18 +132,18 @@ variantCNVrequest:
       placeholder: ""
     includeDatasetResponses:
       placeholder: "ALL"
-      hide: true
+      hide: false
     requestType:
       value: "variantCNVrequest"
-      hide: true
+      hide: false
     assemblyId:
       placeholder: "GRCh38"
     geneinputField:
       placeholder: "CDKN2A"
-      hide: true
+      hide: false
     cytoinputField:
       placeholder: ""
-      hide: true
+      hide: false
     referenceName:
       placeholder: 9
     start:
@@ -78,16 +154,57 @@ variantCNVrequest:
       placeholder: "DEL"
     alternateBases:
       placeholder: ""
-      hide: true
+      hide: false
     referenceBases:
       placeholder: "N"
-      hide: true
+      hide: false
     materialtype:
       placeholder: "" #"EFO:0009656"
-      hide: true
+      hide: false
     filters:
       placeholder: ""
-      hide: true
+      hide: false
+  examples:
+    - label: "CNV Example"
+      note: "Example for focal CDKN2A deletion matches."
+      description: |
+        This example shows the query for CNV deletion variants overlapping the
+        CDKN2A gene's coding region with at least a single base, but limited
+        to "focal" hits (here i.e. <= ~2Mbp in size). The query is against the
+        arrayMap collection and can be modified e.g. through changing the position
+        parameters or data source.
+      parameters:
+        datasetIds:
+          value: "arraymap"
+        includeDatasetResponses:
+          value: "ALL"
+          hide: false
+        assemblyId:
+          value: "GRCh38"
+        geneinputField:
+          value: "CDKN2A"
+        referenceName:
+          value: 9
+        start:
+          value: "21000001-21975098"
+        end:
+          value: "21967753-23000000"
+        variantType:
+          value: "DEL"
+        alternateBases:
+          value: ""
+          hide: false
+        referenceBases:
+          value: "N"
+          hide: false
+        bioontology:
+          value: NCIT:C3058
+        freeFilters:
+          value: ""
+          hide: false
+      ontology_queries:
+        - "icdom"
+        - "NCIT"
 
 variantRangeRequest:
   note: ""
@@ -102,18 +219,18 @@ variantRangeRequest:
       placeholder: ""
     includeDatasetResponses:
       placeholder: "ALL"
-      hide: true
+      hide: false
     requestType:
       value: "variantRangeRequest"
-      hide: true
+      hide: false
     assemblyId:
       placeholder: "GRCh38"
     geneinputField:
       placeholder: ""
-      hide: true
+      hide: false
     cytoinputField:
       placeholder: ""
-      hide: true
+      hide: false
     referenceName:
       placeholder: 17
     start:
@@ -126,8 +243,49 @@ variantRangeRequest:
       placeholder: "N"
     referenceBases:
       placeholder: "N"
+  examples:
+    - label: "SNV Range Example"
+      note: "Example for EIF4A1 transcript region matches (precise variants)"
+      description: |
+        As in the standard SNV query, this example shows a Beacon query against
+        mutations in the EIF4A1 gene in the DIPG childhood brain tumor dataset.
+        However, this range + wildcard query will return any variant with
+        alternate bases (indicated through "N").
+        Since parameters will be interpreted using an "AND" paradigm, either <i>Alternate
+        Bases</i> OR <i>Variant Type</i> should be specified.
+        The exact variants which were being found can be retrieved through the variant
+        handover [H—>O] link.
+      parameters:
+        datasetIds:
+          value: "dipg"
+        includeDatasetResponses:
+          value: "ALL"
+          hide: false
+        assemblyId:
+          value: "GRCh38"
+        geneinputField:
+          value: "EIF4A1"
+        referenceName:
+          value: 17
+        start:
+          value: 7572826
+        end:
+          value: 7579005
+        variantType:
+          value: ""
+        alternateBases:
+          value: "N"
+        referenceBases:
+          value: "N"
+        filters:
+          value: ""
+      ontology_queries:
+        - "NCIT"
+        - "icdom"
+        - "icdot"
 
-emptyRequest:
+
+allFieldsRequest:
   note: ""
   label: "All Fields"
   description: |
@@ -138,7 +296,6 @@ emptyRequest:
     includeDatasetResponses:
       placeholder: "ALL"
     requestType:
-      value: ""
     assemblyId:
       placeholder: "GRCh38"
     geneinputField:
