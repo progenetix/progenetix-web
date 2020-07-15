@@ -4,7 +4,7 @@ import PropTypes from "prop-types"
 import { Loader } from "../Loader"
 import Table from "../Table"
 
-export default function BiosamplesDataTable({ url }) {
+export default function BiosamplesDataTable({ url, datasetId }) {
   const { data, error } = useSWR(url)
   const isLoading = !data && !error
 
@@ -16,17 +16,13 @@ export default function BiosamplesDataTable({ url }) {
         // eslint-disable-next-line react/display-name
         Cell: (cellInfo) => (
           <a
-            href={`https://info.progenetix.org/biosample-details.html?datasetIds=${cellInfo.row.values.project_id}&id=${cellInfo.value}`}
+            href={`https://info.progenetix.org/biosample-details.html?datasetIds=${datasetId}&id=${cellInfo.value}`}
             rel="noreferrer"
             target="_blank"
           >
             {cellInfo.value}
           </a>
         )
-      },
-      {
-        Header: "Project Id",
-        accessor: "project_id"
       },
       {
         Header: "Description",
