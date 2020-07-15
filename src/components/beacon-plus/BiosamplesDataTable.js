@@ -55,13 +55,17 @@ export default function BiosamplesDataTable({ url }) {
         Cell: ({ value: externalReferences }) =>
           externalReferences.map((externalReference, i) => (
             <div key={i}>
-              <a
-                href={`https://info.progenetix.org/publication-details.html?scope=datacollections&id=${externalReference.type.id}`}
-                rel="noreferrer"
-                target="_blank"
-              >
-                {externalReference.type.id}
-              </a>
+              {isPMID(externalReference) ? (
+                <a
+                  href={`https://info.progenetix.org/publication-details.html?scope=datacollections&id=${externalReference.type.id}`}
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  {externalReference.type.id}
+                </a>
+              ) : (
+                externalReference.type.id
+              )}
             </div>
           ))
       },
@@ -86,6 +90,10 @@ export default function BiosamplesDataTable({ url }) {
       <Table columns={columns} data={data} />
     </Loader>
   )
+}
+
+function isPMID(externalReference) {
+  return externalReference.type.id.includes("PMID:")
 }
 
 BiosamplesDataTable.propTypes = {
