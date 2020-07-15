@@ -12,7 +12,17 @@ export default function BiosamplesDataTable({ url }) {
     () => [
       {
         Header: "Id",
-        accessor: "id"
+        accessor: "id",
+        // eslint-disable-next-line react/display-name
+        Cell: (cellInfo) => (
+          <a
+            href={`https://info.progenetix.org/biosample-details.html?datasetIds=${cellInfo.row.values.project_id}&id=${cellInfo.value}`}
+            rel="noreferrer"
+            target="_blank"
+          >
+            {cellInfo.value}
+          </a>
+        )
       },
       {
         Header: "Project Id",
@@ -45,13 +55,17 @@ export default function BiosamplesDataTable({ url }) {
         Cell: ({ value: externalReferences }) =>
           externalReferences.map((externalReference, i) => (
             <div key={i}>
-              <a
-                href={`https://info.progenetix.org/publication-details.html?scope=datacollections&id=${externalReference.type.id}`}
-                rel="noreferrer"
-                target="_blank"
-              >
-                {externalReference.type.id}
-              </a>
+              {isPMID(externalReference) ? (
+                <a
+                  href={`https://info.progenetix.org/publication-details.html?scope=datacollections&id=${externalReference.type.id}`}
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  {externalReference.type.id}
+                </a>
+              ) : (
+                externalReference.type.id
+              )}
             </div>
           ))
       },
@@ -76,6 +90,10 @@ export default function BiosamplesDataTable({ url }) {
       <Table columns={columns} data={data} />
     </Loader>
   )
+}
+
+function isPMID(externalReference) {
+  return externalReference.type.id.includes("PMID:")
 }
 
 BiosamplesDataTable.propTypes = {
