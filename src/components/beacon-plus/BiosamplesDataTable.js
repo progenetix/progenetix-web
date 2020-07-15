@@ -44,15 +44,14 @@ export default function BiosamplesDataTable({ url }) {
         accessor: "external_references",
         Cell: ({ value: externalReferences }) =>
           externalReferences.map((externalReference, i) => (
-            <div key={i} title={externalReference.description}>
+            <div key={i}>
               <a
                 href={`https://info.progenetix.org/publication-details.html?scope=datacollections&id=${externalReference.type.id}`}
                 rel="noreferrer"
                 target="_blank"
               >
                 {externalReference.type.id}
-              </a>{" "}
-              {externalReference.type.label}
+              </a>
             </div>
           ))
       },
