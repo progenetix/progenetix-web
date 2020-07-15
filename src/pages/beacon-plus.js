@@ -23,6 +23,9 @@ export default function BeaconPlus() {
   const [requestType, setRequestType] = useState(
     Object.entries(requestTypesConfig)[0][0] // auto select first requestType from the file
   )
+
+  const [example, setExample] = useState(null)
+
   const {
     data: queryResponse,
     error: queryError,
@@ -41,6 +44,7 @@ export default function BeaconPlus() {
   )
 
   const handleRequestTypeClicked = (requestTypeId) => {
+    setExample(null)
     const newParams = Object.fromEntries(
       Object.entries(
         requestTypesConfig[requestTypeId].parameters
@@ -50,48 +54,25 @@ export default function BeaconPlus() {
     setRequestType(requestTypeId)
   }
 
-  const handleExampleClicked = (example) =>
+  const handleExampleClicked = (example) => {
+    setExample(example)
     Object.entries(example.parameters).forEach(([k, v]) => setValue(k, v.value))
+  }
 
   return (
     <>
       <Nav />
       <section className="section">
         <div className="container mb-5">
-          <div className="tabs is-fullwidth">
-            <ul>
-              {Object.entries(requestTypesConfig).map(([id, value]) => (
-                <li
-                  className={cn({ "is-active": id === requestType })}
-                  key={id}
-                  onClick={() => handleRequestTypeClicked(id)}
-                >
-                  <a>{value.label}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <article className="message">
-            <div className="message-body">
-              <div className="content">
-                {requestConfig.description &&
-                  markdownToReact(requestConfig?.description)}
-                <div className="buttons">
-                  {Object.entries(requestConfig.examples || []).map(
-                    ([id, value]) => (
-                      <button
-                        key={id}
-                        className="button"
-                        onClick={() => handleExampleClicked(value)}
-                      >
-                        {value.label}
-                      </button>
-                    )
-                  )}
-                </div>
-              </div>
-            </div>
-          </article>
+          <Tabs
+            requestType={requestType}
+            onRequestTypeClicked={handleRequestTypeClicked}
+          />
+          <RequestDescription
+            requestConfig={requestConfig}
+            example={example}
+            onExampleClicked={handleExampleClicked}
+          />
           <BeaconForm
             requestConfig={requestConfig}
             handleSubmit={handleSubmit}
@@ -105,6 +86,62 @@ export default function BeaconPlus() {
           <Results response={queryResponse} error={queryError} query={query} />
         </div>
       </section>
+    </>
+  )
+}
+
+function Tabs({ requestType, onRequestTypeClicked }) {
+  return (
+    <div className="tabs is-fullwidth">
+      <ul>
+        {Object.entries(requestTypesConfig).map(([id, value]) => (
+          <li
+            className={cn({ "is-active": id === requestType })}
+            key={id}
+            onClick={() => onRequestTypeClicked(id)}
+          >
+            <a>{value.label}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
+function RequestDescription({ requestConfig, onExampleClicked, example }) {
+  return (
+    <>
+      <article className="message">
+        <div className="message-body">
+          <div className="content">
+            {requestConfig.description &&
+              markdownToReact(requestConfig?.description)}
+            <div className="buttons">
+              {Object.entries(requestConfig.examples || []).map(
+                ([id, value]) => (
+                  <button
+                    key={id}
+                    className="button is-info is-outlined"
+                    onClick={() => onExampleClicked(value)}
+                  >
+                    {value.label}
+                  </button>
+                )
+              )}
+            </div>
+          </div>
+        </div>
+      </article>
+
+      {example?.description && (
+        <article className="message is-info">
+          <div className="message-body">
+            <div className="content">
+              {markdownToReact(example?.description)}
+            </div>
+          </div>
+        </article>
+      )}
     </>
   )
 }
@@ -218,6 +255,3 @@ function handleFormSubmit(clearErrors, setError, mutateQuery, setQuery) {
     setQuery(formValues)
   }
 }
-
-// <div className="content mb-6">
-// </div>
