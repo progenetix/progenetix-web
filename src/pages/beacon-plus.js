@@ -58,8 +58,6 @@ export default function BeaconPlus() {
       <Nav />
       <section className="section">
         <div className="container mb-5">
-          <div className="content mb-6">
-          </div>
           <div className="tabs is-fullwidth">
             <ul>
               {Object.entries(requestTypesConfig).map(([id, value]) => (
@@ -220,3 +218,6 @@ function handleFormSubmit(clearErrors, setError, mutateQuery, setQuery) {
     setQuery(formValues)
   }
 }
+
+// <div className="content mb-6">
+// </div>
