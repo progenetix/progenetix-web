@@ -77,21 +77,27 @@ export default function BeaconPlus() {
               ))}
             </ul>
           </div>
-          <div className="content">
-            {requestConfig.description &&
-              markdownToReact(requestConfig?.description)}
-          </div>
-          <div className="buttons">
-            {Object.entries(requestConfig.examples || []).map(([id, value]) => (
-              <button
-                key={id}
-                className="button is-light "
-                onClick={() => handleExampleClicked(value)}
-              >
-                {value.label}
-              </button>
-            ))}
-          </div>
+          <article className="message">
+            <div className="message-body">
+              <div className="content">
+                {requestConfig.description &&
+                  markdownToReact(requestConfig?.description)}
+                <div className="buttons">
+                  {Object.entries(requestConfig.examples || []).map(
+                    ([id, value]) => (
+                      <button
+                        key={id}
+                        className="button"
+                        onClick={() => handleExampleClicked(value)}
+                      >
+                        {value.label}
+                      </button>
+                    )
+                  )}
+                </div>
+              </div>
+            </div>
+          </article>
           <BeaconForm
             requestConfig={requestConfig}
             handleSubmit={handleSubmit}
