@@ -12,7 +12,17 @@ export default function BiosamplesDataTable({ url }) {
     () => [
       {
         Header: "Id",
-        accessor: "id"
+        accessor: "id",
+        // eslint-disable-next-line react/display-name
+        Cell: (cellInfo) => (
+          <a
+            href={`https://info.progenetix.org/biosample-details.html?datasetIds=${cellInfo.row.values.project_id}&id=${cellInfo.value}`}
+            rel="noreferrer"
+            target="_blank"
+          >
+            {cellInfo.value}
+          </a>
+        )
       },
       {
         Header: "Project Id",
