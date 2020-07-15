@@ -10,20 +10,32 @@ export default function VariantsDataTable({ url }) {
   const columns = React.useMemo(
     () => [
       {
-        Header: "variantset_id",
-        accessor: "variantset_id"
+        Header: "Digest",
+        accessor: "digest"
       },
       {
-        Header: "callset_id",
+        Header: "Callset ID",
         accessor: "callset_id"
       },
       {
-        Header: "biosample_id",
+        Header: "Biosample ID",
         accessor: "biosample_id"
       },
       {
-        Header: "digest",
-        accessor: "digest"
+        Header: "Chromosome",
+        accessor: "reference_name"
+      },
+      {
+        Header: "Ref. Base(s)",
+        accessor: "reference_bases"
+      },
+      {
+        Header: "Alt. Base(s)",
+        accessor: "alternate_bases"
+      },
+      {
+        Header: "Type",
+        accessor: "variant_type"
       }
     ],
     []
