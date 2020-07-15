@@ -8,10 +8,13 @@ import {
 import React, { useState } from "react"
 import { Spinner } from "../Spinner"
 import { markdownToReact } from "../../utils/md"
-import requestTypesConfig from "../../../config/beacon-plus/requestTypes.yaml"
 import { useForm } from "react-hook-form"
 
-export function BeaconForm({ isLoading, onValidFormQuery }) {
+export function BeaconForm({
+  isLoading,
+  onValidFormQuery,
+  requestTypesConfig
+}) {
   const {
     register,
     handleSubmit,
@@ -76,6 +79,7 @@ export function BeaconForm({ isLoading, onValidFormQuery }) {
   return (
     <>
       <Tabs
+        requestTypesConfig={requestTypesConfig}
         requestType={requestType}
         onRequestTypeClicked={handleRequestTypeClicked}
       />
@@ -248,7 +252,7 @@ export function BeaconForm({ isLoading, onValidFormQuery }) {
   )
 }
 
-function Tabs({ requestType, onRequestTypeClicked }) {
+function Tabs({ requestTypesConfig, requestType, onRequestTypeClicked }) {
   return (
     <div className="tabs">
       <ul>
