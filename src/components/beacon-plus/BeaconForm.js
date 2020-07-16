@@ -9,6 +9,7 @@ import React, { useState } from "react"
 import { markdownToReact } from "../../utils/md"
 import { useForm } from "react-hook-form"
 import { Loader } from "../Loader"
+import ControlledSelect from "../form/ControlledSelect"
 
 export function BeaconForm({
   isLoading,
@@ -22,7 +23,8 @@ export function BeaconForm({
     reset,
     setError,
     setValue,
-    clearErrors
+    clearErrors,
+    watch
   } = useForm()
   const { data: datasets, error: datasetsError } = useSelectDatasets()
   const {
@@ -64,6 +66,8 @@ export function BeaconForm({
     onValidFormQuery(formValues)
   }
 
+  const selectProps = { parameters, errors, watch, setValue, register }
+
   return (
     <Loader
       hasError={datasetsError || filteringTermsError}
@@ -75,7 +79,8 @@ export function BeaconForm({
       {() => (
         <>
           <Tabs
-            requestTypesConfig={requestTypesConfig}requestType={requestType}
+            requestTypesConfig={requestTypesConfig}
+            requestType={requestType}
             onRequestTypeClicked={handleRequestTypeClicked}
           />
           <RequestDescription
@@ -87,80 +92,74 @@ export function BeaconForm({
             <SelectField
               name="datasetIds"
               label="Dataset"
-              parameters={parameters}
-              errors={errors}
-              register={register({ required: true })}
-              multiple
-            >
-              {datasets.map((ds) => (
-                <option key={ds.id} value={ds.id}>
-                  {ds.label}
-                </option>
-              ))}
-            </SelectField>
+              rules={{ required: true }}
+              options={datasets.map(({ id: value, label }) => ({
+                label,
+                value
+              }))}
+              isMulti
+              {...selectProps}
+            />
             <SelectField
               name="assemblyId"
               label="Genome Assembly"
-              parameters={parameters}
-              errors={errors}
-              register={register}
-            >
-              <option value="GRCh38">GRCh38 / hg38</option>
-            </SelectField>
+              defaultValue="GRCh38"
+              options={[{ value: "GRCh38", label: "GRCh38 / hg38" }]}
+              {...selectProps}
+            />
             <SelectField
               name="includeDatasetResonses"
               label="Dataset Responses"
-              parameters={parameters}
-              errors={errors}
-              register={register}
               defaultValue="ALL"
-            >
-              <option value="HIT">Datasets With Hits</option>
-              <option value="ALL">All Selected Datasets</option>
-              <option value="MISS">Datasets Without Hits</option>{" "}
-            </SelectField>
+              options={[
+                { value: "HIT", label: "Datasets With Hits" },
+                { value: "ALL", label: "All Selected Datasets" },
+                { value: "MISS", label: "Datasets Without Hits" }
+              ]}
+              {...selectProps}
+            />
             <SelectField
               name="requestType"
               label="Variant Request Type"
-              parameters={parameters}
-              errors={errors}
-              register={register}
               defaultValue={
                 parameters.requestType?.value ?? "variantAlleleRequest"
               }
-            >
-              <option value="variantAlleleRequest">variantAlleleRequest</option>
-              <option value="variantCNVrequest">variantCNVrequest</option>
-              <option value="variantRangeRequest">variantRangeRequest</option>
-              <option value="variantFusionRequest">variantFusionRequest</option>
-            </SelectField>
+              options={[
+                {
+                  value: "variantAlleleRequest",
+                  label: "variantAlleleRequest"
+                },
+                { value: "variantCNVrequest", label: "variantCNVrequest" },
+                { value: "variantRangeRequest", label: "variantRangeRequest" },
+                { value: "variantFusionRequest", label: "variantFusionRequest" }
+              ]}
+              {...selectProps}
+            />
             <SelectField
               name="referenceName"
               label="Reference name"
-              parameters={parameters}
-              errors={errors}
-              register={register}
-              defaultValue="variantCNVrequest"
-            >
-              {REFERENCE_NAMES.map((rn) => (
-                <option key={rn} value={rn}>
-                  {rn}
-                </option>
-              ))}
-            </SelectField>
+              defaultValue={REFERENCE_NAMES[0]}
+              options={REFERENCE_NAMES.map((value) => ({
+                label: value,
+                value
+              }))}
+              {...selectProps}
+            />
             <SelectField
               name="variantType"
               label="(Structural) Variant"
-              parameters={parameters}
-              errors={errors}
-              register={register}
-              defaultValue="variantCNVrequest"
-            >
-              <option value="">No structural variant specified</option>
-              <option value="DEL">DEL (Deletion)</option>
-              <option value="DUP">DUP (Duplication)</option>
-              <option value="BND">BND (Break/Fusion)</option>{" "}
-            </SelectField>
+              defaultValue=""
+              options={[
+                {
+                  value: "",
+                  label: "No structural variant specified"
+                },
+                { value: "DEL", label: "DEL (Deletion)" },
+                { value: "DUP", label: "DUP (Duplication)" },
+                { value: "BND", label: "BND (Break/Fusion)" }
+              ]}
+              {...selectProps}
+            />
             <InputField
               name="start"
               label="Start"
@@ -196,30 +195,30 @@ export function BeaconForm({
             <SelectField
               name="bioontology"
               label="Bio-ontology"
-              parameters={parameters}
-              errors={errors}
-              register={register}
-              multiple
-            >
-              <option value="">{noSelection}</option>
-              {filteringTerms.map((ds) => (
-                <option key={ds.id} value={ds.id}>
-                  {ds.label}
-                </option>
-              ))}
-            </SelectField>
+              isMulti
+              options={[
+                {
+                  value: "",
+                  label: noSelection
+                },
+                ...filteringTerms.map(({ id: value, label }) => ({
+                  value,
+                  label
+                }))
+              ]}
+              {...selectProps}
+            />
             <SelectField
               name="materialtype"
               label="Biosample Type"
-              parameters={parameters}
-              errors={errors}
-              register={register}
               defaultValue=""
-            >
-              <option value="">{noSelection}</option>
-              <option value="EFO:0009656">neoplastic sample</option>
-              <option value="EFO:0009654">reference sample</option>
-            </SelectField>
+              options={[
+                { value: "", label: noSelection },
+                { value: "EFO:0009656", label: "neoplastic sample" },
+                { value: "EFO:0009654", label: "reference sample" }
+              ]}
+              {...selectProps}
+            />
             <InputField
               name="freeFilters"
               label="Filters"
@@ -388,10 +387,11 @@ function SelectField({
   label,
   parameters,
   errors,
+  watch,
+  setValue,
   register,
-  children,
-  defaultValue,
-  multiple
+  rules,
+  ...selectProps
 }) {
   return (
     <Field
@@ -399,21 +399,15 @@ function SelectField({
       help={errors[name]?.message}
       hidden={parameters[name]?.hide}
     >
-      <div
-        className={cn("select", "is-fullwidth", {
-          "is-danger": errors[name],
-          "is-multiple": multiple
-        })}
-      >
-        <select
-          defaultValue={defaultValue}
-          name={name}
-          ref={register}
-          multiple={multiple}
-        >
-          {children}
-        </select>
-      </div>
+      <ControlledSelect
+        className={cn("is-fullwidth", errors[name] && "is-danger")}
+        name={name}
+        watch={watch}
+        setValue={setValue}
+        register={register}
+        rules={rules}
+        {...selectProps}
+      />
     </Field>
   )
 }
