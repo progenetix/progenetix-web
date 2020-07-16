@@ -10,7 +10,7 @@ export default function ControlledSelect({
   setValue,
   register,
   rules = {},
-  options,
+  options = [],
   className,
   ...selectProps
 }) {
@@ -18,9 +18,9 @@ export default function ControlledSelect({
   const formValue = watch(name)
   let selectValue
   if (Array.isArray(formValue)) {
-    selectValue = options.filter(({ value }) => formValue.includes(value))
+    selectValue = options?.filter(({ value }) => formValue.includes(value))
   } else {
-    selectValue = options.filter(({ value }) => formValue === value)
+    selectValue = options?.filter(({ value }) => formValue === value)
   }
 
   const components =
@@ -45,7 +45,7 @@ export default function ControlledSelect({
       <Select
         filterOption={createFilter({ ignoreAccents: false })} // faster
         components={components}
-        options={options}
+        options={options ?? []}
         value={selectValue}
         onChange={handleChange}
         className="react-select-container"

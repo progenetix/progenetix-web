@@ -70,11 +70,11 @@ export function BeaconForm({
 
   return (
     <Loader
-      hasError={datasetsError || filteringTermsError}
-      isLoading={!datasets || !filteringTerms}
+      hasError={datasetsError}
+      isLoading={!datasets}
       colored
-      loadingMessage="Loading form data..."
-      errorMessage="Could not load form data."
+      loadingMessage="Loading datasets..."
+      errorMessage="Could not load datasets"
     >
       {() => (
         <>
@@ -196,16 +196,19 @@ export function BeaconForm({
               name="bioontology"
               label="Bio-ontology"
               isMulti
-              options={[
-                {
-                  value: "",
-                  label: noSelection
-                },
-                ...filteringTerms.map(({ id: value, label }) => ({
-                  value,
-                  label
-                }))
-              ]}
+              isLoading={!filteringTerms && !filteringTermsError}
+              options={
+                filteringTerms && [
+                  {
+                    value: "",
+                    label: noSelection
+                  },
+                  ...filteringTerms.map(({ id: value, label }) => ({
+                    value,
+                    label
+                  }))
+                ]
+              }
               {...selectProps}
             />
             <SelectField
