@@ -1,6 +1,7 @@
 import Select, { createFilter, components } from "react-select"
 import { FixedSizeList as List } from "react-window"
 import { useEffect } from "react"
+import PropTypes from "prop-types"
 import cn from "classnames"
 
 export default function ControlledSelect({
@@ -54,6 +55,16 @@ export default function ControlledSelect({
       />
     </div>
   )
+}
+
+ControlledSelect.propTypes = {
+  name: PropTypes.string.isRequired,
+  defaultValue: PropTypes.string,
+  watch: PropTypes.func.isRequired,
+  setValue: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
+  rules: PropTypes.object,
+  options: PropTypes.array
 }
 
 const height = 35

@@ -1,0 +1,124 @@
+---
+datasetIds:
+  label: Dataset
+  rules:
+    required: true
+  isMulti: true
+assemblyId:
+  label: Genome Assembly
+  defaultValue: GRCh38
+  options:
+    - value: GRCh38
+      label: GRCh38 / hg38
+includeDatasetResonses:
+  label: Dataset Responses
+  defaultValue: ALL
+  options:
+    - value: HIT
+      label: Datasets With Hits
+    - value: ALL
+      label: All Selected Datasets
+    - value: MISS
+      label: Datasets Without Hits
+requestType:
+  label: Variant Request Type
+  rules:
+    required: true
+  options:
+    - value: variantAlleleRequest
+      label: variantAlleleRequest
+    - value: variantCNVrequest
+      label: variantCNVrequest
+    - value: variantRangeRequest
+      label: variantRangeRequest
+    - value: variantFusionRequest
+      label: variantFusionRequest
+referenceName:
+  label: Reference name
+  options:
+    - label: '1'
+      value: '1'
+    - label: '2'
+      value: '2'
+    - label: '3'
+      value: '3'
+    - label: '4'
+      value: '4'
+    - label: '5'
+      value: '5'
+    - label: '6'
+      value: '6'
+    - label: '7'
+      value: '7'
+    - label: '8'
+      value: '8'
+    - label: '9'
+      value: '9'
+    - label: '10'
+      value: '10'
+    - label: '11'
+      value: '11'
+    - label: '12'
+      value: '12'
+    - label: '13'
+      value: '13'
+    - label: '14'
+      value: '14'
+    - label: '15'
+      value: '15'
+    - label: '16'
+      value: '16'
+    - label: '17'
+      value: '17'
+    - label: '18'
+      value: '18'
+    - label: '19'
+      value: '19'
+    - label: '20'
+      value: '20'
+    - label: '21'
+      value: '21'
+    - label: '22'
+      value: '22'
+    - label: X
+      value: X
+    - label: Y
+      value: Y
+variantType:
+  label: "(Structural) Variant"
+  defaultValue: ''
+  options:
+    - value: ''
+      label: No structural variant specified
+    - value: DEL
+      label: DEL (Deletion)
+    - value: DUP
+      label: DUP (Duplication)
+    - value: BND
+      label: BND (Break/Fusion)
+start:
+  label: Start
+end:
+  label: End Position
+referenceBases:
+  label: Ref. Base(s)
+alternateBases:
+  label: Alt. Base(s)
+bioontology:
+  label: Bio-ontology
+  isMulti: true
+  options:
+    - value: ''
+      label: "(no selection)"
+materialtype:
+  label: Biosample Type
+  defaultValue: ''
+  options:
+    - value: ''
+      label: "(no selection)"
+    - value: EFO:0009656
+      label: neoplastic sample
+    - value: EFO:0009654
+      label: reference sample
+freeFilters:
+  label: Filters

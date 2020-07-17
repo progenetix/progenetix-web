@@ -4,6 +4,7 @@ import Nav from "../components/Nav"
 import { BeaconForm } from "../components/beacon-plus/BeaconForm"
 import { DatasetResultBox } from "../components/beacon-plus/DatasetResultBox"
 import requestTypesConfig from "../../config/beacon-plus/requestTypes.yaml"
+import parametersConfig from "../../config/beacon-plus/parameters.yaml"
 
 export default function BeaconPlus() {
   const [query, setQuery] = useState(null) // actual valid query
@@ -28,6 +29,7 @@ export default function BeaconPlus() {
         <div className="container mb-5">
           <BeaconForm
             requestTypesConfig={requestTypesConfig}
+            parametersConfig={parametersConfig}
             isLoading={isLoading}
             onValidFormQuery={handleValidFormQuery}
           />

@@ -1,9 +1,9 @@
 import React from "react"
 import cn from "classnames"
 
-export default function Field({ label, required, children, help, hidden }) {
+export default function Field({ label, required, children, help, isHidden }) {
   return (
-    <div className={cn("field is-horizontal", { "is-hidden": hidden })}>
+    <div className={cn("field is-horizontal", { "is-hidden": isHidden })}>
       <div className="field-label is-normal">
         <label className="label">
           {label}
