@@ -41,12 +41,6 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
   } else if (selectedHandover?.handoverType?.id === HANDOVER_IDS.variantsdata) {
     const url = replaceWithProxy(selectedHandover.url)
     handoverComponent = <VariantsDataTable url={url} />
-  } else if (selectedHandover?.handoverType?.id) {
-    handoverComponent = (
-      <div>
-        No handover display implemented for {selectedHandover.handoverType.id}
-      </div>
-    )
   }
 
   return (
