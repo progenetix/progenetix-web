@@ -117,7 +117,7 @@ function PublicationDetails({ publication, id, scope, filter }) {
           )}
         </ul>
       </div>
-      {publication.info.progenetix_biosamples_count && (
+      {publication.info.progenetix_biosamples_count > 0 && (
         <Histogram
           datasetIds="progenetix"
           id={id}
@@ -126,7 +126,7 @@ function PublicationDetails({ publication, id, scope, filter }) {
           width={width}
         />
       )}
-      {publication.info.arraymap_biosamples_count && (
+      {publication.info.arraymap_biosamples_count > 0 && (
         <Histogram
           datasetIds="arraymap"
           id={id}
