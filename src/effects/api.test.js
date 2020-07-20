@@ -1,4 +1,4 @@
-const { buildQueryParameters } = require("./bycon")
+const { buildQueryParameters } = require("./api")
 
 test("build a complete query", () => {
   expect(

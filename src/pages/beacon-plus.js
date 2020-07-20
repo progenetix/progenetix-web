@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { useBeaconQuery } from "../api/bycon"
+import { useBeaconQuery } from "../effects/api"
 import Nav from "../components/Nav"
 import { BeaconForm } from "../components/beacon-plus/BeaconForm"
 import { DatasetResultBox } from "../components/beacon-plus/DatasetResultBox"

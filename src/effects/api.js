@@ -1,5 +1,4 @@
 import useSWR from "swr"
-
 // eslint-disable-next-line no-undef
 export const basePath = process.env.NEXT_PUBLIC_API_PATH
 // eslint-disable-next-line no-undef
@@ -71,6 +70,27 @@ export function buildQueryParameters(queryData) {
       ["filters", filters]
     ])
   ).toString()
+}
+
+export function usePublication(id) {
+  return useSWR(
+    `${basePath}do/api/apidb=progenetix&apiscope=publications&apimethod=publicationdetails&id=${id}`
+  )
+}
+
+export function useSubsethistogram({ datasetIds, id, filter, scope, size }) {
+  const params = [
+    ["datasetIds", datasetIds],
+    ["id", id],
+    ["-size_plotimage_w_px", size]
+  ]
+  filter && params.push(["filter", filter])
+  scope && params.push(["scope", scope])
+  const searchQuery = new URLSearchParams(params).toString()
+  return useSWR(
+    `${basePath}cgi/pgx_subsethistogram.cgi?${searchQuery}`,
+    (...args) => fetch(...args).then((r) => r.text())
+  )
 }
 
 // Transforms [[k1, v1], [k2, [v2, v3]]] into [[k1, v1], [k2, v2], [k3, v3]]

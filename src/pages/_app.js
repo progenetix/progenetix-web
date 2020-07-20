@@ -1,7 +1,7 @@
 import React from "react"
 import "../styles/main.scss"
 import { SWRConfig } from "swr"
-import fetcher from "../api/fetcher"
+import fetcher from "../effects/fetcher"
 import { MDXProvider } from "@mdx-js/react"
 import MdPage from "../components/MdPage"
 

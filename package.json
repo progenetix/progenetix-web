@@ -17,6 +17,7 @@
     "file-saver": "^2.0.2",
     "gray-matter": "^4.0.2",
     "js-yaml-loader": "^1.2.2",
+    "lodash": "^4.17.19",
     "next": "latest",
     "prop-types": "^15.7.2",
     "react": "^16.7.0",
