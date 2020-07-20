@@ -4,7 +4,7 @@ import {
   INTEGER_RANGE_REGEX,
   useDatasets,
   useFilteringTerms
-} from "../../api/bycon"
+} from "../../effects/api"
 import React, { useState } from "react"
 import { markdownToReact } from "../../utils/md"
 import { useForm } from "react-hook-form"

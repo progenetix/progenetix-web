@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { HANDOVER_IDS, replaceWithProxy } from "../../api/bycon"
+import { HANDOVER_IDS, replaceWithProxy } from "../../effects/api"
 import { FaDownload, FaExternalLinkAlt } from "react-icons/fa"
 import { initiateSaveAsJson } from "../../utils/download"
 import cn from "classnames"
