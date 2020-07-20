@@ -53,7 +53,7 @@ export default function BiosamplesDataTable({ url, datasetId }) {
             <div key={i}>
               {isPMID(externalReference) ? (
                 <a
-                  href={`https://info.progenetix.org/publication-details.html?scope=datacollections&id=${externalReference.type.id}`}
+                  href={`/publication-details?scope=datacollections&id=${externalReference.type.id}`}
                   rel="noreferrer"
                   target="_blank"
                 >
