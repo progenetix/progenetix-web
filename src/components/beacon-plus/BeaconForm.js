@@ -108,7 +108,6 @@ export function BeaconForm({
     <Loader
       hasError={datasetsError}
       isLoading={!datasets}
-      colored
       loadingMessage="Loading datasets..."
       errorMessage="Could not load datasets"
     >

@@ -5,9 +5,13 @@ import { BeaconForm } from "../components/beacon-plus/BeaconForm"
 import { DatasetResultBox } from "../components/beacon-plus/DatasetResultBox"
 import requestTypesConfig from "../../config/beacon-plus/requestTypes.yaml"
 import parametersConfig from "../../config/beacon-plus/parameters.yaml"
+import Panel from "../components/Panel"
+import { FaSlidersH } from "react-icons/fa"
+import { Loader } from "../components/Loader"
 
 export default function BeaconPlus() {
   const [query, setQuery] = useState(null) // actual valid query
+  const [searchCollapsed, setSearchCollapsed] = useState(false)
 
   const {
     data: queryResponse,
@@ -20,6 +24,7 @@ export default function BeaconPlus() {
   const handleValidFormQuery = (formValues) => {
     mutateQuery(null) // mutateQuery and clear current results
     setQuery(formValues)
+    setSearchCollapsed(true)
   }
 
   return (
@@ -27,48 +32,74 @@ export default function BeaconPlus() {
       <Nav />
       <section className="section">
         <div className="container mb-5">
-          <BeaconForm
-            requestTypesConfig={requestTypesConfig}
-            parametersConfig={parametersConfig}
-            isLoading={isLoading}
-            onValidFormQuery={handleValidFormQuery}
-          />
+          <Panel
+            isOpened={!searchCollapsed}
+            heading={
+              <>
+                <span>Search</span>
+                {searchCollapsed && (
+                  <button className="button ml-3">
+                    <FaSlidersH
+                      onClick={() => setSearchCollapsed(false)}
+                      className="icon has-text-info"
+                    />
+                    {/*<span>Edit</span>*/}
+                  </button>
+                )}
+              </>
+            }
+          >
+            <BeaconForm
+              requestTypesConfig={requestTypesConfig}
+              parametersConfig={parametersConfig}
+              isLoading={isLoading}
+              onValidFormQuery={handleValidFormQuery}
+            />
+          </Panel>
         </div>
         <div className="container">
-          <Results response={queryResponse} error={queryError} query={query} />
+          {query && (
+            <Results
+              isLoading={isLoading}
+              response={queryResponse}
+              error={queryError}
+              query={query}
+            />
+          )}
         </div>
       </section>
     </>
   )
 }
 
-function Results({ response, error, query }) {
-  if (!response && !error) {
-    return null
-  } else if (error) {
-    return (
-      <div className="notification is-warning">
-        An error occurred while performing the query. Please retry.
+function Results({ response, isLoading, error, query }) {
+  return (
+    <>
+      <span className="is-size-3">Results</span>
+      <div className="mb-4">
+        <QuerySummary query={query} />
       </div>
-    )
-  } else if (!(response?.datasetAlleleResponses?.length >= 0)) {
+      <Loader isLoading={isLoading} hasError={error} colored background>
+        <AlleleResponses
+          datasetAlleleResponses={response?.datasetAlleleResponses}
+          query={query}
+        />
+      </Loader>
+    </>
+  )
+}
+
+function AlleleResponses({ datasetAlleleResponses, query }) {
+  if (!(datasetAlleleResponses?.length >= 0)) {
     return (
       <div className="notification">
         No results could be found for this query.
       </div>
     )
-  } else
-    return (
-      <>
-        <span className="is-size-3">Results</span>
-        <div className="mb-4">
-          <QuerySummary query={query} />
-        </div>
-        {response.datasetAlleleResponses.map((r, i) => (
-          <DatasetResultBox key={i} data={r} query={query} />
-        ))}
-      </>
-    )
+  }
+  return datasetAlleleResponses.map((r, i) => (
+    <DatasetResultBox key={i} data={r} query={query} />
+  ))
 }
 
 function QuerySummary({ query }) {

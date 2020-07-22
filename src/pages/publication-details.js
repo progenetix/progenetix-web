@@ -53,7 +53,7 @@ function Publication({ id, scope, filter }) {
   const isLoading = !data && !error
 
   return (
-    <Loader isLoading={isLoading} hasError={error}>
+    <Loader isLoading={isLoading} hasError={error} background>
       {data &&
         data.map((publication, i) => (
           <PublicationDetails
@@ -120,6 +120,7 @@ function PublicationDetails({ publication, id, scope, filter }) {
       </div>
       {publication.info.progenetix_biosamples_count > 0 && (
         <Histogram
+          background
           dataEffect={useSubsethistogram({
             datasetIds: "progenetix",
             id,
@@ -131,6 +132,7 @@ function PublicationDetails({ publication, id, scope, filter }) {
       )}
       {publication.info.arraymap_biosamples_count > 0 && (
         <Histogram
+          background
           dataEffect={useSubsethistogram({
             datasetIds: "arraymap",
             id,

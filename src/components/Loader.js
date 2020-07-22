@@ -7,14 +7,17 @@ export function Loader({
   hasError,
   loadingMessage,
   errorMessage = "Error while loading data. Please retry.",
-  background = true,
+  background = false,
   colored = false,
-  children
+  children,
+  height = null
 }) {
   if (isLoading) {
     return (
       <div
+        style={{ height }}
         className={cn(
+          "Loader",
           background && "notification",
           colored && "is-info is-light"
         )}
