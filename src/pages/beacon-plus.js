@@ -22,9 +22,9 @@ export default function BeaconPlus() {
   const isLoading = !queryResponse && !queryError && !!query
 
   const handleValidFormQuery = (formValues) => {
+    setSearchCollapsed(true)
     mutateQuery(null) // mutateQuery and clear current results
     setQuery(formValues)
-    setSearchCollapsed(true)
   }
 
   return (

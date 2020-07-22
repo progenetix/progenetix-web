@@ -10,6 +10,12 @@ import { useContainerDimensions } from "../../effects/containerDimensions"
 import Histogram from "../Histogram"
 import { svgFetcher } from "../../effects/fetcher"
 
+const handoversInTab = [
+  HANDOVER_IDS.cnvhistogram,
+  HANDOVER_IDS.biosamplesdata,
+  HANDOVER_IDS.variantsdata
+]
+
 export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
   const {
     datasetId,
@@ -24,17 +30,17 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
   const { width: handoverWidth } = useContainerDimensions(handoverContainerRef)
 
   const selectableHandovers = datasetHandover.filter(
-    // exclude cnvhistogram
-    ({ handoverType: { id } }) => id !== HANDOVER_IDS.progenetixtools
+    ({ handoverType: { id } }) => handoversInTab.includes(id)
   )
+  const genericHandovers = datasetHandover.filter(
+    ({ handoverType: { id } }) => !handoversInTab.includes(id)
+  )
+
   const [selectedHandoverId, setSelectedHandoverId] = useState(
     selectableHandovers[0]?.handoverType?.id
   )
   const selectedHandover = datasetHandover.find(
     ({ handoverType: { id } }) => id === selectedHandoverId
-  )
-  const progenetixtools = datasetHandover.find(
-    ({ handoverType: { id } }) => id === HANDOVER_IDS.progenetixtools
   )
 
   let handoverComponent
@@ -80,32 +86,15 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
           </div>
         </div>
         <div className="column is-narrow">
-          <div>
-            <a href={ucscHref(query)} rel="noreferrer" target="_blank">
-              UCSC region
-            </a>{" "}
-            <FaExternalLinkAlt className="icon has-text-info is-small" />
-          </div>
-          {progenetixtools && (
-            <div>
-              <a href={progenetixtools.url} rel="noreferrer" target="_blank">
-                {progenetixtools.handoverType.label}
-              </a>{" "}
-              <FaExternalLinkAlt className="icon has-text-info is-small" />
-            </div>
-          )}
-          <div>
-            <a
-              onClick={() =>
-                initiateSaveAsJson(datasetAlleleResponse, "query.json")
-              }
-              rel="noreferrer"
-              target="_blank"
-            >
-              Download JSON
-            </a>{" "}
-            <FaDownload className="icon has-text-info is-small" />
-          </div>
+          {genericHandovers.map((handover, i) => (
+            <GenericHandover key={i} handover={handover} />
+          ))}
+        </div>
+        <div className="column">
+          <UCSCRegion query={query} />
+        </div>
+        <div className="column is-narrow">
+          <Download datasetAlleleResponse={datasetAlleleResponse} />
         </div>
       </div>
       {selectableHandovers?.length > 0 ? (
@@ -147,6 +136,17 @@ function CnvHistogramPreview({ url: urlString, width }) {
   return <Histogram dataEffect={dataEffect} />
 }
 
+function UCSCRegion({ query }) {
+  return (
+    <div>
+      <a href={ucscHref(query)} rel="noreferrer" target="_blank">
+        UCSC region
+      </a>{" "}
+      <FaExternalLinkAlt className="icon has-text-info is-small" />
+    </div>
+  )
+}
+
 function ucscHref(query) {
   let ucscgenome = query.assemblyId
   if (ucscgenome === "GRCh36") {
@@ -163,4 +163,29 @@ function ucscHref(query) {
     ucscend = query.start
   }
   return `http://www.genome.ucsc.edu/cgi-bin/hgTracks?db${ucscgenome}&position=chr${query.referenceName}%3A${ucscstart}%2D${ucscend}`
+}
+
+function Download({ datasetAlleleResponse }) {
+  return (
+    <button
+      className="button is-info is-light"
+      onClick={() => initiateSaveAsJson(datasetAlleleResponse, "query.json")}
+    >
+      <span className="icon">
+        <FaDownload />
+      </span>
+      <span>Download JSON</span>
+    </button>
+  )
+}
+
+function GenericHandover({ handover }) {
+  return (
+    <div>
+      <a href={handover.url} rel="noreferrer" target="_blank">
+        {handover.handoverType.label}
+      </a>{" "}
+      <FaExternalLinkAlt className="icon has-text-info is-small" />
+    </div>
+  )
 }
