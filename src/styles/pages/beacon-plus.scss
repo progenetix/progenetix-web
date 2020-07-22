@@ -1,0 +1,11 @@
+.beacon-plus__query-summary {
+  display: flex;
+  flex-direction: row;
+  li:after {
+    content: " | ";
+    white-space: pre;
+  }
+  li:last-child:after {
+    content: "";
+  }
+}

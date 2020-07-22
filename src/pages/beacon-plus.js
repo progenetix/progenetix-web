@@ -57,6 +57,8 @@ export default function BeaconPlus() {
             />
           </Panel>
         </div>
+      </section>
+      <section className="section pt-0">
         <div className="container">
           {query && (
             <Results
@@ -75,8 +77,7 @@ export default function BeaconPlus() {
 function Results({ response, isLoading, error, query }) {
   return (
     <>
-      <span className="is-size-3">Results</span>
-      <div className="mb-4">
+      <div className="subtitle ">
         <QuerySummary query={query} />
       </div>
       <Loader isLoading={isLoading} hasError={error} colored background>
@@ -113,16 +114,56 @@ function QuerySummary({ query }) {
   if (query.freeFilters) {
     filters = [...filters, query.freeFilters]
   }
-  // TODO: Only show each parameter if it has a value
   return (
-    <>
-      <span>Assembly: {query.assemblyId}</span> |{" "}
-      <span>Chro: {query.referenceName}</span> |{" "}
-      <span>Start: {query.start}</span> | <span>End: {query.end}</span> |{" "}
-      <span>Type: {query.variantType}</span> |{" "}
-      <span>Ref. Base(s): {query.referenceBases}</span> |{" "}
-      <span>Alt. Base(s): {query.alternateBases}</span> |{" "}
-      <span>Filters: {filters.join(", ")}</span>
-    </>
+    <ul className="beacon-plus__query-summary">
+      {query.assemblyId && (
+        <li>
+          <small>Assembly: </small>
+          {query.assemblyId}
+        </li>
+      )}
+      {query.referenceName && (
+        <li>
+          <small>Chro: </small>
+          {query.referenceName}
+        </li>
+      )}
+      {query.start && (
+        <li>
+          <small>Start: </small>
+          {query.start}
+        </li>
+      )}
+      {query.end && (
+        <li>
+          <small>End: </small>
+          {query.end}
+        </li>
+      )}
+      {query.variantType && (
+        <li>
+          <small>Type: </small>
+          {query.variantType}
+        </li>
+      )}
+      {query.referenceBases && (
+        <li>
+          <small>Ref. Base(s): </small>
+          {query.referenceBases}
+        </li>
+      )}
+      {query.alternateBases && (
+        <li>
+          <small>Alt. Base(s): </small>
+          {query.alternateBases}
+        </li>
+      )}
+      {filters.length > 0 && (
+        <li>
+          <small>Filters: </small>
+          {filters.join(", ")}
+        </li>
+      )}
+    </ul>
   )
 }
