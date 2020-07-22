@@ -6,8 +6,8 @@ export const useContainerDimensions = (
   { updateOnResize = true, debounceWait = 1000 } = {}
 ) => {
   const getDimensions = () => ({
-    width: ref.current.offsetWidth,
-    height: ref.current.offsetHeight
+    width: ref.current?.offsetWidth,
+    height: ref.current?.offsetHeight
   })
 
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })

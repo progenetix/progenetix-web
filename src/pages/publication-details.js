@@ -1,8 +1,9 @@
 import { usePublication, useSubsethistogram } from "../effects/api"
 import { Loader } from "../components/Loader"
-import { useRef } from "react"
+import React, { useRef } from "react"
 import { useContainerDimensions } from "../effects/containerDimensions"
 import { useSearch } from "../effects/location"
+import Histogram from "../components/Histogram"
 
 export default function PublicationDetailsPage() {
   const search = useSearch()
@@ -119,42 +120,27 @@ function PublicationDetails({ publication, id, scope, filter }) {
       </div>
       {publication.info.progenetix_biosamples_count > 0 && (
         <Histogram
-          datasetIds="progenetix"
-          id={id}
-          scope={scope}
-          filter={filter}
-          width={width}
+          dataEffect={useSubsethistogram({
+            datasetIds: "progenetix",
+            id,
+            filter,
+            scope,
+            size: width
+          })}
         />
       )}
       {publication.info.arraymap_biosamples_count > 0 && (
         <Histogram
-          datasetIds="arraymap"
-          id={id}
-          scope={scope}
-          filter={filter}
-          width={width}
+          dataEffect={useSubsethistogram({
+            datasetIds: "arraymap",
+            id,
+            filter,
+            scope,
+            size: width
+          })}
         />
       )}
     </div>
-  )
-}
-
-function Histogram({ datasetIds, id, scope, filter, width }) {
-  const { data, error } = useSubsethistogram({
-    datasetIds,
-    id,
-    filter,
-    scope,
-    size: width
-  })
-  const isLoading = !data && !error
-  return (
-    <Loader isLoading={isLoading} hasError={error}>
-      <div
-        className="svg-container"
-        dangerouslySetInnerHTML={{ __html: data }}
-      />
-    </Loader>
   )
 }
 

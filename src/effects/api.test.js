@@ -1,3 +1,5 @@
+import { replaceWithProxy } from "./api"
+
 const { buildQueryParameters } = require("./api")
 
 test("build a complete query", () => {
@@ -52,4 +54,21 @@ test("build a query with end range", () => {
       end: "21967753-23000000"
     })
   ).toBe("end=21967752&end=23000000")
+})
+
+test("replaceWithProxy", () => {
+  expect(
+    replaceWithProxy(
+      "http://test.progenetix.org:3000/test?query=a",
+      true,
+      "api/"
+    )
+  ).toBe("api/test?query=a")
+  expect(
+    replaceWithProxy(
+      new URL("http://test.progenetix.org:3000/test?query=a"),
+      true,
+      "api/"
+    )
+  ).toBe("api/test?query=a")
 })

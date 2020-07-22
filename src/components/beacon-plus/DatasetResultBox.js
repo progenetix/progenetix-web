@@ -1,10 +1,14 @@
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
 import { HANDOVER_IDS, replaceWithProxy } from "../../effects/api"
 import { FaDownload, FaExternalLinkAlt } from "react-icons/fa"
 import { initiateSaveAsJson } from "../../utils/download"
 import cn from "classnames"
 import BiosamplesDataTable from "./BiosamplesDataTable"
 import VariantsDataTable from "./VariantsDataTable"
+import useSWR from "swr"
+import { useContainerDimensions } from "../../effects/containerDimensions"
+import Histogram from "../Histogram"
+import { svgFetcher } from "../../effects/fetcher"
 
 export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
   const {
@@ -15,6 +19,9 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
     sampleCount,
     frequency
   } = datasetAlleleResponse
+
+  const handoverContainerRef = useRef()
+  const { width: handoverWidth } = useContainerDimensions(handoverContainerRef)
 
   const selectableHandovers = datasetHandover.filter(
     // exclude cnvhistogram
@@ -32,7 +39,9 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
 
   let handoverComponent
   if (selectedHandover?.handoverType?.id === HANDOVER_IDS.cnvhistogram) {
-    handoverComponent = <CnvHistogramPreview url={selectedHandover.url} />
+    handoverComponent = (
+      <CnvHistogramPreview url={selectedHandover.url} width={handoverWidth} />
+    )
   } else if (
     selectedHandover?.handoverType?.id === HANDOVER_IDS.biosamplesdata
   ) {
@@ -118,13 +127,24 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
           </ul>
         </div>
       ) : null}
-      {handoverComponent}
+      {selectableHandovers?.length > 0 ? (
+        <div ref={handoverContainerRef}>
+          {handoverWidth && handoverComponent}
+        </div>
+      ) : null}
     </div>
   )
 }
 
-function CnvHistogramPreview({ url }) {
-  return <img src={url} />
+function CnvHistogramPreview({ url: urlString, width }) {
+  const url = new URL(urlString)
+  url.search = new URLSearchParams([
+    ...url.searchParams.entries(),
+    ["-size_plotimage_w_px", width]
+  ]).toString()
+  let withoutOrigin = replaceWithProxy(url)
+  const dataEffect = useSWR(withoutOrigin, svgFetcher)
+  return <Histogram dataEffect={dataEffect} />
 }
 
 function ucscHref(query) {

@@ -1,4 +1,5 @@
 import useSWR from "swr"
+import { svgFetcher } from "./fetcher"
 // eslint-disable-next-line no-undef
 export const basePath = process.env.NEXT_PUBLIC_API_PATH
 // eslint-disable-next-line no-undef
@@ -89,7 +90,7 @@ export function useSubsethistogram({ datasetIds, id, filter, scope, size }) {
   const searchQuery = new URLSearchParams(params).toString()
   return useSWR(
     `${basePath}cgi/pgx_subsethistogram.cgi?${searchQuery}`,
-    (...args) => fetch(...args).then((r) => r.text())
+    svgFetcher
   )
 }
 
@@ -106,10 +107,13 @@ function flattenParams(paramArray) {
 
 export const INTEGER_RANGE_REGEX = /^(\d+)(?:[-,;])?(\d+)?$/
 
-export function replaceWithProxy(url) {
-  if (!useProxy) return url
-  if (!new URL(url).hostname.includes("progenetix.org")) return url
-  return url.replace("https://beacon.progenetix.org/", basePath)
+export function replaceWithProxy(
+  url,
+  useProxyOpt = useProxy,
+  basePathOpt = basePath
+) {
+  if (!useProxyOpt) return url
+  return url.toString().replace(new URL(url).origin + "/", basePathOpt)
 }
 
 export const HANDOVER_IDS = {
