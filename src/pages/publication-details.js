@@ -1,6 +1,5 @@
 import {
   publicationUrl,
-  sampleUrl,
   usePublication,
   useSubsethistogram
 } from "../effects/api"

@@ -1,9 +1,7 @@
-import { sampleUrl, useSample, useSubsethistogram } from "../effects/api"
+import { sampleUrl, useSample } from "../effects/api"
 import { Loader } from "../components/Loader"
-import React, { useRef } from "react"
-import { useContainerDimensions } from "../effects/containerDimensions"
+import React from "react"
 import { useSearch } from "../effects/location"
-import Histogram from "../components/Histogram"
 
 export default function BiosampleDetailsPage() {
   const search = useSearch()
@@ -65,7 +63,7 @@ function BiosampleLoader({ id, datasetIds }) {
   )
 }
 
-function BiosampleResponse({ response, id, datasetIds }) {
+function BiosampleResponse({ response, datasetIds }) {
   if (!response.biosamples || response.biosamples[datasetIds].length === 0) {
     return (
       <div className="message is-info is-large">
