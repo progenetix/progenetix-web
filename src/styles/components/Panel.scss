@@ -10,6 +10,13 @@
   min-height: $size-1;
 }
 
+.Panel--block {
+  padding: 1rem 1rem;
+  @include tablet {
+    padding: 1.5rem 2rem;
+  }
+}
+
 .Panel .ReactCollapse--collapse {
   transition: height 200ms;
 }

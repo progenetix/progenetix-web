@@ -1,4 +1,3 @@
-import Field from "../form/Field"
 import cn from "classnames"
 import {
   INTEGER_RANGE_REGEX,
@@ -9,7 +8,21 @@ import React, { useState } from "react"
 import { markdownToReact } from "../../utils/md"
 import { useForm } from "react-hook-form"
 import { Loader } from "../Loader"
-import ControlledSelect from "../form/ControlledSelect"
+import {
+  CytoBandsControlPanel,
+  GeneSpansControlPanel
+} from "./FormControlPanels"
+import { FaCogs } from "react-icons/fa"
+import PropTypes from "prop-types"
+import SelectField from "../form/SelectField"
+import InputField from "../form/InputField"
+
+BeaconForm.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  onValidFormQuery: PropTypes.func.isRequired,
+  requestTypesConfig: PropTypes.object.isRequired,
+  parametersConfig: PropTypes.object.isRequired
+}
 
 export function BeaconForm({
   isLoading,
@@ -23,16 +36,7 @@ export function BeaconForm({
   const requestTypeConfig = requestTypesConfig[requestTypeId]
 
   // merge base parameters config and request config
-  const parameters = Object.fromEntries(
-    Object.entries(parametersConfig).map(([name, baseConfig]) => {
-      const config = {
-        name, // add the name to the config!
-        ...baseConfig,
-        ...(requestTypeConfig?.parameters?.[name] ?? {})
-      }
-      return [name, config]
-    })
-  )
+  const parameters = mergeParameters(parametersConfig, requestTypeConfig)
 
   const {
     register,
@@ -52,6 +56,15 @@ export function BeaconForm({
   } = useSelectFilteringTerms()
 
   const [example, setExample] = useState(null)
+
+  const {
+    cytoBandPanelOpen,
+    onCytoBandClick,
+    onCytoBandCloseClick,
+    geneSpansPanelOpen,
+    onGeneSpansClick,
+    onGeneSpansCloseClick
+  } = useFormControlPanels()
 
   function handleRequestTypeClicked(requestTypeId) {
     setExample(null)
@@ -97,6 +110,7 @@ export function BeaconForm({
     }))
   ]
 
+  // shortcuts
   const fieldProps = { errors, register }
   const selectProps = {
     ...fieldProps,
@@ -111,55 +125,73 @@ export function BeaconForm({
       loadingMessage="Loading datasets..."
       errorMessage="Could not load datasets"
     >
-      {() => (
-        <>
-          <Tabs
-            requestTypesConfig={requestTypesConfig}
-            requestType={requestTypeId}
-            onRequestTypeClicked={handleRequestTypeClicked}
-          />
-          <RequestDescription
-            requestConfig={requestTypeConfig}
-            example={example}
-            onExampleClicked={handleExampleClicked}
-          />
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <SelectField {...parameters.datasetIds} {...selectProps} />
-            <SelectField {...parameters.assemblyId} {...selectProps} />
-            <SelectField
-              {...parameters.includeDatasetResonses}
-              {...selectProps}
+      {() => {
+        return (
+          <>
+            <Tabs
+              requestTypesConfig={requestTypesConfig}
+              requestType={requestTypeId}
+              onRequestTypeClicked={handleRequestTypeClicked}
             />
-            <SelectField {...parameters.requestType} {...selectProps} />
-            <SelectField {...parameters.referenceName} {...selectProps} />
-            <SelectField {...parameters.variantType} {...selectProps} />
-            <InputField
-              {...fieldProps}
-              {...parameters.start}
-              rules={{
-                validate: checkIntegerRange
-              }}
-            />
-            <InputField
-              {...fieldProps}
-              {...parameters.end}
-              rules={{
-                validate: checkIntegerRange
-              }}
-            />
-            <InputField {...fieldProps} {...parameters.referenceBases} />
-            <InputField {...fieldProps} {...parameters.alternateBases} />
-            <SelectField
-              {...parameters.bioontology}
-              {...selectProps}
-              isLoading={!filteringTerms && !filteringTermsError}
-            />
-            <SelectField {...parameters.materialtype} {...selectProps} />
-            <InputField {...parameters.freeFilters} {...fieldProps} />
-            <div className="field is-horizontal">
-              <div className="field-label" />
-              <div className="field-body">
-                <div className="field">
+            <div>
+              <ExamplesButtons
+                handleExampleClicked={handleExampleClicked}
+                requestTypeConfig={requestTypeConfig}
+              />
+              <ExampleDescription example={example} />
+              <RequestTypeDescription requestConfig={requestTypeConfig} />
+              <FormControls
+                onCytoBandClick={onCytoBandClick}
+                cytoBandPanelOpen={cytoBandPanelOpen}
+                onGeneSpansClick={onGeneSpansClick}
+                geneSpansPanelOpen={geneSpansPanelOpen}
+              />
+              {cytoBandPanelOpen && (
+                <CytoBandsControlPanel
+                  onClose={onCytoBandCloseClick}
+                  setFormValue={setValue}
+                />
+              )}
+              {geneSpansPanelOpen && (
+                <GeneSpansControlPanel
+                  onClose={onGeneSpansCloseClick}
+                  setFormValue={setValue}
+                />
+              )}
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <SelectField {...parameters.datasetIds} {...selectProps} />
+                <SelectField {...parameters.assemblyId} {...selectProps} />
+                <SelectField
+                  {...parameters.includeDatasetResonses}
+                  {...selectProps}
+                />
+                <SelectField {...parameters.requestType} {...selectProps} />
+                <SelectField {...parameters.referenceName} {...selectProps} />
+                <SelectField {...parameters.variantType} {...selectProps} />
+                <InputField
+                  {...fieldProps}
+                  {...parameters.start}
+                  rules={{
+                    validate: checkIntegerRange
+                  }}
+                />
+                <InputField
+                  {...fieldProps}
+                  {...parameters.end}
+                  rules={{
+                    validate: checkIntegerRange
+                  }}
+                />
+                <InputField {...fieldProps} {...parameters.referenceBases} />
+                <InputField {...fieldProps} {...parameters.alternateBases} />
+                <SelectField
+                  {...parameters.bioontology}
+                  {...selectProps}
+                  isLoading={!filteringTerms && !filteringTermsError}
+                />
+                <SelectField {...parameters.materialtype} {...selectProps} />
+                <InputField {...parameters.freeFilters} {...fieldProps} />
+                <div className="field mt-5">
                   <div className="control">
                     <button
                       type="submit"
@@ -171,13 +203,19 @@ export function BeaconForm({
                     </button>
                   </div>
                 </div>
-              </div>
+              </form>
             </div>
-          </form>
-        </>
-      )}
+          </>
+        )
+      }}
     </Loader>
   )
+}
+
+Tabs.propTypes = {
+  requestType: PropTypes.string.isRequired,
+  requestTypesConfig: PropTypes.object.isRequired,
+  onRequestTypeClicked: PropTypes.func.isRequired
 }
 
 function Tabs({ requestTypesConfig, requestType, onRequestTypeClicked }) {
@@ -198,66 +236,81 @@ function Tabs({ requestTypesConfig, requestType, onRequestTypeClicked }) {
   )
 }
 
-function RequestDescription({ requestConfig, onExampleClicked, example }) {
-  return (
-    <>
-      <article className="message">
-        <div className="message-body">
-          <div className="content">
-            {requestConfig.description &&
-              markdownToReact(requestConfig?.description)}
-            <div className="buttons">
-              {Object.entries(requestConfig.examples || []).map(
-                ([id, value]) => (
-                  <button
-                    key={id}
-                    className="button is-info is-outlined"
-                    onClick={() => onExampleClicked(value)}
-                  >
-                    {value.label}
-                  </button>
-                )
-              )}
-            </div>
-          </div>
-        </div>
-      </article>
+RequestTypeDescription.propTypes = {
+  requestConfig: PropTypes.object.isRequired
+}
 
-      {example?.description && (
-        <article className="message is-info">
-          <div className="message-body">
-            <div className="content">
-              {markdownToReact(example?.description)}
-            </div>
-          </div>
-        </article>
-      )}
-    </>
+function RequestTypeDescription({ requestConfig }) {
+  return (
+    <article className="message">
+      <div className="message-body">
+        <div className="content">
+          {requestConfig.description &&
+            markdownToReact(requestConfig?.description)}
+        </div>
+      </div>
+    </article>
   )
 }
 
-function InputField({
-  name,
-  label,
-  placeholder,
-  isHidden,
-  errors,
-  register,
-  rules
+Tabs.FormControls = {
+  requestTypesConfig: PropTypes.object.isRequired
+}
+
+function FormControls({
+  onGeneSpansClick,
+  geneSpansPanelOpen,
+  onCytoBandClick,
+  cytoBandPanelOpen
 }) {
   return (
-    <Field label={label} help={errors[name]?.message} isHidden={isHidden}>
-      <input
-        name={name}
-        className={cn("input", {
-          "is-danger": errors[name]
-        })}
-        ref={register(rules)}
-        type="text"
-        placeholder={placeholder}
-      />
-    </Field>
+    <div className="buttons">
+      <button
+        className={cn("button", [geneSpansPanelOpen && "is-link"])}
+        onClick={onGeneSpansClick}
+      >
+        <span className="icon">
+          <FaCogs />
+        </span>
+        <span>Gene Spans</span>
+      </button>
+      <button
+        className={cn("button", [cytoBandPanelOpen && "is-link"])}
+        onClick={onCytoBandClick}
+      >
+        <span className="icon">
+          <FaCogs />
+        </span>
+        <span>Cytoband(s)</span>
+      </button>
+    </div>
   )
+}
+
+function ExamplesButtons({ requestTypeConfig, handleExampleClicked }) {
+  return (
+    <div className="buttons">
+      {Object.entries(requestTypeConfig.examples || []).map(([id, value]) => (
+        <button
+          key={id}
+          className="button is-light"
+          onClick={() => handleExampleClicked(value)}
+        >
+          {value.label}
+        </button>
+      ))}
+    </div>
+  )
+}
+
+function ExampleDescription({ example }) {
+  return example?.description ? (
+    <article className="message is-info">
+      <div className="message-body">
+        <div className="content">{markdownToReact(example?.description)}</div>
+      </div>
+    </article>
+  ) : null
 }
 
 function validateForm(formValues) {
@@ -316,32 +369,6 @@ export const checkIntegerRange = (value) => {
     return "Incorrect range input, max should be greater than min"
 }
 
-function SelectField({
-  name,
-  label,
-  errors,
-  isHidden,
-  watch,
-  setValue,
-  register,
-  rules,
-  ...selectProps
-}) {
-  return (
-    <Field label={label} help={errors[name]?.message} isHidden={isHidden}>
-      <ControlledSelect
-        className={cn("is-fullwidth", errors[name] && "is-danger")}
-        name={name}
-        watch={watch}
-        setValue={setValue}
-        register={register}
-        rules={rules}
-        {...selectProps}
-      />
-    </Field>
-  )
-}
-
 // Maps datasets hook to data usable by DataFetchSelect
 function useSelectDatasets() {
   const { data, error } = useDatasets()
@@ -367,5 +394,42 @@ function useSelectFilteringTerms() {
         label: `${value.id}: ${value.label} (${value.count})`
       })),
     error
+  }
+}
+
+function mergeParameters(parametersConfig, requestTypeConfig) {
+  return Object.fromEntries(
+    Object.entries(parametersConfig).map(([name, baseConfig]) => {
+      const config = {
+        name, // add the name to the config!
+        ...baseConfig,
+        ...(requestTypeConfig?.parameters?.[name] ?? {})
+      }
+      return [name, config]
+    })
+  )
+}
+
+function useFormControlPanels() {
+  const [cytoBandPanelOpen, setCytoBandPanelOpen] = useState(false)
+  const [geneSpansPanelOpen, setgeneSpansPanelOpen] = useState(false)
+  const onCytoBandClick = () => {
+    setCytoBandPanelOpen(!cytoBandPanelOpen)
+    setgeneSpansPanelOpen(false)
+  }
+  const onCytoBandCloseClick = () => setCytoBandPanelOpen(false)
+
+  const onGeneSpansClick = () => {
+    setgeneSpansPanelOpen(!geneSpansPanelOpen)
+    setCytoBandPanelOpen(false)
+  }
+  const onGeneSpansCloseClick = () => setgeneSpansPanelOpen(false)
+  return {
+    cytoBandPanelOpen,
+    onCytoBandClick,
+    onCytoBandCloseClick,
+    geneSpansPanelOpen,
+    onGeneSpansClick,
+    onGeneSpansCloseClick
   }
 }

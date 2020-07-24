@@ -1,5 +1,7 @@
-$orange: hsl(14, 100%, 53%) !default;
-$primary: #ff6f48;
 $body-size: 13px;
+
+$orange: hsl(14, 100%, 53%) !default;
+$blue: hsl(216, 100%, 53%) !default;
+$primary: $blue;
 
 @import "~bulma/sass/utilities/all";

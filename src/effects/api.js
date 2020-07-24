@@ -79,6 +79,29 @@ export function usePublication(id) {
   )
 }
 
+export function useGeneSpans(querytext) {
+  const url =
+    querytext &&
+    querytext.length > 0 &&
+    `${basePath}cgi/genespans.cgi?db=progenetix&collection=genespans&querytext=${querytext}`
+  return useSWR(url, (...args) =>
+    fetch(...args)
+      .then((res) => res.text())
+      .then((t) => {
+        // data returned is not JSON
+        const sanitized = t.startsWith("(") ? t.slice(1, -3) : t
+        return JSON.parse(sanitized)
+      })
+  )
+}
+export function useCytomapper(querytext) {
+  const url =
+    querytext &&
+    querytext.length > 0 &&
+    `${basePath}cgi/bycon/bin/cytomapper.py?featureClass=P&cytoBands=1${querytext}`
+  return useSWR(url)
+}
+
 export function useSubsethistogram({ datasetIds, id, filter, scope, size }) {
   const params = [
     ["datasetIds", datasetIds],

@@ -1,8 +1,6 @@
-import Select, { createFilter, components } from "react-select"
-import { FixedSizeList as List } from "react-window"
-import { useEffect } from "react"
+import React, { useEffect } from "react"
 import PropTypes from "prop-types"
-import cn from "classnames"
+import CustomSelect from "../Select"
 
 export default function ControlledSelect({
   name,
@@ -24,9 +22,6 @@ export default function ControlledSelect({
     selectValue = options?.filter(({ value }) => formValue === value)
   }
 
-  const components =
-    options?.length > 100 ? { MenuList: WindowMenuList, Option } : { Option }
-
   useEffect(() => {
     register({ name }, rules)
     setValue(name, defaultValue)
@@ -42,18 +37,14 @@ export default function ControlledSelect({
     setValue(name, value)
   }
   return (
-    <div className={cn(className)}>
-      <Select
-        filterOption={createFilter({ ignoreAccents: false })} // faster
-        components={components}
-        options={options ?? []}
-        value={selectValue}
-        onChange={handleChange}
-        className="react-select-container"
-        classNamePrefix="react-select"
-        {...selectProps}
-      />
-    </div>
+    <CustomSelect
+      options={options}
+      value={selectValue}
+      onChange={handleChange}
+      className={className}
+      classNamePrefix="react-select"
+      {...selectProps}
+    />
   )
 }
 
@@ -65,35 +56,4 @@ ControlledSelect.propTypes = {
   register: PropTypes.func.isRequired,
   rules: PropTypes.object,
   options: PropTypes.array
-}
-
-const height = 35
-
-// GREATLY improves performances
-function WindowMenuList(props) {
-  const { options, children, maxHeight, getValue } = props
-  const [value] = getValue()
-  const initialOffset = options.indexOf(value) * height
-
-  return (
-    <List
-      height={maxHeight}
-      itemCount={children.length}
-      itemSize={height}
-      initialScrollOffset={initialOffset}
-    >
-      {({ index, style }) => <div style={style}>{children[index]}</div>}
-    </List>
-  )
-}
-
-function Option(props) {
-  const { innerProps, isFocused, ...otherProps } = props
-  const { onMouseMove, onMouseOver, ...otherInnerProps } = innerProps
-  const newProps = { innerProps: { ...otherInnerProps }, ...otherProps }
-  return (
-    <components.Option {...newProps} className="react-select__option">
-      {props.children}
-    </components.Option>
-  )
 }

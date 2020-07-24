@@ -15,7 +15,7 @@ export default function Panel({
     <div className={cn("Panel panel", className)}>
       <div className="panel-heading">{heading}</div>
       <Collapse isOpened={isOpened}>
-        <div className="panel-block is-block pb-5">{children} </div>
+        <div className="Panel--block">{children} </div>
       </Collapse>
     </div>
   )
