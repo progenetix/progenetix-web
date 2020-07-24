@@ -73,10 +73,20 @@ export function buildQueryParameters(queryData) {
   ).toString()
 }
 
+export function publicationUrl(id) {
+  return `${basePath}do/api/apidb=progenetix&apiscope=publications&apimethod=publicationdetails&id=${id}`
+}
+
 export function usePublication(id) {
-  return useSWR(
-    `${basePath}do/api/apidb=progenetix&apiscope=publications&apimethod=publicationdetails&id=${id}`
-  )
+  return useSWR(publicationUrl(id))
+}
+
+export function sampleUrl(id, datasetIds) {
+  return `${basePath}cgi/bycon/bin/byconplus.py?scope=biosamples&id=${id}&datasetIds=${datasetIds}`
+}
+
+export function useSample(id, datasetIds) {
+  return useSWR(sampleUrl(id, datasetIds))
 }
 
 export function useGeneSpans(querytext) {

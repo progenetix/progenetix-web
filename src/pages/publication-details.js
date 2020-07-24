@@ -1,4 +1,9 @@
-import { usePublication, useSubsethistogram } from "../effects/api"
+import {
+  publicationUrl,
+  sampleUrl,
+  usePublication,
+  useSubsethistogram
+} from "../effects/api"
 import { Loader } from "../components/Loader"
 import React, { useRef } from "react"
 import { useContainerDimensions } from "../effects/containerDimensions"
@@ -24,7 +29,10 @@ export default function PublicationDetailsPage() {
 function Layout({ children }) {
   return (
     <div>
-      <header className="has-background-primary" style={{ height: "2rem" }} />
+      <header
+        className="has-background-visual-identity"
+        style={{ height: "2rem" }}
+      />
       <div className="section">
         <div className="container">
           <h1 className="title is-2">Publication Details</h1>
@@ -74,20 +82,26 @@ function PublicationDetails({ publication, id, scope, filter }) {
 
   const epmcUrl = `http://www.europepmc.org/abstract/MED/${id.split(":")[1]}`
   return (
-    <div ref={componentRef}>
-      <h2 className="subtitle is-4">{publication.title}</h2>
-      <p className="has-text-weight-semibold mb-4">{publication.authors}</p>
-      <p className="mb-4">
+    <section ref={componentRef} className="content">
+      <h3 className="subtitle">
+        {publication.title}{" "}
+        <a rel="noreferrer" target="_blank" href={publicationUrl(id)}>
+          {"{↗}"}
+        </a>
+      </h3>
+
+      <p className="has-text-weight-semibold">{publication.authors}</p>
+      <p>
         <i>{publication.journal}</i> {id}{" "}
         <a href={epmcUrl} rel="noreferrer" target="_BLANK">
           <img src="https://progenetix.org/p/EPMC_16.gif" />
         </a>
       </p>
-      <p className="mb-4">{publication.abstract}</p>
-      <h5 className="has-text-weight-bold">Origin</h5>
-      <p className="mb-4">{publication.provenance.geo.label}</p>
-      <h5 className="has-text-weight-bold">Genome Screens</h5>
-      <div className="content">
+      <p>{publication.abstract}</p>
+      <h5>Origin</h5>
+      <p>{publication.provenance.geo.label}</p>
+      <h5>Genome Screens</h5>
+      <div>
         <ul>
           {technologies.map((technologie, i) =>
             publication.counts[technologie] ? (
@@ -142,7 +156,7 @@ function PublicationDetails({ publication, id, scope, filter }) {
           })}
         />
       )}
-    </div>
+    </section>
   )
 }
 
