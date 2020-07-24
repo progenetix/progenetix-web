@@ -1,11 +1,12 @@
 .beacon-plus__query-summary {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
-  li:after {
-    content: " | ";
-    white-space: pre;
-  }
-  li:last-child:after {
-    content: "";
+  li {
+    margin-bottom: 0.5rem;
+    margin-right: 0.75rem;
+    small {
+      font-weight: bold;
+    }
   }
 }

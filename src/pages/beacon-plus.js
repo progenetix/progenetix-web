@@ -114,6 +114,7 @@ function QuerySummary({ query }) {
   if (query.freeFilters) {
     filters = [...filters, query.freeFilters]
   }
+  filters = filters.filter((f) => f && f.length > 1)
   return (
     <ul className="beacon-plus__query-summary">
       {query.assemblyId && (
