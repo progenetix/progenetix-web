@@ -4,4 +4,8 @@ $orange: hsl(14, 100%, 53%) !default;
 $blue: hsl(216, 100%, 53%) !default;
 $primary: $blue;
 
+// Disabled at the moment because the content is very vertical. Could be enabled again once we add sidebars.
+$widescreen-enabled: false !default;
+$fullhd-enabled: false !default;
+
 @import "~bulma/sass/utilities/all";
