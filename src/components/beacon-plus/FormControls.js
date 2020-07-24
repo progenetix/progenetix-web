@@ -1,8 +1,71 @@
 import { useAsyncSelect } from "../../effects/asyncSelect"
 import { useCytomapper, useGeneSpans } from "../../effects/api"
 import CustomSelect from "../Select"
-import React from "react"
+import React, { useState } from "react"
 import PropTypes from "prop-types"
+import cn from "classnames"
+import { FaCogs } from "react-icons/fa"
+
+FormControlsButtons.propTypes = {
+  onGeneSpansClick: PropTypes.func.isRequired,
+  geneSpansPanelOpen: PropTypes.bool.isRequired,
+  onCytoBandClick: PropTypes.func.isRequired,
+  cytoBandPanelOpen: PropTypes.bool.isRequired
+}
+
+export function useFormControlPanels() {
+  const [cytoBandPanelOpen, setCytoBandPanelOpen] = useState(false)
+  const [geneSpansPanelOpen, setgeneSpansPanelOpen] = useState(false)
+  const onCytoBandClick = () => {
+    setCytoBandPanelOpen(!cytoBandPanelOpen)
+    setgeneSpansPanelOpen(false)
+  }
+  const onCytoBandCloseClick = () => setCytoBandPanelOpen(false)
+
+  const onGeneSpansClick = () => {
+    setgeneSpansPanelOpen(!geneSpansPanelOpen)
+    setCytoBandPanelOpen(false)
+  }
+  const onGeneSpansCloseClick = () => setgeneSpansPanelOpen(false)
+  return {
+    cytoBandPanelOpen,
+    onCytoBandClick,
+    onCytoBandCloseClick,
+    geneSpansPanelOpen,
+    onGeneSpansClick,
+    onGeneSpansCloseClick
+  }
+}
+
+export function FormControlsButtons({
+  onGeneSpansClick,
+  geneSpansPanelOpen,
+  onCytoBandClick,
+  cytoBandPanelOpen
+}) {
+  return (
+    <div className="buttons">
+      <button
+        className={cn("button", [geneSpansPanelOpen && "is-link"])}
+        onClick={onGeneSpansClick}
+      >
+        <span className="icon">
+          <FaCogs />
+        </span>
+        <span>Gene Spans</span>
+      </button>
+      <button
+        className={cn("button", [cytoBandPanelOpen && "is-link"])}
+        onClick={onCytoBandClick}
+      >
+        <span className="icon">
+          <FaCogs />
+        </span>
+        <span>Cytoband(s)</span>
+      </button>
+    </div>
+  )
+}
 
 function useGenSpanSelect(inputValue) {
   const { data, error } = useGeneSpans(inputValue)

@@ -10,9 +10,10 @@ import { useForm } from "react-hook-form"
 import { Loader } from "../Loader"
 import {
   CytoBandsControlPanel,
-  GeneSpansControlPanel
-} from "./FormControlPanels"
-import { FaCogs } from "react-icons/fa"
+  FormControlsButtons,
+  GeneSpansControlPanel,
+  useFormControlPanels
+} from "./FormControls"
 import PropTypes from "prop-types"
 import SelectField from "../form/SelectField"
 import InputField from "../form/InputField"
@@ -140,7 +141,7 @@ export function BeaconForm({
               />
               <ExampleDescription example={example} />
               <RequestTypeDescription requestConfig={requestTypeConfig} />
-              <FormControls
+              <FormControlsButtons
                 onCytoBandClick={onCytoBandClick}
                 cytoBandPanelOpen={cytoBandPanelOpen}
                 onGeneSpansClick={onGeneSpansClick}
@@ -250,40 +251,6 @@ function RequestTypeDescription({ requestConfig }) {
         </div>
       </div>
     </article>
-  )
-}
-
-Tabs.FormControls = {
-  requestTypesConfig: PropTypes.object.isRequired
-}
-
-function FormControls({
-  onGeneSpansClick,
-  geneSpansPanelOpen,
-  onCytoBandClick,
-  cytoBandPanelOpen
-}) {
-  return (
-    <div className="buttons">
-      <button
-        className={cn("button", [geneSpansPanelOpen && "is-link"])}
-        onClick={onGeneSpansClick}
-      >
-        <span className="icon">
-          <FaCogs />
-        </span>
-        <span>Gene Spans</span>
-      </button>
-      <button
-        className={cn("button", [cytoBandPanelOpen && "is-link"])}
-        onClick={onCytoBandClick}
-      >
-        <span className="icon">
-          <FaCogs />
-        </span>
-        <span>Cytoband(s)</span>
-      </button>
-    </div>
   )
 }
 
@@ -408,28 +375,4 @@ function mergeParameters(parametersConfig, requestTypeConfig) {
       return [name, config]
     })
   )
-}
-
-function useFormControlPanels() {
-  const [cytoBandPanelOpen, setCytoBandPanelOpen] = useState(false)
-  const [geneSpansPanelOpen, setgeneSpansPanelOpen] = useState(false)
-  const onCytoBandClick = () => {
-    setCytoBandPanelOpen(!cytoBandPanelOpen)
-    setgeneSpansPanelOpen(false)
-  }
-  const onCytoBandCloseClick = () => setCytoBandPanelOpen(false)
-
-  const onGeneSpansClick = () => {
-    setgeneSpansPanelOpen(!geneSpansPanelOpen)
-    setCytoBandPanelOpen(false)
-  }
-  const onGeneSpansCloseClick = () => setgeneSpansPanelOpen(false)
-  return {
-    cytoBandPanelOpen,
-    onCytoBandClick,
-    onCytoBandCloseClick,
-    geneSpansPanelOpen,
-    onGeneSpansClick,
-    onGeneSpansCloseClick
-  }
 }
