@@ -15,7 +15,6 @@ export default function CustomSelect({
     useWindowList && options?.length > 100
       ? { MenuList: WindowMenuList, Option }
       : { Option }
-
   return (
     <Select
       filterOption={createFilter({ ignoreAccents: false })} // MUCH faster

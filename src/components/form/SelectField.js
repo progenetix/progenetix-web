@@ -26,13 +26,16 @@ export default function SelectField({
   ...selectProps
 }) {
   const help = errors[name]?.message
-
   return (
-    <div className={cn("field ", { "is-hidden": isHidden })}>
+    <div
+      className={cn("field ", {
+        "is-hidden": isHidden,
+        "is-danger": errors[name]
+      })}
+    >
       <label className="label">{label}</label>
       <div className="control">
         <ControlledSelect
-          className={cn(errors[name] && "is-danger")}
           name={name}
           watch={watch}
           setValue={setValue}
