@@ -21,7 +21,7 @@ export default function PublicationDetailsPage() {
       {!id ? (
         <NoResultsHelp />
       ) : (
-        <Publication id={id} scope={scope} filter={filter} />
+        <PublicationLoader id={id} scope={scope} filter={filter} />
       )}
     </Layout>
   )
@@ -40,26 +40,35 @@ function NoResultsHelp() {
   )
 }
 
-function Publication({ id, scope, filter }) {
+function PublicationLoader({ id, scope, filter }) {
   const { data, error } = usePublication(id)
   const isLoading = !data && !error
   return (
     <Loader isLoading={isLoading} hasError={error} background>
-      {data?.length >= 1 ? (
-        data.map((publication, i) => (
-          <PublicationDetails
-            key={i}
-            publication={publication}
-            id={id}
-            scope={scope}
-            filter={filter}
-          />
-        ))
-      ) : (
-        <NoResultsHelp />
-      )}
+      <PublicationResponse
+        response={data}
+        id={id}
+        scope={scope}
+        filter={filter}
+      />
     </Loader>
   )
+}
+
+function PublicationResponse({ response, id, scope, filter }) {
+  if (response?.length >= 1) {
+    return response.map((publication, i) => (
+      <PublicationDetails
+        key={i}
+        publication={publication}
+        id={id}
+        scope={scope}
+        filter={filter}
+      />
+    ))
+  } else {
+    return <NoResultsHelp />
+  }
 }
 
 function PublicationDetails({ publication, id, scope, filter }) {

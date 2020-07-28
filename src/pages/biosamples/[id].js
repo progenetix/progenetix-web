@@ -14,7 +14,7 @@ export default function BiosampleDetailsPage() {
   return (
     <Layout title="Sample Details">
       {!hasAllParams ? (
-        <MissingParameters />
+        <NoResultsHelp />
       ) : (
         <BiosampleLoader id={id} datasetIds={datasetIds} />
       )}
@@ -22,13 +22,13 @@ export default function BiosampleDetailsPage() {
   )
 }
 
-function MissingParameters() {
+function NoResultsHelp() {
   return (
-    <div className="notification is-warning">
+    <div className="notification is-size-5">
       This page will only show content if called with a specific biosample ID
       which already exists in the Progenetix or arrayMap `biosamples` database,
       e.g.{" "}
-      <a href="/biosample-details?id=PGX_AM_BS_PGkes2003_MB-kes-01?datasetIds=progenetix">
+      <a href="/biosamples/PGX_AM_BS_PGkes2003_MB-kes-01?datasetIds=progenetix">
         biosample-details?id=PGX_AM_BS_PGkes2003_MB-kes-01?datasetIds=progenetix
       </a>
       .
@@ -50,15 +50,11 @@ function BiosampleLoader({ id, datasetIds }) {
 
 function BiosampleResponse({ response, datasetIds }) {
   if (!response.biosamples || response.biosamples[datasetIds].length === 0) {
-    return (
-      <div className="message is-info is-large">
-        <div className="message-body">No sample has been found.</div>
-      </div>
-    )
+    return <NoResultsHelp />
   }
   if (response.biosamples[datasetIds].length > 1) {
     return (
-      <div className="message is-info is-large">
+      <div className="notification is-size-5">
         <div className="message-body">More than one sample has been found.</div>
       </div>
     )
