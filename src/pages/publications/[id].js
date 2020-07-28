@@ -19,7 +19,7 @@ export default function PublicationDetailsPage() {
   return (
     <Layout title="Publication Details">
       {!id ? (
-        <MissingId />
+        <NoResultsHelp />
       ) : (
         <Publication id={id} scope={scope} filter={filter} />
       )}
@@ -27,12 +27,12 @@ export default function PublicationDetailsPage() {
   )
 }
 
-function MissingId() {
+function NoResultsHelp() {
   return (
-    <div className="notification is-warning">
+    <div className="notification is-size-5">
       This page will only show content if called with a specific Pubmed ID which
       already exists in the Progenetix `publications` database, e.g.{" "}
-      <a href={"/publication-details?id=PMID:28966033"}>
+      <a href={"/publications/PMID:28966033"}>
         /publication-details?id=PMID:28966033
       </a>
       . Please start over from the Progenetix Publication Collection page.
@@ -43,10 +43,9 @@ function MissingId() {
 function Publication({ id, scope, filter }) {
   const { data, error } = usePublication(id)
   const isLoading = !data && !error
-
   return (
     <Loader isLoading={isLoading} hasError={error} background>
-      {data &&
+      {data?.length >= 1 ? (
         data.map((publication, i) => (
           <PublicationDetails
             key={i}
@@ -55,7 +54,10 @@ function Publication({ id, scope, filter }) {
             scope={scope}
             filter={filter}
           />
-        ))}
+        ))
+      ) : (
+        <NoResultsHelp />
+      )}
     </Loader>
   )
 }

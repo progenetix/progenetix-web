@@ -84,7 +84,9 @@ export function publicationUrl(id) {
 }
 
 export function usePublication(id) {
-  return useSWR(publicationUrl(id))
+  const { data: rawData, error } = useSWR(publicationUrl(id))
+  const data = rawData && rawData.filter((r) => !!r) // when not defined the api returns an array with null elements.
+  return { data, error }
 }
 
 export function sampleUrl(id, datasetIds) {
