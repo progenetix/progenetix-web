@@ -9,9 +9,15 @@ export function useDatasets() {
   return useSWR(`${basePath}cgi/bycon/bin/byconplus.py/get-datasetids/`)
 }
 
-export function useFilteringTerms(prefixes) {
+export function useFilteringTerms(prefixes, datasetIds = []) {
+  const params = new URLSearchParams(
+    flattenParams([
+      ["filters", prefixes],
+      ["datasetIds", datasetIds]
+    ])
+  ).toString()
   return useSWR(
-    `${basePath}cgi/bycon/bin/byconplus.py/filtering_terms?filters=${prefixes}`
+    `${basePath}cgi/bycon/bin/byconplus.py/filtering_terms?${params}`
   )
 }
 

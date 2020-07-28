@@ -51,10 +51,11 @@ export function BeaconForm({
   } = useForm(parameters)
 
   const { data: datasets, error: datasetsError } = useSelectDatasets()
+
   const {
     data: filteringTerms,
     error: filteringTermsError
-  } = useSelectFilteringTerms()
+  } = useSelectFilteringTerms(watch)
 
   const [example, setExample] = useState(null)
 
@@ -351,8 +352,9 @@ function useSelectDatasets() {
 }
 
 // Maps FilteringTerms hook to data usable by DataFetchSelect
-function useSelectFilteringTerms() {
-  const { data, error } = useFilteringTerms("NCIT,icdom")
+function useSelectFilteringTerms(watchForm) {
+  const datasetIds = watchForm("datasetIds")
+  const { data, error } = useFilteringTerms("NCIT,icdom", datasetIds)
   return {
     data:
       data &&
