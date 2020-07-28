@@ -90,18 +90,16 @@ function BiosampleResponse({ response, datasetIds }) {
 function Biosample({ biosample, datasetIds }) {
   return (
     <section className="content">
-      <div>
-        <h3 className="mb-6">
-          {biosample.id} ({datasetIds}){" "}
-          <a
-            rel="noreferrer"
-            target="_blank"
-            href={sampleUrl(biosample.id, datasetIds)}
-          >
-            {"{↗}"}
-          </a>
-        </h3>
-      </div>
+      <h3 className="mb-6">
+        {biosample.id} ({datasetIds}){" "}
+        <a
+          rel="noreferrer"
+          target="_blank"
+          href={sampleUrl(biosample.id, datasetIds)}
+        >
+          {"{↗}"}
+        </a>
+      </h3>
       {biosample.description && (
         <>
           <h5>Description</h5>
