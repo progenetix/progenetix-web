@@ -9,6 +9,7 @@ import { useContainerDimensions } from "../../effects/containerDimensions"
 import { useQuery } from "../../effects/query"
 import Histogram from "../../components/Histogram"
 import { Layout } from "../../components/Layout"
+import { EpmcLink } from "../../components/publications/EpmcUrl"
 
 export default function PublicationDetailsPage() {
   const urlQuery = useQuery()
@@ -75,7 +76,6 @@ function PublicationDetails({ publication, id, scope, filter }) {
   const componentRef = useRef()
   const { width } = useContainerDimensions(componentRef)
 
-  const epmcUrl = `http://www.europepmc.org/abstract/MED/${id.split(":")[1]}`
   return (
     <section ref={componentRef} className="content">
       <h3 className="subtitle">
@@ -87,10 +87,7 @@ function PublicationDetails({ publication, id, scope, filter }) {
 
       <p className="has-text-weight-semibold">{publication.authors}</p>
       <p>
-        <i>{publication.journal}</i> {id}{" "}
-        <a href={epmcUrl} rel="noreferrer" target="_BLANK">
-          <img src="https://progenetix.org/p/EPMC_16.gif" />
-        </a>
+        <i>{publication.journal}</i> {id} <EpmcLink publicationId={id} />
       </p>
       <p>{publication.abstract}</p>
       <h5>Origin</h5>
@@ -105,7 +102,7 @@ function PublicationDetails({ publication, id, scope, filter }) {
               </li>
             ) : null
           )}
-          {publication.info.progenetix_biosamples_count > 0 && (
+          {publication.info?.progenetix_biosamples_count > 0 && (
             <li>
               {publication.info.progenetix_biosamples_count} sample profiles are{" "}
               <a
@@ -115,7 +112,7 @@ function PublicationDetails({ publication, id, scope, filter }) {
               </a>
             </li>
           )}
-          {publication.info.arraymap_biosamples_count > 0 && (
+          {publication.info?.arraymap_biosamples_count > 0 && (
             <li>
               {publication.info.arraymap_biosamples_count} sample profiles are{" "}
               <a
@@ -127,7 +124,7 @@ function PublicationDetails({ publication, id, scope, filter }) {
           )}
         </ul>
       </div>
-      {publication.info.progenetix_biosamples_count > 0 && (
+      {publication.info?.progenetix_biosamples_count > 0 && (
         <Histogram
           background
           dataEffect={useSubsethistogram({
@@ -139,7 +136,7 @@ function PublicationDetails({ publication, id, scope, filter }) {
           })}
         />
       )}
-      {publication.info.arraymap_biosamples_count > 0 && (
+      {publication.info?.arraymap_biosamples_count > 0 && (
         <Histogram
           background
           dataEffect={useSubsethistogram({

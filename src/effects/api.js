@@ -89,6 +89,12 @@ export function usePublication(id) {
   return { data, error }
 }
 
+export function usePublicationList() {
+  const url = `${basePath}do/api/apidb=progenetix&apiscope=publications&apimethod=publicationdata&filters=counts.genomes:%3E0?_=1595945519782`
+  const { data, error } = useSWR(url)
+  return { data, error }
+}
+
 export function sampleUrl(id, datasetIds) {
   return `${basePath}cgi/bycon/bin/byconplus.py?scope=biosamples&id=${id}&datasetIds=${datasetIds}`
 }
