@@ -91,7 +91,7 @@ function Biosample({ biosample, datasetIds }) {
   return (
     <section className="content">
       <div>
-        <h3 className="mb-5">
+        <h3 className="mb-6">
           {biosample.id} ({datasetIds}){" "}
           <a
             rel="noreferrer"
@@ -102,9 +102,12 @@ function Biosample({ biosample, datasetIds }) {
           </a>
         </h3>
       </div>
-      <h4>Description</h4>
-      <p>{biosample.description}</p>
-
+      {biosample.description && (
+        <>
+          <h5>Description</h5>
+          <p>{biosample.description}</p>
+        </>
+      )}
       <h5>Biocharacteristics</h5>
       <ul>
         {biosample.biocharacteristics.map((biocharacteristic, i) => (
@@ -114,18 +117,22 @@ function Biosample({ biosample, datasetIds }) {
         ))}
       </ul>
 
-      <h5>Clinical Data</h5>
-      {biosample.age_at_collection.age && (
-        <ul>
-          <li>Age at Collection: {biosample.age_at_collection.age}</li>
-        </ul>
+      {biosample.age_at_collection?.age && (
+        <>
+          <h5>Clinical Data</h5>
+          <ul>
+            <li>Age at Collection: {biosample.age_at_collection.age}</li>
+          </ul>
+        </>
       )}
 
-      <h5>Provenance</h5>
-      {biosample.provenance.material.type.label && (
-        <ul>
-          <li>Material: {biosample.provenance.material.type.label}</li>
-        </ul>
+      {biosample.provenance?.material.type.label && (
+        <>
+          <h5>Provenance</h5>
+          <ul>
+            <li>Material: {biosample.provenance.material.type.label}</li>
+          </ul>
+        </>
       )}
     </section>
   )
