@@ -24,9 +24,11 @@ export default function ControlledSelect({
 
   useEffect(() => {
     register({ name }, rules)
-    if (Array.isArray(defaultValue)) setValue(name, defaultValue)
-    else {
-      setValue(name, [defaultValue])
+    if (defaultValue) {
+      if (Array.isArray(defaultValue)) setValue(name, defaultValue)
+      else {
+        setValue(name, [defaultValue])
+      }
     }
   }, [register])
 
