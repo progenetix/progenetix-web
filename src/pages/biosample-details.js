@@ -1,10 +1,10 @@
 import { sampleUrl, useSample } from "../effects/api"
 import { Loader } from "../components/Loader"
 import React from "react"
-import { useSearch } from "../effects/location"
+import { useQuery } from "../effects/query"
 
 export default function BiosampleDetailsPage() {
-  const search = useSearch()
+  const search = useQuery()
   if (!search) return null
   const { id, datasetIds } = search
   const hasAllParams = id && datasetIds

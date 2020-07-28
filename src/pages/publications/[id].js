@@ -1,17 +1,18 @@
+import React, { useRef } from "react"
 import {
   publicationUrl,
   usePublication,
   useSubsethistogram
-} from "../effects/api"
-import { Loader } from "../components/Loader"
-import React, { useRef } from "react"
-import { useContainerDimensions } from "../effects/containerDimensions"
-import { useSearch } from "../effects/location"
-import Histogram from "../components/Histogram"
+} from "../../effects/api"
+import { Loader } from "../../components/Loader"
+import { useContainerDimensions } from "../../effects/containerDimensions"
+import { useQuery } from "../../effects/query"
+import Histogram from "../../components/Histogram"
 
 export default function PublicationDetailsPage() {
-  const search = useSearch()
+  const search = useQuery()
   if (!search) return null
+
   const { id, scope, filter } = search
 
   return (
