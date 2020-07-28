@@ -84,14 +84,23 @@ function PublicationTableLoader() {
             accessor: "counts.wgs"
           }
         ]
-      }
+      },
+      { accessor: "authors" },
+      { accessor: "title" },
+      { accessor: "sortid" }
     ],
     []
   )
 
   return (
     <Loader isLoading={isLoading} hasError={error} background>
-      <Table columns={columns} data={data} pageSize={15} />
+      <Table
+        columns={columns}
+        data={data}
+        pageSize={15}
+        hasGlobalFilter
+        hiddenColumns={["authors", "title", "sortid"]}
+      />
     </Loader>
   )
 }
