@@ -2,6 +2,7 @@ import { sampleUrl, useSample } from "../../effects/api"
 import { Loader } from "../../components/Loader"
 import React from "react"
 import { useQuery } from "../../effects/query"
+import { Layout } from "../../components/Layout"
 
 export default function BiosampleDetailsPage() {
   const urlQuery = useQuery()
@@ -11,30 +12,13 @@ export default function BiosampleDetailsPage() {
   const hasAllParams = id && datasetIds
 
   return (
-    <Layout>
+    <Layout title="Sample Details">
       {!hasAllParams ? (
         <MissingParameters />
       ) : (
         <BiosampleLoader id={id} datasetIds={datasetIds} />
       )}
     </Layout>
-  )
-}
-
-function Layout({ children }) {
-  return (
-    <div>
-      <header
-        className="has-background-visual-identity"
-        style={{ height: "2rem" }}
-      />
-      <div className="section">
-        <div className="container">
-          <h1 className="title is-2">Sample Details</h1>
-          {children}
-        </div>
-      </div>
-    </div>
   )
 }
 

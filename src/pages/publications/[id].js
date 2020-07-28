@@ -8,6 +8,7 @@ import { Loader } from "../../components/Loader"
 import { useContainerDimensions } from "../../effects/containerDimensions"
 import { useQuery } from "../../effects/query"
 import Histogram from "../../components/Histogram"
+import { Layout } from "../../components/Layout"
 
 export default function PublicationDetailsPage() {
   const urlQuery = useQuery()
@@ -16,30 +17,13 @@ export default function PublicationDetailsPage() {
   const { id, scope, filter } = urlQuery
 
   return (
-    <Layout>
+    <Layout title="Publication Details">
       {!id ? (
         <MissingId />
       ) : (
         <Publication id={id} scope={scope} filter={filter} />
       )}
     </Layout>
-  )
-}
-
-function Layout({ children }) {
-  return (
-    <div>
-      <header
-        className="has-background-visual-identity"
-        style={{ height: "2rem" }}
-      />
-      <div className="section">
-        <div className="container">
-          <h1 className="title is-2">Publication Details</h1>
-          {children}
-        </div>
-      </div>
-    </div>
   )
 }
 
