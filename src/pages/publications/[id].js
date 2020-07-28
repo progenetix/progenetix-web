@@ -10,10 +10,10 @@ import { useQuery } from "../../effects/query"
 import Histogram from "../../components/Histogram"
 
 export default function PublicationDetailsPage() {
-  const search = useQuery()
-  if (!search) return null
+  const urlQuery = useQuery()
+  if (!urlQuery) return null // query will only be defined after first mount
 
-  const { id, scope, filter } = search
+  const { id, scope, filter } = urlQuery
 
   return (
     <Layout>

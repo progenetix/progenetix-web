@@ -1,12 +1,13 @@
-import { sampleUrl, useSample } from "../effects/api"
-import { Loader } from "../components/Loader"
+import { sampleUrl, useSample } from "../../effects/api"
+import { Loader } from "../../components/Loader"
 import React from "react"
-import { useQuery } from "../effects/query"
+import { useQuery } from "../../effects/query"
 
 export default function BiosampleDetailsPage() {
-  const search = useQuery()
-  if (!search) return null
-  const { id, datasetIds } = search
+  const urlQuery = useQuery()
+  if (!urlQuery) return null // query will only be defined after first mount
+
+  const { id, datasetIds } = urlQuery
   const hasAllParams = id && datasetIds
 
   return (

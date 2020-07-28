@@ -16,7 +16,7 @@ export default function BiosamplesDataTable({ url, datasetId }) {
         // eslint-disable-next-line react/display-name
         Cell: (cellInfo) => (
           <a
-            href={`/biosample-details?datasetIds=${datasetId}&id=${cellInfo.value}`}
+            href={`/biosamples/${cellInfo.value}?datasetIds=${datasetId}`}
             rel="noreferrer"
             target="_blank"
           >
