@@ -93,37 +93,35 @@ function PublicationDetails({ publication, id, scope, filter }) {
       <h5>Origin</h5>
       <p>{publication.provenance.geo.label}</p>
       <h5>Genome Screens</h5>
-      <div>
-        <ul>
-          {technologies.map((technologie, i) =>
-            publication.counts[technologie] ? (
-              <li key={i}>
-                {technologie}: {publication.counts[technologie]}
-              </li>
-            ) : null
-          )}
-          {publication.info?.progenetix_biosamples_count > 0 && (
-            <li>
-              {publication.info.progenetix_biosamples_count} sample profiles are{" "}
-              <a
-                href={`${progenetixBasePath}/pgx_biosamples.cgi?datasetIds=progenetix&filters=${id}`}
-              >
-                registered in Progenetix
-              </a>
+      <ul className="mb-5">
+        {technologies.map((technologie, i) =>
+          publication.counts[technologie] ? (
+            <li key={i}>
+              {technologie}: {publication.counts[technologie]}
             </li>
-          )}
-          {publication.info?.arraymap_biosamples_count > 0 && (
-            <li>
-              {publication.info.arraymap_biosamples_count} sample profiles are{" "}
-              <a
-                href={`${progenetixBasePath}/pgx_biosamples.cgi?datasetIds=arraymap&filters=${id}`}
-              >
-                registered in arrayMap
-              </a>
-            </li>
-          )}
-        </ul>
-      </div>
+          ) : null
+        )}
+        {publication.info?.progenetix_biosamples_count > 0 && (
+          <li>
+            {publication.info.progenetix_biosamples_count} sample profiles are{" "}
+            <a
+              href={`${progenetixBasePath}/pgx_biosamples.cgi?datasetIds=progenetix&filters=${id}`}
+            >
+              registered in Progenetix
+            </a>
+          </li>
+        )}
+        {publication.info?.arraymap_biosamples_count > 0 && (
+          <li>
+            {publication.info.arraymap_biosamples_count} sample profiles are{" "}
+            <a
+              href={`${progenetixBasePath}/pgx_biosamples.cgi?datasetIds=arraymap&filters=${id}`}
+            >
+              registered in arrayMap
+            </a>
+          </li>
+        )}
+      </ul>
       {publication.info?.progenetix_biosamples_count > 0 && (
         <Histogram
           background
