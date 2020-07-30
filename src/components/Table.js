@@ -66,17 +66,19 @@ export default function Table({
         />
       )}{" "}
       {/* eslint-disable react/jsx-key */}
-      <table
-        className="table is-narrow is-hoverable is-fullwidth"
-        {...getTableProps()}
-      >
-        <Header headerGroups={headerGroups} />
-        <Body
-          getTableBodyProps={getTableBodyProps}
-          page={page}
-          prepareRow={prepareRow}
-        />
-      </table>
+      <div className="table-container">
+        <table
+          className="table is-narrow is-hoverable is-fullwidth"
+          {...getTableProps()}
+        >
+          <Header headerGroups={headerGroups} />
+          <Body
+            getTableBodyProps={getTableBodyProps}
+            page={page}
+            prepareRow={prepareRow}
+          />
+        </table>
+      </div>
       {/* eslint-enable react/jsx-key */}
       <Pagination
         gotoPage={gotoPage}
