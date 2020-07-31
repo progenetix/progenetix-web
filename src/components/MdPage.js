@@ -1,15 +1,10 @@
 import React from "react"
-import Nav from "./Nav"
+import { Layout } from "./Layout"
 
-export default function MdPage({ children }) {
+export default function MdPage({ children, metadata }) {
   return (
-    <>
-      <Nav />
-      <section className="section">
-        <div className="container">
-          <div className="content">{children}</div>
-        </div>
-      </section>
-    </>
+    <Layout title={metadata?.title} renderTitle={false}>
+      <div className="content">{children}</div>
+    </Layout>
   )
 }

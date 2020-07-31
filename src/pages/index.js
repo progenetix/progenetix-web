@@ -1,5 +1,5 @@
-import BeaconPlus from "./beacon-plus"
+import BeaconPlusPage from "./beacon-plus"
 
 export default function Index() {
-  return <BeaconPlus />
+  return <BeaconPlusPage />
 }

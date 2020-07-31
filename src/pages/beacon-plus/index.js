@@ -1,15 +1,15 @@
 import React, { useState } from "react"
-import { useBeaconQuery } from "../effects/api"
-import Nav from "../components/Nav"
-import { BeaconForm } from "../components/beacon-plus/BeaconForm"
-import { DatasetResultBox } from "../components/beacon-plus/DatasetResultBox"
-import requestTypesConfig from "../../config/beacon-plus/requestTypes.yaml"
-import parametersConfig from "../../config/beacon-plus/parameters.yaml"
-import Panel from "../components/Panel"
+import { useBeaconQuery } from "../../effects/api"
+import { BeaconForm } from "../../components/beacon-plus/BeaconForm"
+import { DatasetResultBox } from "../../components/beacon-plus/DatasetResultBox"
+import requestTypesConfig from "../../../config/beacon-plus/requestTypes.yaml"
+import parametersConfig from "../../../config/beacon-plus/parameters.yaml"
+import Panel from "../../components/Panel"
 import { FaSlidersH } from "react-icons/fa"
-import { Loader } from "../components/Loader"
+import { Loader } from "../../components/Loader"
+import { Layout } from "../../components/Layout"
 
-export default function BeaconPlus() {
+export default function BeaconPlusPage() {
   const [query, setQuery] = useState(null) // actual valid query
   const [searchCollapsed, setSearchCollapsed] = useState(false)
 
@@ -28,49 +28,45 @@ export default function BeaconPlus() {
   }
 
   return (
-    <>
-      <Nav />
-      <section className="section">
-        <div className="container mb-5">
-          <Panel
-            isOpened={!searchCollapsed}
-            heading={
-              <>
-                <span>Search</span>
-                {searchCollapsed && (
-                  <button className="button ml-3">
-                    <FaSlidersH
-                      onClick={() => setSearchCollapsed(false)}
-                      className="icon has-text-info"
-                    />
-                    {/*<span>Edit</span>*/}
-                  </button>
-                )}
-              </>
-            }
-          >
-            <BeaconForm
-              requestTypesConfig={requestTypesConfig}
-              parametersConfig={parametersConfig}
-              isLoading={isLoading}
-              onValidFormQuery={handleValidFormQuery}
-            />
-          </Panel>
-        </div>
-      </section>
-      <section className="section pt-0">
-        <div className="container">
-          {query && (
-            <Results
-              isLoading={isLoading}
-              response={queryResponse}
-              error={queryError}
-              query={query}
-            />
-          )}
-        </div>
-      </section>
-    </>
+    <Layout title="Beacon+" renderTitle={false}>
+      <h1 className="title is-4">
+        <BeaconPlusTitle />
+      </h1>
+      <div className="mb-6">
+        <Panel
+          isOpened={!searchCollapsed}
+          heading={
+            <>
+              <span>Search</span>
+              {searchCollapsed && (
+                <button className="button ml-3">
+                  <FaSlidersH
+                    onClick={() => setSearchCollapsed(false)}
+                    className="icon has-text-info"
+                  />
+                  {/*<span>Edit</span>*/}
+                </button>
+              )}
+            </>
+          }
+        >
+          <BeaconForm
+            requestTypesConfig={requestTypesConfig}
+            parametersConfig={parametersConfig}
+            isLoading={isLoading}
+            onValidFormQuery={handleValidFormQuery}
+          />
+        </Panel>
+      </div>
+      {query && (
+        <Results
+          isLoading={isLoading}
+          response={queryResponse}
+          error={queryError}
+          query={query}
+        />
+      )}
+    </Layout>
   )
 }
 
@@ -166,5 +162,13 @@ function QuerySummary({ query }) {
         </li>
       )}
     </ul>
+  )
+}
+
+export function BeaconPlusTitle() {
+  return (
+    <>
+      Beacon<sup style={{ color: "#F14668" }}>+</sup>
+    </>
   )
 }
