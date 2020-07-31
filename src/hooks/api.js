@@ -90,13 +90,13 @@ export function usePublication(id) {
 }
 
 export function usePublicationList() {
-  const url = `${basePath}do/api/apidb=progenetix&apiscope=publications&apimethod=publicationdata&filters=counts.genomes:%3E0?_=1595945519782`
+  const url = `${basePath}api/progenetix/publications/publicationdata/counts.genomes:>0`
   const { data, error } = useSWR(url)
   return { data, error }
 }
 
 export function usePublicationCount() {
-  const url = `${basePath}do/api/apidb=progenetix&apiscope=publications&apimethod=publicationdata&filters=counts.genomes:%3E0?_=1595945519782`
+  const url = `${basePath}api/progenetix/publications/count`
   const { data, error } = useSWR(url)
   return { data, error }
 }
@@ -150,7 +150,7 @@ export function useSubsethistogram({
   chr2plot && params.push(["chr2plot", chr2plot])
   const searchQuery = new URLSearchParams(params).toString()
   return useSWR(
-    `${basePath}cgi/pgx_subsethistogram.cgi?${searchQuery}`,
+    size > 0 && `${basePath}cgi/pgx_subsethistogram.cgi?${searchQuery}`,
     svgFetcher
   )
 }

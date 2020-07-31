@@ -12,7 +12,7 @@ export default function BiosampleDetailsPage() {
   const hasAllParams = id && datasetIds
 
   return (
-    <Layout title="Sample Details">
+    <Layout title="Sample Details" headline="Sample Details">
       {!hasAllParams ? (
         <NoResultsHelp />
       ) : (

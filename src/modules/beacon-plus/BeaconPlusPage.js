@@ -28,10 +28,14 @@ export default function BeaconPlusPage() {
   }
 
   return (
-    <Layout title="Beacon+" renderTitle={false}>
-      <h1 className="title is-4">
-        Beacon<sup style={{ color: "red" }}>+</sup>
-      </h1>
+    <Layout
+      title="Beacon+"
+      headline={
+        <>
+          Beacon<sup style={{ color: "red" }}>+</sup>
+        </>
+      }
+    >
       <div className="mb-6">
         <Panel
           isOpened={!searchCollapsed}

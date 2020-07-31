@@ -7,7 +7,7 @@ import { epmcId, EpmcLink } from "./EpmcUrl"
 
 export default function PublicationsListPage() {
   return (
-    <Layout title="Progenetix Publication Collection">
+    <Layout title="Publications" headline="Progenetix Publication Collection">
       <article className="mb-6">
         <p>
           The current page lists articles describing whole genome screening

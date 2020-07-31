@@ -13,7 +13,7 @@ export default function PublicationDetailsPage() {
   const { id, scope, filter } = urlQuery
 
   return (
-    <Layout title="Publication Details">
+    <Layout title="Publication Details" headline="Publication Details">
       {!id ? (
         <NoResultsHelp />
       ) : (

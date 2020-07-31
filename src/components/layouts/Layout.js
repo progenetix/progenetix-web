@@ -5,12 +5,12 @@ import { useRouter } from "next/router"
 import Link from "next/link"
 import Head from "next/head"
 
-export function Layout({ title = "", children, renderTitle = true }) {
+export function Layout({ title, headline, children }) {
   const [sideOpen, setSideOpen] = useState(false)
   return (
     <div className="Layout__app">
       <Head>
-        <title>{title}</title>
+        <title>{title || ""}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <div className="Layout__header">
@@ -37,7 +37,7 @@ export function Layout({ title = "", children, renderTitle = true }) {
             <Side onClick={() => setSideOpen(false)} />
           </aside>
           <div className="Layout__lead">
-            {renderTitle && <h1 className="title is-4">{title}</h1>}
+            {headline && <h1 className="title is-4">{headline}</h1>}
             {children}
           </div>
         </div>
