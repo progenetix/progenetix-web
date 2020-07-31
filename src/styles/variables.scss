@@ -12,10 +12,6 @@ $visual-identity-color: #ff6f48;
   color: $visual-identity-color;
 }
 
-// Disabled at the moment because the content is very vertical. Could be enabled again once we add sidebars.
-$widescreen-enabled: true !default;
-$fullhd-enabled: false !default;
-
 @import "~bulma/sass/utilities/all";
 
 $footer-padding: 3rem 1.5rem 3rem;

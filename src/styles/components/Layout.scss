@@ -99,21 +99,30 @@ $side-width: 14rem;
   background-color: $side-background-color;
 }
 
-.Layout__side__items {
-  li > a {
-    color: $text;
-    font-size: $size-5;
-    font-weight: bold;
-    cursor: pointer;
-    display: block;
-    line-height: 1.5;
-    padding: 0.5rem 0.75rem;
-    &.is-active {
-      background-color: $scheme-main-ter;
-      color: $link;
-    }
-    &:hover {
-      background-color: $scheme-main-ter;
-    }
+.Layout__side__item {
+  display: block;
+  cursor: pointer;
+  color: $text;
+
+  &.is-active {
+    color: $link;
   }
+
+  &.is-active {
+    background-color: $scheme-main-ter;
+  }
+  &:hover {
+    background-color: $scheme-main-ter;
+  }
+}
+
+.Layout__side__category {
+  font-size: $size-5;
+  font-weight: bold;
+  padding: 0.5rem 0.75rem;
+}
+
+.Layout__side__sub {
+  font-size: $size-5;
+  padding: 0.5rem 0.75rem 0.5rem 2rem;
 }

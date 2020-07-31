@@ -3,11 +3,17 @@ import cn from "classnames"
 import { FaBars, FaTimes } from "react-icons/fa"
 import { useRouter } from "next/router"
 import Link from "next/link"
+import { BeaconPlusTitle } from "../pages/beacon-plus"
+import Head from "next/head"
 
-export function Layout({ title, children }) {
+export function Layout({ title = "", children, renderTitle = true }) {
   const [sideOpen, setSideOpen] = useState(false)
   return (
     <div className="Layout__app">
+      <Head>
+        <title>{title}</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <div className="Layout__header">
         {!sideOpen ? (
           <span
@@ -32,7 +38,7 @@ export function Layout({ title, children }) {
             <Side onClick={() => setSideOpen(false)} />
           </aside>
           <div className="Layout__lead">
-            <h1 className="title is-2">{title}</h1>
+            {renderTitle && <h1 className="title is-4">{title}</h1>}
             {children}
           </div>
         </div>
@@ -55,40 +61,64 @@ function Side({ onClick }) {
         alt="progenetix"
       />
       <ul className="Layout__side__items">
+        <MenuInternalLinkItem
+          href="/publications?&amp;filters=genomes:>0"
+          label="Publications"
+        />
         <li>
-          <ActiveLink
-            href="/publications?&amp;filters=genomes:>0"
-            label="Publications"
-          />
+          <MenuLink href="https://info.progenetix.org/">Info </MenuLink>
         </li>
+        <MenuInternalLinkItem href="/beacon-plus" label={<BeaconPlusTitle />} />
+        <ul>
+          <MenuInternalLinkItem href="/beacon-plus/about" label="About" isSub />
+        </ul>
         <li>
-          <a href="https://info.progenetix.org/">Info</a>
-        </li>
-        <li>
-          <ActiveLink label="About" href="/about" />
-        </li>
-        <li>
-          <a href="/">
-            Beacon<sup style={{ color: "#F14668" }}>+</sup>
-          </a>
-        </li>
-        <li>
-          <ActiveLink
-            href="/cgi-bin/pgx_biosamples.cgi?project=progenetix&amp;datasetIds=progenetix&amp;genome=GRCh38"
-            label="Search Samples"
-          />
+          <MenuLink href="https://info.progenetix.org/cgi-bin/pgx_biosamples.cgi?project=progenetix&amp;datasetIds=progenetix&amp;genome=GRCh38">
+            Search Samples
+          </MenuLink>
         </li>
       </ul>
     </div>
   )
 }
 
-function ActiveLink({ href, label }) {
+function MenuInternalLinkItem({ href, label, isSub }) {
   const router = useRouter()
-  const isActive = href.startsWith(router.asPath)
+  const isActive = removeQuery(href) === removeQuery(router.asPath)
   return (
-    <Link href={href}>
-      <a className={cn({ "is-active": isActive })}>{label}</a>
-    </Link>
+    <li>
+      <Link href={href} passHref>
+        <MenuLink isSub={isSub} isActive={isActive}>
+          {label}
+        </MenuLink>
+      </Link>
+    </li>
   )
+}
+
+// `onClick`, `href`, and `ref` need to be passed to the DOM element
+// for proper handling
+// eslint-disable-next-line react/display-name
+const MenuLink = React.forwardRef(
+  ({ onClick, href, isActive, children, isSub }, ref) => {
+    const className = isSub ? "Layout__side__sub" : "Layout__side__category"
+    return (
+      <a
+        href={href}
+        onClick={onClick}
+        ref={ref}
+        className={cn(
+          { "is-active": isActive },
+          "Layout__side__item",
+          className
+        )}
+      >
+        {children}
+      </a>
+    )
+  }
+)
+
+function removeQuery(href) {
+  return href.slice(0, href.indexOf("?"))
 }
