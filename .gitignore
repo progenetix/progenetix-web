@@ -2,3 +2,6 @@
 /.idea
 /.next
 /out
+
+# Ignore next-mdx-enhanced cache directory
+.mdx-data

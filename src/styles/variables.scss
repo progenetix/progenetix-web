@@ -3,17 +3,9 @@ $body-size: 13px;
 $orange: hsl(14, 100%, 53%) !default;
 $blue: hsl(216, 100%, 53%) !default;
 $primary: $blue;
-$visual-identity-color: $orange;
-
-.has-background-visual-identity {
-  background-color: $visual-identity-color;
-}
-.color-visual-identity {
-  color: $visual-identity-color;
-}
-
-// Disabled at the moment because the content is very vertical. Could be enabled again once we add sidebars.
-$widescreen-enabled: false !default;
-$fullhd-enabled: false !default;
+$visual-identity-color: #ff6f48;
 
 @import "~bulma/sass/utilities/all";
+
+$footer-padding: 3rem 1.5rem 3rem;
+$footer-background-color: $scheme-main-ter;

@@ -95,6 +95,12 @@ export function usePublicationList() {
   return { data, error }
 }
 
+export function usePublicationCount() {
+  const url = `${basePath}do/api/apidb=progenetix&apiscope=publications&apimethod=publicationdata&filters=counts.genomes:%3E0?_=1595945519782`
+  const { data, error } = useSWR(url)
+  return { data, error }
+}
+
 export function sampleUrl(id, datasetIds) {
   return `${basePath}cgi/bycon/bin/byconplus.py?scope=biosamples&id=${id}&datasetIds=${datasetIds}`
 }
@@ -126,7 +132,14 @@ export function useCytomapper(querytext) {
   return useSWR(url)
 }
 
-export function useSubsethistogram({ datasetIds, id, filter, scope, size }) {
+export function useSubsethistogram({
+  datasetIds,
+  id,
+  filter,
+  scope,
+  size,
+  chr2plot
+}) {
   const params = [
     ["datasetIds", datasetIds],
     ["id", id],
@@ -134,6 +147,7 @@ export function useSubsethistogram({ datasetIds, id, filter, scope, size }) {
   ]
   filter && params.push(["filter", filter])
   scope && params.push(["scope", scope])
+  chr2plot && params.push(["chr2plot", chr2plot])
   const searchQuery = new URLSearchParams(params).toString()
   return useSWR(
     `${basePath}cgi/pgx_subsethistogram.cgi?${searchQuery}`,

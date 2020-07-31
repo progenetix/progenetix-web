@@ -1,4 +1,8 @@
-#### About Beacon<sup>+</sup>
+---
+title: 'About Beacon+'
+---
+
+### About Beacon<sup>+</sup>
 
 This forward looking Beacon interface implements additional, planned
 features beyond the current Beacon specifications.

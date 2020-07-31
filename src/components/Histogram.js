@@ -1,5 +1,7 @@
 import { Loader } from "./Loader"
-import React from "react"
+import React, { useRef } from "react"
+import { useSubsethistogram } from "../hooks/api"
+import { useContainerDimensions } from "../hooks/containerDimensions"
 
 export default function Histogram({ dataEffect, background = false }) {
   const { data, error } = dataEffect
@@ -11,5 +13,31 @@ export default function Histogram({ dataEffect, background = false }) {
         dangerouslySetInnerHTML={{ __html: data }}
       />
     </Loader>
+  )
+}
+
+export function SubsetHistogram({
+  id,
+  filter,
+  scope,
+  size: givenSize,
+  background = false
+}) {
+  const componentRef = useRef()
+  const { width } = useContainerDimensions(componentRef)
+  const size = givenSize || width
+  return (
+    <div ref={componentRef}>
+      <Histogram
+        dataEffect={useSubsethistogram({
+          datasetIds: "progenetix",
+          id,
+          filter,
+          scope,
+          size
+        })}
+        background={background}
+      />
+    </div>
   )
 }

@@ -1,14 +1,14 @@
 import React, { useRef, useState } from "react"
-import { HANDOVER_IDS, replaceWithProxy } from "../../effects/api"
+import { HANDOVER_IDS, replaceWithProxy } from "../../hooks/api"
 import { FaDownload, FaExternalLinkAlt } from "react-icons/fa"
 import { initiateSaveAsJson } from "../../utils/download"
 import cn from "classnames"
 import BiosamplesDataTable from "./BiosamplesDataTable"
 import VariantsDataTable from "./VariantsDataTable"
 import useSWR from "swr"
-import { useContainerDimensions } from "../../effects/containerDimensions"
-import Histogram from "../Histogram"
-import { svgFetcher } from "../../effects/fetcher"
+import { useContainerDimensions } from "../../hooks/containerDimensions"
+import Histogram from "../../components/Histogram"
+import { svgFetcher } from "../../hooks/fetcher"
 
 const handoversInTab = [
   HANDOVER_IDS.cnvhistogram,
@@ -26,9 +26,6 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
     frequency
   } = datasetAlleleResponse
 
-  const handoverContainerRef = useRef()
-  const { width: handoverWidth } = useContainerDimensions(handoverContainerRef)
-
   const selectableHandovers = datasetHandover.filter(
     ({ handoverType: { id } }) => handoversInTab.includes(id)
   )
@@ -45,9 +42,7 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
 
   let handoverComponent
   if (selectedHandover?.handoverType?.id === HANDOVER_IDS.cnvhistogram) {
-    handoverComponent = (
-      <CnvHistogramPreview url={selectedHandover.url} width={handoverWidth} />
-    )
+    handoverComponent = <CnvHistogramPreview url={selectedHandover.url} />
   } else if (
     selectedHandover?.handoverType?.id === HANDOVER_IDS.biosamplesdata
   ) {
@@ -116,24 +111,27 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
           </ul>
         </div>
       ) : null}
-      {selectableHandovers?.length > 0 ? (
-        <div ref={handoverContainerRef}>
-          {handoverWidth && handoverComponent}
-        </div>
-      ) : null}
+      {selectableHandovers?.length > 0 ? <div>{handoverComponent}</div> : null}
     </div>
   )
 }
 
-function CnvHistogramPreview({ url: urlString, width }) {
+function CnvHistogramPreview({ url: urlString }) {
   const url = new URL(urlString)
+  const componentRef = useRef()
+  const { width } = useContainerDimensions(componentRef)
   url.search = new URLSearchParams([
     ...url.searchParams.entries(),
     ["-size_plotimage_w_px", width]
   ]).toString()
   let withoutOrigin = replaceWithProxy(url)
-  const dataEffect = useSWR(withoutOrigin, svgFetcher)
-  return <Histogram dataEffect={dataEffect} />
+  // width > 0 to make sure the component is mounted and avoid double fetch
+  const dataEffect = useSWR(width > 0 && withoutOrigin, svgFetcher)
+  return (
+    <div ref={componentRef}>
+      <Histogram dataEffect={dataEffect} />
+    </div>
+  )
 }
 
 function UCSCRegion({ query }) {
