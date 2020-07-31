@@ -2,7 +2,7 @@ import { sampleUrl, useSample } from "../../effects/api"
 import { Loader } from "../../components/Loader"
 import React from "react"
 import { useQuery } from "../../effects/query"
-import { Layout } from "../../components/Layout"
+import { Layout } from "../../components/layouts/Layout"
 
 export default function BiosampleDetailsPage() {
   const urlQuery = useQuery()

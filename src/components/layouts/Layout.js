@@ -3,7 +3,6 @@ import cn from "classnames"
 import { FaBars, FaTimes } from "react-icons/fa"
 import { useRouter } from "next/router"
 import Link from "next/link"
-import { BeaconPlusTitle } from "../pages/beacon-plus"
 import Head from "next/head"
 
 export function Layout({ title = "", children, renderTitle = true }) {
@@ -55,11 +54,13 @@ export function Layout({ title = "", children, renderTitle = true }) {
 function Side({ onClick }) {
   return (
     <div onClick={onClick}>
-      <img
-        className="Layout__side-logo"
-        src="/progenetix_black_300.png"
-        alt="progenetix"
-      />
+      <Link href="/">
+        <img
+          className="Layout__side-logo"
+          src="/progenetix_black_300.png"
+          alt="progenetix"
+        />
+      </Link>
       <ul className="Layout__side__items">
         <MenuInternalLinkItem
           href="/publications?&amp;filters=genomes:>0"
@@ -68,7 +69,14 @@ function Side({ onClick }) {
         <li>
           <MenuLink href="https://info.progenetix.org/">Info </MenuLink>
         </li>
-        <MenuInternalLinkItem href="/beacon-plus" label={<BeaconPlusTitle />} />
+        <MenuInternalLinkItem
+          href="/beacon-plus"
+          label={
+            <>
+              Beacon<sup style={{ color: "red" }}>+</sup>
+            </>
+          }
+        />
         <ul>
           <MenuInternalLinkItem href="/beacon-plus/about" label="About" isSub />
         </ul>

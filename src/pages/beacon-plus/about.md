@@ -1,6 +1,6 @@
-export const metadata = {
-  title: "About Beacon+"
-}
+---
+title: 'About Beacon+'
+---
 
 ### About Beacon<sup>+</sup>
 

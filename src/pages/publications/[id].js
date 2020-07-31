@@ -8,7 +8,7 @@ import { Loader } from "../../components/Loader"
 import { useContainerDimensions } from "../../effects/containerDimensions"
 import { useQuery } from "../../effects/query"
 import Histogram from "../../components/Histogram"
-import { Layout } from "../../components/Layout"
+import { Layout } from "../../components/layouts/Layout"
 import { EpmcLink } from "../../components/publications/EpmcUrl"
 
 export default function PublicationDetailsPage() {

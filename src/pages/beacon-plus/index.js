@@ -7,7 +7,7 @@ import parametersConfig from "../../../config/beacon-plus/parameters.yaml"
 import Panel from "../../components/Panel"
 import { FaSlidersH } from "react-icons/fa"
 import { Loader } from "../../components/Loader"
-import { Layout } from "../../components/Layout"
+import { Layout } from "../../components/layouts/Layout"
 
 export default function BeaconPlusPage() {
   const [query, setQuery] = useState(null) // actual valid query
@@ -30,7 +30,7 @@ export default function BeaconPlusPage() {
   return (
     <Layout title="Beacon+" renderTitle={false}>
       <h1 className="title is-4">
-        <BeaconPlusTitle />
+        Beacon<sup style={{ color: "red" }}>+</sup>
       </h1>
       <div className="mb-6">
         <Panel
@@ -162,13 +162,5 @@ function QuerySummary({ query }) {
         </li>
       )}
     </ul>
-  )
-}
-
-export function BeaconPlusTitle() {
-  return (
-    <>
-      Beacon<sup style={{ color: "#F14668" }}>+</sup>
-    </>
   )
 }

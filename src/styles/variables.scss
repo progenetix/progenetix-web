@@ -5,13 +5,6 @@ $blue: hsl(216, 100%, 53%) !default;
 $primary: $blue;
 $visual-identity-color: #ff6f48;
 
-.has-background-visual-identity {
-  background-color: $visual-identity-color;
-}
-.color-visual-identity {
-  color: $visual-identity-color;
-}
-
 @import "~bulma/sass/utilities/all";
 
 $footer-padding: 3rem 1.5rem 3rem;

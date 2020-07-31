@@ -1,5 +1,5 @@
 import React from "react"
-import { Layout } from "../../components/Layout"
+import { Layout } from "../../components/layouts/Layout"
 import { usePublicationList } from "../../effects/api"
 import { Loader } from "../../components/Loader"
 import Table from "../../components/Table"
