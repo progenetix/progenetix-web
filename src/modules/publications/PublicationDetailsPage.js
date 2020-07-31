@@ -1,13 +1,8 @@
-import React, { useRef } from "react"
-import {
-  publicationUrl,
-  usePublication,
-  useSubsethistogram
-} from "../../hooks/api"
+import React from "react"
+import { publicationUrl, usePublication } from "../../hooks/api"
 import { Loader } from "../../components/Loader"
-import { useContainerDimensions } from "../../hooks/containerDimensions"
 import { useQuery } from "../../hooks/query"
-import Histogram from "../../components/Histogram"
+import { SubsetHistogram } from "../../components/Histogram"
 import { Layout } from "../../components/layouts/Layout"
 import { EpmcLink } from "./EpmcUrl"
 
@@ -73,11 +68,8 @@ function PublicationResponse({ response, id, scope, filter }) {
 }
 
 function PublicationDetails({ publication, id, scope, filter }) {
-  const componentRef = useRef()
-  const { width } = useContainerDimensions(componentRef)
-
   return (
-    <section ref={componentRef} className="content">
+    <section className="content">
       <h3 className="subtitle">
         {publication.title}{" "}
         <a rel="noreferrer" target="_blank" href={publicationUrl(id)}>
@@ -123,27 +115,21 @@ function PublicationDetails({ publication, id, scope, filter }) {
         )}
       </ul>
       {publication.info?.progenetix_biosamples_count > 0 && (
-        <Histogram
+        <SubsetHistogram
+          id={id}
+          filter={filter}
+          scope={scope}
+          datasetIds="progenetix"
           background
-          dataEffect={useSubsethistogram({
-            datasetIds: "progenetix",
-            id,
-            filter,
-            scope,
-            size: width
-          })}
         />
       )}
       {publication.info?.arraymap_biosamples_count > 0 && (
-        <Histogram
+        <SubsetHistogram
+          id={id}
+          filter={filter}
+          scope={scope}
+          datasetIds="arraymap"
           background
-          dataEffect={useSubsethistogram({
-            datasetIds: "arraymap",
-            id,
-            filter,
-            scope,
-            size: width
-          })}
         />
       )}
     </section>
