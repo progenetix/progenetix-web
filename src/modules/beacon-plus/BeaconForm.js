@@ -3,11 +3,11 @@ import {
   INTEGER_RANGE_REGEX,
   useDatasets,
   useFilteringTerms
-} from "../../effects/api"
+} from "../../hooks/api"
 import React, { useState } from "react"
 import { markdownToReact } from "../../utils/md"
 import { useForm } from "react-hook-form"
-import { Loader } from "../Loader"
+import { Loader } from "../../components/Loader"
 import {
   CytoBandsControlPanel,
   FormControlsButtons,
@@ -15,8 +15,8 @@ import {
   useFormControlPanels
 } from "./FormControls"
 import PropTypes from "prop-types"
-import SelectField from "../form/SelectField"
-import InputField from "../form/InputField"
+import SelectField from "../../components/form/SelectField"
+import InputField from "../../components/form/InputField"
 
 BeaconForm.propTypes = {
   isLoading: PropTypes.bool.isRequired,

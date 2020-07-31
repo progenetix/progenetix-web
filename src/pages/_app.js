@@ -1,7 +1,7 @@
 import React from "react"
 import "../styles/main.scss"
 import { SWRConfig } from "swr"
-import fetcher from "../effects/fetcher"
+import fetcher from "../hooks/fetcher"
 
 export default function App({ Component, pageProps }) {
   return (

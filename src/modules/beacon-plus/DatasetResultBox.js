@@ -1,14 +1,14 @@
 import React, { useRef, useState } from "react"
-import { HANDOVER_IDS, replaceWithProxy } from "../../effects/api"
+import { HANDOVER_IDS, replaceWithProxy } from "../../hooks/api"
 import { FaDownload, FaExternalLinkAlt } from "react-icons/fa"
 import { initiateSaveAsJson } from "../../utils/download"
 import cn from "classnames"
 import BiosamplesDataTable from "./BiosamplesDataTable"
 import VariantsDataTable from "./VariantsDataTable"
 import useSWR from "swr"
-import { useContainerDimensions } from "../../effects/containerDimensions"
-import Histogram from "../Histogram"
-import { svgFetcher } from "../../effects/fetcher"
+import { useContainerDimensions } from "../../hooks/containerDimensions"
+import Histogram from "../../components/Histogram"
+import { svgFetcher } from "../../hooks/fetcher"
 
 const handoversInTab = [
   HANDOVER_IDS.cnvhistogram,

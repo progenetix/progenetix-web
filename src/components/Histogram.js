@@ -1,7 +1,7 @@
 import { Loader } from "./Loader"
 import React, { useRef } from "react"
-import { useSubsethistogram } from "../effects/api"
-import { useContainerDimensions } from "../effects/containerDimensions"
+import { useSubsethistogram } from "../hooks/api"
+import { useContainerDimensions } from "../hooks/containerDimensions"
 
 export default function Histogram({ dataEffect, background = false }) {
   const { data, error } = dataEffect
