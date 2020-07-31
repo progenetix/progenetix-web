@@ -21,7 +21,7 @@ export default function MdPageLayoutFn(frontMatter) {
             setIsLoading: handleSetIsLoading
           }}
         >
-          <Loader background isLoading={somethingIsLoading}>
+          <Loader isLoading={somethingIsLoading}>
             <div />
           </Loader>
           <div

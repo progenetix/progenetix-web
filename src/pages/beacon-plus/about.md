@@ -1,6 +1,5 @@
 ---
 title: 'About Beacon+'
-renderHeadline: false
 ---
 
 ### About Beacon<sup>+</sup>
