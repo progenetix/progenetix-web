@@ -30,8 +30,7 @@ export default function PublicationsListPage() {
 }
 
 function PublicationTableLoader() {
-  const { data, error } = usePublicationList()
-  const isLoading = !data && !error
+  const { data, error, isLoading } = usePublicationList()
   const columns = React.useMemo(
     () => [
       {

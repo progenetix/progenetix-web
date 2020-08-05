@@ -37,8 +37,7 @@ function NoResultsHelp() {
 }
 
 function PublicationLoader({ id, scope, filter }) {
-  const { data, error } = usePublication(id)
-  const isLoading = !data && !error
+  const { data, error, isLoading } = usePublication(id)
   return (
     <Loader isLoading={isLoading} hasError={error} background>
       <PublicationResponse

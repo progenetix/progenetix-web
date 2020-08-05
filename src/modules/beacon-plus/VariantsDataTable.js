@@ -1,12 +1,11 @@
 import React from "react"
-import useSWR from "swr"
 import PropTypes from "prop-types"
 import { Loader } from "../../components/Loader"
 import Table from "../../components/Table"
+import { useExtendedSWR } from "../../hooks/api"
 
 export default function VariantsDataTable({ url }) {
-  const { data, error } = useSWR(url)
-  const isLoading = !data && !error
+  const { data, error, isLoading } = useExtendedSWR(url)
   const columns = React.useMemo(
     () => [
       {

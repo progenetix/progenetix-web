@@ -4,8 +4,7 @@ import { useSubsethistogram } from "../hooks/api"
 import { useContainerDimensions } from "../hooks/containerDimensions"
 
 export default function Histogram({ dataEffect, background = false }) {
-  const { data, error } = dataEffect
-  const isLoading = !data && !error
+  const { data, error, isLoading } = dataEffect
   return (
     <Loader isLoading={isLoading} hasError={error} background={background}>
       <div
