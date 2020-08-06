@@ -13,6 +13,7 @@ body {
 @import "components/DataTable";
 @import "components/ReactSelect";
 @import "components/Layout";
+@import "components/BioSubsets";
 @import "src/styles/components/Panel";
 
 @import "pages/beacon-plus";
@@ -24,3 +25,7 @@ body {
 @import "~bulma/sass/grid/_all";
 @import "~bulma/sass/helpers/_all";
 @import "~bulma/sass/layout/_all";
+
+.is-clickable {
+  cursor: pointer;
+}

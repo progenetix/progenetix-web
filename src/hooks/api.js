@@ -89,9 +89,9 @@ export function publicationUrl(id) {
 }
 
 export function usePublication(id) {
-  const { data: rawData, error } = useExtendedSWR(publicationUrl(id))
+  const { data: rawData, error, ...other } = useExtendedSWR(publicationUrl(id))
   const data = rawData && rawData.filter((r) => !!r) // when not defined the api returns an array with null elements.
-  return { data, error }
+  return { data, error, ...other }
 }
 
 export function usePublicationList() {
@@ -160,8 +160,7 @@ export function useSubsethistogram({
 
 export function useBioSubsets({ filters }) {
   const url = `${basePath}api/?apidb=progenetix&apiscope=biosubsets&apimethod=subsetdata&filters=${filters}&apioutput=json`
-  const { data, error } = useExtendedSWR(url)
-  return { data, error }
+  return useExtendedSWR(url)
 }
 
 // Transforms [[k1, v1], [k2, [v2, v3]]] into [[k1, v1], [k2, v2], [k3, v3]]
