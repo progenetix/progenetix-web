@@ -1,11 +1,10 @@
 import React, { useRef, useState } from "react"
-import { HANDOVER_IDS, replaceWithProxy } from "../../hooks/api"
+import { HANDOVER_IDS, replaceWithProxy, useExtendedSWR } from "../../hooks/api"
 import { FaDownload, FaExternalLinkAlt } from "react-icons/fa"
 import { initiateSaveAsJson } from "../../utils/download"
 import cn from "classnames"
 import BiosamplesDataTable from "./BiosamplesDataTable"
 import VariantsDataTable from "./VariantsDataTable"
-import useSWR from "swr"
 import { useContainerDimensions } from "../../hooks/containerDimensions"
 import Histogram from "../../components/Histogram"
 import { svgFetcher } from "../../hooks/fetcher"
@@ -126,7 +125,7 @@ function CnvHistogramPreview({ url: urlString }) {
   ]).toString()
   let withoutOrigin = replaceWithProxy(url)
   // width > 0 to make sure the component is mounted and avoid double fetch
-  const dataEffect = useSWR(width > 0 && withoutOrigin, svgFetcher)
+  const dataEffect = useExtendedSWR(width > 0 && withoutOrigin, svgFetcher)
   return (
     <div ref={componentRef}>
       <Histogram dataEffect={dataEffect} />

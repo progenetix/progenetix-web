@@ -1,12 +1,17 @@
-import useSWR from "swr"
+import swr from "swr"
 import { svgFetcher } from "./fetcher"
 // eslint-disable-next-line no-undef
 export const basePath = process.env.NEXT_PUBLIC_API_PATH
 // eslint-disable-next-line no-undef
 export const useProxy = process.env.NEXT_PUBLIC_USE_PROXY === "true"
 
+export function useExtendedSWR(...args) {
+  const { data, error, ...other } = swr(...args)
+  return { data, error, ...other, isLoading: !data && !error }
+}
+
 export function useDatasets() {
-  return useSWR(`${basePath}cgi/bycon/bin/byconplus.py/get-datasetids/`)
+  return useExtendedSWR(`${basePath}cgi/bycon/bin/byconplus.py/get-datasetids/`)
 }
 
 export function useFilteringTerms(prefixes, datasetIds = []) {
@@ -16,7 +21,7 @@ export function useFilteringTerms(prefixes, datasetIds = []) {
       ["datasetIds", datasetIds]
     ])
   ).toString()
-  return useSWR(
+  return useExtendedSWR(
     `${basePath}cgi/bycon/bin/byconplus.py/filtering_terms?${params}`
   )
 }
@@ -25,7 +30,7 @@ export function useFilteringTerms(prefixes, datasetIds = []) {
  * When param is null no query will be triggered.
  */
 export function useBeaconQuery(queryData) {
-  return useSWR(
+  return useExtendedSWR(
     queryData
       ? `${basePath}cgi/bycon/bin/byconplus.py?${buildQueryParameters(
           queryData
@@ -84,21 +89,19 @@ export function publicationUrl(id) {
 }
 
 export function usePublication(id) {
-  const { data: rawData, error } = useSWR(publicationUrl(id))
+  const { data: rawData, error, ...other } = useExtendedSWR(publicationUrl(id))
   const data = rawData && rawData.filter((r) => !!r) // when not defined the api returns an array with null elements.
-  return { data, error }
+  return { data, error, ...other }
 }
 
 export function usePublicationList() {
   const url = `${basePath}api/progenetix/publications/publicationdata/counts.genomes:>0`
-  const { data, error } = useSWR(url)
-  return { data, error }
+  return useExtendedSWR(url)
 }
 
 export function usePublicationCount() {
   const url = `${basePath}api/progenetix/publications/count`
-  const { data, error } = useSWR(url)
-  return { data, error }
+  return useExtendedSWR(url)
 }
 
 export function sampleUrl(id, datasetIds) {
@@ -106,7 +109,7 @@ export function sampleUrl(id, datasetIds) {
 }
 
 export function useSample(id, datasetIds) {
-  return useSWR(sampleUrl(id, datasetIds))
+  return useExtendedSWR(sampleUrl(id, datasetIds))
 }
 
 export function useGeneSpans(querytext) {
@@ -114,7 +117,7 @@ export function useGeneSpans(querytext) {
     querytext &&
     querytext.length > 0 &&
     `${basePath}cgi/genespans.cgi?db=progenetix&collection=genespans&querytext=${querytext}`
-  return useSWR(url, (...args) =>
+  return useExtendedSWR(url, (...args) =>
     fetch(...args)
       .then((res) => res.text())
       .then((t) => {
@@ -129,7 +132,7 @@ export function useCytomapper(querytext) {
     querytext &&
     querytext.length > 0 &&
     `${basePath}cgi/bycon/bin/cytomapper.py?featureClass=P&cytoBands=1${querytext}`
-  return useSWR(url)
+  return useExtendedSWR(url)
 }
 
 export function useSubsethistogram({
@@ -149,10 +152,15 @@ export function useSubsethistogram({
   scope && params.push(["scope", scope])
   chr2plot && params.push(["chr2plot", chr2plot])
   const searchQuery = new URLSearchParams(params).toString()
-  return useSWR(
+  return useExtendedSWR(
     size > 0 && `${basePath}cgi/pgx_subsethistogram.cgi?${searchQuery}`,
     svgFetcher
   )
+}
+
+export function useBioSubsets({ filters }) {
+  const url = `${basePath}api/?apidb=progenetix&apiscope=biosubsets&apimethod=subsetdata&filters=${filters}&apioutput=json`
+  return useExtendedSWR(url)
 }
 
 // Transforms [[k1, v1], [k2, [v2, v3]]] into [[k1, v1], [k2, v2], [k3, v3]]

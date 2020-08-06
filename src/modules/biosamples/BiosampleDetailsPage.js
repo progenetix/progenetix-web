@@ -37,8 +37,7 @@ function NoResultsHelp() {
 }
 
 function BiosampleLoader({ id, datasetIds }) {
-  const { data, error } = useSample(id, datasetIds)
-  const isLoading = !data && !error
+  const { data, error, isLoading } = useSample(id, datasetIds)
   return (
     <Loader isLoading={isLoading} hasError={error} background>
       {data && (

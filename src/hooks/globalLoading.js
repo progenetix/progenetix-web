@@ -4,8 +4,7 @@ export const LoadingContext = React.createContext()
 
 export function useGlobalLoading(fetchEffect, loadingKey) {
   const loadingCtx = useContext(LoadingContext)
-  const { data, error } = fetchEffect()
-  const isLoading = !data
+  const { data, error, isLoading } = fetchEffect()
   useEffect(() => {
     loadingCtx?.setIsLoading(loadingKey, isLoading)
   }, [isLoading])
