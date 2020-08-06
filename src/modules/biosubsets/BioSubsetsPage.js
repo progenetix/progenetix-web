@@ -38,14 +38,43 @@ function SubsetsResponse({ response }) {
   return <SubsetsTree tree={tree} />
 }
 
-const initialState = { expanded: {} }
+const initialState = {
+  collapsedOverrides: { root: false },
+  defaultCollapsed: false,
+  defaultExpandedLevel: 3
+}
 
 function reducer(state, { type, payload }) {
   switch (type) {
     case "expand":
-      return { expanded: { ...state.expanded, [payload]: true } }
+      return {
+        ...state,
+        collapsedOverrides: { ...state.collapsedOverrides, [payload]: false }
+      }
     case "collapse":
-      return { expanded: { ...state.expanded, [payload]: false } }
+      return {
+        ...state,
+        collapsedOverrides: { ...state.collapsedOverrides, [payload]: true }
+      }
+    case "collapseAll":
+      return {
+        ...state,
+        collapsedOverrides: initialState.collapsedOverrides,
+        defaultCollapsed: true
+      }
+    case "expandAll":
+      return {
+        ...state,
+        collapsedOverrides: initialState.collapsedOverrides,
+        defaultCollapsed: false
+      }
+    case "setLevel":
+      return {
+        ...state,
+        collapsedOverrides: {},
+        defaultCollapsed: false,
+        defaultExpandedLevel: payload
+      }
     default:
       throw new Error()
   }
@@ -53,61 +82,108 @@ function reducer(state, { type, payload }) {
 
 function SubsetsTree({ tree }) {
   const [state, dispatch] = useReducer(reducer, initialState)
+  function isCollapsedByPath(path) {
+    const override = state.collapsedOverrides[path.join(".")]
+    if (override != null) return override
+    const defaultCollapsed = state.defaultCollapsed
+    const depth = path.length - 1 // 2 because 1 is the tree fake "root"
+    if (!defaultCollapsed) return depth > state.defaultExpandedLevel
+    return defaultCollapsed
+  }
+
   let headers = (
     <tr>
-      <th></th>
+      <th />
       <th>Subsets</th>
       <th>Progenetix</th>
     </tr>
   )
   return (
-    <table className="table is-striped is-fullwidth">
-      <thead>{headers}</thead>
-      <tbody>
-        {map(tree, (node, idx) => {
-          if (node.name === "root") return null
-          const isHidden = hasHiddenParent(node, state.expanded)
-          const expanded = state.expanded[node.path.join(".")] !== false
-          return (
-            !isHidden && (
-              <SubsetNode
-                node={node}
-                key={idx}
-                expanded={expanded}
-                dispatch={dispatch}
-              />
+    <div>
+      <div className="BioSubsets__controls">
+        <div
+          className="button"
+          onClick={() => dispatch({ type: "collapseAll" })}
+        >
+          Collapse all
+        </div>
+        <div className="button" onClick={() => dispatch({ type: "expandAll" })}>
+          Expand
+        </div>
+        <span className="select">
+          <select
+            value={state.defaultExpandedLevel}
+            onChange={(event) =>
+              dispatch({ type: "setLevel", payload: event.target.value })
+            }
+          >
+            <option value={1}>1 level</option>
+            <option value={2}>2 levels</option>
+            <option value={3}>3 levels</option>
+            <option value={4}>4 levels</option>
+            <option value={5}>5 levels</option>
+            <option value={99}>All</option>
+          </select>
+        </span>
+      </div>
+
+      <table className="table is-striped is-fullwidth">
+        <thead>{headers}</thead>
+        <tbody>
+          {map(tree, (node, idx) => {
+            if (node.name === "root") return null
+            const depth = node.path.length - 2 // 2 because 1 is the tree fake "root"
+            const isRoot = depth === 0
+            const isCollapsed =
+              !isRoot && hasCollapsedParent(node, isCollapsedByPath)
+            const groupCollapsed = isCollapsedByPath(node.path)
+
+            return (
+              !isCollapsed && (
+                <SubsetNode
+                  node={node}
+                  key={idx}
+                  groupExpanded={!groupCollapsed}
+                  dispatch={dispatch}
+                  depth={depth}
+                />
+              )
             )
-          )
-        })}
-      </tbody>
-    </table>
+          })}
+        </tbody>
+      </table>
+    </div>
   )
 }
 
-function hasHiddenParent(node, expandedByKey) {
-  for (let i = 0; i < node.path.length; i++) {
-    const parentKey = node.path.slice(0, i).join(".")
-    if (expandedByKey[parentKey] === false) {
+function hasCollapsedParent(node, isCollapsedByKey) {
+  for (let i = 1; i < node.path.length; i++) {
+    const parentPath = node.path.slice(0, i)
+
+    if (isCollapsedByKey(parentPath)) {
       return true
     }
   }
   return false
 }
 
-function SubsetNode({ node, dispatch, expanded }) {
+function SubsetNode({ node, dispatch, groupExpanded, depth }) {
   const { name, subset, children } = node
   const key = node.path.join(".")
-  const depth = node.path.length
-  const marginLeft = `${depth - 2}rem`
+  const marginLeft = `${depth}rem`
   return (
     <tr>
-      <td>
-        <input type="checkbox" className="Subset__check" />
+      <td style={{ width: 20 }}>
+        <input type="checkbox" />
       </td>
       <td>
         <span style={{ marginLeft }} className="Subset__info">
           <span className={cn(!children && "is-invisible")}>
-            <Expander expanded={expanded} dispatch={dispatch} nodeKey={key} />
+            <Expander
+              expanded={groupExpanded}
+              dispatch={dispatch}
+              nodeKey={key}
+            />
           </span>
           <span>
             {name}
@@ -115,7 +191,7 @@ function SubsetNode({ node, dispatch, expanded }) {
           </span>
         </span>
       </td>
-      <td>{subset?.count}</td>
+      <td style={{ width: 20 }}>{subset?.count}</td>
     </tr>
   )
 }
@@ -123,7 +199,8 @@ function SubsetNode({ node, dispatch, expanded }) {
 SubsetNode.propTypes = {
   node: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
-  expanded: PropTypes.bool.isRequired
+  groupExpanded: PropTypes.bool.isRequired,
+  depth: PropTypes.number.isRequired
 }
 
 function Expander({ expanded, dispatch, nodeKey }) {

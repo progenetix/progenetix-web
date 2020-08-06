@@ -1,7 +1,10 @@
-.Subset__check {
-  margin-right: 2rem;
-}
-
 .Subset__info {
   display: flex;
+}
+
+.BioSubsets__controls {
+  display: flex;
+  & > * {
+    margin-right: 0.5rem;
+  }
 }
