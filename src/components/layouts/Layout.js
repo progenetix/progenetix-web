@@ -70,6 +70,15 @@ function Side({ onClick }) {
           href="/biosubsets?filters=NCIT"
           label="Biosubsets"
         />
+        <ul>
+          <MenuInternalLinkItem href="/biosubsets?filters=NCIT" label="NCIT" isSub />
+        </ul>
+        <ul>
+          <MenuInternalLinkItem href="/biosubsets?filters=icdom" label="ICD-O Histo" isSub />
+        </ul>
+        <ul>
+          <MenuInternalLinkItem href="/biosubsets?filters=icdot" label="ICD-O Topo" isSub />
+        </ul>
         <li>
           <MenuLink href="https://info.progenetix.org/">Info </MenuLink>
         </li>
