@@ -86,7 +86,7 @@ function SubsetsTree({ tree }) {
     const override = state.collapsedOverrides[path.join(".")]
     if (override != null) return override
     const defaultCollapsed = state.defaultCollapsed
-    const depth = path.length - 1 // 2 because 1 is the tree fake "root"
+    const depth = path.length - 2 // 2 because 1 is the tree fake "root"
     if (!defaultCollapsed) return depth > state.defaultExpandedLevel
     return defaultCollapsed
   }
@@ -171,6 +171,8 @@ function SubsetNode({ node, dispatch, groupExpanded, depth }) {
   const { name, subset, children } = node
   const key = node.path.join(".")
   const marginLeft = `${depth}rem`
+  // TODO: dataset link is just for testing; should lead to details page
+  const dataset = "progenetix"
   return (
     <tr>
       <td style={{ width: 20 }}>
@@ -191,7 +193,7 @@ function SubsetNode({ node, dispatch, groupExpanded, depth }) {
           </span>
         </span>
       </td>
-      <td style={{ width: 20 }}>{subset?.count}</td>
+      <td style={{ width: 25 }}>{subset?.count} <a href={`https://progenetix.org/cgi/pgx_subsets.cgi?filters=${name}&datasetIds=${dataset}`}>{"{↗}"}</a></td>
     </tr>
   )
 }
