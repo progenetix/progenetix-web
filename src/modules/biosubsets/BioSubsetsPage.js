@@ -9,10 +9,14 @@ import cn from "classnames"
 import { FaAngleDown, FaAngleRight } from "react-icons/fa"
 import PropTypes from "prop-types"
 import biosubsetsConfig from "./config.yaml"
+import { SubsetHistogram } from "../../components/Histogram"
 
-function useConfigSelect(config) {
-  const configEntries = Object.entries(config)
-  const defaultSelected = configEntries[0][0]
+function useConfigSelect(config, initialValue) {
+  let configEntries = Object.entries(config)
+  if (initialValue && !configEntries.find(([c]) => c === initialValue)) {
+    configEntries = [[initialValue, { label: initialValue }], ...configEntries]
+  }
+  const defaultSelected = initialValue || configEntries[0][0]
   const [selected, setSelected] = useState(defaultSelected)
   const options = configEntries.map(([k, v]) => (
     <option key={k}>{v.label}</option>
@@ -24,18 +28,17 @@ function useConfigSelect(config) {
   }
 }
 
-const BioSubsetsPage = withQuery(() => {
+const BioSubsetsPage = withQuery(({ urlQuery }) => {
   const {
-    selected: selectedFilter,
-    setSelected: setSelectedFilter,
+    selected: selectedFilters,
+    setSelected: setSelectedFilters,
     options: filtersOptions
-  } = useConfigSelect(biosubsetsConfig.filters)
+  } = useConfigSelect(biosubsetsConfig.filters, urlQuery.filters)
   const {
-    selected: selectedDatasetId,
-    setSelected: setSelectedDatasetId,
+    selected: selectedDatasetIds,
+    setSelected: setSelectedDatasetIds,
     options: datasetIdsOptions
-  } = useConfigSelect(biosubsetsConfig.datasetsIds)
-
+  } = useConfigSelect(biosubsetsConfig.datasetIds, urlQuery.datasetIds)
   return (
     <Layout title="Subsets" headline="Subsets">
       <div className="level">
@@ -46,8 +49,8 @@ const BioSubsetsPage = withQuery(() => {
           <div className="level-item">
             <span className="select">
               <select
-                value={selectedFilter}
-                onChange={(e) => setSelectedFilter(e.target.value)}
+                value={selectedFilters}
+                onChange={(e) => setSelectedFilters(e.target.value)}
               >
                 {filtersOptions}
               </select>
@@ -60,8 +63,8 @@ const BioSubsetsPage = withQuery(() => {
           <div className="level-item">
             <span className="select">
               <select
-                value={selectedDatasetId}
-                onChange={(e) => setSelectedDatasetId(e.target.value)}
+                value={selectedDatasetIds}
+                onChange={(e) => setSelectedDatasetIds(e.target.value)}
               >
                 {datasetIdsOptions}
               </select>
@@ -69,29 +72,42 @@ const BioSubsetsPage = withQuery(() => {
           </div>
         </div>
       </div>
-      <SubsetsLoader filter={selectedFilter} datasetId={selectedDatasetId} />
+      <SubsetsLoader
+        filters={selectedFilters}
+        datasetIds={selectedDatasetIds}
+      />
     </Layout>
   )
 })
 
 export default BioSubsetsPage
 
-function SubsetsLoader({ filter, datasetId }) {
+function SubsetsLoader({ filters, datasetIds }) {
   const { data, error, isLoading } = useBioSubsets({
-    filters: filter,
-    datasetId: datasetId
+    filters,
+    datasetIds
   })
   return (
     <Loader isLoading={isLoading} hasError={error} background>
-      {data && <SubsetsResponse response={data} datasetId={datasetId} />}
+      {data && <SubsetsResponse response={data} datasetIds={datasetIds} />}
     </Loader>
   )
 }
 
-function SubsetsResponse({ response, datasetId }) {
+function SubsetsResponse({ response, datasetIds }) {
   // memoize response computing
   const tree = useMemo(() => buildTree(response), [response])
-  return <SubsetsTree tree={tree} datasetId={datasetId} />
+  let histogram
+  if (response.length === 1) {
+    histogram = <SubsetHistogram id={response[0].id} datasetsIds={datasetIds} />
+  }
+
+  return (
+    <div>
+      {histogram}
+      <SubsetsTree tree={tree} datasetIds={datasetIds} />
+    </div>
+  )
 }
 
 const initialState = {
@@ -147,7 +163,7 @@ const mkIsCollapsedByPath = (state) => (path) => {
   }
 }
 
-function SubsetsTree({ tree, datasetId }) {
+function SubsetsTree({ tree, datasetIds }) {
   const [state, dispatch] = useReducer(reducer, initialState)
   const isCollapsedByPath = useCallback(mkIsCollapsedByPath(state), [state])
   let headers = (
@@ -196,7 +212,7 @@ function SubsetsTree({ tree, datasetId }) {
               isCollapsedByPath={isCollapsedByPath}
               nodeChildren={tree.children}
               dispatch={dispatch}
-              datasetId={datasetId}
+              datasetIds={datasetIds}
             />
           </tbody>
         </table>
@@ -208,7 +224,7 @@ function SubsetsTree({ tree, datasetId }) {
 function NodeChildren({
   isCollapsedByPath,
   nodeChildren,
-  datasetId,
+  datasetIds,
   dispatch
 }) {
   return nodeChildren.map((node, idx) => {
@@ -221,7 +237,7 @@ function NodeChildren({
         groupCollapsed={groupCollapsed}
         dispatch={dispatch}
         depth={depth}
-        datasetId={datasetId}
+        datasetIds={datasetIds}
         isCollapsedByPath={isCollapsedByPath}
       />
     )
@@ -233,7 +249,7 @@ const SubsetNode = ({
   dispatch,
   groupCollapsed,
   depth,
-  datasetId,
+  datasetIds,
   isCollapsedByPath
 }) => {
   return (
@@ -243,14 +259,14 @@ const SubsetNode = ({
         dispatch={dispatch}
         collapsed={groupCollapsed}
         depth={depth}
-        datasetId={datasetId}
+        datasetIds={datasetIds}
       />
       {!groupCollapsed && node.children && (
         <NodeChildren
           isCollapsedByPath={isCollapsedByPath}
           nodeChildren={node.children}
           dispatch={dispatch}
-          datasetId={datasetId}
+          datasetIds={datasetIds}
         />
       )}
     </>
@@ -265,7 +281,7 @@ SubsetNode.propTypes = {
 }
 
 const MemoizedRow = React.memo(Row)
-function Row({ node, dispatch, collapsed, depth, datasetId }) {
+function Row({ node, dispatch, collapsed, depth, datasetIds }) {
   const { name, subset, children } = node
   const key = node.path.join(".")
   const marginLeft = `${depth * 20}px`
@@ -288,9 +304,7 @@ function Row({ node, dispatch, collapsed, depth, datasetId }) {
       <td style={{ whiteSpace: "nowrap" }}>
         <span>
           {subset?.count}{" "}
-          <a
-            href={`https://progenetix.org/cgi/pgx_subsets.cgi?filters=${name}&datasetIds=${datasetId}`}
-          >
+          <a href={`/biosubsets?filters=${name}&datasetIds=${datasetIds}`}>
             {"{↗}"}
           </a>
         </span>

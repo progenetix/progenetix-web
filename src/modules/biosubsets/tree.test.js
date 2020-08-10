@@ -1,10 +1,4 @@
-import {
-  hasChildren,
-  getNode,
-  getOrMakeChild,
-  getOrMakeNode,
-  map
-} from "./tree"
+import { hasChildren, getNode, getOrMakeChild, getOrMakeNode } from "./tree"
 
 test("hasChildren", () => {
   expect(hasChildren({ name: "c", children: [{ name: "d" }] })).toBeTruthy()
@@ -81,19 +75,4 @@ test("getOrMakeNode with deeper node", () => {
     ],
     name: "c"
   })
-})
-
-test("map", () => {
-  const tree = {
-    name: "c",
-    children: [{ name: "d", children: [{ name: "e" }] }, { name: "f" }]
-  }
-  const nodes = []
-  map(tree, (node, idx) => nodes.push([node.name, idx]))
-  expect(nodes).toStrictEqual([
-    ["c", 0],
-    ["d", 1],
-    ["e", 2],
-    ["f", 3]
-  ])
 })

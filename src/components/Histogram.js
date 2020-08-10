@@ -2,6 +2,7 @@ import { Loader } from "./Loader"
 import React, { useRef } from "react"
 import { useSubsethistogram } from "../hooks/api"
 import { useContainerDimensions } from "../hooks/containerDimensions"
+import PropTypes from "prop-types"
 
 export default function Histogram({ dataEffect, background = false }) {
   const { data, error, isLoading } = dataEffect
@@ -19,6 +20,7 @@ export function SubsetHistogram({
   id,
   filter,
   scope,
+  datasetsIds,
   size: givenSize,
   background = false
 }) {
@@ -29,7 +31,7 @@ export function SubsetHistogram({
     <div ref={componentRef}>
       <Histogram
         dataEffect={useSubsethistogram({
-          datasetIds: "progenetix",
+          datasetsIds,
           id,
           filter,
           scope,
@@ -39,4 +41,11 @@ export function SubsetHistogram({
       />
     </div>
   )
+}
+
+SubsetHistogram.propTypes = {
+  id: PropTypes.string.isRequired,
+  filter: PropTypes.string,
+  scope: PropTypes.string,
+  background: PropTypes.bool
 }

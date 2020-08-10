@@ -5,7 +5,7 @@ filters:
     label: ICD-O Histo
   icdot:
     label: ICD-O Topo
-datasetsIds:
+datasetIds:
   progenetix:
     label: progenetix
   arraymap:

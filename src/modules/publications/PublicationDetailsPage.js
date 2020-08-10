@@ -1,17 +1,13 @@
 import React from "react"
 import { publicationUrl, usePublication } from "../../hooks/api"
 import { Loader } from "../../components/Loader"
-import { useQuery } from "../../hooks/query"
+import { withQuery } from "../../hooks/query"
 import { SubsetHistogram } from "../../components/Histogram"
 import { Layout } from "../../components/layouts/Layout"
 import { EpmcLink } from "./EpmcUrl"
 
-export default function PublicationDetailsPage() {
-  const urlQuery = useQuery()
-  if (!urlQuery) return null // query will only be defined after first mount
-
+const PublicationDetailsPage = withQuery(({ urlQuery }) => {
   const { id, scope, filter } = urlQuery
-
   return (
     <Layout title="Publication Details" headline="Publication Details">
       {!id ? (
@@ -21,7 +17,8 @@ export default function PublicationDetailsPage() {
       )}
     </Layout>
   )
-}
+})
+export default PublicationDetailsPage
 
 function NoResultsHelp() {
   return (
