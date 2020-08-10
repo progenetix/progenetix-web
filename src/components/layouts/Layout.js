@@ -78,9 +78,6 @@ function Side({ onClick }) {
             </>
           }
         />
-        <ul>
-          <MenuInternalLinkItem href="/beacon-plus/about" label="About" isSub />
-        </ul>
         <li>
           <MenuLink href="https://info.progenetix.org/cgi-bin/pgx_biosamples.cgi?project=progenetix&amp;datasetIds=progenetix&amp;genome=GRCh38">
             Search Samples
