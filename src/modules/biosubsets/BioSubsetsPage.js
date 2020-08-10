@@ -99,7 +99,7 @@ function SubsetsResponse({ response }) {
 
 const initialState = {
   collapsedOverrides: { root: false },
-  defaultCollapsed: false,
+  defaultState: false,
   defaultExpandedLevel: 3
 }
 
@@ -119,19 +119,19 @@ function reducer(state, { type, payload }) {
       return {
         ...state,
         collapsedOverrides: initialState.collapsedOverrides,
-        defaultCollapsed: true
+        defaultState: "collapsed"
       }
     case "expandAll":
       return {
         ...state,
         collapsedOverrides: initialState.collapsedOverrides,
-        defaultCollapsed: false
+        defaultState: "expanded"
       }
     case "setLevel":
       return {
         ...state,
         collapsedOverrides: {},
-        defaultCollapsed: false,
+        defaultState: "expanded",
         defaultExpandedLevel: payload
       }
     default:
@@ -144,10 +144,12 @@ function SubsetsTree({ tree }) {
   function isCollapsedByPath(path) {
     const override = state.collapsedOverrides[path.join(".")]
     if (override != null) return override
-    const defaultCollapsed = state.defaultCollapsed
-    const depth = path.length - 2 // 2 because 1 is the tree fake "root"
-    if (!defaultCollapsed) return depth > state.defaultExpandedLevel
-    return defaultCollapsed
+    if (state.defaultState === "expanded") {
+      const depth = path.length - 2 // 2 because 1 is the tree fake "root"
+      return depth > state.defaultExpandedLevel
+    } else {
+      return true
+    }
   }
 
   let headers = (
