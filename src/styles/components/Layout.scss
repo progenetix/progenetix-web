@@ -53,6 +53,7 @@ $side-width: 14rem;
 
 .Layout__duo {
   min-height: 100%;
+  max-width: 100%;
   @include until($desktop) {
     margin: 0 !important ;
   }

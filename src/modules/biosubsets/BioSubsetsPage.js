@@ -158,7 +158,7 @@ function SubsetsTree({ tree, datasetId }) {
     </tr>
   )
   return (
-    <div>
+    <>
       <div className="BioSubsets__controls">
         <div
           className="button is-small"
@@ -188,19 +188,20 @@ function SubsetsTree({ tree, datasetId }) {
           </select>
         </span>
       </div>
-
-      <table className="table is-striped is-fullwidth">
-        <thead>{headers}</thead>
-        <tbody>
-          <NodeChildren
-            isCollapsedByPath={isCollapsedByPath}
-            nodeChildren={tree.children}
-            dispatch={dispatch}
-            datasetId={datasetId}
-          />
-        </tbody>
-      </table>
-    </div>
+      <div className="table-container">
+        <table className="table is-striped is-fullwidth">
+          <thead>{headers}</thead>
+          <tbody>
+            <NodeChildren
+              isCollapsedByPath={isCollapsedByPath}
+              nodeChildren={tree.children}
+              dispatch={dispatch}
+              datasetId={datasetId}
+            />
+          </tbody>
+        </table>
+      </div>
+    </>
   )
 }
 
@@ -237,7 +238,7 @@ const SubsetNode = ({
 }) => {
   return (
     <>
-      <SubsetRow
+      <MemoizedRow
         node={node}
         dispatch={dispatch}
         collapsed={groupCollapsed}
@@ -263,43 +264,40 @@ SubsetNode.propTypes = {
   depth: PropTypes.number.isRequired
 }
 
-const SubsetRow = React.memo(
-  ({ node, dispatch, collapsed, depth, datasetId }) => {
-    const { name, subset, children } = node
-    const key = node.path.join(".")
-    const marginLeft = `${depth}rem`
-    return (
-      <tr>
-        <td style={{ width: 20 }}>
-          <input type="checkbox" />
-        </td>
-        <td>
-          <span style={{ marginLeft }} className="Subset__info">
-            <span className={cn(!children && "is-invisible")}>
-              <Expander
-                collapsed={collapsed}
-                dispatch={dispatch}
-                nodeKey={key}
-              />
-            </span>
-            <span>
-              {name}
-              {subset?.label && <span>: {subset.label}</span>}
-            </span>
+const MemoizedRow = React.memo(Row)
+function Row({ node, dispatch, collapsed, depth, datasetId }) {
+  const { name, subset, children } = node
+  const key = node.path.join(".")
+  const marginLeft = `${depth * 20}px`
+  return (
+    <tr>
+      <td style={{ width: 20 }}>
+        <input type="checkbox" />
+      </td>
+      <td>
+        <span style={{ marginLeft }} className="Subset__info">
+          <span className={cn(!children && "is-invisible")}>
+            <Expander collapsed={collapsed} dispatch={dispatch} nodeKey={key} />
           </span>
-        </td>
-        <td style={{ width: 25 }}>
+          <span>
+            {name}
+            {subset?.label && <span>: {subset.label}</span>}
+          </span>
+        </span>
+      </td>
+      <td style={{ whiteSpace: "nowrap" }}>
+        <span>
           {subset?.count}{" "}
           <a
             href={`https://progenetix.org/cgi/pgx_subsets.cgi?filters=${name}&datasetIds=${datasetId}`}
           >
             {"{↗}"}
           </a>
-        </td>
-      </tr>
-    )
-  }
-)
+        </span>
+      </td>
+    </tr>
+  )
+}
 
 function Expander({ collapsed, dispatch, nodeKey }) {
   return !collapsed ? (
