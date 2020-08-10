@@ -1,10 +1,10 @@
 import { useBioSubsets } from "../../hooks/api"
 import { Loader } from "../../components/Loader"
-import React, { useMemo, useReducer, useState } from "react"
+import React, { useCallback, useMemo, useReducer, useState } from "react"
 import { withQuery } from "../../hooks/query"
 import { Layout } from "../../components/layouts/Layout"
 import { sortBy } from "lodash"
-import { getOrMakeNode, map } from "./tree"
+import { getOrMakeNode } from "./tree"
 import cn from "classnames"
 import { FaAngleDown, FaAngleRight } from "react-icons/fa"
 import PropTypes from "prop-types"
@@ -95,8 +95,8 @@ function SubsetsResponse({ response, datasetId }) {
 }
 
 const initialState = {
-  collapsedOverrides: { root: false },
-  defaultState: false,
+  overrides: {},
+  defaultState: "expanded",
   defaultExpandedLevel: 3
 }
 
@@ -105,29 +105,29 @@ function reducer(state, { type, payload }) {
     case "expand":
       return {
         ...state,
-        collapsedOverrides: { ...state.collapsedOverrides, [payload]: false }
+        overrides: { ...state.overrides, [payload]: "expanded" }
       }
     case "collapse":
       return {
         ...state,
-        collapsedOverrides: { ...state.collapsedOverrides, [payload]: true }
+        overrides: { ...state.overrides, [payload]: "collapsed" }
       }
     case "collapseAll":
       return {
         ...state,
-        collapsedOverrides: initialState.collapsedOverrides,
+        overrides: initialState.overrides,
         defaultState: "collapsed"
       }
     case "expandAll":
       return {
         ...state,
-        collapsedOverrides: initialState.collapsedOverrides,
+        overrides: initialState.overrides,
         defaultState: "expanded"
       }
     case "setLevel":
       return {
         ...state,
-        collapsedOverrides: {},
+        overrides: {},
         defaultState: "expanded",
         defaultExpandedLevel: payload
       }
@@ -136,19 +136,20 @@ function reducer(state, { type, payload }) {
   }
 }
 
+const mkIsCollapsedByPath = (state) => (path) => {
+  const override = state.overrides[path.join(".")]
+  if (override != null) return override === "collapsed"
+  if (state.defaultState === "expanded") {
+    const depth = path.length - 2 // 2 because 1 is the tree fake "root"
+    return depth > state.defaultExpandedLevel
+  } else {
+    return true
+  }
+}
+
 function SubsetsTree({ tree, datasetId }) {
   const [state, dispatch] = useReducer(reducer, initialState)
-  function isCollapsedByPath(path) {
-    const override = state.collapsedOverrides[path.join(".")]
-    if (override != null) return override
-    if (state.defaultState === "expanded") {
-      const depth = path.length - 2 // 2 because 1 is the tree fake "root"
-      return depth > state.defaultExpandedLevel
-    } else {
-      return true
-    }
-  }
-
+  const isCollapsedByPath = useCallback(mkIsCollapsedByPath(state), [state])
   let headers = (
     <tr>
       <th />
@@ -191,89 +192,117 @@ function SubsetsTree({ tree, datasetId }) {
       <table className="table is-striped is-fullwidth">
         <thead>{headers}</thead>
         <tbody>
-          {map(tree, (node, idx) => {
-            if (node.name === "root") return null
-            const depth = node.path.length - 2 // 2 because 1 is the tree fake "root"
-            const isRoot = depth === 0
-            const isCollapsed =
-              !isRoot && hasCollapsedParent(node, isCollapsedByPath)
-            const groupCollapsed = isCollapsedByPath(node.path)
-
-            return (
-              !isCollapsed && (
-                <SubsetNode
-                  node={node}
-                  key={idx}
-                  groupExpanded={!groupCollapsed}
-                  dispatch={dispatch}
-                  depth={depth}
-                  datasetId={datasetId}
-                />
-              )
-            )
-          })}
+          <NodeChildren
+            isCollapsedByPath={isCollapsedByPath}
+            nodeChildren={tree.children}
+            dispatch={dispatch}
+            datasetId={datasetId}
+          />
         </tbody>
       </table>
     </div>
   )
 }
 
-function hasCollapsedParent(node, isCollapsedByKey) {
-  for (let i = 1; i < node.path.length; i++) {
-    const parentPath = node.path.slice(0, i)
-
-    if (isCollapsedByKey(parentPath)) {
-      return true
-    }
-  }
-  return false
+function NodeChildren({
+  isCollapsedByPath,
+  nodeChildren,
+  datasetId,
+  dispatch
+}) {
+  return nodeChildren.map((node, idx) => {
+    const depth = node.path.length - 2 // 2 because 1 is the tree fake "root"
+    const groupCollapsed = isCollapsedByPath(node.path)
+    return (
+      <SubsetNode
+        key={idx}
+        node={node}
+        groupCollapsed={groupCollapsed}
+        dispatch={dispatch}
+        depth={depth}
+        datasetId={datasetId}
+        isCollapsedByPath={isCollapsedByPath}
+      />
+    )
+  })
 }
 
-function SubsetNode({ node, dispatch, groupExpanded, depth, datasetId }) {
-  const { name, subset, children } = node
-  const key = node.path.join(".")
-  const marginLeft = `${depth}rem`
+const SubsetNode = ({
+  node,
+  dispatch,
+  groupCollapsed,
+  depth,
+  datasetId,
+  isCollapsedByPath
+}) => {
   return (
-    <tr>
-      <td style={{ width: 20 }}>
-        <input type="checkbox" />
-      </td>
-      <td>
-        <span style={{ marginLeft }} className="Subset__info">
-          <span className={cn(!children && "is-invisible")}>
-            <Expander
-              expanded={groupExpanded}
-              dispatch={dispatch}
-              nodeKey={key}
-            />
-          </span>
-          <span>
-            {name}
-            {subset?.label && <span>: {subset.label}</span>}
-          </span>
-        </span>
-      </td>
-      <td style={{ width: 25 }}>
-        {subset?.count}{" "}
-        <a
-          href={`https://progenetix.org/cgi/pgx_subsets.cgi?filters=${name}&datasetIds=${datasetId}`}
-        >
-          {"{↗}"}
-        </a>
-      </td>
-    </tr>
+    <>
+      <SubsetRow
+        node={node}
+        dispatch={dispatch}
+        collapsed={groupCollapsed}
+        depth={depth}
+        datasetId={datasetId}
+      />
+      {!groupCollapsed && node.children && (
+        <NodeChildren
+          isCollapsedByPath={isCollapsedByPath}
+          nodeChildren={node.children}
+          dispatch={dispatch}
+          datasetId={datasetId}
+        />
+      )}
+    </>
   )
 }
 
 SubsetNode.propTypes = {
   node: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
-  groupExpanded: PropTypes.bool.isRequired,
+  groupCollapsed: PropTypes.bool.isRequired,
   depth: PropTypes.number.isRequired
 }
 
-function Expander({ expanded, dispatch, nodeKey }) {
-  return expanded ? (
+const SubsetRow = React.memo(
+  ({ node, dispatch, collapsed, depth, datasetId }) => {
+    const { name, subset, children } = node
+    const key = node.path.join(".")
+    const marginLeft = `${depth}rem`
+    return (
+      <tr>
+        <td style={{ width: 20 }}>
+          <input type="checkbox" />
+        </td>
+        <td>
+          <span style={{ marginLeft }} className="Subset__info">
+            <span className={cn(!children && "is-invisible")}>
+              <Expander
+                collapsed={collapsed}
+                dispatch={dispatch}
+                nodeKey={key}
+              />
+            </span>
+            <span>
+              {name}
+              {subset?.label && <span>: {subset.label}</span>}
+            </span>
+          </span>
+        </td>
+        <td style={{ width: 25 }}>
+          {subset?.count}{" "}
+          <a
+            href={`https://progenetix.org/cgi/pgx_subsets.cgi?filters=${name}&datasetIds=${datasetId}`}
+          >
+            {"{↗}"}
+          </a>
+        </td>
+      </tr>
+    )
+  }
+)
+
+function Expander({ collapsed, dispatch, nodeKey }) {
+  return !collapsed ? (
     <span onClick={() => dispatch({ type: "collapse", payload: nodeKey })}>
       <span className="icon has-text-grey-dark is-clickable mr-2">
         <FaAngleDown size={18} />

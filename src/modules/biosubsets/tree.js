@@ -46,14 +46,3 @@ export function getOrMakeNode(baseNode, path) {
     getNode(baseNode, parentPath) ?? getOrMakeNode(baseNode, parentPath)
   return getOrMakeChild(parentNode, name)
 }
-
-export function map(node, cb, state = { arr: [] }) {
-  const res = cb(node, state.arr.length)
-  state.arr.push(res)
-  if (hasChildren(node)) {
-    for (const child of node.children) {
-      map(child, cb, state)
-    }
-  }
-  return state.arr
-}
