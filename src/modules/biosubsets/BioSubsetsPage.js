@@ -127,7 +127,8 @@ function SubsetsResponse({ response, datasetIds }) {
 const initialState = {
   overrides: {},
   defaultState: "expanded",
-  defaultExpandedLevel: 3
+  defaultExpandedLevel: 3,
+  checked: {}
 }
 
 function reducer(state, { type, payload }) {
@@ -162,7 +163,16 @@ function reducer(state, { type, payload }) {
         defaultExpandedLevel: payload
       }
     case "checkboxClicked":
-      return state
+      if (payload.checked) {
+        return {
+          ...state,
+          checked: { ...state.checked, [payload.key]: payload.checked }
+        }
+      } else {
+        const newState = { ...state }
+        delete newState.checked[payload.key]
+        return newState
+      }
     default:
       throw new Error()
   }
@@ -182,6 +192,7 @@ const mkIsCollapsedByPath = (state) => (path) => {
 function SubsetsTree({ tree, datasetIds }) {
   const [state, dispatch] = useReducer(reducer, initialState)
   const isCollapsedByPath = useCallback(mkIsCollapsedByPath(state), [state])
+  console.log(state)
   let headers = (
     <tr>
       <th />
@@ -307,7 +318,10 @@ function Row({ node, dispatch, collapsed, depth, datasetIds }) {
         {subset && (
           <input
             onChange={(e) =>
-              dispatch({ type: "checkboxClicked", payload: e.target.checked })
+              dispatch({
+                type: "checkboxClicked",
+                payload: { key, checked: e.target.checked }
+              })
             }
             type="checkbox"
           />
