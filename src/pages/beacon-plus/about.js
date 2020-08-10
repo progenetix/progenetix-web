@@ -19,16 +19,14 @@ export default function About() {
               features and proposed extensions to the{" "}
               <a href="http://beacon-project.io">Beacon</a> protocol. The
               service is implemented using the{" "}
-              <a href="https://github.com/progenetix/bycon">bycon</a>
-              backend and allows access to the various datasets represented
-              through the
+              <a href="https://github.com/progenetix/bycon">bycon</a> backend
+              and allows access to the various datasets represented through the{" "}
               <a href="http://progenetix.org">Progenetix</a> cancer genomics
               resource.
             </p>
             <p>
               Further information about the Beacon project can be found through
-              the
-              <a href="http://beacon-project.io/">ELIXIR Beacon website</a>.
+              the <a href="http://beacon-project.io/">ELIXIR Beacon website</a>.
             </p>
           </div>
         </div>
