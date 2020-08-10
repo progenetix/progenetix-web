@@ -99,7 +99,18 @@ function SubsetsResponse({ response, datasetIds }) {
   const tree = useMemo(() => buildTree(response), [response])
   let histogram
   if (response.length === 1) {
-    histogram = <SubsetHistogram id={response[0].id} datasetIds={datasetIds} />
+    histogram = (
+      <div className="mb-6">
+        <SubsetHistogram
+          id={response[0].id}
+          datasetIds={datasetIds}
+          loaderProps={{
+            background: true,
+            colored: true
+          }}
+        />
+      </div>
+    )
   }
 
   return (
