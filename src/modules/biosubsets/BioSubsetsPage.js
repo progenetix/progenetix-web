@@ -4,7 +4,7 @@ import React, { useCallback, useMemo, useReducer, useState } from "react"
 import { withQuery } from "../../hooks/query"
 import { Layout } from "../../components/layouts/Layout"
 import { sortBy } from "lodash"
-import { getOrMakeNode } from "./tree"
+import { getOrMakeChild, getOrMakeNode } from "./tree"
 import cn from "classnames"
 import { FaAngleDown, FaAngleRight } from "react-icons/fa"
 import PropTypes from "prop-types"
@@ -95,10 +95,13 @@ function SubsetsLoader({ filters, datasetIds }) {
 }
 
 function SubsetsResponse({ response, datasetIds }) {
+  const isDetailPage = response.length === 1
   // memoize response computing
-  const tree = useMemo(() => buildTree(response), [response])
+  const tree = isDetailPage
+    ? useMemo(() => buildTreeForDetails(response), [response])
+    : useMemo(() => buildTree(response), [response])
   let histogram
-  if (response.length === 1) {
+  if (isDetailPage) {
     histogram = (
       <div className="mb-6">
         <SubsetHistogram
@@ -361,5 +364,15 @@ export function buildTree(response) {
       node.subset = subsetById[node.name]
     }
   }
+  return tree
+}
+
+export function buildTreeForDetails(response) {
+  const subset = response[0]
+  const tree = { name: "root", children: [], path: ["root"] }
+  const node = getOrMakeChild(tree, subset.id)
+  node.subset = subset
+  const child_terms = subset.child_terms
+  child_terms.forEach((c) => getOrMakeChild(node, c))
   return tree
 }
