@@ -1,0 +1,14 @@
+filters:
+    NCIT:
+          label: NCIT
+    icdom:
+          label: ICD-O Histo
+    icdot:
+          label: ICD-O Topo
+datasetsIds:
+    progenetix:
+          label: progenetix
+    arraymap:
+          label: arraymap
+    dipg:
+          label: dipg

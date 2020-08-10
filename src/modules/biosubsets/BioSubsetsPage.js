@@ -1,30 +1,91 @@
 import { useBioSubsets } from "../../hooks/api"
 import { Loader } from "../../components/Loader"
-import React, { useMemo, useReducer } from "react"
-import { useQuery } from "../../hooks/query"
+import React, { useMemo, useReducer, useState } from "react"
+import { withQuery } from "../../hooks/query"
 import { Layout } from "../../components/layouts/Layout"
 import { sortBy } from "lodash"
 import { getOrMakeNode, map } from "./tree"
 import cn from "classnames"
 import { FaAngleDown, FaAngleRight } from "react-icons/fa"
 import PropTypes from "prop-types"
+import biosubsetsConfig from "./config.yaml"
 
-const defaultFilters = "NCIT"
-
-export default function BioSubsetsPage() {
-  const urlQuery = useQuery()
-  if (!urlQuery) return null // query will only be defined after first mount
-
-  const { filters } = urlQuery
-  return (
-    <Layout title="Subsets" headline="Subsets">
-      <SubsetsLoader filters={filters || defaultFilters} />
-    </Layout>
-  )
+function useConfigSelect(config) {
+  const configEntries = Object.entries(config)
+  const defaultSelected = configEntries[0][0]
+  const [selected, setSelected] = useState(defaultSelected)
+  const options = configEntries.map(([k, v]) => (
+    <option key={k}>{v.label}</option>
+  ))
+  return {
+    selected,
+    setSelected,
+    options
+  }
 }
 
-function SubsetsLoader({ filters }) {
-  const { data, error, isLoading } = useBioSubsets({ filters })
+const BioSubsetsPage = withQuery(() => {
+  const {
+    selected: selectedFilters,
+    setSelected: setSelectedFilters,
+    options: filtersOptions
+  } = useConfigSelect(biosubsetsConfig.filters)
+  const {
+    selected: selectedDatasetIds,
+    setSelected: setSelectedDatasetIds,
+    options: datasetIdsOptions
+  } = useConfigSelect(biosubsetsConfig.datasetsIds)
+
+  return (
+    <Layout title="Subsets" headline="Subsets">
+      <div className="level">
+        <div className="level-left">
+          <div className="level-item">
+            <p>Filters:</p>
+          </div>
+          <div className="level-item">
+            <span className="select">
+              <select
+                value={selectedFilters}
+                onChange={(e) => setSelectedFilters(e.target.value)}
+              >
+                {filtersOptions}
+              </select>
+            </span>
+          </div>
+
+          <div className="level-item">
+            <p>Dataset:</p>
+          </div>
+          <div className="level-item">
+            <span className="select">
+              <select
+                value={selectedDatasetIds}
+                onChange={(e) => setSelectedDatasetIds(e.target.value)}
+              >
+                {datasetIdsOptions}
+              </select>
+            </span>
+          </div>
+        </div>
+      </div>
+      <SubsetsLoader
+        filters={selectedFilters}
+        datasetIds={selectedDatasetIds}
+      />
+    </Layout>
+  )
+})
+
+export default BioSubsetsPage
+
+function SubsetsLoader({ filters, datasetIds }) {
+  cons
+
+  t { data, error, isLoading } = useBioSubsets({
+    filters,
+    datasetIds
+  })
   return (
     <Loader isLoading={isLoading} hasError={error} background>
       {data && <SubsetsResponse response={data} />}
@@ -102,15 +163,18 @@ function SubsetsTree({ tree }) {
     <div>
       <div className="BioSubsets__controls">
         <div
-          className="button"
+          className="button is-small"
           onClick={() => dispatch({ type: "collapseAll" })}
         >
           Collapse all
         </div>
-        <div className="button" onClick={() => dispatch({ type: "expandAll" })}>
+        <div
+          className="button is-small"
+          onClick={() => dispatch({ type: "expandAll" })}
+        >
           Expand
         </div>
-        <span className="select">
+        <span className="select is-small">
           <select
             value={state.defaultExpandedLevel}
             onChange={(event) =>
@@ -193,7 +257,14 @@ function SubsetNode({ node, dispatch, groupExpanded, depth }) {
           </span>
         </span>
       </td>
-      <td style={{ width: 25 }}>{subset?.count} <a href={`https://progenetix.org/cgi/pgx_subsets.cgi?filters=${name}&datasetIds=${dataset}`}>{"{↗}"}</a></td>
+      <td style={{ width: 25 }}>
+        {subset?.count}{" "}
+        <a
+          href={`https://progenetix.org/cgi/pgx_subsets.cgi?filters=${name}&datasetIds=${dataset}`}
+        >
+          {"{↗}"}
+        </a>
+      </td>
     </tr>
   )
 }

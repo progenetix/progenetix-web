@@ -1,17 +1,25 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 
 /**
  *
  * This work around returns a define query only if the component has been mounted.
  * This is necessary when using custom export and no SSR.
- * @param shouldUpdate defines if the component should rerender when the location is updated.
  */
-export function useQuery(shouldUpdate = false) {
+export function useQuery() {
   const router = useRouter()
-  const [ready, setReady] = useState(false)
+  const [query, setQuery] = useState(false)
   useEffect(() => {
-    setReady(true)
-  }, [shouldUpdate ? router : null])
-  return ready ? router.query : undefined
+    setQuery(router.query)
+  }, [router])
+  return query ? query : undefined
+}
+
+export const withQuery = (WrappedComponent) => {
+  const QueryProvider = (props) => {
+    const urlQuery = useQuery()
+    if (!urlQuery) return null //only renders when component
+    return <WrappedComponent urlQuery={urlQuery} {...props} />
+  }
+  return QueryProvider
 }
