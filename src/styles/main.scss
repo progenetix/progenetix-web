@@ -14,9 +14,10 @@ body {
 @import "components/ReactSelect";
 @import "components/Layout";
 @import "components/BioSubsets";
-@import "src/styles/components/Panel";
+@import "components/Panel";
 
-@import "pages/beacon-plus";
+@import "src/modules/beacon-plus/BeaconPlusPage";
+@import "src/modules/beacon-plus/Nav";
 
 @import "~bulma/sass/base/_all";
 @import "~bulma/sass/elements/_all";

@@ -8,6 +8,7 @@ import Panel from "../../components/Panel"
 import { FaSlidersH } from "react-icons/fa"
 import { Loader } from "../../components/Loader"
 import { Layout } from "../../components/layouts/Layout"
+import Nav from "./Nav"
 
 export default function BeaconPlusPage() {
   const [query, setQuery] = useState(null) // actual valid query
@@ -28,49 +29,49 @@ export default function BeaconPlusPage() {
   }
 
   return (
-    <Layout
-      title="Beacon+"
-      headline={
-        <>
-          Beacon<sup style={{ color: "red" }}>+</sup>
-        </>
-      }
-    >
-      <div className="mb-6">
-        <Panel
-          isOpened={!searchCollapsed}
-          heading={
-            <>
-              <span>Search</span>
-              {searchCollapsed && (
-                <button className="button ml-3">
-                  <FaSlidersH
-                    onClick={() => setSearchCollapsed(false)}
-                    className="icon has-text-info"
-                  />
-                  {/*<span>Edit</span>*/}
-                </button>
-              )}
-            </>
-          }
-        >
-          <BeaconForm
-            requestTypesConfig={requestTypesConfig}
-            parametersConfig={parametersConfig}
-            isLoading={isLoading}
-            onValidFormQuery={handleValidFormQuery}
-          />
-        </Panel>
+    <>
+      <Nav />
+      <div className="section">
+        <div className="BeaconPlus__container">
+          <Panel
+            isOpened={!searchCollapsed}
+            heading={
+              <>
+                <span>Search</span>
+                {searchCollapsed && (
+                  <button className="button ml-3">
+                    <FaSlidersH
+                      onClick={() => setSearchCollapsed(false)}
+                      className="icon has-text-info"
+                    />
+                    {/*<span>Edit</span>*/}
+                  </button>
+                )}
+              </>
+            }
+          >
+            <BeaconForm
+              requestTypesConfig={requestTypesConfig}
+              parametersConfig={parametersConfig}
+              isLoading={isLoading}
+              onValidFormQuery={handleValidFormQuery}
+            />
+          </Panel>
+        </div>
       </div>
-      {query && (
-        <Results
-          isLoading={isLoading}
-          response={queryResponse}
-          error={queryError}
-          query={query}
-        />
-      )}
-    </Layout>
+      <div className="section pt-0">
+        <div className="BeaconPlus__container">
+          {query && (
+            <Results
+              isLoading={isLoading}
+              response={queryResponse}
+              error={queryError}
+              query={query}
+            />
+          )}
+        </div>
+      </div>
+    </>
   )
 }
 
@@ -116,7 +117,7 @@ function QuerySummary({ query }) {
   }
   filters = filters.filter((f) => f && f.length > 1)
   return (
-    <ul className="beacon-plus__query-summary">
+    <ul className="BeaconPlus__query-summary">
       {query.assemblyId && (
         <li>
           <small>Assembly: </small>
