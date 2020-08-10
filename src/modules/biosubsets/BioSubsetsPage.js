@@ -80,9 +80,7 @@ const BioSubsetsPage = withQuery(() => {
 export default BioSubsetsPage
 
 function SubsetsLoader({ filters, datasetIds }) {
-  cons
-
-  t { data, error, isLoading } = useBioSubsets({
+  const { data, error, isLoading } = useBioSubsets({
     filters,
     datasetIds
   })
