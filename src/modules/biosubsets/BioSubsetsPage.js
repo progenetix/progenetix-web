@@ -154,7 +154,7 @@ function SubsetsTree({ tree }) {
     <tr>
       <th />
       <th>Subsets</th>
-      <th>Progenetix</th>
+      <th>Samples</th>
     </tr>
   )
   return (
