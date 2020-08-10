@@ -11,11 +11,10 @@ export default function Nav() {
         role="navigation"
         aria-label="main navigation"
       >
-        <span className="Nav__logo">
+        <a className="Nav__logo" href="/beacon-plus">
           Beacon <sup className="Nav__plus">+</sup>
-        </span>
+        </a>
         <div className="Nav__links">
-          <ActiveLink label="Home" href="/beacon-plus" />
           <ActiveLink label="About" href="/beacon-plus/about" />
           <a
             href="https://info.progenetix.org/categories/howto.html"
