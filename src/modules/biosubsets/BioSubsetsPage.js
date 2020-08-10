@@ -161,6 +161,8 @@ function reducer(state, { type, payload }) {
         defaultState: "expanded",
         defaultExpandedLevel: payload
       }
+    case "checkboxClicked":
+      return state
     default:
       throw new Error()
   }
@@ -302,7 +304,14 @@ function Row({ node, dispatch, collapsed, depth, datasetIds }) {
   return (
     <tr>
       <td style={{ width: 20 }}>
-        <input type="checkbox" />
+        {subset && (
+          <input
+            onChange={(e) =>
+              dispatch({ type: "checkboxClicked", payload: e.target.checked })
+            }
+            type="checkbox"
+          />
+        )}
       </td>
       <td>
         <span style={{ marginLeft }} className="Subset__info">
@@ -373,6 +382,8 @@ export function buildTreeForDetails(response) {
   const node = getOrMakeChild(tree, subset.id)
   node.subset = subset
   const child_terms = subset.child_terms
-  child_terms.forEach((c) => getOrMakeChild(node, c))
+  child_terms.forEach((c) => {
+    if (subset.id !== c) getOrMakeChild(node, c)
+  })
   return tree
 }
