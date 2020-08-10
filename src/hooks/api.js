@@ -158,8 +158,8 @@ export function useSubsethistogram({
   )
 }
 
-export function useBioSubsets({ filters, datasetIds }) {
-  const url = `${basePath}api/?apidb=${datasetIds}&apiscope=biosubsets&apimethod=subsetdata&filters=${filters}&apioutput=json`
+export function useBioSubsets({ filters, datasetId }) {
+  const url = `${basePath}api/?apidb=${datasetId}&apiscope=biosubsets&apimethod=subsetdata&filters=${filters}&apioutput=json`
   return useExtendedSWR(url)
 }
 

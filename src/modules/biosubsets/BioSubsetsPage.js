@@ -26,13 +26,13 @@ function useConfigSelect(config) {
 
 const BioSubsetsPage = withQuery(() => {
   const {
-    selected: selectedFilters,
-    setSelected: setSelectedFilters,
+    selected: selectedFilter,
+    setSelected: setSelectedFilter,
     options: filtersOptions
   } = useConfigSelect(biosubsetsConfig.filters)
   const {
-    selected: selectedDatasetIds,
-    setSelected: setSelectedDatasetIds,
+    selected: selectedDatasetId,
+    setSelected: setSelectedDatasetId,
     options: datasetIdsOptions
   } = useConfigSelect(biosubsetsConfig.datasetsIds)
 
@@ -46,8 +46,8 @@ const BioSubsetsPage = withQuery(() => {
           <div className="level-item">
             <span className="select">
               <select
-                value={selectedFilters}
-                onChange={(e) => setSelectedFilters(e.target.value)}
+                value={selectedFilter}
+                onChange={(e) => setSelectedFilter(e.target.value)}
               >
                 {filtersOptions}
               </select>
@@ -60,8 +60,8 @@ const BioSubsetsPage = withQuery(() => {
           <div className="level-item">
             <span className="select">
               <select
-                value={selectedDatasetIds}
-                onChange={(e) => setSelectedDatasetIds(e.target.value)}
+                value={selectedDatasetId}
+                onChange={(e) => setSelectedDatasetId(e.target.value)}
               >
                 {datasetIdsOptions}
               </select>
@@ -69,32 +69,29 @@ const BioSubsetsPage = withQuery(() => {
           </div>
         </div>
       </div>
-      <SubsetsLoader
-        filters={selectedFilters}
-        datasetIds={selectedDatasetIds}
-      />
+      <SubsetsLoader filter={selectedFilter} datasetId={selectedDatasetId} />
     </Layout>
   )
 })
 
 export default BioSubsetsPage
 
-function SubsetsLoader({ filters, datasetIds }) {
+function SubsetsLoader({ filter, datasetId }) {
   const { data, error, isLoading } = useBioSubsets({
-    filters,
-    datasetIds
+    filters: filter,
+    datasetId: datasetId
   })
   return (
     <Loader isLoading={isLoading} hasError={error} background>
-      {data && <SubsetsResponse response={data} />}
+      {data && <SubsetsResponse response={data} datasetId={datasetId} />}
     </Loader>
   )
 }
 
-function SubsetsResponse({ response }) {
+function SubsetsResponse({ response, datasetId }) {
   // memoize response computing
   const tree = useMemo(() => buildTree(response), [response])
-  return <SubsetsTree tree={tree} />
+  return <SubsetsTree tree={tree} datasetId={datasetId} />
 }
 
 const initialState = {
@@ -139,7 +136,7 @@ function reducer(state, { type, payload }) {
   }
 }
 
-function SubsetsTree({ tree }) {
+function SubsetsTree({ tree, datasetId }) {
   const [state, dispatch] = useReducer(reducer, initialState)
   function isCollapsedByPath(path) {
     const override = state.collapsedOverrides[path.join(".")]
@@ -210,6 +207,7 @@ function SubsetsTree({ tree }) {
                   groupExpanded={!groupCollapsed}
                   dispatch={dispatch}
                   depth={depth}
+                  datasetId={datasetId}
                 />
               )
             )
@@ -231,12 +229,10 @@ function hasCollapsedParent(node, isCollapsedByKey) {
   return false
 }
 
-function SubsetNode({ node, dispatch, groupExpanded, depth }) {
+function SubsetNode({ node, dispatch, groupExpanded, depth, datasetId }) {
   const { name, subset, children } = node
   const key = node.path.join(".")
   const marginLeft = `${depth}rem`
-  // TODO: dataset link is just for testing; should lead to details page
-  const dataset = "progenetix"
   return (
     <tr>
       <td style={{ width: 20 }}>
@@ -260,7 +256,7 @@ function SubsetNode({ node, dispatch, groupExpanded, depth }) {
       <td style={{ width: 25 }}>
         {subset?.count}{" "}
         <a
-          href={`https://progenetix.org/cgi/pgx_subsets.cgi?filters=${name}&datasetIds=${dataset}`}
+          href={`https://progenetix.org/cgi/pgx_subsets.cgi?filters=${name}&datasetIds=${datasetId}`}
         >
           {"{↗}"}
         </a>
