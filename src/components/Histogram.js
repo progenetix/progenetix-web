@@ -20,7 +20,7 @@ export function SubsetHistogram({
   id,
   filter,
   scope,
-  datasetsIds,
+  datasetIds,
   size: givenSize,
   background = false
 }) {
@@ -31,7 +31,7 @@ export function SubsetHistogram({
     <div ref={componentRef}>
       <Histogram
         dataEffect={useSubsethistogram({
-          datasetsIds,
+          datasetIds,
           id,
           filter,
           scope,
