@@ -7,7 +7,6 @@ import parametersConfig from "../../../config/beacon-plus/parameters.yaml"
 import Panel from "../../components/Panel"
 import { FaSlidersH } from "react-icons/fa"
 import { Loader } from "../../components/Loader"
-import { Layout } from "../../components/layouts/Layout"
 import Nav from "./Nav"
 
 export default function BeaconPlusPage() {
