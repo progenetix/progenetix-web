@@ -11,26 +11,26 @@ import PropTypes from "prop-types"
 import biosubsetsConfig from "./config.yaml"
 import { SubsetHistogram } from "../../components/Histogram"
 
-function useConfigSelect(config, initialValue) {
-  function makeEntries() {
-    let configEntries = Object.entries(config)
-    if (initialValue && !configEntries.find(([c]) => c === initialValue)) {
-      configEntries = [
-        [initialValue, { label: initialValue }],
-        ...configEntries
-      ]
-    }
-    return configEntries
+const makeEntries = (config, initialValue) => {
+  let configEntries = Object.entries(config)
+  if (initialValue && !configEntries.find(([c]) => c === initialValue)) {
+    configEntries = [[initialValue, { label: initialValue }], ...configEntries]
   }
+  return configEntries
+}
 
-  let configEntries = makeEntries()
+function useConfigSelect(config, initialValue) {
+  const configEntries = useMemo(() => makeEntries(config, initialValue), [
+    config,
+    initialValue
+  ])
   const [selected, setSelected] = useState(configEntries[0][0])
 
   // refresh state if initial values (from url) changes
-  useEffect(() => setSelected(configEntries[0][0]), [
-    initialValue,
-    configEntries
-  ])
+  useEffect(() => {
+    setSelected(configEntries[0][0])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialValue])
 
   const options = configEntries.map(([k, v]) => (
     <option key={k}>{v.label}</option>
