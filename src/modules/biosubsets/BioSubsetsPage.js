@@ -333,7 +333,11 @@ function NodeChildren({
   dispatch,
   collapsedOverrides
 }) {
-  return nodeChildren.map((node, idx) => {
+  const [children, setChildren] = useState([])
+  useEffect(() => {
+    setTimeout(() => setChildren(nodeChildren), 5)
+  }, [nodeChildren])
+  return children.map((node, idx) => {
     const depth = node.path.length - 2 // 2 because 1 is the tree fake "root"
     const nodeKey = makeNodeKey(node)
     const groupCollapsedOverride = collapsedOverrides[nodeKey]
