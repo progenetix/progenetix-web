@@ -1,15 +1,9 @@
 import { useBioSubsets } from "../../hooks/api"
 import { Loader } from "../../components/Loader"
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useReducer,
-  useState
-} from "react"
+import React, { useEffect, useMemo, useReducer, useState } from "react"
 import { withQuery } from "../../hooks/query"
 import { Layout } from "../../components/layouts/Layout"
-import { sortBy } from "lodash"
+import { sortBy, isEqual } from "lodash"
 import { getOrMakeChild, getOrMakeNode } from "./tree"
 import cn from "classnames"
 import { FaAngleDown, FaAngleRight } from "react-icons/fa"
@@ -117,13 +111,11 @@ function SubsetsLoader({ filters, datasetIds }) {
 
 function SubsetsResponse({ response, datasetIds }) {
   const isDetailPage = response.length === 1
-  const subsetById = useMemo(() =>
-    Object.fromEntries(
-      response.map((subset) => [subset.id, subset]),
-      [response]
-    )
-  )
   // memoize response computing
+  const subsetById = useMemo(
+    () => Object.fromEntries(response.map((subset) => [subset.id, subset])),
+    [response]
+  )
   const tree = useMemo(
     () =>
       isDetailPage
@@ -132,14 +124,20 @@ function SubsetsResponse({ response, datasetIds }) {
     [response, subsetById, isDetailPage]
   )
   const [state, dispatch] = useReducer(reducer, initialState)
-  const isCollapsedByPath = useCallback(mkIsCollapsedByPath(state), [state])
-  const checkedSubsets = useMemo(() =>
-    Object.entries(state.checked).map(
-      ([id]) => {
+  const checkIsCollapsed = useMemo(
+    () =>
+      mkIsCollapsedByPath({
+        defaultState: state.defaultState,
+        defaultExpandedLevel: state.defaultExpandedLevel
+      }),
+    [state.defaultState, state.defaultExpandedLevel]
+  )
+  const checkedSubsets = useMemo(
+    () =>
+      Object.entries(state.checked).map(([id]) => {
         return subsetById[id]
-      },
-      [state.checked, subsetById]
-    )
+      }),
+    [state.checked, subsetById]
   )
   const hasCheckedSubsets = checkedSubsets.length > 0
   const selectSamplesHref =
@@ -185,7 +183,8 @@ function SubsetsResponse({ response, datasetIds }) {
         <SubsetsTree
           tree={tree}
           datasetIds={datasetIds}
-          isCollapsedByPath={isCollapsedByPath}
+          checkIsCollapsed={checkIsCollapsed}
+          collapsedOverrides={state.overrides}
           defaultExpandedLevel={state.defaultExpandedLevel}
           dispatch={dispatch}
         />
@@ -239,21 +238,25 @@ function reducer(state, { type, payload }) {
           checked: { ...state.checked, [payload.id]: true }
         }
       } else {
-        const newState = { ...state }
-        delete newState.checked[payload.id]
-        return newState
+        const { [payload.id]: omit, ...otherChecked } = state.checked
+        return {
+          ...state,
+          checked: otherChecked
+        }
       }
     default:
       throw new Error()
   }
 }
 
-const mkIsCollapsedByPath = (state) => (path) => {
-  const override = state.overrides[path.join(".")]
+const mkIsCollapsedByPath = ({ defaultState, defaultExpandedLevel }) => (
+  override,
+  depth
+) => {
   if (override != null) return override === "collapsed"
-  if (state.defaultState === "expanded") {
-    const depth = path.length - 2 // 2 because 1 is the tree fake "root"
-    return depth > state.defaultExpandedLevel
+  if (defaultState === "expanded") {
+    // const depth = path.length - 2 // 2 because 1 is the tree fake "root"
+    return depth > defaultExpandedLevel
   } else {
     return true
   }
@@ -263,8 +266,9 @@ function SubsetsTree({
   tree,
   datasetIds,
   dispatch,
-  isCollapsedByPath,
-  defaultExpandedLevel
+  checkIsCollapsed,
+  defaultExpandedLevel,
+  collapsedOverrides
 }) {
   let headers = (
     <tr>
@@ -309,10 +313,11 @@ function SubsetsTree({
           <thead>{headers}</thead>
           <tbody>
             <NodeChildren
-              isCollapsedByPath={isCollapsedByPath}
-              nodeChildren={tree.children}
+              checkIsCollapsed={checkIsCollapsed}
+              nodeChildren={tree.children} // we ignore the "root"
               dispatch={dispatch}
               datasetIds={datasetIds}
+              collapsedOverrides={collapsedOverrides}
             />
           </tbody>
         </table>
@@ -322,36 +327,52 @@ function SubsetsTree({
 }
 
 function NodeChildren({
-  isCollapsedByPath,
+  checkIsCollapsed,
   nodeChildren,
   datasetIds,
-  dispatch
+  dispatch,
+  collapsedOverrides
 }) {
   return nodeChildren.map((node, idx) => {
     const depth = node.path.length - 2 // 2 because 1 is the tree fake "root"
-    const groupCollapsed = isCollapsedByPath(node.path)
+    const nodeKey = makeNodeKey(node)
+    const groupCollapsedOverride = collapsedOverrides[nodeKey]
+    const isGroupCollapsed = checkIsCollapsed(groupCollapsedOverride, depth)
+    // we are filtering the interresting overrides for the children.
+    // this is an optimisation to avoid the whole re-rendering of the tree.
+    const overridesForChildren = Object.fromEntries(
+      Object.entries(collapsedOverrides).filter(([key]) => {
+        return key.includes(nodeKey)
+      })
+    )
+
     return (
-      <SubsetNode
+      <MemoizedSubsetNode
         key={idx}
         node={node}
-        groupCollapsed={groupCollapsed}
+        groupCollapsed={isGroupCollapsed}
         dispatch={dispatch}
         depth={depth}
         datasetIds={datasetIds}
-        isCollapsedByPath={isCollapsedByPath}
+        checkIsCollapsed={checkIsCollapsed}
+        collapsedOverrides={overridesForChildren}
       />
     )
   })
 }
 
-const SubsetNode = ({
+// Need deep compare (isEqual) because collapsedOverrides wont be equals after filterring
+const MemoizedSubsetNode = React.memo(SubsetNode, isEqual)
+
+function SubsetNode({
   node,
   dispatch,
   groupCollapsed,
   depth,
   datasetIds,
-  isCollapsedByPath
-}) => {
+  checkIsCollapsed,
+  collapsedOverrides
+}) {
   return (
     <>
       <MemoizedRow
@@ -363,10 +384,11 @@ const SubsetNode = ({
       />
       {!groupCollapsed && node.children && (
         <NodeChildren
-          isCollapsedByPath={isCollapsedByPath}
+          checkIsCollapsed={checkIsCollapsed}
           nodeChildren={node.children}
           dispatch={dispatch}
           datasetIds={datasetIds}
+          collapsedOverrides={collapsedOverrides}
         />
       )}
     </>
@@ -381,9 +403,14 @@ SubsetNode.propTypes = {
 }
 
 const MemoizedRow = React.memo(Row)
+
+function makeNodeKey(node) {
+  return node.path.join(".")
+}
+
 function Row({ node, dispatch, collapsed, depth, datasetIds }) {
   const { name, subset, children } = node
-  const key = node.path.join(".")
+  const key = makeNodeKey(node)
   const marginLeft = `${depth * 20}px`
   return (
     <tr>
