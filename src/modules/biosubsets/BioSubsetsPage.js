@@ -1,6 +1,12 @@
 import { useBioSubsets } from "../../hooks/api"
 import { Loader } from "../../components/Loader"
-import React, { useCallback, useMemo, useReducer, useState } from "react"
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useReducer,
+  useState
+} from "react"
 import { withQuery } from "../../hooks/query"
 import { Layout } from "../../components/layouts/Layout"
 import { sortBy } from "lodash"
@@ -12,12 +18,26 @@ import biosubsetsConfig from "./config.yaml"
 import { SubsetHistogram } from "../../components/Histogram"
 
 function useConfigSelect(config, initialValue) {
-  let configEntries = Object.entries(config)
-  if (initialValue && !configEntries.find(([c]) => c === initialValue)) {
-    configEntries = [[initialValue, { label: initialValue }], ...configEntries]
+  function makeEntries() {
+    let configEntries = Object.entries(config)
+    if (initialValue && !configEntries.find(([c]) => c === initialValue)) {
+      configEntries = [
+        [initialValue, { label: initialValue }],
+        ...configEntries
+      ]
+    }
+    return configEntries
   }
-  const defaultSelected = initialValue || configEntries[0][0]
-  const [selected, setSelected] = useState(defaultSelected)
+
+  let configEntries = makeEntries()
+  const [selected, setSelected] = useState(configEntries[0][0])
+
+  // refresh state if initial values (from url) changes
+  useEffect(() => setSelected(configEntries[0][0]), [
+    initialValue,
+    configEntries
+  ])
+
   const options = configEntries.map(([k, v]) => (
     <option key={k}>{v.label}</option>
   ))
