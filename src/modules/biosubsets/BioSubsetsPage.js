@@ -333,10 +333,14 @@ function NodeChildren({
   dispatch,
   collapsedOverrides
 }) {
+  // We want to render the children async to not block the UI.
+  // This is not ideal at all and the proper way to do it would be to use something like
+  // react-window, which is not trivial.
   const [children, setChildren] = useState([])
   useEffect(() => {
     setTimeout(() => setChildren(nodeChildren), 5)
   }, [nodeChildren])
+
   return children.map((node, idx) => {
     const depth = node.path.length - 2 // 2 because 1 is the tree fake "root"
     const nodeKey = makeNodeKey(node)
