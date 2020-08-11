@@ -39,9 +39,10 @@ const BioSubsetsPage = withQuery(({ urlQuery }) => {
     setSelected: setSelectedDatasetIds,
     options: datasetIdsOptions
   } = useConfigSelect(biosubsetsConfig.datasetIds, urlQuery.datasetIds)
+
   return (
     <Layout title="Subsets" headline="Subsets">
-      <div className="level">
+      <div className="level mb-6">
         <div className="level-left">
           <div className="level-item">
             <p>Filters:</p>
@@ -96,10 +97,34 @@ function SubsetsLoader({ filters, datasetIds }) {
 
 function SubsetsResponse({ response, datasetIds }) {
   const isDetailPage = response.length === 1
+  const subsetById = useMemo(() =>
+    Object.fromEntries(
+      response.map((subset) => [subset.id, subset]),
+      [response]
+    )
+  )
   // memoize response computing
-  const tree = isDetailPage
-    ? useMemo(() => buildTreeForDetails(response), [response])
-    : useMemo(() => buildTree(response), [response])
+  const tree = useMemo(
+    () =>
+      isDetailPage
+        ? buildTreeForDetails(response, subsetById)
+        : buildTree(response, subsetById),
+    [response, subsetById, isDetailPage]
+  )
+  const [state, dispatch] = useReducer(reducer, initialState)
+  const isCollapsedByPath = useCallback(mkIsCollapsedByPath(state), [state])
+  const checkedSubsets = useMemo(() =>
+    Object.entries(state.checked).map(
+      ([id]) => {
+        return subsetById[id]
+      },
+      [state.checked, subsetById]
+    )
+  )
+  const hasCheckedSubsets = checkedSubsets.length > 0
+  const selectSamplesHref =
+    hasCheckedSubsets &&
+    sampleSelectUrl({ subsets: checkedSubsets, datasetIds })
   let histogram
   if (isDetailPage) {
     histogram = (
@@ -115,11 +140,36 @@ function SubsetsResponse({ response, datasetIds }) {
       </div>
     )
   }
-
   return (
     <div>
       {histogram}
-      <SubsetsTree tree={tree} datasetIds={datasetIds} />
+      <div className="BioSubsets__sample-selection">
+        <a
+          className="button is-info mb-3"
+          disabled={!hasCheckedSubsets}
+          href={selectSamplesHref || ""}
+          rel="noreferrer"
+          target="_BLANK"
+        >
+          Select Samples from checked Subsets
+        </a>
+        <ul className="tags">
+          {checkedSubsets.map((subset) => (
+            <li className="tag" key={subset.id}>
+              {subset.label} ({subset.child_terms?.length + 1})
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="BioSubsets__tree">
+        <SubsetsTree
+          tree={tree}
+          datasetIds={datasetIds}
+          isCollapsedByPath={isCollapsedByPath}
+          defaultExpandedLevel={state.defaultExpandedLevel}
+          dispatch={dispatch}
+        />
+      </div>
     </div>
   )
 }
@@ -166,11 +216,11 @@ function reducer(state, { type, payload }) {
       if (payload.checked) {
         return {
           ...state,
-          checked: { ...state.checked, [payload.key]: payload.checked }
+          checked: { ...state.checked, [payload.id]: true }
         }
       } else {
         const newState = { ...state }
-        delete newState.checked[payload.key]
+        delete newState.checked[payload.id]
         return newState
       }
     default:
@@ -189,10 +239,13 @@ const mkIsCollapsedByPath = (state) => (path) => {
   }
 }
 
-function SubsetsTree({ tree, datasetIds }) {
-  const [state, dispatch] = useReducer(reducer, initialState)
-  const isCollapsedByPath = useCallback(mkIsCollapsedByPath(state), [state])
-  console.log(state)
+function SubsetsTree({
+  tree,
+  datasetIds,
+  dispatch,
+  isCollapsedByPath,
+  defaultExpandedLevel
+}) {
   let headers = (
     <tr>
       <th />
@@ -217,7 +270,7 @@ function SubsetsTree({ tree, datasetIds }) {
         </div>
         <span className="select is-small">
           <select
-            value={state.defaultExpandedLevel}
+            value={defaultExpandedLevel}
             onChange={(event) =>
               dispatch({ type: "setLevel", payload: event.target.value })
             }
@@ -232,7 +285,7 @@ function SubsetsTree({ tree, datasetIds }) {
         </span>
       </div>
       <div className="table-container">
-        <table className="table is-striped is-fullwidth">
+        <table className="table is-striped is-fullwidth is-bordered">
           <thead>{headers}</thead>
           <tbody>
             <NodeChildren
@@ -320,7 +373,7 @@ function Row({ node, dispatch, collapsed, depth, datasetIds }) {
             onChange={(e) =>
               dispatch({
                 type: "checkboxClicked",
-                payload: { key, checked: e.target.checked }
+                payload: { id: node.subset.id, checked: e.target.checked }
               })
             }
             type="checkbox"
@@ -366,10 +419,7 @@ function Expander({ collapsed, dispatch, nodeKey }) {
   )
 }
 
-export function buildTree(response) {
-  const subsetById = Object.fromEntries(
-    response.map((subset) => [subset.id, subset])
-  )
+export function buildTree(response, subsetById) {
   const hierarchyPaths = response.flatMap((subset) => subset.hierarchy_paths)
   const sortedHierarchyPaths = sortBy(hierarchyPaths, [
     function (p) {
@@ -400,4 +450,12 @@ export function buildTreeForDetails(response) {
     if (subset.id !== c) getOrMakeChild(node, c)
   })
   return tree
+}
+
+function sampleSelectUrl({ subsets, datasetIds }) {
+  const samples = subsets
+    .flatMap((subset) => [subset.id, ...subset.child_terms])
+    .join(",")
+
+  return `https://progenetix.org/cgi-bin/pgx_biosamples.cgi?biosamples-biocharacteristics-type-id=${samples}&datasetIds=${datasetIds}`
 }

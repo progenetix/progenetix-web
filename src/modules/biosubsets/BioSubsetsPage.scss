@@ -1,0 +1,22 @@
+.Subset__info {
+  display: flex;
+}
+
+.BioSubsets__tree {
+  margin-bottom: 3rem;
+}
+
+.BioSubsets__controls {
+  display: flex;
+  & > * {
+    margin-right: 0.5rem;
+  }
+  margin-bottom: 1rem;
+}
+
+.BioSubsets__sample-selection {
+  margin-bottom: 2rem;
+  .tags {
+    min-height: 26px;
+  }
+}
