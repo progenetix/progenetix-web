@@ -8,8 +8,8 @@ export default function ControlledSelect({
   watch,
   setValue,
   register,
-  rules = {},
-  options = [],
+  rules,
+  options,
   className,
   ...selectProps
 }) {
@@ -30,7 +30,7 @@ export default function ControlledSelect({
         setValue(name, [defaultValue])
       }
     }
-  }, [defaultValue, name, register, rules, setValue])
+  }, [defaultValue, name, rules, register, setValue])
 
   const handleChange = (v) => {
     let value

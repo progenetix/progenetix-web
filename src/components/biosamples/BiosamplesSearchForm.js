@@ -114,12 +114,6 @@ export function BiosamplesSearchForm({
 
   // shortcuts
   const fieldProps = { errors, register }
-  const selectProps = {
-    ...fieldProps,
-    setValue,
-    watch
-  }
-
   return (
     <Loader
       hasError={datasetsError}
@@ -161,15 +155,54 @@ export function BiosamplesSearchForm({
                 />
               )}
               <form onSubmit={handleSubmit(onSubmit)}>
-                <SelectField {...parameters.datasetIds} {...selectProps} />
-                <SelectField {...parameters.assemblyId} {...selectProps} />
+                <SelectField
+                  {...parameters.datasetIds}
+                  {...{
+                    ...fieldProps,
+                    setValue,
+                    watch
+                  }}
+                />
+                <SelectField
+                  {...parameters.assemblyId}
+                  {...{
+                    ...fieldProps,
+                    setValue,
+                    watch
+                  }}
+                />
                 <SelectField
                   {...parameters.includeDatasetResonses}
-                  {...selectProps}
+                  {...{
+                    ...fieldProps,
+                    setValue,
+                    watch
+                  }}
                 />
-                <SelectField {...parameters.requestType} {...selectProps} />
-                <SelectField {...parameters.referenceName} {...selectProps} />
-                <SelectField {...parameters.variantType} {...selectProps} />
+                <SelectField
+                  {...parameters.requestType}
+                  {...{
+                    ...fieldProps,
+                    setValue,
+                    watch
+                  }}
+                />
+                <SelectField
+                  {...parameters.referenceName}
+                  {...{
+                    ...fieldProps,
+                    setValue,
+                    watch
+                  }}
+                />
+                <SelectField
+                  {...parameters.variantType}
+                  {...{
+                    ...fieldProps,
+                    setValue,
+                    watch
+                  }}
+                />
                 <InputField
                   {...fieldProps}
                   {...parameters.start}
@@ -188,10 +221,21 @@ export function BiosamplesSearchForm({
                 <InputField {...fieldProps} {...parameters.alternateBases} />
                 <SelectField
                   {...parameters.bioontology}
-                  {...selectProps}
+                  {...{
+                    ...fieldProps,
+                    setValue,
+                    watch
+                  }}
                   isLoading={!filteringTerms && !filteringTermsError}
                 />
-                <SelectField {...parameters.materialtype} {...selectProps} />
+                <SelectField
+                  {...parameters.materialtype}
+                  {...{
+                    ...fieldProps,
+                    setValue,
+                    watch
+                  }}
+                />
                 <InputField {...parameters.freeFilters} {...fieldProps} />
                 <div className="field mt-5">
                   <div className="control">

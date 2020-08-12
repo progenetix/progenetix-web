@@ -6,7 +6,7 @@ import React from "react"
 export default function CustomSelect({
   value,
   onChange,
-  options = [],
+  options,
   className,
   useWindowList = true, // Required for big list for performance reasons
   ...selectProps
