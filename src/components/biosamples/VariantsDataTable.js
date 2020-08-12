@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Loader } from "../../components/Loader"
-import Table from "../../components/Table"
+import { Loader } from "../Loader"
+import Table from "../Table"
 import { useExtendedSWR } from "../../hooks/api"
 
 export default function VariantsDataTable({ url }) {

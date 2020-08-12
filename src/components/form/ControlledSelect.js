@@ -30,7 +30,7 @@ export default function ControlledSelect({
         setValue(name, [defaultValue])
       }
     }
-  }, [register])
+  }, [defaultValue, name, register, rules, setValue])
 
   const handleChange = (v) => {
     let value

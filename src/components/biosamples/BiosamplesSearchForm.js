@@ -7,25 +7,25 @@ import {
 import React, { useState } from "react"
 import { markdownToReact } from "../../utils/md"
 import { useForm } from "react-hook-form"
-import { Loader } from "../../components/Loader"
+import { Loader } from "../Loader"
 import {
-  CytoBandsControlPanel,
-  FormControlsButtons,
-  GeneSpansControlPanel,
-  useFormControlPanels
-} from "./FormControls"
+  CytoBandsUtility,
+  FormUtilitiesButtons,
+  GeneSpansUtility,
+  useFormUtilities
+} from "./BiosamplesFormUtilities"
 import PropTypes from "prop-types"
-import SelectField from "../../components/form/SelectField"
-import InputField from "../../components/form/InputField"
+import SelectField from "../form/SelectField"
+import InputField from "../form/InputField"
 
-BeaconForm.propTypes = {
+BiosamplesSearchForm.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   onValidFormQuery: PropTypes.func.isRequired,
   requestTypesConfig: PropTypes.object.isRequired,
   parametersConfig: PropTypes.object.isRequired
 }
 
-export function BeaconForm({
+export function BiosamplesSearchForm({
   isLoading,
   onValidFormQuery,
   requestTypesConfig,
@@ -66,7 +66,7 @@ export function BeaconForm({
     geneSpansPanelOpen,
     onGeneSpansClick,
     onGeneSpansCloseClick
-  } = useFormControlPanels()
+  } = useFormUtilities()
 
   function handleRequestTypeClicked(requestTypeId) {
     setExample(null)
@@ -142,20 +142,20 @@ export function BeaconForm({
               />
               <ExampleDescription example={example} />
               <RequestTypeDescription requestConfig={requestTypeConfig} />
-              <FormControlsButtons
+              <FormUtilitiesButtons
                 onCytoBandClick={onCytoBandClick}
                 cytoBandPanelOpen={cytoBandPanelOpen}
                 onGeneSpansClick={onGeneSpansClick}
                 geneSpansPanelOpen={geneSpansPanelOpen}
               />
               {cytoBandPanelOpen && (
-                <CytoBandsControlPanel
+                <CytoBandsUtility
                   onClose={onCytoBandCloseClick}
                   setFormValue={setValue}
                 />
               )}
               {geneSpansPanelOpen && (
-                <GeneSpansControlPanel
+                <GeneSpansUtility
                   onClose={onGeneSpansCloseClick}
                   setFormValue={setValue}
                 />

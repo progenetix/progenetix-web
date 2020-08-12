@@ -7,7 +7,7 @@ export function useGlobalLoading(fetchEffect, loadingKey) {
   const { data, error, isLoading } = fetchEffect()
   useEffect(() => {
     loadingCtx?.setIsLoading(loadingKey, isLoading)
-  }, [isLoading])
+  }, [isLoading, loadingCtx, loadingKey])
   return { data, error }
 }
 

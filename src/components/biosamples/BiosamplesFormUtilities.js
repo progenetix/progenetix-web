@@ -1,19 +1,19 @@
 import { useAsyncSelect } from "../../hooks/asyncSelect"
 import { useCytomapper, useGeneSpans } from "../../hooks/api"
-import CustomSelect from "../../components/Select"
+import CustomSelect from "../Select"
 import React, { useState } from "react"
 import PropTypes from "prop-types"
 import cn from "classnames"
 import { FaCogs } from "react-icons/fa"
 
-FormControlsButtons.propTypes = {
+FormUtilitiesButtons.propTypes = {
   onGeneSpansClick: PropTypes.func.isRequired,
   geneSpansPanelOpen: PropTypes.bool.isRequired,
   onCytoBandClick: PropTypes.func.isRequired,
   cytoBandPanelOpen: PropTypes.bool.isRequired
 }
 
-export function useFormControlPanels() {
+export function useFormUtilities() {
   const [cytoBandPanelOpen, setCytoBandPanelOpen] = useState(false)
   const [geneSpansPanelOpen, setgeneSpansPanelOpen] = useState(false)
   const onCytoBandClick = () => {
@@ -37,7 +37,7 @@ export function useFormControlPanels() {
   }
 }
 
-export function FormControlsButtons({
+export function FormUtilitiesButtons({
   onGeneSpansClick,
   geneSpansPanelOpen,
   onCytoBandClick,
@@ -76,7 +76,7 @@ function useGenSpanSelect(inputValue) {
   return { data, error, options }
 }
 
-export function GeneSpansControlPanel({ onClose, setFormValue }) {
+export function GeneSpansUtility({ onClose, setFormValue }) {
   const onApply = (optionValue) => {
     setFormValue("start", optionValue.cds_start_min)
     setFormValue("referenceName", optionValue.reference_name)
@@ -93,7 +93,7 @@ export function GeneSpansControlPanel({ onClose, setFormValue }) {
     </div>
   )
   return (
-    <FormControlPanel
+    <FormUtility
       label="Gene Spans"
       selectEffect={useGenSpanSelect}
       onApplyClick={onApply}
@@ -103,7 +103,7 @@ export function GeneSpansControlPanel({ onClose, setFormValue }) {
   )
 }
 
-GeneSpansControlPanel.propTypes = {
+GeneSpansUtility.propTypes = {
   onClose: PropTypes.func.isRequired,
   setFormValue: PropTypes.func.isRequired
 }
@@ -117,7 +117,7 @@ function useCytoBandsSelect(inputValue) {
   return { data, error, options }
 }
 
-export function CytoBandsControlPanel({ onClose, setFormValue }) {
+export function CytoBandsUtility({ onClose, setFormValue }) {
   const onApply = (optionValue) => {
     // TODO
     setFormValue(optionValue.todo)
@@ -130,7 +130,7 @@ export function CytoBandsControlPanel({ onClose, setFormValue }) {
   )
   return (
     <div>
-      <FormControlPanel
+      <FormUtility
         label="Cytoband(s)"
         selectEffect={useCytoBandsSelect}
         onApplyClick={onApply}
@@ -141,12 +141,12 @@ export function CytoBandsControlPanel({ onClose, setFormValue }) {
   )
 }
 
-CytoBandsControlPanel.propTypes = {
+CytoBandsUtility.propTypes = {
   onClose: PropTypes.func.isRequired,
   setFormValue: PropTypes.func.isRequired
 }
 
-FormControlPanel.propTypes = {
+FormUtility.propTypes = {
   label: PropTypes.string.isRequired,
   selectEffect: PropTypes.func.isRequired,
   renderValue: PropTypes.func.isRequired,
@@ -154,7 +154,7 @@ FormControlPanel.propTypes = {
   onCloseClick: PropTypes.func.isRequired
 }
 
-function FormControlPanel({
+function FormUtility({
   label,
   selectEffect,
   renderValue,

@@ -1,4 +1,4 @@
-import { checkIntegerRange } from "./BeaconForm"
+import { checkIntegerRange } from "./BiosamplesSearchForm"
 
 test("checkIntegerRange", () => {
   expect(checkIntegerRange("1")).toBeFalsy()

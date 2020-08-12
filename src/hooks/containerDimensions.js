@@ -1,15 +1,17 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { debounce } from "lodash"
 
 export const useContainerDimensions = (
   ref,
   { updateOnResize = true, debounceWait = 1000 } = {}
 ) => {
-  const getDimensions = () => ({
-    width: ref.current?.offsetWidth,
-    height: ref.current?.offsetHeight
-  })
-
+  const getDimensions = useCallback(
+    () => ({
+      width: ref.current?.offsetWidth,
+      height: ref.current?.offsetHeight
+    }),
+    [ref]
+  )
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
 
   useEffect(() => {
@@ -25,7 +27,7 @@ export const useContainerDimensions = (
     return () => {
       updateOnResize && window.removeEventListener("resize", handleResize)
     }
-  }, [ref])
+  }, [debounceWait, getDimensions, ref, updateOnResize])
 
   return dimensions
 }

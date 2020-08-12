@@ -6,7 +6,7 @@ import cn from "classnames"
 import BiosamplesDataTable from "./BiosamplesDataTable"
 import VariantsDataTable from "./VariantsDataTable"
 import { useContainerDimensions } from "../../hooks/containerDimensions"
-import Histogram from "../../components/Histogram"
+import Histogram from "../Histogram"
 import { svgFetcher } from "../../hooks/fetcher"
 
 const handoversInTab = [
