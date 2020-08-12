@@ -79,11 +79,6 @@ function Side({ onClick }) {
             </>
           }
         />
-        <li>
-          <MenuLink href="https://info.progenetix.org/cgi-bin/pgx_biosamples.cgi?project=progenetix&amp;datasetIds=progenetix&amp;genome=GRCh38">
-            Search Samples
-          </MenuLink>
-        </li>
       </ul>
     </div>
   )
