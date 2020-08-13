@@ -19,7 +19,8 @@ export default function InputField({
   isHidden,
   errors,
   register,
-  rules
+  rules,
+  defaultValue
 }) {
   const help = errors[name]?.message
   return (
@@ -35,6 +36,7 @@ export default function InputField({
             ref={register(rules)}
             type="text"
             placeholder={placeholder}
+            defaultValue={defaultValue}
           />
         </p>
         {help && <p className="help is-danger">{help}</p>}

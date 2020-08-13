@@ -4,7 +4,7 @@ import {
   useDatasets,
   useFilteringTerms
 } from "../../hooks/api"
-import React, { useState } from "react"
+import React, { useMemo, useState } from "react"
 import { markdownToReact } from "../../utils/md"
 import { useForm } from "react-hook-form"
 import { Loader } from "../Loader"
@@ -17,16 +17,50 @@ import {
 import PropTypes from "prop-types"
 import SelectField from "../form/SelectField"
 import InputField from "../form/InputField"
+import _ from "lodash"
+import useDeepCompareEffect from "use-deep-compare-effect"
 
 BiosamplesSearchForm.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
+  isQuerying: PropTypes.bool.isRequired,
   onValidFormQuery: PropTypes.func.isRequired,
   requestTypesConfig: PropTypes.object.isRequired,
   parametersConfig: PropTypes.object.isRequired
 }
 
 export function BiosamplesSearchForm({
-  isLoading,
+  isQuerying,
+  onValidFormQuery,
+  requestTypesConfig,
+  parametersConfig
+}) {
+  const {
+    data: datasets,
+    error: datasetsError,
+    isLoading: datasetIsLoading
+  } = useSelectDatasets()
+  return (
+    <Loader
+      hasError={datasetsError}
+      isLoading={datasetIsLoading}
+      loadingMessage="Loading datasets..."
+      errorMessage="Could not load datasets"
+    >
+      {() => (
+        <Form
+          datasets={datasets}
+          isQuerying={isQuerying}
+          onValidFormQuery={onValidFormQuery}
+          requestTypesConfig={requestTypesConfig}
+          parametersConfig={parametersConfig}
+        />
+      )}
+    </Loader>
+  )
+}
+
+export function Form({
+  datasets,
+  isQuerying,
   onValidFormQuery,
   requestTypesConfig,
   parametersConfig
@@ -36,8 +70,18 @@ export function BiosamplesSearchForm({
   )
   const requestTypeConfig = requestTypesConfig[requestTypeId]
 
-  // merge base parameters config and request config
-  const parameters = mergeParameters(parametersConfig, requestTypeConfig)
+  const [example, setExample] = useState(null)
+  let parameters = useMemo(
+    () =>
+      makeParameters(parametersConfig, requestTypeConfig, example, datasets),
+    [datasets, example, parametersConfig, requestTypeConfig]
+  )
+
+  const defaultValues = _.transform(parameters, (r, v, k) => {
+    r[k] = v.defaultValue ?? null
+  })
+
+  useDeepCompareEffect(() => reset(defaultValues), [defaultValues])
 
   const {
     register,
@@ -47,17 +91,18 @@ export function BiosamplesSearchForm({
     setError,
     setValue,
     clearErrors,
-    watch
-  } = useForm(parameters)
-
-  const { data: datasets, error: datasetsError } = useSelectDatasets()
+    watch,
+    control
+  } = useForm({ defaultValues })
 
   const {
     data: filteringTerms,
     error: filteringTermsError
   } = useSelectFilteringTerms(watch)
 
-  const [example, setExample] = useState(null)
+  parameters = _.merge({}, parameters, {
+    bioontology: { options: filteringTerms }
+  })
 
   const {
     cytoBandPanelOpen,
@@ -68,193 +113,97 @@ export function BiosamplesSearchForm({
     onGeneSpansCloseClick
   } = useFormUtilities()
 
-  function handleRequestTypeClicked(requestTypeId) {
-    setExample(null)
-    const newParams = Object.fromEntries(
-      Object.entries(
-        requestTypesConfig[requestTypeId].parameters
-      ).map(([k, v]) => [k, v?.value])
-    )
-    reset(newParams)
-    setRequestTypeId(requestTypeId)
-  }
-
-  function handleExampleClicked(example) {
-    setExample(example)
-    Object.entries(example.parameters).forEach(([k, parameter]) => {
-      if ("value" in parameter) {
-        setValue(k, parameter.value)
-      }
-    })
-  }
-
-  function onSubmit(formValues) {
-    clearErrors()
-    // At this stage individual parameters are already validated.
-    const errors = validateForm(formValues)
-    if (errors.length > 0) {
-      errors.forEach(([name, error]) => setError(name, error))
-      return
-    }
-    onValidFormQuery(formValues)
-  }
-
-  parameters.datasetIds.options = datasets?.map(({ id: value, label }) => ({
-    label,
-    value
-  }))
-
-  parameters.bioontology.options = filteringTerms && [
-    ...parameters.bioontology.options,
-    ...filteringTerms.map(({ id: value, label }) => ({
-      value,
-      label
-    }))
-  ]
+  const onSubmit = onSubmitHandler(clearErrors, setError, onValidFormQuery)
 
   // shortcuts
   const fieldProps = { errors, register }
+  const selectProps = {
+    ...fieldProps,
+    control
+  }
   return (
-    <Loader
-      hasError={datasetsError}
-      isLoading={!datasets}
-      loadingMessage="Loading datasets..."
-      errorMessage="Could not load datasets"
-    >
-      {() => {
-        return (
-          <>
-            <Tabs
-              requestTypesConfig={requestTypesConfig}
-              requestType={requestTypeId}
-              onRequestTypeClicked={handleRequestTypeClicked}
-            />
-            <div>
-              <ExamplesButtons
-                handleExampleClicked={handleExampleClicked}
-                requestTypeConfig={requestTypeConfig}
-              />
-              <ExampleDescription example={example} />
-              <RequestTypeDescription requestConfig={requestTypeConfig} />
-              <FormUtilitiesButtons
-                onCytoBandClick={onCytoBandClick}
-                cytoBandPanelOpen={cytoBandPanelOpen}
-                onGeneSpansClick={onGeneSpansClick}
-                geneSpansPanelOpen={geneSpansPanelOpen}
-              />
-              {cytoBandPanelOpen && (
-                <CytoBandsUtility
-                  onClose={onCytoBandCloseClick}
-                  setFormValue={setValue}
-                />
-              )}
-              {geneSpansPanelOpen && (
-                <GeneSpansUtility
-                  onClose={onGeneSpansCloseClick}
-                  setFormValue={setValue}
-                />
-              )}
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <SelectField
-                  {...parameters.datasetIds}
-                  {...{
-                    ...fieldProps,
-                    setValue,
-                    watch
-                  }}
-                />
-                <SelectField
-                  {...parameters.assemblyId}
-                  {...{
-                    ...fieldProps,
-                    setValue,
-                    watch
-                  }}
-                />
-                <SelectField
-                  {...parameters.includeDatasetResonses}
-                  {...{
-                    ...fieldProps,
-                    setValue,
-                    watch
-                  }}
-                />
-                <SelectField
-                  {...parameters.requestType}
-                  {...{
-                    ...fieldProps,
-                    setValue,
-                    watch
-                  }}
-                />
-                <SelectField
-                  {...parameters.referenceName}
-                  {...{
-                    ...fieldProps,
-                    setValue,
-                    watch
-                  }}
-                />
-                <SelectField
-                  {...parameters.variantType}
-                  {...{
-                    ...fieldProps,
-                    setValue,
-                    watch
-                  }}
-                />
-                <InputField
-                  {...fieldProps}
-                  {...parameters.start}
-                  rules={{
-                    validate: checkIntegerRange
-                  }}
-                />
-                <InputField
-                  {...fieldProps}
-                  {...parameters.end}
-                  rules={{
-                    validate: checkIntegerRange
-                  }}
-                />
-                <InputField {...fieldProps} {...parameters.referenceBases} />
-                <InputField {...fieldProps} {...parameters.alternateBases} />
-                <SelectField
-                  {...parameters.bioontology}
-                  {...{
-                    ...fieldProps,
-                    setValue,
-                    watch
-                  }}
-                  isLoading={!filteringTerms && !filteringTermsError}
-                />
-                <SelectField
-                  {...parameters.materialtype}
-                  {...{
-                    ...fieldProps,
-                    setValue,
-                    watch
-                  }}
-                />
-                <InputField {...parameters.freeFilters} {...fieldProps} />
-                <div className="field mt-5">
-                  <div className="control">
-                    <button
-                      type="submit"
-                      className={cn("button", "is-primary", {
-                        "is-loading": isLoading
-                      })}
-                    >
-                      Beacon Query
-                    </button>
-                  </div>
-                </div>
-              </form>
+    <>
+      <Tabs
+        requestTypesConfig={requestTypesConfig}
+        requestType={requestTypeId}
+        onRequestTypeClicked={handleRequestTypeClicked(
+          setExample,
+          setRequestTypeId
+        )}
+      />
+      <div>
+        <ExamplesButtons
+          onExampleClicked={handleExampleClicked(setExample)}
+          requestTypeConfig={requestTypeConfig}
+        />
+        <ExampleDescription example={example} />
+        <RequestTypeDescription requestConfig={requestTypeConfig} />
+        <FormUtilitiesButtons
+          onCytoBandClick={onCytoBandClick}
+          cytoBandPanelOpen={cytoBandPanelOpen}
+          onGeneSpansClick={onGeneSpansClick}
+          geneSpansPanelOpen={geneSpansPanelOpen}
+        />
+        {cytoBandPanelOpen && (
+          <CytoBandsUtility
+            onClose={onCytoBandCloseClick}
+            setFormValue={setValue}
+          />
+        )}
+        {geneSpansPanelOpen && (
+          <GeneSpansUtility
+            onClose={onGeneSpansCloseClick}
+            setFormValue={setValue}
+          />
+        )}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <SelectField {...parameters.datasetIds} {...selectProps} />
+          <SelectField {...parameters.assemblyId} {...selectProps} />
+          <SelectField
+            {...parameters.includeDatasetResonses}
+            {...selectProps}
+          />
+          <SelectField {...parameters.requestType} {...selectProps} />
+          <SelectField {...parameters.referenceName} {...selectProps} />
+          <SelectField {...parameters.variantType} {...selectProps} />
+          <InputField
+            {...fieldProps}
+            {...parameters.start}
+            rules={{
+              validate: checkIntegerRange
+            }}
+          />
+          <InputField
+            {...fieldProps}
+            {...parameters.end}
+            rules={{
+              validate: checkIntegerRange
+            }}
+          />
+          <InputField {...fieldProps} {...parameters.referenceBases} />
+          <InputField {...fieldProps} {...parameters.alternateBases} />
+          <SelectField
+            {...parameters.bioontology}
+            {...selectProps}
+            isLoading={!filteringTerms && !filteringTermsError}
+          />
+          <SelectField {...parameters.materialtype} {...selectProps} />
+          <InputField {...parameters.freeFilters} {...fieldProps} />
+          <div className="field mt-5">
+            <div className="control">
+              <button
+                type="submit"
+                className={cn("button", "is-primary", {
+                  "is-loading": isQuerying
+                })}
+              >
+                Beacon Query
+              </button>
             </div>
-          </>
-        )
-      }}
-    </Loader>
+          </div>
+        </form>
+      </div>
+    </>
   )
 }
 
@@ -299,14 +248,14 @@ function RequestTypeDescription({ requestConfig }) {
   )
 }
 
-function ExamplesButtons({ requestTypeConfig, handleExampleClicked }) {
+function ExamplesButtons({ requestTypeConfig, onExampleClicked }) {
   return (
     <div className="buttons">
       {Object.entries(requestTypeConfig.examples || []).map(([id, value]) => (
         <button
           key={id}
           className="button is-light"
-          onClick={() => handleExampleClicked(value)}
+          onClick={() => onExampleClicked(value)}
         >
           {value.label}
         </button>
@@ -323,6 +272,41 @@ function ExampleDescription({ example }) {
       </div>
     </article>
   ) : null
+}
+
+function makeParameters(
+  parametersConfig,
+  requestTypeConfig,
+  example,
+  datasets
+) {
+  // merge base parameters config and request config
+  const mergedConfigs = _.merge(
+    {}, // important to not mutate the object
+    parametersConfig,
+    requestTypeConfig?.parameters,
+    example?.parameters ?? {}
+  )
+  // add name the list
+  let parameters = _.transform(mergedConfigs, (r, v, k) => {
+    r[k] = { name: k, ...v }
+  })
+
+  parameters = _.merge({}, parameters, { datasetIds: { options: datasets } })
+  return parameters
+}
+
+function onSubmitHandler(clearErrors, setError, onValidFormQuery) {
+  return (formValues) => {
+    clearErrors()
+    // At this stage individual parameters are already validated.
+    const errors = validateForm(formValues)
+    if (errors.length > 0) {
+      errors.forEach(([name, error]) => setError(name, error))
+      return
+    }
+    onValidFormQuery(formValues)
+  }
 }
 
 function validateForm(formValues) {
@@ -372,6 +356,17 @@ function validateForm(formValues) {
   return errors
 }
 
+const handleExampleClicked = (setExample) => (example) => {
+  setExample(example)
+}
+
+const handleRequestTypeClicked = (setExample, setRequestTypeId) => (
+  requestTypeId
+) => {
+  setExample(null)
+  setRequestTypeId(requestTypeId)
+}
+
 export const checkIntegerRange = (value) => {
   if (!value) return
   const match = INTEGER_RANGE_REGEX.exec(value)
@@ -383,42 +378,29 @@ export const checkIntegerRange = (value) => {
 
 // Maps datasets hook to data usable by DataFetchSelect
 function useSelectDatasets() {
-  const { data, error } = useDatasets()
+  const { data, ...other } = useDatasets()
   return {
     data:
       data &&
       data.datasets.map((value) => ({
-        id: value.id,
+        value: value.id,
         label: value.name
       })),
-    error
+    ...other
   }
 }
 
 // Maps FilteringTerms hook to data usable by DataFetchSelect
 function useSelectFilteringTerms(watchForm) {
   const datasetIds = watchForm("datasetIds")
-  const { data, error } = useFilteringTerms("NCIT,icdom", datasetIds)
+  const { data, ...other } = useFilteringTerms("NCIT,icdom", datasetIds)
   return {
     data:
       data &&
       data.filteringTerms.map((value) => ({
-        id: value.id,
+        value: value.id,
         label: `${value.id}: ${value.label} (${value.count})`
       })),
-    error
+    ...other
   }
-}
-
-function mergeParameters(parametersConfig, requestTypeConfig) {
-  return Object.fromEntries(
-    Object.entries(parametersConfig).map(([name, baseConfig]) => {
-      const config = {
-        name, // add the name to the config!
-        ...baseConfig,
-        ...(requestTypeConfig?.parameters?.[name] ?? {})
-      }
-      return [name, config]
-    })
-  )
 }

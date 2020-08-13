@@ -1,7 +1,8 @@
 import cn from "classnames"
-import ControlledSelect from "./ControlledSelect"
 import React from "react"
 import PropTypes from "prop-types"
+import CustomSelect from "../Select"
+import { Controller } from "react-hook-form"
 
 SelectField.propTypes = {
   name: PropTypes.string.isRequired,
@@ -9,8 +10,6 @@ SelectField.propTypes = {
   isHidden: PropTypes.bool,
   errors: PropTypes.object,
   register: PropTypes.func.isRequired,
-  watch: PropTypes.func.isRequired,
-  setValue: PropTypes.func.isRequired,
   rules: PropTypes.object
 }
 
@@ -19,10 +18,8 @@ export default function SelectField({
   label,
   isHidden,
   errors,
-  register,
-  watch,
-  setValue,
-  rules,
+  options,
+  control,
   ...selectProps
 }) {
   const help = errors[name]?.message
@@ -35,16 +32,40 @@ export default function SelectField({
     >
       <label className="label">{label}</label>
       <div className="control">
-        <ControlledSelect
+        <Controller
+          render={({ onChange, onBlur, value }) => {
+            return (
+              <CustomSelect
+                onBlur={onBlur}
+                onChange={(v) => onChange(selectToForm(v))}
+                value={formToSelect(value, options)}
+                options={options}
+                classNamePrefix="react-select"
+                {...selectProps}
+              />
+            )
+          }}
           name={name}
-          watch={watch}
-          setValue={setValue}
-          register={register}
-          rules={rules}
-          {...selectProps}
+          control={control}
         />
       </div>
       {help && <p className="help is-danger">{help}</p>}
     </div>
   )
+}
+
+function formToSelect(formValue, options) {
+  if (Array.isArray(formValue)) {
+    return options?.filter(({ value }) => value && formValue.includes(value))
+  } else {
+    return options?.filter(({ value }) => value && formValue === value)
+  }
+}
+
+function selectToForm(value) {
+  if (Array.isArray(value)) {
+    return value.map(({ value }) => value)
+  } else {
+    return value?.value ?? null
+  }
 }

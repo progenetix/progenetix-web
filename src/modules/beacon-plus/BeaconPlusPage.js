@@ -51,7 +51,7 @@ export default function BeaconPlusPage() {
             <BiosamplesSearchForm
               requestTypesConfig={requestTypesConfig}
               parametersConfig={parametersConfig}
-              isLoading={isLoading}
+              isQuerying={isLoading}
               onValidFormQuery={handleValidFormQuery}
             />
           </Panel>

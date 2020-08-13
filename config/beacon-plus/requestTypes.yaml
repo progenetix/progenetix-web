@@ -52,31 +52,31 @@ variantAlleleRequest:
         mutation in the EIF4A1 gene, in the DIPG childhood brain tumor dataset.
       parameters:
         datasetIds:
-          value: "dipg"
+          defaultValue: "dipg"
         includeDatasetResponses:
-          value: "ALL"
+          defaultValue: "ALL"
           isHidden: true
         assemblyId:
-          value: "GRCh38"
+          defaultValue: "GRCh38"
         geneinputField:
-          value: "EIF4A1"
+          defaultValue: "EIF4A1"
           isHidden: true
         cytoinputField:
-          value: ""
+          defaultValue: ""
         referenceName:
-          value: "17"
+          defaultValue: "17"
         start:
-          value: 7577121
+          defaultValue: 7577121
         end:
-          value: ""
+          defaultValue: ""
         variantType:
-          value: ""
+          defaultValue: ""
         alternateBases:
-          value: "A"
+          defaultValue: "A"
         referenceBases:
-          value: "G"
+          defaultValue: "G"
         freeFilters:
-          value: ""
+          defaultValue: ""
       ontology_queries:
         - "icdot-C71.7"
         - "NCIT"
@@ -89,35 +89,35 @@ variantAlleleRequest:
         mutation in the TP53 gene, in cellosaurus, with ClinVar data.
       parameters:
         datasetIds:
-          value: "cellosaurus"
+          defaultValue: "cellosaurus"
         includeDatasetResponses:
-          value: "ALL"
+          defaultValue: "ALL"
           isHidden: true
         assemblyId:
-          value: "GRCh38"
+          defaultValue: "GRCh38"
         geneinputField:
-          value: "TP53"
+          defaultValue: "TP53"
         cytoinputField:
-          value: "17p13.1"
+          defaultValue: "17p13.1"
         referenceName:
-          value: "17"
+          defaultValue: "17"
         start:
-          value: 7673767
+          defaultValue: 7673767
         endMin:
-          value: ""
+          defaultValue: ""
         end:
-          value: ""
+          defaultValue: ""
         variantType:
-          value: ""
+          defaultValue: ""
         alternateBases:
-          value: "T"
+          defaultValue: "T"
         referenceBases:
-          value: "C"
+          defaultValue: "C"
         materialtype:
-          value: ""
+          defaultValue: ""
           isHidden: true
         freeFilters:
-          value: ""
+          defaultValue: ""
       ontology_queries:
         - "NCIT"
 
@@ -175,32 +175,32 @@ variantCNVrequest:
         parameters or data source.
       parameters:
         datasetIds:
-          value: "arraymap"
+          defaultValue: "arraymap"
         includeDatasetResponses:
-          value: "ALL"
+          defaultValue: "ALL"
           isHidden: true
         assemblyId:
-          value: "GRCh38"
+          defaultValue: "GRCh38"
         geneinputField:
-          value: "CDKN2A"
+          defaultValue: "CDKN2A"
         referenceName:
-          value: "9"
+          defaultValue: "9"
         start:
-          value: "21000001-21975098"
+          defaultValue: "21000001-21975098"
         end:
-          value: "21967753-23000000"
+          defaultValue: "21967753-23000000"
         variantType:
-          value: "DEL"
+          defaultValue: "DEL"
         alternateBases:
-          value: ""
+          defaultValue: ""
           isHidden: true
         referenceBases:
-          value: "N"
+          defaultValue: "N"
           isHidden: true
         bioontology:
-          value: NCIT:C3058
+          defaultValue: NCIT:C3058
         freeFilters:
-          value: ""
+          defaultValue: ""
           isHidden: true
       ontology_queries:
         - "icdom"
@@ -257,28 +257,28 @@ variantRangeRequest:
         handover [H—>O] link.
       parameters:
         datasetIds:
-          value: "dipg"
+          defaultValue: "dipg"
         includeDatasetResponses:
-          value: "ALL"
+          defaultValue: "ALL"
           isHidden: true
         assemblyId:
-          value: "GRCh38"
+          defaultValue: "GRCh38"
         geneinputField:
-          value: "EIF4A1"
+          defaultValue: "EIF4A1"
         referenceName:
-          value: "17"
+          defaultValue: "17"
         start:
-          value: 7572826
+          defaultValue: 7572826
         end:
-          value: 7579005
+          defaultValue: 7579005
         variantType:
-          value: ""
+          defaultValue: ""
         alternateBases:
-          value: "N"
+          defaultValue: "N"
         referenceBases:
-          value: "N"
+          defaultValue: "N"
         freeFilters:
-          value: ""
+          defaultValue: ""
       ontology_queries:
         - "NCIT"
         - "icdom"
@@ -295,7 +295,7 @@ allFieldsRequest:
       placeholder: ""
     includeDatasetResponses:
       placeholder: "ALL"
-    requestType:
+    requestType: {}
     assemblyId:
       placeholder: "GRCh38"
     geneinputField:
