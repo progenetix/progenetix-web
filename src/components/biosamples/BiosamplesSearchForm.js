@@ -121,6 +121,7 @@ export function Form({
     ...fieldProps,
     control
   }
+
   return (
     <>
       <Tabs
@@ -189,6 +190,7 @@ export function Form({
           />
           <SelectField {...parameters.materialtype} {...selectProps} />
           <InputField {...parameters.freeFilters} {...fieldProps} />
+          <InputField {...parameters.accessid} {...fieldProps} />
           <div className="field mt-5">
             <div className="control">
               <button
@@ -299,13 +301,18 @@ function makeParameters(
 function onSubmitHandler(clearErrors, setError, onValidFormQuery) {
   return (formValues) => {
     clearErrors()
-    // At this stage individual parameters are already validated.
-    const errors = validateForm(formValues)
-    if (errors.length > 0) {
-      errors.forEach(([name, error]) => setError(name, error))
-      return
+
+    if (formValues.accessid) {
+      onValidFormQuery(formValues)
+    } else {
+      // At this stage individual parameters are already validated.
+      const errors = validateForm(formValues)
+      if (errors.length > 0) {
+        errors.forEach(([name, error]) => setError(name, error))
+      } else {
+        onValidFormQuery(formValues)
+      }
     }
-    onValidFormQuery(formValues)
   }
 }
 

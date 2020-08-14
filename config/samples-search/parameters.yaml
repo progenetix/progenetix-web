@@ -122,3 +122,5 @@ materialtype:
       label: reference sample
 freeFilters:
   label: Filters
+accessid:
+  label: Accession Prefilter

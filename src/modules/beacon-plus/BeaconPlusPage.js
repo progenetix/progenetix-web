@@ -1,12 +1,14 @@
 import React, { useState } from "react"
 import { useBeaconQuery } from "../../hooks/api"
 import { BiosamplesSearchForm } from "../../components/biosamples/BiosamplesSearchForm"
-import requestTypesConfig from "../../../config/beacon-plus/requestTypes.yaml"
-import parametersConfig from "../../../config/beacon-plus/parameters.yaml"
+import requestTypesConfig from "../../../config/samples-search/requestTypes.yaml"
+import parametersConfig from "../../../config/samples-search/parameters.yaml"
+import beaconPlusParametersConfig from "../../../config/samples-search/beacon-plus_parameters.yaml"
 import Panel from "../../components/Panel"
 import { FaSlidersH } from "react-icons/fa"
 import Nav from "./Nav"
 import { BiosamplesResults } from "../../components/biosamples/BiosamplesResults"
+import _ from "lodash"
 
 export default function BeaconPlusPage() {
   const [query, setQuery] = useState(null) // actual valid query
@@ -26,6 +28,8 @@ export default function BeaconPlusPage() {
     mutateQuery(null) // mutateQuery and clear current results
     setQuery(formValues)
   }
+
+  const mergedConfig = _.merge({}, parametersConfig, beaconPlusParametersConfig)
 
   return (
     <>
@@ -50,7 +54,7 @@ export default function BeaconPlusPage() {
           >
             <BiosamplesSearchForm
               requestTypesConfig={requestTypesConfig}
-              parametersConfig={parametersConfig}
+              parametersConfig={mergedConfig}
               isQuerying={isLoading}
               onValidFormQuery={handleValidFormQuery}
             />

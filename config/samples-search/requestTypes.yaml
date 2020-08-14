@@ -4,7 +4,9 @@ variantAlleleRequest:
   label: "Allele Request"
   description: |
     The **Beacon Allele Request** corresponds to the original Beacon query, in which
-    variants with a specific combination of reference and alternate bases are being
+    variants with a specific combination of reference and alternate bases are be
+
+    ing
     matched. "N" here can stand in as wildcard nucleotide.
   parameters:
     datasetIds:
@@ -283,7 +285,6 @@ variantRangeRequest:
         - "NCIT"
         - "icdom"
         - "icdot"
-
 
 allFieldsRequest:
   note: ""
