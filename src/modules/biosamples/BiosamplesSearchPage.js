@@ -31,8 +31,8 @@ function BiosamplesSearch() {
 
   const handleValidFormQuery = (formValues) => {
     setSearchCollapsed(true)
-    mutateQuery(null) // mutateQuery and clear current results
     setQuery(formValues)
+    mutateQuery(null) // mutateQuery and clear current results
   }
 
   return (
