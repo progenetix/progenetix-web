@@ -35,10 +35,10 @@ export function makeSubsetsData(biosamplesResponse) {
   const subsets = Object.entries(subsetCounts).map(([k, v]) => ({
     id: k,
     count: v,
-    frequency: (sampleCount / v).toPrecision(4)
+    frequency: (v / sampleCount).toFixed(3)
   }))
 
-  return _.sortBy(subsets, "frequency")
+  return _.sortBy(subsets, "frequency").reverse()
 }
 
 BiosamplesSubsetsDataTable.propTypes = {
