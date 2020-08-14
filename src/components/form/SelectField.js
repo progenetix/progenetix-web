@@ -20,6 +20,7 @@ export default function SelectField({
   errors,
   options,
   control,
+  rules,
   ...selectProps
 }) {
   const help = errors[name]?.message
@@ -47,6 +48,7 @@ export default function SelectField({
           }}
           name={name}
           control={control}
+          rules={rules}
         />
       </div>
       {help && <p className="help is-danger">{help}</p>}
