@@ -2,14 +2,17 @@ import {
   useAsyncDebounce,
   useGlobalFilter,
   usePagination,
-  useTable
+  useTable,
+  useSortBy
 } from "react-table"
 import React from "react"
 import {
   FaAngleDoubleLeft,
   FaAngleDoubleRight,
   FaAngleLeft,
-  FaAngleRight
+  FaAngleRight,
+  FaAngleUp,
+  FaAngleDown
 } from "react-icons/fa"
 import matchSorter from "match-sorter"
 
@@ -52,6 +55,7 @@ export default function Table({
       filterTypes
     },
     useGlobalFilter,
+    useSortBy,
     usePagination
   )
   const { pageIndex } = state
@@ -147,11 +151,29 @@ function Body({ getTableBodyProps, page, prepareRow }) {
 function Header({ headerGroups }) {
   return (
     <thead>
-      {headerGroups.map((headerGroup, hi) => (
-        <tr key={hi} {...headerGroup.getHeaderGroupProps()}>
-          {headerGroup.headers.map((column, ci) => (
-            <th key={ci} {...column.getHeaderProps()}>
-              {column.render("Header")}
+      {headerGroups.map((column, hi) => (
+        <tr key={hi} {...column.getHeaderGroupProps()}>
+          {column.headers.map((column, ci) => (
+            <th
+              key={ci}
+              {...column.getHeaderProps(column.getSortByToggleProps())}
+            >
+              <span className="is-flex">
+                {column.render("Header")}
+                <span
+                  style={{ visibility: column.isSorted ? "visible" : "hidden" }}
+                >
+                  {column.isSortedDesc ? (
+                    <span className="icon">
+                      <FaAngleUp />
+                    </span>
+                  ) : (
+                    <span className="icon">
+                      <FaAngleDown />
+                    </span>
+                  )}
+                </span>
+              </span>
             </th>
           ))}
         </tr>
