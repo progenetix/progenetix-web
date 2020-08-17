@@ -122,5 +122,6 @@ const MenuLink = React.forwardRef(
 )
 
 function removeQuery(href) {
-  return href.slice(0, href.indexOf("?"))
+  if (href.indexOf("?") > 0) return href.slice(0, href.indexOf("?"))
+  else return href
 }
