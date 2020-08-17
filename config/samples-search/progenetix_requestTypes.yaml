@@ -21,12 +21,6 @@ progenetix:
       placeholder: "21967753-24000000"
     variantType:
       placeholder: "DEL"
-    # alternateBases:
-    #   placeholder: ""
-    #   isHidden: true
-    # referenceBases:
-    #   placeholder: ""
-    #   isHidden: true
     materialtype:
       placeholder: "" #"EFO:0009656"
   examples:
