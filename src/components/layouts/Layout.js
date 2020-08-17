@@ -66,7 +66,7 @@ function Side({ onClick }) {
           href="/publications?filters=genomes:>0"
           label="Publications"
         />
-        <MenuInternalLinkItem href="/biosamples" label="Search Samples" />
+        <MenuInternalLinkItem href="/samples" label="Search Samples" />
         <MenuInternalLinkItem href="/biosubsets" label="Biosubsets" />
         <li>
           <MenuLink href="https://info.progenetix.org/">Info </MenuLink>

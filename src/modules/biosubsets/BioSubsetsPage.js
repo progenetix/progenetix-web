@@ -534,5 +534,5 @@ function sampleSelectUrl({ subsets, datasetIds }) {
     .flatMap((subset) => [subset.id, ...(subset?.child_terms ?? [])])
     .join(",")
 
-  return `/biosamples?bioontology=${samples}&datasetIds=${datasetIds}&filterLogic=OR&executeSearch=true`
+  return `/samples?bioontology=${samples}&datasetIds=${datasetIds}&filterLogic=OR&executeSearch=true`
 }
