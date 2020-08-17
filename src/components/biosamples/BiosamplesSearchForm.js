@@ -82,7 +82,8 @@ export function Form({
   const defaultRequestTypeId =
     Object.entries(requestTypesConfig).find(
       ([k]) => k === urlQuery.requestTypeId
-    ) ?? Object.entries(requestTypesConfig)[0][0]
+    )[0] ?? Object.entries(requestTypesConfig)[0][0]
+
   const [requestTypeId, setRequestTypeId] = useState(defaultRequestTypeId)
 
   const requestTypeConfig = requestTypesConfig[requestTypeId]
