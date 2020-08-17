@@ -78,10 +78,13 @@ export function Form({
 }) {
   const autoExecuteSearch = urlQuery.executeSearch
   const displayTabs = Object.keys(requestTypesConfig).length > 1
+  // auto select first requestType from the file or from the query
+  const defaultRequestTypeId =
+    Object.entries(requestTypesConfig).find(
+      ([k]) => k === urlQuery.requestTypeId
+    ) ?? Object.entries(requestTypesConfig)[0][0]
+  const [requestTypeId, setRequestTypeId] = useState(defaultRequestTypeId)
 
-  const [requestTypeId, setRequestTypeId] = useState(
-    urlQuery.requestTypeId ?? Object.entries(requestTypesConfig)[0][0] // auto select first requestType from the file or from the query
-  )
   const requestTypeConfig = requestTypesConfig[requestTypeId]
 
   const [example, setExample] = useState(null)
