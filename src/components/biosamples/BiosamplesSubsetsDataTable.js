@@ -15,7 +15,7 @@ export default function BiosamplesSubsetsDataTable({ biosamplesResponse }) {
         Cell: ({ value, row: { original } }) => {
           return (
             <span>
-              <a href={`/biosubsets/filters=${original.id}`}>{value}</a>
+              <a href={`/biosubsets?filters=${original.id}`}>{value}</a>
             </span>
           )
         }
