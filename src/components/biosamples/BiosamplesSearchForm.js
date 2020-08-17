@@ -4,7 +4,7 @@ import {
   useDatasets,
   useFilteringTerms
 } from "../../hooks/api"
-import React, { useMemo, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import { markdownToReact } from "../../utils/md"
 import { useForm } from "react-hook-form"
 import { Loader } from "../Loader"
@@ -76,6 +76,9 @@ export function Form({
   parametersConfig,
   urlQuery
 }) {
+  console.log(urlQuery)
+  const autoExecuteSearch = urlQuery.executeSearch
+
   const [requestTypeId, setRequestTypeId] = useState(
     urlQuery.requestTypeId ?? Object.entries(requestTypesConfig)[0][0] // auto select first requestType from the file or from the query
   )
@@ -138,6 +141,13 @@ export function Form({
     ...fieldProps,
     control
   }
+
+  useEffect(() => {
+    if (autoExecuteSearch) {
+      onValidFormQuery(defaultValues)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoExecuteSearch])
 
   return (
     <>

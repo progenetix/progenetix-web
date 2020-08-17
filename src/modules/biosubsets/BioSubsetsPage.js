@@ -534,5 +534,5 @@ function sampleSelectUrl({ subsets, datasetIds }) {
     .flatMap((subset) => [subset.id, ...(subset?.child_terms ?? [])])
     .join(",")
 
-  return `https://progenetix.org/cgi-bin/pgx_biosamples.cgi?biosamples-biocharacteristics-type-id=${samples}&datasetIds=${datasetIds}`
+  return `/biosamples?bioontology=${samples}&datasetIds=${datasetIds}&requestTypeId=noVariantRequest&filterLogic=OR&executeSearch=true`
 }

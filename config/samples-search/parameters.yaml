@@ -124,3 +124,7 @@ freeFilters:
   label: Filters
 accessid:
   label: Accession Prefilter
+filterLogic:
+  label: Filter Logic
+  defaultValue: 'AND'
+  isHidden: true

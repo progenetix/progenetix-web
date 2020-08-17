@@ -286,6 +286,49 @@ variantRangeRequest:
         - "icdom"
         - "icdot"
 
+noVariantRequest:
+  note: ""
+  label: No Variant Search
+  description: |
+    No Variant Search
+  parameters:
+    datasetIds:
+      placeholder: ""
+    includeDatasetResponses:
+      placeholder: "ALL"
+    assemblyId:
+      placeholder: "GRCh38"
+    geneinputField:
+      isHidden: true
+      placeholder: "CDKN2A"
+    cytoinputField:
+      placeholder: "9p13.1"
+    referenceName:
+      placeholder: "9"
+    start:
+      placeholder: "20000001-21975098"
+    startMax:
+      placeholder: 21975098
+    endMin:
+      placeholder: 21967753
+    end:
+      placeholder: "21967753-23000000"
+    variantType:
+      isHidden: true
+    requestType:
+      label: Variant Request Type
+      rules:
+        required: false
+      isHidden: true
+    alternateBases:
+      isHidden: true
+    referenceBases:
+      isHidden: true
+    freeFilters:
+      placeholder: "" # "geolat:49,geolong:8.69,geodist:2000000"
+    materialtype:
+      placeholder: "" #"EFO:0009656"
+
 allFieldsRequest:
   note: ""
   label: "All Fields"

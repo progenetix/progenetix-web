@@ -82,7 +82,7 @@ export function buildQueryParameters(queryData) {
       ["start", starts],
       ["end", ends],
       ["filters", filters]
-    ])
+    ]).filter(([, v]) => !!v)
   ).toString()
 }
 
