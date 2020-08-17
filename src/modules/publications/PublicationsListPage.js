@@ -34,7 +34,7 @@ function PublicationTableLoader() {
         // eslint-disable-next-line react/display-name
         Cell: (cellInfo) => (
           <a
-            href={`/publications/details?id=${cellInfo.value}?scope=datacollections`}
+            href={`/publications/details?id=${cellInfo.value}&scope=datacollections`}
           >
             {cellInfo.value}
           </a>

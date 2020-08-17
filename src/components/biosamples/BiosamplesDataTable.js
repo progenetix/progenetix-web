@@ -12,7 +12,7 @@ export default function BiosamplesDataTable({ dataEffectResult, datasetId }) {
         // eslint-disable-next-line react/display-name
         Cell: (cellInfo) => (
           <a
-            href={`/samples/details?id=${cellInfo.value}?datasetIds=${datasetId}`}
+            href={`/samples/details?id=${cellInfo.value}&datasetIds=${datasetId}`}
             rel="noreferrer"
             target="_blank"
           >
@@ -49,7 +49,7 @@ export default function BiosamplesDataTable({ dataEffectResult, datasetId }) {
             <div key={i}>
               {isPMID(externalReference) ? (
                 <a
-                  href={`/publications/details?id=${externalReference.type.id}?scope=datacollections`}
+                  href={`/publications/details?id=${externalReference.type.id}&scope=datacollections`}
                   rel="noreferrer"
                   target="_blank"
                 >
