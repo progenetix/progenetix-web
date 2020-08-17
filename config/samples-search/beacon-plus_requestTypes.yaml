@@ -1,4 +1,82 @@
 ---
+variantCNVrequest:
+  note: ""
+  label: "CNV Request"
+  description: |
+    This query type is for copy number queries ("variantCNVrequest"), e.g. using fuzzy
+    ranges for start and end positions to capture a set of similar variants.
+  parameters:
+    datasetIds:
+      placeholder: ""
+    includeDatasetResponses:
+      placeholder: "ALL"
+      isHidden: true
+    requestType:
+      defaultValue: "variantCNVrequest"
+      isHidden: true
+    assemblyId:
+      placeholder: "GRCh38"
+    referenceName:
+      placeholder: "9"
+    start:
+      placeholder: "19000001-21975098"
+    end:
+      placeholder: "21967753-24000000"
+    variantType:
+      placeholder: "DEL"
+    alternateBases:
+      placeholder: ""
+      isHidden: true
+    referenceBases:
+      placeholder: "N"
+      isHidden: true
+    materialtype:
+      placeholder: "" #"EFO:0009656"
+      isHidden: true
+    freeFilters:
+      placeholder: ""
+      isHidden: true
+    accessid:
+      isHidden: true
+    filterLogic:
+      isHidden: true
+  examples:
+    - label: "CNV Example"
+      note: "Example for focal CDKN2A deletion matches."
+      description: |
+        This example shows the query for CNV deletion variants overlapping the
+        CDKN2A gene's coding region with at least a single base, but limited
+        to "focal" hits (here i.e. <= ~2Mbp in size). The query is against the
+        arrayMap collection and can be modified e.g. through changing the position
+        parameters or data source.
+      parameters:
+        datasetIds:
+          defaultValue: "arraymap"
+        includeDatasetResponses:
+          defaultValue: "ALL"
+          isHidden: true
+        assemblyId:
+          defaultValue: "GRCh38"
+        referenceName:
+          defaultValue: "9"
+        start:
+          defaultValue: "21000001-21975098"
+        end:
+          defaultValue: "21967753-23000000"
+        variantType:
+          defaultValue: "DEL"
+        alternateBases:
+          defaultValue: ""
+          isHidden: true
+        referenceBases:
+          defaultValue: "N"
+          isHidden: true
+        bioontology:
+          defaultValue: NCIT:C3058
+        freeFilters:
+          defaultValue: ""
+          isHidden: true
+
 variantAlleleRequest:
   note: "Example for specific EIF4A1 mutation"
   label: "Allele Request"
@@ -105,83 +183,6 @@ variantAlleleRequest:
         freeFilters:
           defaultValue: ""
 
-variantCNVrequest:
-  note: ""
-  label: "CNV Request"
-  description: |
-    This query type is for copy number queries ("variantCNVrequest"), e.g. using fuzzy
-    ranges for start and end positions to capture a set of similar variants.
-  parameters:
-    datasetIds:
-      placeholder: ""
-    includeDatasetResponses:
-      placeholder: "ALL"
-      isHidden: true
-    requestType:
-      defaultValue: "variantCNVrequest"
-      isHidden: true
-    assemblyId:
-      placeholder: "GRCh38"
-    referenceName:
-      placeholder: "9"
-    start:
-      placeholder: "19000001-21975098"
-    end:
-      placeholder: "21967753-24000000"
-    variantType:
-      placeholder: "DEL"
-    alternateBases:
-      placeholder: ""
-      isHidden: true
-    referenceBases:
-      placeholder: "N"
-      isHidden: true
-    materialtype:
-      placeholder: "" #"EFO:0009656"
-      isHidden: true
-    freeFilters:
-      placeholder: ""
-      isHidden: true
-    accessid:
-      isHidden: true
-    filterLogic:
-      isHidden: true
-  examples:
-    - label: "CNV Example"
-      note: "Example for focal CDKN2A deletion matches."
-      description: |
-        This example shows the query for CNV deletion variants overlapping the
-        CDKN2A gene's coding region with at least a single base, but limited
-        to "focal" hits (here i.e. <= ~2Mbp in size). The query is against the
-        arrayMap collection and can be modified e.g. through changing the position
-        parameters or data source.
-      parameters:
-        datasetIds:
-          defaultValue: "arraymap"
-        includeDatasetResponses:
-          defaultValue: "ALL"
-          isHidden: true
-        assemblyId:
-          defaultValue: "GRCh38"
-        referenceName:
-          defaultValue: "9"
-        start:
-          defaultValue: "21000001-21975098"
-        end:
-          defaultValue: "21967753-23000000"
-        variantType:
-          defaultValue: "DEL"
-        alternateBases:
-          defaultValue: ""
-          isHidden: true
-        referenceBases:
-          defaultValue: "N"
-          isHidden: true
-        bioontology:
-          defaultValue: NCIT:C3058
-        freeFilters:
-          defaultValue: ""
-          isHidden: true
 
 variantRangeRequest:
   note: ""

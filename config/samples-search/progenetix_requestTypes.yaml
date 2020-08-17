@@ -20,14 +20,40 @@ progenetix:
     end:
       placeholder: "21967753-24000000"
     variantType:
-      isHidden: true
-    alternateBases:
-      placeholder: ""
-      isHidden: true
-    referenceBases:
-      placeholder: "N"
-      isHidden: true
+      placeholder: "DEL"
+    # alternateBases:
+    #   placeholder: ""
+    #   isHidden: true
+    # referenceBases:
+    #   placeholder: ""
+    #   isHidden: true
     materialtype:
       placeholder: "" #"EFO:0009656"
-      isHidden: true
-  examples: []
+  examples:
+    - label: "CDKN2A Deletion Example"
+      note: "Example for focal CDKN2A deletion matches."
+      description: |
+        This example shows the query for CNV deletion variants overlapping the
+        CDKN2A gene's coding region with at least a single base, but limited
+        to "highly focal" hits (here i.e. <= ~1Mbp in size). The query is against the
+        Progenetix and arrayMap collections. It can be modified e.g. through changing the position
+        parameters or diagnosis.
+      parameters:
+        datasetIds:
+          defaultValue: "progenetix"
+        includeDatasetResponses:
+          defaultValue: "ALL"
+          isHidden: true
+        assemblyId:
+          defaultValue: "GRCh38"
+          isHidden: true
+        referenceName:
+          defaultValue: "9"
+        start:
+          defaultValue: "21500001-21975098"
+        end:
+          defaultValue: "21967753-22500000"
+        variantType:
+          defaultValue: "DEL"
+        bioontology:
+          defaultValue: NCIT:C3058
