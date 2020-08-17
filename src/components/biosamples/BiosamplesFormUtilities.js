@@ -79,6 +79,7 @@ function useGenSpanSelect(inputValue) {
 export function GeneSpansUtility({ onClose, setFormValue }) {
   const onApply = (optionValue) => {
     setFormValue("start", optionValue.cds_start_min)
+    setFormValue("end", optionValue.cds_end_max)
     setFormValue("referenceName", optionValue.reference_name)
     onClose()
   }
@@ -86,6 +87,9 @@ export function GeneSpansUtility({ onClose, setFormValue }) {
     <div className="content">
       <div>
         Start: <b>{optionValue.cds_start_min}</b>
+      </div>
+      <div>
+        End: <b>{optionValue.cds_end_max}</b>
       </div>
       <div>
         Reference: <b>{optionValue.reference_name}</b>

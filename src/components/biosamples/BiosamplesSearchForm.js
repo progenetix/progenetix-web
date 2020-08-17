@@ -76,7 +76,6 @@ export function Form({
   parametersConfig,
   urlQuery
 }) {
-  console.log(urlQuery)
   const autoExecuteSearch = urlQuery.executeSearch
 
   const [requestTypeId, setRequestTypeId] = useState(
@@ -95,9 +94,6 @@ export function Form({
     r[k] = urlQueryToFormParam(urlQuery, k) ?? v.defaultValue ?? null
   })
 
-  // reset form when default values changes
-  useDeepCompareEffect(() => reset(defaultValues), [defaultValues])
-
   const {
     register,
     handleSubmit,
@@ -109,6 +105,9 @@ export function Form({
     watch,
     control
   } = useForm({ defaultValues })
+
+  // reset form when default values changes
+  useDeepCompareEffect(() => reset(defaultValues), [defaultValues])
 
   const {
     data: filteringTerms,
@@ -161,7 +160,7 @@ export function Form({
       />
       <div>
         <ExamplesButtons
-          onExampleClicked={handleExampleClicked(setExample)}
+          onExampleClicked={handleExampleClicked(reset, setExample)}
           requestTypeConfig={requestTypeConfig}
         />
         <ExampleDescription example={example} />
@@ -401,7 +400,8 @@ function validateForm(formValues) {
   return errors
 }
 
-const handleExampleClicked = (setExample) => (example) => {
+const handleExampleClicked = (reset, setExample) => (example) => {
+  reset({ bioontology: [] })
   setExample(example)
 }
 
