@@ -39,7 +39,7 @@ export default function BiosamplesSubsetsDataTable({ biosamplesResponse }) {
   const allSubsets = useAllBioSubsets({ datasetIds: "progenetix" })
   return (
     <WithData
-      dataResponse={allSubsets}
+      dataEffectResult={allSubsets}
       background
       render={(allSubsets) => {
         const subsets = makeSubsetsData(biosamplesResponse, allSubsets)
