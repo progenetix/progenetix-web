@@ -50,7 +50,6 @@ export default function BiosamplesStatsDataTable({ biosamplesResponse }) {
 }
 
 export function makeSubsetsData(biosamplesResponse, allSubsetsById) {
-  const sampleCount = biosamplesResponse.length
   const ids = biosamplesResponse.flatMap((sample) =>
     sample.biocharacteristics.map(({ type }) => type.id)
   )
@@ -58,7 +57,7 @@ export function makeSubsetsData(biosamplesResponse, allSubsetsById) {
   const subsets = Object.entries(subsetCounts).map(([k, v]) => ({
     id: k,
     count: v,
-    frequency: (v / sampleCount).toFixed(3),
+    frequency: (v / (allSubsetsById[k]?.count ?? -1)).toFixed(3),
     samples: allSubsetsById[k]?.count
   }))
 
