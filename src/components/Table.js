@@ -138,7 +138,11 @@ function Body({ getTableBodyProps, page, prepareRow }) {
           <tr key={ri} {...row.getRowProps()}>
             {row.cells.map((cell, ci) => {
               return (
-                <td key={ci} {...cell.getCellProps()}>
+                <td
+                  key={ci}
+                  {...cell.getCellProps()}
+                  style={{ position: "relative" }}
+                >
                   {cell.render("Cell")}
                 </td>
               )

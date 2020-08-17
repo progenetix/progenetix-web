@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React from "react"
 import PropTypes from "prop-types"
 import Table from "../Table"
@@ -11,7 +12,6 @@ export default function BiosamplesStatsDataTable({ biosamplesResponse }) {
       {
         Header: "Subsets",
         accessor: "id",
-        // eslint-disable-next-line react/display-name
         Cell: ({ value, row: { original } }) => {
           return (
             <span>
@@ -30,7 +30,29 @@ export default function BiosamplesStatsDataTable({ biosamplesResponse }) {
       },
       {
         Header: "Frequency",
-        accessor: "frequency"
+        accessor: "frequency",
+        Cell: ({ value }) => {
+          return (
+            <>
+              <span
+                style={{
+                  width: `${value * 100}%`,
+                  height: `80%`,
+                  position: "absolute",
+                  backgroundColor: "#d8d8d8"
+                }}
+              />
+              <span
+                style={{
+                  position: "absolute",
+                  paddingLeft: "1rem"
+                }}
+              >
+                {value}
+              </span>
+            </>
+          )
+        }
       }
     ],
     []
