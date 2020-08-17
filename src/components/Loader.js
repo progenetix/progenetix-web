@@ -34,3 +34,12 @@ export function Loader({
   }
   return typeof children === "function" ? children() : children
 }
+
+export function WithData({ dataEffect, loaderProps = {}, render }) {
+  const { data, error, isLoading } = dataEffect()
+  return (
+    <Loader isLoading={isLoading} hasError={error} {...loaderProps}>
+      {data && render(data)}
+    </Loader>
+  )
+}

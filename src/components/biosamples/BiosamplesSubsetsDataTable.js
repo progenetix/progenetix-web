@@ -2,14 +2,27 @@ import React from "react"
 import PropTypes from "prop-types"
 import Table from "../Table"
 import _ from "lodash"
+import { useAllBioSubsets } from "../../hooks/api"
+import { WithData } from "../Loader"
 
 export default function BiosamplesSubsetsDataTable({ biosamplesResponse }) {
-  const subsets = makeSubsetsData(biosamplesResponse)
   const columns = React.useMemo(
     () => [
       {
         Header: "Subsets",
-        accessor: "id"
+        accessor: "id",
+        // eslint-disable-next-line react/display-name
+        Cell: ({ value, row: { original } }) => {
+          return (
+            <span>
+              <a href={`/biosubsets?filters=${original.id}`}>{value}</a>
+            </span>
+          )
+        }
+      },
+      {
+        Header: "Samples",
+        accessor: "samples"
       },
       {
         Header: "Observations",
@@ -23,10 +36,23 @@ export default function BiosamplesSubsetsDataTable({ biosamplesResponse }) {
     []
   )
 
-  return <Table columns={columns} data={subsets} pageSize={20} />
+  return (
+    <WithData
+      dataEffect={useDataEffect}
+      loaderProps={{
+        background: true
+      }}
+      render={(allSubsets) => {
+        const subsets = makeSubsetsData(biosamplesResponse, allSubsets)
+        return <Table columns={columns} data={subsets} pageSize={20} />
+      }}
+    />
+  )
 }
 
-export function makeSubsetsData(biosamplesResponse) {
+const useDataEffect = () => useAllBioSubsets({ datasetIds: "progenetix" })
+
+export function makeSubsetsData(biosamplesResponse, allSubsetsById) {
   const sampleCount = biosamplesResponse.length
   const ids = biosamplesResponse.flatMap((sample) =>
     sample.biocharacteristics.map(({ type }) => type.id)
@@ -35,7 +61,8 @@ export function makeSubsetsData(biosamplesResponse) {
   const subsets = Object.entries(subsetCounts).map(([k, v]) => ({
     id: k,
     count: v,
-    frequency: (v / sampleCount).toFixed(3)
+    frequency: (v / sampleCount).toFixed(3),
+    samples: allSubsetsById[k]?.count
   }))
 
   return _.sortBy(subsets, "frequency").reverse()

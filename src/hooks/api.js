@@ -1,5 +1,7 @@
 import swr from "swr"
 import { svgFetcher } from "./fetcher"
+import { keyBy } from "lodash"
+
 // eslint-disable-next-line no-undef
 export const basePath = process.env.NEXT_PUBLIC_API_PATH
 // eslint-disable-next-line no-undef
@@ -161,6 +163,18 @@ export function useSubsethistogram({
 export function useBioSubsets({ filters, datasetIds }) {
   const url = `${basePath}api/?apidb=${datasetIds}&apiscope=biosubsets&apimethod=subsetdata&filters=${filters}&apioutput=json`
   return useExtendedSWR(url)
+}
+
+export function useAllBioSubsets({ datasetIds }) {
+  const transformData = (rawData) => {
+    const allSubsets = rawData.data.flatMap((d) => d[datasetIds])
+    return keyBy(allSubsets, "id")
+  }
+
+  const url = `${basePath}cgi/bycon/bin/collations.py?datasetIds=${datasetIds}&method=counts`
+  const { data: rawData, ...other } = useExtendedSWR(url)
+  const data = rawData && transformData(rawData)
+  return { data, ...other }
 }
 
 // Transforms [[k1, v1], [k2, [v2, v3]]] into [[k1, v1], [k2, v2], [k3, v3]]
