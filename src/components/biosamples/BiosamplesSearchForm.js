@@ -19,6 +19,7 @@ import SelectField from "../form/SelectField"
 import InputField from "../form/InputField"
 import _ from "lodash"
 import useDeepCompareEffect from "use-deep-compare-effect"
+import { useQuery } from "../../hooks/query"
 
 BiosamplesSearchForm.propTypes = {
   isQuerying: PropTypes.bool.isRequired,
@@ -33,6 +34,8 @@ export function BiosamplesSearchForm({
   requestTypesConfig,
   parametersConfig
 }) {
+  const urlQuery = useQuery()
+
   const {
     data: datasets,
     error: datasetsError,
@@ -41,7 +44,7 @@ export function BiosamplesSearchForm({
   return (
     <Loader
       hasError={datasetsError}
-      isLoading={datasetIsLoading}
+      isLoading={datasetIsLoading || !urlQuery}
       loadingMessage="Loading datasets..."
       errorMessage="Could not load datasets"
     >
@@ -52,10 +55,17 @@ export function BiosamplesSearchForm({
           onValidFormQuery={onValidFormQuery}
           requestTypesConfig={requestTypesConfig}
           parametersConfig={parametersConfig}
+          urlQuery={urlQuery}
         />
       )}
     </Loader>
   )
+}
+
+function urlQueryToFormParam(urlQuery, k) {
+  const value = urlQuery[k]
+  if (value?.indexOf(",")) return value?.split(",")
+  else return value
 }
 
 export function Form({
@@ -63,10 +73,11 @@ export function Form({
   isQuerying,
   onValidFormQuery,
   requestTypesConfig,
-  parametersConfig
+  parametersConfig,
+  urlQuery
 }) {
   const [requestTypeId, setRequestTypeId] = useState(
-    Object.entries(requestTypesConfig)[0][0] // auto select first requestType from the file
+    urlQuery.requestTypeId ?? Object.entries(requestTypesConfig)[0][0] // auto select first requestType from the file or from the query
   )
   const requestTypeConfig = requestTypesConfig[requestTypeId]
 
@@ -78,9 +89,10 @@ export function Form({
   )
 
   const defaultValues = _.transform(parameters, (r, v, k) => {
-    r[k] = v.defaultValue ?? null
+    r[k] = urlQueryToFormParam(urlQuery, k) ?? v.defaultValue ?? null
   })
 
+  // reset form when default values changes
   useDeepCompareEffect(() => reset(defaultValues), [defaultValues])
 
   const {
@@ -113,7 +125,12 @@ export function Form({
     onGeneSpansCloseClick
   } = useFormUtilities()
 
-  const onSubmit = onSubmitHandler(clearErrors, setError, onValidFormQuery)
+  const onSubmit = onSubmitHandler(
+    clearErrors,
+    setError,
+    onValidFormQuery,
+    requestTypeId
+  )
 
   // shortcuts
   const fieldProps = { errors, register }
@@ -298,10 +315,20 @@ function makeParameters(
   return parameters
 }
 
-function onSubmitHandler(clearErrors, setError, onValidFormQuery) {
+function saveFormValuesInUrl(formValues, requestTypeId) {
+  const params = new URLSearchParams(formValues)
+  params.set("requestTypeId", requestTypeId)
+  window.history.replaceState({}, "", `${location.pathname}?${params}`)
+}
+
+function onSubmitHandler(
+  clearErrors,
+  setError,
+  onValidFormQuery,
+  requestTypeId
+) {
   return (formValues) => {
     clearErrors()
-
     if (formValues.accessid) {
       onValidFormQuery(formValues)
     } else {
@@ -310,6 +337,7 @@ function onSubmitHandler(clearErrors, setError, onValidFormQuery) {
       if (errors.length > 0) {
         errors.forEach(([name, error]) => setError(name, error))
       } else {
+        saveFormValuesInUrl(formValues, requestTypeId)
         onValidFormQuery(formValues)
       }
     }

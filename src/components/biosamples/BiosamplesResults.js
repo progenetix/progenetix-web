@@ -34,7 +34,7 @@ function AlleleResponses({ datasetAlleleResponses, query }) {
 function QuerySummary({ query }) {
   let filters = []
   if (query.bioontology) {
-    filters = [...filters, ...query.bioontology]
+    filters = [...filters, ...[query.bioontology].flat()]
   }
   if (query.materialtype) {
     filters = [...filters, query.materialtype]

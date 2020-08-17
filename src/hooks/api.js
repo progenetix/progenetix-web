@@ -71,7 +71,7 @@ export function buildQueryParameters(queryData) {
   let parsedFreeFilters = freeFilters?.split(",").map((ff) => ff.trim()) ?? []
 
   const filters = [
-    bioontology ?? [],
+    [bioontology].flat() ?? [],
     materialtype ?? [],
     parsedFreeFilters
   ].flat()
