@@ -417,7 +417,6 @@ function validateForm(formValues) {
 }
 
 const handleExampleClicked = (reset, setExample) => (example) => {
-  reset({ bioontology: [] })
   setExample(example)
 }
 
