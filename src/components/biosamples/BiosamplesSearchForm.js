@@ -283,7 +283,7 @@ function RequestTypeDescription({ requestConfig }) {
 function ExamplesButtons({ requestTypeConfig, onExampleClicked }) {
   return (
     <div className="buttons">
-      {Object.entries(requestTypeConfig.examples || []).map(([id, value]) => (
+      {Object.entries(requestTypeConfig?.examples || []).map(([id, value]) => (
         <button
           key={id}
           className="button is-light"
@@ -370,7 +370,6 @@ function validateForm(formValues) {
   const errors = []
   const setMissing = (name) =>
     errors.push([name, { type: "manual", message: "Parameter is missing" }])
-  console.log(requestType)
   if (requestType === "variantAlleleRequest") {
     if (!referenceBases || !alternateBases || !start) {
       !referenceBases && setMissing("referenceBases")
