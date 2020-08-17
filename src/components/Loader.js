@@ -35,10 +35,22 @@ export function Loader({
   return typeof children === "function" ? children() : children
 }
 
-export function WithData({ dataEffect, loaderProps = {}, render }) {
-  const { data, error, isLoading } = dataEffect()
+export function WithData({
+  dataEffectResult,
+  render,
+  background = false,
+  colored = false,
+  height = null
+}) {
+  const { data, error, isLoading } = dataEffectResult
   return (
-    <Loader isLoading={isLoading} hasError={error} {...loaderProps}>
+    <Loader
+      isLoading={isLoading}
+      hasError={error}
+      background={background}
+      colored={colored}
+      height={height}
+    >
       {data && render(data)}
     </Loader>
   )

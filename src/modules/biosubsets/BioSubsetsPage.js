@@ -1,15 +1,16 @@
-import { useBioSubsets } from "../../hooks/api"
-import { Loader } from "../../components/Loader"
+import { useAllBioSubsets, useBioSubsets } from "../../hooks/api"
+import { WithData } from "../../components/Loader"
 import React, { useEffect, useMemo, useReducer, useState } from "react"
 import { withQuery } from "../../hooks/query"
 import { Layout } from "../../components/layouts/Layout"
-import { sortBy, isEqual } from "lodash"
+import { isEqual, sortBy, keyBy, merge } from "lodash"
 import { getOrMakeChild, getOrMakeNode } from "./tree"
 import cn from "classnames"
 import { FaAngleDown, FaAngleRight } from "react-icons/fa"
 import PropTypes from "prop-types"
 import biosubsetsConfig from "./config.yaml"
 import { SubsetHistogram } from "../../components/Histogram"
+import Link from "next/link"
 
 const makeEntries = (config, initialValue) => {
   let configEntries = Object.entries(config)
@@ -53,7 +54,6 @@ const BioSubsetsPage = withQuery(({ urlQuery }) => {
     setSelected: setSelectedDatasetIds,
     options: datasetIdsOptions
   } = useConfigSelect(biosubsetsConfig.datasetIds, urlQuery.datasetIds)
-
   return (
     <Layout title="Subsets" headline="Subsets">
       <div className="level mb-6">
@@ -98,30 +98,51 @@ const BioSubsetsPage = withQuery(({ urlQuery }) => {
 export default BioSubsetsPage
 
 function SubsetsLoader({ filters, datasetIds }) {
-  const { data, error, isLoading } = useBioSubsets({
+  const bioSubsetsHierarchies = useBioSubsets({
     filters,
     datasetIds
   })
+
+  const allBioSubsets = useAllBioSubsets({
+    datasetIds
+  })
   return (
-    <Loader isLoading={isLoading} hasError={error} background>
-      {data && <SubsetsResponse response={data} datasetIds={datasetIds} />}
-    </Loader>
+    <WithData
+      dataEffectResult={bioSubsetsHierarchies}
+      background
+      render={(bioSubsetsHierarchies) => (
+        <WithData
+          dataEffectResult={allBioSubsets}
+          background
+          render={(allBioSubsets) => (
+            <SubsetsResponse
+              bioSubsetsHierarchies={bioSubsetsHierarchies}
+              allBioSubsets={allBioSubsets}
+              datasetIds={datasetIds}
+            />
+          )}
+        />
+      )}
+    />
   )
 }
 
-function SubsetsResponse({ response, datasetIds }) {
-  const isDetailPage = response.length === 1
-  // memoize response computing
+function SubsetsResponse({ bioSubsetsHierarchies, allBioSubsets, datasetIds }) {
+  const isDetailPage = bioSubsetsHierarchies.length === 1
+
+  // We merge both subsets from hierarchies and subsets from allSubsets.
+  // This is because some children in the bioSubsetsHierarchies don't have labels or sample count information.
   const subsetById = useMemo(
-    () => Object.fromEntries(response.map((subset) => [subset.id, subset])),
-    [response]
+    () => merge(keyBy(bioSubsetsHierarchies, "id"), allBioSubsets),
+    [allBioSubsets, bioSubsetsHierarchies]
   )
+
   const tree = useMemo(
     () =>
       isDetailPage
-        ? buildTreeForDetails(response, subsetById)
-        : buildTree(response, subsetById),
-    [response, subsetById, isDetailPage]
+        ? buildTreeForDetails(bioSubsetsHierarchies, subsetById)
+        : buildTree(bioSubsetsHierarchies, subsetById),
+    [bioSubsetsHierarchies, subsetById, isDetailPage]
   )
   const [state, dispatch] = useReducer(reducer, initialState)
   const checkIsCollapsed = useMemo(
@@ -148,7 +169,7 @@ function SubsetsResponse({ response, datasetIds }) {
     histogram = (
       <div className="mb-6">
         <SubsetHistogram
-          id={response[0].id}
+          id={bioSubsetsHierarchies[0].id}
           datasetIds={datasetIds}
           loaderProps={{
             background: true,
@@ -441,18 +462,15 @@ function Row({ node, dispatch, collapsed, depth, datasetIds }) {
             <Expander collapsed={collapsed} dispatch={dispatch} nodeKey={key} />
           </span>
           <span>
-            {name}
+            <Link href={`/biosubsets?filters=${name}&datasetIds=${datasetIds}`}>
+              <a>{name}</a>
+            </Link>
             {subset?.label && <span>: {subset.label}</span>}
           </span>
         </span>
       </td>
       <td style={{ whiteSpace: "nowrap" }}>
-        <span>
-          {subset?.count}{" "}
-          <a href={`/biosubsets?filters=${name}&datasetIds=${datasetIds}`}>
-            {"{↗}"}
-          </a>
-        </span>
+        <span>{subset?.count}</span>
       </td>
     </tr>
   )
@@ -495,21 +513,25 @@ export function buildTree(response, subsetById) {
   return tree
 }
 
-export function buildTreeForDetails(response) {
-  const subset = response[0]
+export function buildTreeForDetails(response, subsetById) {
+  const rootSubset = response[0]
   const tree = { name: "root", children: [], path: ["root"] }
-  const node = getOrMakeChild(tree, subset.id)
-  node.subset = subset
-  const child_terms = subset.child_terms
+  const rootNode = getOrMakeChild(tree, rootSubset.id)
+  rootNode.subset = rootSubset
+  const child_terms = rootSubset.child_terms
   child_terms.forEach((c) => {
-    if (subset.id !== c) getOrMakeChild(node, c)
+    // some subsets have themself in the children list
+    if (rootSubset.id !== c) {
+      const node = getOrMakeChild(rootNode, c)
+      node.subset = subsetById[node.name]
+    }
   })
   return tree
 }
 
 function sampleSelectUrl({ subsets, datasetIds }) {
   const samples = subsets
-    .flatMap((subset) => [subset.id, ...subset.child_terms])
+    .flatMap((subset) => [subset.id, ...(subset?.child_terms ?? [])])
     .join(",")
 
   return `https://progenetix.org/cgi-bin/pgx_biosamples.cgi?biosamples-biocharacteristics-type-id=${samples}&datasetIds=${datasetIds}`

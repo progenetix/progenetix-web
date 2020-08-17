@@ -36,12 +36,11 @@ export default function BiosamplesSubsetsDataTable({ biosamplesResponse }) {
     []
   )
 
+  const allSubsets = useAllBioSubsets({ datasetIds: "progenetix" })
   return (
     <WithData
-      dataEffect={useDataEffect}
-      loaderProps={{
-        background: true
-      }}
+      dataResponse={allSubsets}
+      background
       render={(allSubsets) => {
         const subsets = makeSubsetsData(biosamplesResponse, allSubsets)
         return <Table columns={columns} data={subsets} pageSize={20} />
@@ -49,8 +48,6 @@ export default function BiosamplesSubsetsDataTable({ biosamplesResponse }) {
     />
   )
 }
-
-const useDataEffect = () => useAllBioSubsets({ datasetIds: "progenetix" })
 
 export function makeSubsetsData(biosamplesResponse, allSubsetsById) {
   const sampleCount = biosamplesResponse.length
