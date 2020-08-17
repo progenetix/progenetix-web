@@ -217,8 +217,6 @@ variantRangeRequest:
       placeholder: "N"
     accessid:
       isHidden: true
-    filterLogic:
-      isHidden: true
   examples:
     - label: "SNV Range Example"
       note: "Example for EIF4A1 transcript region matches (precise variants)"
@@ -290,6 +288,4 @@ allFieldsRequest:
     materialtype:
       placeholder: "" #"EFO:0009656"
     accessid:
-      isHidden: true
-    filterLogic:
       isHidden: true

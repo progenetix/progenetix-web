@@ -127,3 +127,8 @@ accessid:
 filterLogic:
   label: Filter Logic
   defaultValue: 'AND'
+  options:
+    - value: AND
+      label: AND
+    - value: OR
+      label: OR

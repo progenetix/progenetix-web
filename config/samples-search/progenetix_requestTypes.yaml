@@ -8,7 +8,8 @@ progenetix:
       placeholder: "ALL"
       isHidden: true
     requestType:
-      defaultValue: null
+      rules:
+        required: false
       isHidden: true
     assemblyId:
       isHidden: true

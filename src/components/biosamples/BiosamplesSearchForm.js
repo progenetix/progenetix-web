@@ -110,6 +110,8 @@ export function Form({
     control
   } = useForm({ defaultValues })
 
+  Object.keys(errors).length && console.info("Found errors in form", errors)
+
   // reset form when default values changes
   useDeepCompareEffect(() => reset(defaultValues), [defaultValues])
 
@@ -221,7 +223,14 @@ export function Form({
             isLoading={!filteringTerms && !filteringTermsError}
           />
           <SelectField {...parameters.materialtype} {...selectProps} />
-          <InputField {...parameters.freeFilters} {...fieldProps} />
+          <div className="columns">
+            <div className="column">
+              <InputField {...parameters.freeFilters} {...fieldProps} />
+            </div>
+            <div className="column">
+              <SelectField {...parameters.filterLogic} {...selectProps} />
+            </div>
+          </div>
           <InputField {...parameters.accessid} {...fieldProps} />
           <div className="field mt-5">
             <div className="control">
