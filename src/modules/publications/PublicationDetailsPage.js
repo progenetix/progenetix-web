@@ -116,9 +116,6 @@ function PublicationDetails({ publication, id, scope, filter }) {
           filter={filter}
           scope={scope}
           datasetIds="progenetix"
-          loaderProps={{
-            background: true
-          }}
         />
       )}
       {publication.info?.arraymap_biosamples_count > 0 && (
@@ -127,9 +124,6 @@ function PublicationDetails({ publication, id, scope, filter }) {
           filter={filter}
           scope={scope}
           datasetIds="arraymap"
-          loaderProps={{
-            background: true
-          }}
         />
       )}
     </section>

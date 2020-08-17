@@ -1,12 +1,9 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Loader } from "../Loader"
+import { WithData } from "../Loader"
 import Table from "../Table"
-import { useExtendedSWR } from "../../hooks/api"
 
-export default function BiosamplesDataTable({ url, datasetId }) {
-  const { data, error, isLoading } = useExtendedSWR(url)
-
+export default function BiosamplesDataTable({ dataEffectResult, datasetId }) {
   const columns = React.useMemo(
     () => [
       {
@@ -81,9 +78,10 @@ export default function BiosamplesDataTable({ url, datasetId }) {
   )
 
   return (
-    <Loader isLoading={isLoading} hasError={error}>
-      <Table columns={columns} data={data} />
-    </Loader>
+    <WithData
+      dataEffectResult={dataEffectResult}
+      render={(data) => <Table columns={columns} data={data} />}
+    />
   )
 }
 
@@ -92,5 +90,5 @@ function isPMID(externalReference) {
 }
 
 BiosamplesDataTable.propTypes = {
-  url: PropTypes.string.isRequired
+  dataEffectResult: PropTypes.object.isRequired
 }

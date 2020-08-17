@@ -4,10 +4,10 @@ import { useSubsethistogram } from "../hooks/api"
 import { useContainerDimensions } from "../hooks/containerDimensions"
 import PropTypes from "prop-types"
 
-export default function Histogram({ dataEffect, loaderProps = {} }) {
-  const { data, error, isLoading } = dataEffect
+export default function Histogram({ dataEffectResult }) {
+  const { data, error, isLoading } = dataEffectResult
   return (
-    <Loader isLoading={isLoading} hasError={error} {...loaderProps}>
+    <Loader isLoading={isLoading} hasError={error} background>
       <div
         className="svg-container"
         dangerouslySetInnerHTML={{ __html: data }}
@@ -21,8 +21,7 @@ export function SubsetHistogram({
   filter,
   scope,
   datasetIds,
-  size: givenSize,
-  loaderProps = {}
+  size: givenSize
 }) {
   const componentRef = useRef()
   const { width } = useContainerDimensions(componentRef)
@@ -30,14 +29,13 @@ export function SubsetHistogram({
   return (
     <div ref={componentRef}>
       <Histogram
-        dataEffect={useSubsethistogram({
+        dataEffectResult={useSubsethistogram({
           datasetIds,
           id,
           filter,
           scope,
           size
         })}
-        loaderProps={loaderProps}
       />
     </div>
   )

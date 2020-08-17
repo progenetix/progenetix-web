@@ -123,7 +123,7 @@ export function useGeneSpans(querytext) {
     fetch(...args)
       .then((res) => res.text())
       .then((t) => {
-        // data returned is not JSON
+        // dataEffectResult returned is not JSON
         const sanitized = t.startsWith("(") ? t.slice(1, -3) : t
         return JSON.parse(sanitized)
       })
