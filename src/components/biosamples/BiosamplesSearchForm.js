@@ -437,7 +437,7 @@ export const checkIntegerRange = (value) => {
     return "Incorrect range input, max should be greater than min"
 }
 
-// Maps datasets hook to data usable by DataFetchSelect
+// Maps datasets hook to dataEffectResult usable by DataFetchSelect
 function useSelectDatasets() {
   const { data, ...other } = useDatasets()
   return {
@@ -451,7 +451,7 @@ function useSelectDatasets() {
   }
 }
 
-// Maps FilteringTerms hook to data usable by DataFetchSelect
+// Maps FilteringTerms hook to dataEffectResult usable by DataFetchSelect
 function useSelectFilteringTerms(watchForm) {
   const datasetIds = watchForm("datasetIds")
   const { data, ...other } = useFilteringTerms("NCIT,icdom", datasetIds)

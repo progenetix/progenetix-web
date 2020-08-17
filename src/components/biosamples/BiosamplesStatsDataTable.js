@@ -5,7 +5,7 @@ import _ from "lodash"
 import { useAllBioSubsets } from "../../hooks/api"
 import { WithData } from "../Loader"
 
-export default function BiosamplesSubsetsDataTable({ biosamplesResponse }) {
+export default function BiosamplesStatsDataTable({ biosamplesResponse }) {
   const columns = React.useMemo(
     () => [
       {
@@ -65,6 +65,6 @@ export function makeSubsetsData(biosamplesResponse, allSubsetsById) {
   return _.sortBy(subsets, "frequency").reverse()
 }
 
-BiosamplesSubsetsDataTable.propTypes = {
+BiosamplesStatsDataTable.propTypes = {
   biosamplesResponse: PropTypes.array.isRequired
 }

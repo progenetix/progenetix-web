@@ -84,16 +84,18 @@ export default function Table({
         </table>
       </div>
       {/* eslint-enable react/jsx-key */}
-      <Pagination
-        gotoPage={gotoPage}
-        canPreviousPage={canPreviousPage}
-        previousPage={previousPage}
-        nextPage={nextPage}
-        canNextPage={canNextPage}
-        pageCount={pageCount}
-        pageIndex={pageIndex}
-        pageOptions={pageOptions}
-      />
+      {pageCount > 1 && (
+        <Pagination
+          gotoPage={gotoPage}
+          canPreviousPage={canPreviousPage}
+          previousPage={previousPage}
+          nextPage={nextPage}
+          canNextPage={canNextPage}
+          pageCount={pageCount}
+          pageIndex={pageIndex}
+          pageOptions={pageOptions}
+        />
+      )}{" "}
     </>
   )
 }

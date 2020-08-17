@@ -8,12 +8,20 @@ import VariantsDataTable from "./VariantsDataTable"
 import { useContainerDimensions } from "../../hooks/containerDimensions"
 import Histogram from "../Histogram"
 import { svgFetcher } from "../../hooks/fetcher"
+import BiosamplesStatsDataTable from "./BiosamplesStatsDataTable"
+import { WithData } from "../Loader"
 
 const handoversInTab = [
   HANDOVER_IDS.cnvhistogram,
   HANDOVER_IDS.biosamplesdata,
   HANDOVER_IDS.variantsdata
 ]
+
+const tabs = {
+  results: "Results",
+  samples: "Biosamples",
+  variants: "Variants"
+}
 
 export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
   const {
@@ -25,31 +33,46 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
     frequency
   } = datasetAlleleResponse
 
-  const selectableHandovers = datasetHandover.filter(
-    ({ handoverType: { id } }) => handoversInTab.includes(id)
-  )
+  const handoverById = (givenId) =>
+    datasetHandover.find(({ handoverType: { id } }) => id === givenId)
+
   const genericHandovers = datasetHandover.filter(
     ({ handoverType: { id } }) => !handoversInTab.includes(id)
   )
 
-  const [selectedHandoverId, setSelectedHandoverId] = useState(
-    selectableHandovers[0]?.handoverType?.id
-  )
-  const selectedHandover = datasetHandover.find(
-    ({ handoverType: { id } }) => id === selectedHandoverId
+  const biosamplesHandover = handoverById(HANDOVER_IDS.biosamplesdata)
+
+  const biosamplesDataResults = useExtendedSWR(
+    biosamplesHandover && replaceWithProxy(biosamplesHandover.url)
   )
 
-  let handoverComponent
-  if (selectedHandover?.handoverType?.id === HANDOVER_IDS.cnvhistogram) {
-    handoverComponent = <CnvHistogramPreview url={selectedHandover.url} />
-  } else if (
-    selectedHandover?.handoverType?.id === HANDOVER_IDS.biosamplesdata
-  ) {
-    const url = replaceWithProxy(selectedHandover.url)
-    handoverComponent = <BiosamplesDataTable url={url} datasetId={datasetId} />
-  } else if (selectedHandover?.handoverType?.id === HANDOVER_IDS.variantsdata) {
-    const url = replaceWithProxy(selectedHandover.url)
-    handoverComponent = <VariantsDataTable url={url} />
+  // main / samples / variants
+  const [selectedTab, setSelectedTab] = useState(tabs.results)
+  const tabNames = []
+  if (handoverById(HANDOVER_IDS.cnvhistogram)) tabNames.push(tabs.results)
+  if (biosamplesHandover) tabNames.push(tabs.samples)
+  if (handoverById(HANDOVER_IDS.variantsdata)) tabNames.push(tabs.variants)
+
+  let tabComponent
+  if (selectedTab === tabs.results) {
+    const histogramUrl = handoverById(HANDOVER_IDS.cnvhistogram).url
+    tabComponent = (
+      <ResultsTab
+        histogramUrl={histogramUrl}
+        biosamplesDataResults={biosamplesDataResults}
+      />
+    )
+  } else if (selectedTab === tabs.samples) {
+    tabComponent = (
+      <BiosamplesDataTable
+        dataEffectResult={biosamplesDataResults}
+        datasetId={datasetId}
+      />
+    )
+  } else if (selectedTab === tabs.variants) {
+    const handover = handoverById(HANDOVER_IDS.variantsdata)
+    const url = replaceWithProxy(handover.url)
+    tabComponent = <VariantsDataTable url={url} />
   }
 
   return (
@@ -66,7 +89,7 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
             {callCount}
           </div>
           <div>
-            <b>Samples:</b>
+            <b>Samples: </b>
             {sampleCount}
           </div>
         </div>
@@ -91,26 +114,41 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
           <Download datasetAlleleResponse={datasetAlleleResponse} />
         </div>
       </div>
-      {selectableHandovers?.length > 0 ? (
+      {tabNames?.length > 0 ? (
         <div className="tabs is-boxed ">
           <ul>
-            {selectableHandovers.map((handover, i) => (
+            {tabNames.map((tabName, i) => (
               <li
                 className={cn({
-                  "is-active": selectedHandoverId === handover.handoverType.id
+                  "is-active": selectedTab === tabName
                 })}
                 key={i}
-                onClick={() => setSelectedHandoverId(handover.handoverType.id)}
+                onClick={() => setSelectedTab(tabName)}
               >
-                <a title={handover.description}>
-                  {handover.handoverType.label}
-                </a>
+                <a>{tabName}</a>
               </li>
             ))}
           </ul>
         </div>
       ) : null}
-      {selectableHandovers?.length > 0 ? <div>{handoverComponent}</div> : null}
+      {tabComponent ? <div>{tabComponent}</div> : null}
+    </div>
+  )
+}
+
+function ResultsTab({ histogramUrl, biosamplesDataResults }) {
+  return (
+    <div>
+      <div className="mb-4">
+        <CnvHistogramPreview url={histogramUrl} />
+      </div>
+      <WithData
+        dataEffectResult={biosamplesDataResults}
+        background
+        render={(data) => (
+          <BiosamplesStatsDataTable biosamplesResponse={data} />
+        )}
+      />
     </div>
   )
 }
@@ -128,7 +166,7 @@ function CnvHistogramPreview({ url: urlString }) {
   const dataEffect = useExtendedSWR(width > 0 && withoutOrigin, svgFetcher)
   return (
     <div ref={componentRef}>
-      <Histogram dataEffect={dataEffect} />
+      <Histogram dataEffectResult={dataEffect} />
     </div>
   )
 }
