@@ -217,7 +217,7 @@ function SubsetsResponse({ bioSubsetsHierarchies, allBioSubsets, datasetIds }) {
 const initialState = {
   overrides: {},
   defaultState: "expanded",
-  defaultExpandedLevel: 3,
+  defaultExpandedLevel: 1,
   checked: {}
 }
 
