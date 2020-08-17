@@ -1,0 +1,32 @@
+---
+progenetix:
+  note: ""
+  label: ""
+  description: ""
+  parameters:
+    includeDatasetResponses:
+      placeholder: "ALL"
+      isHidden: true
+    requestType:
+      defaultValue: null
+      isHidden: true
+    assemblyId:
+      isHidden: true
+    referenceName:
+      placeholder: "9"
+    start:
+      placeholder: "19000001-21975098"
+    end:
+      placeholder: "21967753-24000000"
+    variantType:
+      isHidden: true
+    alternateBases:
+      placeholder: ""
+      isHidden: true
+    referenceBases:
+      placeholder: "N"
+      isHidden: true
+    materialtype:
+      placeholder: "" #"EFO:0009656"
+      isHidden: true
+  examples: []

@@ -20,12 +20,6 @@ variantAlleleRequest:
     assemblyId:
       placeholder: "GRCh38"
       isHidden: true
-    geneinputField:
-      placeholder: ""
-      isHidden: true
-    cytoinputField:
-      placeholder: ""
-      isHidden: true
     referenceName:
       placeholder: "17"
     start:
@@ -46,6 +40,10 @@ variantAlleleRequest:
     freeFilters:
       placeholder: ""
       isHidden: true
+    accessid:
+      isHidden: true
+    filterLogic:
+      isHidden: true
   examples:
     - label: "SNV Example"
       note: "Example for specific EIF4A1 mutation"
@@ -60,11 +58,6 @@ variantAlleleRequest:
           isHidden: true
         assemblyId:
           defaultValue: "GRCh38"
-        geneinputField:
-          defaultValue: "EIF4A1"
-          isHidden: true
-        cytoinputField:
-          defaultValue: ""
         referenceName:
           defaultValue: "17"
         start:
@@ -79,11 +72,6 @@ variantAlleleRequest:
           defaultValue: "G"
         freeFilters:
           defaultValue: ""
-      ontology_queries:
-        - "icdot-C71.7"
-        - "NCIT"
-        - "icdom"
-        - "icdot"
     - label: "ClinVar Example"
       note: "Example for TP53 mutation (ClinVar annotated) in a cell line"
       description: |
@@ -97,10 +85,6 @@ variantAlleleRequest:
           isHidden: true
         assemblyId:
           defaultValue: "GRCh38"
-        geneinputField:
-          defaultValue: "TP53"
-        cytoinputField:
-          defaultValue: "17p13.1"
         referenceName:
           defaultValue: "17"
         start:
@@ -120,8 +104,6 @@ variantAlleleRequest:
           isHidden: true
         freeFilters:
           defaultValue: ""
-      ontology_queries:
-        - "NCIT"
 
 variantCNVrequest:
   note: ""
@@ -140,12 +122,6 @@ variantCNVrequest:
       isHidden: true
     assemblyId:
       placeholder: "GRCh38"
-    geneinputField:
-      placeholder: "CDKN2A"
-      isHidden: true
-    cytoinputField:
-      placeholder: ""
-      isHidden: true
     referenceName:
       placeholder: "9"
     start:
@@ -166,6 +142,10 @@ variantCNVrequest:
     freeFilters:
       placeholder: ""
       isHidden: true
+    accessid:
+      isHidden: true
+    filterLogic:
+      isHidden: true
   examples:
     - label: "CNV Example"
       note: "Example for focal CDKN2A deletion matches."
@@ -183,8 +163,6 @@ variantCNVrequest:
           isHidden: true
         assemblyId:
           defaultValue: "GRCh38"
-        geneinputField:
-          defaultValue: "CDKN2A"
         referenceName:
           defaultValue: "9"
         start:
@@ -204,9 +182,6 @@ variantCNVrequest:
         freeFilters:
           defaultValue: ""
           isHidden: true
-      ontology_queries:
-        - "icdom"
-        - "NCIT"
 
 variantRangeRequest:
   note: ""
@@ -227,11 +202,6 @@ variantRangeRequest:
       isHidden: true
     assemblyId:
       placeholder: "GRCh38"
-    geneinputField:
-      placeholder: ""
-      isHidden: true
-    cytoinputField:
-      placeholder: ""
       isHidden: true
     referenceName:
       placeholder: "17"
@@ -245,6 +215,10 @@ variantRangeRequest:
       placeholder: "N"
     referenceBases:
       placeholder: "N"
+    accessid:
+      isHidden: true
+    filterLogic:
+      isHidden: true
   examples:
     - label: "SNV Range Example"
       note: "Example for EIF4A1 transcript region matches (precise variants)"
@@ -265,8 +239,6 @@ variantRangeRequest:
           isHidden: true
         assemblyId:
           defaultValue: "GRCh38"
-        geneinputField:
-          defaultValue: "EIF4A1"
         referenceName:
           defaultValue: "17"
         start:
@@ -281,53 +253,6 @@ variantRangeRequest:
           defaultValue: "N"
         freeFilters:
           defaultValue: ""
-      ontology_queries:
-        - "NCIT"
-        - "icdom"
-        - "icdot"
-
-noVariantRequest:
-  note: ""
-  label: No Variant Search
-  description: |
-    No Variant Search
-  parameters:
-    datasetIds:
-      placeholder: ""
-    includeDatasetResponses:
-      placeholder: "ALL"
-    assemblyId:
-      placeholder: "GRCh38"
-    geneinputField:
-      isHidden: true
-      placeholder: "CDKN2A"
-    cytoinputField:
-      placeholder: "9p13.1"
-    referenceName:
-      placeholder: "9"
-    start:
-      placeholder: "20000001-21975098"
-    startMax:
-      placeholder: 21975098
-    endMin:
-      placeholder: 21967753
-    end:
-      placeholder: "21967753-23000000"
-    variantType:
-      isHidden: true
-    requestType:
-      label: Variant Request Type
-      rules:
-        required: false
-      isHidden: true
-    alternateBases:
-      isHidden: true
-    referenceBases:
-      isHidden: true
-    freeFilters:
-      placeholder: "" # "geolat:49,geolong:8.69,geodist:2000000"
-    materialtype:
-      placeholder: "" #"EFO:0009656"
 
 allFieldsRequest:
   note: ""
@@ -342,8 +267,6 @@ allFieldsRequest:
     requestType: {}
     assemblyId:
       placeholder: "GRCh38"
-    geneinputField:
-      placeholder: "CDKN2A"
     cytoinputField:
       placeholder: "9p13.1"
     referenceName:
@@ -366,3 +289,7 @@ allFieldsRequest:
       placeholder: "" # "geolat:49,geolong:8.69,geodist:2000000"
     materialtype:
       placeholder: "" #"EFO:0009656"
+    accessid:
+      isHidden: true
+    filterLogic:
+      isHidden: true

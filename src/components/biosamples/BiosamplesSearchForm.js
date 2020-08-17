@@ -77,6 +77,7 @@ export function Form({
   urlQuery
 }) {
   const autoExecuteSearch = urlQuery.executeSearch
+  const displayTabs = Object.keys(requestTypesConfig).length > 1
 
   const [requestTypeId, setRequestTypeId] = useState(
     urlQuery.requestTypeId ?? Object.entries(requestTypesConfig)[0][0] // auto select first requestType from the file or from the query
@@ -150,14 +151,16 @@ export function Form({
 
   return (
     <>
-      <Tabs
-        requestTypesConfig={requestTypesConfig}
-        requestType={requestTypeId}
-        onRequestTypeClicked={handleRequestTypeClicked(
-          setExample,
-          setRequestTypeId
-        )}
-      />
+      {displayTabs && (
+        <Tabs
+          requestTypesConfig={requestTypesConfig}
+          requestType={requestTypeId}
+          onRequestTypeClicked={handleRequestTypeClicked(
+            setExample,
+            setRequestTypeId
+          )}
+        />
+      )}
       <div>
         <ExamplesButtons
           onExampleClicked={handleExampleClicked(reset, setExample)}
@@ -265,14 +268,15 @@ RequestTypeDescription.propTypes = {
 
 function RequestTypeDescription({ requestConfig }) {
   return (
-    <article className="message">
-      <div className="message-body">
-        <div className="content">
-          {requestConfig.description &&
-            markdownToReact(requestConfig?.description)}
+    requestConfig.description && (
+      <article className="message">
+        <div className="message-body">
+          <div className="content">
+            {markdownToReact(requestConfig?.description)}
+          </div>
         </div>
-      </div>
-    </article>
+      </article>
+    )
   )
 }
 
@@ -366,7 +370,7 @@ function validateForm(formValues) {
   const errors = []
   const setMissing = (name) =>
     errors.push([name, { type: "manual", message: "Parameter is missing" }])
-
+  console.log(requestType)
   if (requestType === "variantAlleleRequest") {
     if (!referenceBases || !alternateBases || !start) {
       !referenceBases && setMissing("referenceBases")
