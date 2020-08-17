@@ -18,11 +18,6 @@ export default function PublicationsListPage() {
           Please <a href="mailto:contact@progenetix.org">contact us</a> to alert
           us about additional articles you are aware of.
         </p>
-        <p>
-          A <a href="/publications-pgxdata.html">separate page</a> lists only
-          articles with corresponding genome profiles in the Progenetix sample
-          collection.
-        </p>
       </article>
       <PublicationTableLoader />
     </Layout>
@@ -39,9 +34,7 @@ function PublicationTableLoader() {
         // eslint-disable-next-line react/display-name
         Cell: (cellInfo) => (
           <a
-            href={`/publications/${cellInfo.value}?scope=datacollections`}
-            rel="noreferrer"
-            target="_blank"
+            href={`/publications/details?id=${cellInfo.value}?scope=datacollections`}
           >
             {cellInfo.value}
           </a>

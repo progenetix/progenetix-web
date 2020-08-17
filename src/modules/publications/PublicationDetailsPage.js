@@ -25,7 +25,7 @@ function NoResultsHelp() {
     <div className="notification is-size-5">
       This page will only show content if called with a specific Pubmed ID which
       already exists in the Progenetix `publications` database, e.g.{" "}
-      <a href={"/publications/PMID:28966033"}>
+      <a href={"/publications/details?id=PMID:28966033"}>
         /publication-details?id=PMID:28966033
       </a>
       . Please start over from the Progenetix Publication Collection page.

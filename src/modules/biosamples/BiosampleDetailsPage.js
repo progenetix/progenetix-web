@@ -28,7 +28,7 @@ function NoResultsHelp() {
       This page will only show content if called with a specific biosample ID
       which already exists in the Progenetix or arrayMap `biosamples` database,
       e.g.{" "}
-      <a href="/biosamples/PGX_AM_BS_PGkes2003_MB-kes-01?datasetIds=progenetix">
+      <a href="/biosamples/details?id=PGX_AM_BS_PGkes2003_MB-kes-01?datasetIds=progenetix">
         biosample-details?id=PGX_AM_BS_PGkes2003_MB-kes-01?datasetIds=progenetix
       </a>
       .
