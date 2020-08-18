@@ -34,7 +34,9 @@ function useConfigSelect(config, initialValue) {
   }, [initialValue])
 
   const options = configEntries.map(([k, v]) => (
-    <option key={k}>{v.label}</option>
+    <option key={k} value={k}>
+      {v.label}
+    </option>
   ))
   return {
     selected,
