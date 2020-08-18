@@ -45,7 +45,7 @@ export function Layout({ title, headline, children }) {
       <footer className="footer">
         <div className="content container has-text-centered">
           © 2000 - 2020 Progenetix Cancer Genomics Information Resource by Michael Baudis
-          is licensed under CC BY 4.0
+          is licensed under <a rel="license" href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0</a>
 
           No responsibility is taken for the correctness of the data presented
           nor the  results achieved with the Progenetix tools.
