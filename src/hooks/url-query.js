@@ -26,7 +26,7 @@ const isDynamicPage = (router) => /\[.+\]/.test(router.route)
 const testRouterReady = (router) =>
   !isDynamicPage(router) || router.asPath !== router.route
 
-export const withQuery = (WrappedComponent) => {
+export const withUrlQuery = (WrappedComponent) => {
   const QueryProvider = (props) => {
     const urlQuery = useQuery()
     if (!urlQuery) return null //only renders when component

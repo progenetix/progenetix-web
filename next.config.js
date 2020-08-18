@@ -19,5 +19,6 @@ module.exports = withMdxEnhanced({
       use: "js-yaml-loader"
     })
     return config
-  }
+  },
+  exportTrailingSlash: true
 })

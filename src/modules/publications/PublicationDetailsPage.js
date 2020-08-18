@@ -1,12 +1,12 @@
 import React from "react"
 import { publicationUrl, usePublication } from "../../hooks/api"
 import { Loader } from "../../components/Loader"
-import { withQuery } from "../../hooks/query"
+import { withUrlQuery } from "../../hooks/url-query"
 import { SubsetHistogram } from "../../components/Histogram"
 import { Layout } from "../../components/layouts/Layout"
 import { EpmcLink } from "./EpmcUrl"
 
-const PublicationDetailsPage = withQuery(({ urlQuery }) => {
+const PublicationDetailsPage = withUrlQuery(({ urlQuery }) => {
   const { id, scope, filter } = urlQuery
   return (
     <Layout title="Publication Details" headline="Publication Details">
