@@ -21,6 +21,7 @@ import InputField from "../form/InputField"
 import _ from "lodash"
 import useDeepCompareEffect from "use-deep-compare-effect"
 import { withUrlQuery } from "../../hooks/url-query"
+import { Collapse } from "react-collapse/lib/Collapse"
 
 export const BiosamplesSearchForm = withUrlQuery(
   ({ urlQuery, setUrlQuery, ...props }) => (
@@ -86,6 +87,8 @@ export function Form({
       makeParameters(parametersConfig, requestTypeConfig, example, datasets),
     [datasets, example, parametersConfig, requestTypeConfig]
   )
+
+  const [isAdvancedExpanded, setAdvancedExpanded] = useState(false)
 
   const initialValues = _.transform(parameters, (r, v, k) => {
     r[k] = urlQueryToFormParam(urlQuery, k) ?? v.defaultValue ?? null
@@ -223,16 +226,30 @@ export function Form({
             {...selectProps}
             isLoading={!filteringTerms && !filteringTermsError}
           />
-          <SelectField {...parameters.materialtype} {...selectProps} />
-          <div className="columns">
-            <div className="column">
-              <InputField {...parameters.freeFilters} {...fieldProps} />
+          {
+            <button
+              type="button"
+              className={cn(
+                "button mt-2 mb-5",
+                isAdvancedExpanded && "is-active"
+              )}
+              onClick={() => setAdvancedExpanded(!isAdvancedExpanded)}
+            >
+              Advanced
+            </button>
+          }
+          <Collapse isOpened={isAdvancedExpanded}>
+            <SelectField {...parameters.materialtype} {...selectProps} />
+            <div className="columns">
+              <div className="column">
+                <InputField {...parameters.freeFilters} {...fieldProps} />
+              </div>
+              <div className="column">
+                <SelectField {...parameters.filterLogic} {...selectProps} />
+              </div>
             </div>
-            <div className="column">
-              <SelectField {...parameters.filterLogic} {...selectProps} />
-            </div>
-          </div>
-          <InputField {...parameters.accessid} {...fieldProps} />
+            <InputField {...parameters.accessid} {...fieldProps} />
+          </Collapse>
           <div className="field mt-5">
             <div className="control">
               <button
