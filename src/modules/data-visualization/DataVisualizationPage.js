@@ -51,8 +51,10 @@ function DataVisualizationPanel({ accessid, width }) {
   }
   return (
     <div>
-      <div style={{ width: 600 }} className="mb-6">
-        <DataVisualizationForm isQuerying={false} onSubmit={onSubmit} />
+      <div className="columns">
+        <div className="mb-6 column is-half-desktop">
+          <DataVisualizationForm isQuerying={false} onSubmit={onSubmit} />
+        </div>
       </div>
       <WithData
         background
