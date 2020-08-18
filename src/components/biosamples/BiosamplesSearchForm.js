@@ -28,7 +28,6 @@ export const BiosamplesSearchForm = withUrlQuery(
 )
 
 const DatasetLoader = (props) => {
-  console.log(props)
   const {
     data: datasets,
     error: datasetsError,
