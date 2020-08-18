@@ -1,2 +1,2 @@
-import Page from "../../modules/biosubsets/BioSubsetsPage"
+import Page from "../../modules/subsets/BioSubsetsPage"
 export default Page
