@@ -1,6 +1,7 @@
 import cn from "classnames"
 import {
   INTEGER_RANGE_REGEX,
+  isValidBeaconQuery,
   useDatasets,
   useFilteringTerms
 } from "../../hooks/api"
@@ -54,7 +55,7 @@ BiosamplesSearchForm.propTypes = {
 
 function urlQueryToFormParam(urlQuery, k) {
   const value = urlQuery[k]
-  if (value?.indexOf(",")) return value?.split(",")
+  if (value?.indexOf(",") > 0) return value?.split(",")
   else return value
 }
 
@@ -67,7 +68,7 @@ export function Form({
   urlQuery,
   setUrlQuery
 }) {
-  const autoExecuteSearch = urlQuery.executeSearch
+  const autoExecuteSearch = urlQuery.executeSearch === "true"
   const displayTabs = Object.keys(requestTypesConfig).length > 1
   // auto select first requestType from the file or from the query
   const defaultRequestTypeId =
@@ -86,7 +87,7 @@ export function Form({
     [datasets, example, parametersConfig, requestTypeConfig]
   )
 
-  const defaultValues = _.transform(parameters, (r, v, k) => {
+  const initialValues = _.transform(parameters, (r, v, k) => {
     r[k] = urlQueryToFormParam(urlQuery, k) ?? v.defaultValue ?? null
   })
 
@@ -100,12 +101,12 @@ export function Form({
     clearErrors,
     watch,
     control
-  } = useForm({ defaultValues })
+  } = useForm({ defaultValues: initialValues })
 
   Object.keys(errors).length && console.info("Found errors in form", errors)
 
   // reset form when default values changes
-  useDeepCompareEffect(() => reset(defaultValues), [defaultValues])
+  useDeepCompareEffect(() => reset(initialValues), [initialValues])
 
   const {
     data: filteringTerms,
@@ -142,7 +143,14 @@ export function Form({
 
   useEffect(() => {
     if (autoExecuteSearch) {
-      onValidFormQuery(defaultValues)
+      setUrlQuery({ executeSearch: "false" })
+
+      // At this stage individual parameters are already validated.
+      const values = initialValues
+      const errors = validateForm(values)
+      if (errors.length === 0) {
+        onValidFormQuery(values)
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [autoExecuteSearch])
@@ -346,17 +354,13 @@ function onSubmitHandler(
 ) {
   return (formValues) => {
     clearErrors()
-    if (formValues.accessid) {
-      onValidFormQuery(formValues)
+    // At this stage individual parameters are already validated.
+    const errors = validateForm(formValues)
+    if (errors.length > 0) {
+      errors.forEach(([name, error]) => setError(name, error))
     } else {
-      // At this stage individual parameters are already validated.
-      const errors = validateForm(formValues)
-      if (errors.length > 0) {
-        errors.forEach(([name, error]) => setError(name, error))
-      } else {
-        saveFormValuesInUrl(formValues, requestTypeId, setUrlQuery)
-        onValidFormQuery(formValues)
-      }
+      saveFormValuesInUrl(formValues, requestTypeId, setUrlQuery)
+      onValidFormQuery(formValues)
     }
   }
 }
@@ -404,6 +408,15 @@ function validateForm(formValues) {
   } else if (requestType === "variantFusionRequest") {
     //
   }
+
+  if (!isValidBeaconQuery(formValues)) {
+    const error = {
+      type: "manual",
+      message: "Unknown issue with the form values."
+    }
+    errors.push(["global", error])
+  }
+
   return errors
 }
 

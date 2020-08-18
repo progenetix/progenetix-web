@@ -41,6 +41,14 @@ export function useBeaconQuery(queryData) {
   )
 }
 
+export function isValidBeaconQuery(queryData) {
+  try {
+    return !!buildQueryParameters(queryData)
+  } catch (e) {
+    return false
+  }
+}
+
 export function buildQueryParameters(queryData) {
   const {
     start,
