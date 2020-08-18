@@ -5,9 +5,14 @@ import { useForm } from "react-hook-form"
 import SelectField from "../../components/form/SelectField"
 import InputField from "../../components/form/InputField"
 import cn from "classnames"
-import { replaceWithProxy, useDataVisualization } from "../../hooks/api"
+import {
+  replaceWithProxy,
+  useDataVisualization,
+  useGeneSpans
+} from "../../hooks/api"
 import { WithData } from "../../components/Loader"
 import { useContainerDimensions } from "../../hooks/containerDimensions"
+import { useAsyncSelect } from "../../hooks/asyncSelect"
 
 const DataVisualizationPage = withUrlQuery(({ urlQuery }) => {
   const { accessid } = urlQuery
@@ -66,7 +71,7 @@ function DataVisualizationPanel({ accessid, width }) {
 }
 
 function DataVisualizationForm({ isQuerying, onSubmit }) {
-  const defaultValues = { group_by: "" }
+  const defaultValues = { group_by: "", "-markers": "" }
   const { register, handleSubmit, errors, control } = useForm({ defaultValues })
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -104,6 +109,7 @@ function DataVisualizationForm({ isQuerying, onSubmit }) {
           />
         </div>
       </div>
+      <GeneSpanSelector errors={errors} register={register} control={control} />
       <div className="field mt-5">
         <div className="control">
           <button
@@ -142,3 +148,35 @@ const groupByOptions = [
     label: "Cellosaurus Cellline ID"
   }
 ]
+
+function GeneSpanSelector({ control, errors, register }) {
+  const { inputValue, onInputChange } = useAsyncSelect()
+  let { options, isLoading } = useGenSpanSelect(inputValue)
+  return (
+    <SelectField
+      name="-markers"
+      label="Gene selection"
+      isLoading={isLoading && !!inputValue}
+      options={options}
+      onInputChange={onInputChange}
+      control={control}
+      errors={errors}
+      register={register}
+      isMulti
+    />
+  )
+}
+
+function useGenSpanSelect(inputValue) {
+  const { data, isLoading } = useGeneSpans(inputValue)
+  let options = []
+  if (data) {
+    options = data.genes.map(
+      ({ reference_name, cds_start_min, cds_end_max, gene_symbol }) => ({
+        value: `${reference_name}:${cds_start_min}-${cds_end_max}:${gene_symbol}`,
+        label: `${gene_symbol} (${reference_name}:${cds_start_min}-${cds_end_max})`
+      })
+    )
+  }
+  return { isLoading, options }
+}
