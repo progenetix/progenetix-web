@@ -202,29 +202,46 @@ export function Form({
           <SelectField {...parameters.requestType} {...selectProps} />
           <SelectField {...parameters.referenceName} {...selectProps} />
           <SelectField {...parameters.variantType} {...selectProps} />
-          <InputField
-            {...fieldProps}
-            {...parameters.start}
-            rules={{
-              validate: checkIntegerRange
-            }}
-          />
-          <InputField
-            {...fieldProps}
-            {...parameters.end}
-            rules={{
-              validate: checkIntegerRange
-            }}
-          />
-          <InputField {...fieldProps} {...parameters.referenceBases} />
-          <InputField {...fieldProps} {...parameters.alternateBases} />
+          <div className="columns">
+            <div className={cn(!parameters.start.isHidden && "column")}>
+              <InputField
+                {...fieldProps}
+                {...parameters.start}
+                rules={{
+                  validate: checkIntegerRange
+                }}
+              />
+            </div>
+            <div className={cn(!parameters.end.isHidden && "column")}>
+              <InputField
+                {...fieldProps}
+                {...parameters.end}
+                rules={{
+                  validate: checkIntegerRange
+                }}
+              />
+            </div>
+          </div>
+          <div className="columns mb-0">
+            <div
+              className={cn(!parameters.referenceBases.isHidden && "column")}
+            >
+              <InputField {...fieldProps} {...parameters.referenceBases} />
+            </div>
+            <div
+              className={cn(!parameters.alternateBases.isHidden && "column")}
+            >
+              <InputField {...fieldProps} {...parameters.alternateBases} />
+            </div>
+          </div>
+
           <SelectField
             {...parameters.bioontology}
             {...selectProps}
             isLoading={!filteringTerms && !filteringTermsError}
           />
           <SelectField {...parameters.materialtype} {...selectProps} />
-          <div className="columns">
+          <div className="columns mb-0">
             <div className="column">
               <InputField {...parameters.freeFilters} {...fieldProps} />
             </div>
