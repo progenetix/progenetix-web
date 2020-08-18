@@ -17,7 +17,7 @@ const handoversInTab = [
   HANDOVER_IDS.variantsdata
 ]
 
-const tabs = {
+const TABS = {
   results: "Results",
   samples: "Biosamples",
   variants: "Variants"
@@ -48,13 +48,13 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
 
   // main / samples / variants
   const tabNames = []
-  if (handoverById(HANDOVER_IDS.cnvhistogram)) tabNames.push(tabs.results)
-  if (biosamplesHandover) tabNames.push(tabs.samples)
-  if (handoverById(HANDOVER_IDS.variantsdata)) tabNames.push(tabs.variants)
-  const [selectedTab, setSelectedTab] = useState(tabs[0])
+  if (handoverById(HANDOVER_IDS.cnvhistogram)) tabNames.push(TABS.results)
+  if (biosamplesHandover) tabNames.push(TABS.samples)
+  if (handoverById(HANDOVER_IDS.variantsdata)) tabNames.push(TABS.variants)
+  const [selectedTab, setSelectedTab] = useState(tabNames[0])
 
   let tabComponent
-  if (selectedTab === tabs.results) {
+  if (selectedTab === TABS.results) {
     const histogramUrl = handoverById(HANDOVER_IDS.cnvhistogram).url
     tabComponent = (
       <ResultsTab
@@ -62,14 +62,14 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
         biosamplesDataResults={biosamplesDataResults}
       />
     )
-  } else if (selectedTab === tabs.samples) {
+  } else if (selectedTab === TABS.samples) {
     tabComponent = (
       <BiosamplesDataTable
         dataEffectResult={biosamplesDataResults}
         datasetId={datasetId}
       />
     )
-  } else if (selectedTab === tabs.variants) {
+  } else if (selectedTab === TABS.variants) {
     const handover = handoverById(HANDOVER_IDS.variantsdata)
     const url = replaceWithProxy(handover.url)
     tabComponent = <VariantsDataTable url={url} />
