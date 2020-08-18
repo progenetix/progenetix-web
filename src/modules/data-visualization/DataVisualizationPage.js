@@ -73,7 +73,7 @@ function DataVisualizationForm({ isQuerying, onSubmit }) {
         label="Chromosomes"
         errors={errors}
         register={register}
-        defaultValue="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22"
+        defaultValue="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X"
       />
       <InputField
         name="-randno"
@@ -95,7 +95,7 @@ function DataVisualizationForm({ isQuerying, onSubmit }) {
         <div className="column">
           <InputField
             name="-min_group_no"
-            label="Chromosomes"
+            label="Min. Samples per Group"
             errors={errors}
             register={register}
             defaultValue="2"
