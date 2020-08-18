@@ -8,15 +8,15 @@ import Panel from "../../components/Panel"
 import { FaSlidersH } from "react-icons/fa"
 import { BiosamplesResults } from "../../components/biosamples/BiosamplesResults"
 
-export default function BiosamplesSearchPage() {
+export default function SearchSamplesPage() {
   return (
-    <Layout title="Sample search" headline="Sample search">
-      <BiosamplesSearch />
+    <Layout title="Search Samples" headline="Search Samples">
+      <SearchSamples />
     </Layout>
   )
 }
 
-function BiosamplesSearch() {
+function SearchSamples() {
   const [query, setQuery] = useState(null) // actual valid query
   const [searchCollapsed, setSearchCollapsed] = useState(false)
 

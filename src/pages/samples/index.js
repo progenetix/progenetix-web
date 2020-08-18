@@ -1,2 +1,2 @@
-import Page from "../../modules/samples/BiosamplesSearchPage"
+import Page from "../../modules/samples/SearchSamplesPage"
 export default Page

@@ -1,16 +1,12 @@
 import { sampleUrl, useSample } from "../../hooks/api"
 import { Loader } from "../../components/Loader"
 import React from "react"
-import { useQuery } from "../../hooks/query"
+import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/layouts/Layout"
 
-export default function BiosampleDetailsPage() {
-  const urlQuery = useQuery()
-  if (!urlQuery) return null // query will only be defined after first mount
-
+const SampleDetailsPage = withUrlQuery(({ urlQuery }) => {
   const { id, datasetIds } = urlQuery
   const hasAllParams = id && datasetIds
-
   return (
     <Layout title="Sample Details" headline="Sample Details">
       {!hasAllParams ? (
@@ -20,7 +16,9 @@ export default function BiosampleDetailsPage() {
       )}
     </Layout>
   )
-}
+})
+
+export default SampleDetailsPage
 
 function NoResultsHelp() {
   return (

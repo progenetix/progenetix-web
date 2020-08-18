@@ -1,7 +1,7 @@
 import { useAllBioSubsets, useBioSubsets } from "../../hooks/api"
 import { WithData } from "../../components/Loader"
 import React, { useEffect, useMemo, useReducer, useState } from "react"
-import { withQuery } from "../../hooks/query"
+import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/layouts/Layout"
 import { isEqual, sortBy, keyBy, merge } from "lodash"
 import { getOrMakeChild, getOrMakeNode } from "./tree"
@@ -43,7 +43,7 @@ function useConfigSelect(config, initialValue) {
   }
 }
 
-const BioSubsetsPage = withQuery(({ urlQuery }) => {
+const BioSubsetsPage = withUrlQuery(({ urlQuery }) => {
   const {
     selected: selectedFilters,
     setSelected: setSelectedFilters,

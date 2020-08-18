@@ -19,7 +19,7 @@ import SelectField from "../form/SelectField"
 import InputField from "../form/InputField"
 import _ from "lodash"
 import useDeepCompareEffect from "use-deep-compare-effect"
-import { useQuery } from "../../hooks/query"
+import { useQuery } from "../../hooks/url-query"
 
 BiosamplesSearchForm.propTypes = {
   isQuerying: PropTypes.bool.isRequired,
