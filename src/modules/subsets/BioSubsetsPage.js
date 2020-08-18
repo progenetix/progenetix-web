@@ -464,7 +464,9 @@ function Row({ node, dispatch, collapsed, depth, datasetIds }) {
             <Expander collapsed={collapsed} dispatch={dispatch} nodeKey={key} />
           </span>
           <span>
-            <Link href={`/subsets?filters=${name}&datasetIds=${datasetIds}`}>
+            <Link
+              href={`/subsets/list?filters=${name}&datasetIds=${datasetIds}`}
+            >
               <a>{name}</a>
             </Link>
             {subset?.label && <span>: {subset.label}</span>}
