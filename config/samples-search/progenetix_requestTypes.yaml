@@ -58,4 +58,29 @@ progenetix:
         variantType:
           defaultValue: "DEL"
         bioontology:
-          defaultValue: NCIT:C3058
+          defaultValue: "NCIT:C3058"
+    - label: "MYC Duplication"
+      note: "Example for focal MYC Duplications."
+      description: |
+        The example parameters will select samples with a continuous, focal duplication
+        of the complete MYC coding region. The serarch will be limited to "icdom-80463"
+        (i.e. ICD-O 3 8046/3, Non-small cell carcinoma).
+      parameters:
+        datasetIds:
+          defaultValue: "progenetix"
+        includeDatasetResponses:
+          defaultValue: "ALL"
+          isHidden: true
+        assemblyId:
+          defaultValue: "GRCh38"
+          isHidden: true
+        referenceName:
+          defaultValue: "8"
+        start:
+          defaultValue: "124000000-127736593"
+        end:
+          defaultValue: "127740957-130000000"
+        variantType:
+          defaultValue: "DUP"
+        bioontology:
+          defaultValue: "icdom-80463"
