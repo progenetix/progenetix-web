@@ -47,11 +47,11 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
   )
 
   // main / samples / variants
-  const [selectedTab, setSelectedTab] = useState(tabs.results)
   const tabNames = []
   if (handoverById(HANDOVER_IDS.cnvhistogram)) tabNames.push(tabs.results)
   if (biosamplesHandover) tabNames.push(tabs.samples)
   if (handoverById(HANDOVER_IDS.variantsdata)) tabNames.push(tabs.variants)
+  const [selectedTab, setSelectedTab] = useState(tabs[0])
 
   let tabComponent
   if (selectedTab === tabs.results) {
