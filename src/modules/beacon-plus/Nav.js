@@ -11,9 +11,11 @@ export default function Nav() {
         role="navigation"
         aria-label="main navigation"
       >
-        <a className="Nav__logo" href="/beacon-plus">
-          Beacon <sup className="Nav__plus">+</sup>
-        </a>
+        <Link href="/beacon-plus/search">
+          <a className="Nav__logo">
+            Beacon <sup className="Nav__plus">+</sup>
+          </a>
+        </Link>
         <div className="Nav__links">
           <ActiveLink label="About" href="/beacon-plus/about" />
           <a
