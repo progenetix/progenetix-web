@@ -69,12 +69,9 @@ function Side({ onClick }) {
         />
       </Link>
       <ul className="Layout__side__items">
-        <MenuInternalLinkItem
-          href="/publications?filters=genomes:>0"
-          label="Publications"
-        />
-        <MenuInternalLinkItem href="/samples" label="Search Samples" />
-        <MenuInternalLinkItem href="/biosubsets" label="Biosubsets" />
+        <MenuInternalLinkItem href="/publications/list" label="Publications" />
+        <MenuInternalLinkItem href="/samples/search" label="Search Samples" />
+        <MenuInternalLinkItem href="/subsets/list" label="Biosubsets" />
         <li>
           <MenuLink href="https://info.progenetix.org/">Info </MenuLink>
         </li>

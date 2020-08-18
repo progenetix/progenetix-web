@@ -464,7 +464,7 @@ function Row({ node, dispatch, collapsed, depth, datasetIds }) {
             <Expander collapsed={collapsed} dispatch={dispatch} nodeKey={key} />
           </span>
           <span>
-            <Link href={`/biosubsets?filters=${name}&datasetIds=${datasetIds}`}>
+            <Link href={`/subsets?filters=${name}&datasetIds=${datasetIds}`}>
               <a>{name}</a>
             </Link>
             {subset?.label && <span>: {subset.label}</span>}
@@ -536,5 +536,5 @@ function sampleSelectUrl({ subsets, datasetIds }) {
     .flatMap((subset) => [subset.id, ...(subset?.child_terms ?? [])])
     .join(",")
 
-  return `/samples?bioontology=${samples}&datasetIds=${datasetIds}&filterLogic=OR&executeSearch=true`
+  return `/samples/search?bioontology=${samples}&datasetIds=${datasetIds}&filterLogic=OR&executeSearch=true`
 }

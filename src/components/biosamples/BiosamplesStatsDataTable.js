@@ -15,7 +15,7 @@ export default function BiosamplesStatsDataTable({ biosamplesResponse }) {
         Cell: ({ value, row: { original } }) => {
           return (
             <span>
-              <a href={`/biosubsets?filters=${original.id}`}>{value}</a>
+              <a href={`/subsets/list?filters=${original.id}`}>{value}</a>
             </span>
           )
         }
@@ -39,6 +39,7 @@ export default function BiosamplesStatsDataTable({ biosamplesResponse }) {
                   width: `${value * 100}%`,
                   height: `80%`,
                   position: "absolute",
+                  left: 0,
                   backgroundColor: "#d8d8d8"
                 }}
               />
