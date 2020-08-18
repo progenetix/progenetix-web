@@ -8,8 +8,9 @@ SelectField.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   isHidden: PropTypes.bool,
-  errors: PropTypes.object,
+  errors: PropTypes.object.isRequired,
   register: PropTypes.func.isRequired,
+  control: PropTypes.object.isRequired,
   rules: PropTypes.object
 }
 

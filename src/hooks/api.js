@@ -86,6 +86,33 @@ export function buildQueryParameters(queryData) {
   ).toString()
 }
 
+export function useDataVisualization(queryData) {
+  return useExtendedSWR(
+    queryData
+      ? `${basePath}cgi/api_process.cgi?${buildDataVisualizationParameters(
+          queryData
+        )}`
+      : null
+  )
+}
+
+export function buildDataVisualizationParameters(queryData) {
+  // accessid=2833da30-e135-11ea-875b-a1a6d91b59c8&
+  // &-chr2plot=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22
+  // &-size_plotarea_h_px=100
+  // &-size_plotimage_w_px=800
+  // &-size_title_left_px=0
+  // &-size_clustertree_w_px=50
+  // &-randno=10
+  // &-markers=&
+  // group_by=biocharacteristics%3A%3ANCIT
+  // &-min_group_no=2
+
+  return new URLSearchParams(
+    flattenParams([...Object.entries(queryData)]).filter(([, v]) => !!v)
+  ).toString()
+}
+
 export function publicationUrl(id) {
   return `${basePath}do/api/apidb=progenetix&apiscope=publications&apimethod=publicationdetails&id=${id}`
 }
