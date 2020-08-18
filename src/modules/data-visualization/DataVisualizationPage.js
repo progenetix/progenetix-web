@@ -46,8 +46,8 @@ function DataVisualizationPanel({ accessid, width }) {
     ...formValues
   })
   const onSubmit = (values) => {
-    dataResult.mutate(null)
     setFormValues(values)
+    dataResult.mutate(null)
   }
   return (
     <div>
