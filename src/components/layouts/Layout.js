@@ -44,11 +44,10 @@ export function Layout({ title, headline, children }) {
       </main>
       <footer className="footer">
         <div className="content container has-text-centered">
-          © 2000 - 2020 Progenetix Cancer Genomics Information Resource by Michael Baudis
-          is licensed under <a rel="license" href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0</a>
-
-          No responsibility is taken for the correctness of the data presented
-          nor the  results achieved with the Progenetix tools.
+          © 2000 - 2020 Progenetix Cancer Genomics Information Resource by
+          Michael Baudis is licensed under <a rel="license" href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0</a> No responsibility is taken
+          for the correctness of the data presented nor the results achieved
+          with the Progenetix tools.
         </div>
       </footer>
     </div>
@@ -66,12 +65,9 @@ function Side({ onClick }) {
         />
       </Link>
       <ul className="Layout__side__items">
-        <MenuInternalLinkItem
-          href="/publications?filters=genomes:>0"
-          label="Publications"
-        />
-        <MenuInternalLinkItem href="/samples" label="Search Samples" />
-        <MenuInternalLinkItem href="/biosubsets" label="Biosubsets" />
+        <MenuInternalLinkItem href="/publications/list" label="Publications" />
+        <MenuInternalLinkItem href="/samples/search" label="Search Samples" />
+        <MenuInternalLinkItem href="/subsets/list" label="Biosubsets" />
         <li>
           <MenuLink href="https://info.progenetix.org/">Info </MenuLink>
         </li>
