@@ -5,3 +5,4 @@
 
 # Ignore next-mdx-enhanced cache directory
 .mdx-data
+.DS_Store

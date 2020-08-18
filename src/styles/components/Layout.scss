@@ -129,8 +129,17 @@ $side-width: 14rem;
   padding: 0.5rem 0.75rem 0.5rem 2rem;
 }
 
-.Image__cc__icons {
+.Layout__cc__icons {
   height: 14px!important;
   margin-left: 3px;
   vertical-align: text-bottom;
+}
+
+.Layout__side-image {
+  cursor: pointer;
+  margin-top: 11px;
+  margin-bottom: 11px;
+  @include until($desktop) {
+    display: none;
+  }
 }
