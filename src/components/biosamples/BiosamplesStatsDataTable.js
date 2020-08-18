@@ -39,6 +39,7 @@ export default function BiosamplesStatsDataTable({ biosamplesResponse }) {
                   width: `${value * 100}%`,
                   height: `80%`,
                   position: "absolute",
+                  left: 0,
                   backgroundColor: "#d8d8d8"
                 }}
               />
