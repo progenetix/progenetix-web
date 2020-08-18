@@ -43,8 +43,12 @@ export function Layout({ title, headline, children }) {
         </div>
       </main>
       <footer className="footer">
-        <div className="content container">
-          <p>©2000 - 2020 Michael Baudis</p>
+        <div className="content container has-text-centered">
+          © 2000 - 2020 Progenetix Cancer Genomics Information Resource by Michael Baudis
+          is licensed under CC BY 4.0
+
+          No responsibility is taken for the correctness of the data presented
+          nor the  results achieved with the Progenetix tools.
         </div>
       </footer>
     </div>
