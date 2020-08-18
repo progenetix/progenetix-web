@@ -12,27 +12,23 @@ import biosubsetsConfig from "./config.yaml"
 import { SubsetHistogram } from "../../components/Histogram"
 import Link from "next/link"
 
-const makeEntries = (config, initialValue) => {
+const makeEntries = (config, queryValue) => {
   let configEntries = Object.entries(config)
-  if (initialValue && !configEntries.find(([c]) => c === initialValue)) {
-    configEntries = [[initialValue, { label: initialValue }], ...configEntries]
+  if (queryValue && !configEntries.find(([c]) => c === queryValue)) {
+    configEntries = [[queryValue, { label: queryValue }], ...configEntries]
   }
   return configEntries
 }
 
-function useConfigSelect(config, initialValue) {
-  const configEntries = useMemo(() => makeEntries(config, initialValue), [
+function useConfigSelect(config, key, urlQuery, setUrlQuery) {
+  const queryValue = urlQuery[key]
+  const configEntries = useMemo(() => makeEntries(config, queryValue), [
     config,
-    initialValue
+    queryValue
   ])
-  const [selected, setSelected] = useState(configEntries[0][0])
-
-  // refresh state if initial values (from url) changes
-  useEffect(() => {
-    setSelected(configEntries[0][0])
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [initialValue])
-
+  const selected =
+    configEntries.find(([c]) => c === queryValue)?.[0] ?? configEntries[0][0]
+  const setSelected = (newValue) => setUrlQuery({ [key]: newValue })
   const options = configEntries.map(([k, v]) => (
     <option key={k} value={k}>
       {v.label}
@@ -45,17 +41,27 @@ function useConfigSelect(config, initialValue) {
   }
 }
 
-const BioSubsetsPage = withUrlQuery(({ urlQuery }) => {
+const BioSubsetsPage = withUrlQuery(({ urlQuery, setUrlQuery }) => {
   const {
     selected: selectedFilters,
     setSelected: setSelectedFilters,
     options: filtersOptions
-  } = useConfigSelect(biosubsetsConfig.filters, urlQuery.filters)
+  } = useConfigSelect(
+    biosubsetsConfig.filters,
+    "filters",
+    urlQuery,
+    setUrlQuery
+  )
   const {
     selected: selectedDatasetIds,
     setSelected: setSelectedDatasetIds,
     options: datasetIdsOptions
-  } = useConfigSelect(biosubsetsConfig.datasetIds, urlQuery.datasetIds)
+  } = useConfigSelect(
+    biosubsetsConfig.datasetIds,
+    "datasetIds",
+    urlQuery,
+    setUrlQuery
+  )
   return (
     <Layout title="Subsets" headline="Subsets">
       <div className="level mb-6">

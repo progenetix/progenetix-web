@@ -19,23 +19,16 @@ import SelectField from "../form/SelectField"
 import InputField from "../form/InputField"
 import _ from "lodash"
 import useDeepCompareEffect from "use-deep-compare-effect"
-import { useQuery } from "../../hooks/url-query"
+import { withUrlQuery } from "../../hooks/url-query"
 
-BiosamplesSearchForm.propTypes = {
-  isQuerying: PropTypes.bool.isRequired,
-  onValidFormQuery: PropTypes.func.isRequired,
-  requestTypesConfig: PropTypes.object.isRequired,
-  parametersConfig: PropTypes.object.isRequired
-}
+export const BiosamplesSearchForm = withUrlQuery(
+  ({ urlQuery, setUrlQuery, ...props }) => (
+    <DatasetLoader {...props} urlQuery={urlQuery} setUrlQuery={setUrlQuery} />
+  )
+)
 
-export function BiosamplesSearchForm({
-  isQuerying,
-  onValidFormQuery,
-  requestTypesConfig,
-  parametersConfig
-}) {
-  const urlQuery = useQuery()
-
+const DatasetLoader = (props) => {
+  console.log(props)
   const {
     data: datasets,
     error: datasetsError,
@@ -44,22 +37,20 @@ export function BiosamplesSearchForm({
   return (
     <Loader
       hasError={datasetsError}
-      isLoading={datasetIsLoading || !urlQuery}
+      isLoading={datasetIsLoading}
       loadingMessage="Loading datasets..."
       errorMessage="Could not load datasets"
     >
-      {() => (
-        <Form
-          datasets={datasets}
-          isQuerying={isQuerying}
-          onValidFormQuery={onValidFormQuery}
-          requestTypesConfig={requestTypesConfig}
-          parametersConfig={parametersConfig}
-          urlQuery={urlQuery}
-        />
-      )}
+      {() => <Form datasets={datasets} {...props} />}
     </Loader>
   )
+}
+
+BiosamplesSearchForm.propTypes = {
+  isQuerying: PropTypes.bool.isRequired,
+  onValidFormQuery: PropTypes.func.isRequired,
+  requestTypesConfig: PropTypes.object.isRequired,
+  parametersConfig: PropTypes.object.isRequired
 }
 
 function urlQueryToFormParam(urlQuery, k) {
@@ -74,7 +65,8 @@ export function Form({
   onValidFormQuery,
   requestTypesConfig,
   parametersConfig,
-  urlQuery
+  urlQuery,
+  setUrlQuery
 }) {
   const autoExecuteSearch = urlQuery.executeSearch
   const displayTabs = Object.keys(requestTypesConfig).length > 1
@@ -138,7 +130,8 @@ export function Form({
     clearErrors,
     setError,
     onValidFormQuery,
-    requestTypeId
+    requestTypeId,
+    setUrlQuery
   )
 
   // shortcuts
@@ -341,17 +334,16 @@ function makeParameters(
   return parameters
 }
 
-function saveFormValuesInUrl(formValues, requestTypeId) {
-  const params = new URLSearchParams(formValues)
-  params.set("requestTypeId", requestTypeId)
-  window.history.replaceState({}, "", `${location.pathname}?${params}`)
+function saveFormValuesInUrl(formValues, requestTypeId, setUrlQuery) {
+  setUrlQuery({ ...formValues, requestTypeId })
 }
 
 function onSubmitHandler(
   clearErrors,
   setError,
   onValidFormQuery,
-  requestTypeId
+  requestTypeId,
+  setUrlQuery
 ) {
   return (formValues) => {
     clearErrors()
@@ -363,7 +355,7 @@ function onSubmitHandler(
       if (errors.length > 0) {
         errors.forEach(([name, error]) => setError(name, error))
       } else {
-        saveFormValuesInUrl(formValues, requestTypeId)
+        saveFormValuesInUrl(formValues, requestTypeId, setUrlQuery)
         onValidFormQuery(formValues)
       }
     }

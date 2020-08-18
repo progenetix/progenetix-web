@@ -143,11 +143,13 @@ function ResultsTab({ histogramUrl, biosamplesDataResults }) {
 
   return (
     <div>
-      See more{" "}
-      <a href={`/data-visualization?accessid=${visualizationAccessId}`}>
-        visualization options
-      </a>
-      .
+      <div className="mb-2">
+        See more{" "}
+        <a href={`/data-visualization?accessid=${visualizationAccessId}`}>
+          visualization options
+        </a>
+        .
+      </div>
       <div className="mb-4">
         <CnvHistogramPreview url={histogramUrl} />
       </div>
