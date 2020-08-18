@@ -188,7 +188,7 @@ function SubsetsResponse({ bioSubsetsHierarchies, allBioSubsets, datasetIds }) {
         <a
           className="button is-info mb-3"
           disabled={!hasCheckedSubsets}
-          href={selectSamplesHref || ""}
+          href={selectSamplesHref || null}
           rel="noreferrer"
           target="_BLANK"
         >
