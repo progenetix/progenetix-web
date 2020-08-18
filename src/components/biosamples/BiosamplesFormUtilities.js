@@ -68,12 +68,12 @@ export function FormUtilitiesButtons({
 }
 
 function useGenSpanSelect(inputValue) {
-  const { data, error } = useGeneSpans(inputValue)
+  const { data, error, isLoading } = useGeneSpans(inputValue)
   let options = []
   if (data) {
     options = data.genes.map((g) => ({ value: g, label: g.gene_symbol }))
   }
-  return { data, error, options }
+  return { isLoading, error, options }
 }
 
 export function GeneSpansUtility({ onClose, setFormValue }) {
@@ -166,8 +166,7 @@ function FormUtility({
   onCloseClick
 }) {
   const { inputValue, value, onChange, onInputChange } = useAsyncSelect()
-  let { options, error } = selectEffect(inputValue)
-  const isLoading = inputValue && !options && !error
+  let { options, error, isLoading } = selectEffect(inputValue)
 
   return (
     <div className="message is-link mb-6">
@@ -176,7 +175,7 @@ function FormUtility({
         <CustomSelect
           className="mb-3"
           options={options}
-          isLoading={isLoading}
+          isLoading={!!inputValue && isLoading}
           onInputChange={onInputChange}
           value={value}
           onChange={onChange}
