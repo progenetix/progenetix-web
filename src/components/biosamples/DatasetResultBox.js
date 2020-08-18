@@ -137,8 +137,17 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
 }
 
 function ResultsTab({ histogramUrl, biosamplesDataResults }) {
+  const visualizationAccessId = new URLSearchParams(
+    new URL(histogramUrl).search
+  ).get("accessid")
+
   return (
     <div>
+      See more{" "}
+      <a href={`/data-visualization?accessid=${visualizationAccessId}`}>
+        visualization options
+      </a>
+      .
       <div className="mb-4">
         <CnvHistogramPreview url={histogramUrl} />
       </div>
