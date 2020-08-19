@@ -16,6 +16,11 @@ export default function SearchSamplesPage() {
   )
 }
 
+const datasets = [
+  { label: "progenetix", value: "progenetix" },
+  { label: "arraymap", value: "arraymap" }
+]
+
 function SearchSamples() {
   const [query, setQuery] = useState(null) // actual valid query
   const [searchCollapsed, setSearchCollapsed] = useState(false)
@@ -55,6 +60,7 @@ function SearchSamples() {
           }
         >
           <BiosamplesSearchForm
+            datasets={datasets}
             requestTypesConfig={requestTypesConfig}
             parametersConfig={parametersConfig}
             isQuerying={isLoading}

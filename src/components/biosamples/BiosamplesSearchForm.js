@@ -2,13 +2,11 @@ import cn from "classnames"
 import {
   INTEGER_RANGE_REGEX,
   isValidBeaconQuery,
-  useDatasets,
   useFilteringTerms
 } from "../../hooks/api"
 import React, { useEffect, useMemo, useState } from "react"
 import { markdownToReact } from "../../utils/md"
 import { useForm } from "react-hook-form"
-import { Loader } from "../Loader"
 import {
   CytoBandsUtility,
   FormUtilitiesButtons,
@@ -24,29 +22,13 @@ import { withUrlQuery } from "../../hooks/url-query"
 
 export const BiosamplesSearchForm = withUrlQuery(
   ({ urlQuery, setUrlQuery, ...props }) => (
-    <DatasetLoader {...props} urlQuery={urlQuery} setUrlQuery={setUrlQuery} />
+    <Form {...props} urlQuery={urlQuery} setUrlQuery={setUrlQuery} />
   )
 )
-
-const DatasetLoader = (props) => {
-  const {
-    data: datasets,
-    error: datasetsError,
-    isLoading: datasetIsLoading
-  } = useSelectDatasets()
-  return (
-    <Loader
-      hasError={datasetsError}
-      isLoading={datasetIsLoading}
-      loadingMessage="Loading datasets..."
-      errorMessage="Could not load datasets"
-    >
-      {() => <Form datasets={datasets} {...props} />}
-    </Loader>
-  )
-}
+export default BiosamplesSearchForm
 
 BiosamplesSearchForm.propTypes = {
+  datasets: PropTypes.array.isRequired,
   isQuerying: PropTypes.bool.isRequired,
   onValidFormQuery: PropTypes.func.isRequired,
   requestTypesConfig: PropTypes.object.isRequired,
@@ -456,20 +438,6 @@ export const checkIntegerRange = (value) => {
   const [, range0, range1] = match
   if (range1 && range0 > range1)
     return "Incorrect range input, max should be greater than min"
-}
-
-// Maps datasets hook to dataEffectResult usable by DataFetchSelect
-function useSelectDatasets() {
-  const { data, ...other } = useDatasets()
-  return {
-    data:
-      data &&
-      data.datasets.map((value) => ({
-        value: value.id,
-        label: value.name
-      })),
-    ...other
-  }
 }
 
 // Maps FilteringTerms hook to dataEffectResult usable by DataFetchSelect

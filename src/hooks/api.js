@@ -12,8 +12,19 @@ export function useExtendedSWR(...args) {
   return { data, error, ...other, isLoading: !data && !error }
 }
 
-export function useDatasets() {
-  return useExtendedSWR(`${basePath}cgi/bycon/bin/byconplus.py/get-datasetids/`)
+// This function gets called at build time on server-side.
+export async function getStaticDatatasets() {
+  const url =
+    "https://progenetix.org/cgi/bycon/bin/byconplus.py/get-datasetids/"
+  console.info(`Fetching datasets from ${url}.`)
+  const res = await fetch(url)
+  const data = await res.json()
+  const datasets = data.datasets.map((value) => ({
+    value: value.id,
+    label: value.name
+  }))
+  console.info(`Found ${datasets.length} datasets.`)
+  return datasets
 }
 
 export function useFilteringTerms(prefixes, datasetIds = []) {

@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import { useBeaconQuery } from "../../hooks/api"
 import { BiosamplesSearchForm } from "../../components/biosamples/BiosamplesSearchForm"
 import parametersConfig from "../../../config/samples-search/parameters.yaml"
 import requestTypesConfig from "../../../config/samples-search/beacon-plus_requestTypes.yaml"
@@ -7,8 +6,9 @@ import Panel from "../../components/Panel"
 import { FaSlidersH } from "react-icons/fa"
 import Nav from "./Nav"
 import { BiosamplesResults } from "../../components/biosamples/BiosamplesResults"
+import { useBeaconQuery } from "../../hooks/api"
 
-export default function BeaconPlusPage() {
+export default function BeaconPlusPage({ datasets }) {
   const [query, setQuery] = useState(null) // actual valid query
   const [searchCollapsed, setSearchCollapsed] = useState(false)
 
@@ -49,6 +49,7 @@ export default function BeaconPlusPage() {
             }
           >
             <BiosamplesSearchForm
+              datasets={datasets}
               requestTypesConfig={requestTypesConfig}
               parametersConfig={parametersConfig}
               isQuerying={isLoading}
