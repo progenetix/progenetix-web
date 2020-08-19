@@ -138,13 +138,13 @@ function ResultPanel({ response }) {
 }
 
 const groupByOptions = [
-  { value: "biocharacteristics::NCIT", label: "NCIT code" },
-  { value: "biocharacteristics::icdom", label: "ICD-O Morphology code" },
-  { value: "biocharacteristics::icdot", label: "ICD Topography code" },
-  { value: "external_references::PMID", label: "Publication (PubMed code)" },
-  { value: "external_references::geogse-GSE", label: "GEO Series ID" },
+  { value: "NCIT", label: "NCIT code" },
+  { value: "icdom", label: "ICD-O Morphology code" },
+  { value: "icdot", label: "ICD Topography code" },
+  { value: "PMID", label: "Publication (PubMed code)" },
+  { value: "geogse-GSE", label: "GEO Series ID" },
   {
-    value: "external_references::cellosaurus",
+    value: "cellosaurus",
     label: "Cellosaurus Cellline ID"
   }
 ]

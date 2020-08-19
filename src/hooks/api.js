@@ -113,7 +113,7 @@ export function buildDataVisualizationParameters(queryData) {
   // &-size_clustertree_w_px=50
   // &-randno=10
   // &-markers=&
-  // group_by=biocharacteristics%3A%3ANCIT
+  // group_by=NCIT
   // &-min_group_no=2
 
   return new URLSearchParams(
