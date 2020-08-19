@@ -146,7 +146,7 @@ function sampleSearchHref({
 
   return `/samples/search?freeFilters=${id}&datasetIds=${datasetsIds.join(
     ","
-  )}p&filterPrecision=exact&executeSearch=true`
+  )}&filterPrecision=exact&executeSearch=true`
 }
 
 const technologies = ["ccgh", "acgh", "wes", "wgs"]
