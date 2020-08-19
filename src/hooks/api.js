@@ -164,6 +164,7 @@ export function useGeneSpans(querytext) {
       })
   )
 }
+
 export function useCytomapper(querytext) {
   const url =
     querytext &&

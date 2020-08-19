@@ -69,9 +69,11 @@ export function FormUtilitiesButtons({
 
 function useGenSpanSelect(inputValue) {
   const { data, error, isLoading } = useGeneSpans(inputValue)
+  const getOptionLabel = (o) =>
+    `${o.reference_name}:${o.cds_start_min}-${o.cds_end_max}:${o.gene_symbol}`
   let options = []
   if (data) {
-    options = data.genes.map((g) => ({ value: g, label: g.gene_symbol }))
+    options = data.genes.map((g) => ({ value: g, label: getOptionLabel(g) }))
   }
   return { isLoading, error, options }
 }
@@ -99,7 +101,7 @@ export function GeneSpansUtility({ onClose, setFormValue }) {
   return (
     <FormUtility
       label="Gene Spans"
-      selectEffect={useGenSpanSelect}
+      optionDataHook={useGenSpanSelect}
       onApplyClick={onApply}
       renderValue={renderValue}
       onCloseClick={onClose}
@@ -136,7 +138,7 @@ export function CytoBandsUtility({ onClose, setFormValue }) {
     <div>
       <FormUtility
         label="Cytoband(s)"
-        selectEffect={useCytoBandsSelect}
+        optionDataHook={useCytoBandsSelect}
         onApplyClick={onApply}
         renderValue={renderValue}
         onCloseClick={onClose}
@@ -152,7 +154,7 @@ CytoBandsUtility.propTypes = {
 
 FormUtility.propTypes = {
   label: PropTypes.string.isRequired,
-  selectEffect: PropTypes.func.isRequired,
+  optionDataHook: PropTypes.object.isRequired,
   renderValue: PropTypes.func.isRequired,
   onApplyClick: PropTypes.func.isRequired,
   onCloseClick: PropTypes.func.isRequired
@@ -160,13 +162,13 @@ FormUtility.propTypes = {
 
 function FormUtility({
   label,
-  selectEffect,
+  optionDataHook,
   renderValue,
   onApplyClick,
   onCloseClick
 }) {
   const { inputValue, value, onChange, onInputChange } = useAsyncSelect()
-  let { options, error, isLoading } = selectEffect(inputValue)
+  const { options, error, isLoading } = optionDataHook(inputValue)
 
   return (
     <div className="message is-link mb-6">
@@ -179,6 +181,7 @@ function FormUtility({
           onInputChange={onInputChange}
           value={value}
           onChange={onChange}
+          placeholder="Type to search..."
         />
 
         {error && <Error />}

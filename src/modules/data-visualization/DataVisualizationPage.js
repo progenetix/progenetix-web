@@ -151,7 +151,8 @@ const groupByOptions = [
 
 function GeneSpanSelector({ control, errors, register }) {
   const { inputValue, onInputChange } = useAsyncSelect()
-  let { options, isLoading } = useGenSpanSelect(inputValue)
+  const { options, isLoading } = useGenSpanSelect(inputValue)
+
   return (
     <SelectField
       name="-markers"
@@ -167,16 +168,17 @@ function GeneSpanSelector({ control, errors, register }) {
   )
 }
 
-function useGenSpanSelect(inputValue) {
+export function useGenSpanSelect(inputValue) {
   const { data, isLoading } = useGeneSpans(inputValue)
   let options = []
   if (data) {
-    options = data.genes.map(
-      ({ reference_name, cds_start_min, cds_end_max, gene_symbol }) => ({
+    options = data.genes.map((gene) => {
+      const { reference_name, cds_start_min, cds_end_max, gene_symbol } = gene
+      return {
         value: `${reference_name}:${cds_start_min}-${cds_end_max}:${gene_symbol}`,
         label: `${gene_symbol} (${reference_name}:${cds_start_min}-${cds_end_max})`
-      })
-    )
+      }
+    })
   }
   return { isLoading, options }
 }
