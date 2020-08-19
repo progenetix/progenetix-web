@@ -215,12 +215,12 @@ function Download({ datasetAlleleResponse }) {
   return (
     <button
       className="button is-info is-light"
-      onClick={() => initiateSaveAsJson(datasetAlleleResponse, "query.json")}
+      onClick={() => initiateSaveAsJson(datasetAlleleResponse, "response.json")}
     >
       <span className="icon">
         <FaDownload />
       </span>
-      <span>Download JSON</span>
+      <span>Show JSON Response</span>
     </button>
   )
 }
