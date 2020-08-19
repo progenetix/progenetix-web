@@ -196,18 +196,20 @@ export function useSubsethistogram({
   )
 }
 
-export function useBioSubsets({ filters, datasetIds }) {
-  const url = `${basePath}api/?apidb=${datasetIds}&apiscope=biosubsets&apimethod=subsetdata&filters=${filters}&apioutput=json`
-  return useExtendedSWR(url)
+export function useCollationsById({ datasetIds }) {
+  const { data: rawData, ...other } = useCollations({
+    filters: "",
+    method: "counts",
+    datasetIds
+  })
+  const transformData = (rawData) => keyBy(rawData, "id")
+  const data = rawData && transformData(rawData)
+  return { data, ...other }
 }
 
-export function useAllBioSubsets({ datasetIds }) {
-  const transformData = (rawData) => {
-    const allSubsets = rawData.data.flatMap((d) => d[datasetIds])
-    return keyBy(allSubsets, "id")
-  }
-
-  const url = `${basePath}cgi/bycon/bin/collations.py?datasetIds=${datasetIds}&method=counts`
+export function useCollations({ datasetIds, method, filters }) {
+  const transformData = (rawData) => rawData.data.flatMap((d) => d[datasetIds])
+  const url = `${basePath}cgi/bycon/bin/collations.py?datasetIds=${datasetIds}&method=${method}&filters=${filters}`
   const { data: rawData, ...other } = useExtendedSWR(url)
   const data = rawData && transformData(rawData)
   return { data, ...other }

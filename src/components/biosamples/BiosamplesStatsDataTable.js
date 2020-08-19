@@ -3,7 +3,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import Table from "../Table"
 import _ from "lodash"
-import { useAllBioSubsets } from "../../hooks/api"
+import { useCollationsById } from "../../hooks/api"
 import { WithData } from "../Loader"
 
 export default function BiosamplesStatsDataTable({ biosamplesResponse }) {
@@ -59,7 +59,7 @@ export default function BiosamplesStatsDataTable({ biosamplesResponse }) {
     []
   )
 
-  const allSubsets = useAllBioSubsets({ datasetIds: "progenetix" })
+  const allSubsets = useCollationsById({ datasetIds: "progenetix" })
   return (
     <WithData
       dataEffectResult={allSubsets}
