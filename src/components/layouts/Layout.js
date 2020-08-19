@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import cn from "classnames"
 import { FaBars, FaTimes } from "react-icons/fa"
 import { useRouter } from "next/router"
-import Link from "next/link"
 import Head from "next/head"
 
 export function Layout({ title, headline, children }) {
@@ -44,13 +43,18 @@ export function Layout({ title, headline, children }) {
       </main>
       <footer className="footer">
         <div className="content container has-text-centered">
-          © 2000 - 2020 Progenetix Cancer Genomics Information Resource by <a href="https://info.baudisgroup.org/group/Michael_Baudis/">Michael Baudis</a> is licensed under CC BY 4.0<a rel="license" href="https://creativecommons.org/licenses/by/4.0">
-          <img className="Layout__cc__icons" src="/cc-cc.svg" />
-          <img className="Layout__cc__icons" src="/cc-by.svg" />
-          </a><br/>
-
+          © 2000 - 2020 Progenetix Cancer Genomics Information Resource by{" "}
+          <a href="https://info.baudisgroup.org/group/Michael_Baudis/">
+            Michael Baudis
+          </a>{" "}
+          is licensed under CC BY 4.0
+          <a rel="license" href="https://creativecommons.org/licenses/by/4.0">
+            <img className="Layout__cc__icons" src="/cc-cc.svg" />
+            <img className="Layout__cc__icons" src="/cc-by.svg" />
+          </a>
+          <br />
           No responsibility is taken for the correctness of the data presented
-          nor the  results achieved with the Progenetix tools.
+          nor the results achieved with the Progenetix tools.
         </div>
       </footer>
     </div>
@@ -60,13 +64,13 @@ export function Layout({ title, headline, children }) {
 function Side({ onClick }) {
   return (
     <div onClick={onClick}>
-      <Link href="/">
+      <a href="/">
         <img
           className="Layout__side-logo"
           src="/progenetix_black_300.png"
           alt="progenetix"
         />
-      </Link>
+      </a>
       <ul className="Layout__side__items">
         <MenuInternalLinkItem href="/subsets/list" label="Cancer Types" />
         <MenuInternalLinkItem href="/samples/search" label="Search Samples" />
@@ -74,7 +78,8 @@ function Side({ onClick }) {
         <li>
           <MenuLink href="https://info.progenetix.org/">Info </MenuLink>
         </li>
-        <MenuInternalLinkItem href="/beacon-plus/search"
+        <MenuInternalLinkItem
+          href="/beacon-plus/search"
           label={
             <>
               Beacon<sup style={{ color: "red" }}>+</sup>
@@ -82,7 +87,9 @@ function Side({ onClick }) {
           }
         />
         <li>
-          <MenuLink href="https://info.baudisgroup.org/">Baudisgroup @ UZH </MenuLink>
+          <MenuLink href="https://info.baudisgroup.org/">
+            Baudisgroup @ UZH{" "}
+          </MenuLink>
         </li>
       </ul>
     </div>
@@ -94,11 +101,9 @@ function MenuInternalLinkItem({ href, label, isSub }) {
   const isActive = removeQuery(href) === removeQuery(router.asPath)
   return (
     <li>
-      <Link href={href} passHref>
-        <MenuLink isSub={isSub} isActive={isActive}>
-          {label}
-        </MenuLink>
-      </Link>
+      <MenuLink isSub={isSub} isActive={isActive} href={href}>
+        {label}
+      </MenuLink>
     </li>
   )
 }
