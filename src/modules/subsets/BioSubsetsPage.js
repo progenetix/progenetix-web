@@ -41,7 +41,15 @@ function useConfigSelect(config, key, urlQuery, setUrlQuery) {
   }
 }
 
-const BioSubsetsPage = withUrlQuery(({ urlQuery, setUrlQuery }) => {
+export default function BioSubsetsPage() {
+  return (
+    <Layout title="Subsets" headline="Subsets">
+      <BioSubsetsContent />
+    </Layout>
+  )
+}
+
+const BioSubsetsContent = withUrlQuery(({ urlQuery, setUrlQuery }) => {
   const {
     selected: selectedFilters,
     setSelected: setSelectedFilters,
@@ -63,7 +71,7 @@ const BioSubsetsPage = withUrlQuery(({ urlQuery, setUrlQuery }) => {
     setUrlQuery
   )
   return (
-    <Layout title="Subsets" headline="Subsets">
+    <>
       <div className="level mb-6">
         <div className="level-left">
           <div className="level-item">
@@ -99,11 +107,9 @@ const BioSubsetsPage = withUrlQuery(({ urlQuery, setUrlQuery }) => {
         filters={selectedFilters}
         datasetIds={selectedDatasetIds}
       />
-    </Layout>
+    </>
   )
 })
-
-export default BioSubsetsPage
 
 function SubsetsLoader({ filters, datasetIds }) {
   const bioSubsetsHierarchies = useBioSubsets({
