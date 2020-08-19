@@ -121,12 +121,14 @@ export function buildDataVisualizationParameters(queryData) {
   ).toString()
 }
 
-export function publicationUrl(id) {
+export function publicationDataUrl(id) {
   return `${basePath}do/api/apidb=progenetix&apiscope=publications&apimethod=publicationdetails&id=${id}`
 }
 
 export function usePublication(id) {
-  const { data: rawData, error, ...other } = useExtendedSWR(publicationUrl(id))
+  const { data: rawData, error, ...other } = useExtendedSWR(
+    publicationDataUrl(id)
+  )
   const data = rawData && rawData.filter((r) => !!r) // when not defined the api returns an array with null elements.
   return { data, error, ...other }
 }

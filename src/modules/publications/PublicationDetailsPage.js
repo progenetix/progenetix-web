@@ -1,5 +1,5 @@
 import React from "react"
-import { publicationUrl, usePublication } from "../../hooks/api"
+import { usePublication } from "../../hooks/api"
 import { Loader } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { SubsetHistogram } from "../../components/Histogram"
@@ -9,7 +9,7 @@ import { EpmcLink } from "./EpmcUrl"
 const PublicationDetailsPage = withUrlQuery(({ urlQuery }) => {
   const { id, scope, filter } = urlQuery
   return (
-    <Layout title="Publication Details" headline="Publication Details">
+    <Layout title="Publication Details">
       {!id ? (
         <NoResultsHelp />
       ) : (
@@ -26,7 +26,7 @@ function NoResultsHelp() {
       This page will only show content if called with a specific Pubmed ID which
       already exists in the Progenetix `publications` database, e.g.{" "}
       <a href={"/publications/details?id=PMID:28966033"}>
-        /publication-details?id=PMID:28966033
+        /publication/details?id=PMID:28966033
       </a>
       . Please start over from the Progenetix Publication Collection page.
     </div>
@@ -64,15 +64,14 @@ function PublicationResponse({ response, id, scope, filter }) {
 }
 
 function PublicationDetails({ publication, id, scope, filter }) {
+  const progenetixBiosamplesCount =
+    publication.info?.progenetix_biosamples_count ?? 0
+  const arraymapBiosamplesCount =
+    publication.info?.arraymap_biosamples_count ?? 0
   return (
     <section className="content">
-      <h3 className="subtitle">
-        {publication.title}{" "}
-        <a rel="noreferrer" target="_blank" href={publicationUrl(id)}>
-          {"{↗}"}
-        </a>
-      </h3>
-
+      <h2 className="tile">{publication.id}</h2>
+      <h3 className="subtitle is-5">{publication.title}</h3>
       <p className="has-text-weight-semibold">{publication.authors}</p>
       <p>
         <i>{publication.journal}</i> {id} <EpmcLink publicationId={id} />
@@ -89,36 +88,42 @@ function PublicationDetails({ publication, id, scope, filter }) {
             </li>
           ) : null
         )}
-        {publication.info?.progenetix_biosamples_count > 0 && (
+        {progenetixBiosamplesCount > 0 && (
           <li>
-            {publication.info.progenetix_biosamples_count} sample profiles are{" "}
-            <a
-              href={`${progenetixBasePath}/pgx_biosamples.cgi?datasetIds=progenetix&filters=${id}`}
-            >
-              registered in Progenetix
-            </a>
+            {progenetixBiosamplesCount} sample profiles are registered in
+            Progenetix
           </li>
         )}
-        {publication.info?.arraymap_biosamples_count > 0 && (
+        {arraymapBiosamplesCount > 0 && (
           <li>
-            {publication.info.arraymap_biosamples_count} sample profiles are{" "}
-            <a
-              href={`${progenetixBasePath}/pgx_biosamples.cgi?datasetIds=arraymap&filters=${id}`}
-            >
-              registered in arrayMap
-            </a>
+            {arraymapBiosamplesCount} sample profiles are registered in arrayMap
           </li>
         )}
       </ul>
-      {publication.info?.progenetix_biosamples_count > 0 && (
-        <SubsetHistogram
-          id={id}
-          filter={filter}
-          scope={scope}
-          datasetIds="progenetix"
-        />
+      {(progenetixBiosamplesCount > 0 || arraymapBiosamplesCount > 0) && (
+        <a
+          className="button is-info mb-5"
+          href={sampleSearchHref({
+            id,
+            progenetixSamplesCount: progenetixBiosamplesCount,
+            arraymapSamplesCount: arraymapBiosamplesCount
+          })}
+        >
+          Search related Samples
+        </a>
       )}
-      {publication.info?.arraymap_biosamples_count > 0 && (
+
+      {progenetixBiosamplesCount > 0 && (
+        <div className="mb-5">
+          <SubsetHistogram
+            id={id}
+            filter={filter}
+            scope={scope}
+            datasetIds="progenetix"
+          />
+        </div>
+      )}
+      {arraymapBiosamplesCount > 0 && (
         <SubsetHistogram
           id={id}
           filter={filter}
@@ -130,5 +135,18 @@ function PublicationDetails({ publication, id, scope, filter }) {
   )
 }
 
-const progenetixBasePath = `https://progenetix.org/cgi-bin`
+function sampleSearchHref({
+  id,
+  progenetixSamplesCount,
+  arraymapSamplesCount
+}) {
+  const datasetsIds = []
+  if (progenetixSamplesCount > 0) datasetsIds.push("progenetix")
+  if (arraymapSamplesCount > 0) datasetsIds.push("arraymap")
+
+  return `/samples/search?freeFilters=${id}&datasetIds=${datasetsIds.join(
+    ","
+  )}p&filterPrecision=exact&executeSearch=true`
+}
+
 const technologies = ["ccgh", "acgh", "wes", "wgs"]

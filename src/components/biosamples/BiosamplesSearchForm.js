@@ -250,6 +250,7 @@ export function Form({
             </div>
           </div>
           <InputField {...parameters.accessid} {...fieldProps} />
+          <InputField {...parameters.filterPrecision} {...fieldProps} />
           <div className="field mt-5">
             <div className="control">
               <button

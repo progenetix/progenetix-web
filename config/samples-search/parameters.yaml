@@ -132,3 +132,6 @@ filterLogic:
       label: AND
     - value: OR
       label: OR
+filterPrecision:
+  label: filterPrecision
+  isHidden: true
