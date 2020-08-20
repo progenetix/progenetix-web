@@ -21,15 +21,15 @@ export default function BiosamplesStatsDataTable({ biosamplesResponse }) {
         }
       },
       {
-        Header: "Samples",
+        Header: "Subset Samples",
         accessor: "samples"
       },
       {
-        Header: "Observations",
+        Header: "Query Matches",
         accessor: "count"
       },
       {
-        Header: "Frequency",
+        Header: "Match Frequencies",
         accessor: "frequency",
         Cell: ({ value }) => {
           return (
