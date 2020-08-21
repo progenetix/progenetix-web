@@ -166,14 +166,13 @@ export function useGeneSpans(querytext) {
   const url =
     querytext &&
     querytext.length > 0 &&
-    `${basePath}cgi/genespans.cgi?db=progenetix&collection=genespans&querytext=${querytext}`
+    `${basePath}cgi/bycon/bin/genespans.py?geneId=${querytext}`
   return useExtendedSWR(url, (...args) =>
     fetch(...args)
       .then((res) => res.text())
       .then((t) => {
         // dataEffectResult returned is not JSON
-        const sanitized = t.startsWith("(") ? t.slice(1, -3) : t
-        return JSON.parse(sanitized)
+        return JSON.parse(t)
       })
   )
 }
@@ -182,7 +181,7 @@ export function useCytomapper(querytext) {
   const url =
     querytext &&
     querytext.length > 0 &&
-    `${basePath}cgi/bycon/bin/cytomapper.py?featureClass=P&cytoBands=1${querytext}`
+    `${basePath}cgi/bycon/bin/cytomapper.py?cytoBands=${querytext}`
   return useExtendedSWR(url)
 }
 

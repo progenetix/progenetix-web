@@ -29,7 +29,7 @@ export default function BiosamplesStatsDataTable({ biosamplesResponse }) {
         accessor: "count"
       },
       {
-        Header: "Match Frequencies",
+        Header: "Subset Match Frequencies",
         accessor: "frequency",
         Cell: ({ value }) => {
           return (
