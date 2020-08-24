@@ -172,7 +172,7 @@ export function useGenSpanSelect(inputValue) {
   const { data, isLoading } = useGeneSpans(inputValue)
   let options = []
   if (data) {
-    options = data.genes.map((gene) => {
+    options = data.data.genes.map((gene) => {
       const { reference_name, cds_start_min, cds_end_max, gene_symbol } = gene
       return {
         value: `${reference_name}:${cds_start_min}-${cds_end_max}:${gene_symbol}`,

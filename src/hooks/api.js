@@ -220,7 +220,7 @@ export function useCollationsById({ datasetIds }) {
 }
 
 export function useCollations({ datasetIds, method, filters }) {
-  const transformData = (rawData) => rawData.data.flatMap((d) => d[datasetIds])
+  const transformData = (rawData) => rawData.data[datasetIds]
   const url = `${basePath}cgi/bycon/bin/collations.py?datasetIds=${datasetIds}&method=${method}&filters=${filters}`
   const { data: rawData, ...other } = useExtendedSWR(url)
   const data = rawData && transformData(rawData)
