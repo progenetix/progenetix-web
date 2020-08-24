@@ -443,7 +443,7 @@ export const checkIntegerRange = (value) => {
 // Maps FilteringTerms hook to dataEffectResult usable by DataFetchSelect
 function useSelectFilteringTerms(watchForm) {
   const datasetIds = watchForm("datasetIds")
-  const { data, ...other } = useFilteringTerms("NCIT,icdom", datasetIds)
+  const { data, ...other } = useFilteringTerms("NCIT,icdom,icdot", datasetIds)
   return {
     data:
       data &&
