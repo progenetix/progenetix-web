@@ -42,7 +42,7 @@ function PublicationTableLoader() {
       },
       {
         Header: "Publication",
-        accessor: "citelabel",
+        accessor: "label",
         // eslint-disable-next-line react/display-name
         Cell: ({ value, row: { original } }) => {
           return (

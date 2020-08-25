@@ -31,7 +31,7 @@ export default function BiosamplesDataTable({ dataEffectResult, datasetId }) {
           biocharacteristics.map((biocharacteristic, i) => (
             <div key={i} title={biocharacteristic.description}>
               <a
-                href={`https://progenetix.org/do/pgx_subsets/filters=${biocharacteristic.type.id}`}
+                href={`/subsets/list?filters=${biocharacteristic.type.id}`}
                 rel="noreferrer"
                 target="_blank"
               >

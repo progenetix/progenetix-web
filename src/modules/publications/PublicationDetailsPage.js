@@ -65,9 +65,9 @@ function PublicationResponse({ response, id, scope, filter }) {
 
 function PublicationDetails({ publication, id, scope, filter }) {
   const progenetixBiosamplesCount =
-    publication.info?.progenetix_biosamples_count ?? 0
+    publication.counts?.progenetix ?? 0
   const arraymapBiosamplesCount =
-    publication.info?.arraymap_biosamples_count ?? 0
+    publication.counts?.arraymap ?? 0
   return (
     <section className="content">
       <h2 className="tile">{publication.id}</h2>
