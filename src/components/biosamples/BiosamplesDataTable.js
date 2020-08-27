@@ -66,7 +66,7 @@ export default function BiosamplesDataTable({ dataEffectResult, datasetId }) {
         accessor: "info.cnvstatistics.delfraction"
       },
       {
-        Header: "DEL",
+        Header: "DUP",
         accessor: "info.cnvstatistics.dupfraction"
       },
       {
