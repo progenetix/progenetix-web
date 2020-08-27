@@ -27,10 +27,10 @@ export async function getStaticDatatasets() {
   return datasets
 }
 
-export function useFilteringTerms(prefixes, datasetIds = []) {
+export function useFilteringTerms(filters, datasetIds = []) {
   const params = new URLSearchParams(
     flattenParams([
-      ["filters", prefixes],
+      ["filters", filters],
       ["datasetIds", datasetIds]
     ])
   ).toString()
