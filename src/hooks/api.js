@@ -15,7 +15,7 @@ export function useExtendedSWR(...args) {
 // This function gets called at build time on server-side.
 export async function getStaticDatatasets() {
   const url =
-    `${basePath}cgi/bycon/bin/byconplus.py/get-datasetids?`
+    "https://progenetix.org/cgi/bycon/bin/byconplus.py/get-datasetids/"
   console.info(`Fetching datasets from ${url}.`)
   const res = await fetch(url)
   const data = await res.json()
