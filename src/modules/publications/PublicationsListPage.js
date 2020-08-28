@@ -3,7 +3,7 @@ import { Layout } from "../../components/layouts/Layout"
 import { usePublicationList } from "../../hooks/api"
 import { Loader } from "../../components/Loader"
 import Table from "../../components/Table"
-import { epmcId, EpmcLink } from "./EpmcUrl"
+import { EpmcLink } from "./EpmcUrl"
 
 export default function PublicationsListPage() {
   return (
@@ -34,7 +34,7 @@ function PublicationTableLoader() {
         // eslint-disable-next-line react/display-name
         Cell: (cellInfo) => (
           <a
-            href={`/publications/details?id=${cellInfo.value}&scope=datacollections`}
+            href={`/publications/details?id=${cellInfo.value}&filterPrecision=exact`}
           >
             {cellInfo.value}
           </a>
@@ -49,8 +49,7 @@ function PublicationTableLoader() {
             <>
               <div>{value}</div>
               <div>
-                {original.journal} ( {epmcId(original.id)}){" "}
-                <EpmcLink publicationId={original.id} />
+                {original.journal} <EpmcLink publicationId={original.id} />
               </div>
             </>
           )
@@ -79,7 +78,6 @@ function PublicationTableLoader() {
       },
       { accessor: "authors" },
       { accessor: "title" },
-      { accessor: "sortid" }
     ],
     []
   )
@@ -91,7 +89,7 @@ function PublicationTableLoader() {
         data={data}
         pageSize={15}
         hasGlobalFilter
-        hiddenColumns={["authors", "title", "sortid"]}
+        hiddenColumns={["authors", "title"]}
       />
     </Loader>
   )

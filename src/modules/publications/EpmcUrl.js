@@ -11,7 +11,7 @@ export function epmcUrl(publicationId) {
 export function EpmcLink({ publicationId }) {
   return (
     <a href={epmcUrl(publicationId)} rel="noreferrer" target="_BLANK">
-      <img src="https://progenetix.org/p/EPMC_16.gif" />
+      <img src="/img/icon_EPMC_16.gif" />
     </a>
   )
 }

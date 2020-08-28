@@ -1,5 +1,6 @@
 import swr from "swr"
 import { svgFetcher } from "./fetcher"
+
 import { keyBy } from "lodash"
 
 // eslint-disable-next-line no-undef
@@ -133,7 +134,7 @@ export function buildDataVisualizationParameters(queryData) {
 }
 
 export function publicationDataUrl(id) {
-  return `${basePath}do/api/apidb=progenetix&apiscope=publications&apimethod=publicationdetails&id=${id}`
+  return `${basePath}services/publications?filters=${id}&responseFormat=simplelist&filterPrecision=exact&method=all`
 }
 
 export function usePublication(id) {
@@ -145,7 +146,7 @@ export function usePublication(id) {
 }
 
 export function usePublicationList() {
-  const url = `${basePath}api/progenetix/publications/publicationdata/counts.genomes:>0`
+  const url = `${basePath}services/publications?responseFormat=simplelist&counts.genomes:>0`
   return useExtendedSWR(url)
 }
 

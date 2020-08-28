@@ -49,8 +49,8 @@ export function Layout({ title, headline, children }) {
           </a>{" "}
           is licensed under CC BY 4.0
           <a rel="license" href="https://creativecommons.org/licenses/by/4.0">
-            <img className="Layout__cc__icons" src="/cc-cc.svg" />
-            <img className="Layout__cc__icons" src="/cc-by.svg" />
+            <img className="Layout__cc__icons" src="/img/cc-cc.svg" />
+            <img className="Layout__cc__icons" src="/img/cc-by.svg" />
           </a>
           <br />
           No responsibility is taken for the correctness of the data presented
@@ -67,7 +67,7 @@ function Side({ onClick }) {
       <a href="/">
         <img
           className="Layout__side-logo"
-          src="/progenetix_black_300.png"
+          src="/img/progenetix_black_300.png"
           alt="progenetix"
         />
       </a>
