@@ -36,7 +36,9 @@ export function useFilteringTerms(filters, datasetIds = []) {
     ])
   ).toString()
   return useExtendedSWR(
-    `${basePath}cgi/bycon/bin/byconplus.py/filtering_terms?${params}`
+    // `${basePath}cgi/bycon/bin/byconplus.py/filtering_terms?${params}`
+   `${basePath}cgi/bycon/bin/collations.py?method=counts&responseFormat=simplelist&${params}`
+
   )
 }
 
@@ -146,7 +148,7 @@ export function usePublication(id) {
 }
 
 export function usePublicationList() {
-  const url = `${basePath}services/publications?responseFormat=simplelist&counts.genomes:>0`
+  const url = `${basePath}services/publications?responseFormat=simplelist&filters=genomes:>0`
   return useExtendedSWR(url)
 }
 
@@ -221,7 +223,7 @@ export function useCollationsById({ datasetIds }) {
 }
 
 export function useCollations({ datasetIds, method, filters }) {
-  const transformData = (rawData) => rawData.data[datasetIds]
+  const transformData = (rawData) => rawData.data["subsets"]
   const url = `${basePath}cgi/bycon/bin/collations.py?datasetIds=${datasetIds}&method=${method}&filters=${filters}`
   const { data: rawData, ...other } = useExtendedSWR(url)
   const data = rawData && transformData(rawData)

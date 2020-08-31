@@ -447,7 +447,7 @@ function useSelectFilteringTerms(watchForm) {
   return {
     data:
       data &&
-      data.filteringTerms.map((value) => ({
+      data.map((value) => ({
         value: value.id,
         label: `${value.id}: ${value.label} (${value.count})`
       })),
