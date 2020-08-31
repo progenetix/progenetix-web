@@ -37,7 +37,7 @@ export function useFilteringTerms(filters, datasetIds = []) {
   ).toString()
   return useExtendedSWR(
     // `${basePath}cgi/bycon/bin/byconplus.py/filtering_terms?${params}`
-   `${basePath}cgi/bycon/bin/collations.py?method=counts&responseFormat=simplelist&${params}`
+   `${basePath}cgi/bycon/bin/collations.py?method=children&responseFormat=simplelist&${params}`
 
   )
 }
