@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react"
 import { HANDOVER_IDS, replaceWithProxy, useExtendedSWR } from "../../hooks/api"
-import { FaDownload, FaExternalLinkAlt } from "react-icons/fa"
-import { initiateSaveAsJson } from "../../utils/download"
+import { FaExternalLinkAlt } from "react-icons/fa"
 import cn from "classnames"
 import BiosamplesDataTable from "./BiosamplesDataTable"
 import VariantsDataTable from "./VariantsDataTable"
@@ -10,6 +9,7 @@ import Histogram from "../Histogram"
 import { svgFetcher } from "../../hooks/fetcher"
 import BiosamplesStatsDataTable from "./BiosamplesStatsDataTable"
 import { WithData } from "../Loader"
+import { openJsonInNewTab } from "../../utils/files"
 
 const handoversInTab = [
   HANDOVER_IDS.cnvhistogram,
@@ -79,7 +79,7 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
     <div className="box">
       <h2 className="subtitle has-text-dark">{datasetId}</h2>
       <div className="columns">
-        <div className="column is-narrow">
+        <div className="column is-one-fifth">
           <div>
             <b>Variants: </b>
             {variantCount}
@@ -92,8 +92,6 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
             <b>Samples: </b>
             {sampleCount}
           </div>
-        </div>
-        <div className="column is-narrow">
           <div>
             <b>
               <i>f</i>
@@ -102,16 +100,19 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
             {frequency}
           </div>
         </div>
-        <div className="column is-narrow">
+        <div className="column is-one-fifth">
           {genericHandovers.map((handover, i) => (
             <GenericHandover key={i} handover={handover} />
           ))}
-        </div>
-        <div className="column">
-          <UCSCRegion query={query} />
+          <div>
+            <UCSCRegion query={query} />
+          </div>
         </div>
         <div className="column is-narrow">
-          <Download datasetAlleleResponse={datasetAlleleResponse} />
+          <ExternalLink
+            label="JSON Response"
+            onClick={() => openJsonInNewTab(datasetAlleleResponse)}
+          />
         </div>
       </div>
       {tabNames?.length > 0 ? (
@@ -183,14 +184,7 @@ function CnvHistogramPreview({ url: urlString }) {
 }
 
 function UCSCRegion({ query }) {
-  return (
-    <div>
-      <a href={ucscHref(query)} rel="noreferrer" target="_blank">
-        UCSC region
-      </a>{" "}
-      <FaExternalLinkAlt className="icon has-text-info is-small" />
-    </div>
-  )
+  return <ExternalLink href={ucscHref(query)} label=" UCSC region" />
 }
 
 function ucscHref(query) {
@@ -211,27 +205,17 @@ function ucscHref(query) {
   return `http://www.genome.ucsc.edu/cgi-bin/hgTracks?db${ucscgenome}&position=chr${query.referenceName}%3A${ucscstart}%2D${ucscend}`
 }
 
-function Download({ datasetAlleleResponse }) {
-  return (
-    <button
-      className="button is-info is-light"
-      onClick={() => initiateSaveAsJson(datasetAlleleResponse, "response.json")}
-    >
-      <span className="icon">
-        <FaDownload />
-      </span>
-      <span>Show JSON Response</span>
-    </button>
-  )
-}
-
 function GenericHandover({ handover }) {
   return (
     <div>
-      <a href={handover.url} rel="noreferrer" target="_blank">
-        {handover.handoverType.label}
-      </a>{" "}
-      <FaExternalLinkAlt className="icon has-text-info is-small" />
+      <ExternalLink href={handover.url} label={handover.handoverType.label} />
     </div>
+  )
+}
+function ExternalLink({ href, label, onClick }) {
+  return (
+    <a href={href} rel="noreferrer" target="_blank" onClick={onClick}>
+      {label} <FaExternalLinkAlt className="icon has-text-info is-small" />
+    </a>
   )
 }
