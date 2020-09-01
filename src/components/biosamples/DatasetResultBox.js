@@ -58,6 +58,7 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
     const histogramUrl = handoverById(HANDOVER_IDS.cnvhistogram).url
     tabComponent = (
       <ResultsTab
+        variantType={query.variantType}
         histogramUrl={histogramUrl}
         biosamplesDataResults={biosamplesDataResults}
       />
@@ -137,7 +138,7 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
   )
 }
 
-function ResultsTab({ histogramUrl, biosamplesDataResults }) {
+function ResultsTab({ histogramUrl, biosamplesDataResults, variantType }) {
   const visualizationAccessId = new URLSearchParams(
     new URL(histogramUrl).search
   ).get("accessid")
@@ -151,9 +152,11 @@ function ResultsTab({ histogramUrl, biosamplesDataResults }) {
         </a>
         .
       </div>
-      <div className="mb-4">
-        <CnvHistogramPreview url={histogramUrl} />
-      </div>
+      {shouldShowHistogram(variantType) && (
+        <div className="mb-4">
+          <CnvHistogramPreview url={histogramUrl} />
+        </div>
+      )}{" "}
       <WithData
         dataEffectResult={biosamplesDataResults}
         background
@@ -163,6 +166,10 @@ function ResultsTab({ histogramUrl, biosamplesDataResults }) {
       />
     </div>
   )
+}
+
+function shouldShowHistogram(variantType) {
+  return variantType === "DEL" || variantType === "DUP"
 }
 
 function CnvHistogramPreview({ url: urlString }) {

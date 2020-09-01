@@ -12,13 +12,13 @@ collection, not the number of selected samples~~
 *  ~~In the DataVisualizationPage, the gene label selector should allow multiple
 labels~~
 * Cytobands: To be implemented ...
-* Search Result: "Show JSON Response" should just open a new page/pop-up/panel w/
-the (nice) JSON response, not initiate a download ([part of issue 33](https://github.com/ptoussai/progenetix-next/issues/33))
-* "Dataset Responses" is shown on the Progenetix samples Search page although `includeDatasetResponses` is set to `hidden`. This parameter is anyway confusing
-and could be excluded from visibility altogether (but not completely "purged").
-* The Histogram should (in Beacon+) _only_ being shown if the `variantType`
+* ~~Search Result: "Show JSON Response" should just open a new page/pop-up/panel w/
+the (nice) JSON response, not initiate a download ([part of issue 33](https://github.com/ptoussai/progenetix-next/issues/33))~~
+* ~~"Dataset Responses" is shown on the Progenetix samples Search page although `includeDatasetResponses` is set to `hidden`. This parameter is anyway confusing
+and could be excluded from visibility altogether (but not completely "purged").~~
+* ~~The Histogram should (in Beacon+) _only_ being shown if the `variantType`
 parameter was DUP/DEL; For the Progenetix interface it could be default (i.e.
-since the subsets don't have variant queries ...).
+since the subsets don't have variant queries ...).~~
 * The frequency table probably only makes sense if there had been a gene/position
 ... search, not if there was just a subset(s) selection. Or maybe in a modified
 version, w/o the frequncy calculation (but indicating codes, numbers).

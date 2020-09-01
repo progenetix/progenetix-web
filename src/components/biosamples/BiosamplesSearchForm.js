@@ -178,7 +178,7 @@ export function Form({
           <SelectField {...parameters.datasetIds} {...selectProps} />
           <SelectField {...parameters.assemblyId} {...selectProps} />
           <SelectField
-            {...parameters.includeDatasetResonses}
+            {...parameters.includeDatasetResponses}
             {...selectProps}
           />
           <SelectField {...parameters.requestType} {...selectProps} />

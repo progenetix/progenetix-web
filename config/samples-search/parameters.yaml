@@ -10,7 +10,7 @@ assemblyId:
   options:
     - value: GRCh38
       label: GRCh38 / hg38
-includeDatasetResonses:
+includeDatasetResponses:
   label: Dataset Responses
   defaultValue: ALL
   options:
