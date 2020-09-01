@@ -7,10 +7,10 @@ order of urgency & perceived feasibility of fast implementation).
 
 #### Fixes
 
-*  Subsets: Selecting a subset shows the number of child_terms in the selector
-collection, not the number of selected samples
-*  In the DataVisualizationPage, the gene label selector should allow multiple
-labels
+*  ~~Subsets: Selecting a subset shows the number of child_terms in the selector
+collection, not the number of selected samples~~
+*  ~~In the DataVisualizationPage, the gene label selector should allow multiple
+labels~~
 * Cytobands: To be implemented ...
 * Search Result: "Show JSON Response" should just open a new page/pop-up/panel w/
 the (nice) JSON response, not initiate a download ([part of issue 33](https://github.com/ptoussai/progenetix-next/issues/33))

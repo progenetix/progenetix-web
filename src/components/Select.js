@@ -36,7 +36,6 @@ function WindowMenuList(props) {
   const { options, children, maxHeight, getValue } = props
   const [value] = getValue()
   const initialOffset = options.indexOf(value) * height
-
   return (
     <List
       height={maxHeight}
