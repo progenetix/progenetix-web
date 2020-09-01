@@ -33,11 +33,12 @@ export function useUrlQuery() {
   }
 
   const setQuery = useCallback(
-    (values) => {
+    (values, options = { replace: false }) => {
       if (!router) return
       const params = new URLSearchParams(window.location.search)
       Object.entries(values).forEach(([k, v]) => params.set(k, v))
-      router.push(`${location.pathname}?${params}`)
+      const url = `${location.pathname}?${params}`
+      options.replace ? router.replace(url) : router.push(url)
     },
     [router]
   )

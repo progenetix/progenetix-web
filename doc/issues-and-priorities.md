@@ -25,11 +25,11 @@ version, w/o the frequncy calculation (but indicating codes, numbers).
 
 #### Enhancements
 
-* Search Result: Biosamples, variants ... results should have a download button
-for the JSON data ([part of issue 33](https://github.com/ptoussai/progenetix-next/issues/33))
+* ~~Search Result: Biosamples, variants ... results should have a download button
+for the JSON data ([part of issue 33](https://github.com/ptoussai/progenetix-next/issues/33))~~
 * Search Result and Visualization: SVGs should have download links
-* Navigation: After doing a query for samples from subsets one cannot navigate back
-to the subsets page
+* ~~Navigation: After doing a query for samples from subsets one cannot navigate back
+to the subsets page~~
 * Publications: Indicate if publication has samples in progenetix/arraymap (known
   from `counts.progenetix` now; see [issue 37](https://github.com/ptoussai/progenetix-next/issues/37)
 * Subsets: Sample counts behind code should be/have a clickable link for initiating

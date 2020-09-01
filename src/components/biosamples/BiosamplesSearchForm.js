@@ -125,7 +125,7 @@ export function Form({
 
   useEffect(() => {
     if (autoExecuteSearch) {
-      setUrlQuery({ executeSearch: "false" })
+      setUrlQuery({ executeSearch: "false" }, { replace: true })
 
       // At this stage individual parameters are already validated.
       const values = initialValues
