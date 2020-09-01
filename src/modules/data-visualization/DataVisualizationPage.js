@@ -114,7 +114,7 @@ function DataVisualizationForm({ isQuerying, onSubmit }) {
         <div className="column">
           <InputField
             name="-size_title_left_px"
-            label="Left Labels Width"
+            label="Left Labels Width (px)"
             errors={errors}
             register={register}
             defaultValue="200"
@@ -123,10 +123,30 @@ function DataVisualizationForm({ isQuerying, onSubmit }) {
         <div className="column">
           <InputField
             name="-size_clustertree_w_px"
-            label="Cluster Tree Width"
+            label="Cluster Tree Width (px)"
             errors={errors}
             register={register}
             defaultValue="50"
+          />
+        </div>
+      </div>
+      <div className="columns">
+        <div className="column">
+          <InputField
+            name="-size_plotarea_h_px"
+            label="Histogram Height (px)"
+            errors={errors}
+            register={register}
+            defaultValue="200"
+          />
+        </div>
+        <div className="column">
+          <InputField
+            name="-value_plot_y_max"
+            label="Histogram Scale (%)"
+            errors={errors}
+            register={register}
+            defaultValue="100"
           />
         </div>
       </div>
