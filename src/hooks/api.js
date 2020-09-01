@@ -13,19 +13,31 @@ export function useExtendedSWR(...args) {
   return { data, error, ...other, isLoading: !data && !error }
 }
 
+export const PROGENETIX = "https://progenetix.org"
+
+export async function tryFetch(url, fallBack = "N/A") {
+  console.info(`Fetching data from ${url}.`)
+  try {
+    const response = await fetch(url)
+    return await response.json()
+  } catch (e) {
+    console.error(`Count not fetch ${url}`, e)
+    if (fallBack) {
+      return fallBack
+    } else {
+      throw e
+    }
+  }
+}
+
 // This function gets called at build time on server-side.
 export async function getStaticDatatasets() {
-  const url =
-    "https://progenetix.org/cgi/bycon/bin/byconplus.py/get-datasetids/"
-  console.info(`Fetching datasets from ${url}.`)
-  const res = await fetch(url)
-  const data = await res.json()
-  const datasets = data.datasets.map((value) => ({
+  const url = `${PROGENETIX}/cgi/bycon/bin/byconplus.py/get-datasetids/`
+  const data = await tryFetch(url, null)
+  return data.datasets.map((value) => ({
     value: value.id,
     label: value.name
   }))
-  console.info(`Found ${datasets.length} datasets.`)
-  return datasets
 }
 
 export function useFilteringTerms(filters, datasetIds = []) {
@@ -37,8 +49,7 @@ export function useFilteringTerms(filters, datasetIds = []) {
   ).toString()
   return useExtendedSWR(
     // `${basePath}cgi/bycon/bin/byconplus.py/filtering_terms?${params}`
-   `${basePath}cgi/bycon/bin/collations.py?method=children&responseFormat=simplelist&${params}`
-
+    `${basePath}cgi/bycon/bin/collations.py?method=children&responseFormat=simplelist&${params}`
   )
 }
 
@@ -149,11 +160,6 @@ export function usePublication(id) {
 
 export function usePublicationList() {
   const url = `${basePath}services/publications?responseFormat=simplelist&filters=genomes:>0`
-  return useExtendedSWR(url)
-}
-
-export function usePublicationCount() {
-  const url = `${basePath}api/progenetix/publications/count`
   return useExtendedSWR(url)
 }
 
