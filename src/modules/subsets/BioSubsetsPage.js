@@ -141,21 +141,33 @@ function SubsetsLoader({ filters, datasetIds }) {
 
 function SubsetsResponse({ bioSubsetsHierarchies, allBioSubsets, datasetIds }) {
   const isDetailPage = bioSubsetsHierarchies.length === 1
-
   // We merge both subsets from hierarchies and subsets from allSubsets.
   // This is because some children in the bioSubsetsHierarchies don't have labels or sample count information.
-  const subsetById = useMemo(
-    () => merge(keyBy(bioSubsetsHierarchies, "id"), allBioSubsets),
-    [allBioSubsets, bioSubsetsHierarchies]
-  )
+  const subsetById = merge(keyBy(bioSubsetsHierarchies, "id"), allBioSubsets)
+  const tree = isDetailPage
+    ? buildTreeForDetails(bioSubsetsHierarchies, subsetById)
+    : buildTree(bioSubsetsHierarchies, subsetById)
 
-  const tree = useMemo(
-    () =>
-      isDetailPage
-        ? buildTreeForDetails(bioSubsetsHierarchies, subsetById)
-        : buildTree(bioSubsetsHierarchies, subsetById),
-    [bioSubsetsHierarchies, subsetById, isDetailPage]
+  return (
+    <>
+      {isDetailPage && (
+        <div className="mb-6">
+          <SubsetHistogram
+            id={bioSubsetsHierarchies[0].id}
+            datasetIds={datasetIds}
+            loaderProps={{
+              background: true,
+              colored: true
+            }}
+          />
+        </div>
+      )}
+      <TreePanel datasetIds={datasetIds} subsetById={subsetById} tree={tree} />
+    </>
   )
+}
+
+function TreePanel({ tree, subsetById, datasetIds }) {
   const [state, dispatch] = useReducer(reducer, initialState)
   const checkIsCollapsed = useMemo(
     () =>
@@ -172,28 +184,13 @@ function SubsetsResponse({ bioSubsetsHierarchies, allBioSubsets, datasetIds }) {
       }),
     [state.checked, subsetById]
   )
+  console.log(checkedSubsets)
   const hasCheckedSubsets = checkedSubsets.length > 0
   const selectSamplesHref =
     hasCheckedSubsets &&
     sampleSelectUrl({ subsets: checkedSubsets, datasetIds })
-  let histogram
-  if (isDetailPage) {
-    histogram = (
-      <div className="mb-6">
-        <SubsetHistogram
-          id={bioSubsetsHierarchies[0].id}
-          datasetIds={datasetIds}
-          loaderProps={{
-            background: true,
-            colored: true
-          }}
-        />
-      </div>
-    )
-  }
   return (
-    <div>
-      {histogram}
+    <>
       <div className="BioSubsets__sample-selection">
         <a
           className="button is-info mb-3"
@@ -205,7 +202,7 @@ function SubsetsResponse({ bioSubsetsHierarchies, allBioSubsets, datasetIds }) {
         <ul className="tags">
           {checkedSubsets.map((subset) => (
             <li className="tag" key={subset.id}>
-              {subset.label} ({subset.child_terms?.length + 1})
+              {subset.label} ({subset.count})
             </li>
           ))}
         </ul>
@@ -220,7 +217,7 @@ function SubsetsResponse({ bioSubsetsHierarchies, allBioSubsets, datasetIds }) {
           dispatch={dispatch}
         />
       </div>
-    </div>
+    </>
   )
 }
 
