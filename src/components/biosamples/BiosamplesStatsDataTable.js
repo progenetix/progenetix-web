@@ -6,57 +6,65 @@ import _ from "lodash"
 import { useCollationsById } from "../../hooks/api"
 import { WithData } from "../Loader"
 
-export default function BiosamplesStatsDataTable({ biosamplesResponse }) {
+export default function BiosamplesStatsDataTable({
+  biosamplesResponse,
+  variantCount
+}) {
   const columns = React.useMemo(
-    () => [
-      {
-        Header: "Subsets",
-        accessor: "id",
-        Cell: ({ value, row: { original } }) => {
-          return (
-            <span>
-              <a href={`/subsets/list?filters=${original.id}`}>{value}</a>
-            </span>
-          )
-        }
-      },
-      {
-        Header: "Subset Samples",
-        accessor: "samples"
-      },
-      {
-        Header: "Query Matches",
-        accessor: "count"
-      },
-      {
-        Header: "Subset Match Frequencies",
-        accessor: "frequency",
-        Cell: ({ value }) => {
-          return (
-            <>
-              <span
-                style={{
-                  width: `${value * 100}%`,
-                  height: `80%`,
-                  position: "absolute",
-                  left: 0,
-                  backgroundColor: "#d8d8d8"
-                }}
-              />
-              <span
-                style={{
-                  position: "absolute",
-                  paddingLeft: "1rem"
-                }}
-              >
-                {value}
+    () =>
+      [
+        {
+          Header: "Subsets",
+          accessor: "id",
+          Cell: ({ value, row: { original } }) => {
+            return (
+              <span>
+                <a href={`/subsets/list?filters=${original.id}`}>{value}</a>
               </span>
-            </>
-          )
-        }
-      }
-    ],
-    []
+            )
+          }
+        },
+        {
+          Header: "Subset Samples",
+          accessor: "samples"
+        },
+        {
+          Header: "Query Matches",
+          accessor: "count"
+        },
+        variantCount > 0
+          ? [
+              {
+                Header: "Subset Match Frequencies",
+                accessor: "frequency",
+                Cell: ({ value }) => {
+                  return (
+                    <>
+                      <span
+                        style={{
+                          width: `${value * 100}%`,
+                          height: `80%`,
+                          position: "absolute",
+                          left: 0,
+                          backgroundColor: "#d8d8d8"
+                        }}
+                      />
+                      <span
+                        style={{
+                          position: "absolute",
+                          paddingLeft: "1rem"
+                        }}
+                      >
+                        {value}
+                      </span>
+                    </>
+                  )
+                }
+              }
+            ]
+          : []
+      ].flat(),
+    [variantCount]
   )
 
   const allSubsets = useCollationsById({ datasetIds: "progenetix" })

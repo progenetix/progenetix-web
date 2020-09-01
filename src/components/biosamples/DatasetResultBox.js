@@ -61,6 +61,7 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
         variantType={query.variantType}
         histogramUrl={histogramUrl}
         biosamplesDataResults={biosamplesDataResults}
+        variantCount={variantCount}
       />
     )
   } else if (selectedTab === TABS.samples) {
@@ -138,7 +139,12 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
   )
 }
 
-function ResultsTab({ histogramUrl, biosamplesDataResults, variantType }) {
+function ResultsTab({
+  histogramUrl,
+  biosamplesDataResults,
+  variantType,
+  variantCount
+}) {
   const visualizationAccessId = new URLSearchParams(
     new URL(histogramUrl).search
   ).get("accessid")
@@ -161,7 +167,10 @@ function ResultsTab({ histogramUrl, biosamplesDataResults, variantType }) {
         dataEffectResult={biosamplesDataResults}
         background
         render={(data) => (
-          <BiosamplesStatsDataTable biosamplesResponse={data} />
+          <BiosamplesStatsDataTable
+            biosamplesResponse={data}
+            variantCount={variantCount}
+          />
         )}
       />
     </div>
