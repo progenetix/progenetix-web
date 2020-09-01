@@ -21,7 +21,7 @@ export function useReadyRouter() {
 export function useUrlQuery() {
   const router = useReadyRouter()
 
-  function getQuery() {
+  function getUrlQuery() {
     return (
       router && {
         ...router.query,
@@ -32,17 +32,18 @@ export function useUrlQuery() {
     )
   }
 
-  const setQuery = useCallback(
-    (values, options = { replace: false }) => {
+  const setUrlQuery = useCallback(
+    (values, options = { replace: false, keepExisting: false }) => {
       if (!router) return
-      const params = new URLSearchParams(window.location.search)
+      const init = options.keepExisting ? window.location.search : ""
+      const params = new URLSearchParams(init)
       Object.entries(values).forEach(([k, v]) => params.set(k, v))
       const url = `${location.pathname}?${params}`
       options.replace ? router.replace(url) : router.push(url)
     },
     [router]
   )
-  return router ? { query: getQuery(), setQuery } : undefined
+  return router ? { urlQuery: getUrlQuery(), setUrlQuery } : undefined
 }
 
 const isDynamicPage = (router) => /\[.+\]/.test(router.route)
@@ -55,8 +56,8 @@ export const withUrlQuery = (WrappedComponent) => {
     if (!query) return null //only renders when component
     return (
       <WrappedComponent
-        urlQuery={query.query}
-        setUrlQuery={query.setQuery}
+        urlQuery={query.urlQuery}
+        setUrlQuery={query.setUrlQuery}
         {...props}
       />
     )

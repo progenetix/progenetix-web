@@ -25,7 +25,8 @@ function useConfigSelect(config, key, urlQuery, setUrlQuery) {
   ])
   const selected =
     configEntries.find(([c]) => c === queryValue)?.[0] ?? configEntries[0][0]
-  const setSelected = (newValue) => setUrlQuery({ [key]: newValue })
+  const setSelected = (newValue) =>
+    setUrlQuery({ [key]: newValue }, { keepExisting: true })
   const options = configEntries.map(([k, v]) => (
     <option key={k} value={k}>
       {v.label}

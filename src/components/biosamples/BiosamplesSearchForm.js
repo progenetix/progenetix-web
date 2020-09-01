@@ -41,6 +41,27 @@ function urlQueryToFormParam(urlQuery, k) {
   else return value
 }
 
+function useAutoExecuteSearch({
+  autoExecuteSearch,
+  setUrlQuery,
+  initialValues,
+  onValidFormQuery
+}) {
+  useEffect(() => {
+    if (autoExecuteSearch) {
+      setUrlQuery({ executeSearch: "false" }, { replace: true })
+
+      // At this stage individual parameters are already validated.
+      const values = initialValues
+      const errors = validateForm(values)
+      if (errors.length === 0) {
+        onValidFormQuery(values)
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoExecuteSearch])
+}
+
 export function Form({
   datasets,
   isQuerying,
@@ -122,20 +143,12 @@ export function Form({
     ...fieldProps,
     control
   }
-
-  useEffect(() => {
-    if (autoExecuteSearch) {
-      setUrlQuery({ executeSearch: "false" }, { replace: true })
-
-      // At this stage individual parameters are already validated.
-      const values = initialValues
-      const errors = validateForm(values)
-      if (errors.length === 0) {
-        onValidFormQuery(values)
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [autoExecuteSearch])
+  useAutoExecuteSearch({
+    autoExecuteSearch,
+    setUrlQuery,
+    initialValues,
+    onValidFormQuery
+  })
 
   return (
     <>
@@ -151,7 +164,11 @@ export function Form({
       )}
       <div>
         <ExamplesButtons
-          onExampleClicked={handleExampleClicked(reset, setExample)}
+          onExampleClicked={handleExampleClicked(
+            reset,
+            setExample,
+            setUrlQuery
+          )}
           requestTypeConfig={requestTypeConfig}
         />
         <ExampleDescription example={example} />
@@ -420,7 +437,8 @@ function validateForm(formValues) {
   return errors
 }
 
-const handleExampleClicked = (reset, setExample) => (example) => {
+const handleExampleClicked = (reset, setExample, setUrlQuery) => (example) => {
+  setUrlQuery({}, { replace: true })
   setExample(example)
 }
 
