@@ -137,13 +137,13 @@ function DataVisualizationForm({ isQuerying, onSubmit }) {
             label="Histogram Height (px)"
             errors={errors}
             register={register}
-            defaultValue="200"
+            defaultValue="100"
           />
         </div>
         <div className="column">
           <InputField
             name="-value_plot_y_max"
-            label="Histogram Scale (%)"
+            label="Histogram Max. Scale (%)"
             errors={errors}
             register={register}
             defaultValue="100"
