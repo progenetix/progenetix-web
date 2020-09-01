@@ -1,7 +1,7 @@
 ## Issue & Priorities Tracker
 
 Under each date stamp, current issues & needed fixes are listed top -> down in
-order of urgency & perceived feasibility 9of fast implementation).
+order of urgency & perceived feasibility of fast implementation).
 
 ### 2020-09-01
 
@@ -28,7 +28,7 @@ version, w/o the frequncy calculation (but indicating codes, numbers).
 * Search Result: Biosamples, variants ... results should have a download button
 for the JSON data ([part of issue 33](https://github.com/ptoussai/progenetix-next/issues/33))
 * Search Result and Visualization: SVGs should have download links
-* Navigation: After doing a query for samples from subsetsone cannot navigate back
+* Navigation: After doing a query for samples from subsets one cannot navigate back
 to the subsets page
 * Publications: Indicate if publication has samples in progenetix/arraymap (known
   from `counts.progenetix` now; see [issue 37](https://github.com/ptoussai/progenetix-next/issues/37)
