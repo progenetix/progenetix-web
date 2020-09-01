@@ -1,11 +1,12 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Loader } from "../Loader"
+import { WithData } from "../Loader"
 import Table from "../Table"
 import { useExtendedSWR } from "../../hooks/api"
+import DownloadButton from "../../DownloadButton"
 
 export default function VariantsDataTable({ url }) {
-  const { data, error, isLoading } = useExtendedSWR(url)
+  const dataEffectResult = useExtendedSWR(url)
   const columns = React.useMemo(
     () => [
       {
@@ -41,9 +42,21 @@ export default function VariantsDataTable({ url }) {
   )
 
   return (
-    <Loader isLoading={isLoading} hasError={error}>
-      <Table columns={columns} data={data} />
-    </Loader>
+    <WithData
+      dataEffectResult={dataEffectResult}
+      render={(data) => (
+        <div>
+          <div className="mb-4">
+            <DownloadButton
+              label="Download Response"
+              json={data}
+              fileName="variants"
+            />
+          </div>
+          <Table columns={columns} data={data} />
+        </div>
+      )}
+    />
   )
 }
 

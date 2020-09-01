@@ -12,6 +12,7 @@
     "classnames": "^2.2.6",
     "file-saver": "^2.0.2",
     "js-yaml-loader": "^1.2.2",
+    "json2csv": "^5.0.1",
     "lodash": "^4.17.20",
     "match-sorter": "^4.2.0",
     "next": "^9.5.2",

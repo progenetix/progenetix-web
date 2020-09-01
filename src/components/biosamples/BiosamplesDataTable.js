@@ -2,6 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { WithData } from "../Loader"
 import Table from "../Table"
+import DownloadButton from "../../DownloadButton"
 
 export default function BiosamplesDataTable({ dataEffectResult, datasetId }) {
   const columns = React.useMemo(
@@ -80,7 +81,18 @@ export default function BiosamplesDataTable({ dataEffectResult, datasetId }) {
   return (
     <WithData
       dataEffectResult={dataEffectResult}
-      render={(data) => <Table columns={columns} data={data} />}
+      render={(data) => (
+        <div>
+          <div className="mb-4">
+            <DownloadButton
+              label="Download Response"
+              json={data}
+              fileName="biosamples"
+            />
+          </div>
+          <Table columns={columns} data={data} />
+        </div>
+      )}
     />
   )
 }

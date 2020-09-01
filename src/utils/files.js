@@ -1,8 +1,8 @@
 import FileSaver from "file-saver"
 
-export function initiateSaveAsJson(dataJson, name) {
-  const file = new File([JSON.stringify(dataJson)], name, {
-    type: "text/json;charset=utf-8"
+export function initiateSaveAs(string, name, type = "text/csv;charset=utf-8") {
+  const file = new File([string], name, {
+    type: type
   })
   FileSaver.saveAs(file)
 }
