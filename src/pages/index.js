@@ -39,9 +39,8 @@ export default function Index({ publications }) {
         <ExampleHistogram />
         <p>
           For exploration of the resource it is suggested to either start with{" "}
-          <a href="/subsets/list">Cancer Types</a>
-          or by <a href="/samples/search">searching</a> for CNVs genes of
-          interest.
+          <a href="/subsets/list">Cancer Types</a> or by{" "}
+          <a href="/samples/search">searching</a> for CNVs genes of interest.
         </p>
         <p>
           Additionally to genome profiles and associated metadata, the website
