@@ -109,6 +109,26 @@ function DataVisualizationForm({ isQuerying, onSubmit }) {
           />
         </div>
       </div>
+      <div className="columns">
+        <div className="column">
+          <InputField
+            name="-size_title_left_px"
+            label="Left Labels Width"
+            errors={errors}
+            register={register}
+            defaultValue="200"
+          />
+        </div>
+        <div className="column">
+          <InputField
+            name="-size_clustertree_w_px"
+            label="Cluster Tree Width"
+            errors={errors}
+            register={register}
+            defaultValue="50"
+          />
+        </div>
+      </div>
       <GeneSpanSelector errors={errors} register={register} control={control} />
       <div className="field mt-5">
         <div className="control">
