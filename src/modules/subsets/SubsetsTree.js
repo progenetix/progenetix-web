@@ -13,8 +13,13 @@ export default function SubsetsTree({
   dispatch,
   checkIsCollapsed,
   defaultExpandedLevel,
-  collapsedOverrides
+  collapsedOverrides,
+  checkedSubsets
 }) {
+  const hasSelectedSubsets = checkedSubsets.length > 0
+  const selectSamplesHref =
+    hasSelectedSubsets &&
+    sampleSelectUrl({ subsets: checkedSubsets, datasetIds })
   let headers = (
     <tr>
       <th />
@@ -49,10 +54,28 @@ export default function SubsetsTree({
             <option value={3}>3 levels</option>
             <option value={4}>4 levels</option>
             <option value={5}>5 levels</option>
-            <option value={99}>All</option>
           </select>
         </span>
+        {hasSelectedSubsets && (
+          <a
+            className="button is-primary is-small"
+            href={selectSamplesHref || null}
+          >
+            Search Samples from selection
+          </a>
+        )}{" "}
       </div>
+
+      <ul className="tags">
+        {!hasSelectedSubsets && (
+          <span className="tag is-dark">No Selection</span>
+        )}
+        {checkedSubsets.map((subset) => (
+          <li className="tag is-primary" key={subset.id}>
+            {subset.label} ({subset.count})
+          </li>
+        ))}
+      </ul>
       <div className="table-container">
         <table className="table is-striped is-fullwidth is-bordered">
           <thead>{headers}</thead>

@@ -8,7 +8,6 @@ import { getOrMakeChild, getOrMakeNode } from "./tree"
 import biosubsetsConfig from "./config.yaml"
 import { SubsetHistogram } from "../../components/Histogram"
 import SubsetsTree from "./SubsetsTree"
-import { sampleSelectUrl } from "./samples"
 
 const makeEntries = (config, queryValue) => {
   let configEntries = Object.entries(config)
@@ -71,7 +70,7 @@ const BioSubsetsContent = withUrlQuery(({ urlQuery, setUrlQuery }) => {
   )
   return (
     <>
-      <div className="level mb-6">
+      <div className="level">
         <div className="level-left">
           <div className="level-item">
             <p>Filters:</p>
@@ -153,7 +152,7 @@ function SubsetsResponse({ bioSubsetsHierarchies, allBioSubsets, datasetIds }) {
   return (
     <>
       {isDetailPage && (
-        <div className="mb-6">
+        <div className="mb-3">
           <SubsetHistogram
             id={bioSubsetsHierarchies[0].id}
             datasetIds={datasetIds}
@@ -186,28 +185,9 @@ function TreePanel({ tree, subsetById, datasetIds }) {
       }),
     [state.checked, subsetById]
   )
-  const hasCheckedSubsets = checkedSubsets.length > 0
-  const selectSamplesHref =
-    hasCheckedSubsets &&
-    sampleSelectUrl({ subsets: checkedSubsets, datasetIds })
+
   return (
     <>
-      <div className="BioSubsets__sample-selection">
-        <a
-          className="button is-info mb-3"
-          disabled={!hasCheckedSubsets}
-          href={selectSamplesHref || null}
-        >
-          Select Samples from checked Subsets
-        </a>
-        <ul className="tags">
-          {checkedSubsets.map((subset) => (
-            <li className="tag" key={subset.id}>
-              {subset.label} ({subset.count})
-            </li>
-          ))}
-        </ul>
-      </div>
       <div className="BioSubsets__tree">
         <SubsetsTree
           tree={tree}
@@ -215,6 +195,7 @@ function TreePanel({ tree, subsetById, datasetIds }) {
           checkIsCollapsed={checkIsCollapsed}
           collapsedOverrides={state.overrides}
           defaultExpandedLevel={state.defaultExpandedLevel}
+          checkedSubsets={checkedSubsets}
           dispatch={dispatch}
         />
       </div>
