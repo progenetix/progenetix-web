@@ -167,19 +167,19 @@ function Header({ headerGroups }) {
             >
               <span className="is-flex">
                 {column.render("Header")}
-                <span
-                  style={{ visibility: column.isSorted ? "visible" : "hidden" }}
-                >
-                  {column.isSortedDesc ? (
-                    <span className="icon">
-                      <FaAngleUp />
-                    </span>
-                  ) : (
-                    <span className="icon">
-                      <FaAngleDown />
-                    </span>
-                  )}
-                </span>
+                {column.isSorted && (
+                  <span>
+                    {column.isSortedDesc ? (
+                      <span className="icon">
+                        <FaAngleUp />
+                      </span>
+                    ) : (
+                      <span className="icon">
+                        <FaAngleDown />
+                      </span>
+                    )}
+                  </span>
+                )}
               </span>
             </th>
           ))}
