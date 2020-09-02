@@ -73,11 +73,19 @@ function PublicationTableLoader() {
           {
             Header: "WGS",
             accessor: "counts.wgs"
+          },
+          {
+            Header: "Progenetix",
+            accessor: "counts.progenetix"
+          },
+          {
+            Header: "Arraymap",
+            accessor: "counts.arraymap"
           }
         ]
       },
       { accessor: "authors" },
-      { accessor: "title" },
+      { accessor: "title" }
     ],
     []
   )
