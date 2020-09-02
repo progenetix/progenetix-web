@@ -5,6 +5,7 @@ import React, { useState } from "react"
 import PropTypes from "prop-types"
 import cn from "classnames"
 import { FaCogs } from "react-icons/fa"
+import { WithData } from "../Loader"
 
 FormUtilitiesButtons.propTypes = {
   onGeneSpansClick: PropTypes.func.isRequired,
@@ -73,12 +74,17 @@ function useGenSpanSelect(inputValue) {
     `${o.reference_name}:${o.cds_start_min}-${o.cds_end_max}:${o.gene_symbol}`
   let options = []
   if (data) {
-    options = data.data.genes.map((g) => ({ value: g, label: getOptionLabel(g) }))
+    options = data.data.genes.map((g) => ({
+      value: g,
+      label: getOptionLabel(g)
+    }))
   }
   return { isLoading, error, options }
 }
 
 export function GeneSpansUtility({ onClose, setFormValue }) {
+  const { inputValue, value, onChange, onInputChange } = useAsyncSelect()
+  const { options, error, isLoading } = useGenSpanSelect(inputValue)
   const onApply = (optionValue) => {
     setFormValue("start", optionValue.cds_start_min)
     setFormValue("end", optionValue.cds_end_max)
@@ -99,81 +105,9 @@ export function GeneSpansUtility({ onClose, setFormValue }) {
     </div>
   )
   return (
-    <FormUtility
-      label="Gene Spans"
-      optionDataHook={useGenSpanSelect}
-      onApplyClick={onApply}
-      renderValue={renderValue}
-      onCloseClick={onClose}
-    />
-  )
-}
-
-GeneSpansUtility.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  setFormValue: PropTypes.func.isRequired
-}
-
-function useCytoBandsSelect(inputValue) {
-  const { data, error } = useCytomapper(inputValue)
-  let options = []
-  if (data) {
-    // TODO
-  }
-  return { data, error, options }
-}
-
-export function CytoBandsUtility({ onClose, setFormValue }) {
-  const onApply = (optionValue) => {
-    // TODO
-    setFormValue(optionValue.todo)
-    onClose()
-  }
-  const renderValue = (optionValue) => (
-    <div className="content">
-      <div>???: {optionValue.todo}</div>
-    </div>
-  )
-  return (
-    <div>
-      <FormUtility
-        label="Cytoband(s)"
-        optionDataHook={useCytoBandsSelect}
-        onApplyClick={onApply}
-        renderValue={renderValue}
-        onCloseClick={onClose}
-      />
-    </div>
-  )
-}
-
-CytoBandsUtility.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  setFormValue: PropTypes.func.isRequired
-}
-
-FormUtility.propTypes = {
-  label: PropTypes.string.isRequired,
-  optionDataHook: PropTypes.object.isRequired,
-  renderValue: PropTypes.func.isRequired,
-  onApplyClick: PropTypes.func.isRequired,
-  onCloseClick: PropTypes.func.isRequired
-}
-
-function FormUtility({
-  label,
-  optionDataHook,
-  renderValue,
-  onApplyClick,
-  onCloseClick
-}) {
-  const { inputValue, value, onChange, onInputChange } = useAsyncSelect()
-  const { options, error, isLoading } = optionDataHook(inputValue)
-
-  return (
     <div className="message is-link mb-6">
       <div className="message-body">
-        <p className="subtitle is-5">{label}</p>
+        <p className="subtitle is-5">Gene Spans</p>
         <CustomSelect
           className="mb-3"
           options={options}
@@ -192,12 +126,12 @@ function FormUtility({
             </div>
             <div className="buttons">
               <button
-                onClick={() => onApplyClick(value.value)}
+                onClick={() => onApply(value.value)}
                 className="button is-primary"
               >
                 Apply
               </button>
-              <button onClick={onCloseClick} className="button  is-outlined">
+              <button onClick={onClose} className="button  is-outlined">
                 Close
               </button>
             </div>
@@ -206,6 +140,105 @@ function FormUtility({
       </div>
     </div>
   )
+}
+
+GeneSpansUtility.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  setFormValue: PropTypes.func.isRequired
+}
+
+export function CytoBandsUtility({ onClose, setFormValue }) {
+  const [inputValue, setInputValue] = useState("")
+  const [searchValue, setSearchValue] = useState("")
+  const dataEffectResult = useCytomapper(searchValue)
+  const onApply = (data) => {
+    setFormValue("start", data.start)
+    setFormValue("end", data.end)
+    setFormValue("referenceName", data.referenceName)
+    onClose()
+  }
+  const onSubmit = () => setSearchValue(inputValue)
+  return (
+    <div>
+      <div className="message is-link mb-6">
+        <div className="message-body">
+          <p className="subtitle is-5">CytoBands</p>
+          <form
+            onSubmit={onSubmit}
+            className="field has-addons mb-4"
+            action="#"
+          >
+            <div className="control">
+              <input
+                onChange={(e) => setInputValue(e.target.value)}
+                className="input"
+                type="text"
+                placeholder="Ex: 8q21"
+              />
+            </div>
+            <div className="control">
+              <button className="button" type="submit">
+                Search
+              </button>
+            </div>
+          </form>
+          {searchValue && (
+            <WithData
+              dataEffectResult={dataEffectResult}
+              render={(data) => {
+                const hasResults = !!data.data.cytoBands
+                return (
+                  <>
+                    {hasResults ? (
+                      <CytoBandsData data={data.data} />
+                    ) : (
+                      <div className="notification is-light">No results.</div>
+                    )}
+                    <div className="buttons">
+                      <button
+                        disabled={!hasResults}
+                        onClick={() => onApply(data.data)}
+                        className="button is-primary"
+                      >
+                        Apply
+                      </button>
+                      <button onClick={onClose} className="button  is-outlined">
+                        Close
+                      </button>
+                    </div>
+                  </>
+                )
+              }}
+            />
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function CytoBandsData({ data }) {
+  return (
+    <div className="content has-text-black">
+      <div>
+        CytoBands: <b>{data.cytoBands}</b>
+      </div>
+      <div>
+        Start: <b>{data.start}</b>
+      </div>
+      <div>
+        End: <b>{data.end}</b>
+      </div>
+      <div>
+        Reference Name: <b>{data.referenceName}</b>
+      </div>
+    </div>
+  )
+}
+
+CytoBandsUtility.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  setFormValue: PropTypes.func.isRequired
 }
 
 function Error() {
