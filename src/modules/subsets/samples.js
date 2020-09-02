@@ -1,7 +1,18 @@
+import { min } from "lodash"
+
 export function sampleSelectUrl({ subsets, datasetIds }) {
   const samples = subsets
     .flatMap((subset) => [subset.id, ...(subset?.child_terms ?? [])])
     .join(",")
 
   return `/samples/search?bioontology=${samples}&datasetIds=${datasetIds}&filterLogic=OR&executeSearch=true`
+}
+
+export function canSearch(subset) {
+  // Only necessary for NCIT
+  if (!subset.id.includes("NCIT:")) return true
+  const minDepth = subset.hierarchy_paths
+    ? min(subset.hierarchy_paths?.map((hp) => hp.depth))
+    : 999
+  return minDepth >= 2
 }

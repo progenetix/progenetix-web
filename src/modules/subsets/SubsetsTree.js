@@ -4,7 +4,7 @@ import PropTypes from "prop-types"
 import cn from "classnames"
 import Link from "next/link"
 import { FaAngleDown, FaAngleRight } from "react-icons/fa"
-import { sampleSelectUrl } from "./samples"
+import { canSearch, sampleSelectUrl } from "./samples"
 import Tippy from "@tippyjs/react"
 
 export default function SubsetsTree({
@@ -165,10 +165,11 @@ function Row({ node, dispatch, collapsed, depth, datasetIds }) {
   const { name, subset, children } = node
   const key = makeNodeKey(node)
   const marginLeft = `${depth * 20}px`
+  const isSearchPossible = canSearch(subset)
   return (
     <tr>
       <td style={{ width: 20 }}>
-        {subset && (
+        {subset && isSearchPossible && (
           <input
             onChange={(e) =>
               dispatch({
@@ -196,11 +197,15 @@ function Row({ node, dispatch, collapsed, depth, datasetIds }) {
         </span>
       </td>
       <td style={{ whiteSpace: "nowrap" }}>
-        <Tippy content={`Click to initiate a search for ${subset.id}`}>
-          <a href={sampleSelectUrl({ subsets: [subset], datasetIds })}>
-            {subset?.count}
-          </a>
-        </Tippy>
+        {isSearchPossible ? (
+          <Tippy content={`Click to initiate a search for ${subset.id}`}>
+            <a href={sampleSelectUrl({ subsets: [subset], datasetIds })}>
+              {subset?.count}
+            </a>
+          </Tippy>
+        ) : (
+          <div>{subset?.count}</div>
+        )}
       </td>
     </tr>
   )
