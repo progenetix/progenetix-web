@@ -18,7 +18,7 @@ export default function Nav() {
         </Link>
         <div className="Nav__links">
           <ActiveLink label="About" href="/beacon-plus/about" />
-          <ActiveLink label="Progenetix" href="/index" />
+          <ActiveLink label="Progenetix" href="/" />
           <a
             href="https://info.progenetix.org/categories/howto.html"
             className="navbar-item"
