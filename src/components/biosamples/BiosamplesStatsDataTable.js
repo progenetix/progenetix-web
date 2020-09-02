@@ -8,7 +8,8 @@ import { WithData } from "../Loader"
 
 export default function BiosamplesStatsDataTable({
   biosamplesResponse,
-  variantCount
+  variantCount,
+  datasetId
 }) {
   const columns = React.useMemo(
     () =>
@@ -19,7 +20,11 @@ export default function BiosamplesStatsDataTable({
           Cell: ({ value, row: { original } }) => {
             return (
               <span>
-                <a href={`/subsets/list?filters=${original.id}`}>{value}</a>
+                <a
+                  href={`/subsets/list?filters=${original.id}&datasetIds=${datasetId}`}
+                >
+                  {value}
+                </a>
               </span>
             )
           }
@@ -64,7 +69,7 @@ export default function BiosamplesStatsDataTable({
             ]
           : []
       ].flat(),
-    [variantCount]
+    [variantCount, datasetId]
   )
 
   const allSubsets = useCollationsById({ datasetIds: "progenetix" })

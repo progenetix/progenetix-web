@@ -62,6 +62,7 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
         histogramUrl={histogramUrl}
         biosamplesDataResults={biosamplesDataResults}
         variantCount={variantCount}
+        datasetId={datasetId}
       />
     )
   } else if (selectedTab === TABS.samples) {
@@ -143,7 +144,8 @@ function ResultsTab({
   histogramUrl,
   biosamplesDataResults,
   alternateBases,
-  variantCount
+  variantCount,
+  datasetId
 }) {
   const visualizationAccessId = new URLSearchParams(
     new URL(histogramUrl).search
@@ -170,6 +172,7 @@ function ResultsTab({
           <BiosamplesStatsDataTable
             biosamplesResponse={data}
             variantCount={variantCount}
+            datasetId={datasetId}
           />
         )}
       />
