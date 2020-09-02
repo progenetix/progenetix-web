@@ -4,6 +4,8 @@ import PropTypes from "prop-types"
 import cn from "classnames"
 import Link from "next/link"
 import { FaAngleDown, FaAngleRight } from "react-icons/fa"
+import { sampleSelectUrl } from "./samples"
+import Tippy from "@tippyjs/react"
 
 export default function SubsetsTree({
   tree,
@@ -112,7 +114,7 @@ function NodeChildren({
   })
 }
 
-// Need deep compare (isEqual) because collapsedOverrides wont be equals after filtering
+// Need deep compare (isEqual) because collapsedOverrides wont be (shallow) equals after filtering
 const MemoizedSubsetNode = React.memo(SubsetNode, isEqual)
 
 function SubsetNode({
@@ -194,7 +196,11 @@ function Row({ node, dispatch, collapsed, depth, datasetIds }) {
         </span>
       </td>
       <td style={{ whiteSpace: "nowrap" }}>
-        <span>{subset?.count}</span>
+        <Tippy content={`Click to initiate a search for ${subset.id}`}>
+          <a href={sampleSelectUrl({ subsets: [subset], datasetIds })}>
+            {subset?.count}
+          </a>
+        </Tippy>
       </td>
     </tr>
   )

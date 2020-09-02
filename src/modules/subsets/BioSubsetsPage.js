@@ -8,6 +8,7 @@ import { getOrMakeChild, getOrMakeNode } from "./tree"
 import biosubsetsConfig from "./config.yaml"
 import { SubsetHistogram } from "../../components/Histogram"
 import SubsetsTree from "./SubsetsTree"
+import { sampleSelectUrl } from "./samples"
 
 const makeEntries = (config, queryValue) => {
   let configEntries = Object.entries(config)
@@ -185,7 +186,6 @@ function TreePanel({ tree, subsetById, datasetIds }) {
       }),
     [state.checked, subsetById]
   )
-  console.log(checkedSubsets)
   const hasCheckedSubsets = checkedSubsets.length > 0
   const selectSamplesHref =
     hasCheckedSubsets &&
@@ -326,12 +326,4 @@ export function buildTreeForDetails(response, subsetById) {
     }
   })
   return tree
-}
-
-function sampleSelectUrl({ subsets, datasetIds }) {
-  const samples = subsets
-    .flatMap((subset) => [subset.id, ...(subset?.child_terms ?? [])])
-    .join(",")
-
-  return `/samples/search?bioontology=${samples}&datasetIds=${datasetIds}&filterLogic=OR&executeSearch=true`
 }

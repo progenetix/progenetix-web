@@ -1,5 +1,6 @@
 import React from "react"
 import "../styles/main.scss"
+import "tippy.js/dist/tippy.css"
 import { SWRConfig } from "swr"
 import fetcher from "../hooks/fetcher"
 
