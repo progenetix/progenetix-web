@@ -157,17 +157,16 @@ export function CytoBandsUtility({ onClose, setFormValue }) {
     setFormValue("referenceName", data.referenceName)
     onClose()
   }
-  const onSubmit = () => setSearchValue(inputValue)
+  const onSubmit = (e) => {
+    e.preventDefault()
+    setSearchValue(inputValue)
+  }
   return (
     <div>
       <div className="message is-link mb-6">
         <div className="message-body">
           <p className="subtitle is-5">CytoBands</p>
-          <form
-            onSubmit={onSubmit}
-            className="field has-addons mb-4"
-            action="#"
-          >
+          <form onSubmit={onSubmit} className="field has-addons mb-4">
             <div className="control">
               <input
                 onChange={(e) => setInputValue(e.target.value)}
