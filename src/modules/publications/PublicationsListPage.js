@@ -2,8 +2,9 @@ import React from "react"
 import { Layout } from "../../components/layouts/Layout"
 import { usePublicationList } from "../../hooks/api"
 import { Loader } from "../../components/Loader"
-import Table from "../../components/Table"
+import Table, { TooltipHeader } from "../../components/Table"
 import { EpmcLink } from "./EpmcUrl"
+import cn from "classnames"
 
 export default function PublicationsListPage() {
   return (
@@ -60,27 +61,33 @@ function PublicationTableLoader() {
         columns: [
           {
             Header: "cCGH",
-            accessor: "counts.ccgh"
+            accessor: "counts.ccgh",
+            Cell: CountCell
           },
           {
             Header: "aCGH",
-            accessor: "counts.acgh"
+            accessor: "counts.acgh",
+            Cell: CountCell
           },
           {
             Header: "WES",
-            accessor: "counts.wes"
+            accessor: "counts.wes",
+            Cell: CountCell
           },
           {
             Header: "WGS",
-            accessor: "counts.wgs"
+            accessor: "counts.wgs",
+            Cell: CountCell
           },
           {
-            Header: "Progenetix",
-            accessor: "counts.progenetix"
+            Header: TooltipHeader("pgx", "Progenetix"),
+            accessor: "counts.progenetix",
+            Cell: CountCell
           },
           {
-            Header: "Arraymap",
-            accessor: "counts.arraymap"
+            Header: TooltipHeader("am", "Arraymap"),
+            accessor: "counts.arraymap",
+            Cell: CountCell
           }
         ]
       },
@@ -100,5 +107,11 @@ function PublicationTableLoader() {
         hiddenColumns={["authors", "title"]}
       />
     </Loader>
+  )
+}
+
+function CountCell({ value }) {
+  return (
+    <span className={cn(value === 0 && "has-text-grey-light")}>{value}</span>
   )
 }

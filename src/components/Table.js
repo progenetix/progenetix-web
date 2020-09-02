@@ -15,6 +15,7 @@ import {
   FaAngleDown
 } from "react-icons/fa"
 import matchSorter from "match-sorter"
+import Tippy from "@tippyjs/react"
 
 export default function Table({
   columns,
@@ -252,3 +253,11 @@ function fuzzyTextFilterFn(rows, id, filterValue) {
 
 // Let the table remove the filter if the string is empty
 fuzzyTextFilterFn.autoRemove = (val) => !val
+
+export function TooltipHeader(short, full) {
+  return (
+    <Tippy content={full}>
+      <span>{short}</span>
+    </Tippy>
+  )
+}
