@@ -58,7 +58,7 @@ function DataVisualizationPanel({ accessid, width }) {
   return (
     <div>
       <div className="columns">
-        <div className="mb-6 column is-half-desktop">
+        <div className="mb-6 column">
           <DataVisualizationForm isQuerying={false} onSubmit={onSubmit} />
         </div>
       </div>
@@ -150,7 +150,20 @@ function DataVisualizationForm({ isQuerying, onSubmit }) {
           />
         </div>
       </div>
-      <GeneSpanSelector errors={errors} register={register} control={control} />
+      <div className="columns">
+        <div className="column">
+          <GeneSpanSelector errors={errors} register={register} control={control} />
+        </div>
+        <div className="column">
+          <InputField
+            name="-labels"
+            label="Free Labels"
+            errors={errors}
+            register={register}
+            defaultValue=""
+          />
+        </div>
+      </div>
       <div className="field mt-5">
         <div className="control">
           <button
@@ -213,7 +226,7 @@ export function useGenSpanSelect(inputValue) {
   const [cachedGenes, setCachedGenes] = useState({})
   useEffect(() => {
     if (data) {
-      const genes = keyBy(data.data.genes, "gene_symbol")
+      const genes = keyBy(data.data.genespans, "gene_symbol")
       setCachedGenes({ ...genes, ...cachedGenes })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

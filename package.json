@@ -30,6 +30,7 @@
     "remark-react": "^7.0.1",
     "sass": "^1.26.10",
     "swr": "^0.3.1",
+    "tippy.js": "^6.2.6",
     "unified": "^9.2.0",
     "use-deep-compare-effect": "^1.4.0"
   },

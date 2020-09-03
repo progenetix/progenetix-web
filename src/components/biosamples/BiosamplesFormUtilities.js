@@ -74,7 +74,7 @@ function useGenSpanSelect(inputValue) {
     `${o.reference_name}:${o.cds_start_min}-${o.cds_end_max}:${o.gene_symbol}`
   let options = []
   if (data) {
-    options = data.data.genes.map((g) => ({
+    options = data.data.genespans.map((g) => ({
       value: g,
       label: getOptionLabel(g)
     }))

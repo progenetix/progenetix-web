@@ -60,22 +60,22 @@ function PublicationTableLoader() {
         Header: "Samples",
         columns: [
           {
-            Header: "cCGH",
+            Header: TooltipHeader("cCGH", "Chromosomal Comparative Genomic Hybridization"),
             accessor: "counts.ccgh",
             Cell: CountCell
           },
           {
-            Header: "aCGH",
+            Header: TooltipHeader("aCGH", "Genomic Arrays"),
             accessor: "counts.acgh",
             Cell: CountCell
           },
           {
-            Header: "WES",
+            Header: TooltipHeader("WES", "Whole Exome Sequencing"),
             accessor: "counts.wes",
             Cell: CountCell
           },
           {
-            Header: "WGS",
+            Header: TooltipHeader("WGS", "Whole Genome Sequencing"),
             accessor: "counts.wgs",
             Cell: CountCell
           },
