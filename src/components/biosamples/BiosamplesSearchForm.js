@@ -2,7 +2,7 @@ import cn from "classnames"
 import {
   INTEGER_RANGE_REGEX,
   isValidBeaconQuery,
-  useFilteringTerms
+  useCollations
 } from "../../hooks/api"
 import React, { useEffect, useMemo, useState } from "react"
 import { markdownToReact } from "../../utils/md"
@@ -113,7 +113,7 @@ export function Form({
 
   const {
     data: filteringTerms,
-    error: filteringTermsError
+    isLoading: isFilteringTermsLoading
   } = useSelectFilteringTerms(watch)
 
   parameters = _.merge({}, parameters, {
@@ -237,7 +237,7 @@ export function Form({
           <SelectField
             {...parameters.bioontology}
             {...selectProps}
-            isLoading={!filteringTerms && !filteringTermsError}
+            isLoading={isFilteringTermsLoading}
           />
           <SelectField {...parameters.materialtype} {...selectProps} />
           <div className="columns mb-0">
@@ -461,7 +461,11 @@ export const checkIntegerRange = (value) => {
 // Maps FilteringTerms hook to dataEffectResult usable by DataFetchSelect
 function useSelectFilteringTerms(watchForm) {
   const datasetIds = watchForm("datasetIds")
-  const { data, ...other } = useFilteringTerms("NCIT,icdom,icdot", datasetIds)
+  const { data, ...other } = useCollations({
+    datasetIds,
+    method: "children",
+    filters: "NCIT,icdom,icdot"
+  })
   return {
     data:
       data &&

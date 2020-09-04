@@ -40,19 +40,6 @@ export async function getStaticDatatasets() {
   }))
 }
 
-export function useFilteringTerms(filters, datasetIds = []) {
-  const params = new URLSearchParams(
-    flattenParams([
-      ["filters", filters],
-      ["datasetIds", datasetIds]
-    ])
-  ).toString()
-  return useExtendedSWR(
-    // `${basePath}cgi/bycon/bin/byconplus.py/filtering_terms?${params}`
-    `${basePath}cgi/bycon/bin/collations.py?method=children&responseFormat=simplelist&${params}`
-  )
-}
-
 /**
  * When param is null no query will be triggered.
  */
@@ -229,10 +216,9 @@ export function useCollationsById({ datasetIds }) {
 }
 
 export function useCollations({ datasetIds, method, filters }) {
-  const transformData = (rawData) => rawData.data["subsets"]
-  const url = `${basePath}cgi/bycon/bin/collations.py?datasetIds=${datasetIds}&method=${method}&filters=${filters}`
+  const url = `${basePath}cgi/bycon/bin/collations.py?datasetIds=${datasetIds}&method=${method}&filters=${filters}&responseFormat=simplelist`
   const { data: rawData, ...other } = useExtendedSWR(url)
-  const data = rawData && transformData(rawData)
+  const data = Array.isArray(rawData) ? rawData : null
   return { data, ...other }
 }
 

@@ -11,7 +11,7 @@ order of urgency & perceived feasibility of fast implementation).
 collection, not the number of selected samples~~
 *  ~~In the DataVisualizationPage, the gene label selector should allow multiple
 labels~~
-* Cytobands: To be implemented ...
+* ~~Cytobands: To be implemented ...~~
 * ~~Search Result: "Show JSON Response" should just open a new page/pop-up/panel w/
 the (nice) JSON response, not initiate a download ([part of issue 33](https://github.com/ptoussai/progenetix-next/issues/33))~~
 * ~~"Dataset Responses" is shown on the Progenetix samples Search page although `includeDatasetResponses` is set to `hidden`. This parameter is anyway confusing
@@ -35,6 +35,6 @@ to the subsets page~~
 a search on tis code (& its children)~~
 * Using a set of pre-fetched filter codes to select a random example from them
 for homepage histogram generation ([issue #34](https://github.com/ptoussai/progenetix-next/issues/34))
-* The frequency table should show labels, too (Shortened? Hover?).
+* ~~The frequency table should show labels, too (Shortened? Hover?).~~
 * Beacon/Search: "examples" should only be displayed with a new search, and hidden/collapsed
 on existing (generated) pages.
