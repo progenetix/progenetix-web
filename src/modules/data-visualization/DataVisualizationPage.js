@@ -236,7 +236,7 @@ export function useGenSpanSelect(inputValue) {
   const [cachedGenes, setCachedGenes] = useState({})
   useEffect(() => {
     if (data) {
-      const genes = keyBy(data.data.genespans, "gene_symbol")
+      const genes = keyBy(data.data, "gene_symbol")
       setCachedGenes({ ...genes, ...cachedGenes })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
