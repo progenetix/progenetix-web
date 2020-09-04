@@ -76,19 +76,23 @@ function DataVisualizationForm({ isQuerying, onSubmit }) {
   const { register, handleSubmit, errors, control } = useForm({ defaultValues })
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <InputField
-        name="-chr2plot"
-        label="Chromosomes"
-        errors={errors}
-        register={register}
-        defaultValue="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X"
-      />
-      <InputField
-        name="-randno"
-        label="Random Samples (no.)"
-        errors={errors}
-        register={register}
-      />
+    <div className="columns">
+      <div className="column">
+          <InputField
+            name="-chr2plot"
+            label="Chromosomes"
+            errors={errors}
+            register={register}
+            defaultValue="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22"
+          />
+          <InputField
+            name="-randno"
+            label="Random Samples (no.)"
+            errors={errors}
+            register={register}
+          />
+        </div>
+      </div>
       <div className="columns">
         <div className="column">
           <SelectField
