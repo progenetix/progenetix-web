@@ -21,8 +21,9 @@ export async function tryFetch(url, fallBack = "N/A") {
     const response = await fetch(url)
     return await response.json()
   } catch (e) {
-    console.error(`Count not fetch ${url}`, e)
+    console.error(`Count not fetch ${url}`)
     if (fallBack) {
+      console.info(`Using ${JSON.stringify(fallBack)} as fallBack`)
       return fallBack
     } else {
       throw e
