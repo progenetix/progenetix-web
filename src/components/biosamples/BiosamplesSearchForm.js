@@ -16,7 +16,7 @@ import {
 import PropTypes from "prop-types"
 import SelectField from "../form/SelectField"
 import InputField from "../form/InputField"
-import _ from "lodash"
+import _, { keyBy, uniq } from "lodash"
 import useDeepCompareEffect from "use-deep-compare-effect"
 import { withUrlQuery } from "../../hooks/url-query"
 
@@ -43,14 +43,11 @@ function urlQueryToFormParam(urlQuery, k) {
 
 function useAutoExecuteSearch({
   autoExecuteSearch,
-  setUrlQuery,
   initialValues,
   onValidFormQuery
 }) {
   useEffect(() => {
     if (autoExecuteSearch) {
-      setUrlQuery({ executeSearch: "false" }, { replace: true })
-
       // At this stage individual parameters are already validated.
       const values = initialValues
       const errors = validateForm(values)
@@ -111,13 +108,15 @@ export function Form({
   // reset form when default values changes
   useDeepCompareEffect(() => reset(initialValues), [initialValues])
 
-  const {
-    data: filteringTerms,
-    isLoading: isFilteringTermsLoading
-  } = useSelectFilteringTerms(watch)
-
+  const { data: subsets, isLoading: isSubsetsDataLoading } = useSubsets(watch)
+  const subsetsOptions =
+    subsets &&
+    subsets.map((value) => ({
+      value: value.id,
+      label: `${value.id}: ${value.label} (${value.count})`
+    }))
   parameters = _.merge({}, parameters, {
-    bioontology: { options: filteringTerms }
+    bioontology: { options: subsetsOptions }
   })
 
   const {
@@ -129,13 +128,14 @@ export function Form({
     onGeneSpansCloseClick
   } = useFormUtilities()
 
-  const onSubmit = onSubmitHandler(
+  const onSubmit = onSubmitHandler({
     clearErrors,
     setError,
     onValidFormQuery,
     requestTypeId,
-    setUrlQuery
-  )
+    setUrlQuery,
+    subsets
+  })
 
   // shortcuts
   const fieldProps = { errors, register }
@@ -145,7 +145,6 @@ export function Form({
   }
   useAutoExecuteSearch({
     autoExecuteSearch,
-    setUrlQuery,
     initialValues,
     onValidFormQuery
   })
@@ -237,7 +236,7 @@ export function Form({
           <SelectField
             {...parameters.bioontology}
             {...selectProps}
-            isLoading={isFilteringTermsLoading}
+            isLoading={isSubsetsDataLoading}
           />
           <SelectField {...parameters.materialtype} {...selectProps} />
           <div className="columns mb-0">
@@ -362,22 +361,38 @@ function saveFormValuesInUrl(formValues, requestTypeId, setUrlQuery) {
   setUrlQuery({ ...formValues, requestTypeId })
 }
 
-function onSubmitHandler(
+function mapBioontology(bioontology, subsets) {
+  const subsetsById = keyBy(subsets, "id")
+  const selectedSubsets = [bioontology].flat() // sometimes an array, sometimes one value
+  return selectedSubsets.map((subsetId) => {
+    return uniq([subsetId, ...subsetsById[subsetId].child_terms])
+  })
+}
+
+function onSubmitHandler({
   clearErrors,
   setError,
   onValidFormQuery,
   requestTypeId,
-  setUrlQuery
-) {
+  setUrlQuery,
+  subsets
+}) {
   return (formValues) => {
     clearErrors()
     // At this stage individual parameters are already validated.
-    const errors = validateForm(formValues)
+    const { bioontology, ...other } = formValues
+
+    const values = {
+      bioontology: mapBioontology(bioontology, subsets),
+      ...other
+    }
+    const errors = validateForm(values)
+
     if (errors.length > 0) {
       errors.forEach(([name, error]) => setError(name, error))
     } else {
-      saveFormValuesInUrl(formValues, requestTypeId, setUrlQuery)
-      onValidFormQuery(formValues)
+      saveFormValuesInUrl(values, requestTypeId, setUrlQuery)
+      onValidFormQuery(values)
     }
   }
 }
@@ -459,20 +474,12 @@ export const checkIntegerRange = (value) => {
 }
 
 // Maps FilteringTerms hook to dataEffectResult usable by DataFetchSelect
-function useSelectFilteringTerms(watchForm) {
+function useSubsets(watchForm) {
   const datasetIds = watchForm("datasetIds")
   const { data, ...other } = useCollations({
     datasetIds,
     method: "children",
     filters: "NCIT,icdom,icdot"
   })
-  return {
-    data:
-      data &&
-      data.map((value) => ({
-        value: value.id,
-        label: `${value.id}: ${value.label} (${value.count})`
-      })),
-    ...other
-  }
+  return { data, ...other }
 }
