@@ -19,6 +19,7 @@ import SelectField from "../form/SelectField"
 import InputField from "../form/InputField"
 import useDeepCompareEffect from "use-deep-compare-effect"
 import { withUrlQuery } from "../../hooks/url-query"
+import Tippy from "@tippyjs/react"
 
 export const BiosamplesSearchForm = withUrlQuery(
   ({ urlQuery, setUrlQuery, ...props }) => (
@@ -151,6 +152,12 @@ export function Form({
     setSearchQuery,
     setError
   })
+
+  const filterLogic = watch("filterLogic")
+  const bioontology = watch("bioontology")
+  const isFilterlogicWarningVisible =
+    filterLogic === "AND" && bioontology?.length > 1
+
   return (
     <>
       {displayTabs && (
@@ -251,7 +258,18 @@ export function Form({
               <InputField {...parameters.freeFilters} {...fieldProps} />
             </div>
             <div className="column">
-              <SelectField {...parameters.filterLogic} {...selectProps} />
+              <SelectField
+                {...parameters.filterLogic}
+                {...selectProps}
+                label={
+                  <span>
+                    <span>{parameters.filterLogic.label}</span>
+                    <FilterLogicWarning
+                      isVisible={isFilterlogicWarningVisible}
+                    />
+                  </span>
+                }
+              />
             </div>
           </div>
           <InputField {...parameters.accessid} {...fieldProps} />
@@ -474,4 +492,18 @@ function useSubsets(watchForm) {
     filters: "NCIT,icdom,icdot"
   })
   return { data, ...other }
+}
+
+function FilterLogicWarning({ isVisible }) {
+  return (
+    <span
+      className={cn(
+        "has-background-warning has-text-weight-normal ml-2 px-1",
+        "is-inline-flex animate__animated animate__headShake",
+        { "is-hidden": !isVisible }
+      )}
+    >
+      Multiple term selected !
+    </span>
+  )
 }

@@ -6,7 +6,7 @@ import { Controller } from "react-hook-form"
 
 SelectField.propTypes = {
   name: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.node.isRequired,
   isHidden: PropTypes.bool,
   errors: PropTypes.object.isRequired,
   register: PropTypes.func.isRequired,
