@@ -21,7 +21,7 @@ export default function BeaconPlusPage({ datasets }) {
 
   const isLoading = isQueryLoading && !!query
 
-  const handleValidFormQuery = (formValues) => {
+  const onValidFormQuery = (formValues) => {
     setSearchCollapsed(true)
     mutateQuery(null) // mutateQuery and clear current results
     setQuery(formValues)
@@ -53,7 +53,7 @@ export default function BeaconPlusPage({ datasets }) {
               requestTypesConfig={requestTypesConfig}
               parametersConfig={parametersConfig}
               isQuerying={isLoading}
-              onValidFormQuery={handleValidFormQuery}
+              setSearchQuery={onValidFormQuery}
             />
           </Panel>
         </div>

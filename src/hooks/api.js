@@ -54,11 +54,12 @@ export function useBeaconQuery(queryData) {
   )
 }
 
-export function isValidBeaconQuery(queryData) {
+export function validateBeaconQuery(queryData) {
   try {
-    return !!buildQueryParameters(queryData)
+    buildQueryParameters(queryData)
+    return null
   } catch (e) {
-    return false
+    return e
   }
 }
 

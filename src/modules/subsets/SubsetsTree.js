@@ -4,7 +4,7 @@ import PropTypes from "prop-types"
 import cn from "classnames"
 import Link from "next/link"
 import { FaAngleDown, FaAngleRight } from "react-icons/fa"
-import { canSearch, sampleSelectUrl } from "./samples"
+import { canSearch, sampleSelectUrl } from "./samples-search"
 import Tippy from "@tippyjs/react"
 
 export default function SubsetsTree({

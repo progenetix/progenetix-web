@@ -1,7 +1,7 @@
 import cn from "classnames"
 import {
   INTEGER_RANGE_REGEX,
-  isValidBeaconQuery,
+  validateBeaconQuery,
   useCollations
 } from "../../hooks/api"
 import React, { useEffect, useMemo, useState } from "react"
@@ -14,9 +14,9 @@ import {
   useFormUtilities
 } from "./BiosamplesFormUtilities"
 import PropTypes from "prop-types"
+import { merge, transform } from "lodash"
 import SelectField from "../form/SelectField"
 import InputField from "../form/InputField"
-import _, { keyBy, uniq } from "lodash"
 import useDeepCompareEffect from "use-deep-compare-effect"
 import { withUrlQuery } from "../../hooks/url-query"
 
@@ -30,29 +30,32 @@ export default BiosamplesSearchForm
 BiosamplesSearchForm.propTypes = {
   datasets: PropTypes.array.isRequired,
   isQuerying: PropTypes.bool.isRequired,
-  onValidFormQuery: PropTypes.func.isRequired,
+  setSearchQuery: PropTypes.func.isRequired,
   requestTypesConfig: PropTypes.object.isRequired,
   parametersConfig: PropTypes.object.isRequired
 }
 
-function urlQueryToFormParam(urlQuery, k) {
-  const value = urlQuery[k]
-  if (value?.indexOf(",") > 0) return value?.split(",")
+function urlQueryToFormParam(urlQuery, key) {
+  const value = urlQuery[key]
+  if (value?.indexOf(",") > 0 && key !== "freeFilters") return value?.split(",")
   else return value
 }
 
 function useAutoExecuteSearch({
   autoExecuteSearch,
   initialValues,
-  onValidFormQuery
+  setSearchQuery,
+  setError
 }) {
   useEffect(() => {
     if (autoExecuteSearch) {
       // At this stage individual parameters are already validated.
       const values = initialValues
       const errors = validateForm(values)
-      if (errors.length === 0) {
-        onValidFormQuery(values)
+      if (errors.length > 0) {
+        errors.forEach(([name, error]) => setError(name, error))
+      } else {
+        setSearchQuery(values)
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -62,7 +65,7 @@ function useAutoExecuteSearch({
 export function Form({
   datasets,
   isQuerying,
-  onValidFormQuery,
+  setSearchQuery,
   requestTypesConfig,
   parametersConfig,
   urlQuery,
@@ -87,7 +90,7 @@ export function Form({
     [datasets, example, parametersConfig, requestTypeConfig]
   )
 
-  const initialValues = _.transform(parameters, (r, v, k) => {
+  const initialValues = transform(parameters, (r, v, k) => {
     r[k] = urlQueryToFormParam(urlQuery, k) ?? v.defaultValue ?? null
   })
 
@@ -115,7 +118,7 @@ export function Form({
       value: value.id,
       label: `${value.id}: ${value.label} (${value.count})`
     }))
-  parameters = _.merge({}, parameters, {
+  parameters = merge({}, parameters, {
     bioontology: { options: subsetsOptions }
   })
 
@@ -131,10 +134,9 @@ export function Form({
   const onSubmit = onSubmitHandler({
     clearErrors,
     setError,
-    onValidFormQuery,
+    setSearchQuery,
     requestTypeId,
-    setUrlQuery,
-    subsets
+    setUrlQuery
   })
 
   // shortcuts
@@ -146,9 +148,9 @@ export function Form({
   useAutoExecuteSearch({
     autoExecuteSearch,
     initialValues,
-    onValidFormQuery
+    setSearchQuery,
+    setError
   })
-
   return (
     <>
       {displayTabs && (
@@ -191,6 +193,11 @@ export function Form({
           />
         )}
         <form onSubmit={handleSubmit(onSubmit)}>
+          {errors?.global?.message && (
+            <div className="notification is-warning">
+              {errors.global.message}
+            </div>
+          )}
           <SelectField {...parameters.datasetIds} {...selectProps} />
           <SelectField {...parameters.assemblyId} {...selectProps} />
           <SelectField
@@ -342,18 +349,18 @@ function makeParameters(
   datasets
 ) {
   // merge base parameters config and request config
-  const mergedConfigs = _.merge(
+  const mergedConfigs = merge(
     {}, // important to not mutate the object
     parametersConfig,
     requestTypeConfig?.parameters,
     example?.parameters ?? {}
   )
   // add name the list
-  let parameters = _.transform(mergedConfigs, (r, v, k) => {
+  let parameters = transform(mergedConfigs, (r, v, k) => {
     r[k] = { name: k, ...v }
   })
 
-  parameters = _.merge({}, parameters, { datasetIds: { options: datasets } })
+  parameters = merge({}, parameters, { datasetIds: { options: datasets } })
   return parameters
 }
 
@@ -361,38 +368,22 @@ function saveFormValuesInUrl(formValues, requestTypeId, setUrlQuery) {
   setUrlQuery({ ...formValues, requestTypeId })
 }
 
-function mapBioontology(bioontology, subsets) {
-  const subsetsById = keyBy(subsets, "id")
-  const selectedSubsets = [bioontology].flat() // sometimes an array, sometimes one value
-  return selectedSubsets.map((subsetId) => {
-    return uniq([subsetId, ...subsetsById[subsetId].child_terms])
-  })
-}
-
 function onSubmitHandler({
   clearErrors,
   setError,
-  onValidFormQuery,
+  setSearchQuery,
   requestTypeId,
-  setUrlQuery,
-  subsets
+  setUrlQuery
 }) {
-  return (formValues) => {
+  return (values) => {
     clearErrors()
     // At this stage individual parameters are already validated.
-    const { bioontology, ...other } = formValues
-
-    const values = {
-      bioontology: mapBioontology(bioontology, subsets),
-      ...other
-    }
     const errors = validateForm(values)
-
     if (errors.length > 0) {
       errors.forEach(([name, error]) => setError(name, error))
     } else {
       saveFormValuesInUrl(values, requestTypeId, setUrlQuery)
-      onValidFormQuery(values)
+      setSearchQuery(values)
     }
   }
 }
@@ -441,10 +432,11 @@ function validateForm(formValues) {
     //
   }
 
-  if (!isValidBeaconQuery(formValues)) {
+  const queryError = validateBeaconQuery(formValues)
+  if (queryError) {
     const error = {
       type: "manual",
-      message: "Unknown issue with the form values."
+      message: "Cannot build the beacon query."
     }
     errors.push(["global", error])
   }

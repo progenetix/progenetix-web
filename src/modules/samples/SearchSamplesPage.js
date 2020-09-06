@@ -34,7 +34,7 @@ function SearchSamples() {
 
   const isLoading = isQueryLoading && !!query
 
-  const handleValidFormQuery = (formValues) => {
+  const onValidFormQuery = (formValues) => {
     setSearchCollapsed(true)
     setQuery(formValues)
     mutateQuery(null) // mutateQuery and clear current results
@@ -64,7 +64,7 @@ function SearchSamples() {
             requestTypesConfig={requestTypesConfig}
             parametersConfig={parametersConfig}
             isQuerying={isLoading}
-            onValidFormQuery={handleValidFormQuery}
+            setSearchQuery={onValidFormQuery}
           />
         </Panel>
       </div>
