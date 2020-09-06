@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import { WithData } from "../Loader"
 import Table from "../Table"
 import { useExtendedSWR } from "../../hooks/api"
-import DownloadButton from "../../DownloadButton"
+import DownloadButton from "../DownloadButton"
 
 export default function VariantsDataTable({ url }) {
   const dataEffectResult = useExtendedSWR(url)

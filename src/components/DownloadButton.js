@@ -1,4 +1,4 @@
-import { initiateSaveAs } from "./utils/files"
+import { initiateSaveAs } from "../utils/files"
 import { useState } from "react"
 import json2csv from "json2csv"
 

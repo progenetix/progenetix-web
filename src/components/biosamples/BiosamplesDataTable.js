@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { WithData } from "../Loader"
 import Table from "../Table"
-import DownloadButton from "../../DownloadButton"
+import DownloadButton from "../DownloadButton"
 
 export default function BiosamplesDataTable({ dataEffectResult, datasetId }) {
   const columns = React.useMemo(
