@@ -19,7 +19,6 @@ import SelectField from "../form/SelectField"
 import InputField from "../form/InputField"
 import useDeepCompareEffect from "use-deep-compare-effect"
 import { withUrlQuery } from "../../hooks/url-query"
-import Tippy from "@tippyjs/react"
 
 export const BiosamplesSearchForm = withUrlQuery(
   ({ urlQuery, setUrlQuery, ...props }) => (
