@@ -33,8 +33,8 @@ to the subsets page~~
 * ~~Publications: Indicate if publication has samples in progenetix/arraymap (known from `counts.progenetix` now; see [issue 37](https://github.com/ptoussai/progenetix-next/issues/37))~~
 * ~~Subsets: Sample counts behind code should be/have a clickable link for initiating
 a search on tis code (& its children)~~
-* Using a set of pre-fetched filter codes to select a random example from them
-for homepage histogram generation ([issue #34](https://github.com/ptoussai/progenetix-next/issues/34))
+* ~~Using a set of pre-fetched filter codes to select a random example from them
+for homepage histogram generation ([issue #34](https://github.com/ptoussai/progenetix-next/issues/34))~~
 * ~~The frequency table should show labels, too (Shortened? Hover?).~~
 * Beacon/Search: "examples" should only be displayed with a new search, and hidden/collapsed
 on existing (generated) pages.
