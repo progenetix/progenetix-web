@@ -1,8 +1,8 @@
 import cn from "classnames"
 import {
   INTEGER_RANGE_REGEX,
-  validateBeaconQuery,
-  useCollations
+  useCollations,
+  validateBeaconQuery
 } from "../../hooks/api"
 import React, { useEffect, useMemo, useState } from "react"
 import { markdownToReact } from "../../utils/md"
@@ -60,6 +60,17 @@ function useAutoExecuteSearch({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [autoExecuteSearch])
+}
+
+function useIsFilterlogicWarningVisible(watch) {
+  const filterLogic = watch("filterLogic")
+  const bioontology = watch("bioontology")
+
+  return (
+    filterLogic === "AND" &&
+    Array.isArray(bioontology) &&
+    bioontology.length > 1
+  )
 }
 
 export function Form({
@@ -134,9 +145,7 @@ export function Form({
   const onSubmit = onSubmitHandler({
     clearErrors,
     setError,
-    setSearchQuery,
-    requestTypeId,
-    setUrlQuery
+    setSearchQuery
   })
 
   // shortcuts
@@ -152,10 +161,7 @@ export function Form({
     setError
   })
 
-  const filterLogic = watch("filterLogic")
-  const bioontology = watch("bioontology")
-  const isFilterlogicWarningVisible =
-    filterLogic === "AND" && bioontology?.length > 1
+  const isFilterlogicWarningVisible = useIsFilterlogicWarningVisible(watch)
 
   return (
     <>
@@ -381,17 +387,7 @@ function makeParameters(
   return parameters
 }
 
-function saveFormValuesInUrl(formValues, requestTypeId, setUrlQuery) {
-  setUrlQuery({ ...formValues, requestTypeId })
-}
-
-function onSubmitHandler({
-  clearErrors,
-  setError,
-  setSearchQuery,
-  requestTypeId,
-  setUrlQuery
-}) {
+function onSubmitHandler({ clearErrors, setError, setSearchQuery }) {
   return (values) => {
     clearErrors()
     // At this stage individual parameters are already validated.
@@ -399,7 +395,6 @@ function onSubmitHandler({
     if (errors.length > 0) {
       errors.forEach(([name, error]) => setError(name, error))
     } else {
-      saveFormValuesInUrl(values, requestTypeId, setUrlQuery)
       setSearchQuery(values)
     }
   }
