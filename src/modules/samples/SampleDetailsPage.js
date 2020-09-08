@@ -100,17 +100,17 @@ function Biosample({ biosample, datasetIds }) {
 
       <h5>Clinical Data</h5>
         <ul>
-      {biosample.age_at_collection?.age && (
+      {biosample.individual_age_at_collection?.age? && (
         <>
-            <li>Age at Collection: {biosample.age_at_collection.age}</li>
+            <li>Age at Collection: {biosample.individual_age_at_collection.age}</li>
         </>
       )}
-      {biosample.info?.tnm && (
+      {biosample.info?.tnm? && (
         <>
             <li>TNM: {biosample.info.tnm}</li>
         </>
       )}
-      {biosample.info?.death && (
+      {biosample.info?.death? && (
         <>
             <li>Death: {biosample.info.death} (at {biosample.info.followup_months} months)</li>
         </>
@@ -119,12 +119,12 @@ function Biosample({ biosample, datasetIds }) {
 
       <h5>Provenance</h5>
         <ul>
-      {biosample.provenance?.material.type.label && (
+      {biosample.provenance?.material?.type.label && (
         <>
             <li>Material: {biosample.provenance.material.type.label}</li>
         </>
       )}
-      {biosample.provenance.geo?.label && (
+      {biosample.provenance?.geo?.label && (
         <>
             <li>Origin: {biosample.provenance.geo.label}</li>
         </>
