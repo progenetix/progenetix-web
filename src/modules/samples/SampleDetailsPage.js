@@ -150,6 +150,17 @@ function Biosample({ biosample, datasetIds }) {
         ))}
       </ul>
 
+      <h5>CNV Profile(s)</h5>
+      <ul>
+        {biosample.info.callset_ids?.map((csid, i) => (
+          <li key={i}>
+            {csid}
+          </li>
+        ))}
+      </ul>
+
+
+
     </section>
   )
 }
