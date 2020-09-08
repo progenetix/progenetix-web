@@ -30,7 +30,7 @@ export default function BiosamplesDataTable({ dataEffectResult, datasetId }) {
         accessor: "biocharacteristics",
         Cell: ({ value: biocharacteristics }) =>
           biocharacteristics.map((biocharacteristic, i) => (
-            <div key={i} title={biocharacteristic.description}>
+            <div key={i} title={biocharacteristic.label}>
               <a
                 href={`/subsets/list?filters=${biocharacteristic.type.id}`}
                 rel="noreferrer"

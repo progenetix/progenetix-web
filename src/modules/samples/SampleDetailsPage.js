@@ -66,6 +66,7 @@ function BiosampleResponse({ response, datasetIds }) {
 }
 
 function Biosample({ biosample, datasetIds }) {
+
   return (
     <section className="content">
       <h3 className="mb-6">
@@ -84,32 +85,75 @@ function Biosample({ biosample, datasetIds }) {
           <p>{biosample.description}</p>
         </>
       )}
-      <h5>Biocharacteristics</h5>
+      <h5>Diagnostic Classifications</h5>
       <ul>
         {biosample.biocharacteristics.map((biocharacteristic, i) => (
           <li key={i}>
-            {biocharacteristic.type.id}: {biocharacteristic.type.label}
+            <a
+              href={`/subsets/list?filters=${biocharacteristic.type.id}`}
+              rel="noreferrer"
+              target="_self"
+            >{biocharacteristic.type.id}</a>: {biocharacteristic.type.label}
           </li>
         ))}
       </ul>
 
+      <h5>Clinical Data</h5>
+        <ul>
       {biosample.age_at_collection?.age && (
         <>
-          <h5>Clinical Data</h5>
-          <ul>
             <li>Age at Collection: {biosample.age_at_collection.age}</li>
-          </ul>
         </>
       )}
+      {biosample.info?.tnm && (
+        <>
+            <li>TNM: {biosample.info.tnm}</li>
+        </>
+      )}
+      {biosample.info?.death && (
+        <>
+            <li>Death: {biosample.info.death} (at {biosample.info.followup_months} months)</li>
+        </>
+      )}
+        </ul>
 
+      <h5>Provenance</h5>
+        <ul>
       {biosample.provenance?.material.type.label && (
         <>
-          <h5>Provenance</h5>
-          <ul>
             <li>Material: {biosample.provenance.material.type.label}</li>
-          </ul>
         </>
       )}
+      {biosample.provenance.geo?.label && (
+        <>
+            <li>Origin: {biosample.provenance.geo.label}</li>
+        </>
+      )}
+        </ul>
+
+      <h5>External References</h5>
+      <ul>
+        {biosample.external_references.map((externalReference, i) => (
+          <li key={i}>
+          {isPMID(externalReference) ? (
+            <a
+              href={`/publications/details?id=${externalReference.type.id}&scope=datacollections`}
+              rel="noreferrer"
+              target="_blank"
+            >
+              {externalReference.type.id}
+            </a>
+          ) : (
+            externalReference.type.id
+          )}
+          </li>
+        ))}
+      </ul>
+
     </section>
   )
+}
+
+function isPMID(externalReference) {
+  return externalReference.type.id.includes("PMID:")
 }

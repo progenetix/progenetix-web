@@ -1,7 +1,24 @@
 ## Issue & Priorities Tracker
 
 Under each date stamp, current issues & needed fixes are listed top -> down in
-order of urgency & perceived feasibility of fast implementation).
+order of urgency & perceived feasibility of fast implementation).\
+
+### 2020-09-08
+
+#### New Page "Variant Details"
+
+* similar to Sample Details
+* display of details as JSON Dump???
+
+#### Enhancements
+
+* Sample Details:
+  - change {↗} to download button (JSON + TXT?) -> w/o "null" values
+  - modify "Death" to "Status", with
+    * `info.death: 1` => "dead"
+    * `info.death: 0` => "alive"
+  - ~~add links to PMID, classifications~~
+* `isPMID` should be a global function (?)
 
 ### 2020-09-01
 
