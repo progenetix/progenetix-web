@@ -137,7 +137,7 @@ filterPrecision:
   isHidden: true
 geoCity:
   label: City
-geodistance:
+geodistanceKm:
   label: Distance from city (km)
   type: number
   defaultValue: 100

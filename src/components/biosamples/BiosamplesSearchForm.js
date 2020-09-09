@@ -318,7 +318,7 @@ export function Form({
                 "animate__fadeIn animate__animated": showGeoDistance
               })}
             >
-              <InputField {...parameters.geodistance} {...fieldProps} />
+              <InputField {...parameters.geodistanceKm} {...fieldProps} />
             </div>
           </div>
           <div className="field mt-5">

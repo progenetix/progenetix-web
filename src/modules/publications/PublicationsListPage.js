@@ -1,12 +1,16 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Layout } from "../../components/layouts/Layout"
-import { usePublicationList } from "../../hooks/api"
+import { useGeoCity, usePublicationList } from "../../hooks/api"
 import { Loader } from "../../components/Loader"
 import Table, { TooltipHeader } from "../../components/Table"
 import { EpmcLink } from "./EpmcUrl"
 import cn from "classnames"
+import { useAsyncSelect } from "../../hooks/asyncSelect"
+import CustomSelect from "../../components/Select"
 
 export default function PublicationsListPage() {
+  const [geoCity, setGeoCity] = useState(null)
+  const [geodistanceKm, setGeodistanceKm] = useState(100)
   return (
     <Layout title="Publications" headline="Progenetix Publication Collection">
       <article className="mb-6">
@@ -20,13 +24,36 @@ export default function PublicationsListPage() {
           us about additional articles you are aware of.
         </p>
       </article>
-      <PublicationTableLoader />
+
+      <div>
+        <div className="columns mb-4">
+          <div className="column is-one-third">
+            <label className="label">City</label>
+            <GeoCitySelector geoCity={geoCity} setGeoCity={setGeoCity} />
+          </div>
+          {geoCity && (
+            <div className="column is-one-fifth animate__fadeIn animate__animated animate__faster">
+              <label className="label">Distance from city (km)</label>
+              <input
+                className="input"
+                type="number"
+                value={geodistanceKm}
+                onChange={(e) => setGeodistanceKm(e.target.value)}
+              />
+            </div>
+          )}
+        </div>
+      </div>
+      <PublicationTableLoader geoCity={geoCity} geodistanceKm={geodistanceKm} />
     </Layout>
   )
 }
 
-function PublicationTableLoader() {
-  const { data, error, isLoading } = usePublicationList()
+function PublicationTableLoader({ geoCity, geodistanceKm }) {
+  const { data, error, isLoading } = usePublicationList({
+    geoCity,
+    geodistanceKm
+  })
   const columns = React.useMemo(
     () => [
       {
@@ -60,7 +87,10 @@ function PublicationTableLoader() {
         Header: "Samples",
         columns: [
           {
-            Header: TooltipHeader("cCGH", "Chromosomal Comparative Genomic Hybridization"),
+            Header: TooltipHeader(
+              "cCGH",
+              "Chromosomal Comparative Genomic Hybridization"
+            ),
             accessor: "counts.ccgh",
             Cell: CountCell
           },
@@ -113,5 +143,30 @@ function PublicationTableLoader() {
 function CountCell({ value }) {
   return (
     <span className={cn(value === 0 && "has-text-grey-light")}>{value}</span>
+  )
+}
+
+function GeoCitySelector({ setGeoCity }) {
+  const { inputValue, value, onChange, onInputChange } = useAsyncSelect()
+  useEffect(() => setGeoCity(value), [setGeoCity, value])
+  const { data, isLoading } = useGeoCity({ city: inputValue })
+  let options = []
+  if (data) {
+    options = data.map((g) => ({
+      value: g.city,
+      data: g,
+      label: `${g.city} (${g.country})`
+    }))
+  }
+  return (
+    <CustomSelect
+      options={options}
+      isLoading={!!inputValue && isLoading}
+      onInputChange={onInputChange}
+      value={value}
+      onChange={onChange}
+      placeholder="Type to search..."
+      isClearable
+    />
   )
 }

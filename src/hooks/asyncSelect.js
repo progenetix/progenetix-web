@@ -15,6 +15,9 @@ export function useAsyncSelect() {
     if (action === "select-option") {
       setValue(v)
     }
+    if (action === "clear") {
+      setValue(null)
+    }
   }
   return { inputValue, onInputChange, value, onChange }
 }

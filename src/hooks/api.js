@@ -63,11 +63,11 @@ export function validateBeaconQuery(queryData) {
   }
 }
 
-function mkGeoParams(geoCity, formGeodistance) {
+export function mkGeoParams(geoCity, geodistanceKm) {
   if (!geoCity) return null
   const coordinates = geoCity.data.geojson.coordinates ?? []
   const [geolongitude, geolatitude] = coordinates
-  const geodistance = formGeodistance ? formGeodistance * 1000 : 100 * 1000
+  const geodistance = geodistanceKm ? geodistanceKm * 1000 : 100 * 1000
   return { geolongitude, geolatitude, geodistance }
 }
 
@@ -79,7 +79,7 @@ export function buildQueryParameters(queryData) {
     materialtype,
     freeFilters,
     geoCity,
-    geodistance,
+    geodistanceKm,
     ...otherParams
   } = queryData
 
@@ -107,7 +107,7 @@ export function buildQueryParameters(queryData) {
     materialtype ?? [],
     parsedFreeFilters
   ].flat()
-  const geoParams = mkGeoParams(geoCity, geodistance) ?? {}
+  const geoParams = mkGeoParams(geoCity, geodistanceKm) ?? {}
   return new URLSearchParams(
     flattenParams([
       ...Object.entries({ ...otherParams, ...geoParams }),
@@ -157,8 +157,13 @@ export function usePublication(id) {
   return { data, error, ...other }
 }
 
-export function usePublicationList() {
-  const url = `${basePath}services/publications?responseFormat=simplelist&filters=genomes:>0`
+export function usePublicationList({ geoCity, geodistanceKm }) {
+  const geoParams = new URLSearchParams({
+    ...mkGeoParams(geoCity, geodistanceKm),
+    filters: "genomes:>0",
+    responseFormat: "simplelist"
+  }).toString()
+  const url = `${basePath}services/publications?${geoParams}`
   return useExtendedSWR(url)
 }
 
