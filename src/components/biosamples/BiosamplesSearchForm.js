@@ -534,7 +534,7 @@ function GeoCitySelector({ name, label, control, errors, register }) {
   let options = []
   if (data) {
     options = data.map((g) => ({
-      value: g.id,
+      value: g.city,
       data: g,
       label: (
         <span>
@@ -554,6 +554,7 @@ function GeoCitySelector({ name, label, control, errors, register }) {
       errors={errors}
       register={register}
       useOptionsAsValue
+      isClearable
     />
   )
 }
