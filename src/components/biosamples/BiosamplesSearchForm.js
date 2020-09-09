@@ -164,7 +164,8 @@ export function Form({
   })
 
   const isFilterlogicWarningVisible = useIsFilterlogicWarningVisible(watch)
-
+  const geoCity = watch("geoCity")
+  const showGeoDistance = !parameters.geoCity.isHidden && geoCity != null
   return (
     <>
       {displayTabs && (
@@ -302,7 +303,24 @@ export function Form({
           </div>
           <InputField {...parameters.accessid} {...fieldProps} />
           <InputField {...parameters.filterPrecision} {...fieldProps} />
-          <GeoCitySelector {...parameters.geoCity} {...selectProps} />
+          <div className="columns my-0">
+            <GeoCitySelector
+              className={cn(
+                !parameters.geoCity.isHidden && "column",
+                "py-0 mb-3"
+              )}
+              {...parameters.geoCity}
+              {...selectProps}
+            />
+            <div
+              className={cn("column", "py-0 mb-3", {
+                "is-invisible": !showGeoDistance,
+                "animate__fadeIn animate__animated": showGeoDistance
+              })}
+            >
+              <InputField {...parameters.geodistance} {...fieldProps} />
+            </div>
+          </div>
           <div className="field mt-5">
             <div className="control">
               <button
@@ -528,7 +546,14 @@ function FilterLogicWarning({ isVisible }) {
   )
 }
 
-function GeoCitySelector({ name, label, control, errors, register }) {
+function GeoCitySelector({
+  name,
+  label,
+  control,
+  errors,
+  register,
+  className
+}) {
   const { inputValue, onInputChange } = useAsyncSelect()
   const { data, isLoading } = useGeoCity({ city: inputValue })
   let options = []
@@ -536,11 +561,7 @@ function GeoCitySelector({ name, label, control, errors, register }) {
     options = data.map((g) => ({
       value: g.city,
       data: g,
-      label: (
-        <span>
-          {g.city} ({g.country})
-        </span>
-      )
+      label: `${g.city} (${g.country})`
     }))
   }
   return (
@@ -553,6 +574,7 @@ function GeoCitySelector({ name, label, control, errors, register }) {
       control={control}
       errors={errors}
       register={register}
+      className={className}
       useOptionsAsValue
       isClearable
     />

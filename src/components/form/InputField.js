@@ -21,6 +21,7 @@ export default function InputField({
   register,
   rules,
   defaultValue,
+  type = "text",
   className
 }) {
   const help = errors[name]?.message
@@ -34,7 +35,7 @@ export default function InputField({
             "is-danger": errors[name]
           })}
           ref={register(rules)}
-          type="text"
+          type={type}
           placeholder={placeholder}
           defaultValue={defaultValue}
         />

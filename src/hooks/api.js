@@ -63,6 +63,14 @@ export function validateBeaconQuery(queryData) {
   }
 }
 
+function mkGeoParams(geoCity, formGeodistance) {
+  if (!geoCity) return null
+  const coordinates = geoCity.data.geojson.coordinates ?? []
+  const [geolongitude, geolatitude] = coordinates
+  const geodistance = formGeodistance ? formGeodistance * 1000 : 100 * 1000
+  return { geolongitude, geolatitude, geodistance }
+}
+
 export function buildQueryParameters(queryData) {
   const {
     start,
@@ -71,6 +79,7 @@ export function buildQueryParameters(queryData) {
     materialtype,
     freeFilters,
     geoCity,
+    geodistance,
     ...otherParams
   } = queryData
 
@@ -98,14 +107,7 @@ export function buildQueryParameters(queryData) {
     materialtype ?? [],
     parsedFreeFilters
   ].flat()
-
-  const coordinates = geoCity?.data.geojson.coordinates ?? []
-  const [geolongitude, geolatitude] = coordinates
-  const geodistance = 100 * 1000 // 100km
-  const geoParams = geolongitude
-    ? { geolongitude, geolatitude, geodistance }
-    : {}
-
+  const geoParams = mkGeoParams(geoCity, geodistance) ?? {}
   return new URLSearchParams(
     flattenParams([
       ...Object.entries({ ...otherParams, ...geoParams }),
