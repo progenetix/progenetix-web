@@ -219,71 +219,86 @@ export function Form({
             {...selectProps}
           />
           <SelectField {...parameters.requestType} {...selectProps} />
-          <div className="columns mb-0">
-            <div className={cn(!parameters.referenceName.isHidden && "column")}>
-              <SelectField {...parameters.referenceName} {...selectProps} />
-            </div>
-            <div className={cn(!parameters.variantType.isHidden && "column")}>
-              <SelectField {...parameters.variantType} {...selectProps} />
-            </div>
+          <div className="columns my-0">
+            <SelectField
+              className={cn(
+                !parameters.referenceName.isHidden && "column",
+                "py-0 mb-3"
+              )}
+              {...parameters.referenceName}
+              {...selectProps}
+            />
+            <SelectField
+              className={cn(
+                !parameters.referenceName.isHidden && "column",
+                "py-0 mb-3"
+              )}
+              {...parameters.variantType}
+              {...selectProps}
+            />
           </div>
-          <div className="columns mb-0">
-            <div className={cn(!parameters.start.isHidden && "column")}>
-              <InputField
-                {...fieldProps}
-                {...parameters.start}
-                rules={{
-                  validate: checkIntegerRange
-                }}
-              />
-            </div>
-            <div className={cn(!parameters.end.isHidden && "column")}>
-              <InputField
-                {...fieldProps}
-                {...parameters.end}
-                rules={{
-                  validate: checkIntegerRange
-                }}
-              />
-            </div>
+          <div className="columns my-0">
+            <InputField
+              className={cn(
+                !parameters.start.isHidden && "column",
+                "py-0 mb-3"
+              )}
+              {...fieldProps}
+              {...parameters.start}
+              rules={{
+                validate: checkIntegerRange
+              }}
+            />
+            <InputField
+              className={cn(!parameters.end.isHidden && "column", "py-0 mb-3")}
+              {...fieldProps}
+              {...parameters.end}
+              rules={{
+                validate: checkIntegerRange
+              }}
+            />
           </div>
-          <div className="columns mb-0">
-            <div
-              className={cn(!parameters.referenceBases.isHidden && "column")}
-            >
-              <InputField {...fieldProps} {...parameters.referenceBases} />
-            </div>
-            <div
-              className={cn(!parameters.alternateBases.isHidden && "column")}
-            >
-              <InputField {...fieldProps} {...parameters.alternateBases} />
-            </div>
+          <div className="columns my-0">
+            <InputField
+              className={cn(
+                !parameters.referenceBases.isHidden && "column",
+                "py-0 mb-3"
+              )}
+              {...fieldProps}
+              {...parameters.referenceBases}
+            />
+            <InputField
+              className={cn(
+                !parameters.alternateBases.isHidden && "column",
+                "py-0 mb-3"
+              )}
+              {...fieldProps}
+              {...parameters.alternateBases}
+            />
           </div>
-
           <SelectField
             {...parameters.bioontology}
             {...selectProps}
             isLoading={isSubsetsDataLoading}
           />
           <SelectField {...parameters.materialtype} {...selectProps} />
-          <div className="columns mb-0">
-            <div className="column">
-              <InputField {...parameters.freeFilters} {...fieldProps} />
-            </div>
-            <div className="column">
-              <SelectField
-                {...parameters.filterLogic}
-                {...selectProps}
-                label={
-                  <span>
-                    <span>{parameters.filterLogic.label}</span>
-                    <FilterLogicWarning
-                      isVisible={isFilterlogicWarningVisible}
-                    />
-                  </span>
-                }
-              />
-            </div>
+          <div className="columns my-0">
+            <InputField
+              className="column py-0 mb-3"
+              {...parameters.freeFilters}
+              {...fieldProps}
+            />
+            <SelectField
+              className="column py-0 mb-3"
+              {...parameters.filterLogic}
+              {...selectProps}
+              label={
+                <span>
+                  <span>{parameters.filterLogic.label}</span>
+                  <FilterLogicWarning isVisible={isFilterlogicWarningVisible} />
+                </span>
+              }
+            />
           </div>
           <InputField {...parameters.accessid} {...fieldProps} />
           <InputField {...parameters.filterPrecision} {...fieldProps} />

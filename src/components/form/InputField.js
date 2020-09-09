@@ -20,27 +20,26 @@ export default function InputField({
   errors,
   register,
   rules,
-  defaultValue
+  defaultValue,
+  className
 }) {
   const help = errors[name]?.message
   return (
-    <div className={cn("field ", { "is-hidden": isHidden })}>
-      <div className={cn("field ", { "is-hidden": isHidden })}>
-        <label className="label">{label}</label>
-        <p className="control">
-          <input
-            name={name}
-            className={cn("input", {
-              "is-danger": errors[name]
-            })}
-            ref={register(rules)}
-            type="text"
-            placeholder={placeholder}
-            defaultValue={defaultValue}
-          />
-        </p>
-        {help && <p className="help is-danger">{help}</p>}
-      </div>
+    <div className={cn("field", { "is-hidden": isHidden }, className)}>
+      <label className="label">{label}</label>
+      <p className="control">
+        <input
+          name={name}
+          className={cn("input", {
+            "is-danger": errors[name]
+          })}
+          ref={register(rules)}
+          type="text"
+          placeholder={placeholder}
+          defaultValue={defaultValue}
+        />
+      </p>
+      {help && <p className="help is-danger">{help}</p>}
     </div>
   )
 }

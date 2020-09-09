@@ -25,15 +25,20 @@ export default function SelectField({
   rules,
   // when false, we map the options to they values, otherwise we simply pass what react-select gives
   useOptionsAsValue = false,
+  className,
   ...selectProps
 }) {
   const help = errors[name]?.message
   return (
     <div
-      className={cn("field", {
-        "is-hidden": isHidden,
-        "is-danger": errors[name]
-      })}
+      className={cn(
+        "field",
+        {
+          "is-hidden": isHidden,
+          "is-danger": errors[name]
+        },
+        className
+      )}
     >
       <label className="label">{label}</label>
       <div className="control">
