@@ -217,9 +217,15 @@ export function Form({
             {...selectProps}
           />
           <SelectField {...parameters.requestType} {...selectProps} />
-          <SelectField {...parameters.referenceName} {...selectProps} />
-          <SelectField {...parameters.variantType} {...selectProps} />
-          <div className="columns">
+          <div className="columns mb-0">
+            <div className={cn(!parameters.referenceName.isHidden && "column")}>
+              <SelectField {...parameters.referenceName} {...selectProps} />
+            </div>
+            <div className={cn(!parameters.variantType.isHidden && "column")}>
+              <SelectField {...parameters.variantType} {...selectProps} />
+            </div>
+          </div>
+          <div className="columns mb-0">
             <div className={cn(!parameters.start.isHidden && "column")}>
               <InputField
                 {...fieldProps}
