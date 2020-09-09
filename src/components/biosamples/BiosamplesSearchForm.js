@@ -2,6 +2,7 @@ import cn from "classnames"
 import {
   INTEGER_RANGE_REGEX,
   useCollations,
+  useGeoCity,
   validateBeaconQuery
 } from "../../hooks/api"
 import React, { useEffect, useMemo, useState } from "react"
@@ -19,6 +20,7 @@ import SelectField from "../form/SelectField"
 import InputField from "../form/InputField"
 import useDeepCompareEffect from "use-deep-compare-effect"
 import { withUrlQuery } from "../../hooks/url-query"
+import { useAsyncSelect } from "../../hooks/asyncSelect"
 
 export const BiosamplesSearchForm = withUrlQuery(
   ({ urlQuery, setUrlQuery, ...props }) => (
@@ -285,6 +287,7 @@ export function Form({
           </div>
           <InputField {...parameters.accessid} {...fieldProps} />
           <InputField {...parameters.filterPrecision} {...fieldProps} />
+          <GeoCitySelector {...parameters.geoCity} {...selectProps} />
           <div className="field mt-5">
             <div className="control">
               <button
@@ -507,5 +510,35 @@ function FilterLogicWarning({ isVisible }) {
     >
       Multiple term selected !
     </span>
+  )
+}
+
+function GeoCitySelector({ name, label, control, errors, register }) {
+  const { inputValue, onInputChange } = useAsyncSelect()
+  const { data, isLoading } = useGeoCity({ city: inputValue })
+  let options = []
+  if (data) {
+    options = data.map((g) => ({
+      value: g.id,
+      data: g,
+      label: (
+        <span>
+          {g.city} ({g.country})
+        </span>
+      )
+    }))
+  }
+  return (
+    <SelectField
+      name={name}
+      label={label}
+      isLoading={isLoading && !!inputValue}
+      options={options}
+      onInputChange={onInputChange}
+      control={control}
+      errors={errors}
+      register={register}
+      useOptionsAsValue
+    />
   )
 }

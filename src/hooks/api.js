@@ -70,6 +70,7 @@ export function buildQueryParameters(queryData) {
     bioontology,
     materialtype,
     freeFilters,
+    geoCity,
     ...otherParams
   } = queryData
 
@@ -98,9 +99,16 @@ export function buildQueryParameters(queryData) {
     parsedFreeFilters
   ].flat()
 
+  const coordinates = geoCity?.data.geojson.coordinates ?? []
+  const [geolongitude, geolatitude] = coordinates
+  const geodistance = 100 * 1000 // 100km
+  const geoParams = geolongitude
+    ? { geolongitude, geolatitude, geodistance }
+    : {}
+
   return new URLSearchParams(
     flattenParams([
-      ...Object.entries(otherParams),
+      ...Object.entries({ ...otherParams, ...geoParams }),
       ["start", starts],
       ["end", ends],
       ["filters", filters]
@@ -222,6 +230,11 @@ export function useCollations({ datasetIds, method, filters }) {
   const { data: rawData, ...other } = useExtendedSWR(url)
   const data = Array.isArray(rawData) ? rawData : null
   return { data, ...other }
+}
+
+export function useGeoCity({ city }) {
+  const url = `${basePath}services/geolocations?city=${city}&responseFormat=simplelist`
+  return useExtendedSWR(url)
 }
 
 // Transforms [[k1, v1], [k2, [v2, v3]]] into [[k1, v1], [k2, v2], [k3, v3]]

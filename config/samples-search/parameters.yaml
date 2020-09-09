@@ -135,3 +135,5 @@ filterLogic:
 filterPrecision:
   label: filterPrecision
   isHidden: true
+geoCity:
+  label: City

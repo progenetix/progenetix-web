@@ -11,7 +11,8 @@ SelectField.propTypes = {
   errors: PropTypes.object.isRequired,
   register: PropTypes.func.isRequired,
   control: PropTypes.object.isRequired,
-  rules: PropTypes.object
+  rules: PropTypes.object,
+  useOptionsAsValue: PropTypes.bool
 }
 
 export default function SelectField({
@@ -22,12 +23,14 @@ export default function SelectField({
   options,
   control,
   rules,
+  // when false, we map the options to they values, otherwise we simply pass what react-select gives
+  useOptionsAsValue = false,
   ...selectProps
 }) {
   const help = errors[name]?.message
   return (
     <div
-      className={cn("field ", {
+      className={cn("field", {
         "is-hidden": isHidden,
         "is-danger": errors[name]
       })}
@@ -39,8 +42,12 @@ export default function SelectField({
             return (
               <CustomSelect
                 onBlur={onBlur}
-                onChange={(v) => onChange(selectToForm(v))}
-                value={formToSelect(value, options)}
+                onChange={(v) =>
+                  useOptionsAsValue ? onChange(v) : onChange(optionsToValues(v))
+                }
+                value={
+                  useOptionsAsValue ? value : valuesToOptions(value, options)
+                }
                 options={options}
                 classNamePrefix="react-select"
                 {...selectProps}
@@ -57,7 +64,7 @@ export default function SelectField({
   )
 }
 
-function formToSelect(formValue, options) {
+function valuesToOptions(formValue, options) {
   if (Array.isArray(formValue)) {
     return options?.filter(({ value }) => value && formValue.includes(value))
   } else {
@@ -65,7 +72,7 @@ function formToSelect(formValue, options) {
   }
 }
 
-function selectToForm(value) {
+function optionsToValues(value) {
   if (Array.isArray(value)) {
     return value.map(({ value }) => value)
   } else {
