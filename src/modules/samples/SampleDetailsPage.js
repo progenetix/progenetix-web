@@ -154,12 +154,16 @@ function Biosample({ biosample, datasetIds }) {
       <ul>
         {biosample.info.callset_ids?.map((csid, i) => (
           <li key={i}>
-            {csid}
+            <a
+              href={`/cgi/api_chroplot.cgi?callsets.id=${csid}$&datasetIds=${datasetIds}`}
+              rel="noreferrer"
+              target="_blank"
+            >
+              {csid}
+            </a>
           </li>
         ))}
       </ul>
-
-
 
     </section>
   )
