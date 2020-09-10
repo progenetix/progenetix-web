@@ -7,7 +7,6 @@ import useDeepCompareEffect from "use-deep-compare-effect"
 export default function PublicationsMap({ publications, height }) {
   const mapRef = useRef(null)
   useEffect(() => {
-    console.log("CREATE MAP")
     const tiles = getOSMTiles()
     const center = L.latLng(10.0, 35.0)
     const map = L.map("publications-map", {
@@ -21,7 +20,7 @@ export default function PublicationsMap({ publications, height }) {
   }, [])
 
   useDeepCompareEffect(() => {
-    console.log("ADD CIRCLES")
+    const map = mapRef.current
 
     const byCoordinates = groupBy(
       publications,
@@ -49,9 +48,9 @@ export default function PublicationsMap({ publications, height }) {
       )
     })
 
-    const layerGroup = L.layerGroup(circles).addTo(mapRef.current)
-
-    return () => mapRef.current.removeLayer(layerGroup)
+    const layerGroup = L.featureGroup(circles).addTo(map)
+    map.fitBounds(layerGroup.getBounds())
+    return () => map.removeLayer(layerGroup)
   }, [publications])
 
   return <div style={{ height, zIndex: 0 }} id="publications-map" />
