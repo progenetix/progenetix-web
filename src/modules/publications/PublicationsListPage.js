@@ -199,11 +199,11 @@ function PublicationsContainer({ publications }) {
         <PublicationsMap publications={publications} height={400} />
       </div>
       <p className="content">
-        Geographic distribution (by corresponding author) of the <b>{acghSum}</b>
-        genomic array, <b>{ccghSum}</b> chromosomal CGH and <b>{wesSum + wgsSum}</b>
-        whole genome/exome based cancer genome datasets from the <b>{publicationsCount}</b>{" "}
-        listed publications. Area sizes correspond to the sample numbers reported
-        from a given location.
+        Geographic distribution (by corresponding author) of the{" "}
+        <b>{acghSum}</b> genomic array, <b>{ccghSum}</b> chromosomal CGH and{" "}
+        <b>{wesSum + wgsSum}</b> whole genome/exome based cancer genome datasets
+        from the <b>{publicationsCount}</b> listed publications. Area sizes
+        correspond to the sample numbers reported from a given location.
       </p>
     </>
   )
