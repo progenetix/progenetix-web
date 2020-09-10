@@ -44,5 +44,5 @@ export default function PublicationsMap({ publications, height }) {
     return () => cleanup(map)
   }, [publications])
 
-  return <div style={{ height }} id="publications-map" />
+  return <div style={{ height, zIndex: 0 }} id="publications-map" />
 }
