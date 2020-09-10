@@ -20,6 +20,7 @@ export default function PublicationsMap({ publications, height }) {
   }, [])
 
   useDeepCompareEffect(() => {
+    if (publications.length === 0) return
     const map = mapRef.current
 
     const byCoordinates = groupBy(
@@ -51,7 +52,7 @@ export default function PublicationsMap({ publications, height }) {
     const layerGroup = L.featureGroup(circles).addTo(map)
     map.fitBounds(layerGroup.getBounds())
     return () => map.removeLayer(layerGroup)
-  }, [publications])
+  }, [publications, mapRef])
 
   return <div style={{ height, zIndex: 0 }} id="publications-map" />
 }
