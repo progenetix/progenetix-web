@@ -196,9 +196,11 @@ function PublicationsContainer({ publications }) {
         <PublicationsMap publications={publications} height={400} />
       </div>
       <p className="content">
-        The map displays the geographic distribution of the currently selected
-        publications registered in the Progenetix database. Area sizes
-        correspond to the publication numbers reported from a given location.
+        Geographic distribution (by corresponding author) of the <b>{acghSum}</b>
+        genomic array, <b>{ccghSum}</b> chromosomal CGH and <b>{wesSum + wgsSum}</b>
+        whole genome/exome based cancer genome datasets from the <b>{publicationsCount}</b>{" "}
+        listed publications. Area sizes correspond to the sample numbers reported
+        from a given location.
       </p>
     </>
   )
