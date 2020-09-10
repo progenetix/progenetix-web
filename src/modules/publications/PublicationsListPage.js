@@ -103,31 +103,36 @@ function PublicationTable({ publications }) {
   const columns = React.useMemo(
     () => [
       {
-        Header: "id",
-        accessor: "id",
-        // eslint-disable-next-line react/display-name
-        Cell: (cellInfo) => (
-          <a
-            href={`/publications/details?id=${cellInfo.value}&filterPrecision=exact`}
-          >
-            {cellInfo.value}
-          </a>
-        )
-      },
-      {
-        Header: "Publication",
-        accessor: "label",
-        // eslint-disable-next-line react/display-name
-        Cell: ({ value, row: { original } }) => {
-          return (
-            <>
-              <div>{value}</div>
-              <div>
-                {original.journal} <EpmcLink publicationId={original.id} />
-              </div>
-            </>
-          )
-        }
+        Header: "Publications",
+        columns: [
+          {
+            Header: "id",
+            accessor: "id",
+            // eslint-disable-next-line react/display-name
+            Cell: (cellInfo) => (
+              <a
+                href={`/publications/details?id=${cellInfo.value}&filterPrecision=exact`}
+              >
+                {cellInfo.value}
+              </a>
+            )
+          },
+          {
+            Header: "Publication",
+            accessor: "label",
+            // eslint-disable-next-line react/display-name
+            Cell: ({ value, row: { original } }) => {
+              return (
+                <>
+                  <div>{value}</div>
+                  <div>
+                    {original.journal} <EpmcLink publicationId={original.id} />
+                  </div>
+                </>
+              )
+            }
+          }
+        ]
       },
       {
         Header: "Samples",
