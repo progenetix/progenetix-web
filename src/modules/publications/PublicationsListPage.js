@@ -19,7 +19,10 @@ export default function PublicationsListPage() {
         <p>
           The current page lists articles describing whole genome screening
           (WGS, WES, aCGH, cCGH) experiments in cancer, registered in the
-          Progenetix publication collection.
+          Progenetix publication collection. For each publication the table
+          indicates the numbers of samples analysed with a given technology and
+          if sample profiles are available in Progenetix and/or arraymap (array
+          source files).
         </p>
         <p>
           Please <a href="mailto:contact@progenetix.org">contact us</a> to alert
