@@ -77,7 +77,7 @@ function Side({ onClick }) {
         <MenuInternalLinkItem href="/publications/list" label="Publication DB" />
         <MenuInternalLinkItem href="/about" label="About Progenetix" />
         <li>
-          <MenuLink href="https://info.progenetix.org/">Info </MenuLink>
+          <MenuLink href="https://info.progenetix.org/">Documentation </MenuLink>
         </li>
         <MenuInternalLinkItem
           href="/beacon-plus/search"

@@ -100,6 +100,7 @@ function PublicationsLoader({ geoCity, geodistanceKm, textSearch }) {
   )
 }
 function PublicationTable({ publications }) {
+  const publicationsCount = publications.length
   const columns = React.useMemo(
     () => [
       {
