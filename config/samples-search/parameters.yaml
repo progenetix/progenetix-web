@@ -138,6 +138,6 @@ filterPrecision:
 geoCity:
   label: City
 geodistanceKm:
-  label: Distance from city (km)
+  label: Range (km)
   type: number
   defaultValue: 100

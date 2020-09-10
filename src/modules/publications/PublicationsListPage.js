@@ -24,25 +24,22 @@ export default function PublicationsListPage() {
           us about additional articles you are aware of.
         </p>
       </article>
-
-      <div>
-        <div className="columns mb-4">
-          <div className="column is-one-third">
-            <label className="label">City</label>
-            <GeoCitySelector geoCity={geoCity} setGeoCity={setGeoCity} />
-          </div>
-          {geoCity && (
-            <div className="column is-one-fifth animate__fadeIn animate__animated animate__faster">
-              <label className="label">Distance from city (km)</label>
-              <input
-                className="input"
-                type="number"
-                value={geodistanceKm}
-                onChange={(e) => setGeodistanceKm(e.target.value)}
-              />
-            </div>
-          )}
+      <div className="columns mb-4">
+        <div className="column is-one-third">
+          <label className="label">City</label>
+          <GeoCitySelector geoCity={geoCity} setGeoCity={setGeoCity} />
         </div>
+        {geoCity && (
+          <div className="column is-narrow animate__fadeIn animate__animated animate__faster">
+            <label className="label">Range (km)</label>
+            <input
+              className="input"
+              type="number"
+              value={geodistanceKm}
+              onChange={(e) => setGeodistanceKm(e.target.value)}
+            />
+          </div>
+        )}
       </div>
       <PublicationTableLoader geoCity={geoCity} geodistanceKm={geodistanceKm} />
     </Layout>

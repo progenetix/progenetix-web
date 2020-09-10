@@ -161,6 +161,7 @@ export function usePublicationList({ geoCity, geodistanceKm }) {
   const geoParams = new URLSearchParams({
     ...mkGeoParams(geoCity, geodistanceKm),
     filters: "genomes:>0",
+    method: "details",
     responseFormat: "simplelist"
   }).toString()
   const url = `${basePath}services/publications?${geoParams}`
