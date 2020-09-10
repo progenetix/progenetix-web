@@ -9,10 +9,14 @@ import { useAsyncSelect } from "../../hooks/asyncSelect"
 import CustomSelect from "../../components/Select"
 import dynamic from "next/dynamic"
 import { sumBy } from "lodash"
+import matchSorter from "match-sorter"
+import useDebounce from "../../hooks/debounce"
 
 export default function PublicationsListPage() {
   const [geoCity, setGeoCity] = useState(null)
   const [geodistanceKm, setGeodistanceKm] = useState(100)
+  const [searchInput, setSearchInput] = useState(null)
+  const debouncedSearchInput = useDebounce(searchInput, 500)
   return (
     <Layout title="Publications" headline="Progenetix Publication Collection">
       <article className="mb-6">
@@ -29,13 +33,23 @@ export default function PublicationsListPage() {
           us about additional articles you are aware of.
         </p>
       </article>
-      <div className="columns mb-4">
-        <div className="column is-one-third">
+      <div className="columns my-0">
+        <div className="field column py-0 mb-3 is-one-third">
+          <label className="label">Search</label>{" "}
+          <input
+            className="input"
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+          />
+        </div>
+      </div>
+      <div className="columns my-0">
+        <div className="field column py-0 mb-3 is-one-third">
           <label className="label">City</label>
           <GeoCitySelector geoCity={geoCity} setGeoCity={setGeoCity} />
         </div>
         {geoCity && (
-          <div className="column is-narrow animate__fadeIn animate__animated animate__faster">
+          <div className="field column py-0 mb-3 is-narrow animate__fadeIn animate__animated animate__faster">
             <label className="label">Range (km)</label>
             <input
               className="input"
@@ -46,12 +60,30 @@ export default function PublicationsListPage() {
           </div>
         )}
       </div>
-      <PublicationsLoader geoCity={geoCity} geodistanceKm={geodistanceKm} />
+      <PublicationsLoader
+        geoCity={geoCity}
+        geodistanceKm={geodistanceKm}
+        textSearch={debouncedSearchInput}
+      />
     </Layout>
   )
 }
 
-function PublicationsLoader({ geoCity, geodistanceKm }) {
+function FilteredPublication({ publications, textSearch }) {
+  const filteredPublications = matchSorter(publications, textSearch, {
+    keys: ["id", "authors"]
+  })
+  return (
+    <>
+      <div className="mb-5">
+        <PublicationTable publications={filteredPublications} />
+      </div>
+      <PublicationsMapContainer publications={filteredPublications} />
+    </>
+  )
+}
+
+function PublicationsLoader({ geoCity, geodistanceKm, textSearch }) {
   const publicationsResult = usePublicationList({
     geoCity,
     geodistanceKm
@@ -62,12 +94,7 @@ function PublicationsLoader({ geoCity, geodistanceKm }) {
       dataEffectResult={publicationsResult}
       background
       render={(data) => (
-        <>
-          <div className="mb-5">
-            <PublicationsContainer publications={data} />
-            <PublicationTable publications={data} />
-          </div>
-        </>
+        <FilteredPublication publications={data} textSearch={textSearch} />
       )}
     />
   )
@@ -150,7 +177,6 @@ function PublicationTable({ publications }) {
       columns={columns}
       data={publications}
       pageSize={15}
-      hasGlobalFilter
       hiddenColumns={["authors", "title"]}
     />
   )
@@ -187,7 +213,7 @@ function GeoCitySelector({ setGeoCity }) {
   )
 }
 
-function PublicationsContainer({ publications }) {
+function PublicationsMapContainer({ publications }) {
   const acghSum = sumBy(publications, "counts.acgh")
   const ccghSum = sumBy(publications, "counts.ccgh")
   const wesSum = sumBy(publications, "counts.wes")
