@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react"
 import { Layout } from "../../components/layouts/Layout"
 import { useGeoCity, usePublicationList } from "../../hooks/api"
-import { Loader } from "../../components/Loader"
+import { WithData } from "../../components/Loader"
 import Table, { TooltipHeader } from "../../components/Table"
 import { EpmcLink } from "./EpmcUrl"
 import cn from "classnames"
 import { useAsyncSelect } from "../../hooks/asyncSelect"
 import CustomSelect from "../../components/Select"
+import dynamic from "next/dynamic"
+import { sumBy } from "lodash"
 
 export default function PublicationsListPage() {
   const [geoCity, setGeoCity] = useState(null)
@@ -41,16 +43,33 @@ export default function PublicationsListPage() {
           </div>
         )}
       </div>
-      <PublicationTableLoader geoCity={geoCity} geodistanceKm={geodistanceKm} />
+      <PublicationsLoader geoCity={geoCity} geodistanceKm={geodistanceKm} />
     </Layout>
   )
 }
 
-function PublicationTableLoader({ geoCity, geodistanceKm }) {
-  const { data, error, isLoading } = usePublicationList({
+function PublicationsLoader({ geoCity, geodistanceKm }) {
+  const publicationsResult = usePublicationList({
     geoCity,
     geodistanceKm
   })
+
+  return (
+    <WithData
+      dataEffectResult={publicationsResult}
+      background
+      render={(data) => (
+        <>
+          <div className="mb-5">
+            <PublicationsContainer publications={data} />
+            <PublicationTable publications={data} />
+          </div>
+        </>
+      )}
+    />
+  )
+}
+function PublicationTable({ publications }) {
   const columns = React.useMemo(
     () => [
       {
@@ -123,17 +142,14 @@ function PublicationTableLoader({ geoCity, geodistanceKm }) {
     ],
     []
   )
-
   return (
-    <Loader isLoading={isLoading} hasError={error} background>
-      <Table
-        columns={columns}
-        data={data}
-        pageSize={15}
-        hasGlobalFilter
-        hiddenColumns={["authors", "title"]}
-      />
-    </Loader>
+    <Table
+      columns={columns}
+      data={publications}
+      pageSize={15}
+      hasGlobalFilter
+      hiddenColumns={["authors", "title"]}
+    />
   )
 }
 
@@ -150,7 +166,7 @@ function GeoCitySelector({ setGeoCity }) {
   let options = []
   if (data) {
     options = data.map((g) => ({
-      value: g.city,
+      value: g.id,
       data: g,
       label: `${g.city} (${g.country})`
     }))
@@ -167,3 +183,30 @@ function GeoCitySelector({ setGeoCity }) {
     />
   )
 }
+
+function PublicationsContainer({ publications }) {
+  const acghSum = sumBy(publications, "counts.acgh")
+  const ccghSum = sumBy(publications, "counts.ccgh")
+  const wesSum = sumBy(publications, "counts.wes")
+  const wgsSum = sumBy(publications, "counts.wgs")
+  const publicationsCount = publications.length
+  return (
+    <>
+      <div className="mb-5">
+        <PublicationsMap publications={publications} height={400} />
+      </div>
+      <p className="content">
+        The map displays the geographic distribution (by corresponding author)
+        of the <b>{acghSum}</b> genomic array, <b>{ccghSum}</b> chromosomal CGH
+        and <b>{wesSum + wgsSum}</b> whole genome/exome based cancer genome
+        datasets. The numbers are derived from the <b>{publicationsCount}</b>{" "}
+        publications registered in the Progenetix database. Area sizes
+        correspond to the sample numbers reported from a given location.
+      </p>
+    </>
+  )
+}
+
+const PublicationsMap = dynamic(() => import("./PublicationsMap"), {
+  ssr: false
+})
