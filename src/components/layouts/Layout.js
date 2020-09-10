@@ -75,6 +75,7 @@ function Side({ onClick }) {
         <MenuInternalLinkItem href="/subsets/list" label="Cancer CNV Profiles" />
         <MenuInternalLinkItem href="/samples/search" label="Search Samples" />
         <MenuInternalLinkItem href="/publications/list" label="Publication DB" />
+        <MenuInternalLinkItem href="/about" label="About Progenetix" />
         <li>
           <MenuLink href="https://info.progenetix.org/">Info </MenuLink>
         </li>
