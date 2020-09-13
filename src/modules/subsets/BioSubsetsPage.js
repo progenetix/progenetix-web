@@ -41,7 +41,7 @@ function useConfigSelect(config, key, urlQuery, setUrlQuery) {
 
 export default function BioSubsetsPage() {
   return (
-    <Layout title="Subsets" headline="Subsets">
+    <Layout title="Subsets" headline="Cancer Types">
       <BioSubsetsContent />
     </Layout>
   )
@@ -73,7 +73,7 @@ const BioSubsetsContent = withUrlQuery(({ urlQuery, setUrlQuery }) => {
       <div className="level">
         <div className="level-left">
           <div className="level-item">
-            <p>Filters:</p>
+            <p>Cancer Classification:</p>
           </div>
           <div className="level-item">
             <span className="select">
