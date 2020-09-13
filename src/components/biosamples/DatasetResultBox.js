@@ -84,6 +84,12 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
       <div className="columns">
         <div className="column is-one-fifth">
           <div>
+            <b>Samples: </b>
+            {sampleCount}
+          </div>
+          {variantCount > 0 ? (
+            <div>
+          <div>
             <b>Variants: </b>
             {variantCount}
           </div>
@@ -92,26 +98,24 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
             {callCount}
           </div>
           <div>
-            <b>Samples: </b>
-            {sampleCount}
-          </div>
-          <div>
             <b>
               <i>f</i>
               <sub>alleles</sub>:{" "}
             </b>
             {frequency}
           </div>
+          </div>
+        ) : null }
         </div>
         <div className="column is-one-fifth">
           {genericHandovers.map((handover, i) => (
             <GenericHandover key={i} handover={handover} />
           ))}
+          </div>
+        <div className="column is-narrow">
           <div>
             <UCSCRegion query={query} />
           </div>
-        </div>
-        <div className="column is-narrow">
           <ExternalLink
             label="JSON Response"
             onClick={() => openJsonInNewTab(datasetAlleleResponse)}
