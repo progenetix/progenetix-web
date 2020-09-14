@@ -101,10 +101,11 @@ function PublicationsLoader({ geoCity, geodistanceKm, textSearch }) {
   )
 }
 function PublicationTable({ publications }) {
+  const publicationsCount = publications.length
   const columns = React.useMemo(
     () => [
       {
-        Header: "Publications",
+        Header: `Publications (${publicationsCount})`,
         columns: [
           {
             Header: "id",
@@ -120,12 +121,11 @@ function PublicationTable({ publications }) {
           },
           {
             Header: "Publication",
-            accessor: "label",
             // eslint-disable-next-line react/display-name
-            Cell: ({ value, row: { original } }) => {
+            Cell: ({ row: { original } }) => {
               return (
                 <>
-                  <div>{value}</div>
+                  <div>{original.label}</div>
                   <div>
                     {original.journal} <EpmcLink publicationId={original.id} />
                   </div>
@@ -176,7 +176,7 @@ function PublicationTable({ publications }) {
       { accessor: "authors" },
       { accessor: "title" }
     ],
-    []
+    [publicationsCount]
   )
   return (
     <Table
