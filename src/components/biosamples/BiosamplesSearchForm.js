@@ -1,6 +1,7 @@
 import cn from "classnames"
 import {
   INTEGER_RANGE_REGEX,
+  makeFilters,
   useCollations,
   validateBeaconQuery
 } from "../../hooks/api"
@@ -66,12 +67,10 @@ function useAutoExecuteSearch({
 function useIsFilterlogicWarningVisible(watch) {
   const filterLogic = watch("filterLogic")
   const bioontology = watch("bioontology")
-
-  return (
-    filterLogic === "AND" &&
-    Array.isArray(bioontology) &&
-    bioontology.length > 1
-  )
+  const freeFilters = watch("freeFilters")
+  const materialtype = watch("materialtype")
+  const filters = makeFilters({ freeFilters, bioontology, materialtype })
+  return filterLogic === "AND" && filters.length > 1
 }
 
 export function Form({

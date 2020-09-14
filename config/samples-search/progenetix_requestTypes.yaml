@@ -42,7 +42,7 @@ progenetix:
         parameters or diagnosis.
       parameters:
         datasetIds:
-          defaultValue: "progenetix"
+          defaultValue: ["progenetix"]
         includeDatasetResponses:
           defaultValue: "ALL"
           isHidden: true
@@ -58,7 +58,7 @@ progenetix:
         variantType:
           defaultValue: "DEL"
         bioontology:
-          defaultValue: "NCIT:C3058"
+          defaultValue: ["NCIT:C3058"]
     - label: "MYC Duplication"
       note: "Example for focal MYC Duplications."
       description: |
@@ -67,7 +67,7 @@ progenetix:
         (i.e. ICD-O 3 8046/3, Non-small cell carcinoma).
       parameters:
         datasetIds:
-          defaultValue: "progenetix"
+          defaultValue: ["progenetix"]
         includeDatasetResponses:
           defaultValue: "ALL"
           isHidden: true

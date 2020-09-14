@@ -5,7 +5,7 @@ import { Label } from "./Label"
 
 InputField.propTypes = {
   name: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.node.isRequired,
   infoText: PropTypes.string,
   placeholder: PropTypes.any,
   isHidden: PropTypes.bool,
