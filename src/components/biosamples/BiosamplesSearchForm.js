@@ -37,10 +37,13 @@ BiosamplesSearchForm.propTypes = {
   parametersConfig: PropTypes.object.isRequired
 }
 
-function urlQueryToFormParam(urlQuery, key) {
+function urlQueryToFormParam(urlQuery, key, parametersConfig) {
+  const { isMulti } = parametersConfig[key]
   const value = urlQuery[key]
-  if (value?.indexOf(",") > 0 && key !== "freeFilters") return value?.split(",")
-  else return value
+  if (value == null) return value
+  if (isMulti) {
+    return value?.split(",").filter((v) => v?.trim().length ?? -1 > 0)
+  } else return value
 }
 
 function useAutoExecuteSearch({
@@ -102,7 +105,10 @@ export function Form({
   )
 
   const initialValues = transform(parameters, (r, v, k) => {
-    r[k] = urlQueryToFormParam(urlQuery, k) ?? v.defaultValue ?? null
+    r[k] =
+      urlQueryToFormParam(urlQuery, k, parametersConfig) ??
+      v.defaultValue ??
+      null
   })
 
   const {
