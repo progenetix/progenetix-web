@@ -19,7 +19,7 @@ export default function PublicationsListPage() {
   const debouncedSearchInput = useDebounce(searchInput, 500)
   return (
     <Layout title="Publications" headline="Progenetix Publication Collection">
-      <article className="mb-6">
+      <article className="mb-5">
         <p>
           The current page lists articles describing whole genome screening
           (WGS, WES, aCGH, cCGH) experiments in cancer, registered in the
@@ -33,32 +33,34 @@ export default function PublicationsListPage() {
           us about additional articles you are aware of.
         </p>
       </article>
-      <div className="columns my-0">
-        <div className="field column py-0 mb-3 is-one-third">
-          <label className="label">Search</label>{" "}
-          <input
-            className="input"
-            value={searchInput}
-            onChange={(e) => setSearchInput(e.target.value)}
-          />
-        </div>
-      </div>
-      <div className="columns my-0">
-        <div className="field column py-0 mb-3 is-one-third">
-          <label className="label">City</label>
-          <GeoCitySelector geoCity={geoCity} setGeoCity={setGeoCity} />
-        </div>
-        {geoCity && (
-          <div className="field column py-0 mb-3 is-narrow animate__fadeIn animate__animated animate__faster">
-            <label className="label">Range (km)</label>
+      <div className="mb-5">
+        <div className="columns my-0">
+          <div className="field column py-0 mb-3 is-one-third">
+            <label className="label">Search</label>{" "}
             <input
               className="input"
-              type="number"
-              value={geodistanceKm}
-              onChange={(e) => setGeodistanceKm(e.target.value)}
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
             />
           </div>
-        )}
+        </div>
+        <div className="columns my-0">
+          <div className="field column py-0 mb-3 is-one-third">
+            <label className="label">City</label>
+            <GeoCitySelector geoCity={geoCity} setGeoCity={setGeoCity} />
+          </div>
+          {geoCity && (
+            <div className="field column py-0 mb-3 is-narrow animate__fadeIn animate__animated animate__faster">
+              <label className="label">Range (km)</label>
+              <input
+                className="input"
+                type="number"
+                value={geodistanceKm}
+                onChange={(e) => setGeodistanceKm(e.target.value)}
+              />
+            </div>
+          )}
+        </div>
       </div>
       <PublicationsLoader
         geoCity={geoCity}
