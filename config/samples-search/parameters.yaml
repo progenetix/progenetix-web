@@ -85,7 +85,7 @@ referenceName:
     - label: Y
       value: Y
 variantType:
-  label: "(Structural) Variant"
+  label: "(Structural) Variant Type"
   defaultValue: ''
   options:
     - value: ''
@@ -97,15 +97,15 @@ variantType:
     - value: BND
       label: BND (Break/Fusion)
 start:
-  label: Start
+  label: Start or Position
 end:
-  label: End Position
+  label: End (Range or Structural Var.)
 referenceBases:
-  label: Ref. Base(s)
+  label: Reference Base(s)
 alternateBases:
-  label: Alt. Base(s)
+  label: Alternate Base(s)
 bioontology:
-  label: Bio-ontology
+  label: Cancer Classification(s)
   isMulti: true
   options:
     - value: ''
