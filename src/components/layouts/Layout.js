@@ -72,10 +72,13 @@ function Side({ onClick }) {
         />
       </a>
       <ul className="Layout__side__items">
+        <MenuInternalLinkItem href="/about" label="About Progenetix" />
         <MenuInternalLinkItem href="/subsets/list" label="Cancer CNV Profiles" />
         <MenuInternalLinkItem href="/samples/search" label="Search Samples" />
         <MenuInternalLinkItem href="/publications/list" label="Publication DB" />
-        <MenuInternalLinkItem href="/about" label="About Progenetix" />
+        <li>
+          <MenuLink href="https://info.progenetix.org/uploader.html">Upload & Plot </MenuLink>
+        </li>
         <li>
           <MenuLink href="https://info.progenetix.org/">Documentation </MenuLink>
         </li>
