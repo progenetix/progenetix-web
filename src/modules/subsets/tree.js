@@ -9,29 +9,29 @@ export function hasChildren(node) {
 }
 
 export function getNode(node, path) {
-  const name = path.slice(-1)[0]
+  const id = path.slice(-1)[0]
   const parentPath = path.slice(0, -1)
   if (parentPath.length > 0) {
     const parentNode = getNode(node, parentPath)
     if (hasChildren(parentNode)) {
-      return parentNode.children.find((c) => c.name === name)
+      return parentNode.children.find((c) => c.id === id)
     } else return null
   } else {
-    if (node.name === name) return node
+    if (node.id === id) return node
     return null
   }
 }
 
 // Note: mutate the node
-export function getOrMakeChild(parent, name) {
+export function getOrMakeChild(parent, id) {
   if (!hasChildren(parent)) {
     parent.children = []
   }
   // ignore duplicates
-  if (!parent.children.find((c) => c.name === name)) {
+  if (!parent.children.find((c) => c.id === id)) {
     parent.children.push({
-      name,
-      path: [...(parent.path ?? parent.name), name]
+      id,
+      path: [...(parent.path ?? parent.id), id]
     })
   }
   const [child] = parent.children.slice(-1)
@@ -40,9 +40,11 @@ export function getOrMakeChild(parent, name) {
 
 // Note: mutate the node
 export function getOrMakeNode(baseNode, path) {
-  const [name] = path.slice(-1)
+  const [id] = path.slice(-1)
   const parentPath = path.slice(0, -1)
-  const parentNode =
-    getNode(baseNode, parentPath) ?? getOrMakeNode(baseNode, parentPath)
-  return getOrMakeChild(parentNode, name)
+  let parentNode = getNode(baseNode, parentPath)
+  if (!parentNode) {
+    parentNode = getOrMakeNode(baseNode, parentPath)
+  }
+  return getOrMakeChild(parentNode, id)
 }

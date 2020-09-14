@@ -1,41 +1,42 @@
 import { hasChildren, getNode, getOrMakeChild, getOrMakeNode } from "./tree"
 
 test("hasChildren", () => {
-  expect(hasChildren({ name: "c", children: [{ name: "d" }] })).toBeTruthy()
-  expect(hasChildren({ name: "c" })).toBeFalsy()
+  expect(hasChildren({ id: "c", children: [{ id: "d" }] })).toBeTruthy()
+  expect(hasChildren({ id: "c" })).toBeFalsy()
 })
 
 test("getNode", () => {
-  expect(getNode({ name: "c" }, ["c"])).toStrictEqual({ name: "c" })
-  expect(getNode({ name: "c" }, ["d"])).toStrictEqual(null)
+  expect(getNode({ id: "c" }, ["c"])).toStrictEqual({ id: "c" })
+  expect(getNode({ id: "c" }, ["d"])).toStrictEqual(null)
   expect(
-    getNode({ name: "c", children: [{ name: "d" }] }, ["c", "d"])
-  ).toStrictEqual({ name: "d" })
+    getNode({ id: "c", children: [{ id: "d" }] }, ["c", "d"])
+  ).toStrictEqual({ id: "d" })
   expect(
-    getNode(
-      { name: "c", children: [{ name: "d", children: [{ name: "e" }] }] },
-      ["c", "d", "e"]
-    )
-  ).toStrictEqual({ name: "e" })
+    getNode({ id: "c", children: [{ id: "d", children: [{ id: "e" }] }] }, [
+      "c",
+      "d",
+      "e"
+    ])
+  ).toStrictEqual({ id: "e" })
   expect(
-    getNode(
-      { name: "c", children: [{ name: "d", children: [{ name: "e" }] }] },
-      ["c", "d"]
-    )
-  ).toStrictEqual({ name: "d", children: [{ name: "e" }] })
+    getNode({ id: "c", children: [{ id: "d", children: [{ id: "e" }] }] }, [
+      "c",
+      "d"
+    ])
+  ).toStrictEqual({ id: "d", children: [{ id: "e" }] })
   expect(
-    getNode({ name: "c", children: [{ name: "d" }] }, ["a", "d"])
+    getNode({ id: "c", children: [{ id: "d" }] }, ["a", "d"])
   ).toStrictEqual(null)
 })
 
 test("getOrMakeChild", () => {
-  const node = { name: "c" }
+  const node = { id: "c" }
   getOrMakeChild(node, "d")
   expect(node).toStrictEqual({
-    name: "c",
+    id: "c",
     children: [
       {
-        name: "d",
+        id: "d",
         path: ["c", "d"]
       }
     ]
@@ -43,16 +44,16 @@ test("getOrMakeChild", () => {
 })
 
 test("makeNode", () => {
-  const node = { name: "c" }
+  const node = { id: "c" }
   getOrMakeNode(node, ["c", "d"])
   expect(node).toStrictEqual({
-    name: "c",
-    children: [{ name: "d", path: ["c", "d"] }]
+    id: "c",
+    children: [{ id: "d", path: ["c", "d"] }]
   })
 })
 
 test("getOrMakeNode with deeper node", () => {
-  const node = { name: "c" }
+  const node = { id: "c" }
   getOrMakeNode(node, ["c", "d", "e", "f"])
   expect(node).toStrictEqual({
     children: [
@@ -61,18 +62,18 @@ test("getOrMakeNode with deeper node", () => {
           {
             children: [
               {
-                name: "f",
+                id: "f",
                 path: ["c", "d", "e", "f"]
               }
             ],
-            name: "e",
+            id: "e",
             path: ["c", "d", "e"]
           }
         ],
-        name: "d",
+        id: "d",
         path: ["c", "d"]
       }
     ],
-    name: "c"
+    id: "c"
   })
 })
