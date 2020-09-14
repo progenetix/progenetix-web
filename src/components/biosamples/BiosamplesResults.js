@@ -95,10 +95,10 @@ function QuerySummary({ query }) {
       {filters.length > 0 && (
         <li>
           <small>Filters: </small>
-          {filters.join(", ")}
+          {filters.join(" "+query.filterLogic+" ")}
         </li>
       )}
-      {filters.length > 1 && (
+      {filters.length > 1111 && (
         <li>
           <small>Filter Logic: </small>
           {query.filterLogic}
