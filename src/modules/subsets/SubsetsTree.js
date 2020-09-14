@@ -187,7 +187,7 @@ function Node({
 }
 
 function Expander({ isOpen, toggle }) {
-  return !isOpen ? (
+  return isOpen ? (
     <span onClick={toggle}>
       <span className="icon has-text-grey-dark is-clickable mr-2">
         <FaAngleDown size={18} />
