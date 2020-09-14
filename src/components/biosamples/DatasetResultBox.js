@@ -21,6 +21,7 @@ const handoversInTab = [
 const TABS = {
   results: "Results",
   samples: "Biosamples",
+  samplesMap: "Biosamples Map",
   variants: "Variants"
 }
 
