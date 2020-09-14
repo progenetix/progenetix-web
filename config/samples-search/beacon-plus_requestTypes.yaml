@@ -51,7 +51,7 @@ variantCNVrequest:
         parameters or data source.
       parameters:
         datasetIds:
-          defaultValue: "arraymap"
+          defaultValue: ["arraymap"]
         includeDatasetResponses:
           defaultValue: "ALL"
           isHidden: true
@@ -72,7 +72,7 @@ variantCNVrequest:
           defaultValue: "N"
           isHidden: true
         bioontology:
-          defaultValue: NCIT:C3058
+          defaultValue: [NCIT:C3058]
         freeFilters:
           defaultValue: ""
           isHidden: true
@@ -130,7 +130,7 @@ variantAlleleRequest:
         mutation in the EIF4A1 gene, in the DIPG childhood brain tumor dataset.
       parameters:
         datasetIds:
-          defaultValue: "dipg"
+          defaultValue: ["dipg"]
         includeDatasetResponses:
           defaultValue: "ALL"
           isHidden: true
@@ -157,7 +157,7 @@ variantAlleleRequest:
         mutation in the TP53 gene, in cellosaurus, with ClinVar data.
       parameters:
         datasetIds:
-          defaultValue: "cellosaurus"
+          defaultValue: ["cellosaurus"]
         includeDatasetResponses:
           defaultValue: "ALL"
           isHidden: true
@@ -232,7 +232,7 @@ variantRangeRequest:
         handover [H—>O] link.
       parameters:
         datasetIds:
-          defaultValue: "dipg"
+          defaultValue: ["dipg"]
         includeDatasetResponses:
           defaultValue: "ALL"
           isHidden: true

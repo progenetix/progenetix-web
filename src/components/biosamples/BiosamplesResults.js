@@ -1,6 +1,7 @@
 import { Loader } from "../Loader"
 import { DatasetResultBox } from "./DatasetResultBox"
 import React from "react"
+import { makeFilters } from "../../hooks/api"
 
 export function BiosamplesResults({ response, isLoading, error, query }) {
   return (
@@ -37,17 +38,7 @@ function AlleleResponses({ datasetAlleleResponses, query }) {
 }
 
 function QuerySummary({ query }) {
-  let filters = []
-  if (query.bioontology) {
-    filters = [...filters, ...[query.bioontology].flat()]
-  }
-  if (query.materialtype) {
-    filters = [...filters, query.materialtype]
-  }
-  if (query.freeFilters) {
-    filters = [...filters, query.freeFilters]
-  }
-  filters = filters.filter((f) => f && f.length > 1)
+  const filters = makeFilters(query)
   return (
     <ul className="BeaconPlus__query-summary">
       {query.assemblyId && (

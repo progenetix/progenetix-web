@@ -10,6 +10,7 @@ SelectField.propTypes = {
   label: PropTypes.node.isRequired,
   infoText: PropTypes.string,
   isHidden: PropTypes.bool,
+  isMulti: PropTypes.bool,
   errors: PropTypes.object.isRequired,
   register: PropTypes.func.isRequired,
   control: PropTypes.object.isRequired,
@@ -22,6 +23,7 @@ export default function SelectField({
   label,
   infoText,
   isHidden,
+  isMulti,
   errors,
   options,
   control,
@@ -49,12 +51,17 @@ export default function SelectField({
           render={({ onChange, onBlur, value }) => {
             return (
               <CustomSelect
+                isMulti={isMulti}
                 onBlur={onBlur}
                 onChange={(v) =>
-                  useOptionsAsValue ? onChange(v) : onChange(optionsToValues(v))
+                  useOptionsAsValue
+                    ? onChange(v)
+                    : onChange(optionsToValues(v, isMulti))
                 }
                 value={
-                  useOptionsAsValue ? value : valuesToOptions(value, options)
+                  useOptionsAsValue
+                    ? value
+                    : valuesToOptions(value, options, isMulti)
                 }
                 options={options}
                 classNamePrefix="react-select"
@@ -72,16 +79,23 @@ export default function SelectField({
   )
 }
 
-function valuesToOptions(formValue, options) {
-  if (Array.isArray(formValue)) {
-    return options?.filter(({ value }) => value && formValue.includes(value))
+function valuesToOptions(formValue, options, isMulti) {
+  if (isMulti) {
+    if (formValue == null) return []
+    if (!Array.isArray(formValue)) {
+      throw new Error(
+        "Array value expected for a multiple select. Make sure the defaultValue is an array."
+      )
+    } else
+      return options?.filter(({ value }) => value && formValue.includes(value))
   } else {
     return options?.filter(({ value }) => value && formValue === value)
   }
 }
 
-function optionsToValues(value) {
-  if (Array.isArray(value)) {
+function optionsToValues(value, isMulti) {
+  if (isMulti) {
+    if (value == null) return null
     return value.map(({ value }) => value)
   } else {
     return value?.value ?? null

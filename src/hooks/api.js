@@ -71,6 +71,20 @@ export function mkGeoParams(geoCity, geodistanceKm) {
   return { geolongitude, geolatitude, geodistance }
 }
 
+export function makeFilters({ freeFilters, bioontology, materialtype }) {
+  const parsedFreeFilters =
+    freeFilters
+      ?.split(",")
+      .map((ff) => ff.trim())
+      .filter((v) => v != null && v.length !== 0) ?? []
+
+  return [
+    ...(bioontology ?? []),
+    ...(materialtype ? [materialtype] : []),
+    ...parsedFreeFilters
+  ]
+}
+
 export function buildQueryParameters(queryData) {
   const {
     start,
@@ -82,7 +96,6 @@ export function buildQueryParameters(queryData) {
     geodistanceKm,
     ...otherParams
   } = queryData
-
   // positions from the form have to be -1 adjusted (only first value if interval)
   const starts = []
   if (start) {
@@ -100,13 +113,7 @@ export function buildQueryParameters(queryData) {
     ends.push(end0 > 0 ? end0 - 1 : end0)
     end1 && ends.push(end1)
   }
-  let parsedFreeFilters = freeFilters?.split(",").map((ff) => ff.trim()) ?? []
-
-  const filters = [
-    [bioontology].flat() ?? [],
-    materialtype ?? [],
-    parsedFreeFilters
-  ].flat()
+  const filters = makeFilters({ freeFilters, bioontology, materialtype })
   const geoParams = mkGeoParams(geoCity, geodistanceKm) ?? {}
   return new URLSearchParams(
     flattenParams([

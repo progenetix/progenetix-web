@@ -5,7 +5,7 @@ import { FaInfoCircle } from "react-icons/fa"
 import React from "react"
 
 Label.propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.node.isRequired,
   infoText: PropTypes.string
 }
 
