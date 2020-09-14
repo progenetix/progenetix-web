@@ -72,14 +72,7 @@ function Biosample({ biosample, datasetIds }) {
   return (
     <section className="content">
       <h3 className="mb-6">
-        {biosample.id} ({datasetIds}){" "}
-        <a
-          rel="noreferrer"
-          target="_blank"
-          href={sampleUrl(biosample.id, datasetIds)}
-        >
-          {"{↗}"}
-        </a>
+        {biosample.id} ({datasetIds})
       </h3>
       {biosample.description && (
         <>
@@ -164,6 +157,16 @@ function Biosample({ biosample, datasetIds }) {
       {biosample.info.callset_ids?.map((csid, i) => (
         <CnvHistogramPreview key={i} csid={csid} datasetIds={datasetIds} />
       ))}
+
+      <h5>Download Data as{" "}
+      <a
+        rel="noreferrer"
+        target="_blank"
+        href={sampleUrl(biosample.id, datasetIds)}
+      >
+        {"{JSON↗}"}
+      </a>
+      </h5>
     </section>
   )
 }
