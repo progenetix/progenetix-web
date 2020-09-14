@@ -118,7 +118,7 @@ export const Row = ({
 // internal openness state (`isOpen`), function to change internal openness
 // state (`toggle`) and `style` parameter that should be added to the root div.
 function Node({
-  data: { isLeaf, id, subset, nestingLevel },
+  data: { isLeaf, subset, nestingLevel },
   treeData: { datasetIds, checkboxClicked },
   index,
   isOpen,
@@ -142,7 +142,7 @@ function Node({
         {subset && isSearchPossible && (
           <input
             onChange={(e) =>
-              checkboxClicked({ id: id, checked: e.target.checked })
+              checkboxClicked({ id: subset.id, checked: e.target.checked })
             }
             type="checkbox"
           />
@@ -164,8 +164,10 @@ function Node({
             <Expander isOpen={isOpen} toggle={toggle} />
           </span>
           <span>
-            <Link href={`/subsets/list?filters=${id}&datasetIds=${datasetIds}`}>
-              <a>{id}</a>
+            <Link
+              href={`/subsets/list?filters=${subset.id}&datasetIds=${datasetIds}`}
+            >
+              <a>{subset.id}</a>
             </Link>
             {subset?.label && <span>: {subset.label}</span>}
             {isSearchPossible ? (
@@ -216,8 +218,8 @@ const mkTreeWalker = (tree, defaultExpandedLevel, setSize) =>
     // Walk through the tree until we have no nodes available.
     while (stack.length !== 0) {
       const {
-        node: { children = [], id, subset },
-        nestingLevel
+        nestingLevel,
+        node: { children = [], uid, subset }
       } = stack.pop()
       // Here we are sending the information about the node to the Tree component
       // and receive an information about the openness state from it. The
@@ -227,13 +229,13 @@ const mkTreeWalker = (tree, defaultExpandedLevel, setSize) =>
       const openByDefault = nestingLevel < defaultExpandedLevel
       const isOpened = yield refresh
         ? {
-            id,
+            id: uid,
             isLeaf: children.length === 0,
             isOpenByDefault: openByDefault,
             subset,
             nestingLevel
           }
-        : id
+        : uid
       size++
       // Basing on the node openness state we are deciding if we need to render
       // the child nodes (if they exist).

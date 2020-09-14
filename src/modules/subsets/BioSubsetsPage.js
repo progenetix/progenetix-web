@@ -209,7 +209,7 @@ export function buildTree(response, subsetById) {
     if (hierarchy.path) {
       const path = hierarchy.path.filter((p) => !!p)
       const fullPath = ["root", ...path]
-      const node = getOrMakeNode(tree, fullPath)
+      const node = getOrMakeNode(tree, fullPath, randomStringGenerator)
       node.subset = subsetById[node.id]
     }
   }
@@ -225,9 +225,12 @@ export function buildTreeForDetails(response, subsetById) {
   child_terms.forEach((c) => {
     // some subsets have themself in the children list
     if (rootSubset.id !== c) {
-      const node = getOrMakeChild(rootNode, c)
+      const node = getOrMakeChild(rootNode, c, randomStringGenerator)
       node.subset = subsetById[node.id]
     }
   })
   return tree
 }
+
+// We generate random UID because a tree contains several nodes with the same ids
+const randomStringGenerator = () => Math.random().toString(36).substring(2, 15)

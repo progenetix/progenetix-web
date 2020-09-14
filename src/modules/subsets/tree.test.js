@@ -30,13 +30,15 @@ test("getNode", () => {
 })
 
 test("getOrMakeChild", () => {
-  const node = { id: "c" }
+  const node = { id: "c", uid: "c" }
   getOrMakeChild(node, "d")
   expect(node).toStrictEqual({
     id: "c",
+    uid: "c",
     children: [
       {
         id: "d",
+        uid: "d",
         path: ["c", "d"]
       }
     ]
@@ -44,16 +46,17 @@ test("getOrMakeChild", () => {
 })
 
 test("makeNode", () => {
-  const node = { id: "c" }
+  const node = { id: "c", uid: "c" }
   getOrMakeNode(node, ["c", "d"])
   expect(node).toStrictEqual({
     id: "c",
-    children: [{ id: "d", path: ["c", "d"] }]
+    uid: "c",
+    children: [{ id: "d", uid: "d", path: ["c", "d"] }]
   })
 })
 
 test("getOrMakeNode with deeper node", () => {
-  const node = { id: "c" }
+  const node = { id: "c", uid: "c" }
   getOrMakeNode(node, ["c", "d", "e", "f"])
   expect(node).toStrictEqual({
     children: [
@@ -63,17 +66,21 @@ test("getOrMakeNode with deeper node", () => {
             children: [
               {
                 id: "f",
+                uid: "f",
                 path: ["c", "d", "e", "f"]
               }
             ],
             id: "e",
+            uid: "e",
             path: ["c", "d", "e"]
           }
         ],
         id: "d",
+        uid: "d",
         path: ["c", "d"]
       }
     ],
-    id: "c"
+    id: "c",
+    uid: "c"
   })
 })

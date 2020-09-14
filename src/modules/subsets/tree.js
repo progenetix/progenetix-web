@@ -23,7 +23,7 @@ export function getNode(node, path) {
 }
 
 // Note: mutate the node
-export function getOrMakeChild(parent, id) {
+export function getOrMakeChild(parent, id, makeUid = (id) => id) {
   if (!hasChildren(parent)) {
     parent.children = []
   }
@@ -31,6 +31,7 @@ export function getOrMakeChild(parent, id) {
   if (!parent.children.find((c) => c.id === id)) {
     parent.children.push({
       id,
+      uid: makeUid(id),
       path: [...(parent.path ?? parent.id), id]
     })
   }
@@ -39,12 +40,12 @@ export function getOrMakeChild(parent, id) {
 }
 
 // Note: mutate the node
-export function getOrMakeNode(baseNode, path) {
+export function getOrMakeNode(baseNode, path, makeUid = (id) => id) {
   const [id] = path.slice(-1)
   const parentPath = path.slice(0, -1)
   let parentNode = getNode(baseNode, parentPath)
   if (!parentNode) {
-    parentNode = getOrMakeNode(baseNode, parentPath)
+    parentNode = getOrMakeNode(baseNode, parentPath, makeUid)
   }
-  return getOrMakeChild(parentNode, id)
+  return getOrMakeChild(parentNode, id, makeUid)
 }
