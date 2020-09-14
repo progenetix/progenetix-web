@@ -18,20 +18,10 @@
   align-items: stretch;
 }
 
-.BioSubsets__tree__headers {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  font-weight: bold;
-  overflow: hidden;
-}
-
 .BioSubsets__tree__cell {
-  border: 1px solid $grey-lighter;
   padding: 0 0.5rem;
   display: flex;
   align-items: center;
-  margin: -1px 0 0 -1px;
 }
 
 .BioSubsets__tree__info {

@@ -86,39 +86,16 @@ export function SubsetsTree({
           </li>
         ))}
       </ul>
-      <div>
-        <div
-          className="BioSubsets__tree__headers"
-          style={{ height: ROW_HEIGHT }}
-        >
-          <span
-            className="BioSubsets__tree__cell"
-            style={{ width: 30, flex: "none" }}
-          />
-          <span className="BioSubsets__tree__cell" style={{ flex: "1 1 auto" }}>
-            Subsets
-          </span>
-          <span
-            className="BioSubsets__tree__cell"
-            style={{
-              width: 80,
-              flex: "none"
-            }}
-          >
-            Samples
-          </span>
-        </div>
-        <Tree
-          ref={treeRef}
-          treeWalker={treeWalker}
-          itemSize={ROW_HEIGHT}
-          height={Math.min(size * ROW_HEIGHT, 800)}
-          rowComponent={Row}
-          itemData={{ datasetIds, checkboxClicked }}
-        >
-          {Node}
-        </Tree>
-      </div>
+      <Tree
+        ref={treeRef}
+        treeWalker={treeWalker}
+        itemSize={ROW_HEIGHT}
+        height={Math.min(size * ROW_HEIGHT, 800)}
+        rowComponent={Row}
+        itemData={{ datasetIds, checkboxClicked }}
+      >
+        {Node}
+      </Tree>
     </>
   )
 }
@@ -191,26 +168,17 @@ function Node({
               <a>{id}</a>
             </Link>
             {subset?.label && <span>: {subset.label}</span>}
+            {isSearchPossible ? (
+              <Tippy content={`Click to initiate a search for ${subset.id}`}>
+                <a href={sampleSelectUrl({ subsets: [subset], datasetIds })}>
+                  <span> ({subset?.count} samples)</span>
+                </a>
+              </Tippy>
+            ) : (
+              <span> ({subset?.count} samples)</span>
+            )}
           </span>
         </span>
-      </span>
-      <span
-        className="BioSubsets__tree__cell"
-        style={{
-          justifyContent: "center",
-          width: 80,
-          flex: "none"
-        }}
-      >
-        {isSearchPossible ? (
-          <Tippy content={`Click to initiate a search for ${subset.id}`}>
-            <a href={sampleSelectUrl({ subsets: [subset], datasetIds })}>
-              {subset?.count}
-            </a>
-          </Tippy>
-        ) : (
-          <div>{subset?.count}</div>
-        )}
       </span>
     </div>
   )
