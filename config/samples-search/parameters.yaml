@@ -122,11 +122,12 @@ materialtype:
       label: reference sample
 freeFilters:
   label: Filters
-  infoText: Freely add **filters** to the search.
+  infoText: Add free comma-concatenated **filters** to the search.
 accessid:
   label: Accession Prefilter
 filterLogic:
   label: Filter Logic
+  infoText: Boolean logic for filter values; default **AND** assume different logical scopes.
   defaultValue: 'AND'
   options:
     - value: AND
