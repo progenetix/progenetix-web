@@ -83,4 +83,4 @@ progenetix:
         variantType:
           defaultValue: "DUP"
         bioontology:
-          defaultValue: "icdom-80463"
+          defaultValue: ["icdom-80463"]

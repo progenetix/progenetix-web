@@ -84,7 +84,7 @@ function valuesToOptions(formValue, options, isMulti) {
     if (formValue == null) return []
     if (!Array.isArray(formValue)) {
       throw new Error(
-        "Array value expected for a multiple select. Make sure the defaultValue is an array."
+        `Array value expected for a multiple select. Was ${formValue}. Make sure the defaultValue is an array.`
       )
     } else
       return options?.filter(({ value }) => value && formValue.includes(value))
