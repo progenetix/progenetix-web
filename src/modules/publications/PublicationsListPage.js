@@ -230,7 +230,7 @@ function PublicationsMapContainer({ publications }) {
   return (
     <>
       <div className="mb-5">
-        <PublicationsMap publications={publications} height={400} />
+        <PublicationsMap publications={publications} height={600} />
       </div>
       <p className="content">
         Geographic distribution (by corresponding author) of the{" "}

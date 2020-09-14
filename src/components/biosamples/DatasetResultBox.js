@@ -10,6 +10,7 @@ import { svgFetcher } from "../../hooks/fetcher"
 import BiosamplesStatsDataTable from "./BiosamplesStatsDataTable"
 import { WithData } from "../Loader"
 import { openJsonInNewTab } from "../../utils/files"
+import dynamic from "next/dynamic"
 
 const handoversInTab = [
   HANDOVER_IDS.cnvhistogram,
@@ -49,7 +50,10 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
   // main / samples / variants
   const tabNames = []
   if (handoverById(HANDOVER_IDS.cnvhistogram)) tabNames.push(TABS.results)
-  if (biosamplesHandover) tabNames.push(TABS.samples)
+  if (biosamplesHandover) {
+    tabNames.push(TABS.samples)
+    tabNames.push(TABS.samplesMap)
+  }
   if (handoverById(HANDOVER_IDS.variantsdata)) tabNames.push(TABS.variants)
   const [selectedTab, setSelectedTab] = useState(tabNames[0])
 
@@ -72,6 +76,13 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
         datasetId={datasetId}
       />
     )
+  } else if (selectedTab === TABS.samplesMap) {
+    tabComponent = (
+      <BiosamplesMap
+        dataEffectResult={biosamplesDataResults}
+        datasetId={datasetId}
+      />
+    )
   } else if (selectedTab === TABS.variants) {
     const handover = handoverById(HANDOVER_IDS.variantsdata)
     const url = replaceWithProxy(handover.url)
@@ -89,29 +100,29 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
           </div>
           {variantCount > 0 ? (
             <div>
-          <div>
-            <b>Variants: </b>
-            {variantCount}
-          </div>
-          <div>
-            <b>Calls: </b>
-            {callCount}
-          </div>
-          <div>
-            <b>
-              <i>f</i>
-              <sub>alleles</sub>:{" "}
-            </b>
-            {frequency}
-          </div>
-          </div>
-        ) : null }
+              <div>
+                <b>Variants: </b>
+                {variantCount}
+              </div>
+              <div>
+                <b>Calls: </b>
+                {callCount}
+              </div>
+              <div>
+                <b>
+                  <i>f</i>
+                  <sub>alleles</sub>:{" "}
+                </b>
+                {frequency}
+              </div>
+            </div>
+          ) : null}
         </div>
         <div className="column is-one-fifth">
           {genericHandovers.map((handover, i) => (
             <GenericHandover key={i} handover={handover} />
           ))}
-          </div>
+        </div>
         <div className="column is-narrow">
           <div>
             <UCSCRegion query={query} />
@@ -242,3 +253,7 @@ function ExternalLink({ href, label, onClick }) {
     </a>
   )
 }
+
+const BiosamplesMap = dynamic(() => import("./BiosamplesMap"), {
+  ssr: false
+})
