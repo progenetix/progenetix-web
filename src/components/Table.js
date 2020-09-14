@@ -256,7 +256,7 @@ fuzzyTextFilterFn.autoRemove = (val) => !val
 
 export function TooltipHeader(short, full) {
   return (
-    <Tippy content={full}>
+    <Tippy theme="light-border" content={full}>
       <abbr className="abbr">{short}</abbr>
     </Tippy>
   )

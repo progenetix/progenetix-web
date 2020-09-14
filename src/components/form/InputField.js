@@ -1,10 +1,12 @@
 import React from "react"
 import cn from "classnames"
 import PropTypes from "prop-types"
+import { Label } from "./Label"
 
 InputField.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  infoText: PropTypes.string,
   placeholder: PropTypes.any,
   isHidden: PropTypes.bool,
   errors: PropTypes.object,
@@ -15,6 +17,7 @@ InputField.propTypes = {
 export default function InputField({
   name,
   label,
+  infoText,
   placeholder,
   isHidden,
   errors,
@@ -27,7 +30,7 @@ export default function InputField({
   const help = errors[name]?.message
   return (
     <div className={cn("field", { "is-hidden": isHidden }, className)}>
-      <label className="label">{label}</label>
+      <Label label={label} infoText={infoText} />
       <p className="control">
         <input
           name={name}

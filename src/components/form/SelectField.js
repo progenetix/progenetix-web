@@ -3,10 +3,12 @@ import React from "react"
 import PropTypes from "prop-types"
 import CustomSelect from "../Select"
 import { Controller } from "react-hook-form"
+import { Label } from "./Label"
 
 SelectField.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.node.isRequired,
+  infoText: PropTypes.string,
   isHidden: PropTypes.bool,
   errors: PropTypes.object.isRequired,
   register: PropTypes.func.isRequired,
@@ -18,6 +20,7 @@ SelectField.propTypes = {
 export default function SelectField({
   name,
   label,
+  infoText,
   isHidden,
   errors,
   options,
@@ -40,7 +43,7 @@ export default function SelectField({
         className
       )}
     >
-      <label className="label">{label}</label>
+      <Label label={label} infoText={infoText} />
       <div className="control">
         <Controller
           render={({ onChange, onBlur, value }) => {

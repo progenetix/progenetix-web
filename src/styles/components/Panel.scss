@@ -1,4 +1,4 @@
-.Panel .panel-heading {
+.Panel_heading {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -10,7 +10,7 @@
   min-height: $size-1;
 }
 
-.Panel--block {
+.Panel__block {
   padding: 1rem 1rem;
   @include tablet {
     padding: 1.5rem 2rem;
