@@ -71,7 +71,8 @@ export default function PublicationsListPage() {
 
 function FilteredPublication({ publications, textSearch }) {
   const filteredPublications = matchSorter(publications, textSearch, {
-    keys: ["id", "authors"]
+    keys: ["id", "authors"],
+    threshold: matchSorter.rankings.CONTAINS
   })
   return (
     <>
