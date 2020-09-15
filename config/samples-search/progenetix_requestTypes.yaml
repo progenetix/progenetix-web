@@ -84,3 +84,28 @@ progenetix:
           defaultValue: "DUP"
         bioontology:
           defaultValue: ["icdom-80463"]
+    - label: "TP53 Del. in Cell Lines"
+      note: "Example for TP53 deletion"
+      description: |
+        Query example for an "any overlap", focal deletion in TP53 where the
+        search will be limited to cell lines, searched as having ids from the
+        "cellosaurus" cell line database.
+      parameters:
+        datasetIds:
+          defaultValue: ["progenetix"]
+        includeDatasetResponses:
+          defaultValue: "ALL"
+          isHidden: true
+        assemblyId:
+          defaultValue: "GRCh38"
+          isHidden: true
+        referenceName:
+          defaultValue: "17"
+        start:
+          defaultValue: "5000000-7676592"
+        end:
+          defaultValue: "7669608-10000000"
+        variantType:
+          defaultValue: "DEL"
+        freeFilters:
+          defaultValue: "cellosaurus"

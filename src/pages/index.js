@@ -57,7 +57,7 @@ export const getStaticProps = async () => {
   //   `${PROGENETIX}/api/progenetix/biosubsets/count/`
   // )
   const subsets = await tryFetch(
-    `${PROGENETIX}/cgi/bycon/bin/collations.py?datasetIds=progenetix&method=counts&filters=PMID,icdom,ncit,icdot&responseFormat=simplelist`,
+    `${PROGENETIX}/services/collations/?datasetIds=progenetix&method=counts&filters=PMID,icdom,ncit,icdot&responseFormat=simplelist`,
     [
       {
         count: 243,
