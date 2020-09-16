@@ -4,3 +4,9 @@ export default createProxyMiddleware({
   pathRewrite: { "^/api": "/" },
   changeOrigin: true
 })
+
+export const config = {
+  api: {
+    bodyParser: false
+  }
+}

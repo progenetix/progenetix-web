@@ -252,6 +252,18 @@ export function useGeoCity({ city }) {
   return useExtendedSWR(url)
 }
 
+export async function uploadFile(formData) {
+  // Default options are marked with *
+  const response = await fetch(`${basePath}cgi/pgx_uploader.cgi`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "multipart/form-data"
+    },
+    body: formData
+  })
+  return response.json()
+}
+
 // Transforms [[k1, v1], [k2, [v2, v3]]] into [[k1, v1], [k2, v2], [k3, v3]]
 function flattenParams(paramArray) {
   return paramArray.flatMap(([key, value]) => {
