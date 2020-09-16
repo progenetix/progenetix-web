@@ -5,7 +5,7 @@ import { sample } from "lodash"
 import { PROGENETIX, tryFetch } from "../hooks/api"
 
 export default function Index({ ncitCount, dbstats, subsets }) {
-  const randomSubsetId = sample(subsets.filter((s) => s.count > 25)).id
+  const randomSubset = sample(subsets.data.filter((s) => s.count > 25))
   return (
     <Layout title="Progenetix" headline="Cancer genome data @ progenetix.org">
       <div className="content">
@@ -21,12 +21,12 @@ export default function Index({ ncitCount, dbstats, subsets }) {
             <li><a href="/samples/search">searching</a> for CNVs in genes of interest</li>
           </ul>
         </p>
-        <ExampleHistogram id={randomSubsetId} />
+        <ExampleHistogram id={randomSubset.id} />
         <p>
           The resource currently contains genome profiles of{" "}
           <strong>{dbstats.data.progenetix.counts.biosamples}</strong> individual
           samples and represents
-          <strong>{ncitCount.results_count}</strong> cancer types, 
+          <strong>{ncitCount.results_count}</strong> cancer types,
           according to the NCIt  &quot;neoplasm&quot; classification.
         </p>
         <p>
@@ -56,10 +56,10 @@ export const getStaticProps = async () => {
     `${PROGENETIX}/services/dbstats/`
   )
   const ncitCount = await tryFetch(
-    `${PROGENETIX}/services/collations/?datasetIds=progenetix&method=counts&filters=NCIT`
+    `${PROGENETIX}/services/collations/?datasetIds=progenetix&method=codematches&filters=NCIT`
   )
   const subsets = await tryFetch(
-    `${PROGENETIX}/services/collations/?datasetIds=progenetix&method=counts&filters=PMID,icdom,NCIT,icdot&responseFormat=simplelist`,
+    `${PROGENETIX}/services/collations/?datasetIds=progenetix&method=counts&filters=PMID,icdom,NCIT,icdot`,
     [
       {
         count: 243,
