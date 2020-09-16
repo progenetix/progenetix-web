@@ -65,6 +65,7 @@ export function SubsetsTree({
             <option value={3}>3 levels</option>
             <option value={4}>4 levels</option>
             <option value={5}>5 levels</option>
+            <option value={99}>all</option>
           </select>
         </span>
         {hasSelectedSubsets && (

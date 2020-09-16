@@ -4,7 +4,7 @@ import React from "react"
 import { sample } from "lodash"
 import { PROGENETIX, tryFetch } from "../hooks/api"
 
-export default function Index({ publicationsCount, subsets }) {
+export default function Index({ ncitCount, dbstats, subsets }) {
   const randomSubsetId = sample(subsets.filter((s) => s.count > 25)).id
   return (
     <Layout title="Progenetix" headline="Cancer genome data @ progenetix.org">
@@ -24,15 +24,16 @@ export default function Index({ publicationsCount, subsets }) {
         <ExampleHistogram id={randomSubsetId} />
         <p>
           The resource currently contains genome profiles of{" "}
-          <strong>113322</strong> individual experiments and represents
-          <strong>542</strong> different cancer types, according to the NCIt
-          &quot;neoplasm&quot; classification.
+          <strong>{dbstats.data.progenetix.counts.biosamples}</strong> individual
+          samples and represents
+          <strong>{ncitCount.results_count}</strong> cancer types, 
+          according to the NCIt  &quot;neoplasm&quot; classification.
         </p>
         <p>
           Additionally to this genome profiles and associated metadata, the website
           present information about publications (currently{" "}
-          <strong>{publicationsCount}</strong> articles) referring to cancer
-          genome profiling experiments.
+          <strong>{dbstats.data.progenetix.counts.publications}</strong> articles)
+          referring to cancer genome profiling experiments.
         </p>
       </div>
     </Layout>
@@ -43,21 +44,22 @@ export const ExampleHistogram = ({ id }) => (
   <SubsetHistogram
     datasetIds="progenetix"
     id={id}
-    scope="biosubsets"
-    chr2plot="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22"
   />
 )
 
 // This function gets called at build time on server-side.
 export const getStaticProps = async () => {
-  const publicationsCount = await tryFetch(
-    `${PROGENETIX}/api/progenetix/publications/count/`
-  )
-  // const biosubsetsCount = await tryFetch(
-  //   `${PROGENETIX}/api/progenetix/biosubsets/count/`
+  // const publicationsCount = await tryFetch(
+  //   `${PROGENETIX}/services/publications/?method=counts&filters=PMID`
   // )
+  const dbstats = await tryFetch(
+    `${PROGENETIX}/services/dbstats/`
+  )
+  const ncitCount = await tryFetch(
+    `${PROGENETIX}/services/collations/?datasetIds=progenetix&method=counts&filters=NCIT`
+  )
   const subsets = await tryFetch(
-    `${PROGENETIX}/services/collations/?datasetIds=progenetix&method=counts&filters=PMID,icdom,ncit,icdot&responseFormat=simplelist`,
+    `${PROGENETIX}/services/collations/?datasetIds=progenetix&method=counts&filters=PMID,icdom,NCIT,icdot&responseFormat=simplelist`,
     [
       {
         count: 243,
@@ -68,7 +70,8 @@ export const getStaticProps = async () => {
   )
   return {
     props: {
-      publicationsCount,
+      dbstats,
+      ncitCount,
       subsets
     }
   }
