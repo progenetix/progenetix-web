@@ -72,7 +72,7 @@ function DataVisualizationPanel({ accessid, width }) {
 }
 
 function DataVisualizationForm({ isQuerying, onSubmit }) {
-  const defaultValues = { group_by: "", "-markers": "" }
+  const defaultValues = { group_by: "", "-markers": null }
   const { register, handleSubmit, errors, control } = useForm({ defaultValues })
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

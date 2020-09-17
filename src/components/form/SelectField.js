@@ -56,12 +56,12 @@ export default function SelectField({
                 onChange={(v) =>
                   useOptionsAsValue
                     ? onChange(v)
-                    : onChange(optionsToValues(v, isMulti))
+                    : onChange(optionsToValues(v, { isMulti, name }))
                 }
                 value={
                   useOptionsAsValue
                     ? value
-                    : valuesToOptions(value, options, isMulti)
+                    : valuesToOptions(value, options, { isMulti, name })
                 }
                 options={options}
                 classNamePrefix="react-select"
@@ -79,12 +79,12 @@ export default function SelectField({
   )
 }
 
-function valuesToOptions(formValue, options, isMulti) {
+function valuesToOptions(formValue, options, { isMulti, name }) {
   if (isMulti) {
     if (formValue == null) return []
     if (!Array.isArray(formValue)) {
       throw new Error(
-        `Array value expected for a multiple select. Was ${formValue}. Make sure the defaultValue is an array.`
+        `Array value expected for a ${name} set with ${isMulti} but received ${formValue}. Make sure the defaultValue is an array.`
       )
     } else
       return options?.filter(({ value }) => value && formValue.includes(value))
@@ -93,7 +93,7 @@ function valuesToOptions(formValue, options, isMulti) {
   }
 }
 
-function optionsToValues(value, isMulti) {
+function optionsToValues(value, { isMulti }) {
   if (isMulti) {
     if (value == null) return null
     return value.map(({ value }) => value)
