@@ -5,6 +5,8 @@ import { FaAngleDown, FaAngleRight } from "react-icons/fa"
 import { canSearch, sampleSelectUrl } from "./samples-search"
 import Tippy from "@tippyjs/react"
 import { FixedSizeTree as Tree } from "react-vtree"
+import useDebounce from "../../hooks/debounce"
+import { filterNode } from "./tree"
 
 const ROW_HEIGHT = 40
 
@@ -14,10 +16,17 @@ export function SubsetsTree({
   checkedSubsets,
   checkboxClicked
 }) {
+  const { searchInput, setSearchInput, filteredTree } = useFilterTree(tree)
   const [levelSelector, setLevelSelector] = useState(1)
   const [useDefaultExpanded, setUseDefaultExpanded] = useState(true)
-  const defaultExpandedLevel = useDefaultExpanded ? levelSelector : 0
+  const defaultExpandedLevel = searchInput
+    ? 99
+    : useDefaultExpanded
+    ? levelSelector
+    : 0
+
   const treeRef = React.createRef()
+
   const hasSelectedSubsets = checkedSubsets.length > 0
   const selectSamplesHref =
     hasSelectedSubsets &&
@@ -33,26 +42,28 @@ export function SubsetsTree({
 
   const [size, setSize] = useState(0)
   const treeWalker = useMemo(
-    () => mkTreeWalker(tree, defaultExpandedLevel, setSize),
-    [defaultExpandedLevel, tree]
+    () => mkTreeWalker(filteredTree, defaultExpandedLevel, setSize),
+    [defaultExpandedLevel, filteredTree]
   )
 
   return (
     <>
       <div className="BioSubsets__controls">
-        <div
-          className="button is-small"
-          onClick={() => setUseDefaultExpanded(false)}
-        >
+        <div className="field">
+          <input
+            className="input "
+            placeholder="Filter cancer..."
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+          />
+        </div>
+        <div className="button " onClick={() => setUseDefaultExpanded(false)}>
           Collapse all
         </div>
-        <div
-          className="button is-small"
-          onClick={() => setUseDefaultExpanded(true)}
-        >
+        <div className="button " onClick={() => setUseDefaultExpanded(true)}>
           Expand
         </div>
-        <span className="select is-small">
+        <span className="select ">
           <select
             value={levelSelector}
             onChange={(event) => {
@@ -69,10 +80,7 @@ export function SubsetsTree({
           </select>
         </span>
         {hasSelectedSubsets && (
-          <a
-            className="button is-primary is-small"
-            href={selectSamplesHref || null}
-          >
+          <a className="button is-primary " href={selectSamplesHref || null}>
             Search Samples from selection
           </a>
         )}{" "}
@@ -203,12 +211,12 @@ function Expander({ isOpen, toggle }) {
   )
 }
 
-const mkTreeWalker = (tree, defaultExpandedLevel, setSize) =>
-  function* treeWalker(refresh) {
+const mkTreeWalker = (tree, defaultExpandedLevel, setSize) => {
+  return function* treeWalker(refresh) {
     const stack = []
     // Remember all the necessary data of the first node in the stack.
     // We don't push the root, but its children
-    tree.children.forEach((node) => {
+    tree?.children?.forEach((node) => {
       stack.push({
         nestingLevel: 0,
         node
@@ -253,3 +261,15 @@ const mkTreeWalker = (tree, defaultExpandedLevel, setSize) =>
     }
     setSize(size)
   }
+}
+
+const match = (debouncedSearchInput) => (node) =>
+  node.id.toLowerCase().includes(debouncedSearchInput.toLowerCase()) ||
+  node.subset?.label.toLowerCase().includes(debouncedSearchInput.toLowerCase())
+
+function useFilterTree(tree) {
+  const [searchInput, setSearchInput] = useState(null)
+  const debouncedSearchInput = useDebounce(searchInput, 500) || ""
+  const filteredTree = filterNode(tree, match(debouncedSearchInput)) || []
+  return { searchInput, setSearchInput, filteredTree }
+}

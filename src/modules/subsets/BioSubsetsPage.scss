@@ -6,6 +6,7 @@
 
 .BioSubsets__controls {
   display: flex;
+  flex-wrap: wrap;
   & > * {
     margin-right: 0.5rem;
   }

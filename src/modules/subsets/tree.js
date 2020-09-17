@@ -49,3 +49,13 @@ export function getOrMakeNode(baseNode, path, makeUid = (id) => id) {
   }
   return getOrMakeChild(parentNode, id, makeUid)
 }
+
+export function filterNode(node, match) {
+  const isCurrentMatched = match(node)
+  const filteredChildren =
+    node.children?.map((c) => filterNode(c, match)).filter((c) => !!c) || []
+
+  if (isCurrentMatched || filteredChildren.length > 0) {
+    return { ...node, children: filteredChildren }
+  } else return null
+}

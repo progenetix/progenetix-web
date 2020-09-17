@@ -1,4 +1,10 @@
-import { hasChildren, getNode, getOrMakeChild, getOrMakeNode } from "./tree"
+import {
+  hasChildren,
+  getNode,
+  getOrMakeChild,
+  getOrMakeNode,
+  filterNode
+} from "./tree"
 
 test("hasChildren", () => {
   expect(hasChildren({ id: "c", children: [{ id: "d" }] })).toBeTruthy()
@@ -82,5 +88,39 @@ test("getOrMakeNode with deeper node", () => {
     ],
     id: "c",
     uid: "c"
+  })
+})
+
+test("filterNode", () => {
+  const node = { id: "a", uid: "a" }
+  getOrMakeNode(node, ["a", "b", "c"])
+  getOrMakeNode(node, ["a", "d", "e", "f"])
+  getOrMakeNode(node, ["a", "d", "e", "g"])
+  const filtered = filterNode(node, (node) => node.id === "f")
+  expect(filtered).toStrictEqual({
+    id: "a",
+    uid: "a",
+    children: [
+      {
+        id: "d",
+        uid: "d",
+        path: ["a", "d"],
+        children: [
+          {
+            id: "e",
+            uid: "e",
+            path: ["a", "d", "e"],
+            children: [
+              {
+                id: "f",
+                uid: "f",
+                path: ["a", "d", "e", "f"],
+                children: []
+              }
+            ]
+          }
+        ]
+      }
+    ]
   })
 })
