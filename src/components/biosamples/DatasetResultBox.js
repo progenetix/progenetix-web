@@ -11,6 +11,7 @@ import BiosamplesStatsDataTable from "./BiosamplesStatsDataTable"
 import { WithData } from "../Loader"
 import { openJsonInNewTab } from "../../utils/files"
 import dynamic from "next/dynamic"
+import { getVisualizationLink } from "../../modules/data-visualization/DataVisualizationPage"
 
 const handoversInTab = [
   HANDOVER_IDS.cnvhistogram,
@@ -171,7 +172,7 @@ function ResultsTab({
     <div>
       <div className="mb-2">
         See more{" "}
-        <a href={`/data-visualization?accessid=${visualizationAccessId}`}>
+        <a href={getVisualizationLink(visualizationAccessId)}>
           visualization options
         </a>
         .

@@ -19,7 +19,7 @@ export default function PublicationsListPage() {
   const debouncedSearchInput = useDebounce(searchInput, 500)
   return (
     <Layout title="Publications" headline="Progenetix Publication Collection">
-      <article className="mb-5">
+      <article className="content">
         <p>
           The current page lists articles describing whole genome screening
           (WGS, WES, aCGH, cCGH) experiments in cancer, registered in the

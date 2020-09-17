@@ -2,6 +2,8 @@ import { Layout } from "../../components/layouts/Layout"
 import React, { useState } from "react"
 import { useDropzone } from "react-dropzone"
 import { uploadFile } from "../../hooks/api"
+import { getVisualizationLink } from "./DataVisualizationPage"
+import Link from "next/link"
 
 export default function DataVisualizationUploadPage() {
   return (
@@ -9,6 +11,9 @@ export default function DataVisualizationUploadPage() {
       title="Data visualization Upload"
       headline="Data visualization Upload"
     >
+      <article className="content">
+        <p>TODO: Some descriptions about this feature.</p>
+      </article>
       <DataVisualizationUpload />
     </Layout>
   )
@@ -16,10 +21,14 @@ export default function DataVisualizationUploadPage() {
 
 function DataVisualizationUpload() {
   const [result, setResult] = useState(null)
+
   return (
     <div>
-      <Dropzone setResult={setResult} />
-      <p>{result && JSON.stringify(result)}</p>
+      {result ? (
+        <Results results={result} onCancelClicked={() => setResult(null)} />
+      ) : (
+        <Dropzone setResult={setResult} />
+      )}
     </div>
   )
 }
@@ -38,10 +47,33 @@ function Dropzone({ setResult }) {
 
   return (
     <>
-      <div className="mb-6">
+      <div className="content">
         <div {...getRootProps({ className: "dropzone" })}>
           <input {...getInputProps()} />
           <p>Drag and drop some files here, or click to select files.</p>
+        </div>
+      </div>
+    </>
+  )
+}
+function Results({ results, onCancelClicked }) {
+  const accessId = results.accessid
+  const visualizationLink = getVisualizationLink(accessId)
+
+  return (
+    <>
+      <div className="message is-success animate__fadeIn animate__animated animate__faster">
+        <div className="message-body content">
+          <p>The file has been successfully uploaded!</p>
+          <p>
+            <Link href={visualizationLink}>
+              <a className="button is-link">See visualization!</a>
+            </Link>
+          </p>
+          or{" "}
+          <button onClick={onCancelClicked} className="button-link button-text">
+            upload an other file instead.
+          </button>
         </div>
       </div>
     </>

@@ -15,6 +15,9 @@ import { useContainerDimensions } from "../../hooks/containerDimensions"
 import { useAsyncSelect } from "../../hooks/asyncSelect"
 import { keyBy } from "lodash"
 
+export const getVisualizationLink = (accessId) =>
+  `/data-visualization?accessid=${accessId}`
+
 const DataVisualizationPage = withUrlQuery(({ urlQuery }) => {
   const { accessid } = urlQuery
   const componentRef = useRef()
@@ -37,9 +40,12 @@ export default DataVisualizationPage
 
 function NoResultsHelp() {
   return (
-    <div className="notification is-size-5">
+    <div className="notification is-size-5 content">
       This page will only show content if called with a specific <i>accessid</i>
-      . Please start over from the Search Samples page.
+      .
+      <br />
+      Please start over from the Search Samples page or{" "}
+      <a href="/data-visualization-upload">upload a file</a>.
     </div>
   )
 }
