@@ -76,9 +76,7 @@ function Side({ onClick }) {
         <MenuInternalLinkItem href="/subsets/list" label="Cancer CNV Profiles" />
         <MenuInternalLinkItem href="/samples/search" label="Search Samples" />
         <MenuInternalLinkItem href="/publications/list" label="Publication DB" />
-        <li>
-          <MenuLink href="https://info.progenetix.org/uploader.html">Upload & Plot </MenuLink>
-        </li>
+        <MenuInternalLinkItem href="/data-visualization-upload" label="Upload & Plot" />
         <li>
           <MenuLink href="https://info.progenetix.org/">Documentation </MenuLink>
         </li>
