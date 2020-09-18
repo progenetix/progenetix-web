@@ -185,18 +185,19 @@ export function CytoBandsUtility({ onClose, setFormValue }) {
             <WithData
               dataEffectResult={dataEffectResult}
               render={(data) => {
-                const hasResults = !!data.data.cytoBands
+                const info = data.data?.info
+                const hasResults = !!info?.cytoBands
                 return (
                   <>
                     {hasResults ? (
-                      <CytoBandsData data={data.data} />
+                      <CytoBandsData data={info} />
                     ) : (
                       <div className="notification is-light">No results.</div>
                     )}
                     <div className="buttons">
                       <button
                         disabled={!hasResults}
-                        onClick={() => onApply(data.data)}
+                        onClick={() => onApply(info)}
                         className="button is-primary"
                       >
                         Apply
