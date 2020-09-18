@@ -14,7 +14,6 @@
     "animate.css": "^4.1.0",
     "classnames": "^2.2.6",
     "file-saver": "^2.0.2",
-    "js-yaml-loader": "^1.2.2",
     "json2csv": "^5.0.1",
     "leaflet": "^1.7.1",
     "lodash": "^4.17.20",
@@ -35,13 +34,14 @@
     "react-window": "^1.8.5",
     "remark-parse": "^8.0.3",
     "remark-react": "^7.0.1",
-    "sass": "^1.26.10",
     "swr": "^0.3.1",
     "tippy.js": "^6.2.6",
     "unified": "^9.2.0",
     "use-deep-compare-effect": "^1.4.0"
   },
   "devDependencies": {
+    "sass": "^1.26.10",
+    "js-yaml-loader": "^1.2.2",
     "babel-jest": "^26.3.0",
     "bulma": "^0.9.0",
     "eslint": "^7.8.0",
@@ -49,6 +49,7 @@
     "eslint-plugin-react-hooks": "^4.1.0",
     "http-proxy-middleware": "^1.0.5",
     "jest": "^26.4.2",
+    "neat-csv": "^5.2.0",
     "prettier": "^2.1.1 "
   }
 }
