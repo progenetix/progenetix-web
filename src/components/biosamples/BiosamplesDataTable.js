@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import { WithData } from "../Loader"
 import Table from "../Table"
 import DownloadButton from "../DownloadButton"
+import Link from "next/link"
 
 export default function BiosamplesDataTable({ dataEffectResult, datasetId }) {
   const columns = React.useMemo(
@@ -12,13 +13,11 @@ export default function BiosamplesDataTable({ dataEffectResult, datasetId }) {
         accessor: "id",
         // eslint-disable-next-line react/display-name
         Cell: (cellInfo) => (
-          <a
+          <Link
             href={`/samples/details?id=${cellInfo.value}&datasetIds=${datasetId}`}
-            rel="noreferrer"
-            target="_blank"
           >
             {cellInfo.value}
-          </a>
+          </Link>
         )
       },
       {
@@ -31,13 +30,9 @@ export default function BiosamplesDataTable({ dataEffectResult, datasetId }) {
         Cell: ({ value: biocharacteristics }) =>
           biocharacteristics.map((biocharacteristic, i) => (
             <div key={i} title={biocharacteristic.label}>
-              <a
-                href={`/subsets/list?filters=${biocharacteristic.type.id}`}
-                rel="noreferrer"
-                target="_blank"
-              >
-                {biocharacteristic.type.id}
-              </a>{" "}
+              <Link href={`/subsets/list?filters=${biocharacteristic.type.id}`}>
+                <a>{biocharacteristic.type.id}</a>
+              </Link>{" "}
               {biocharacteristic.type.label}
             </div>
           ))
@@ -50,9 +45,7 @@ export default function BiosamplesDataTable({ dataEffectResult, datasetId }) {
             <div key={i}>
               {isPMID(externalReference) ? (
                 <a
-                  href={`/publications/details?id=${externalReference.type.id}&scope=datacollections`}
-                  rel="noreferrer"
-                  target="_blank"
+                  href={`/publications/details?id=${externalReference.type.id}`}
                 >
                   {externalReference.type.id}
                 </a>

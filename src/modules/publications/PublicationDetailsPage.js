@@ -7,14 +7,10 @@ import { Layout } from "../../components/layouts/Layout"
 import { EpmcLink } from "./EpmcUrl"
 
 const PublicationDetailsPage = withUrlQuery(({ urlQuery }) => {
-  const { id, scope, filter } = urlQuery
+  const { id, filter } = urlQuery
   return (
     <Layout title="Publication Details">
-      {!id ? (
-        <NoResultsHelp />
-      ) : (
-        <PublicationLoader id={id} scope={scope} filter={filter} />
-      )}
+      {!id ? <NoResultsHelp /> : <PublicationLoader id={id} filter={filter} />}
     </Layout>
   )
 })
@@ -33,28 +29,22 @@ function NoResultsHelp() {
   )
 }
 
-function PublicationLoader({ id, scope, filter }) {
+function PublicationLoader({ id, filter }) {
   const { data, error, isLoading } = usePublication(id)
   return (
     <Loader isLoading={isLoading} hasError={error} background>
-      <PublicationResponse
-        response={data}
-        id={id}
-        scope={scope}
-        filter={filter}
-      />
+      <PublicationResponse response={data} id={id} filter={filter} />
     </Loader>
   )
 }
 
-function PublicationResponse({ response, id, scope, filter }) {
+function PublicationResponse({ response, id, filter }) {
   if (response?.length >= 1) {
     return response.map((publication, i) => (
       <PublicationDetails
         key={i}
         publication={publication}
         id={id}
-        scope={scope}
         filter={filter}
       />
     ))
@@ -63,7 +53,7 @@ function PublicationResponse({ response, id, scope, filter }) {
   }
 }
 
-function PublicationDetails({ publication, id, scope, filter }) {
+function PublicationDetails({ publication, id, filter }) {
   const progenetixBiosamplesCount = publication.counts?.progenetix ?? 0
   const arraymapBiosamplesCount = publication.counts?.arraymap ?? 0
   return (
@@ -113,21 +103,11 @@ function PublicationDetails({ publication, id, scope, filter }) {
 
       {progenetixBiosamplesCount > 0 && (
         <div className="mb-5">
-          <SubsetHistogram
-            id={id}
-            filter={filter}
-            scope={scope}
-            datasetIds="progenetix"
-          />
+          <SubsetHistogram id={id} filter={filter} datasetIds="progenetix" />
         </div>
       )}
       {arraymapBiosamplesCount > 0 && (
-        <SubsetHistogram
-          id={id}
-          filter={filter}
-          scope={scope}
-          datasetIds="arraymap"
-        />
+        <SubsetHistogram id={id} filter={filter} datasetIds="arraymap" />
       )}
     </section>
   )

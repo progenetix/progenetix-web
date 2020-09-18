@@ -3,6 +3,7 @@ import cn from "classnames"
 import { FaBars, FaTimes } from "react-icons/fa"
 import { useRouter } from "next/router"
 import Head from "next/head"
+import Link from "next/link"
 
 export function Layout({ title, headline, children }) {
   const [sideOpen, setSideOpen] = useState(false)
@@ -73,12 +74,17 @@ function Side({ onClick }) {
       </a>
       <ul className="Layout__side__items">
         <MenuInternalLinkItem href="/about" label="About Progenetix" />
-        <MenuInternalLinkItem href="/subsets/list" label="Cancer CNV Profiles" />
+        <MenuInternalLinkItem
+          href="/subsets/list"
+          label="Cancer CNV Profiles"
+        />
         <MenuInternalLinkItem href="/samples/search" label="Search Samples" />
         <MenuInternalLinkItem href="/publications/list" label="Publication DB" />
         <MenuInternalLinkItem href="/data-visualization-upload" label="Upload & Plot" />
         <li>
-          <MenuLink href="https://info.progenetix.org/">Documentation </MenuLink>
+          <MenuLink href="https://info.progenetix.org/">
+            Documentation{" "}
+          </MenuLink>
         </li>
         <MenuInternalLinkItem
           href="/beacon-plus/search"
@@ -117,18 +123,19 @@ const MenuLink = React.forwardRef(
   ({ onClick, href, isActive, children, isSub }, ref) => {
     const className = isSub ? "Layout__side__sub" : "Layout__side__category"
     return (
-      <a
-        href={href}
-        onClick={onClick}
-        ref={ref}
-        className={cn(
-          { "is-active": isActive },
-          "Layout__side__item",
-          className
-        )}
-      >
-        {children}
-      </a>
+      <Link href={href}>
+        <a
+          onClick={onClick}
+          ref={ref}
+          className={cn(
+            { "is-active": isActive },
+            "Layout__side__item",
+            className
+          )}
+        >
+          {children}
+        </a>
+      </Link>
     )
   }
 )

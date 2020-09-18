@@ -206,21 +206,13 @@ export function useCytomapper(querytext) {
   return useExtendedSWR(url)
 }
 
-export function useSubsethistogram({
-  datasetIds,
-  id,
-  filter,
-  scope,
-  size,
-  chr2plot
-}) {
+export function useSubsethistogram({ datasetIds, id, filter, size, chr2plot }) {
   const params = [
     ["datasetIds", datasetIds],
     ["id", id],
     ["-size_plotimage_w_px", size]
   ]
   filter && params.push(["filter", filter])
-  scope && params.push(["scope", scope])
   chr2plot && params.push(["chr2plot", chr2plot])
   const searchQuery = new URLSearchParams(params).toString()
   return useExtendedSWR(

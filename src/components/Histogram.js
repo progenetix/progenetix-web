@@ -16,13 +16,7 @@ export default function Histogram({ dataEffectResult }) {
   )
 }
 
-export function SubsetHistogram({
-  id,
-  filter,
-  scope,
-  datasetIds,
-  size: givenSize
-}) {
+export function SubsetHistogram({ id, filter, datasetIds, size: givenSize }) {
   const componentRef = useRef()
   const { width } = useContainerDimensions(componentRef)
   const size = givenSize || width
@@ -33,7 +27,6 @@ export function SubsetHistogram({
           datasetIds,
           id,
           filter,
-          scope,
           size
         })}
       />
@@ -44,6 +37,5 @@ export function SubsetHistogram({
 SubsetHistogram.propTypes = {
   id: PropTypes.string.isRequired,
   filter: PropTypes.string,
-  scope: PropTypes.string,
   background: PropTypes.bool
 }

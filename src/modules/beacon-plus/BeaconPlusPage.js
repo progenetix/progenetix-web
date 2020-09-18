@@ -23,8 +23,8 @@ export default function BeaconPlusPage({ datasets }) {
 
   const onValidFormQuery = (formValues) => {
     setSearchCollapsed(true)
-    mutateQuery(null) // mutateQuery and clear current results
     setQuery(formValues)
+    mutateQuery(null) // mutateQuery and clear current results
   }
 
   return (
@@ -36,7 +36,7 @@ export default function BeaconPlusPage({ datasets }) {
             isOpened={!searchCollapsed}
             heading={
               <>
-                <span>Search</span>
+                <span>Search Samples</span>
                 {searchCollapsed && (
                   <button className="button ml-3">
                     <FaSlidersH

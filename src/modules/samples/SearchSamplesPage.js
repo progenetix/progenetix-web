@@ -10,7 +10,7 @@ import { BiosamplesResults } from "../../components/biosamples/BiosamplesResults
 
 export default function SearchSamplesPage() {
   return (
-    <Layout title="Search Samples" headline="Search Samples">
+    <Layout title="Search Samples" headline="">
       <SearchSamples />
     </Layout>
   )
@@ -47,7 +47,7 @@ function SearchSamples() {
           isOpened={!searchCollapsed}
           heading={
             <>
-              <span>Search</span>
+              <span>Search Samples</span>
               {searchCollapsed && (
                 <button className="button ml-3">
                   <FaSlidersH

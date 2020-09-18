@@ -82,8 +82,6 @@ function BiosamplesTable({ biosamples, datasetId }) {
         Cell: (cellInfo) => (
           <a
             href={`/samples/details?id=${cellInfo.value}&datasetIds=${datasetId}`}
-            rel="noreferrer"
-            target="_blank"
           >
             {cellInfo.value}
           </a>
