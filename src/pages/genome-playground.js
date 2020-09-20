@@ -31,16 +31,6 @@ export function ChromosomeControl({ name, bands }) {
   const [startRange, setStart] = useState(defaultStart)
   const [endRange, setEnd] = useState(defaultEnd)
 
-  const handleStartChange = (e) => {
-    const newStartRange = e.target.value
-    setStart(newStartRange)
-  }
-
-  const handleEndChange = (e) => {
-    const newEndRange = e.target.value
-    setEnd(newEndRange)
-  }
-
   const startRangeError = checkIntegerRange(startRange)
   const endRangeError = checkIntegerRange(endRange)
 
@@ -49,14 +39,14 @@ export function ChromosomeControl({ name, bands }) {
       <div className="mb-2">
         <input
           value={startRange}
-          onChange={handleStartChange}
+          onChange={(e) => setStart(e.target.value)}
           className="input is-small mb-3"
           placeholder="start"
         />
         {startRangeError}
         <input
           value={endRange}
-          onChange={handleEndChange}
+          onChange={(e) => setEnd(e.target.value)}
           className="input is-small is"
           placeholder="end"
         />
