@@ -44,7 +44,10 @@ export function Chromosome({
     <>
       <Tippy singleton={source} delay={0} theme="light" placement="top" />
       <svg
-        style={{ cursor: autoZoom ? "zoom-out" : "zoom-in" }}
+        style={{
+          cursor: autoZoom ? "zoom-out" : "zoom-in",
+          overflow: "visible"
+        }}
         width={width}
         viewBox={`0 0 ${width} ${height}`}
         onClick={() => setAutoZoom(!autoZoom)}
@@ -102,8 +105,12 @@ export function Chromosome({
           )}
         </svg>
         {start &&
-          annotation(calcX, width)(start, "start", outerRangeColor, "top")}
-        {end && annotation(calcX, width)(end, "end", outerRangeColor, "bottom")}
+          annotation(calcX)(start, "start", outerRangeColor, "top", "end")}
+        {start &&
+          annotation(calcX)(start, start, outerRangeColor, "bottom", "end")}
+        {end && annotation(calcX)(end, "end", outerRangeColor, "top", "start")}
+        {start &&
+          annotation(calcX)(end, end, outerRangeColor, "bottom", "start")}
       </svg>
     </>
   )
@@ -120,11 +127,14 @@ const verticalLine = (calcX) => (bandPosition, stroke) => (
   />
 )
 
-const annotation = (calcX, width) => (bandPosition, text, fill, position) => {
+const annotation = (calcX) => (
+  bandPosition,
+  text,
+  fill,
+  position,
+  anchor = "middle"
+) => {
   const x = calcX(bandPosition)
-  let anchor = "middle"
-  if (x < 20) anchor = "start"
-  if (x > width - 20) anchor = "end"
 
   let y = "0"
   let alignmentBaseline = "hanging"
