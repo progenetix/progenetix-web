@@ -15,7 +15,8 @@ BiosamplesSearchPanel.propTypes = {
 export default function BiosamplesSearchPanel({
   datasets,
   requestTypesConfig,
-  parametersConfig
+  parametersConfig,
+  cytoBands
 }) {
   const [query, setQuery] = useState(null) // actual valid query
   const [searchCollapsed, setSearchCollapsed] = useState(false)
@@ -55,6 +56,7 @@ export default function BiosamplesSearchPanel({
           }
         >
           <BiosamplesSearchForm
+            cytoBands={cytoBands}
             datasets={datasets}
             requestTypesConfig={requestTypesConfig}
             parametersConfig={parametersConfig}

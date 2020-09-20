@@ -167,8 +167,6 @@ variantAlleleRequest:
           defaultValue: "17"
         start:
           defaultValue: 7673767
-        endMin:
-          defaultValue: ""
         end:
           defaultValue: ""
         variantType:
@@ -272,10 +270,6 @@ allFieldsRequest:
       placeholder: "9"
     start:
       placeholder: "20000001-21975098"
-    startMax:
-      placeholder: 21975098
-    endMin:
-      placeholder: 21967753
     end:
       placeholder: "21967753-23000000"
     variantType:

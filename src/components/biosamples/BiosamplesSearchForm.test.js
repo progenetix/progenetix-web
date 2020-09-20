@@ -1,4 +1,4 @@
-import { checkIntegerRange } from "./BiosamplesSearchForm"
+import { checkIntegerRange } from "../../hooks/api"
 
 test("checkIntegerRange", () => {
   expect(checkIntegerRange("1")).toBeFalsy()
