@@ -256,6 +256,6 @@ function ExternalLink({ href, label, onClick }) {
   )
 }
 
-const BiosamplesMap = dynamic(() => import("./BiosamplesMap"), {
+const BiosamplesMap = dynamic(() => import("./BioSamplesMap"), {
   ssr: false
 })
