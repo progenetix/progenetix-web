@@ -40,8 +40,6 @@
     "use-deep-compare-effect": "^1.4.0"
   },
   "devDependencies": {
-    "sass": "^1.26.10",
-    "js-yaml-loader": "^1.2.2",
     "babel-jest": "^26.3.0",
     "bulma": "^0.9.0",
     "eslint": "^7.8.0",
@@ -49,7 +47,9 @@
     "eslint-plugin-react-hooks": "^4.1.0",
     "http-proxy-middleware": "^1.0.5",
     "jest": "^26.4.2",
+    "js-yaml-loader": "^1.2.2",
     "neat-csv": "^5.2.0",
-    "prettier": "^2.1.1 "
+    "prettier": "^2.1.1 ",
+    "sass": "^1.26.10"
   }
 }
