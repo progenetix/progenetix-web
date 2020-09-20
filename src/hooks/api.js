@@ -269,6 +269,17 @@ function flattenParams(paramArray) {
 
 export const INTEGER_RANGE_REGEX = /^(\d+)(?:[-,;])?(\d+)?$/
 
+export const checkIntegerRange = (value) => {
+  if (!value) return
+  const match = INTEGER_RANGE_REGEX.exec(value)
+  if (!match) return "Input should be a range (ex: 1-5) or a single value"
+  const [, range0Str, range1Str] = match
+  const range0 = Number.parseInt(range0Str)
+  const range1 = Number.parseInt(range1Str)
+  if (range1 && range0 > range1)
+    return "Incorrect range input, max should be greater than min"
+}
+
 export function replaceWithProxy(
   url,
   useProxyOpt = useProxy,

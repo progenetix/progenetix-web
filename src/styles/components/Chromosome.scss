@@ -1,0 +1,46 @@
+.stain {
+  --hue: 240;
+  --sat: 21%;
+  outline: none;
+}
+
+.stain--gpos100 {
+  fill: hsl(var(--hue), var(--sat), 15%);
+}
+.stain--gpos75 {
+  fill: hsl(var(--hue), var(--sat), 30%);
+}
+.stain--gpos66 {
+  fill: hsl(var(--hue), var(--sat), 40%);
+}
+.stain--gpos50 {
+  fill: hsl(var(--hue), var(--sat), 45%);
+}
+.stain--gpos33 {
+  fill: hsl(var(--hue), var(--sat), 50%);
+}
+.stain--gpos25 {
+  fill: hsl(var(--hue), var(--sat), 38%);
+}
+.stain--gvar {
+  fill: hsl(var(--hue), var(--sat), 90%);
+}
+.stain--gneg {
+  fill: hsl(var(--hue), var(--sat), 98%);
+}
+.stain--acen {
+  fill: $orange;
+}
+.stain--stalk {
+  fill: $green;
+}
+
+svg .selection {
+  fill: #3298dc;
+  fill-opacity: 0.2;
+  stroke: none;
+}
+
+svg .annotation {
+  font-size: 1.3rem;
+}

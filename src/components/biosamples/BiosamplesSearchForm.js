@@ -1,6 +1,6 @@
 import cn from "classnames"
 import {
-  INTEGER_RANGE_REGEX,
+  checkIntegerRange,
   makeFilters,
   useCollations,
   validateBeaconQuery
@@ -21,6 +21,7 @@ import InputField from "../form/InputField"
 import useDeepCompareEffect from "use-deep-compare-effect"
 import { withUrlQuery } from "../../hooks/url-query"
 import { GeoCitySelector } from "./GeoCitySelector"
+import ChromosomePreview from "./ChromosomePreview"
 
 export const BiosamplesSearchForm = withUrlQuery(
   ({ urlQuery, setUrlQuery, ...props }) => (
@@ -31,6 +32,7 @@ export default BiosamplesSearchForm
 
 BiosamplesSearchForm.propTypes = {
   datasets: PropTypes.array.isRequired,
+  cytoBands: PropTypes.object.isRequired,
   isQuerying: PropTypes.bool.isRequired,
   setSearchQuery: PropTypes.func.isRequired,
   requestTypesConfig: PropTypes.object.isRequired,
@@ -78,6 +80,7 @@ function useIsFilterlogicWarningVisible(watch) {
 
 export function Form({
   datasets,
+  cytoBands,
   isQuerying,
   setSearchQuery,
   requestTypesConfig,
@@ -170,6 +173,7 @@ export function Form({
   const isFilterlogicWarningVisible = useIsFilterlogicWarningVisible(watch)
   const geoCity = watch("geoCity")
   const showGeoDistance = !parameters.geoCity.isHidden && geoCity != null
+
   return (
     <>
       {displayTabs && (
@@ -325,6 +329,7 @@ export function Form({
               <InputField {...parameters.geodistanceKm} {...fieldProps} />
             </div>
           </div>
+          <ChromosomePreview watch={watch} cytoBands={cytoBands} />
           <div className="field mt-5">
             <div className="control">
               <button
@@ -512,17 +517,6 @@ const handleRequestTypeClicked = (setExample, setRequestTypeId) => (
 ) => {
   setExample(null)
   setRequestTypeId(requestTypeId)
-}
-
-export const checkIntegerRange = (value) => {
-  if (!value) return
-  const match = INTEGER_RANGE_REGEX.exec(value)
-  if (!match) return "Input should be a range (ex: 1-5) or a single value"
-  const [, range0Str, range1Str] = match
-  const range0 = Number.parseInt(range0Str)
-  const range1 = Number.parseInt(range1Str)
-  if (range1 && range0 > range1)
-    return "Incorrect range input, max should be greater than min"
 }
 
 // Maps FilteringTerms hook to dataEffectResult usable by DataFetchSelect
