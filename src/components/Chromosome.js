@@ -8,7 +8,7 @@ const outerBandsHeightRatio = 0.65 // pt
 const innerBandsHeightRatio = 0.8 // pt
 const outerRangeColor = "#5781ff"
 const innerRangeColor = "#ff0033"
-const height = 90
+const height = 60
 const autoZoomFactor = 1.4
 export function Chromosome({
   bands,
