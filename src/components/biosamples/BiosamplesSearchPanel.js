@@ -28,12 +28,15 @@ export default function BiosamplesSearchPanel({
     isLoading: isQueryLoading
   } = useBeaconQuery(query)
 
+  const clearQuery = () => {
+    setQuery(null)
+    mutateQuery(null)
+  }
   const isLoading = isQueryLoading && !!query
-
   const onValidFormQuery = (formValues) => {
     setSearchCollapsed(true)
+    clearQuery()
     setQuery(formValues)
-    mutateQuery(null) // mutateQuery and clear current results
   }
 
   return (
@@ -47,7 +50,10 @@ export default function BiosamplesSearchPanel({
               {searchCollapsed && (
                 <button className="button ml-3">
                   <FaSlidersH
-                    onClick={() => setSearchCollapsed(false)}
+                    onClick={() => {
+                      clearQuery()
+                      setSearchCollapsed(false)
+                    }}
                     className="icon has-text-info"
                   />
                 </button>
