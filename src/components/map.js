@@ -20,7 +20,7 @@ export function getOSMTiles() {
 export function useMap(mapRef) {
   useEffect(() => {
     const tiles = getOSMTiles()
-    const center = L.latLng(10.0, 35.0)
+    const center = L.latLng(8.55, 47.37)
     const map = L.map("map", {
       center: center,
       zoom: 2,

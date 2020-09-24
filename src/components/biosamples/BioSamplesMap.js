@@ -13,7 +13,7 @@ export default function BiosamplesMap({ dataEffectResult, datasetId }) {
     <WithData
       dataEffectResult={dataEffectResult}
       render={(data) => (
-        <Map biosamples={data} height={800} datasetId={datasetId} />
+        <Map biosamples={data} height={640} datasetId={datasetId} />
       )}
     />
   )
