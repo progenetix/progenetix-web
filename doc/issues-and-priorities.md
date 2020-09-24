@@ -3,6 +3,15 @@
 Under each date stamp, current issues & needed fixes are listed top -> down in
 order of urgency & perceived feasibility of fast implementation).
 
+### 2020-09-24
+
+#### Enhancements
+
+* The `referenceLink` function now replaces the `isPMID` functionon 2 pages. However,
+when dropped into hooks/api and loaded from there, only the "PMID:..." resulted
+in a link; it works if code is on page (as it is now). Should be a function that
+can be called on any page.
+
 ### 2020-09-08
 
 #### New Page "Variant Details"
@@ -18,7 +27,7 @@ order of urgency & perceived feasibility of fast implementation).
     * `info.death: 1` => "dead"
     * `info.death: 0` => "alive"
   - ~~add links to PMID, classifications~~
-* `isPMID` should be a global function (?)
+* ~~`isPMID` should be a global function (?)~~
 
 ### 2020-09-01
 

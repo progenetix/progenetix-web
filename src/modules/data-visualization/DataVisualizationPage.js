@@ -208,11 +208,12 @@ function ResultPanel({ response }) {
 }
 
 const groupByOptions = [
-  { value: "NCIT", label: "NCIT code" },
-  { value: "icdom", label: "ICD-O Morphology code" },
-  { value: "icdot", label: "ICD Topography code" },
-  { value: "PMID", label: "Publication (PubMed code)" },
-  { value: "geogse-GSE", label: "GEO Series ID" },
+  { value: "NCIT", label: "NCIT Neoplasm Code" },
+  { value: "icdom", label: "ICD-O Morphology Code" },
+  { value: "icdot", label: "ICD Topography Code" },
+  { value: "PMID", label: "Publication (PubMed ID)" },
+  { value: "geogse", label: "GEO Series ID" },
+  { value: "geogpl", label: "GEO Platform ID" },
   {
     value: "cellosaurus",
     label: "Cellosaurus Cellline ID"
