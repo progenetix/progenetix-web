@@ -7,10 +7,10 @@ order of urgency & perceived feasibility of fast implementation).
 
 #### Enhancements
 
-* The `referenceLink` function now replaces the `isPMID` functionon 2 pages. However,
+* The `referenceLink` function now replaces the `isPMID` functionon 2 pages. ~~However,
 when dropped into hooks/api and loaded from there, only the "PMID:..." resulted
 in a link; it works if code is on page (as it is now). Should be a function that
-can be called on any page.
+can be called on any page.~~
 
 ### 2020-09-08
 

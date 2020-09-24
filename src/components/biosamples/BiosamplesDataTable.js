@@ -1,3 +1,4 @@
+import { referenceLink } from "../../hooks/api"
 import React from "react"
 import PropTypes from "prop-types"
 import { WithData } from "../Loader"
@@ -92,18 +93,4 @@ export default function BiosamplesDataTable({ dataEffectResult, datasetId }) {
 
 BiosamplesDataTable.propTypes = {
   dataEffectResult: PropTypes.object.isRequired
-}
-
-function referenceLink(externalReference) {
-  if ( externalReference.type.id.includes("cellosaurus:") ) {
-    return 'https://web.expasy.org/cgi-bin/cellosaurus/search?input='+externalReference.type.id.replace("cellosaurus:", "")
-  } else if ( externalReference.type.id.includes("PMID:") ) {
-    return '/publications/details?id='+externalReference.type.id
-  } else if ( externalReference.type.id.includes("geogse-") ) {
-    return 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc='+externalReference.type.id.replace("geogse-", "")
-  } else if ( externalReference.type.id.includes("geogsm-") ) {
-    return 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc='+externalReference.type.id.replace("geogsm-", "")
-  } else if ( externalReference.type.id.includes("geogpl-") ) {
-    return 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc='+externalReference.type.id.replace("geogpl-", "")
-  }
 }
