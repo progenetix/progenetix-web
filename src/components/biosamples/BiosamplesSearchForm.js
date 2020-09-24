@@ -40,7 +40,7 @@ BiosamplesSearchForm.propTypes = {
 }
 
 function urlQueryToFormParam(urlQuery, key, parametersConfig) {
-  const { isMulti } = parametersConfig[key]
+  const isMulti = !!parametersConfig[key]?.isMulti ?? false
   const value = urlQuery[key]
   if (value == null) return value
   if (isMulti) {

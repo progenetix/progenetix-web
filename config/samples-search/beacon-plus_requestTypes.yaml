@@ -264,8 +264,6 @@ allFieldsRequest:
     requestType: {}
     assemblyId:
       placeholder: "GRCh38"
-    cytoinputField:
-      placeholder: "9p13.1"
     referenceName:
       placeholder: "9"
     start:
