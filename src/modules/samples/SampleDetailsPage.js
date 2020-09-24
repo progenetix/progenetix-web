@@ -137,9 +137,9 @@ function Biosample({ biosample, datasetIds }) {
       <ul>
         {biosample.external_references.map((externalReference, i) => (
           <li key={i}>
-            {isPMID(externalReference) ? (
+            {referenceLink(externalReference) ? (
               <Link
-                href={`/publications/details?id=${externalReference.type.id}`}
+                href={ referenceLink(externalReference) }
               >
                 <a>{externalReference.type.id}</a>
               </Link>
@@ -186,6 +186,16 @@ function CnvHistogramPreview({ csid, datasetIds }) {
   )
 }
 
-function isPMID(externalReference) {
-  return externalReference.type.id.includes("PMID:")
+function referenceLink(externalReference) {
+  if ( externalReference.type.id.includes("cellosaurus:") ) {
+    return 'https://web.expasy.org/cgi-bin/cellosaurus/search?input='+externalReference.type.id.replace("cellosaurus:", "")
+  } else if ( externalReference.type.id.includes("PMID:") ) {
+    return '/publications/details?id='+externalReference.type.id
+  } else if ( externalReference.type.id.includes("geogse-") ) {
+    return 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc='+externalReference.type.id.replace("geogse-", "")
+  } else if ( externalReference.type.id.includes("geogsm-") ) {
+    return 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc='+externalReference.type.id.replace("geogsm-", "")
+  } else if ( externalReference.type.id.includes("geogpl-") ) {
+    return 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc='+externalReference.type.id.replace("geogpl-", "")
+  }
 }
