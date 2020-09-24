@@ -45,9 +45,7 @@ export default function BiosamplesDataTable({ dataEffectResult, datasetId }) {
           externalReferences.map((externalReference, i) => (
             <div key={i}>
               {referenceLink(externalReference) ? (
-                <Link
-                  href={ referenceLink(externalReference) }
-                >
+                <Link href={referenceLink(externalReference)}>
                   <a>{externalReference.type.id}</a>
                 </Link>
               ) : (

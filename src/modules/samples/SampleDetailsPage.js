@@ -1,4 +1,10 @@
-import { basePath, referenceLink, sampleUrl, useExtendedSWR, useSample } from "../../hooks/api"
+import {
+  basePath,
+  referenceLink,
+  sampleUrl,
+  useExtendedSWR,
+  useSample
+} from "../../hooks/api"
 import { Loader } from "../../components/Loader"
 import React, { useRef } from "react"
 import { withUrlQuery } from "../../hooks/url-query"
@@ -138,9 +144,7 @@ function Biosample({ biosample, datasetIds }) {
         {biosample.external_references.map((externalReference, i) => (
           <li key={i}>
             {referenceLink(externalReference) ? (
-              <Link
-                href={ referenceLink(externalReference) }
-              >
+              <Link href={referenceLink(externalReference)}>
                 <a>{externalReference.type.id}</a>
               </Link>
             ) : (

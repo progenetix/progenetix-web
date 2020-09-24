@@ -79,8 +79,14 @@ function Side({ onClick }) {
           label="Cancer CNV Profiles"
         />
         <MenuInternalLinkItem href="/samples/search" label="Search Samples" />
-        <MenuInternalLinkItem href="/publications/list" label="Publication DB" />
-        <MenuInternalLinkItem href="/data-visualization-upload" label="Upload & Plot" />
+        <MenuInternalLinkItem
+          href="/publications/list"
+          label="Publication DB"
+        />
+        <MenuInternalLinkItem
+          href="/data-visualization-upload"
+          label="Upload & Plot"
+        />
         <li>
           <MenuLink href="https://info.progenetix.org/">
             Documentation{" "}
