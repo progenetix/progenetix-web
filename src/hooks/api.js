@@ -245,19 +245,30 @@ export function useGeoCity({ city }) {
 }
 
 export function referenceLink(externalReference) {
-  if ( externalReference.type.id.includes("cellosaurus:") ) {
-    return 'https://web.expasy.org/cgi-bin/cellosaurus/search?input='+externalReference.type.id.replace("cellosaurus:", "")
-  } else if ( externalReference.type.id.includes("PMID:") ) {
-    return '/publications/details?id='+externalReference.type.id
-  } else if ( externalReference.type.id.includes("geogse-") ) {
-    return 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc='+externalReference.type.id.replace("geogse-", "")
-  } else if ( externalReference.type.id.includes("geogsm-") ) {
-    return 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc='+externalReference.type.id.replace("geogsm-", "")
-  } else if ( externalReference.type.id.includes("geogpl-") ) {
-    return 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc='+externalReference.type.id.replace("geogpl-", "")
+  if (externalReference.type.id.includes("cellosaurus:")) {
+    return (
+      "https://web.expasy.org/cgi-bin/cellosaurus/search?input=" +
+      externalReference.type.id.replace("cellosaurus:", "")
+    )
+  } else if (externalReference.type.id.includes("PMID:")) {
+    return "/publications/details?id=" + externalReference.type.id
+  } else if (externalReference.type.id.includes("geogse-")) {
+    return (
+      "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=" +
+      externalReference.type.id.replace("geogse-", "")
+    )
+  } else if (externalReference.type.id.includes("geogsm-")) {
+    return (
+      "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=" +
+      externalReference.type.id.replace("geogsm-", "")
+    )
+  } else if (externalReference.type.id.includes("geogpl-")) {
+    return (
+      "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=" +
+      externalReference.type.id.replace("geogpl-", "")
+    )
   }
 }
-
 
 export async function uploadFile(formData) {
   // Default options are marked with *
