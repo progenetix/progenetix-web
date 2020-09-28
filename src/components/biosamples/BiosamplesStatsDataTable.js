@@ -72,7 +72,7 @@ export default function BiosamplesStatsDataTable({
     [variantCount, datasetId]
   )
 
-  const allSubsets = useCollationsById({ datasetIds: "progenetix" })
+  const allSubsets = useCollationsById({ datasetIds: datasetId })
   return (
     <WithData
       dataEffectResult={allSubsets}

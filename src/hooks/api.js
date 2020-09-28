@@ -233,7 +233,7 @@ export function useCollationsById({ datasetIds }) {
 }
 
 export function useCollations({ datasetIds, method, filters }) {
-  const url = `${basePath}cgi/bycon/bin/collations.py?datasetIds=${datasetIds}&method=${method}&filters=${filters}&responseFormat=simplelist`
+  const url = `${basePath}services/collations/?datasetIds=${datasetIds}&method=${method}&filters=${filters}&responseFormat=simplelist`
   const { data: rawData, ...other } = useExtendedSWR(url)
   const data = Array.isArray(rawData) ? rawData : null
   return { data, ...other }
