@@ -118,7 +118,7 @@ export function Chromosome({
         {start &&
           annotation(calcX)(startMax, startMax, startRangeColor, "top", "start")}
         {end && annotation(calcX)(endMin, endMin, endRangeColor, "bottom", "end")}
-        {start &&
+        {end &&
           annotation(calcX)(end, end, endRangeColor, "bottom", "start")}
       </svg>
     </>
