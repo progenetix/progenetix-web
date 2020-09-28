@@ -6,6 +6,8 @@ datasetIds:
   isMulti: true
 assemblyId:
   label: Genome Assembly
+  infoText: |
+    The genome reference assembly.
   defaultValue: GRCh38
   options:
     - value: GRCh38
@@ -35,6 +37,7 @@ requestType:
       label: variantFusionRequest
 referenceName:
   label: Reference name
+  infoText: The chromosome with the variant(s). Required.
   options:
     - label: '1'
       value: '1'
@@ -86,6 +89,8 @@ referenceName:
       value: Y
 variantType:
   label: "(Structural) Variant Type"
+  infoText: |
+    The type of a structural variant for e.g. CNV searches.
   defaultValue: ''
   options:
     - value: ''
@@ -94,24 +99,41 @@ variantType:
       label: DEL (Deletion)
     - value: DUP
       label: DUP (Duplication)
-    - value: BND
-      label: BND (Break/Fusion)
+    - value: CNV
+      label: CNV (any CNV - DUP or DEL)
 start:
   label: Start or Position
+  infoText: |
+    The 1-based genomic position of the variant, or the start of a range query,
+    specified through a single value.
+    However, in case of fuzzy requests for e.g. copy number variants, the start
+    position will usually be provided as a range for the possible occurrence of
+    the CNV start (e.g. "21500001-21975098").
 end:
   label: End (Range or Structural Var.)
+  infoText: |
+    The 1-based genomic end position of a range query, specified through a
+    single value, or in case of fuzzy requests for e.g. copy number variants
+    the end provided as a range for the possible occurrence of
+    the CNV end (e.g. "21967753-22500000").
 referenceBases:
   label: Reference Base(s)
 alternateBases:
   label: Alternate Base(s)
 bioontology:
   label: Cancer Classification(s)
+  infoText: |
+    Special filter type for disease classification codes. If using multiple
+    codes please be aware that probably use of an "OR" filter logic will be needed.
   isMulti: true
   options:
     - value: ''
       label: "(no selection)"
 materialtype:
   label: Biosample Type
+  infoText: |
+    Special filter type, to e.g. limit responses to neoplastic or reference
+    samples, respectively, when not using specific cancer classification codes.
   defaultValue: ''
   options:
     - value: ''
@@ -122,12 +144,19 @@ materialtype:
       label: reference sample
 freeFilters:
   label: Filters
-  infoText: Add free comma-concatenated **filters** to the search.
+  infoText: |
+    Add free comma-concatenated **filters** to the search. These will usually
+    correspond to CURIE values supported by the resource (e.g.
+    "cellosaurus:CVCL_0139"; "NCIT:C3222"; "PMID:18559507").
 accessid:
   label: Accession Prefilter
 filterLogic:
   label: Filter Logic
-  infoText: Boolean logic for filter values; default **AND** assume different logical scopes.
+  infoText: |
+    Boolean logic for filter values; the default **AND** assumes different
+    logical scopes for used filters (e.g. collision occurr if multiple cancer
+    diagnoses are used with AND). Please be aware that "Filters" here include
+    the "Cancer Classification", "Biosample Type" and "Filters" fields.
   defaultValue: 'AND'
   options:
     - value: AND
@@ -139,7 +168,14 @@ filterPrecision:
   isHidden: true
 geoCity:
   label: City
+  infoText: |
+    Selector for a city for which the samples have been annotated, usually
+    corresponding to origin of the data.
 geodistanceKm:
+  infoText: |
+    Proximity of the data matches to the selected city, to allow for fuzzy
+    annotations or large geographic area searches (e.g. "European samples" through
+    "Zurich + 2000km").
   label: Range (km)
   type: number
   defaultValue: 100
