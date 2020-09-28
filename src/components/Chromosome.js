@@ -6,8 +6,8 @@ import { checkIntegerRange, INTEGER_RANGE_REGEX } from "../hooks/api"
 
 const outerBandsHeightRatio = 0.65 // pt
 const innerBandsHeightRatio = 0.8 // pt
-const outerRangeColor = "#5781ff"
-const innerRangeColor = "#ff9899"
+const endRangeColor = "#5781ff"
+const startRangeColor = "#ff9899"
 const height = 60
 const autoZoomFactor = 1.4
 export function Chromosome({
@@ -90,10 +90,10 @@ export function Chromosome({
               fillOpacity={0}
             />
           </svg>
-          {start && verticalLine(calcX)(start, innerRangeColor)}
-          {startMax && verticalLine(calcX)(startMax, innerRangeColor)}
-          {endMin && verticalLine(calcX)(endMin, outerRangeColor)}
-          {end && verticalLine(calcX)(end, outerRangeColor)}
+          {start && verticalLine(calcX)(start, startRangeColor)}
+          {startMax && verticalLine(calcX)(startMax, startRangeColor)}
+          {endMin && verticalLine(calcX)(endMin, endRangeColor)}
+          {end && verticalLine(calcX)(end, endRangeColor)}
           {start && (
             <rect
               pointerEvents="none"
@@ -114,12 +114,12 @@ export function Chromosome({
           )}
         </svg>
         {start &&
-          annotation(calcX)(start, "start", outerRangeColor, "top", "end")}
+          annotation(calcX)(start, start, startRangeColor, "top", "end")}
         {start &&
-          annotation(calcX)(start, start, outerRangeColor, "bottom", "end")}
-        {end && annotation(calcX)(end, "end", outerRangeColor, "top", "start")}
+          annotation(calcX)(startMax, startMax, startRangeColor, "top", "start")}
+        {end && annotation(calcX)(endMin, endMin, endRangeColor, "bottom", "end")}
         {start &&
-          annotation(calcX)(end, end, outerRangeColor, "bottom", "start")}
+          annotation(calcX)(end, end, endRangeColor, "bottom", "start")}
       </svg>
     </>
   )
