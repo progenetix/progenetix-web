@@ -7,7 +7,7 @@ import { checkIntegerRange, INTEGER_RANGE_REGEX } from "../hooks/api"
 const outerBandsHeightRatio = 0.65 // pt
 const innerBandsHeightRatio = 0.8 // pt
 const outerRangeColor = "#5781ff"
-const innerRangeColor = "#ff0033"
+const innerRangeColor = "#ff9899"
 const height = 60
 const autoZoomFactor = 1.4
 export function Chromosome({
@@ -90,16 +90,25 @@ export function Chromosome({
               fillOpacity={0}
             />
           </svg>
-          {start && verticalLine(calcX)(start, outerRangeColor)}
+          {start && verticalLine(calcX)(start, innerRangeColor)}
           {startMax && verticalLine(calcX)(startMax, innerRangeColor)}
-          {endMin && verticalLine(calcX)(endMin, innerRangeColor)}
+          {endMin && verticalLine(calcX)(endMin, outerRangeColor)}
           {end && verticalLine(calcX)(end, outerRangeColor)}
-          {start && end && (
+          {start && (
             <rect
               pointerEvents="none"
               className="selection"
-              x={calcX(start || end) + 1}
-              width={calcX(end) - calcX(start) - 2}
+              x={calcX(start) + 1}
+              width={calcX(startMax) - calcX(start) - 2}
+              height="100%"
+            />
+          )}
+          {end && (
+            <rect
+              pointerEvents="none"
+              className="selectionEnd"
+              x={calcX(endMin) + 1}
+              width={calcX(end) - calcX(endMin) - 2}
               height="100%"
             />
           )}

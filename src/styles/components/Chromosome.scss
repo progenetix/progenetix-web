@@ -36,9 +36,14 @@
 }
 
 svg .selection {
+  fill: #ff9899;
+  fill-opacity: 0.2;
+  stroke: #ff9899;
+}
+svg .selectionEnd {
   fill: #3298dc;
   fill-opacity: 0.2;
-  stroke: none;
+  stroke: #3298dc;
 }
 
 svg .annotation {

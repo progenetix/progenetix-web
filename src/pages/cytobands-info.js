@@ -34,8 +34,8 @@ function Content({ cytoBands, width }) {
       <h5>MYC Duplication</h5>
       <Chromosome
         bands={cytoBands.chr8}
-        startRange="124000000-127736593"
-        endRange="127740957-130000000"
+        startRange="127000000-127736593"
+        endRange="127740957-128000000"
         defaultAutoZoom
         width={width}
       />
