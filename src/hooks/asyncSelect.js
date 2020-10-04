@@ -12,11 +12,15 @@ export function useAsyncSelect() {
     }
   }, 200)
   const onChange = (v, { action }) => {
-    if (action === "select-option") {
-      setValue(v)
-    }
-    if (action === "clear") {
-      setValue(null)
+    switch (action) {
+      case "remove-value":
+      case "pop-value":
+      case "select-option":
+        setValue(v)
+        break
+      case "clear":
+        setValue(null)
+        break
     }
   }
   return { inputValue, onInputChange, value, onChange }
