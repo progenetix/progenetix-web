@@ -176,11 +176,19 @@ export function usePublicationList({ geoCity, geodistanceKm }) {
 }
 
 export function sampleUrl(id, datasetIds) {
-  return `${basePath}cgi/bycon/bin/byconplus.py?scope=biosamples&id=${id}&datasetIds=${datasetIds}`
+  return `${basePath}services/deliveries/?datasetIds=${datasetIds}&collection=biosamples&id=${id}`
 }
 
 export function useSample(id, datasetIds) {
   return useExtendedSWR(sampleUrl(id, datasetIds))
+}
+
+export function variantUrl(_id, datasetIds) {
+  return `${basePath}services/deliveries/?datasetIds=${datasetIds}&collection=variants&_id=${_id}`
+}
+
+export function useVariant(_id, datasetIds) {
+  return useExtendedSWR(variantUrl(_id, datasetIds))
 }
 
 export function useGeneSpans(querytext) {

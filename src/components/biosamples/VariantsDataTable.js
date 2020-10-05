@@ -4,25 +4,46 @@ import { WithData } from "../Loader"
 import Table from "../Table"
 import { useExtendedSWR } from "../../hooks/api"
 import DownloadButton from "../DownloadButton"
+import Link from "next/link"
 
-export default function VariantsDataTable({ url }) {
+export default function VariantsDataTable({ url, datasetId }) {
   const dataEffectResult = useExtendedSWR(url)
   const columns = React.useMemo(
     () => [
+      {
+        Header: "Int. ID",
+        accessor: "_id",
+        // eslint-disable-next-line react/display-name
+        Cell: (cellInfo) => (
+          <Link
+            href={`/variants/details?_id=${cellInfo.value}&datasetIds=${datasetId}`}
+          >
+            {cellInfo.value}
+          </Link>
+        )
+      },
       {
         Header: "Digest",
         accessor: "digest"
       },
       {
-        Header: "Callset ID",
+        Header: "Callset",
         accessor: "callset_id"
       },
       {
-        Header: "Biosample ID",
-        accessor: "biosample_id"
+        Header: "Biosample",
+        accessor: "biosample_id",
+        // eslint-disable-next-line react/display-name
+        Cell: (cellInfo) => (
+          <Link
+            href={`/samples/details?id=${cellInfo.value}&datasetIds=${datasetId}`}
+          >
+            {cellInfo.value}
+          </Link>
+        )
       },
       {
-        Header: "Chromosome",
+        Header: "Chr.",
         accessor: "reference_name"
       },
       {
@@ -38,7 +59,7 @@ export default function VariantsDataTable({ url }) {
         accessor: "variant_type"
       }
     ],
-    []
+    [datasetId]
   )
 
   return (

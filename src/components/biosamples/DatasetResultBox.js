@@ -88,7 +88,12 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
   } else if (selectedTab === TABS.variants) {
     const handover = handoverById(HANDOVER_IDS.variantsdata)
     const url = replaceWithProxy(handover.url)
-    tabComponent = <VariantsDataTable url={url} />
+    tabComponent = (
+      <VariantsDataTable
+        url={url}
+        datasetId={datasetId}
+      />
+    )
   }
 
   return (
