@@ -260,20 +260,15 @@ export function referenceLink(externalReference) {
     )
   } else if (externalReference.type.id.includes("PMID:")) {
     return "/publications/details?id=" + externalReference.type.id
-  } else if (externalReference.type.id.includes("geogse-")) {
+  } else if (externalReference.type.id.includes("geo:")) {
     return (
       "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=" +
-      externalReference.type.id.replace("geogse-", "")
+      externalReference.type.id.replace("geo:", "")
     )
-  } else if (externalReference.type.id.includes("geogsm-")) {
+  } else if (externalReference.type.id.includes("arrayexpress:")) {
     return (
-      "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=" +
-      externalReference.type.id.replace("geogsm-", "")
-    )
-  } else if (externalReference.type.id.includes("geogpl-")) {
-    return (
-      "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=" +
-      externalReference.type.id.replace("geogpl-", "")
+      "https://www.ebi.ac.uk/arrayexpress/experiments/" +
+      externalReference.type.id.replace("arrayexpress:", "")
     )
   }
 }

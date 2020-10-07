@@ -49,6 +49,14 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
     biosamplesHandover && replaceWithProxy(biosamplesHandover.url)
   )
 
+  const histogramUrl = handoverById(HANDOVER_IDS.cnvhistogram).url
+
+  const visualizationAccessId = new URLSearchParams(
+    new URL(histogramUrl).search
+  ).get("accessid")
+
+  const visualizationLink =  getVisualizationLink(visualizationAccessId)
+
   // main / samples / variants
   const tabNames = []
   if (handoverById(HANDOVER_IDS.cnvhistogram)) tabNames.push(TABS.results)
@@ -61,7 +69,6 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
 
   let tabComponent
   if (selectedTab === TABS.results) {
-    const histogramUrl = handoverById(HANDOVER_IDS.cnvhistogram).url
     tabComponent = (
       <ResultsTab
         variantType={query.alternateBases}
@@ -130,7 +137,7 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
             <GenericHandover key={i} handover={handover} />
           ))}
         </div>
-        <div className="column is-narrow">
+        <div className="column is-one-fifth">
           <div>
             <UCSCRegion query={query} />
           </div>
@@ -138,6 +145,9 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
             label="JSON Response"
             onClick={() => openJsonInNewTab(datasetAlleleResponse)}
           />
+        </div>
+        <div className="column is-one-fifth">
+          <ExternalLink href={visualizationLink} label="Visualization options" />
         </div>
       </div>
       {tabNames?.length > 0 ? (
@@ -169,19 +179,9 @@ function ResultsTab({
   variantCount,
   datasetId
 }) {
-  const visualizationAccessId = new URLSearchParams(
-    new URL(histogramUrl).search
-  ).get("accessid")
 
   return (
     <div>
-      <div className="mb-2">
-        See more{" "}
-        <a href={getVisualizationLink(visualizationAccessId)}>
-          visualization options
-        </a>
-        .
-      </div>
       {shouldShowHistogram(alternateBases) && (
         <div className="mb-4">
           <CnvHistogramPreview url={histogramUrl} />

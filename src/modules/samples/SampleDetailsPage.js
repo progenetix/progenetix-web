@@ -36,8 +36,8 @@ function NoResultsHelp() {
       This page will only show content if called with a specific biosample ID
       which already exists in the Progenetix or arrayMap `biosamples` database,
       e.g.{" "}
-      <a href="/samples/details?id=PGX_AM_BS_PGkes2003_MB-kes-01&datasetIds=progenetix">
-        /samples/details?id=PGX_AM_BS_PGkes2003_MB-kes-01?datasetIds=progenetix
+      <a href="/samples/details?id=pgxbs-kftvir6m&datasetIds=progenetix">
+        /samples/details?id=pgxbs-kftvir6m&datasetIds=progenetix
       </a>
       .
     </div>
@@ -56,20 +56,13 @@ function BiosampleLoader({ id, datasetIds }) {
 }
 
 function BiosampleResponse({ response, datasetIds }) {
-  if (!response.biosamples || response.biosamples[datasetIds].length === 0) {
+  if (!response.data) {
     return <NoResultsHelp />
-  }
-  if (response.biosamples[datasetIds].length > 1) {
-    return (
-      <div className="notification is-size-5">
-        <div className="message-body">More than one sample has been found.</div>
-      </div>
-    )
   }
 
   return (
     <Biosample
-      biosample={response.biosamples[datasetIds][0]}
+      biosample={response.data}
       datasetIds={datasetIds}
     />
   )
