@@ -97,7 +97,7 @@ function PublicationDetails({ publication, id, filter }) {
             arraymapSamplesCount: arraymapBiosamplesCount
           })}
         >
-          Search related Samples
+          Retrieve Publication Samples
         </a>
       )}
 

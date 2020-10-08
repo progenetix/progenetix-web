@@ -147,7 +147,12 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
           />
         </div>
         <div className="column is-one-fifth">
-          <ExternalLink href={visualizationLink} label="Visualization options" />
+          <a
+            className="button is-info mb-5"
+            href={visualizationLink}
+          >
+            Visualization options
+          </a>
         </div>
       </div>
       {tabNames?.length > 0 ? (

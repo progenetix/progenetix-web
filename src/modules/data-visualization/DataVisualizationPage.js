@@ -212,8 +212,8 @@ const groupByOptions = [
   { value: "icdom", label: "ICD-O Morphology Code" },
   { value: "icdot", label: "ICD Topography Code" },
   { value: "PMID", label: "Publication (PubMed ID)" },
-  { value: "geogse", label: "GEO Series ID" },
-  { value: "geogpl", label: "GEO Platform ID" },
+  { value: "geo:GSE", label: "GEO Series ID" },
+  { value: "geo:GPL", label: "GEO Platform ID" },
   {
     value: "cellosaurus",
     label: "Cellosaurus Cellline ID"
