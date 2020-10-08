@@ -57,9 +57,7 @@ $side-width: 14rem;
   @include until($desktop) {
     margin: 0 !important ;
   }
-  @include desktop {
-    display: flex;
-  }
+  display: flex;
 }
 
 .Layout__side-background {

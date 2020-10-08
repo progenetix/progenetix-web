@@ -10,7 +10,9 @@ const Ontologymaps = withUrlQuery(({ urlQuery, setUrlQuery }) => {
 
   const [firstSelection, setFirstSelection] = useState(urlQuery.firstSelection)
   const handleFirstSelectionChange = (firstSelection) => {
-    setUrlQuery({ firstSelection }, { keepExisting: true })
+    setUrlQuery({
+      ...(firstSelection ? { firstSelection } : null)
+    })
     setSecondSelection(null)
     setFirstSelection(firstSelection)
   }
@@ -22,7 +24,12 @@ const Ontologymaps = withUrlQuery(({ urlQuery, setUrlQuery }) => {
     urlQuery.secondSelection
   )
   const handleSecondSelectionChange = (secondSelection) => {
-    setUrlQuery({ secondSelection }, { keepExisting: true })
+    setUrlQuery({
+      ...(urlQuery.firstSelection
+        ? { firstSelection: urlQuery.firstSelection }
+        : null),
+      ...(secondSelection ? { secondSelection } : null)
+    })
     setSecondSelection(secondSelection)
   }
   useEffect(() => {
@@ -95,7 +102,7 @@ const Ontologymaps = withUrlQuery(({ urlQuery, setUrlQuery }) => {
         )}
         {secondSelection && (
           <Loader isLoading={resultsLoading} hasError={resultsError}>
-            {resultsData?.code_groups.length > 0 ? (
+            {resultsData?.code_groups?.length > 0 ? (
               <CodeGroups codeGroups={resultsData?.code_groups} />
             ) : (
               <div className="notification">No groups found.</div>
