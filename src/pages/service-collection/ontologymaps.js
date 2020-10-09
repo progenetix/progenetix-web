@@ -170,7 +170,7 @@ function useAllOntologiesOptions() {
         c.id.includes("NCIT")
     )
     .map((c) => ({
-      label: c.label,
+      label: c.id+": "+c.label,
       value: c.id
     }))
 }
