@@ -188,7 +188,7 @@ export function variantUrl(_id, datasetIds) {
 }
 
 export function ontologymapsUrl(filters) {
-  return `${basePath}services/ontologymaps/?filters=${filters}&responseFormat=simplelist`
+  return `${basePath}services/ontologymaps/?filters=${filters}`
 }
 
 export function useVariant(_id, datasetIds) {

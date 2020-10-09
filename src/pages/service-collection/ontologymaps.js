@@ -107,9 +107,9 @@ const Ontologymaps = withUrlQuery(({ urlQuery, setUrlQuery }) => {
         )}
         {firstSelection && (
           <Loader isLoading={resultsLoading} hasError={resultsError}>
-            {resultsData?.code_groups?.length > 0 ? (
+            {resultsData?.data.code_groups?.length > 0 ? (
               <CodeGroups
-                codeGroups={resultsData?.code_groups}
+                codeGroups={resultsData?.data.code_groups}
                 ontomapsUrl={ ontologymapsUrl( filters ) }
               />
             ) : (
