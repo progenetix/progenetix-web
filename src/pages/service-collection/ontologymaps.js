@@ -160,6 +160,9 @@ function useAllOntologiesOptions() {
     method: "counts",
     datasetIds: "progenetix"
   })
+  // const { data } = useOntologymaps({
+  //   filters: "NCIT,icdom"
+  // })
   if (!data) return []
 
   return data

@@ -244,14 +244,19 @@ export function useCollationsById({ datasetIds }) {
   return { data, ...other }
 }
 
+// export function useOntologymaps({ filters }) {
+//   const url = ontologymapsUrl( filters )
+//   const { data: rawData, ...other } = useExtendedSWR(url)
+//   return { data, ...other }
+// }
+
+// services/collations/?datasetIds=progenetix&method=counts&filters=&responseFormat=simplelist
 export function useCollations({ datasetIds, method, filters }) {
   const url = `${basePath}services/collations/?datasetIds=${datasetIds}&method=${method}&filters=${filters}&responseFormat=simplelist`
   const { data: rawData, ...other } = useExtendedSWR(url)
   const data = Array.isArray(rawData) ? rawData : null
   return { data, ...other }
 }
-
-// services/collations/?datasetIds=progenetix&method=counts&filters=&responseFormat=simplelist
 
 export function useGeoCity({ city }) {
   const url = `${basePath}services/geolocations?city=${city}&responseFormat=simplelist`
