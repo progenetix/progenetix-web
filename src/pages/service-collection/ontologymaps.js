@@ -125,10 +125,10 @@ const Ontologymaps = withUrlQuery(({ urlQuery, setUrlQuery }) => {
 export default Ontologymaps
 
 function getOptions(data) {
-  if (!data || data.unique_codes == null) return []
-  const NCIT = data.unique_codes["NCIT"] ?? []
-  const icdom = data.unique_codes["icdom"] ?? []
-  const icdot = data.unique_codes["icdot"] ?? []
+  if (!data || data.data.unique_codes == null) return []
+  const NCIT = data.data.unique_codes["NCIT"] ?? []
+  const icdom = data.data.unique_codes["icdom"] ?? []
+  const icdot = data.data.unique_codes["icdot"] ?? []
   return [NCIT, icdom, icdot].flat().map((c) => ({
     label: c,
     value: c
