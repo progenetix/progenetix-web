@@ -251,6 +251,8 @@ export function useCollations({ datasetIds, method, filters }) {
   return { data, ...other }
 }
 
+// services/collations/?datasetIds=progenetix&method=counts&filters=&responseFormat=simplelist
+
 export function useGeoCity({ city }) {
   const url = `${basePath}services/geolocations?city=${city}&responseFormat=simplelist`
   return useExtendedSWR(url)

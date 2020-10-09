@@ -130,8 +130,8 @@ function getOptions(data) {
   const icdom = data.data.unique_codes["icdom"] ?? []
   const icdot = data.data.unique_codes["icdot"] ?? []
   return [NCIT, icdom, icdot].flat().map((c) => ({
-    label: c,
-    value: c
+    label: c.label,
+    value: c.id
   }))
 }
 
@@ -170,7 +170,7 @@ function useAllOntologiesOptions() {
         c.id.includes("NCIT")
     )
     .map((c) => ({
-      label: c.id,
+      label: c.label,
       value: c.id
     }))
 }
