@@ -187,6 +187,10 @@ export function variantUrl(_id, datasetIds) {
   return `${basePath}services/deliveries/?datasetIds=${datasetIds}&collection=variants&_id=${_id}`
 }
 
+export function ontologymapsUrl(filters) {
+  return `${basePath}services/ontologymaps/?filters=${filters}&responseFormat=simplelist`
+}
+
 export function useVariant(_id, datasetIds) {
   return useExtendedSWR(variantUrl(_id, datasetIds))
 }

@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react"
 import { Layout } from "../../components/layouts/Layout"
-import { basePath, useCollations, useExtendedSWR } from "../../hooks/api"
+import {
+  ontologymapsUrl,
+  useCollations,
+  useExtendedSWR
+} from "../../hooks/api"
 import CustomSelect from "../../components/Select"
 import { Loader } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
+import Link from "next/link"
 
 const Ontologymaps = withUrlQuery(({ urlQuery, setUrlQuery }) => {
   const allOntologiesOptions = useAllOntologiesOptions()
@@ -103,7 +108,10 @@ const Ontologymaps = withUrlQuery(({ urlQuery, setUrlQuery }) => {
         {firstSelection && (
           <Loader isLoading={resultsLoading} hasError={resultsError}>
             {resultsData?.code_groups?.length > 0 ? (
-              <CodeGroups codeGroups={resultsData?.code_groups} />
+              <CodeGroups
+                codeGroups={resultsData?.code_groups}
+                ontomapsUrl={ ontologymapsUrl( filters ) }
+              />
             ) : (
               <div className="notification">No groups found.</div>
             )}
@@ -127,10 +135,10 @@ function getOptions(data) {
   }))
 }
 
-function CodeGroups({ codeGroups }) {
+function CodeGroups({ codeGroups, ontomapsUrl }) {
   return (
     <div className="content">
-      <h5>Selected codes</h5>
+      <h5>Selected codes <Link href={ontomapsUrl}><a>JSON</a></Link></h5>
       <table className="table is-bordered">
         {codeGroups.map((codeGroup, i) => (
           <tr key={i}>
@@ -168,11 +176,10 @@ function useAllOntologiesOptions() {
 }
 
 function useOntologymaps({ filters }) {
-  const url =
-    filters?.length > 0 &&
-    `${basePath}services/ontologymaps/?filters=${filters}&responseFormat=simplelist`
+  const url = filters?.length > 0 && ontologymapsUrl( filters )
   return useExtendedSWR(url)
 }
+
 function useGetFilteredOptions({ filters, remove }) {
   const { data, isLoading, error } = useOntologymaps({ filters })
   let options = getOptions(data)
