@@ -130,7 +130,7 @@ function getOptions(data) {
   const icdom = data.data.unique_codes["icdom"] ?? []
   const icdot = data.data.unique_codes["icdot"] ?? []
   return [NCIT, icdom, icdot].flat().map((c) => ({
-    label: c.label,
+    label: c.id+": "+c.label,
     value: c.id
   }))
 }
