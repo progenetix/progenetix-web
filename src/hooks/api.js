@@ -187,8 +187,12 @@ export function variantUrl(_id, datasetIds) {
   return `${basePath}services/deliveries/?datasetIds=${datasetIds}&collection=variants&_id=${_id}`
 }
 
-export function ontologymapsUrl(filters) {
-  return `${basePath}services/ontologymaps/?filters=${filters}`
+export function ontologymapsUrl({ filters, filterPrecision }) {
+  let params = new URLSearchParams({ filters: filters })
+  if (filterPrecision) {
+    params.append("filterPrecision", filterPrecision)
+  }
+  return `${basePath}services/ontologymaps?${params.toString()}`
 }
 
 export function useVariant(_id, datasetIds) {
