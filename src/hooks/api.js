@@ -175,22 +175,6 @@ export function usePublicationList({ geoCity, geodistanceKm }) {
   return useExtendedSWR(url)
 }
 
-export function sampleUrl(id, datasetIds) {
-  return `${basePath}services/deliveries/?datasetIds=${datasetIds}&collection=biosamples&id=${id}`
-}
-
-export function useSample(id, datasetIds) {
-  return useExtendedSWR(sampleUrl(id, datasetIds))
-}
-
-export function variantUrl(_id, datasetIds) {
-  return `${basePath}services/deliveries/?datasetIds=${datasetIds}&collection=variants&_id=${_id}`
-}
-
-export function callsetUrl(id, datasetIds) {
-  return `${basePath}services/deliveries/?datasetIds=${datasetIds}&collection=callsets&id=${id}`
-}
-
 export function ontologymapsUrl({ filters, filterPrecision }) {
   let params = new URLSearchParams({ filters: filters })
   if (filterPrecision) {
@@ -199,12 +183,12 @@ export function ontologymapsUrl({ filters, filterPrecision }) {
   return `${basePath}services/ontologymaps?${params.toString()}`
 }
 
-export function useVariant(_id, datasetIds) {
-  return useExtendedSWR(variantUrl(_id, datasetIds))
+export function DataItemDelivery(id, collection, datasetIds) {
+  return useExtendedSWR( DataItemUrl(id, collection, datasetIds) )
 }
 
-export function useCallset(id, datasetIds) {
-  return useExtendedSWR(callsetUrl(id, datasetIds))
+export function DataItemUrl(id, collection, datasetIds) {
+  return `${basePath}services/deliveries/?datasetIds=${datasetIds}&collection=${collection}&${ (collection == "variants") ? "_id" : "id" }=${id}`
 }
 
 export function useGeneSpans(querytext) {

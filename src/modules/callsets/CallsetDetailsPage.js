@@ -1,10 +1,12 @@
 import {
-  callsetUrl,
-  useCallset
+  DataItemUrl,
+  DataItemDelivery
 } from "../../hooks/api"
 import { Loader } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/layouts/Layout"
+
+const itemColl = "callsets"
 
 const CallsetDetailsPage = withUrlQuery(({ urlQuery }) => {
   const { id, datasetIds } = urlQuery
@@ -26,7 +28,7 @@ function NoResultsHelp() {
   return (
     <div className="notification is-size-5">
       This page will only show content if called with a specific callset ID
-      which already exists in the Progenetix or arrayMap `callsets` database,
+      which already exists in the Progenetix or arrayMap <strong>{itemColl}</strong> database,
       e.g.{" "}
       <a href="/callsets/details?id=pgxcs-kftvlijb&datasetIds=progenetix">
         /callsets/details?id=pgxcs-kftvlijb&datasetIds=progenetix
@@ -37,7 +39,7 @@ function NoResultsHelp() {
 }
 
 function CallsetLoader({ id, datasetIds }) {
-  const { data, error, isLoading } = useCallset(id, datasetIds)
+  const { data, error, isLoading } = DataItemDelivery(id, itemColl, datasetIds)
   return (
     <Loader isLoading={isLoading} hasError={error} background>
       {data && (
@@ -86,7 +88,7 @@ function Callset({ callset, datasetIds }) {
         <a
           rel="noreferrer"
           target="_blank"
-          href={callsetUrl(callset.id, datasetIds)}
+          href={DataItemUrl(callset.id, itemColl, datasetIds)+"&responseFormat=simple"}
         >
           {"{JSON↗}"}
         </a>

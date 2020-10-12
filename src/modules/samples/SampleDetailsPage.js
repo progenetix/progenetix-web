@@ -1,9 +1,9 @@
 import {
   basePath,
+  DataItemUrl,
   referenceLink,
-  sampleUrl,
   useExtendedSWR,
-  useSample
+  DataItemDelivery
 } from "../../hooks/api"
 import { Loader } from "../../components/Loader"
 import React, { useRef } from "react"
@@ -13,6 +13,8 @@ import { useContainerDimensions } from "../../hooks/containerDimensions"
 import { svgFetcher } from "../../hooks/fetcher"
 import Histogram from "../../components/Histogram"
 import Link from "next/link"
+
+const itemColl = "biosamples"
 
 const SampleDetailsPage = withUrlQuery(({ urlQuery }) => {
   const { id, datasetIds } = urlQuery
@@ -34,7 +36,7 @@ function NoResultsHelp() {
   return (
     <div className="notification is-size-5">
       This page will only show content if called with a specific biosample ID
-      which already exists in the Progenetix or arrayMap `biosamples` database,
+      which already exists in the Progenetix or arrayMap <strong>{itemColl}</strong> database,
       e.g.{" "}
       <a href="/samples/details?id=pgxbs-kftvir6m&datasetIds=progenetix">
         /samples/details?id=pgxbs-kftvir6m&datasetIds=progenetix
@@ -45,7 +47,7 @@ function NoResultsHelp() {
 }
 
 function BiosampleLoader({ id, datasetIds }) {
-  const { data, error, isLoading } = useSample(id, datasetIds)
+  const { data, error, isLoading } = DataItemDelivery(id, itemColl, datasetIds)
   return (
     <Loader isLoading={isLoading} hasError={error} background>
       {data && (
@@ -130,6 +132,11 @@ function Biosample({ biosample, datasetIds }) {
             <li>Origin: {biosample.provenance.geo.label}</li>
           </>
         )}
+        {biosample.data_use_conditions?.id && (
+          <>
+            <li>Data Use Conditions: {biosample.data_use_conditions.id} ({biosample.data_use_conditions?.label})</li>
+          </>
+        )}
       </ul>
 
       <h5>External References</h5>
@@ -161,7 +168,7 @@ function Biosample({ biosample, datasetIds }) {
         <a
           rel="noreferrer"
           target="_blank"
-          href={sampleUrl(biosample.id, datasetIds)}
+          href={DataItemUrl(biosample.id, itemColl, datasetIds)+"&responseFormat=simple"}
         >
           {"{JSON↗}"}
         </a>

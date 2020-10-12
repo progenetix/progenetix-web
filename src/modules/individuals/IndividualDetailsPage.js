@@ -6,50 +6,50 @@ import { Loader } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/layouts/Layout"
 
-const itemColl = "variants"
+const itemColl = "individuals"
 
-const VariantDetailsPage = withUrlQuery(({ urlQuery }) => {
-  const { _id, datasetIds } = urlQuery
-  const hasAllParams = _id && datasetIds
+const IndividualDetailsPage = withUrlQuery(({ urlQuery }) => {
+  const { id, datasetIds } = urlQuery
+  const hasAllParams = id && datasetIds
   return (
-    <Layout title="Variant Details" headline="Variant Details">
+    <Layout title="Individual Details" headline="Individual Details">
       {!hasAllParams ? (
         <NoResultsHelp />
       ) : (
-        <VariantLoader _id={_id} datasetIds={datasetIds} />
+        <IndividualLoader id={id} datasetIds={datasetIds} />
       )}
     </Layout>
   )
 })
 
-export default VariantDetailsPage
+export default IndividualDetailsPage
 
 function NoResultsHelp() {
   return (
     <div className="notification is-size-5">
-      This page will only show content if called with a specific variant _ID
+      This page will only show content if called with a specific individual ID
       which already exists in the Progenetix or arrayMap <strong>{itemColl}</strong> database,
       e.g.{" "}
-      <a href="/variants/details?_id=5bab576a727983b2e00b8d32&datasetIds=progenetix">
-        /variants/details?_id=5bab576a727983b2e00b8d32?datasetIds=progenetix
+      <a href="/individuals/details?id=pgxind-kftx266l&datasetIds=progenetix">
+        /individuals/details?id=pgxind-kftx266l&datasetIds=progenetix
       </a>
       .
     </div>
   )
 }
 
-function VariantLoader({ _id, datasetIds }) {
-  const { data, error, isLoading } = DataItemDelivery(_id, itemColl, datasetIds)
+function IndividualLoader({ id, datasetIds }) {
+  const { data, error, isLoading } = DataItemDelivery(id, itemColl, datasetIds)
   return (
     <Loader isLoading={isLoading} hasError={error} background>
       {data && (
-        <VariantResponse response={data} _id={_id} datasetIds={datasetIds} />
+        <IndividualResponse response={data} id={id} datasetIds={datasetIds} />
       )}
     </Loader>
   )
 }
 
-function VariantResponse({ response, datasetIds }) {
+function IndividualResponse({ response, datasetIds }) {
   if (!response.data) {
     return <NoResultsHelp />
   }
@@ -62,24 +62,24 @@ function VariantResponse({ response, datasetIds }) {
   }
 
   return (
-    <Variant
-      variant={response.data}
+    <Individual
+      individual={response.data}
       datasetIds={datasetIds}
     />
   )
 }
 
-function Variant({ variant, datasetIds }) {
+function Individual({ individual, datasetIds }) {
   return (
     <section className="content">
       <h3 className="mb-6">
-        {variant._id} ({datasetIds})
+        {individual.id} ({datasetIds})
       </h3>
 
-      {variant.digest && (
+      {individual.description && (
         <>
-          <h5>Digest</h5>
-          <p>{variant.digest}</p>
+          <h5>Description</h5>
+          <p>{individual.description}</p>
         </>
       )}
 
@@ -88,7 +88,7 @@ function Variant({ variant, datasetIds }) {
         <a
           rel="noreferrer"
           target="_blank"
-          href={DataItemUrl(variant._id, itemColl, datasetIds)+"&responseFormat=simple"}
+          href={DataItemUrl(individual.id, itemColl, datasetIds)+"&responseFormat=simple"}
         >
           {"{JSON↗}"}
         </a>
