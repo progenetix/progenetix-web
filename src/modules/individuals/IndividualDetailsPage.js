@@ -5,6 +5,7 @@ import {
 import { Loader } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/layouts/Layout"
+// import Link from "next/link"
 
 const itemColl = "individuals"
 
@@ -82,6 +83,15 @@ function Individual({ individual, datasetIds }) {
           <p>{individual.description}</p>
         </>
       )}
+
+      <h5>Biocharacteristics</h5>
+      <ul>
+        {individual.biocharacteristics.map((biocharacteristic, i) => (
+          <li key={i}>
+              {biocharacteristic.type.id} : {biocharacteristic.type.label}
+          </li>
+        ))}
+      </ul>
 
       <h5>
         Download Data as{" "}
