@@ -187,6 +187,10 @@ export function variantUrl(_id, datasetIds) {
   return `${basePath}services/deliveries/?datasetIds=${datasetIds}&collection=variants&_id=${_id}`
 }
 
+export function callsetUrl(id, datasetIds) {
+  return `${basePath}services/deliveries/?datasetIds=${datasetIds}&collection=callsets&id=${id}`
+}
+
 export function ontologymapsUrl({ filters, filterPrecision }) {
   let params = new URLSearchParams({ filters: filters })
   if (filterPrecision) {
@@ -197,6 +201,10 @@ export function ontologymapsUrl({ filters, filterPrecision }) {
 
 export function useVariant(_id, datasetIds) {
   return useExtendedSWR(variantUrl(_id, datasetIds))
+}
+
+export function useCallset(id, datasetIds) {
+  return useExtendedSWR(callsetUrl(id, datasetIds))
 }
 
 export function useGeneSpans(querytext) {

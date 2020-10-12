@@ -4,7 +4,6 @@ import { ontologymapsUrl, useExtendedSWR } from "../../hooks/api"
 import CustomSelect from "../../components/Select"
 import { Loader } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
-import Link from "next/link"
 
 const filterPrecision = "start"
 
@@ -142,9 +141,13 @@ function CodeGroups({ codeGroups, ontomapsUrl }) {
     <div className="content">
       <h5>
         Matching Code Mappings{" "}
-        <Link href={ontomapsUrl}>
-          <a>JSON</a>
-        </Link>
+        <a
+          rel="noreferrer"
+          target="_blank"
+          href={ontomapsUrl}
+        >
+          {"{JSON↗}"}
+        </a>
       </h5>
       <table className="table is-bordered">
         <tbody>
