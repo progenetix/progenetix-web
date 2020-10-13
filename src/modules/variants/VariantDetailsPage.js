@@ -1,6 +1,7 @@
 import {
   DataItemUrl,
-  DataItemDelivery
+  DataItemDelivery,
+  NoResultsHelp
 } from "../../hooks/api"
 import { Loader } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
@@ -14,7 +15,7 @@ const VariantDetailsPage = withUrlQuery(({ urlQuery }) => {
   return (
     <Layout title="Variant Details" headline="Variant Details">
       {!hasAllParams ? (
-        <NoResultsHelp />
+        NoResultsHelp("5bab576a727983b2e00b8d32", "variants")
       ) : (
         <VariantLoader _id={_id} datasetIds={datasetIds} />
       )}
@@ -23,20 +24,6 @@ const VariantDetailsPage = withUrlQuery(({ urlQuery }) => {
 })
 
 export default VariantDetailsPage
-
-function NoResultsHelp() {
-  return (
-    <div className="notification is-size-5">
-      This page will only show content if called with a specific variant _ID
-      which already exists in the Progenetix or arrayMap <strong>{itemColl}</strong> database,
-      e.g.{" "}
-      <a href="/variants/details?_id=5bab576a727983b2e00b8d32&datasetIds=progenetix">
-        /variants/details?_id=5bab576a727983b2e00b8d32?datasetIds=progenetix
-      </a>
-      .
-    </div>
-  )
-}
 
 function VariantLoader({ _id, datasetIds }) {
   const { data, error, isLoading } = DataItemDelivery(_id, itemColl, datasetIds)
@@ -51,7 +38,7 @@ function VariantLoader({ _id, datasetIds }) {
 
 function VariantResponse({ response, datasetIds }) {
   if (!response.data) {
-    return <NoResultsHelp />
+    return NoResultsHelp("5bab576a727983b2e00b8d32", "variants")
   }
   if (response.errors.length > 1) {
     return (

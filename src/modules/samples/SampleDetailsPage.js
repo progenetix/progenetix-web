@@ -3,7 +3,8 @@ import {
   DataItemUrl,
   referenceLink,
   useExtendedSWR,
-  DataItemDelivery
+  DataItemDelivery,
+  NoResultsHelp
 } from "../../hooks/api"
 import { Loader } from "../../components/Loader"
 import React, { useRef } from "react"
@@ -22,7 +23,7 @@ const SampleDetailsPage = withUrlQuery(({ urlQuery }) => {
   return (
     <Layout title="Sample Details" headline="Sample Details">
       {!hasAllParams ? (
-        <NoResultsHelp />
+        NoResultsHelp("pgxbs-kftvir6m", "samples")
       ) : (
         <BiosampleLoader id={id} datasetIds={datasetIds} />
       )}
@@ -31,20 +32,6 @@ const SampleDetailsPage = withUrlQuery(({ urlQuery }) => {
 })
 
 export default SampleDetailsPage
-
-function NoResultsHelp() {
-  return (
-    <div className="notification is-size-5">
-      This page will only show content if called with a specific biosample ID
-      which already exists in the Progenetix or arrayMap <strong>{itemColl}</strong> database,
-      e.g.{" "}
-      <a href="/samples/details?id=pgxbs-kftvir6m&datasetIds=progenetix">
-        /samples/details?id=pgxbs-kftvir6m&datasetIds=progenetix
-      </a>
-      .
-    </div>
-  )
-}
 
 function BiosampleLoader({ id, datasetIds }) {
   const { data, error, isLoading } = DataItemDelivery(id, itemColl, datasetIds)
@@ -59,7 +46,7 @@ function BiosampleLoader({ id, datasetIds }) {
 
 function BiosampleResponse({ response, datasetIds }) {
   if (!response.data) {
-    return <NoResultsHelp />
+    return NoResultsHelp("pgxbs-kftvir6m", "samples")
   }
 
   return (

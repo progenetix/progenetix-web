@@ -1,6 +1,7 @@
 import {
   DataItemUrl,
-  DataItemDelivery
+  DataItemDelivery,
+  NoResultsHelp
 } from "../../hooks/api"
 import { Loader } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
@@ -15,7 +16,7 @@ const IndividualDetailsPage = withUrlQuery(({ urlQuery }) => {
   return (
     <Layout title="Individual Details" headline="Individual Details">
       {!hasAllParams ? (
-        <NoResultsHelp />
+        NoResultsHelp("pgxind-kftx266l", "individuals")
       ) : (
         <IndividualLoader id={id} datasetIds={datasetIds} />
       )}
@@ -24,20 +25,6 @@ const IndividualDetailsPage = withUrlQuery(({ urlQuery }) => {
 })
 
 export default IndividualDetailsPage
-
-function NoResultsHelp() {
-  return (
-    <div className="notification is-size-5">
-      This page will only show content if called with a specific individual ID
-      which already exists in the Progenetix or arrayMap <strong>{itemColl}</strong> database,
-      e.g.{" "}
-      <a href="/individuals/details?id=pgxind-kftx266l&datasetIds=progenetix">
-        /individuals/details?id=pgxind-kftx266l&datasetIds=progenetix
-      </a>
-      .
-    </div>
-  )
-}
 
 function IndividualLoader({ id, datasetIds }) {
   const { data, error, isLoading } = DataItemDelivery(id, itemColl, datasetIds)
@@ -52,7 +39,7 @@ function IndividualLoader({ id, datasetIds }) {
 
 function IndividualResponse({ response, datasetIds }) {
   if (!response.data) {
-    return <NoResultsHelp />
+    return NoResultsHelp("pgxind-kftx266l", "individuals")
   }
   if (response.errors.length > 1) {
     return (

@@ -1,6 +1,7 @@
 import {
   DataItemUrl,
-  DataItemDelivery
+  DataItemDelivery,
+  NoResultsHelp
 } from "../../hooks/api"
 import { Loader } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
@@ -14,7 +15,7 @@ const CallsetDetailsPage = withUrlQuery(({ urlQuery }) => {
   return (
     <Layout title="Callset Details" headline="Callset Details">
       {!hasAllParams ? (
-        <NoResultsHelp />
+        NoResultsHelp("pgxcs-kftvlijb", "callsets")
       ) : (
         <CallsetLoader id={id} datasetIds={datasetIds} />
       )}
@@ -23,20 +24,6 @@ const CallsetDetailsPage = withUrlQuery(({ urlQuery }) => {
 })
 
 export default CallsetDetailsPage
-
-function NoResultsHelp() {
-  return (
-    <div className="notification is-size-5">
-      This page will only show content if called with a specific callset ID
-      which already exists in the Progenetix or arrayMap <strong>{itemColl}</strong> database,
-      e.g.{" "}
-      <a href="/callsets/details?id=pgxcs-kftvlijb&datasetIds=progenetix">
-        /callsets/details?id=pgxcs-kftvlijb&datasetIds=progenetix
-      </a>
-      .
-    </div>
-  )
-}
 
 function CallsetLoader({ id, datasetIds }) {
   const { data, error, isLoading } = DataItemDelivery(id, itemColl, datasetIds)
@@ -51,7 +38,7 @@ function CallsetLoader({ id, datasetIds }) {
 
 function CallsetResponse({ response, datasetIds }) {
   if (!response.data) {
-    return <NoResultsHelp />
+    return NoResultsHelp("pgxcs-kftvlijb", "callsets")
   }
   if (response.errors.length > 1) {
     return (

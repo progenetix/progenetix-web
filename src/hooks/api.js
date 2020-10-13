@@ -191,6 +191,21 @@ export function DataItemUrl(id, collection, datasetIds) {
   return `${basePath}services/deliveries/?datasetIds=${datasetIds}&collection=${collection}&${ (collection == "variants") ? "_id" : "id" }=${id}`
 }
 
+export function NoResultsHelp(id, collection) {
+  const url = DataItemUrl(id, collection, "progenetix")
+  return (
+    <div className="notification is-size-5">
+      This page will only show content if called with a specific biosample ID
+      which already exists in the Progenetix or arrayMap <strong>{collection}</strong> database,
+      e.g.{" "}
+      <a href={url}>
+        {url}
+      </a>
+      .
+    </div>
+  )
+}
+
 export function useGeneSpans(querytext) {
   const url =
     querytext &&
