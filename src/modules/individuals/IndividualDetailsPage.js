@@ -9,6 +9,7 @@ import { Layout } from "../../components/layouts/Layout"
 // import Link from "next/link"
 
 const itemColl = "individuals"
+const exampleId = "pgxind-kftx266l"
 
 const IndividualDetailsPage = withUrlQuery(({ urlQuery }) => {
   const { id, datasetIds } = urlQuery
@@ -16,7 +17,7 @@ const IndividualDetailsPage = withUrlQuery(({ urlQuery }) => {
   return (
     <Layout title="Individual Details" headline="Individual Details">
       {!hasAllParams ? (
-        NoResultsHelp("pgxind-kftx266l", "individuals")
+        NoResultsHelp(exampleId, itemColl)
       ) : (
         <IndividualLoader id={id} datasetIds={datasetIds} />
       )}
@@ -39,7 +40,7 @@ function IndividualLoader({ id, datasetIds }) {
 
 function IndividualResponse({ response, datasetIds }) {
   if (!response.data) {
-    return NoResultsHelp("pgxind-kftx266l", "individuals")
+    return NoResultsHelp(exampleId, itemColl)
   }
   if (response.errors.length > 1) {
     return (

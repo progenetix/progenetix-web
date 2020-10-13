@@ -191,8 +191,12 @@ export function DataItemUrl(id, collection, datasetIds) {
   return `${basePath}services/deliveries/?datasetIds=${datasetIds}&collection=${collection}&${ (collection == "variants") ? "_id" : "id" }=${id}`
 }
 
+export function DataItemPageUrl(id, collection, datasetIds) {
+  return `${basePath}${collection}/?datasetIds=${datasetIds}&${ (collection == "variants") ? "_id" : "id" }=${id}`
+}
+
 export function NoResultsHelp(id, collection) {
-  const url = DataItemUrl(id, collection, "progenetix")
+  const url = DataItemPageUrl(id, collection, "progenetix")
   return (
     <div className="notification is-size-5">
       This page will only show content if called with a specific biosample ID

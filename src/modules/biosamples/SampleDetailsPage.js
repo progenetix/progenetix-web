@@ -16,6 +16,7 @@ import Histogram from "../../components/Histogram"
 import Link from "next/link"
 
 const itemColl = "biosamples"
+const exampleId = "pgxbs-kftvir6m"
 
 const SampleDetailsPage = withUrlQuery(({ urlQuery }) => {
   const { id, datasetIds } = urlQuery
@@ -23,7 +24,7 @@ const SampleDetailsPage = withUrlQuery(({ urlQuery }) => {
   return (
     <Layout title="Sample Details" headline="Sample Details">
       {!hasAllParams ? (
-        NoResultsHelp("pgxbs-kftvir6m", "samples")
+        NoResultsHelp(exampleId, itemColl)
       ) : (
         <BiosampleLoader id={id} datasetIds={datasetIds} />
       )}
@@ -46,7 +47,7 @@ function BiosampleLoader({ id, datasetIds }) {
 
 function BiosampleResponse({ response, datasetIds }) {
   if (!response.data) {
-    return NoResultsHelp("pgxbs-kftvir6m", "samples")
+    return NoResultsHelp(exampleId, itemColl)
   }
 
   return (

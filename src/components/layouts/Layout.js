@@ -78,7 +78,7 @@ function Side({ onClick }) {
           href="/subsets/list"
           label="Cancer CNV Profiles"
         />
-        <MenuInternalLinkItem href="/samples/search" label="Search Samples" />
+        <MenuInternalLinkItem href="/biosamples/search" label="Search Samples" />
         <MenuInternalLinkItem
           href="/publications/list"
           label="Publication DB"

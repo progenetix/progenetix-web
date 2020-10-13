@@ -8,6 +8,7 @@ import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/layouts/Layout"
 
 const itemColl = "callsets"
+const exampleId = "pgxcs-kftvlijb"
 
 const CallsetDetailsPage = withUrlQuery(({ urlQuery }) => {
   const { id, datasetIds } = urlQuery
@@ -15,7 +16,7 @@ const CallsetDetailsPage = withUrlQuery(({ urlQuery }) => {
   return (
     <Layout title="Callset Details" headline="Callset Details">
       {!hasAllParams ? (
-        NoResultsHelp("pgxcs-kftvlijb", "callsets")
+        NoResultsHelp(exampleId, itemColl)
       ) : (
         <CallsetLoader id={id} datasetIds={datasetIds} />
       )}
@@ -38,7 +39,7 @@ function CallsetLoader({ id, datasetIds }) {
 
 function CallsetResponse({ response, datasetIds }) {
   if (!response.data) {
-    return NoResultsHelp("pgxcs-kftvlijb", "callsets")
+    return NoResultsHelp(exampleId, itemColl)
   }
   if (response.errors.length > 1) {
     return (

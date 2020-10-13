@@ -15,7 +15,7 @@ export default function BiosamplesDataTable({ dataEffectResult, datasetId }) {
         // eslint-disable-next-line react/display-name
         Cell: (cellInfo) => (
           <Link
-            href={`/samples/details?id=${cellInfo.value}&datasetIds=${datasetId}`}
+            href={`/biosamples/details?id=${cellInfo.value}&datasetIds=${datasetId}`}
           >
             {cellInfo.value}
           </Link>

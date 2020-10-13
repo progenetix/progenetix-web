@@ -1,4 +1,4 @@
-import Page from "../../modules/samples/SearchSamplesPage"
+import Page from "../../modules/biosamples/SearchSamplesPage"
 import { getCytoBands } from "../../utils/genome"
 export default Page
 

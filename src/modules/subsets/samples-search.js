@@ -2,7 +2,7 @@ import { min } from "lodash"
 
 export function sampleSelectUrl({ subsets, datasetIds }) {
   const samples = subsets.map(({ id }) => id).join(",")
-  return `/samples/search?bioontology=${samples}&datasetIds=${datasetIds}&filterLogic=OR&executeSearch=true`
+  return `/biosamples/search?bioontology=${samples}&datasetIds=${datasetIds}&filterLogic=OR&executeSearch=true`
 }
 
 export function canSearch(subset) {

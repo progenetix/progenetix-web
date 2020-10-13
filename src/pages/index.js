@@ -21,7 +21,7 @@ export default function Index({ ncitCount, dbstats, subsets }) {
               <a href="/subsets/list">Cancer Types</a>
             </li>
             <li>
-              <a href="/samples/search">searching</a> for CNVs in genes of
+              <a href="/biosamples/search">searching</a> for CNVs in genes of
               interest
             </li>
           </ul>

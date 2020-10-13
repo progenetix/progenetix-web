@@ -8,6 +8,7 @@ import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/layouts/Layout"
 
 const itemColl = "variants"
+const exampleId = "5bab576a727983b2e00b8d32"
 
 const VariantDetailsPage = withUrlQuery(({ urlQuery }) => {
   const { _id, datasetIds } = urlQuery
@@ -15,7 +16,7 @@ const VariantDetailsPage = withUrlQuery(({ urlQuery }) => {
   return (
     <Layout title="Variant Details" headline="Variant Details">
       {!hasAllParams ? (
-        NoResultsHelp("5bab576a727983b2e00b8d32", "variants")
+        NoResultsHelp(exampleId, itemColl)
       ) : (
         <VariantLoader _id={_id} datasetIds={datasetIds} />
       )}
@@ -38,7 +39,7 @@ function VariantLoader({ _id, datasetIds }) {
 
 function VariantResponse({ response, datasetIds }) {
   if (!response.data) {
-    return NoResultsHelp("5bab576a727983b2e00b8d32", "variants")
+    return NoResultsHelp(exampleId, itemColl)
   }
   if (response.errors.length > 1) {
     return (
