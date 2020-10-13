@@ -7,7 +7,34 @@ import { withUrlQuery } from "../../hooks/url-query"
 
 const filterPrecision = "start"
 
-const Ontologymaps = withUrlQuery(({ urlQuery, setUrlQuery }) => {
+export default function OntologymapsPage() {
+  return (
+    <Layout title="Ontologymaps" headline="Ontologymaps">
+      <div className="content">
+        <p>
+          The <strong>ontologymaps</strong> service makes use of the
+          sample-level mappings for NCIT and ICD-O 3 codes.
+        </p>
+        <p>
+          While NCIT treats diseases as{" "}
+          <span className="span-blue">histologic</span> and{" "}
+          <span className="span-red">topographic</span> described entities (e.g.{" "}
+          <span className="span-purple">NCIT:C7700</span>:{" "}
+          <span className="span-red">Ovarian</span>{" "}
+          <span className="span-blue">adenocarcinoma</span>), these two
+          components are represented separately in ICD-O, through the{" "}
+          <span className="span-blue">Morphology</span> and{" "}
+          <span className="span-red">Topography</span> coding arms (e.g. here{" "}
+          <span className="span-blue">8140/3</span> +{" "}
+          <span className="span-red">C56.9</span>).
+        </p>
+      </div>
+      <OntologymapsSelection />
+    </Layout>
+  )
+}
+
+const OntologymapsSelection = withUrlQuery(({ urlQuery, setUrlQuery }) => {
   const { options: allOntologiesOptions } = useGetFilteredOptions({
     filters: "NCIT,icdom,icdot",
     filterPrecision: filterPrecision
@@ -66,23 +93,8 @@ const Ontologymaps = withUrlQuery(({ urlQuery, setUrlQuery }) => {
   } = useOntologymaps({ filters })
 
   return (
-    <Layout title="Ontologymaps" headline="Ontologymaps">
-      <div className="content">
-        <p>
-          The <strong>ontologymaps</strong> service makes use of the sample-level
-          mappings for NCIT and ICD-O 3 codes.
-        </p>
-        <p>
-          While NCIT treats diseases as
-          {" "}<span className="span-blue">histologic</span>{" "}and
-          {" "}<span className="span-red">topographic</span>{" "}described entities (e.g.{" "}<span className="span-purple">NCIT:C7700</span>:{" "}
-          {" "}<span className="span-red">Ovarian</span>{" "}<span className="span-blue">adenocarcinoma</span>),
-          these two components are represented separately in ICD-O, through the
-          {" "}<span className="span-blue">Morphology</span>{" "}and{" "}<span className="span-red">Topography</span>{" "}
-          coding arms (e.g. here{" "}<span className="span-blue">8140/3</span>{" "}+{" "}<span className="span-red">C56.9</span>).
-        </p>
-        <h5>Code Selection</h5>
-      </div>
+    <div className="content">
+      <h5>Code Selection</h5>
       <div className="mb-6">
         <CustomSelect
           className="mb-5"
@@ -123,7 +135,7 @@ const Ontologymaps = withUrlQuery(({ urlQuery, setUrlQuery }) => {
               {resultsData?.data.code_groups?.length > 0 ? (
                 <CodeGroups
                   codeGroups={resultsData?.data.code_groups}
-                  ontomapsUrl={ontologymapsUrl({filters, filterPrecision})}
+                  ontomapsUrl={ontologymapsUrl({ filters, filterPrecision })}
                 />
               ) : (
                 <div className="notification">No groups found.</div>
@@ -132,7 +144,7 @@ const Ontologymaps = withUrlQuery(({ urlQuery, setUrlQuery }) => {
           </Loader>
         )}
       </div>
-    </Layout>
+    </div>
   )
 })
 
@@ -141,11 +153,7 @@ function CodeGroups({ codeGroups, ontomapsUrl }) {
     <div className="content">
       <h5>
         Matching Code Mappings{" "}
-        <a
-          rel="noreferrer"
-          target="_blank"
-          href={ontomapsUrl}
-        >
+        <a rel="noreferrer" target="_blank" href={ontomapsUrl}>
           {"{JSON↗}"}
         </a>
       </h5>
@@ -163,13 +171,13 @@ function CodeGroups({ codeGroups, ontomapsUrl }) {
         </tbody>
       </table>
       {codeGroups.length > 1 && (
-      <p>
-        More than one code groups means that either mappings need refinements
-        (e.g. additional specific NCIT classes for ICD-O T topographies) or you
-        started out with an unspecific ICD-O M class and need to add a second
-        selection.
-      </p>
-    )}
+        <p>
+          More than one code groups means that either mappings need refinements
+          (e.g. additional specific NCIT classes for ICD-O T topographies) or
+          you started out with an unspecific ICD-O M class and need to add a
+          second selection.
+        </p>
+      )}
     </div>
   )
 }
@@ -202,5 +210,3 @@ function mapToOptions(data) {
     value: c.id
   }))
 }
-
-export default Ontologymaps
