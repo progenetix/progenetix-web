@@ -43,8 +43,6 @@ export default function PublicationsListPage() {
               onChange={(e) => setSearchInput(e.target.value)}
             />
           </div>
-        </div>
-        <div className="columns my-0">
           <div className="field column py-0 mb-3 is-one-third">
             <label className="label">City</label>
             <GeoCitySelector geoCity={geoCity} setGeoCity={setGeoCity} />

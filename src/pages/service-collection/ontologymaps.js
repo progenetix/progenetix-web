@@ -4,9 +4,9 @@ import { ontologymapsUrl, useExtendedSWR } from "../../hooks/api"
 import CustomSelect from "../../components/Select"
 import { Loader } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
+import Link from "next/link"
 
 const filterPrecision = "start"
-
 export default function OntologymapsPage() {
   return (
     <Layout title="Ontologymaps" headline="Ontologymaps">
@@ -163,7 +163,9 @@ function CodeGroups({ codeGroups, ontomapsUrl }) {
             <tr key={i}>
               {codeGroup.map((code) => (
                 <td key={code.id}>
-                  {code.id}: {code.label}
+                  <Link href={`/subsets/list?datasetIds=progenetix&filters=${code.id}`}>
+                    <a>{code.id}</a>
+                  </Link>{": "}{code.label}
                 </td>
               ))}
             </tr>
