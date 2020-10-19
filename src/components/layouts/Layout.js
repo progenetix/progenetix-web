@@ -44,11 +44,16 @@ export function Layout({ title, headline, children }) {
       </main>
       <footer className="footer">
         <div className="content container has-text-centered">
-          © 2000 - 2020 Progenetix Cancer Genomics Information Resource by{" "}
+          © 2000 - 2020 Progenetix Cancer Genomics Information Resource by the group of{" "}
           <a href="https://info.baudisgroup.org/group/Michael_Baudis/">
             Michael Baudis
-          </a>{" "}
-          is licensed under CC BY 4.0
+          </a>{" "}at the{" "}
+          <a href="https://www.mls.uzh.ch/en/research/baudis/">
+            University of Zurich
+          </a>{" "}and the{" "}
+          <a href="http://sib.swiss/baudis-michael/">
+            Swiss Institute of Bioinformatics{" "}<span className="span-red">SIB</span>
+          </a>{" "}is licensed under CC BY 4.0
           <a rel="license" href="https://creativecommons.org/licenses/by/4.0">
             <img className="Layout__cc__icons" src="/img/cc-cc.svg" />
             <img className="Layout__cc__icons" src="/img/cc-by.svg" />

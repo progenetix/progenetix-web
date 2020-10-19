@@ -33,7 +33,7 @@ export async function tryFetch(url, fallBack = "N/A") {
 
 // This function gets called at build time on server-side.
 export async function getStaticDatatasets() {
-  const url = `${PROGENETIX}/cgi/bycon/bin/byconplus.py/get-datasetids/`
+  const url = `${PROGENETIX}/cgi/bycon/bycon/byconplus.py/get-datasetids/`
   const data = await tryFetch(url, null)
   return data.datasets.map((value) => ({
     value: value.id,
@@ -47,7 +47,7 @@ export async function getStaticDatatasets() {
 export function useBeaconQuery(queryData) {
   return useExtendedSWR(
     queryData
-      ? `${basePath}cgi/bycon/bin/byconplus.py?${buildQueryParameters(
+      ? `${basePath}cgi/bycon/bycon/byconplus.py?${buildQueryParameters(
           queryData
         )}`
       : null
