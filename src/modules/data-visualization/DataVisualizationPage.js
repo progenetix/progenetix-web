@@ -1,19 +1,18 @@
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/layouts/Layout"
-import React, { useEffect, useRef, useState } from "react"
+import React, { useRef, useState } from "react"
+import { LabeledGeneSpanOptions } from "../../components/form/GenespanUtilities"
 import { useForm } from "react-hook-form"
 import SelectField from "../../components/form/SelectField"
 import InputField from "../../components/form/InputField"
 import cn from "classnames"
 import {
   replaceWithProxy,
-  useDataVisualization,
-  useGeneSpans
+  useDataVisualization
 } from "../../hooks/api"
 import { WithData } from "../../components/Loader"
 import { useContainerDimensions } from "../../hooks/containerDimensions"
 import { useAsyncSelect } from "../../hooks/asyncSelect"
-import { keyBy } from "lodash"
 
 export const getVisualizationLink = (accessId) =>
   `/data-visualization?accessid=${accessId}`
@@ -222,7 +221,7 @@ const groupByOptions = [
 
 function GeneSpanSelector({ control, errors, register }) {
   const { inputValue, onInputChange } = useAsyncSelect()
-  const { options, isLoading } = useGenSpanSelect(inputValue)
+  const { options, isLoading } = LabeledGeneSpanOptions(inputValue)
   return (
     <SelectField
       name="-markers"
@@ -236,24 +235,4 @@ function GeneSpanSelector({ control, errors, register }) {
       isMulti
     />
   )
-}
-
-export function useGenSpanSelect(inputValue) {
-  const { data, isLoading } = useGeneSpans(inputValue)
-  const [cachedGenes, setCachedGenes] = useState({})
-  useEffect(() => {
-    if (data) {
-      const genes = keyBy(data.data, "gene_symbol")
-      setCachedGenes({ ...genes, ...cachedGenes })
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data])
-  const options = Object.entries(cachedGenes).map(([, gene]) => {
-    const { reference_name, cds_start_min, cds_end_max, gene_symbol } = gene
-    return {
-      value: `${reference_name}:${cds_start_min}-${cds_end_max}:${gene_symbol}`,
-      label: `${gene_symbol} (${reference_name}:${cds_start_min}-${cds_end_max})`
-    }
-  })
-  return { isLoading, options }
 }

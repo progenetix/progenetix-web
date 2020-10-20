@@ -1,5 +1,6 @@
 import { useAsyncSelect } from "../../hooks/asyncSelect"
-import { useCytomapper, useGeneSpans } from "../../hooks/api"
+import { useCytomapper } from "../../hooks/api"
+import { useGeneSpanSelect } from "../form/GenespanUtilities.js"
 import CustomSelect from "../Select"
 import React, { useState } from "react"
 import PropTypes from "prop-types"
@@ -68,23 +69,9 @@ export function FormUtilitiesButtons({
   )
 }
 
-function useGenSpanSelect(inputValue) {
-  const { data, error, isLoading } = useGeneSpans(inputValue)
-  const getOptionLabel = (o) =>
-    `${o.reference_name}:${o.cds_start_min}-${o.cds_end_max}:${o.gene_symbol}`
-  let options = []
-  if (data) {
-    options = data.data.map((g) => ({
-      value: g,
-      label: getOptionLabel(g)
-    }))
-  }
-  return { isLoading, error, options }
-}
-
 export function GeneSpansUtility({ onClose, setFormValue }) {
   const { inputValue, value, onChange, onInputChange } = useAsyncSelect()
-  const { options, error, isLoading } = useGenSpanSelect(inputValue)
+  const { options, error, isLoading } = useGeneSpanSelect(inputValue)
   const onApply = (optionValue) => {
     setFormValue("start", optionValue.cds_start_min)
     setFormValue("end", optionValue.cds_end_max)
