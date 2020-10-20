@@ -37,9 +37,10 @@ function Map({ biosamples, height, datasetId }) {
       "provenance.geo.geojson.coordinates"
     )
 
-    const circles = Object.entries(byCoordinates).map(([, biosamples]) => {
+    const circles = Object.entries(byCoordinates).flatMap(([, biosamples]) => {
       const randomId = Math.random().toString(36).substring(2, 15)
-      const geo = biosamples[0].provenance.geo
+      const geo = biosamples[0].provenance?.geo
+      if (!geo) return []
       const radius = 3000 + 2000 * biosamples.length
       const render = () =>
         // eslint-disable-next-line react/no-render-return-value
@@ -56,7 +57,7 @@ function Map({ biosamples, height, datasetId }) {
         { minWidth: 400 }
       )
       circle.render = render
-      return circle
+      return [circle]
     })
 
     map.on("popupopen", function (e) {

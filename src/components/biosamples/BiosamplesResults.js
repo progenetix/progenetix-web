@@ -9,7 +9,6 @@ export function BiosamplesResults({ response, isLoading, error, query }) {
       <div className="subtitle ">
         <QuerySummary query={query} />
       </div>
-
       <Loader isLoading={isLoading} hasError={error} colored background>
         {() => (
           <>

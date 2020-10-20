@@ -49,21 +49,26 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
     biosamplesHandover && replaceWithProxy(biosamplesHandover.url)
   )
 
-  const histogramUrl = handoverById(HANDOVER_IDS.cnvhistogram).url
-
-  const visualizationAccessId = new URLSearchParams(
-    new URL(histogramUrl).search
-  ).get("accessid")
-
-  const visualizationLink =  getVisualizationLink(visualizationAccessId)
+  let histogramUrl
+  let visualizationLink
+  if (handoverById(HANDOVER_IDS.cnvhistogram)) {
+    histogramUrl = handoverById(HANDOVER_IDS.cnvhistogram).url
+    let visualizationAccessId = new URLSearchParams(
+      new URL(histogramUrl).search
+    ).get("accessid")
+    visualizationLink = getVisualizationLink(visualizationAccessId)
+  }
 
   // main / samples / variants
   const tabNames = []
-  if (handoverById(HANDOVER_IDS.cnvhistogram)) tabNames.push(TABS.results)
-  if (biosamplesHandover) {
-    tabNames.push(TABS.samples)
-    tabNames.push(TABS.samplesMap)
-  }
+  tabNames.push(TABS.results)
+
+  biosamplesHandover && tabNames.push(TABS.samples)
+
+  biosamplesDataResults?.data?.some(
+    (biosample) => !!biosample.provenance?.geo
+  ) && tabNames.push(TABS.samplesMap)
+
   if (handoverById(HANDOVER_IDS.variantsdata)) tabNames.push(TABS.variants)
   const [selectedTab, setSelectedTab] = useState(tabNames[0])
 
@@ -95,12 +100,7 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
   } else if (selectedTab === TABS.variants) {
     const handover = handoverById(HANDOVER_IDS.variantsdata)
     const url = replaceWithProxy(handover.url)
-    tabComponent = (
-      <VariantsDataTable
-        url={url}
-        datasetId={datasetId}
-      />
-    )
+    tabComponent = <VariantsDataTable url={url} datasetId={datasetId} />
   }
 
   return (
@@ -146,14 +146,13 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
             onClick={() => openJsonInNewTab(datasetAlleleResponse)}
           />
         </div>
-        <div className="column is-one-fifth">
-          <a
-            className="button is-info mb-5"
-            href={visualizationLink}
-          >
-            Visualization options
-          </a>
-        </div>
+        {visualizationLink && (
+          <div className="column is-one-fifth">
+            <a className="button is-info mb-5" href={visualizationLink}>
+              Visualization options
+            </a>
+          </div>
+        )}
       </div>
       {tabNames?.length > 0 ? (
         <div className="tabs is-boxed ">
@@ -184,14 +183,13 @@ function ResultsTab({
   variantCount,
   datasetId
 }) {
-
   return (
     <div>
-      {shouldShowHistogram(alternateBases) && (
+      {histogramUrl && shouldShowHistogram(alternateBases) && (
         <div className="mb-4">
           <CnvHistogramPreview url={histogramUrl} />
         </div>
-      )}{" "}
+      )}
       <WithData
         dataEffectResult={biosamplesDataResults}
         background
