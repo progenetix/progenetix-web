@@ -128,7 +128,7 @@ export const Row = ({
 // internal openness state (`isOpen`), function to change internal openness
 // state (`toggle`) and `style` parameter that should be added to the root div.
 function Node({
-  data: { isLeaf, subset, nestingLevel },
+  data: { isLeaf, subsetId, subset, nestingLevel },
   treeData: { datasetIds, checkboxClicked },
   index,
   isOpen,
@@ -175,20 +175,24 @@ function Node({
           </span>
           <span>
             <Link
-              href={`/subsets/list?filters=${subset.id}&datasetIds=${datasetIds}`}
+              href={`/subsets/list?filters=${subsetId}&datasetIds=${datasetIds}`}
             >
-              <a>{subset.id}</a>
+              <a>{subsetId}</a>
             </Link>
-            {subset?.label && <span>: {subset.label}</span>}
+            {subset?.label && <span>: {subset?.label}</span>}
             {isSearchPossible ? (
-              <Tippy content={`Click to initiate a search for ${subset.id}`}>
+              <Tippy content={`Click to initiate a search for ${subsetId}`}>
                 <a href={sampleSelectUrl({ subsets: [subset], datasetIds })}>
-                  <span> ({subset?.count} {pluralizeWord("sample", subset?.count)})</span>
+                  <span>
+                    ({subset.count} {pluralizeWord("sample", subset.count)})
+                  </span>
                 </a>
               </Tippy>
-            ) : (
-              <span> ({subset?.count} {pluralizeWord("sample", subset?.count)})</span>
-            )}
+            ) : subset ? (
+              <span>
+                ({subset.count} {pluralizeWord("sample", subset.count)})
+              </span>
+            ) : null}
           </span>
         </span>
       </span>
@@ -229,7 +233,7 @@ const mkTreeWalker = (tree, defaultExpandedLevel, setSize) => {
     while (stack.length !== 0) {
       const {
         nestingLevel,
-        node: { children = [], uid, subset }
+        node: { children = [], uid, subset, id }
       } = stack.pop()
       // Here we are sending the information about the node to the Tree component
       // and receive an information about the openness state from it. The
@@ -242,6 +246,7 @@ const mkTreeWalker = (tree, defaultExpandedLevel, setSize) => {
             id: uid,
             isLeaf: children.length === 0,
             isOpenByDefault: openByDefault,
+            subsetId: id,
             subset,
             nestingLevel
           }
