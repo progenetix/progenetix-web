@@ -136,16 +136,6 @@ export function useDataVisualization(queryData) {
 }
 
 export function buildDataVisualizationParameters(queryData) {
-  // accessid=2833da30-e135-11ea-875b-a1a6d91b59c8&
-  // &-chr2plot=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22
-  // &-size_plotarea_h_px=100
-  // &-size_plotimage_w_px=800
-  // &-size_title_left_px=0
-  // &-size_clustertree_w_px=50
-  // &-randno=10
-  // &-markers=&
-  // group_by=NCIT
-  // &-min_group_no=2
 
   return new URLSearchParams(
     flattenParams([...Object.entries(queryData)]).filter(([, v]) => !!v)
@@ -183,6 +173,14 @@ export function ontologymapsUrl({ filters, filterPrecision }) {
   return `${basePath}services/ontologymaps?${params.toString()}`
 }
 
+// export function collationsUrl({ filters, filterPrecision }) {
+//   let params = new URLSearchParams({ filters: filters, datasetIds: "progenetix" })
+//   if (filterPrecision) {
+//     params.append("filterPrecision", filterPrecision)
+//   }
+//   return `${basePath}services/collations?${params.toString()}`
+// }
+//
 export function DataItemDelivery(id, collection, datasetIds) {
   return useExtendedSWR( DataItemUrl(id, collection, datasetIds) )
 }
@@ -258,12 +256,6 @@ export function useCollationsById({ datasetIds }) {
   const data = rawData && transformData(rawData)
   return { data, ...other }
 }
-
-// export function useOntologymaps({ filters }) {
-//   const url = ontologymapsUrl( filters )
-//   const { data: rawData, ...other } = useExtendedSWR(url)
-//   return { data, ...other }
-// }
 
 // services/collations/?datasetIds=progenetix&method=counts&filters=&responseFormat=simplelist
 export function useCollations({ datasetIds, method, filters }) {

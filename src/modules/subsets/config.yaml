@@ -1,10 +1,10 @@
 filters:
   NCIT:
-    label: NCIT
+    label: NCIT Cancer Core
   icdom:
-    label: ICD-O Histo
+    label: ICD-O Histology
   icdot:
-    label: ICD-O Topo
+    label: ICD-O Topography
 datasetIds:
   progenetix:
     label: progenetix
