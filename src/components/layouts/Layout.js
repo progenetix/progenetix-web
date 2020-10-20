@@ -88,6 +88,7 @@ function Side({ onClick }) {
           href="/publications/list"
           label="Publication DB"
         />
+        <MenuInternalLinkItem href="/service-collection/ontologymaps" label="Services" />
         <MenuInternalLinkItem
           href="/data-visualization-upload"
           label="Upload & Plot"

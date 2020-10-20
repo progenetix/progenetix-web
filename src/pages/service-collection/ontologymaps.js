@@ -9,7 +9,7 @@ import Link from "next/link"
 const filterPrecision = "start"
 export default function OntologymapsPage() {
   return (
-    <Layout title="Ontologymaps" headline="Ontologymaps">
+    <Layout title="Ontologymaps" headline="Services: Ontologymaps">
       <div className="content">
         <p>
           The <strong>ontologymaps</strong> service makes use of the
@@ -104,14 +104,14 @@ const OntologymapsSelection = withUrlQuery(({ urlQuery, setUrlQuery }) => {
           }
           onChange={(option) => handleFirstSelectionChange(option?.value)}
           isClearable
-          placeholder="First: Select NCIT or ICD-O code"
+          placeholder="First: Type & select NCIT or ICD-O code"
         />
         {firstSelection && (
           <Loader
             isLoading={secondSelectionLoading}
             hasError={secondSelectionError}
           >
-            {secondSelectionOptions && secondSelectionOptions.length ? (
+            {secondSelectionOptions && resultsData?.data.code_groups?.length > 1 ? (
               <CustomSelect
                 className="mb-6"
                 options={secondSelectionOptions}
@@ -127,8 +127,7 @@ const OntologymapsSelection = withUrlQuery(({ urlQuery, setUrlQuery }) => {
                 placeholder="Optional: Limit with second selection"
               />
             ) : (
-              <div className="notification">
-                No groups found for the first selection.
+              <div>
               </div>
             )}
             <Loader isLoading={resultsLoading} hasError={resultsError}>
