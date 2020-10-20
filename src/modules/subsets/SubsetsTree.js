@@ -1,3 +1,4 @@
+import { pluralizeWord } from "../../hooks/api"
 import React, { useEffect, useMemo, useState } from "react"
 import cn from "classnames"
 import Link from "next/link"
@@ -182,11 +183,11 @@ function Node({
             {isSearchPossible ? (
               <Tippy content={`Click to initiate a search for ${subset.id}`}>
                 <a href={sampleSelectUrl({ subsets: [subset], datasetIds })}>
-                  <span> ({subset?.count} samples)</span>
+                  <span> ({subset?.count} {pluralizeWord("sample", subset?.count)})</span>
                 </a>
               </Tippy>
             ) : (
-              <span> ({subset?.count} samples)</span>
+              <span> ({subset?.count} {pluralizeWord("sample", subset?.count)})</span>
             )}
           </span>
         </span>

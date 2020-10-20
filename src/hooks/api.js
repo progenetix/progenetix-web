@@ -291,6 +291,13 @@ export function referenceLink(externalReference) {
   }
 }
 
+export function pluralizeWord(word, count) {
+  if (count > 1) {
+    word = word+"s"
+  }
+  return word
+}
+
 export async function uploadFile(formData) {
   // Default options are marked with *
   const response = await fetch(`${basePath}cgi/pgx_uploader.cgi`, {
