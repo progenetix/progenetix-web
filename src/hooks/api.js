@@ -212,7 +212,7 @@ export function useGeneSpans(querytext) {
   const url =
     querytext &&
     querytext.length > 0 &&
-    `${basePath}cgi/bycon/bin/genespans.py?geneId=${querytext}`
+    `${basePath}cgi/bycon/services/genespans.py?geneId=${querytext}`
   return useExtendedSWR(url, (...args) =>
     fetch(...args)
       .then((res) => res.text())
@@ -227,7 +227,7 @@ export function useCytomapper(querytext) {
   const url =
     querytext &&
     querytext.length > 0 &&
-    `${basePath}cgi/bycon/bin/cytomapper.py?cytoBands=${querytext}`
+    `${basePath}cgi/bycon/services/cytomapper.py?cytoBands=${querytext}`
   return useExtendedSWR(url)
 }
 
