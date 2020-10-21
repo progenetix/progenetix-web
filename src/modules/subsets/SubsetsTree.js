@@ -1,7 +1,6 @@
 import { pluralizeWord } from "../../hooks/api"
 import React, { useEffect, useMemo, useState } from "react"
 import cn from "classnames"
-import Link from "next/link"
 import { FaAngleDown, FaAngleRight } from "react-icons/fa"
 import { canSearch, sampleSelectUrl } from "./samples-search"
 import Tippy from "@tippyjs/react"
@@ -174,23 +173,27 @@ function Node({
             <Expander isOpen={isOpen} toggle={toggle} />
           </span>
           <span>
-            <Link
-              href={`/subsets/list?filters=${subsetId}&datasetIds=${datasetIds}`}
-            >
-              <a>{subsetId}</a>
-            </Link>
+            {subset?.count ? (
+              <Tippy content={`Show data for subset ${subsetId}`}>
+                <a href={`/subsets/list?filters=${subsetId}&datasetIds=${datasetIds}`}>
+                  <span>
+                    {subsetId}
+                  </span>
+                </a>
+              </Tippy>
+            ) : <span>{subsetId}{" "}(no samples)</span> }
             {subset?.label && <span>: {subset?.label}</span>}
             {isSearchPossible ? (
-              <Tippy content={`Click to initiate a search for ${subsetId}`}>
+              <Tippy content={`Click to retrievve samples for ${subsetId}`}>
                 <a href={sampleSelectUrl({ subsets: [subset], datasetIds })}>
                   <span>
-                    ({subset.count} {pluralizeWord("sample", subset.count)})
+                    {" "}({subset.count} {pluralizeWord("sample", subset.count)})
                   </span>
                 </a>
               </Tippy>
             ) : subset ? (
               <span>
-                ({subset.count} {pluralizeWord("sample", subset.count)})
+                {" "}({subset.count} {pluralizeWord("sample", subset.count)})
               </span>
             ) : null}
           </span>
