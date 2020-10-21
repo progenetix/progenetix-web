@@ -1,6 +1,5 @@
 import swr from "swr"
 import { svgFetcher } from "./fetcher"
-
 import { keyBy } from "lodash"
 
 // eslint-disable-next-line no-undef
@@ -205,21 +204,6 @@ export function NoResultsHelp(id, collection) {
       </a>
       .
     </div>
-  )
-}
-
-export function useGeneSpans(querytext) {
-  const url =
-    querytext &&
-    querytext.length > 0 &&
-    `${basePath}cgi/bycon/services/genespans.py?geneId=${querytext}`
-  return useExtendedSWR(url, (...args) =>
-    fetch(...args)
-      .then((res) => res.text())
-      .then((t) => {
-        // dataEffectResult returned is not JSON
-        return JSON.parse(t)
-      })
   )
 }
 

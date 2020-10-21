@@ -1,4 +1,4 @@
-import { useGeneSpans } from "../../hooks/api"
+import { useExtendedSWR, basePath } from "../../hooks/api"
 import { useEffect, useState } from "react"
 import { keyBy } from "lodash"
 
@@ -13,10 +13,9 @@ export function LabeledGeneSpanOptions(inputValue) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data])
   const options = Object.entries(cachedGenes).map(([, gene]) => {
-    const { reference_name, cds_start_min, cds_end_max, gene_symbol } = gene
     return {
-      value: `${reference_name}:${cds_start_min}-${cds_end_max}:${gene_symbol}`,
-      label: `${gene_symbol} (${reference_name}:${cds_start_min}-${cds_end_max})`
+      value: labeledGeneSpan(gene),
+      label: geneLabel(gene)
     }
   })
   return { isLoading, options }
@@ -24,14 +23,35 @@ export function LabeledGeneSpanOptions(inputValue) {
 
 export function useGeneSpanSelect(inputValue) {
   const { data, error, isLoading } = useGeneSpans(inputValue)
-  const getOptionLabel = (o) =>
-    `${o.reference_name}:${o.cds_start_min}-${o.cds_end_max}:${o.gene_symbol}`
   let options = []
   if (data) {
-    options = data.data.map((g) => ({
-      value: g,
-      label: getOptionLabel(g)
+    options = data.data.map((gene) => ({
+      value: gene,
+      label: labeledGeneSpan(gene)
     }))
   }
   return { isLoading, error, options }
+}
+
+function useGeneSpans(querytext) {
+  const url =
+    querytext &&
+    querytext.length > 0 &&
+    `${basePath}cgi/bycon/services/genespans.py?geneId=${querytext}`
+  return useExtendedSWR(url, (...args) =>
+    fetch(...args)
+      .then((res) => res.text())
+      .then((t) => {
+        // dataEffectResult returned is not JSON
+        return JSON.parse(t)
+      })
+  )
+}
+
+function labeledGeneSpan(gene) {
+  return(gene.reference_name+":"+gene.cds_start_min+"-"+gene.cds_end_max+":"+gene.gene_symbol)
+}
+
+function geneLabel(gene) {
+  return(gene.gene_symbol+" ("+gene.reference_name+":"+gene.cds_start_min+"-"+gene.cds_end_max+")")
 }
