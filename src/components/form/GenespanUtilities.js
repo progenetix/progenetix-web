@@ -36,8 +36,7 @@ export function useGeneSpanSelect(inputValue) {
 function useGeneSpans(querytext) {
   const url =
     querytext &&
-    querytext.length > 0 &&
-    `${basePath}cgi/bycon/services/genespans.py?geneId=${querytext}`
+    querytext.length > 0 && geneSearchUrl(querytext)
   return useExtendedSWR(url, (...args) =>
     fetch(...args)
       .then((res) => res.text())
@@ -54,4 +53,8 @@ function labeledGeneSpan(gene) {
 
 function geneLabel(gene) {
   return(gene.gene_symbol+" ("+gene.reference_name+":"+gene.cds_start_min+"-"+gene.cds_end_max+")")
+}
+
+function geneSearchUrl(querytext) {
+  return `${basePath}cgi/bycon/services/genespans.py?geneId=${querytext}`
 }
