@@ -13,6 +13,7 @@ export function useExtendedSWR(...args) {
 }
 
 export const PROGENETIX = "https://progenetix.org"
+export const PROGENETIXINFO = "https://info.progenetix.org"
 
 export async function tryFetch(url, fallBack = "N/A") {
   console.info(`Fetching data from ${url}.`)
@@ -172,14 +173,6 @@ export function ontologymapsUrl({ filters, filterPrecision }) {
   return `${basePath}services/ontologymaps?${params.toString()}`
 }
 
-// export function collationsUrl({ filters, filterPrecision }) {
-//   let params = new URLSearchParams({ filters: filters, datasetIds: "progenetix" })
-//   if (filterPrecision) {
-//     params.append("filterPrecision", filterPrecision)
-//   }
-//   return `${basePath}services/collations?${params.toString()}`
-// }
-//
 export function DataItemDelivery(id, collection, datasetIds) {
   return useExtendedSWR( DataItemUrl(id, collection, datasetIds) )
 }

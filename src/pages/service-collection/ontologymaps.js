@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react"
 import { Layout } from "../../components/layouts/Layout"
-import { ontologymapsUrl, useExtendedSWR } from "../../hooks/api"
+import { ontologymapsUrl, useExtendedSWR, PROGENETIXINFO } from "../../hooks/api"
 import CustomSelect from "../../components/Select"
 import { Loader } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import Link from "next/link"
 
 const filterPrecision = "start"
+const docurl = `${PROGENETIXINFO}/doc/services/ontologymaps.html`
+
 export default function OntologymapsPage() {
   return (
     <Layout title="Ontologymaps" headline="Services: Ontologymaps">
       <div className="content">
         <p>
-          The <strong>ontologymaps</strong> service makes use of the
-          sample-level mappings for NCIT and ICD-O 3 codes.
+          The <strong>ontologymaps</strong> service provides equivalency mapping
+          between ICD-O and other classification systems, notably NCIt. It makes
+          use of the sample-level mappings for NCIT and ICD-O 3 codes developed
+          for the individual samples in the Progenetix collection.
         </p>
         <p>
           While NCIT treats diseases as{" "}
@@ -27,6 +31,10 @@ export default function OntologymapsPage() {
           <span className="span-red">Topography</span> coding arms (e.g. here{" "}
           <span className="span-blue">8140/3</span> +{" "}
           <span className="span-red">C56.9</span>).
+        </p>
+        <p>
+          More documentation with focus on the API functionality can be found
+          on the <a href={docurl}>documentation pages</a>.
         </p>
       </div>
       <OntologymapsSelection />

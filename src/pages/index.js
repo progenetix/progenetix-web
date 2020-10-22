@@ -51,9 +51,6 @@ export const ExampleHistogram = ({ id }) => (
 
 // This function gets called at build time on server-side.
 export const getStaticProps = async () => {
-  // const publicationsCount = await tryFetch(
-  //   `${PROGENETIX}/services/publications/?method=counts&filters=PMID`
-  // )
   const dbstats = await tryFetch(`${PROGENETIX}/services/dbstats/`)
   const ncitCount = await tryFetch(
     `${PROGENETIX}/services/collations/?datasetIds=progenetix&method=codematches&filters=NCIT`

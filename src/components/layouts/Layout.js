@@ -9,6 +9,7 @@ export function Layout({ title, headline, children }) {
   const [sideOpen, setSideOpen] = useState(false)
   return (
     <div className="Layout__app">
+      <img src="/img/site-logo-topright.png" className="Layout__logo_topright icon" />
       <Head>
         <title>{title || ""}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
