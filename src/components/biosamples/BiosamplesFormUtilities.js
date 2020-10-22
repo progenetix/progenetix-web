@@ -139,9 +139,9 @@ export function CytoBandsUtility({ onClose, setFormValue }) {
   const [searchValue, setSearchValue] = useState("")
   const dataEffectResult = useCytomapper(searchValue)
   const onApply = (data) => {
-    setFormValue("start", data.start)
-    setFormValue("end", data.end)
-    setFormValue("referenceName", data.referenceName)
+    setFormValue("start", data.data.GenomicLocation.interval.start)
+    setFormValue("end", data.data.GenomicLocation.interval.end)
+    setFormValue("referenceName", data.data.GenomicLocation.chr)
     onClose()
   }
   const onSubmit = (e) => {
@@ -177,14 +177,14 @@ export function CytoBandsUtility({ onClose, setFormValue }) {
                 return (
                   <>
                     {hasResults ? (
-                      <CytoBandsData data={info} />
+                      <CytoBandsData data={data.data} />
                     ) : (
                       <div className="notification is-light">No results.</div>
                     )}
                     <div className="buttons">
                       <button
                         disabled={!hasResults}
-                        onClick={() => onApply(info)}
+                        onClick={() => onApply(data)}
                         className="button is-primary"
                       >
                         Apply
@@ -208,16 +208,16 @@ function CytoBandsData({ data }) {
   return (
     <div className="content has-text-black">
       <div>
-        CytoBands: <b>{data.cytoBands}</b>
+        CytoBands: <b>{data.info.cytoBands}</b>
       </div>
       <div>
-        Start: <b>{data.start}</b>
+        Start: <b>{data.GenomicLocation.interval.start}</b>
       </div>
       <div>
-        End: <b>{data.end}</b>
+        End: <b>{data.GenomicLocation.interval.end}</b>
       </div>
       <div>
-        Reference Name: <b>{data.referenceName}</b>
+        Reference Name: <b>{data.GenomicLocation.chr}</b>
       </div>
     </div>
   )
