@@ -115,9 +115,8 @@ export function Chromosome({
         </svg>
         {start &&
           annotation(calcX)(start, start, startRangeColor, "top", "end")}
-        {start &&
-          annotation(calcX)(startMax, startMax, startRangeColor, "top", "start")}
-        {end && annotation(calcX)(endMin, endMin, endRangeColor, "bottom", "end")}
+        {startMax && startMax > start ? annotation(calcX)(startMax, startMax, startRangeColor, "top", "start") : "" }
+        {endMin && endMin < end ? annotation(calcX)(endMin, endMin, endRangeColor, "bottom", "end") : "" }
         {end &&
           annotation(calcX)(end, end, endRangeColor, "bottom", "start")}
       </svg>
@@ -173,13 +172,13 @@ function getStarts(startRange) {
   const startRangeMatch = INTEGER_RANGE_REGEX.exec(startRange) ?? []
   const [, start0, start1] = startRangeMatch
   const start = Number.parseInt(start0)
-  const startMax = start1 != null ? Number.parseInt(start1) : null
+  const startMax = start1 != null ? Number.parseInt(start1) : start
   return { start, startMax }
 }
 
 function findEnds(endRange) {
   const [, end0, end1] = INTEGER_RANGE_REGEX.exec(endRange) ?? []
   const end = end1 != null ? Number.parseInt(end1) : Number.parseInt(end0)
-  const endMin = end1 != null ? Number.parseInt(end0) : null
+  const endMin = end1 != null ? Number.parseInt(end0) : end
   return { end, endMin }
 }
