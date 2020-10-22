@@ -2,10 +2,10 @@ import { pluralizeWord } from "../../hooks/api"
 import React, { useEffect, useMemo, useState } from "react"
 import cn from "classnames"
 import { FaAngleDown, FaAngleRight } from "react-icons/fa"
-import { canSearch, sampleSelectUrl } from "./samples-search"
 import Tippy from "@tippyjs/react"
 import { FixedSizeTree as Tree } from "react-vtree"
 import useDebounce from "../../hooks/debounce"
+import { min } from "lodash"
 import { filterNode } from "./tree"
 
 const ROW_HEIGHT = 40
@@ -281,4 +281,18 @@ function useFilterTree(tree) {
   const debouncedSearchInput = useDebounce(searchInput, 500) || ""
   const filteredTree = filterNode(tree, match(debouncedSearchInput)) || []
   return { searchInput, setSearchInput, filteredTree }
+}
+
+function sampleSelectUrl({ subsets, datasetIds }) {
+  const filters = subsets.map(({ id }) => id).join(",")
+  return `/biosamples/search?filters=${filters}&datasetIds=${datasetIds}&filterLogic=OR`
+}
+
+function canSearch(subset) {
+  // Only necessary for NCIT
+  if (!subset.id.includes("NCIT:")) return true
+  const minDepth = subset.hierarchy_paths
+    ? min(subset.hierarchy_paths?.map((hp) => hp.depth))
+    : 999
+  return minDepth >= 2
 }

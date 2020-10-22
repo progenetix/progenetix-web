@@ -7,8 +7,6 @@ filters:
     label: ICD-O Topography
 datasetIds:
   progenetix:
-    label: progenetix
+    label: Progenetix
   arraymap:
-    label: arraymap
-  dipg:
-    label: dipg
+    label: arrayMap
