@@ -198,10 +198,20 @@ function DataVisualizationForm({ isQuerying, onSubmit }) {
 function ResultPanel({ response }) {
   const histogramUrl = response.data?.plots?.histogram?.svg_link_tmp
   const multistripUrl = response.data?.plots?.multistrip?.svg_link_tmp
+  const samplematrixUrl = response.data?.samplematrix_link_tmp
   return (
     <div>
-      <img src={replaceWithProxy(histogramUrl)} />
-      <img src={replaceWithProxy(multistripUrl)} />
+      <div>
+        <img src={replaceWithProxy(histogramUrl)} />
+        <a href={histogramUrl} target="_blank" rel="noreferrer">Open Histogram</a>
+      </div>
+      <div>
+        <img src={replaceWithProxy(multistripUrl)} />
+        <a href={multistripUrl} target="_blank" rel="noreferrer">Open Sample Plot</a>
+      </div>
+      <div>
+        <a href={samplematrixUrl} target="_blank" rel="noreferrer">Download Sample Status Matrix</a>
+      </div>
     </div>
   )
 }
