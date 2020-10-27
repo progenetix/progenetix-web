@@ -169,8 +169,7 @@ filterPrecision:
 geoCity:
   label: City
   infoText: |
-    Selector for a city for which the samples have been annotated, usually
-    corresponding to origin of the data.
+    Selector for a city for which the samples have been annotated, usually corresponding to origin of the data.
 geodistanceKm:
   infoText: |
     Proximity of the data matches to the selected city, to allow for fuzzy

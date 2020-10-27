@@ -4,6 +4,9 @@ progenetix:
   label: ""
   description: ""
   parameters:
+    datasetIds:
+      defaultValue: ["progenetix"]
+      isHidden: true
     includeDatasetResponses:
       placeholder: "ALL"
       isHidden: true
@@ -43,6 +46,7 @@ progenetix:
       parameters:
         datasetIds:
           defaultValue: ["progenetix"]
+          isHidden: true
         includeDatasetResponses:
           defaultValue: "ALL"
           isHidden: true
@@ -68,6 +72,7 @@ progenetix:
       parameters:
         datasetIds:
           defaultValue: ["progenetix"]
+          isHidden: true
         includeDatasetResponses:
           defaultValue: "ALL"
           isHidden: true
@@ -93,6 +98,7 @@ progenetix:
       parameters:
         datasetIds:
           defaultValue: ["progenetix"]
+          isHidden: true
         includeDatasetResponses:
           defaultValue: "ALL"
           isHidden: true
