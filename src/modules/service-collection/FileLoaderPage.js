@@ -2,15 +2,15 @@ import { Layout } from "../../components/layouts/Layout"
 import React, { useState } from "react"
 import { useDropzone } from "react-dropzone"
 import { uploadFile } from "../../hooks/api"
-import { getVisualizationLink } from "./DataVisualizationPage"
+import { getVisualizationLink } from "../data-visualization/DataVisualizationPage"
 import Link from "next/link"
 import Panel from "../../components/Panel"
 
-export default function DataVisualizationUploadPage() {
+export default function FileLoaderPage() {
   return (
     <Layout
-      title="Data visualization Upload"
-      headline="Data visualization Upload"
+      title="USer File Upload"
+      headline="Upload Files for CNV Visualization"
     >
       <div className="mb-5">
         <DataVisualizationUpload />

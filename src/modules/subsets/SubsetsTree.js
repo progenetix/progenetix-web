@@ -175,25 +175,29 @@ function Node({
           <span>
             {subset?.count ? (
               <Tippy content={`Show data for subset ${subsetId}`}>
-                <a href={`/subsets/list?filters=${subsetId}&datasetIds=${datasetIds}`}>
-                  <span>
-                    {subsetId}
-                  </span>
+                <a
+                  href={`/subsets/list?filters=${subsetId}&datasetIds=${datasetIds}`}
+                >
+                  <span>{subsetId}</span>
                 </a>
               </Tippy>
-            ) : <span>{subsetId}{" "}(no samples)</span> }
+            ) : (
+              <span>{subsetId} (no samples)</span>
+            )}
             {subset?.label && <span>: {subset?.label}</span>}
             {isSearchPossible ? (
               <Tippy content={`Click to retrievve samples for ${subsetId}`}>
                 <a href={sampleSelectUrl({ subsets: [subset], datasetIds })}>
                   <span>
-                    {" "}({subset.count} {pluralizeWord("sample", subset.count)})
+                    {" "}
+                    ({subset.count} {pluralizeWord("sample", subset.count)})
                   </span>
                 </a>
               </Tippy>
             ) : subset ? (
               <span>
-                {" "}({subset.count} {pluralizeWord("sample", subset.count)})
+                {" "}
+                ({subset.count} {pluralizeWord("sample", subset.count)})
               </span>
             ) : null}
           </span>
@@ -285,7 +289,8 @@ function useFilterTree(tree) {
 
 function sampleSelectUrl({ subsets, datasetIds }) {
   const filters = subsets.map(({ id }) => id).join(",")
-  return `/biosamples/search?filters=${filters}&datasetIds=${datasetIds}&filterLogic=OR`
+  // here the `bioontology` parameter has to be used instead of `filters` for transfer to the search form
+  return `/biosamples/search?bioontology=${filters}&datasetIds=${datasetIds}&filterLogic=OR`
 }
 
 function canSearch(subset) {

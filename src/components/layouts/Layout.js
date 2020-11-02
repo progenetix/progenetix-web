@@ -9,7 +9,10 @@ export function Layout({ title, headline, children }) {
   const [sideOpen, setSideOpen] = useState(false)
   return (
     <div className="Layout__app">
-      <img src="/img/site-logo-topright.png" className="Layout__logo_topright icon" />
+      <img
+        src="/img/site-logo-topright.png"
+        className="Layout__logo_topright icon"
+      />
       <Head>
         <title>{title || ""}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -45,16 +48,21 @@ export function Layout({ title, headline, children }) {
       </main>
       <footer className="footer">
         <div className="content container has-text-centered">
-          © 2000 - 2020 Progenetix Cancer Genomics Information Resource by the group of{" "}
+          © 2000 - 2020 Progenetix Cancer Genomics Information Resource by the
+          group of{" "}
           <a href="https://info.baudisgroup.org/group/Michael_Baudis/">
             Michael Baudis
-          </a>{" "}at the{" "}
+          </a>{" "}
+          at the{" "}
           <a href="https://www.mls.uzh.ch/en/research/baudis/">
             University of Zurich
-          </a>{" "}and the{" "}
+          </a>{" "}
+          and the{" "}
           <a href="http://sib.swiss/baudis-michael/">
-            Swiss Institute of Bioinformatics{" "}<span className="span-red">SIB</span>
-          </a>{" "}is licensed under CC BY 4.0
+            Swiss Institute of Bioinformatics{" "}
+            <span className="span-red">SIB</span>
+          </a>{" "}
+          is licensed under CC BY 4.0
           <a rel="license" href="https://creativecommons.org/licenses/by/4.0">
             <img className="Layout__cc__icons" src="/img/cc-cc.svg" />
             <img className="Layout__cc__icons" src="/img/cc-by.svg" />
@@ -84,14 +92,20 @@ function Side({ onClick }) {
           href="/subsets/list"
           label="Cancer CNV Profiles"
         />
-        <MenuInternalLinkItem href="/biosamples/search" label="Search Samples" />
+        <MenuInternalLinkItem
+          href="/biosamples/search"
+          label="Search Samples"
+        />
         <MenuInternalLinkItem
           href="/publications/list"
           label="Publication DB"
         />
-        <MenuInternalLinkItem href="/service-collection/ontologymaps" label="Services" />
         <MenuInternalLinkItem
-          href="/data-visualization-upload"
+          href="/service-collection/ontologymaps"
+          label="Services"
+        />
+        <MenuInternalLinkItem
+          href="/service-collection/uploader"
           label="Upload & Plot"
         />
         <li>

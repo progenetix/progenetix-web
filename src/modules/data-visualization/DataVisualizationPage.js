@@ -6,10 +6,7 @@ import { useForm } from "react-hook-form"
 import SelectField from "../../components/form/SelectField"
 import InputField from "../../components/form/InputField"
 import cn from "classnames"
-import {
-  replaceWithProxy,
-  useDataVisualization
-} from "../../hooks/api"
+import { replaceWithProxy, useDataVisualization } from "../../hooks/api"
 import { WithData } from "../../components/Loader"
 import { useContainerDimensions } from "../../hooks/containerDimensions"
 import { useAsyncSelect } from "../../hooks/asyncSelect"
@@ -44,7 +41,7 @@ function NoResultsHelp() {
       .
       <br />
       Please start over from the Search Samples page or{" "}
-      <a href="/data-visualization-upload">upload a file</a>.
+      <a href="/service-collection/uploader">upload a file</a>.
     </div>
   )
 }
@@ -203,14 +200,20 @@ function ResultPanel({ response }) {
     <div>
       <div>
         <img src={replaceWithProxy(histogramUrl)} />
-        <a href={histogramUrl} target="_blank" rel="noreferrer">Open Histogram</a>
+        <a href={histogramUrl} target="_blank" rel="noreferrer">
+          Open Histogram
+        </a>
       </div>
       <div>
         <img src={replaceWithProxy(multistripUrl)} />
-        <a href={multistripUrl} target="_blank" rel="noreferrer">Open Sample Plot</a>
+        <a href={multistripUrl} target="_blank" rel="noreferrer">
+          Open Sample Plot
+        </a>
       </div>
       <div>
-        <a href={samplematrixUrl} target="_blank" rel="noreferrer">Download Sample Status Matrix</a>
+        <a href={samplematrixUrl} target="_blank" rel="noreferrer">
+          Download Sample Status Matrix
+        </a>
       </div>
     </div>
   )
