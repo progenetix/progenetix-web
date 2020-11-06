@@ -1,6 +1,6 @@
 # progenetix-next prototype
 
-Access live version: http://next.progenetix.org/
+Access live version: http://progenetix.org/
 
 Beta version, automatically deployed from master branch:
 https://progenetix-next.vercel.app/
