@@ -20,7 +20,7 @@ export function SubsetsTree({
   const [levelSelector, setLevelSelector] = useState(1)
   const [useDefaultExpanded, setUseDefaultExpanded] = useState(true)
   const defaultExpandedLevel = searchInput
-    ? 999
+    ? 99
     : useDefaultExpanded
     ? levelSelector
     : 0
