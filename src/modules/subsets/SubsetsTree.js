@@ -20,7 +20,7 @@ export function SubsetsTree({
   const [levelSelector, setLevelSelector] = useState(1)
   const [useDefaultExpanded, setUseDefaultExpanded] = useState(true)
   const defaultExpandedLevel = searchInput
-    ? 99
+    ? 999
     : useDefaultExpanded
     ? levelSelector
     : 0
@@ -173,17 +173,13 @@ function Node({
             <Expander isOpen={isOpen} toggle={toggle} />
           </span>
           <span>
-            {subset?.count ? (
-              <Tippy content={`Show data for subset ${subsetId}`}>
-                <a
-                  href={`/subsets/list?filters=${subsetId}&datasetIds=${datasetIds}`}
-                >
-                  <span>{subsetId}</span>
-                </a>
-              </Tippy>
-            ) : (
-              <span>{subsetId} (no samples)</span>
-            )}
+            <Tippy content={`Show data for subset ${subsetId}`}>
+              <a
+                href={`/subsets/list?filters=${subsetId}&datasetIds=${datasetIds}`}
+              >
+                <span>{subsetId}</span>
+              </a>
+            </Tippy>
             {subset?.label && <span>: {subset?.label}</span>}
             {isSearchPossible ? (
               <Tippy content={`Click to retrievve samples for ${subsetId}`}>

@@ -136,7 +136,6 @@ export function useDataVisualization(queryData) {
 }
 
 export function buildDataVisualizationParameters(queryData) {
-
   return new URLSearchParams(
     flattenParams([...Object.entries(queryData)]).filter(([, v]) => !!v)
   ).toString()
@@ -165,24 +164,34 @@ export function usePublicationList({ geoCity, geodistanceKm }) {
   return useExtendedSWR(url)
 }
 
+export const ontologymapsBaseUrl = `${basePath}services/ontologymaps?`
+
 export function ontologymapsUrl({ filters, filterPrecision }) {
   let params = new URLSearchParams({ filters: filters })
   if (filterPrecision) {
     params.append("filterPrecision", filterPrecision)
   }
-  return `${basePath}services/ontologymaps?${params.toString()}`
+  return `${ontologymapsBaseUrl}${params.toString()}`
+}
+
+export function ontologymapsPrefUrl({ prefixes, filters }) {
+  return `${ontologymapsBaseUrl}filters=${prefixes},${filters}&filterPrecision=start`
 }
 
 export function DataItemDelivery(id, collection, datasetIds) {
-  return useExtendedSWR( DataItemUrl(id, collection, datasetIds) )
+  return useExtendedSWR(DataItemUrl(id, collection, datasetIds))
 }
 
 export function DataItemUrl(id, collection, datasetIds) {
-  return `${basePath}services/deliveries/?datasetIds=${datasetIds}&collection=${collection}&${ (collection == "variants") ? "_id" : "id" }=${id}`
+  return `${basePath}services/deliveries/?datasetIds=${datasetIds}&collection=${collection}&${
+    collection == "variants" ? "_id" : "id"
+  }=${id}`
 }
 
 export function DataItemPageUrl(id, collection, datasetIds) {
-  return `${basePath}${collection}/?datasetIds=${datasetIds}&${ (collection == "variants") ? "_id" : "id" }=${id}`
+  return `${basePath}${collection}/?datasetIds=${datasetIds}&${
+    collection == "variants" ? "_id" : "id"
+  }=${id}`
 }
 
 export function NoResultsHelp(id, collection) {
@@ -190,12 +199,8 @@ export function NoResultsHelp(id, collection) {
   return (
     <div className="notification is-size-5">
       This page will only show content if called with a specific biosample ID
-      which already exists in the Progenetix or arrayMap <strong>{collection}</strong> database,
-      e.g.{" "}
-      <a href={url}>
-        {url}
-      </a>
-      .
+      which already exists in the Progenetix or arrayMap{" "}
+      <strong>{collection}</strong> database, e.g. <a href={url}>{url}</a>.
     </div>
   )
 }
@@ -209,18 +214,13 @@ export function useCytomapper(querytext) {
 }
 
 export function useSubsethistogram({ datasetIds, id, filter, size, chr2plot }) {
-  const params = [
-    ["datasetIds", datasetIds],
-    ["id", id],
-    ["-size_plotimage_w_px", size]
-  ]
+  const svgbaseurl = subsetSVGlink(id, datasetIds)
+  const params = []
   filter && params.push(["filter", filter])
+  size && params.push(["-size_plotimage_w_px", size])
   chr2plot && params.push(["chr2plot", chr2plot])
   const searchQuery = new URLSearchParams(params).toString()
-  return useExtendedSWR(
-    size > 0 && `${basePath}cgi/pgx_subsethistogram.cgi?${searchQuery}`,
-    svgFetcher
-  )
+  return useExtendedSWR(size > 0 && `${svgbaseurl}&${searchQuery}`, svgFetcher)
 }
 
 export function useCollationsById({ datasetIds }) {
@@ -234,7 +234,6 @@ export function useCollationsById({ datasetIds }) {
   return { data, ...other }
 }
 
-// services/collations/?datasetIds=progenetix&method=counts&filters=&responseFormat=simplelist
 export function useCollations({ datasetIds, method, filters }) {
   const url = `${basePath}services/collations/?datasetIds=${datasetIds}&method=${method}&filters=${filters}&responseFormat=simplelist`
   const { data: rawData, ...other } = useExtendedSWR(url)
@@ -245,6 +244,10 @@ export function useCollations({ datasetIds, method, filters }) {
 export function useGeoCity({ city }) {
   const url = `${basePath}services/geolocations?city=${city}&responseFormat=simplelist`
   return useExtendedSWR(url)
+}
+
+export function subsetSVGlink(id, datasetIds) {
+  return `${basePath}cgi/api_collationhistogram.cgi?datasetIds=${datasetIds}&id=${id}`
 }
 
 export function referenceLink(externalReference) {
@@ -270,7 +273,7 @@ export function referenceLink(externalReference) {
 
 export function pluralizeWord(word, count) {
   if (count > 1) {
-    word = word+"s"
+    word = word + "s"
   }
   return word
 }

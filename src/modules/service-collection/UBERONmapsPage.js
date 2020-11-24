@@ -15,35 +15,21 @@ import {
 } from "./ontomapsComponents"
 
 const filterPrecision = "start"
-const prefixes = "NCIT,icdom,icdot"
 const docurl = `${PROGENETIXINFO}/doc/services/ontologymaps.html`
+const prefixes = "UBERON,icdot"
 const apiAllMapsURL = `${ontologymapsBaseUrl}filters=${prefixes}`
 
-export default function OntologymapsPage() {
+export default function UBERONmapsPage() {
   return (
-    <Layout title="Ontologymaps" headline="Services: Ontologymaps (NCIt)">
+    <Layout title="Ontologymaps" headline="Services: Ontologymaps (UBERON)">
       <div className="content">
         <p>
           The <strong>ontologymaps</strong> service provides equivalency mapping
           between ICD-O and other classification systems, notably NCIt and
-          UBERON. It makes use of the sample-level mappings for NCIT and ICD-O 3
-          codes developed for the individual samples in the Progenetix
-          collection.
+          UBERON. It makes use of the sample-level mappings developed for the
+          individual samples in the Progenetix collection.
         </p>
-        <h4>NCIT and ICD-O 3</h4>
-        <p>
-          While NCIT treats diseases as{" "}
-          <span className="span-blue">histologic</span> and{" "}
-          <span className="span-red">topographic</span> described entities (e.g.{" "}
-          <span className="span-purple">NCIT:C7700</span>:{" "}
-          <span className="span-red">Ovarian</span>{" "}
-          <span className="span-blue">adenocarcinoma</span>), these two
-          components are represented separately in ICD-O, through the{" "}
-          <span className="span-blue">Morphology</span> and{" "}
-          <span className="span-red">Topography</span> coding arms (e.g. here{" "}
-          <span className="span-blue">8140/3</span> +{" "}
-          <span className="span-red">C56.9</span>).
-        </p>
+        <h4>UBERON and ICD-O 3</h4>
         <p>
           More documentation with focus on the API functionality can be found on
           the <a href={docurl}>documentation pages</a>.
@@ -55,12 +41,15 @@ export default function OntologymapsPage() {
           </a>
         </p>
       </div>
-      <NCITmapsSelection />
+      <UBERONmapsSelection
+        prefixes={prefixes}
+        filterPrecision={filterPrecision}
+      />
     </Layout>
   )
 }
 
-const NCITmapsSelection = withUrlQuery(({ urlQuery, setUrlQuery }) => {
+const UBERONmapsSelection = withUrlQuery(({ urlQuery, setUrlQuery }) => {
   const { options: allOntologiesOptions } = useGetFilteredOptions({
     filters: prefixes,
     filterPrecision: filterPrecision
@@ -131,7 +120,7 @@ const NCITmapsSelection = withUrlQuery(({ urlQuery, setUrlQuery }) => {
           }
           onChange={(option) => handleFirstSelectionChange(option?.value)}
           isClearable
-          placeholder="First: Type & select NCIT or ICD-O code"
+          placeholder="Type & select UBERON or ICD-O Topography code"
         />
         {firstSelection && (
           <Loader
@@ -160,11 +149,9 @@ const NCITmapsSelection = withUrlQuery(({ urlQuery, setUrlQuery }) => {
             <Loader isLoading={resultsLoading} hasError={resultsError}>
               {resultsData?.data.code_groups?.length > 0 ? (
                 <CodeGroups
+                  prefixes={prefixes}
                   codeGroups={resultsData?.data.code_groups}
-                  ontomapsUrl={ontologymapsPrefUrl({
-                    filters,
-                    filterPrecision
-                  })}
+                  ontomapsUrl={ontologymapsPrefUrl({ prefixes, filters })}
                 />
               ) : (
                 <div className="notification">No groups found.</div>

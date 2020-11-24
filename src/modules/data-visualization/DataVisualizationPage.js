@@ -32,6 +32,7 @@ const DataVisualizationPage = withUrlQuery(({ urlQuery }) => {
     </Layout>
   )
 })
+
 export default DataVisualizationPage
 
 function NoResultsHelp() {
@@ -93,6 +94,7 @@ function DataVisualizationForm({ isQuerying, onSubmit }) {
             name="-randno"
             label="Random Samples (no.)"
             errors={errors}
+            infoText="Use this to pull a random selection, e.g. if the number of samples is very high (>1000)."
             register={register}
           />
         </div>
@@ -105,6 +107,7 @@ function DataVisualizationForm({ isQuerying, onSubmit }) {
             label="Plot Grouping"
             options={groupByOptions}
             control={control}
+            infoText="A selection here will produce separate histograms for samples aggregated for the given scope, e.g. all samples from the same publication or diagnostic code. This requires that samples contain several different types for the selected aggregation scope."
             errors={errors}
           />
         </div>
@@ -114,7 +117,18 @@ function DataVisualizationForm({ isQuerying, onSubmit }) {
             label="Min. Samples per Group"
             errors={errors}
             register={register}
+            infoText="Minimum number of samples for aggregated groups."
             defaultValue="2"
+          />
+        </div>
+        <div className="column">
+          <InputField
+            name="-bin_match_min"
+            label="Min. Interval Fraction"
+            errors={errors}
+            register={register}
+            infoText="CNV frequencies are calculated for genomic bins, normally for a 1Mb size. The minimal interval fraction value allows to require a minimum amount of overlap of a CNV with these bins; a value of 0.5 will only use CNVs which overlap an interval by at least 50% for histogram display and sample clustering."
+            defaultValue="0.00001"
           />
         </div>
       </div>
@@ -130,11 +144,20 @@ function DataVisualizationForm({ isQuerying, onSubmit }) {
         </div>
         <div className="column">
           <InputField
-            name="-size_clustertree_w_px"
-            label="Cluster Tree Width (px)"
+            name="-size_strip_h_px"
+            label="Sample Line Height (px)"
             errors={errors}
             register={register}
-            defaultValue="50"
+            defaultValue="10"
+          />
+        </div>
+        <div className="column">
+          <InputField
+            name="-size_text_title_left_px"
+            label="Sample Label (px)"
+            errors={errors}
+            register={register}
+            defaultValue="8"
           />
         </div>
       </div>
@@ -146,6 +169,7 @@ function DataVisualizationForm({ isQuerying, onSubmit }) {
             errors={errors}
             register={register}
             defaultValue="100"
+            infoText="Height of the histogram plot area, in pixels."
           />
         </div>
         <div className="column">
@@ -155,6 +179,17 @@ function DataVisualizationForm({ isQuerying, onSubmit }) {
             errors={errors}
             register={register}
             defaultValue="100"
+            infoText="Maximum CNV frequency percentage in the histogram."
+          />
+        </div>
+        <div className="column">
+          <InputField
+            name="-size_clustertree_w_px"
+            label="Cluster Tree Width (px)"
+            errors={errors}
+            register={register}
+            defaultValue="50"
+            infoText="Width of the tree for sample and group clustering, in pixels."
           />
         </div>
       </div>
@@ -164,6 +199,7 @@ function DataVisualizationForm({ isQuerying, onSubmit }) {
             errors={errors}
             register={register}
             control={control}
+            infoText="Select one or more genes to be highlighted on the plots."
           />
         </div>
         <div className="column">
@@ -172,6 +208,7 @@ function DataVisualizationForm({ isQuerying, onSubmit }) {
             label="Free Labels"
             errors={errors}
             register={register}
+            infoText="Add one or more comma-concatenated custom labels to the plot in the form of '7:10000000-20000000:MyLabel,18:8500000-8600000:Strange Spot'"
             defaultValue=""
           />
         </div>
@@ -223,6 +260,7 @@ const groupByOptions = [
   { value: "NCIT", label: "NCIT Neoplasm Code" },
   { value: "icdom", label: "ICD-O Morphology Code" },
   { value: "icdot", label: "ICD Topography Code" },
+  { value: "UBERON", label: "UBERON Anatomy Concepts" },
   { value: "PMID", label: "Publication (PubMed ID)" },
   { value: "geo:GSE", label: "GEO Series ID" },
   { value: "geo:GPL", label: "GEO Platform ID" },
@@ -238,7 +276,7 @@ function GeneSpanSelector({ control, errors, register }) {
   return (
     <SelectField
       name="-markers"
-      label="Gene selection"
+      label="Select Gene Label"
       isLoading={isLoading && !!inputValue}
       options={options}
       onInputChange={onInputChange}

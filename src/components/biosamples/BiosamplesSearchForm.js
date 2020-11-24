@@ -338,7 +338,7 @@ export function Form({
                   "is-loading": isQuerying
                 })}
               >
-                Query Beacon
+                Query Database
               </button>
             </div>
           </div>

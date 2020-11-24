@@ -5,6 +5,8 @@ filters:
     label: ICD-O Histology
   icdot:
     label: ICD-O Topography
+  UBERON:
+    label: UBERON Anatomy Ontology
 datasetIds:
   progenetix:
     label: Progenetix

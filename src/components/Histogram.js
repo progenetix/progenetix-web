@@ -1,8 +1,9 @@
 import { Loader } from "./Loader"
 import React, { useRef } from "react"
-import { useSubsethistogram } from "../hooks/api"
+import { useSubsethistogram, subsetSVGlink } from "../hooks/api"
 import { useContainerDimensions } from "../hooks/containerDimensions"
 import PropTypes from "prop-types"
+import Link from "next/link"
 
 export default function Histogram({ dataEffectResult }) {
   const { data, error, isLoading } = dataEffectResult
@@ -30,6 +31,9 @@ export function SubsetHistogram({ id, filter, datasetIds, size: givenSize }) {
           size
         })}
       />
+      <Link href={subsetSVGlink(id, datasetIds)}>
+        <a>Download SVG</a>
+      </Link>
     </div>
   )
 }

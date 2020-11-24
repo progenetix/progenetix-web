@@ -105,6 +105,16 @@ function Side({ onClick }) {
           label="Services"
         />
         <MenuInternalLinkItem
+          href="/service-collection/ontologymaps"
+          label="NCIt Mappings"
+          isSub="isSub"
+        />
+        <MenuInternalLinkItem
+          href="/service-collection/uberonmaps"
+          label="UBERON Mappings"
+          isSub="isSub"
+        />
+        <MenuInternalLinkItem
           href="/service-collection/uploader"
           label="Upload & Plot"
         />

@@ -58,6 +58,16 @@ const BioSubsetsContent = withUrlQuery(({ urlQuery, setUrlQuery }) => {
     urlQuery,
     setUrlQuery
   )
+  const {
+    selected: selectedDatasetIds,
+    setSelected: setSelectedDatasetIds,
+    options: datasetIdsOptions
+  } = useConfigSelect(
+    biosubsetsConfig.datasetIds,
+    "datasetIds",
+    urlQuery,
+    setUrlQuery
+  )
   return (
     <>
       <div className="level">
@@ -75,9 +85,26 @@ const BioSubsetsContent = withUrlQuery(({ urlQuery, setUrlQuery }) => {
               </select>
             </span>
           </div>
+
+          <div className="level-item">
+            <p>Dataset:</p>
+          </div>
+          <div className="level-item">
+            <span className="select">
+              <select
+                value={selectedDatasetIds}
+                onChange={(e) => setSelectedDatasetIds(e.target.value)}
+              >
+                {datasetIdsOptions}
+              </select>
+            </span>
+          </div>
         </div>
       </div>
-      <SubsetsLoader filters={selectedFilters} datasetIds="progenetix" />
+      <SubsetsLoader
+        filters={selectedFilters}
+        datasetIds={selectedDatasetIds}
+      />
     </>
   )
 })
@@ -196,7 +223,7 @@ export function buildTreeForDetails(response, subsetById) {
   rootNode.subset = rootSubset
   const child_terms = rootSubset.child_terms
   child_terms.forEach((c) => {
-    // some subsets have themselves in the children list
+    // some subsets have themself in the children list
     if (rootSubset.id !== c) {
       const node = getOrMakeChild(rootNode, c, randomStringGenerator)
       node.subset = subsetById[node.id]
