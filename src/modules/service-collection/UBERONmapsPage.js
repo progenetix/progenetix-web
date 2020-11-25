@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Layout } from "../../components/layouts/Layout"
+import { Layout } from "../../components/Layout"
 import {
   ontologymapsBaseUrl,
   ontologymapsPrefUrl,
@@ -23,6 +23,10 @@ export default function UBERONmapsPage() {
   return (
     <Layout title="Ontologymaps" headline="Services: Ontologymaps (UBERON)">
       <div className="content">
+        <img
+          src="/img/uberon-logo-120x120.png"
+          className="Layout__img__topright Layout__img__width-40"
+        />
         <p>
           The <strong>ontologymaps</strong> service provides equivalency mapping
           between ICD-O and other classification systems, notably NCIt and

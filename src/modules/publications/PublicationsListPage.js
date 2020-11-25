@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Layout } from "../../components/layouts/Layout"
+import { Layout } from "../../components/Layout"
 import { useGeoCity, usePublicationList } from "../../hooks/api"
 import { WithData } from "../../components/Loader"
 import Table, { TooltipHeader } from "../../components/Table"

@@ -1,5 +1,5 @@
 import { withUrlQuery } from "../../hooks/url-query"
-import { Layout } from "../../components/layouts/Layout"
+import { Layout } from "../../components/Layout"
 import React, { useRef, useState } from "react"
 import { LabeledGeneSpanOptions } from "../../components/form/GenespanUtilities"
 import { useForm } from "react-hook-form"

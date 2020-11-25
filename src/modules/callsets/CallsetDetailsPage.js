@@ -1,11 +1,7 @@
-import {
-  DataItemUrl,
-  DataItemDelivery,
-  NoResultsHelp
-} from "../../hooks/api"
+import { DataItemUrl, DataItemDelivery, NoResultsHelp } from "../../hooks/api"
 import { Loader } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
-import { Layout } from "../../components/layouts/Layout"
+import { Layout } from "../../components/Layout"
 
 const itemColl = "callsets"
 const exampleId = "pgxcs-kftvlijb"
@@ -49,12 +45,7 @@ function CallsetResponse({ response, datasetIds }) {
     )
   }
 
-  return (
-    <Callset
-      callset={response.data}
-      datasetIds={datasetIds}
-    />
-  )
+  return <Callset callset={response.data} datasetIds={datasetIds} />
 }
 
 function Callset({ callset, datasetIds }) {
@@ -76,7 +67,10 @@ function Callset({ callset, datasetIds }) {
         <a
           rel="noreferrer"
           target="_blank"
-          href={DataItemUrl(callset.id, itemColl, datasetIds)+"&responseFormat=simple"}
+          href={
+            DataItemUrl(callset.id, itemColl, datasetIds) +
+            "&responseFormat=simple"
+          }
         >
           {"{JSON↗}"}
         </a>

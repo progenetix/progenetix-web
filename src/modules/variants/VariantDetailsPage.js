@@ -1,11 +1,7 @@
-import {
-  DataItemUrl,
-  DataItemDelivery,
-  NoResultsHelp
-} from "../../hooks/api"
+import { DataItemUrl, DataItemDelivery, NoResultsHelp } from "../../hooks/api"
 import { Loader } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
-import { Layout } from "../../components/layouts/Layout"
+import { Layout } from "../../components/Layout"
 
 const itemColl = "variants"
 const exampleId = "5bab576a727983b2e00b8d32"
@@ -49,12 +45,7 @@ function VariantResponse({ response, datasetIds }) {
     )
   }
 
-  return (
-    <Variant
-      variant={response.data}
-      datasetIds={datasetIds}
-    />
-  )
+  return <Variant variant={response.data} datasetIds={datasetIds} />
 }
 
 function Variant({ variant, datasetIds }) {
@@ -76,7 +67,10 @@ function Variant({ variant, datasetIds }) {
         <a
           rel="noreferrer"
           target="_blank"
-          href={DataItemUrl(variant._id, itemColl, datasetIds)+"&responseFormat=simple"}
+          href={
+            DataItemUrl(variant._id, itemColl, datasetIds) +
+            "&responseFormat=simple"
+          }
         >
           {"{JSON↗}"}
         </a>

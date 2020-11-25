@@ -1,5 +1,5 @@
 import React from "react"
-import { Layout } from "../../components/layouts/Layout"
+import { Layout } from "../../components/Layout"
 import parametersConfig from "../../../config/samples-search/parameters.yaml"
 import requestTypesConfig from "../../../config/samples-search/progenetix_requestTypes.yaml"
 import BiosamplesSearchPanel from "../../components/biosamples/BiosamplesSearchPanel"

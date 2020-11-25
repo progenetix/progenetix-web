@@ -1,11 +1,7 @@
-import {
-  DataItemUrl,
-  DataItemDelivery,
-  NoResultsHelp
-} from "../../hooks/api"
+import { DataItemUrl, DataItemDelivery, NoResultsHelp } from "../../hooks/api"
 import { Loader } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
-import { Layout } from "../../components/layouts/Layout"
+import { Layout } from "../../components/Layout"
 // import Link from "next/link"
 
 const itemColl = "individuals"
@@ -50,12 +46,7 @@ function IndividualResponse({ response, datasetIds }) {
     )
   }
 
-  return (
-    <Individual
-      individual={response.data}
-      datasetIds={datasetIds}
-    />
-  )
+  return <Individual individual={response.data} datasetIds={datasetIds} />
 }
 
 function Individual({ individual, datasetIds }) {
@@ -76,7 +67,7 @@ function Individual({ individual, datasetIds }) {
       <ul>
         {individual.biocharacteristics.map((biocharacteristic, i) => (
           <li key={i}>
-              {biocharacteristic.type.id} : {biocharacteristic.type.label}
+            {biocharacteristic.type.id} : {biocharacteristic.type.label}
           </li>
         ))}
       </ul>
@@ -86,7 +77,10 @@ function Individual({ individual, datasetIds }) {
         <a
           rel="noreferrer"
           target="_blank"
-          href={DataItemUrl(individual.id, itemColl, datasetIds)+"&responseFormat=simple"}
+          href={
+            DataItemUrl(individual.id, itemColl, datasetIds) +
+            "&responseFormat=simple"
+          }
         >
           {"{JSON↗}"}
         </a>

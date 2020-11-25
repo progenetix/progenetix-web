@@ -2,7 +2,7 @@
 import React, { useRef } from "react"
 import { Chromosome } from "../../components/Chromosome"
 import { getCytoBands } from "../../utils/genome"
-import { Layout } from "../../components/layouts/Layout"
+import { Layout } from "../../components/Layout"
 import { useContainerDimensions } from "../../hooks/containerDimensions"
 
 export default function CytobandsInfo({ cytoBands }) {

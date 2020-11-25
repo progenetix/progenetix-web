@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Layout } from "../../components/layouts/Layout"
+import { Layout } from "../../components/Layout"
 import {
   ontologymapsBaseUrl,
   ontologymapsPrefUrl,
@@ -23,6 +23,10 @@ export default function OntologymapsPage() {
   return (
     <Layout title="Ontologymaps" headline="Services: Ontologymaps (NCIt)">
       <div className="content">
+        <img
+          src="/img/ncit-logo-320x80.jpg"
+          className="Layout__img__topright Layout__img__width-160"
+        />
         <p>
           The <strong>ontologymaps</strong> service provides equivalency mapping
           between ICD-O and other classification systems, notably NCIt and

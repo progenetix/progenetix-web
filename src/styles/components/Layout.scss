@@ -24,6 +24,25 @@ $side-width: 14rem;
   right: 10px;
 }
 
+.Layout__img__topright {
+  position: absolute;
+  width: 50%;
+  top: 20px;
+  right: 10px;
+}
+
+.Layout__img__width-40 {
+  width: 40px;
+}
+
+.Layout__img__width-60 {
+  width: 60px;
+}
+
+.Layout__img__width-160 {
+  width: 160px;
+}
+
 .Layout__burger {
   @include desktop {
     display: none !important;

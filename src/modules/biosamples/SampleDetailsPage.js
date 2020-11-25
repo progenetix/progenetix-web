@@ -9,7 +9,7 @@ import {
 import { Loader } from "../../components/Loader"
 import React, { useRef } from "react"
 import { withUrlQuery } from "../../hooks/url-query"
-import { Layout } from "../../components/layouts/Layout"
+import { Layout } from "../../components/Layout"
 import { useContainerDimensions } from "../../hooks/containerDimensions"
 import { svgFetcher } from "../../hooks/fetcher"
 import Histogram from "../../components/Histogram"
@@ -50,12 +50,7 @@ function BiosampleResponse({ response, datasetIds }) {
     return NoResultsHelp(exampleId, itemColl)
   }
 
-  return (
-    <Biosample
-      biosample={response.data}
-      datasetIds={datasetIds}
-    />
-  )
+  return <Biosample biosample={response.data} datasetIds={datasetIds} />
 }
 
 function Biosample({ biosample, datasetIds }) {
@@ -122,7 +117,10 @@ function Biosample({ biosample, datasetIds }) {
         )}
         {biosample.data_use_conditions?.id && (
           <>
-            <li>Data Use Conditions: {biosample.data_use_conditions.id} ({biosample.data_use_conditions?.label})</li>
+            <li>
+              Data Use Conditions: {biosample.data_use_conditions.id} (
+              {biosample.data_use_conditions?.label})
+            </li>
           </>
         )}
       </ul>
@@ -156,7 +154,10 @@ function Biosample({ biosample, datasetIds }) {
         <a
           rel="noreferrer"
           target="_blank"
-          href={DataItemUrl(biosample.id, itemColl, datasetIds)+"&responseFormat=simple"}
+          href={
+            DataItemUrl(biosample.id, itemColl, datasetIds) +
+            "&responseFormat=simple"
+          }
         >
           {"{JSON↗}"}
         </a>

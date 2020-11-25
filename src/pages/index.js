@@ -1,4 +1,4 @@
-import { Layout } from "../components/layouts/Layout"
+import { Layout } from "../components/Layout"
 import { SubsetHistogram } from "../components/Histogram"
 import React from "react"
 import { sample } from "lodash"
