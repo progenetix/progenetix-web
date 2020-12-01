@@ -56,7 +56,7 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
     let visualizationAccessId = new URLSearchParams(
       new URL(histogramUrl).search
     ).get("accessid")
-    visualizationLink = getVisualizationLink(visualizationAccessId)
+    visualizationLink = getVisualizationLink(visualizationAccessId, sampleCount)
   }
 
   // main / samples / variants

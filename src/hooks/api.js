@@ -241,6 +241,15 @@ export function useCollations({ datasetIds, method, filters }) {
   return { data, ...other }
 }
 
+export function sampleSearchPageFiltersLink({
+  datasetIds,
+  sampleFilterScope,
+  filters
+}) {
+  const url = `/biosamples/search?${sampleFilterScope}=${filters}&datasetIds=${datasetIds}&filterLogic=OR`
+  return url
+}
+
 export function useGeoCity({ city }) {
   const url = `${basePath}services/geolocations?city=${city}&responseFormat=simplelist`
   return useExtendedSWR(url)
@@ -268,6 +277,18 @@ export function referenceLink(externalReference) {
       "https://www.ebi.ac.uk/arrayexpress/experiments/" +
       externalReference.type.id.replace("arrayexpress:", "")
     )
+  } else if (externalReference.type.id.includes("cBP")) {
+    return (
+      "https://www.cbioportal.org/study/summary?id=" +
+      externalReference.type.id.replace("cBP-", "").toLowerCase()
+    )
+  } else if (externalReference.type.id.includes("tcga:TCGA-")) {
+    return (
+      "https://portal.gdc.cancer.gov/projects/" +
+      externalReference.type.id.replace("tcga:", "")
+    )
+  } else {
+    return null
   }
 }
 

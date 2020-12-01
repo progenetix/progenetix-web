@@ -10,6 +10,9 @@ import { filterNode } from "./tree"
 
 const ROW_HEIGHT = 40
 
+const subsetScope = "biosubsets"
+const sampleFilterScope = "bioontology"
+
 export function SubsetsTree({
   tree,
   datasetIds,
@@ -52,7 +55,7 @@ export function SubsetsTree({
         <div className="field">
           <input
             className="input "
-            placeholder="Filter cancer..."
+            placeholder="Filter subsets ..."
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
           />
@@ -76,7 +79,7 @@ export function SubsetsTree({
             <option value={3}>3 levels</option>
             <option value={4}>4 levels</option>
             <option value={5}>5 levels</option>
-            <option value={99}>all</option>
+            <option value={999}>all</option>
           </select>
         </span>
         {hasSelectedSubsets && (
@@ -175,7 +178,7 @@ function Node({
           <span>
             <Tippy content={`Show data for subset ${subsetId}`}>
               <a
-                href={`/subsets/list?filters=${subsetId}&datasetIds=${datasetIds}`}
+                href={`/subsets/${subsetScope}?filters=${subsetId}&datasetIds=${datasetIds}`}
               >
                 <span>{subsetId}</span>
               </a>
@@ -286,7 +289,7 @@ function useFilterTree(tree) {
 function sampleSelectUrl({ subsets, datasetIds }) {
   const filters = subsets.map(({ id }) => id).join(",")
   // here the `bioontology` parameter has to be used instead of `filters` for transfer to the search form
-  return `/biosamples/search?bioontology=${filters}&datasetIds=${datasetIds}&filterLogic=OR`
+  return `/biosamples/search?${sampleFilterScope}=${filters}&datasetIds=${datasetIds}&filterLogic=OR`
 }
 
 function canSearch(subset) {

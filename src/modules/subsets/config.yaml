@@ -1,4 +1,4 @@
-filters:
+biofilters:
   NCIT:
     label: NCIT Cancer Core
   icdom:
@@ -7,6 +7,17 @@ filters:
     label: ICD-O Topography
   UBERON:
     label: UBERON Anatomy Ontology
+cohortfilters:
+  tcga:
+    label: The Cancer Genome Anatomy Project
+  cellosaurus:
+    label: Cellosaurus Cell Line Resource
+  cBP:
+    label: cBioPortal Projects
+  geo:
+    label: Gene Expression Omnibus (Series and Platforms)
+  PMID:
+    label: Publications
 datasetIds:
   progenetix:
     label: Progenetix

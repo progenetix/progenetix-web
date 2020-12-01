@@ -21,7 +21,7 @@ export default function BiosamplesStatsDataTable({
             return (
               <span>
                 <a
-                  href={`/subsets/list?filters=${original.id}&datasetIds=${datasetId}`}
+                  href={`/subsets/biosubsets?filters=${original.id}&datasetIds=${datasetId}`}
                 >
                   {value}
                 </a>

@@ -18,7 +18,7 @@ export default function Index({ ncitCount, dbstats, subsets }) {
           For exploration of the resource it is suggested to either start with:
           <ul>
             <li>
-              <a href="/subsets/list">Cancer Types</a>
+              <a href="/subsets/biosubsets">Cancer Types</a>
             </li>
             <li>
               <a href="/biosamples/search">searching</a> for CNVs in genes of

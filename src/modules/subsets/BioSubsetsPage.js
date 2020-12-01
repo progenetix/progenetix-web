@@ -7,7 +7,7 @@ import { keyBy, merge, sortBy } from "lodash"
 import { getOrMakeChild, getOrMakeNode } from "./tree"
 import biosubsetsConfig from "./config.yaml"
 import { SubsetHistogram } from "../../components/Histogram"
-import { SubsetsTree } from "./SubsetsTree"
+import { SubsetsTree } from "./BioSubsetsTree"
 
 const makeEntries = (config, queryValue) => {
   let configEntries = Object.entries(config)
@@ -42,6 +42,17 @@ function useConfigSelect(config, key, urlQuery, setUrlQuery) {
 export default function BioSubsetsPage() {
   return (
     <Layout title="Subsets" headline="Cancer Types">
+      <p>
+        The cancer samples in Progenetix are mapped to several classification
+        systems. For each of the classes, aggregated date is available by
+        clicking the code. Additionally, a selection of the corresponding
+        samples can be initiated by clicking the sample number or selecting one
+        or more classes through the checkboxes.
+      </p>
+      <p>
+        Sample selection follows a hierarchical system in which samples matching
+        the child terms of a selected class are included in the response.
+      </p>
       <BioSubsetsContent />
     </Layout>
   )
@@ -53,7 +64,7 @@ const BioSubsetsContent = withUrlQuery(({ urlQuery, setUrlQuery }) => {
     setSelected: setSelectedFilters,
     options: filtersOptions
   } = useConfigSelect(
-    biosubsetsConfig.filters,
+    biosubsetsConfig.biofilters,
     "filters",
     urlQuery,
     setUrlQuery

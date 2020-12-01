@@ -71,7 +71,9 @@ function Biosample({ biosample, datasetIds }) {
       <ul>
         {biosample.biocharacteristics.map((biocharacteristic, i) => (
           <li key={i}>
-            <Link href={`/subsets/list?filters=${biocharacteristic.type.id}`}>
+            <Link
+              href={`/subsets/biosubsets?filters=${biocharacteristic.type.id}`}
+            >
               <a>{biocharacteristic.type.id}</a>
             </Link>
             : {biocharacteristic.type.label}

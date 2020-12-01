@@ -7,7 +7,9 @@ import { keyBy, merge, sortBy } from "lodash"
 import { getOrMakeChild, getOrMakeNode } from "./tree"
 import biosubsetsConfig from "./config.yaml"
 import { SubsetHistogram } from "../../components/Histogram"
-import { SubsetsTree } from "./SubsetsTree"
+import { SubsetsTree } from "./CohortsTree"
+
+const sampleFilterScope = "freeFilters"
 
 const makeEntries = (config, queryValue) => {
   let configEntries = Object.entries(config)
@@ -39,32 +41,26 @@ function useConfigSelect(config, key, urlQuery, setUrlQuery) {
   }
 }
 
-export default function BioSubsetsPage() {
+export default function CohortsPage() {
   return (
-    <Layout title="Subsets" headline="Cancer Types">
-      <BioSubsetsContent />
+    <Layout title="Cohorts" headline="Studies & Cohorts">
+      <p>
+        Progenetix represents data from a large number of external collections
+        and projects.
+      </p>
+      <CohortsContent />
     </Layout>
   )
 }
 
-const BioSubsetsContent = withUrlQuery(({ urlQuery, setUrlQuery }) => {
+const CohortsContent = withUrlQuery(({ urlQuery, setUrlQuery }) => {
   const {
     selected: selectedFilters,
     setSelected: setSelectedFilters,
     options: filtersOptions
   } = useConfigSelect(
-    biosubsetsConfig.biofilters,
+    biosubsetsConfig.cohortfilters,
     "filters",
-    urlQuery,
-    setUrlQuery
-  )
-  const {
-    selected: selectedDatasetIds,
-    setSelected: setSelectedDatasetIds,
-    options: datasetIdsOptions
-  } = useConfigSelect(
-    biosubsetsConfig.datasetIds,
-    "datasetIds",
     urlQuery,
     setUrlQuery
   )
@@ -73,7 +69,7 @@ const BioSubsetsContent = withUrlQuery(({ urlQuery, setUrlQuery }) => {
       <div className="level">
         <div className="level-left">
           <div className="level-item">
-            <p>Cancer Classification:</p>
+            <p>Cancer Cohorts:</p>
           </div>
           <div className="level-item">
             <span className="select">
@@ -85,26 +81,9 @@ const BioSubsetsContent = withUrlQuery(({ urlQuery, setUrlQuery }) => {
               </select>
             </span>
           </div>
-
-          <div className="level-item">
-            <p>Dataset:</p>
-          </div>
-          <div className="level-item">
-            <span className="select">
-              <select
-                value={selectedDatasetIds}
-                onChange={(e) => setSelectedDatasetIds(e.target.value)}
-              >
-                {datasetIdsOptions}
-              </select>
-            </span>
-          </div>
         </div>
       </div>
-      <SubsetsLoader
-        filters={selectedFilters}
-        datasetIds={selectedDatasetIds}
-      />
+      <SubsetsLoader filters={selectedFilters} datasetIds="progenetix" />
     </>
   )
 })
@@ -161,9 +140,23 @@ function SubsetsResponse({ bioSubsetsHierarchies, allBioSubsets, datasetIds }) {
               colored: true
             }}
           />
+          <h3>
+            Find{" "}
+            <a
+              href={`/biosamples/search?${sampleFilterScope}=${bioSubsetsHierarchies[0].id}&datasetIds=${datasetIds}`}
+            >
+              {bioSubsetsHierarchies[0].id} samples
+            </a>
+          </h3>
         </div>
       )}
-      <TreePanel datasetIds={datasetIds} subsetById={subsetById} tree={tree} />
+      {!isDetailPage && (
+        <TreePanel
+          datasetIds={datasetIds}
+          subsetById={subsetById}
+          tree={tree}
+        />
+      )}
     </>
   )
 }
@@ -223,7 +216,7 @@ export function buildTreeForDetails(response, subsetById) {
   rootNode.subset = rootSubset
   const child_terms = rootSubset.child_terms
   child_terms.forEach((c) => {
-    // some subsets have themself in the children list
+    // some subsets have themselves in the children list
     if (rootSubset.id !== c) {
       const node = getOrMakeChild(rootNode, c, randomStringGenerator)
       node.subset = subsetById[node.id]

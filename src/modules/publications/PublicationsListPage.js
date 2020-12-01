@@ -141,34 +141,35 @@ function PublicationTable({ publications }) {
           {
             Header: TooltipHeader(
               "cCGH",
-              "Chromosomal Comparative Genomic Hybridization"
+              "Chromosomal Comparative Genomic Hybridization samples in publication"
             ),
             accessor: "counts.ccgh",
             Cell: CountCell
           },
           {
-            Header: TooltipHeader("aCGH", "Genomic Arrays"),
+            Header: TooltipHeader("aCGH", "Genomic Arrays in publication"),
             accessor: "counts.acgh",
             Cell: CountCell
           },
           {
-            Header: TooltipHeader("WES", "Whole Exome Sequencing"),
+            Header: TooltipHeader(
+              "WES",
+              "Whole Exome Sequencing experiments in publication"
+            ),
             accessor: "counts.wes",
             Cell: CountCell
           },
           {
-            Header: TooltipHeader("WGS", "Whole Genome Sequencing"),
+            Header: TooltipHeader(
+              "WGS",
+              "Whole Genome Sequencing experiments in publication"
+            ),
             accessor: "counts.wgs",
             Cell: CountCell
           },
           {
-            Header: TooltipHeader("pgx", "Progenetix"),
+            Header: TooltipHeader("pgx", "Samples in Progenetix"),
             accessor: "counts.progenetix",
-            Cell: CountCell
-          },
-          {
-            Header: TooltipHeader("am", "Arraymap"),
-            accessor: "counts.arraymap",
             Cell: CountCell
           }
         ]

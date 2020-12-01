@@ -11,21 +11,35 @@ import { WithData } from "../../components/Loader"
 import { useContainerDimensions } from "../../hooks/containerDimensions"
 import { useAsyncSelect } from "../../hooks/asyncSelect"
 
-export const getVisualizationLink = (accessId) =>
-  `/data-visualization?accessid=${accessId}`
+const sampleMaxNo = 1000
+
+export const getVisualizationLink = (accessId, count) =>
+  `/data-visualization?accessid=${accessId}&sampleCount=${count}`
 
 const DataVisualizationPage = withUrlQuery(({ urlQuery }) => {
-  const { accessid } = urlQuery
+  const { accessid, sampleCount } = urlQuery
   const componentRef = useRef()
   const { width } = useContainerDimensions(componentRef)
   return (
-    <Layout title="Data visualization" headline="Data visualization">
+    <Layout
+      title="Data visualization"
+      headline={`Data visualization (${sampleCount} samples)`}
+    >
       {!accessid ? (
         <NoResultsHelp />
       ) : (
         <div ref={componentRef}>
+          {sampleCount > sampleMaxNo && (
+            <p>
+              Please limit the visualization to about {sampleMaxNo} samples...
+            </p>
+          )}
           {width > 0 && (
-            <DataVisualizationPanel accessid={accessid} width={width} />
+            <DataVisualizationPanel
+              accessid={accessid}
+              sampleCount={sampleCount}
+              width={width}
+            />
           )}
         </div>
       )}
@@ -47,10 +61,17 @@ function NoResultsHelp() {
   )
 }
 
-function DataVisualizationPanel({ accessid, width }) {
+function DataVisualizationPanel({ accessid, sampleCount, width }) {
   const [formValues, setFormValues] = useState({})
+
+  var randNo = null
+  if (sampleCount > sampleMaxNo) {
+    randNo = sampleMaxNo
+  }
+
   const dataResult = useDataVisualization({
     accessid,
+    "-randno": randNo,
     "-size_plotimage_w_px": width,
     ...formValues
   })
@@ -62,7 +83,11 @@ function DataVisualizationPanel({ accessid, width }) {
     <div>
       <div className="columns">
         <div className="mb-6 column">
-          <DataVisualizationForm isQuerying={false} onSubmit={onSubmit} />
+          <DataVisualizationForm
+            isQuerying={false}
+            sampleCount={sampleCount}
+            onSubmit={onSubmit}
+          />
         </div>
       </div>
       <WithData
@@ -74,8 +99,13 @@ function DataVisualizationPanel({ accessid, width }) {
   )
 }
 
-function DataVisualizationForm({ isQuerying, onSubmit }) {
-  const defaultValues = { group_by: "", "-markers": null }
+function DataVisualizationForm({ isQuerying, sampleCount, onSubmit }) {
+  var randNo = null
+  if (sampleCount > sampleMaxNo) {
+    randNo = sampleMaxNo
+  }
+
+  const defaultValues = { group_by: "", "-markers": null, "-randno": randNo }
   const { register, handleSubmit, errors, control } = useForm({ defaultValues })
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
