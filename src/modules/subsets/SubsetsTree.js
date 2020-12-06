@@ -19,10 +19,15 @@ export function SubsetsTree({
   subsetScope,
   sampleFilterScope
 }) {
-  const { searchInput, setSearchInput, filteredTree } = useFilterTree(tree)
+  const {
+    searchInput,
+    debouncedSearchInput,
+    setSearchInput,
+    filteredTree
+  } = useFilterTree(tree)
   const [levelSelector, setLevelSelector] = useState(1)
   const [useDefaultExpanded, setUseDefaultExpanded] = useState(true)
-  const defaultExpandedLevel = searchInput
+  const defaultExpandedLevel = debouncedSearchInput
     ? 99
     : useDefaultExpanded
     ? levelSelector
@@ -310,10 +315,10 @@ const match = (debouncedSearchInput) => (node) =>
   node.subset?.label.toLowerCase().includes(debouncedSearchInput.toLowerCase())
 
 function useFilterTree(tree) {
-  const [searchInput, setSearchInput] = useState(null)
+  const [searchInput, setSearchInput] = useState("")
   const debouncedSearchInput = useDebounce(searchInput, 500) || ""
   const filteredTree = filterNode(tree, match(debouncedSearchInput)) || []
-  return { searchInput, setSearchInput, filteredTree }
+  return { searchInput, debouncedSearchInput, setSearchInput, filteredTree }
 }
 
 function sampleSelectUrl({ subsets, datasetIds, sampleFilterScope }) {
