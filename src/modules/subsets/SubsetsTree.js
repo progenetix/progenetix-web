@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from "react"
 import cn from "classnames"
 import { FaAngleDown, FaAngleRight } from "react-icons/fa"
 import Tippy from "@tippyjs/react"
-import { FixedSizeTree as Tree } from "react-vtree"
+import { VariableSizeTree as Tree } from "react-vtree"
 import useDebounce from "../../hooks/debounce"
 import { min } from "lodash"
 import { filterNode } from "./tree"
@@ -116,7 +116,7 @@ export function SubsetsTree({
       <Tree
         ref={treeRef}
         treeWalker={treeWalker}
-        itemSize={ROW_HEIGHT}
+        estimatedItemSize={ROW_HEIGHT}
         height={Math.min(size * ROW_HEIGHT, 800)}
         rowComponent={Row}
         itemData={{
@@ -214,7 +214,7 @@ function Node({
             </Tippy>
             {subset?.label && <span>: {subset?.label}</span>}
             {isSearchPossible ? (
-              <Tippy content={`Click to retrievve samples for ${subsetId}`}>
+              <Tippy content={`Click to retrieve samples for ${subsetId}`}>
                 <a
                   href={sampleSelectUrl({
                     subsets: [subset],
@@ -282,9 +282,18 @@ const mkTreeWalker = (tree, defaultExpandedLevel, setSize) => {
       // basing on it we decide to return the full node data or only the node
       // id to update the nodes order.
       const openByDefault = nestingLevel < defaultExpandedLevel
+
+      console.log(subset?.label)
+
+      const lineHeightPx = 16
       const isOpened = yield refresh
         ? {
             id: uid,
+            defaultHeight:
+              // Useful for publications. 150 is approx. the number of chars before line break.
+              // This is a quick fix and need to be adapted if the font style ever change.
+              ROW_HEIGHT +
+              Math.floor(subset?.label.length / 150) * lineHeightPx,
             isLeaf: children.length === 0,
             isOpenByDefault: openByDefault,
             subsetId: id,
