@@ -43,9 +43,7 @@ export function TreePanel({
 export function buildTree(response, subsetById) {
   const hierarchyPaths = response.flatMap((subset) => subset.hierarchy_paths)
   const sortedHierarchyPaths = sortBy(hierarchyPaths, [
-    function (p) {
-      return p.order
-    }
+    (p) => Number.parseInt(p.order)
   ])
 
   // add an arbitrary root
