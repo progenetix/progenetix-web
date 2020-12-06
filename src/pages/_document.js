@@ -1,3 +1,4 @@
+import React from "react"
 import Document, { Html, Head, Main, NextScript } from "next/document"
 
 const TRACKING_ID = "UA-572981-2"
@@ -12,6 +13,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <link rel="icon" type="image/png" href="/img/pgx_logo.png" />
           <script
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${TRACKING_ID}`}

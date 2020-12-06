@@ -9,10 +9,7 @@ export function Layout({ title, headline, children }) {
   const [sideOpen, setSideOpen] = useState(false)
   return (
     <div className="Layout__app">
-      <img
-        src="/img/site-logo-topright.png"
-        className="Layout__logo_topright icon"
-      />
+      <img src="/img/pgx-logo.png" className="Layout__logo_topright icon" />
       <Head>
         <title>{title || ""}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -82,7 +79,7 @@ function Side({ onClick }) {
       <a href="/">
         <img
           className="Layout__side-logo"
-          src="/img/progenetix_black_300.png"
+          src="/img/progenetix-logo-black.png"
           alt="progenetix"
         />
       </a>
