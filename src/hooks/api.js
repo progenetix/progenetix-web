@@ -246,8 +246,7 @@ export function sampleSearchPageFiltersLink({
   sampleFilterScope,
   filters
 }) {
-  const url = `/biosamples/search?${sampleFilterScope}=${filters}&datasetIds=${datasetIds}&filterLogic=OR`
-  return url
+  return `/biosamples/search?${sampleFilterScope}=${filters}&datasetIds=${datasetIds}&filterLogic=OR`
 }
 
 export function useGeoCity({ city }) {

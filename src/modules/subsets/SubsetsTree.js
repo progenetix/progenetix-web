@@ -1,4 +1,4 @@
-import { pluralizeWord } from "../../hooks/api"
+import { pluralizeWord, sampleSearchPageFiltersLink } from "../../hooks/api"
 import React, { useEffect, useMemo, useState } from "react"
 import cn from "classnames"
 import { FaAngleDown, FaAngleRight } from "react-icons/fa"
@@ -10,14 +10,14 @@ import { filterNode } from "./tree"
 
 const ROW_HEIGHT = 40
 
-const subsetScope = "biosubsets"
-const sampleFilterScope = "bioontology"
-
 export function SubsetsTree({
   tree,
+  isFlat,
   datasetIds,
   checkedSubsets,
-  checkboxClicked
+  checkboxClicked,
+  subsetScope,
+  sampleFilterScope
 }) {
   const { searchInput, setSearchInput, filteredTree } = useFilterTree(tree)
   const [levelSelector, setLevelSelector] = useState(1)
@@ -33,7 +33,7 @@ export function SubsetsTree({
   const hasSelectedSubsets = checkedSubsets.length > 0
   const selectSamplesHref =
     hasSelectedSubsets &&
-    sampleSelectUrl({ subsets: checkedSubsets, datasetIds })
+    sampleSelectUrl({ subsets: checkedSubsets, datasetIds, sampleFilterScope })
 
   useEffect(() => {
     treeRef.current.recomputeTree({
@@ -51,7 +51,7 @@ export function SubsetsTree({
 
   return (
     <>
-      <div className="BioSubsets__controls">
+      <div className="Subsets__controls">
         <div className="field">
           <input
             className="input "
@@ -60,28 +60,38 @@ export function SubsetsTree({
             onChange={(e) => setSearchInput(e.target.value)}
           />
         </div>
-        <div className="button " onClick={() => setUseDefaultExpanded(false)}>
-          Collapse all
-        </div>
-        <div className="button " onClick={() => setUseDefaultExpanded(true)}>
-          Expand
-        </div>
-        <span className="select ">
-          <select
-            value={levelSelector}
-            onChange={(event) => {
-              setLevelSelector(event.target.value)
-              setUseDefaultExpanded(true)
-            }}
-          >
-            <option value={1}>1 level</option>
-            <option value={2}>2 levels</option>
-            <option value={3}>3 levels</option>
-            <option value={4}>4 levels</option>
-            <option value={5}>5 levels</option>
-            <option value={999}>all</option>
-          </select>
-        </span>
+        {!isFlat && (
+          <>
+            <div
+              className="button "
+              onClick={() => setUseDefaultExpanded(false)}
+            >
+              Collapse all
+            </div>
+            <div
+              className="button "
+              onClick={() => setUseDefaultExpanded(true)}
+            >
+              Expand
+            </div>
+            <span className="select ">
+              <select
+                value={levelSelector}
+                onChange={(event) => {
+                  setLevelSelector(event.target.value)
+                  setUseDefaultExpanded(true)
+                }}
+              >
+                <option value={1}>1 level</option>
+                <option value={2}>2 levels</option>
+                <option value={3}>3 levels</option>
+                <option value={4}>4 levels</option>
+                <option value={5}>5 levels</option>
+                <option value={999}>all</option>
+              </select>
+            </span>
+          </>
+        )}
         {hasSelectedSubsets && (
           <a className="button is-primary " href={selectSamplesHref || null}>
             Search Samples from selection
@@ -104,7 +114,13 @@ export function SubsetsTree({
         itemSize={ROW_HEIGHT}
         height={Math.min(size * ROW_HEIGHT, 800)}
         rowComponent={Row}
-        itemData={{ datasetIds, checkboxClicked }}
+        itemData={{
+          datasetIds,
+          checkboxClicked,
+          sampleFilterScope,
+          subsetScope,
+          isFlat
+        }}
       >
         {Node}
       </Tree>
@@ -131,7 +147,13 @@ export const Row = ({
 // state (`toggle`) and `style` parameter that should be added to the root div.
 function Node({
   data: { isLeaf, subsetId, subset, nestingLevel },
-  treeData: { datasetIds, checkboxClicked },
+  treeData: {
+    datasetIds,
+    checkboxClicked,
+    subsetScope,
+    sampleFilterScope,
+    isFlat
+  },
   index,
   isOpen,
   style,
@@ -145,10 +167,10 @@ function Node({
         ...style,
         background: even ? "none" : "#fafafa"
       }}
-      className="BioSubsets__tree__row"
+      className="Subsets__tree__row"
     >
       <span
-        className="BioSubsets__tree__cell"
+        className="Subsets__tree__cell"
         style={{ justifyContent: "center", width: 30, flex: "none" }}
       >
         {subset && isSearchPossible && (
@@ -161,20 +183,22 @@ function Node({
         )}
       </span>
       <span
-        className="BioSubsets__tree__cell"
+        className="Subsets__tree__cell"
         style={{
           flex: "1 1 auto"
         }}
       >
         <span
-          className="BioSubsets__tree__info"
+          className="Subsets__tree__info"
           style={{
             paddingLeft: `${nestingLevel * 20}px`
           }}
         >
-          <span className={cn(isLeaf && "is-invisible")}>
-            <Expander isOpen={isOpen} toggle={toggle} />
-          </span>
+          {!isFlat && (
+            <span className={cn(isLeaf && "is-invisible")}>
+              <Expander isOpen={isOpen} toggle={toggle} />
+            </span>
+          )}
           <span>
             <Tippy content={`Show data for subset ${subsetId}`}>
               <a
@@ -186,7 +210,13 @@ function Node({
             {subset?.label && <span>: {subset?.label}</span>}
             {isSearchPossible ? (
               <Tippy content={`Click to retrievve samples for ${subsetId}`}>
-                <a href={sampleSelectUrl({ subsets: [subset], datasetIds })}>
+                <a
+                  href={sampleSelectUrl({
+                    subsets: [subset],
+                    datasetIds,
+                    sampleFilterScope
+                  })}
+                >
                   <span>
                     {" "}
                     ({subset.count} {pluralizeWord("sample", subset.count)})
@@ -286,10 +316,10 @@ function useFilterTree(tree) {
   return { searchInput, setSearchInput, filteredTree }
 }
 
-function sampleSelectUrl({ subsets, datasetIds }) {
+function sampleSelectUrl({ subsets, datasetIds, sampleFilterScope }) {
   const filters = subsets.map(({ id }) => id).join(",")
   // here the `bioontology` parameter has to be used instead of `filters` for transfer to the search form
-  return `/biosamples/search?${sampleFilterScope}=${filters}&datasetIds=${datasetIds}&filterLogic=OR`
+  return sampleSearchPageFiltersLink({ datasetIds, sampleFilterScope, filters })
 }
 
 function canSearch(subset) {

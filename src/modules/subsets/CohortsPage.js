@@ -1,54 +1,26 @@
 import { useCollations, useCollationsById } from "../../hooks/api"
 import { WithData } from "../../components/Loader"
-import React, { useMemo, useState } from "react"
+import React from "react"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
-import { keyBy, merge, sortBy } from "lodash"
-import { getOrMakeChild, getOrMakeNode } from "./tree"
-import biosubsetsConfig from "./config.yaml"
+import { keyBy, merge } from "lodash"
+import config from "./config.yaml"
 import { SubsetHistogram } from "../../components/Histogram"
-import { SubsetsTree } from "./CohortsTree"
+import { useConfigSelect } from "./configSelect"
+import { buildTree, buildTreeForDetails, TreePanel } from "./TreePanel"
 
 const sampleFilterScope = "freeFilters"
-
-const makeEntries = (config, queryValue) => {
-  let configEntries = Object.entries(config)
-  if (queryValue && !configEntries.find(([c]) => c === queryValue)) {
-    configEntries = [[queryValue, { label: queryValue }], ...configEntries]
-  }
-  return configEntries
-}
-
-function useConfigSelect(config, key, urlQuery, setUrlQuery) {
-  const queryValue = urlQuery[key]
-  const configEntries = useMemo(() => makeEntries(config, queryValue), [
-    config,
-    queryValue
-  ])
-  const selected =
-    configEntries.find(([c]) => c === queryValue)?.[0] ?? configEntries[0][0]
-  const setSelected = (newValue) =>
-    setUrlQuery({ [key]: newValue }, { keepExisting: true })
-  const options = configEntries.map(([k, v]) => (
-    <option key={k} value={k}>
-      {v.label}
-    </option>
-  ))
-  return {
-    selected,
-    setSelected,
-    options
-  }
-}
 
 export default function CohortsPage() {
   return (
     <Layout title="Cohorts" headline="Studies & Cohorts">
-      <p>
-        Progenetix represents data from a large number of external collections
-        and projects.
-      </p>
-      <CohortsContent />
+      <div className="content">
+        <p>
+          Progenetix represents data from a large number of external collections
+          and projects.
+        </p>
+        <CohortsContent />
+      </div>
     </Layout>
   )
 }
@@ -58,12 +30,7 @@ const CohortsContent = withUrlQuery(({ urlQuery, setUrlQuery }) => {
     selected: selectedFilters,
     setSelected: setSelectedFilters,
     options: filtersOptions
-  } = useConfigSelect(
-    biosubsetsConfig.cohortfilters,
-    "filters",
-    urlQuery,
-    setUrlQuery
-  )
+  } = useConfigSelect(config.cohortfilters, "filters", urlQuery, setUrlQuery)
   return (
     <>
       <div className="level">
@@ -154,76 +121,12 @@ function SubsetsResponse({ bioSubsetsHierarchies, allBioSubsets, datasetIds }) {
         <TreePanel
           datasetIds={datasetIds}
           subsetById={subsetById}
+          subsetScope="biosubsets"
+          sampleFilterScope={sampleFilterScope}
           tree={tree}
+          isFlat
         />
       )}
     </>
   )
 }
-
-function TreePanel({ tree, subsetById, datasetIds }) {
-  const [checkedIds, setCheckedIds] = useState({})
-  const checkboxClicked = ({ checked, id }) => {
-    if (checked) {
-      setCheckedIds({ ...checkedIds, [id]: true })
-    } else {
-      const { [id]: omit, ...otherChecked } = checkedIds
-      setCheckedIds(otherChecked)
-    }
-  }
-  const checkedSubsets = Object.entries(checkedIds).map(([id]) => {
-    return subsetById[id]
-  })
-  return (
-    <>
-      <div className="BioSubsets__tree">
-        <SubsetsTree
-          tree={tree}
-          datasetIds={datasetIds}
-          checkedSubsets={checkedSubsets}
-          checkboxClicked={checkboxClicked}
-        />
-      </div>
-    </>
-  )
-}
-
-export function buildTree(response, subsetById) {
-  const hierarchyPaths = response.flatMap((subset) => subset.hierarchy_paths)
-  const sortedHierarchyPaths = sortBy(hierarchyPaths, [
-    function (p) {
-      return p.order
-    }
-  ])
-
-  // add an arbitrary root
-  const tree = { id: "root", children: [], path: ["root"] }
-  for (const hierarchy of sortedHierarchyPaths) {
-    if (hierarchy.path) {
-      const path = hierarchy.path.filter((p) => !!p)
-      const fullPath = ["root", ...path]
-      const node = getOrMakeNode(tree, fullPath, randomStringGenerator)
-      node.subset = subsetById[node.id]
-    }
-  }
-  return tree
-}
-
-export function buildTreeForDetails(response, subsetById) {
-  const rootSubset = response[0]
-  const tree = { id: "root", children: [], path: ["root"] }
-  const rootNode = getOrMakeChild(tree, rootSubset.id)
-  rootNode.subset = rootSubset
-  const child_terms = rootSubset.child_terms
-  child_terms.forEach((c) => {
-    // some subsets have themselves in the children list
-    if (rootSubset.id !== c) {
-      const node = getOrMakeChild(rootNode, c, randomStringGenerator)
-      node.subset = subsetById[node.id]
-    }
-  })
-  return tree
-}
-
-// We generate random UID because a tree contains several nodes with the same ids
-const randomStringGenerator = () => Math.random().toString(36).substring(2, 15)
