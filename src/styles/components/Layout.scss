@@ -14,7 +14,7 @@ $side-width: 14rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid $border;
   background-color: $visual-identity-color;
-  height: 25px;
+  min-height: 25px;
   display: flex;
 }
 
