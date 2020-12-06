@@ -121,7 +121,7 @@ function SubsetsResponse({ bioSubsetsHierarchies, allBioSubsets, datasetIds }) {
         <TreePanel
           datasetIds={datasetIds}
           subsetById={subsetById}
-          subsetScope="biosubsets"
+          subsetScope="cohorts"
           sampleFilterScope={sampleFilterScope}
           tree={tree}
           isFlat
