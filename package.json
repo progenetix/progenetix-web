@@ -19,7 +19,7 @@
     "leaflet": "^1.7.1",
     "lodash": "^4.17.20",
     "match-sorter": "^4.2.0",
-    "next": "^9.5.4",
+    "next": "^10.0.3",
     "prop-types": "^15.7.2",
     "react": "^16.7.0",
     "react-collapse": "^5.0.1",
