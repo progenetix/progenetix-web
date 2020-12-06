@@ -53,7 +53,7 @@ export function SubsetsTree({
     () => mkTreeWalker(filteredTree, defaultExpandedLevel, setSize),
     [defaultExpandedLevel, filteredTree]
   )
-
+  const height = Math.min(size * ROW_HEIGHT, 800)
   return (
     <>
       <div className="Subsets__controls">
@@ -116,8 +116,8 @@ export function SubsetsTree({
       <Tree
         ref={treeRef}
         treeWalker={treeWalker}
-        estimatedItemSize={ROW_HEIGHT}
-        height={Math.min(size * ROW_HEIGHT, 800)}
+        // estimatedItemSize={ROW_HEIGHT}
+        height={height}
         rowComponent={Row}
         itemData={{
           datasetIds,
@@ -283,17 +283,19 @@ const mkTreeWalker = (tree, defaultExpandedLevel, setSize) => {
       // id to update the nodes order.
       const openByDefault = nestingLevel < defaultExpandedLevel
 
-      console.log(subset?.label)
-
       const lineHeightPx = 16
+      const labelLength = subset?.label.length ?? 0
+
+      // Useful for publications. 150 is approx. the number of chars before line break.
+      // This is a quick fix and need to be adapted if the font style ever change.
+      // This is a quick fix and it does not work in mobile.
+      const defaultHeight =
+        ROW_HEIGHT + Math.floor(labelLength / 150) * lineHeightPx
+
       const isOpened = yield refresh
         ? {
             id: uid,
-            defaultHeight:
-              // Useful for publications. 150 is approx. the number of chars before line break.
-              // This is a quick fix and need to be adapted if the font style ever change.
-              ROW_HEIGHT +
-              Math.floor(subset?.label.length / 150) * lineHeightPx,
+            defaultHeight,
             isLeaf: children.length === 0,
             isOpenByDefault: openByDefault,
             subsetId: id,
