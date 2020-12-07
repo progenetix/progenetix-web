@@ -13,7 +13,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel="icon" type="image/png" href="/img/pgx_logo.png" />
+          <link rel="icon" type="image/png" href="/img/pgx-logo.png" />
           <script
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${TRACKING_ID}`}
