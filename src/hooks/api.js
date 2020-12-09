@@ -281,7 +281,7 @@ export function referenceLink(externalReference) {
       "https://www.cbioportal.org/study/summary?id=" +
       externalReference.type.id.replace("cBP-", "").toLowerCase()
     )
-  } else if (externalReference.type.id.includes("tcga:TCGA-")) {
+  } else if (externalReference.type.id.includes("TCGA-")) {
     return (
       "https://portal.gdc.cancer.gov/projects/" +
       externalReference.type.id.replace("tcga:", "")
