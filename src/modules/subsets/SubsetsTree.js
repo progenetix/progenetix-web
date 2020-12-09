@@ -284,7 +284,7 @@ const mkTreeWalker = (tree, defaultExpandedLevel, setSize) => {
       const openByDefault = nestingLevel < defaultExpandedLevel
 
       const lineHeightPx = 16
-      const labelLength = subset?.label.length ?? 0
+      const labelLength = subset?.label?.length ?? 0
 
       // Useful for publications. 150 is approx. the number of chars before line break.
       // This is a quick fix and need to be adapted if the font style ever change.
