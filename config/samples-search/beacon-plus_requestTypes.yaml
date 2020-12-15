@@ -7,7 +7,7 @@ variantCNVrequest:
     ranges for start and end positions to capture a set of similar variants.
   parameters:
     datasetIds:
-      placeholder: ""
+      placeholder: "progenetix"
     includeDatasetResponses:
       placeholder: "ALL"
       isHidden: true
@@ -51,7 +51,7 @@ variantCNVrequest:
         parameters or data source.
       parameters:
         datasetIds:
-          defaultValue: ["arraymap"]
+          defaultValue: ["progenetix"]
         includeDatasetResponses:
           defaultValue: "ALL"
           isHidden: true
@@ -179,7 +179,6 @@ variantAlleleRequest:
         freeFilters:
           defaultValue: ""
 
-
 variantRangeRequest:
   note: ""
   label: "Range Query"
@@ -256,7 +255,7 @@ allFieldsRequest:
     All form fields for composing your own queries.
   parameters:
     datasetIds:
-      placeholder: ""
+      placeholder: "progenetix"
     includeDatasetResponses:
       placeholder: "ALL"
     requestType: {}
