@@ -24,7 +24,7 @@ export function BiosamplesResults({ response, isLoading, error, query }) {
 }
 
 function AlleleResponses({ datasetAlleleResponses, query }) {
-  if (!(datasetAlleleResponses?.length >= 0)) {
+  if (datasetAlleleResponses?.[0].sampleCount < 1) {
     return (
       <div className="notification">
         No results could be found for this query.

@@ -18,6 +18,6 @@ export default function SearchSamplesPage({ cytoBands }) {
 }
 
 const datasets = [
-  { label: "progenetix", value: "progenetix" },
-  { label: "arraymap", value: "arraymap" }
+  { label: "Progenetix", value: "progenetix" },
+  { label: "arrayMap", value: "arraymap" }
 ]

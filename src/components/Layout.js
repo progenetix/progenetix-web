@@ -98,7 +98,7 @@ function Side({ onClick }) {
           label="Studies & Cohorts"
         />
         <MenuInternalLinkItem
-          href="/publications/list"
+          href="/publications.html"
           label="Publication DB"
         />
         <MenuInternalLinkItem
