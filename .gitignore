@@ -6,3 +6,5 @@
 # Ignore next-mdx-enhanced cache directory
 .mdx-data
 .DS_Store
+.nova/Artwork
+.nova/Configuration.json
