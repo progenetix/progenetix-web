@@ -115,3 +115,29 @@ progenetix:
           defaultValue: "DEL"
         freeFilters:
           defaultValue: "cellosaurus"
+    - label: "HeLa Cell Line"
+      note: "Instances of HeLa and daughter cell lines, searched by Cellosaurus id"
+      description: |
+        The query retrieves all instances of HeLa and derived cell lines
+        using the \\\"cellosaurus:CVCL_0030\\\" identifier. This is an example for a
+        pure \\\"non-variant\\\" query.
+      parameters:
+        datasetIds:
+          defaultValue: ["progenetix"]
+          isHidden: true
+        includeDatasetResponses:
+          defaultValue: "ALL"
+          isHidden: true
+        assemblyId:
+          defaultValue: ""
+          isHidden: true
+        referenceName:
+          defaultValue: ""
+        start:
+          defaultValue: ""
+        end:
+          defaultValue: ""
+        variantType:
+          defaultValue: ""
+        freeFilters:
+          defaultValue: "cellosaurus:CVCL_0030"

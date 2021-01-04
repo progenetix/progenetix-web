@@ -56,6 +56,7 @@ export function useGetFilteredOptions({
     filters,
     filterPrecision
   })
+
   let options = mapToOptions(data)
   options = filterResult
     ? options.filter((o) => o.value !== filterResult)

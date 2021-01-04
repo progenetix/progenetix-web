@@ -142,7 +142,7 @@ export function buildDataVisualizationParameters(queryData) {
 }
 
 export function publicationDataUrl(id) {
-  return `${basePath}services/publications?filters=${id}&responseFormat=simplelist&filterPrecision=exact&method=all`
+  return `${basePath}services/publications?filters=${id}&responseFormat=simple&filterPrecision=exact&method=all`
 }
 
 export function usePublication(id) {
@@ -158,13 +158,13 @@ export function usePublicationList({ geoCity, geodistanceKm }) {
     ...mkGeoParams(geoCity, geodistanceKm),
     filters: "genomes:>0",
     method: "details",
-    responseFormat: "simplelist"
+    responseFormat: "simple"
   }).toString()
   const url = `${basePath}services/publications?${geoParams}`
   return useExtendedSWR(url)
 }
 
-export const ontologymapsBaseUrl = `${basePath}services/ontologymaps?`
+export const ontologymapsBaseUrl = `${basePath}services/ontologymaps?responseType=simple&`
 
 export function ontologymapsUrl({ filters, filterPrecision }) {
   let params = new URLSearchParams({ filters: filters })
@@ -235,7 +235,7 @@ export function useCollationsById({ datasetIds }) {
 }
 
 export function useCollations({ datasetIds, method, filters }) {
-  const url = `${basePath}services/collations/?datasetIds=${datasetIds}&method=${method}&filters=${filters}&responseFormat=simplelist`
+  const url = `${basePath}services/collations/?datasetIds=${datasetIds}&method=${method}&filters=${filters}&responseFormat=simple`
   const { data: rawData, ...other } = useExtendedSWR(url)
   const data = Array.isArray(rawData) ? rawData : null
   return { data, ...other }
@@ -250,7 +250,7 @@ export function sampleSearchPageFiltersLink({
 }
 
 export function useGeoCity({ city }) {
-  const url = `${basePath}services/geolocations?city=${city}&responseFormat=simplelist`
+  const url = `${basePath}services/geolocations?city=${city}&responseFormat=simple`
   return useExtendedSWR(url)
 }
 

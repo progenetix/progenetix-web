@@ -138,9 +138,11 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
           ))}
         </div>
         <div className="column is-one-fifth">
-          <div>
-            <UCSCRegion query={query} />
-          </div>
+          {variantCount > 0 ? (
+            <div>
+              <UCSCRegion query={query} />
+            </div>
+          ) : null}
           <ExternalLink
             label="JSON Response"
             onClick={() => openJsonInNewTab(datasetAlleleResponse)}

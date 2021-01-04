@@ -2,7 +2,7 @@ import { referenceLink } from "../../hooks/api"
 import React from "react"
 import PropTypes from "prop-types"
 import { WithData } from "../Loader"
-import Table from "../Table"
+import Table, { TooltipHeader } from "../Table"
 import DownloadButton from "../DownloadButton"
 import Link from "next/link"
 
@@ -10,7 +10,10 @@ export default function BiosamplesDataTable({ dataEffectResult, datasetId }) {
   const columns = React.useMemo(
     () => [
       {
-        Header: "Id",
+        Header: TooltipHeader(
+          "Biosample Id",
+          "Internal, stable (Progenetix) identifier for the biosample"
+        ),
         accessor: "id",
         // eslint-disable-next-line react/display-name
         Cell: (cellInfo) => (
@@ -22,11 +25,14 @@ export default function BiosamplesDataTable({ dataEffectResult, datasetId }) {
         )
       },
       {
-        Header: "Description",
+        Header: TooltipHeader("Description", "Text description of the sample"),
         accessor: "description"
       },
       {
-        Header: "Classifications",
+        Header: TooltipHeader(
+          "Classifications",
+          "Terms for biological classifications associated with the sample (e.g. diagnosis, histology, organ site)"
+        ),
         accessor: "biocharacteristics",
         Cell: ({ value: biocharacteristics }) =>
           biocharacteristics.map((biocharacteristic, i) => (
@@ -41,7 +47,10 @@ export default function BiosamplesDataTable({ dataEffectResult, datasetId }) {
           ))
       },
       {
-        Header: "Identifiers",
+        Header: TooltipHeader(
+          "Identifiers",
+          "Identifiers for technical metadata or external information, either specifically describing the sample or its context (e.g. publication, study, technical platform)"
+        ),
         accessor: "external_references",
         Cell: ({ value: externalReferences }) =>
           externalReferences.map((externalReference, i) => (
@@ -52,20 +61,16 @@ export default function BiosamplesDataTable({ dataEffectResult, datasetId }) {
                 </Link>
               ) : (
                 externalReference.type.id
-              )}
+              )}{" "}
+              {externalReference.type.label}
             </div>
           ))
       },
       {
-        Header: "DEL",
-        accessor: "info.cnvstatistics.delfraction"
-      },
-      {
-        Header: "DUP",
-        accessor: "info.cnvstatistics.dupfraction"
-      },
-      {
-        Header: "CNV",
+        Header: TooltipHeader(
+          "CNVs",
+          "Fraction of the sample's genome covered by CNV events (DUP or DEL)"
+        ),
         accessor: "info.cnvstatistics.cnvfraction"
       }
     ],
