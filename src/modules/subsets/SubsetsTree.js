@@ -3,15 +3,16 @@ import React, { useEffect, useMemo, useState } from "react"
 import cn from "classnames"
 import { FaAngleDown, FaAngleRight } from "react-icons/fa"
 import Tippy from "@tippyjs/react"
-import { VariableSizeTree as Tree } from "react-vtree"
+import { FixedSizeTree as Tree } from "react-vtree"
 import useDebounce from "../../hooks/debounce"
 import { min } from "lodash"
 import { filterNode } from "./tree"
 
-const ROW_HEIGHT = 40
+const ROW_HEIGHT = 30
 
 export function SubsetsTree({
   tree,
+  size,
   isFlat,
   datasetIds,
   checkedSubsets,
@@ -19,20 +20,8 @@ export function SubsetsTree({
   subsetScope,
   sampleFilterScope
 }) {
-  const {
-    searchInput,
-    debouncedSearchInput,
-    setSearchInput,
-    filteredTree
-  } = useFilterTree(tree)
+  const { searchInput, setSearchInput, filteredTree } = useFilterTree(tree)
   const [levelSelector, setLevelSelector] = useState(1)
-  const [useDefaultExpanded, setUseDefaultExpanded] = useState(true)
-  const defaultExpandedLevel = debouncedSearchInput
-    ? 99
-    : useDefaultExpanded
-    ? levelSelector
-    : 0
-
   const treeRef = React.createRef()
 
   const hasSelectedSubsets = checkedSubsets.length > 0
@@ -41,18 +30,28 @@ export function SubsetsTree({
     sampleSelectUrl({ subsets: checkedSubsets, datasetIds, sampleFilterScope })
 
   useEffect(() => {
-    treeRef.current.recomputeTree({
-      useDefaultOpenness: true,
-      refreshNodes: true
-    })
+    const state = Object.fromEntries(
+      tree.children.map((rootNode) => [
+        rootNode.uid,
+        {
+          open: levelSelector > 0,
+          subtreeCallback(node, ownerNode) {
+            // Since subtreeWalker affects the ownerNode as well, we can check if the
+            if (node !== ownerNode) {
+              // nodes are the same, and run the action only if they aren't
+              node.isOpen =
+                node.isOpen || node.data.nestingLevel < levelSelector
+            }
+          }
+        }
+      ])
+    )
+    treeRef.current.recomputeTree(state)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [defaultExpandedLevel])
+  }, [levelSelector])
 
-  const [size, setSize] = useState(0)
-  const treeWalker = useMemo(
-    () => mkTreeWalker(filteredTree, defaultExpandedLevel, setSize),
-    [defaultExpandedLevel, filteredTree]
-  )
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const treeWalker = useMemo(() => mkTreeWalker(filteredTree), [tree])
   const height = Math.min(size * ROW_HEIGHT, 800)
   return (
     <>
@@ -67,26 +66,14 @@ export function SubsetsTree({
         </div>
         {!isFlat && (
           <>
-            <div
-              className="button "
-              onClick={() => setUseDefaultExpanded(false)}
-            >
-              Collapse all
-            </div>
-            <div
-              className="button "
-              onClick={() => setUseDefaultExpanded(true)}
-            >
-              Expand
-            </div>
             <span className="select ">
               <select
                 value={levelSelector}
                 onChange={(event) => {
                   setLevelSelector(event.target.value)
-                  setUseDefaultExpanded(true)
                 }}
               >
+                <option value={0}>collapsed</option>
                 <option value={1}>1 level</option>
                 <option value={2}>2 levels</option>
                 <option value={3}>3 levels</option>
@@ -116,9 +103,8 @@ export function SubsetsTree({
       <Tree
         ref={treeRef}
         treeWalker={treeWalker}
-        // estimatedItemSize={ROW_HEIGHT}
         height={height}
-        rowComponent={Row}
+        itemSize={ROW_HEIGHT}
         itemData={{
           datasetIds,
           checkboxClicked,
@@ -132,20 +118,6 @@ export function SubsetsTree({
     </>
   )
 }
-
-export const Row = ({
-  index,
-  data: { component: Node, treeData, order, records },
-  style
-}) =>
-  React.createElement(
-    Node,
-    Object.assign({}, records[order[index]], {
-      style: style,
-      treeData: treeData,
-      index
-    })
-  )
 
 // Node component receives all the data we created in the `treeWalker` +
 // internal openness state (`isOpen`), function to change internal openness
@@ -162,7 +134,7 @@ function Node({
   index,
   isOpen,
   style,
-  toggle
+  setOpen
 }) {
   const isSearchPossible = subset && canSearch(subset)
   const even = index % 2 === 0
@@ -201,55 +173,56 @@ function Node({
         >
           {!isFlat && (
             <span className={cn(isLeaf && "is-invisible")}>
-              <Expander isOpen={isOpen} toggle={toggle} />
+              <Expander isOpen={isOpen} setOpen={setOpen} />
             </span>
           )}
-          <span>
-            <Tippy content={`Show data for subset ${subsetId}`}>
+          <Tippy content={`Show data for subset ${subsetId}`}>
+            <a
+              href={`/subsets/${subsetScope}?filters=${subsetId}&datasetIds=${datasetIds}`}
+            >
+              <span>{subsetId}</span>
+            </a>
+          </Tippy>
+          {(subset?.label && (
+            <span className="Subsets__tree__label" title={subset.label}>
+              : {subset.label}
+            </span>
+          )) || <span>&nbsp;</span>}
+          {isSearchPossible ? (
+            <Tippy content={`Click to retrieve samples for ${subsetId}`}>
               <a
-                href={`/subsets/${subsetScope}?filters=${subsetId}&datasetIds=${datasetIds}`}
+                style={{ flexShrink: "0" }}
+                href={sampleSelectUrl({
+                  subsets: [subset],
+                  datasetIds,
+                  sampleFilterScope
+                })}
               >
-                <span>{subsetId}</span>
+                <span>
+                  &nbsp;({subset.count} {pluralizeWord("sample", subset.count)})
+                </span>
               </a>
             </Tippy>
-            {subset?.label && <span>: {subset?.label}</span>}
-            {isSearchPossible ? (
-              <Tippy content={`Click to retrieve samples for ${subsetId}`}>
-                <a
-                  href={sampleSelectUrl({
-                    subsets: [subset],
-                    datasetIds,
-                    sampleFilterScope
-                  })}
-                >
-                  <span>
-                    {" "}
-                    ({subset.count} {pluralizeWord("sample", subset.count)})
-                  </span>
-                </a>
-              </Tippy>
-            ) : subset ? (
-              <span>
-                {" "}
-                ({subset.count} {pluralizeWord("sample", subset.count)})
-              </span>
-            ) : null}
-          </span>
+          ) : subset ? (
+            <span>
+              &nbsp;({subset.count} {pluralizeWord("sample", subset.count)})
+            </span>
+          ) : null}
         </span>
       </span>
     </div>
   )
 }
 
-function Expander({ isOpen, toggle }) {
+function Expander({ isOpen, setOpen }) {
   return isOpen ? (
-    <span onClick={toggle}>
+    <span onClick={() => setOpen(false)}>
       <span className="icon has-text-grey-dark is-clickable mr-2">
         <FaAngleDown size={18} />
       </span>
     </span>
   ) : (
-    <span onClick={toggle}>
+    <span onClick={() => setOpen(true)}>
       <span className="icon has-text-grey-dark is-info is-clickable mr-2">
         <FaAngleRight size={18} />
       </span>
@@ -257,67 +230,62 @@ function Expander({ isOpen, toggle }) {
   )
 }
 
-const mkTreeWalker = (tree, defaultExpandedLevel, setSize) => {
-  return function* treeWalker(refresh) {
-    const stack = []
-    // Remember all the necessary data of the first node in the stack.
-    // We don't push the root, but its children
-    tree?.children?.forEach((node) => {
-      stack.push({
-        nestingLevel: 0,
-        node
-      })
-    })
+// This function prepares an object for yielding. We can yield an object
+// that has `data` object with `id` and `isOpenByDefault` fields.
+// We can also add any other data here.
+const getNodeData = (node, nestingLevel) => {
+  const subset = node.subset
+  // Here we are sending the information about the node to the Tree component
+  // and receive an information about the openness state from it. The
+  // `refresh` parameter tells us if the full update of the tree is requested;
+  // basing on it we decide to return the full node data or only the node
+  // id to update the nodes order.
 
-    let size = 0
-    // Walk through the tree until we have no nodes available.
-    while (stack.length !== 0) {
-      const {
-        nestingLevel,
-        node: { children = [], uid, subset, id }
-      } = stack.pop()
-      // Here we are sending the information about the node to the Tree component
-      // and receive an information about the openness state from it. The
-      // `refresh` parameter tells us if the full update of the tree is requested;
-      // basing on it we decide to return the full node data or only the node
-      // id to update the nodes order.
-      const openByDefault = nestingLevel < defaultExpandedLevel
+  const lineHeightPx = 16
+  const labelLength = subset?.label?.length ?? 0
 
-      const lineHeightPx = 16
-      const labelLength = subset?.label?.length ?? 0
+  // Useful for publications. 150 is approx. the number of chars before line break.
+  // This is a quick fix and need to be adapted if the font style ever change.
+  // This is a quick fix and it does not work in mobile.
+  const defaultHeight =
+    ROW_HEIGHT + Math.floor(labelLength / 150) * lineHeightPx
 
-      // Useful for publications. 150 is approx. the number of chars before line break.
-      // This is a quick fix and need to be adapted if the font style ever change.
-      // This is a quick fix and it does not work in mobile.
-      const defaultHeight =
-        ROW_HEIGHT + Math.floor(labelLength / 150) * lineHeightPx
+  const openByDefault = false
 
-      const isOpened = yield refresh
-        ? {
-            id: uid,
-            defaultHeight,
-            isLeaf: children.length === 0,
-            isOpenByDefault: openByDefault,
-            subsetId: id,
-            subset,
-            nestingLevel
-          }
-        : uid
-      size++
-      // Basing on the node openness state we are deciding if we need to render
-      // the child nodes (if they exist).
-      if (children.length !== 0 && isOpened) {
-        // Since it is a stack structure, we need to put nodes we want to render
-        // first to the end of the stack.
-        for (let i = children.length - 1; i >= 0; i--) {
-          stack.push({
-            nestingLevel: nestingLevel + 1,
-            node: children[i]
-          })
-        }
+  return {
+    data: {
+      id: node.uid.toString(),
+      defaultHeight,
+      isLeaf: node.children.length === 0,
+      isOpenByDefault: openByDefault,
+      name: node.name,
+      subsetId: node.id,
+      subset,
+      nestingLevel
+    },
+    nestingLevel,
+    node
+  }
+}
+
+const mkTreeWalker = (tree) => {
+  return function* treeWalker() {
+    // Here we send root nodes to the component.
+    for (let i = 0; i < tree.children.length; i++) {
+      yield getNodeData(tree.children[i], 0)
+    }
+    while (true) {
+      // Get the parent component back. It will be the object
+      // the `getNodeData` function constructed, so you can read any data from it.
+      const parentMeta = yield
+
+      for (let i = 0; i < parentMeta.node.children.length; i++) {
+        yield getNodeData(
+          parentMeta.node.children[i],
+          parentMeta.nestingLevel + 1
+        )
       }
     }
-    setSize(size)
   }
 }
 

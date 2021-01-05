@@ -97,7 +97,7 @@ function SubsetsResponse({ bioSubsetsHierarchies, allBioSubsets, datasetIds }) {
   // We merge both subsets from hierarchies and subsets from allSubsets.
   // This is because some children in the bioSubsetsHierarchies don't have labels or sample count information.
   const subsetById = merge(keyBy(bioSubsetsHierarchies, "id"), allBioSubsets)
-  const tree = isDetailPage
+  const { tree, size } = isDetailPage
     ? buildTreeForDetails(bioSubsetsHierarchies, subsetById)
     : buildTree(bioSubsetsHierarchies, subsetById)
 
@@ -119,6 +119,7 @@ function SubsetsResponse({ bioSubsetsHierarchies, allBioSubsets, datasetIds }) {
         datasetIds={datasetIds}
         subsetById={subsetById}
         tree={tree}
+        size={size}
         sampleFilterScope="bioontology"
         subsetScope="biosubsets"
       />

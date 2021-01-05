@@ -23,9 +23,17 @@
   padding: 0 0.5rem;
   display: flex;
   align-items: center;
+  height: 30px;
+  min-width: 0;
+}
+
+.Subsets__tree__label {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .Subsets__tree__info {
   display: flex;
-  align-items: center;
+  min-width: 0;
 }

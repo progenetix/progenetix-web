@@ -5,6 +5,7 @@ import { getOrMakeChild, getOrMakeNode } from "./tree"
 
 export function TreePanel({
   tree,
+  size,
   subsetById,
   datasetIds,
   subsetScope,
@@ -28,6 +29,7 @@ export function TreePanel({
       <div className="Subsets__tree">
         <SubsetsTree
           tree={tree}
+          size={size}
           datasetIds={datasetIds}
           checkedSubsets={checkedSubsets}
           checkboxClicked={checkboxClicked}
@@ -45,23 +47,26 @@ export function buildTree(response, subsetById) {
   const sortedHierarchyPaths = sortBy(hierarchyPaths, [
     (p) => Number.parseInt(p.order)
   ])
-
   // add an arbitrary root
   const tree = { id: "root", children: [], path: ["root"] }
+  let size = 1
   for (const hierarchy of sortedHierarchyPaths) {
     if (hierarchy.path) {
       const path = hierarchy.path.filter((p) => !!p)
       const fullPath = ["root", ...path]
       const node = getOrMakeNode(tree, fullPath, randomStringGenerator)
       node.subset = subsetById[node.id]
+      node.subset.order = Number.parseInt(hierarchy.order)
+      size++
     }
   }
-  return tree
+  return { tree, size }
 }
 
 export function buildTreeForDetails(response, subsetById) {
   const rootSubset = response[0]
   const tree = { id: "root", children: [], path: ["root"] }
+  let size = 1
   const rootNode = getOrMakeChild(tree, rootSubset.id)
   rootNode.subset = rootSubset
   const child_terms = rootSubset.child_terms
@@ -70,9 +75,10 @@ export function buildTreeForDetails(response, subsetById) {
     if (rootSubset.id !== c) {
       const node = getOrMakeChild(rootNode, c, randomStringGenerator)
       node.subset = subsetById[node.id]
+      size++
     }
   })
-  return tree
+  return { tree, size }
 }
 
 // We generate random UID because a tree contains several nodes with the same ids
