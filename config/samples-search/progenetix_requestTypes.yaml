@@ -119,8 +119,8 @@ progenetix:
       note: "Instances of HeLa and daughter cell lines, searched by Cellosaurus id"
       description: |
         The query retrieves all instances of HeLa and derived cell lines
-        using the \\\"cellosaurus:CVCL_0030\\\" identifier. This is an example for a
-        pure \\\"non-variant\\\" query.
+        using the "cellosaurus:CVCL_0030" identifier. This is an example for a
+        pure "non-variant" query.
       parameters:
         datasetIds:
           defaultValue: ["progenetix"]
