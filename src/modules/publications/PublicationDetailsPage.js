@@ -4,7 +4,7 @@ import { Loader } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { SubsetHistogram } from "../../components/Histogram"
 import { Layout } from "../../components/Layout"
-import { EpmcLink } from "./EpmcUrl"
+import { epmcUrl, EpmcLink } from "./EpmcUrl"
 
 const PublicationDetailsPage = withUrlQuery(({ urlQuery }) => {
   const { id, filter } = urlQuery
@@ -58,7 +58,12 @@ function PublicationDetails({ publication, id, filter }) {
   const arraymapBiosamplesCount = publication.counts?.arraymap ?? 0
   return (
     <section className="content">
-      <h2 className="tile">{publication.id}</h2>
+      <h2 className="tile">
+        {publication.id}{" "}
+        <a rel="noreferrer" target="_blank" href={epmcUrl(publication.id)}>
+          {"{↗}"}
+        </a>
+      </h2>
       <h3 className="subtitle is-5">{publication.title}</h3>
       <p className="has-text-weight-semibold">{publication.authors}</p>
       <p>

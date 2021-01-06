@@ -164,7 +164,7 @@ export function usePublicationList({ geoCity, geodistanceKm }) {
   return useExtendedSWR(url)
 }
 
-export const ontologymapsBaseUrl = `${basePath}services/ontologymaps?responseType=simple&`
+export const ontologymapsBaseUrl = `${basePath}services/ontologymaps?responseFormat=simple&`
 
 export function ontologymapsUrl({ filters, filterPrecision }) {
   let params = new URLSearchParams({ filters: filters })

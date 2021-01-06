@@ -65,11 +65,11 @@ export function useGetFilteredOptions({
 }
 
 function mapToOptions(data) {
-  if (!data || data.data.unique_codes == null) return []
-  const NCIT = data.data.unique_codes["NCIT"] ?? []
-  const icdom = data.data.unique_codes["icdom"] ?? []
-  const icdot = data.data.unique_codes["icdot"] ?? []
-  const UBERON = data.data.unique_codes["UBERON"] ?? []
+  if (!data || data.unique_terms == null) return []
+  const NCIT = data.unique_terms["NCIT"] ?? []
+  const icdom = data.unique_terms["icdom"] ?? []
+  const icdot = data.unique_terms["icdot"] ?? []
+  const UBERON = data.unique_terms["UBERON"] ?? []
   return [NCIT, icdom, icdot, UBERON].flat().map((c) => ({
     label: c.id + ": " + c.label,
     value: c.id

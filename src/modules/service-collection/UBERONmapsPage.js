@@ -16,12 +16,15 @@ import {
 
 const filterPrecision = "start"
 const docurl = `${PROGENETIXINFO}/doc/services/ontologymaps.html`
-const prefixes = "UBERON,icdot"
+const prefixes = "unique_terms,icdot"
 const apiAllMapsURL = `${ontologymapsBaseUrl}filters=${prefixes}`
 
 export default function UBERONmapsPage() {
   return (
-    <Layout title="Ontologymaps" headline="Services: Ontologymaps (UBERON)">
+    <Layout
+      title="Ontologymaps"
+      headline="Services: Ontologymaps (unique_terms)"
+    >
       <div className="content">
         <img
           src="/img/uberon-logo-120x120.png"
@@ -30,8 +33,8 @@ export default function UBERONmapsPage() {
         <p>
           The <strong>ontologymaps</strong> service provides equivalency mapping
           between ICD-O and other classification systems, notably NCIt and
-          UBERON. It makes use of the sample-level mappings developed for the
-          individual samples in the Progenetix collection.
+          unique_terms. It makes use of the sample-level mappings developed for
+          the individual samples in the Progenetix collection.
         </p>
         <h4>UBERON and ICD-O 3</h4>
         <p>
@@ -131,8 +134,7 @@ const UBERONmapsSelection = withUrlQuery(({ urlQuery, setUrlQuery }) => {
             isLoading={secondSelectionLoading}
             hasError={secondSelectionError}
           >
-            {secondSelectionOptions &&
-            resultsData?.data.code_groups?.length > 1 ? (
+            {secondSelectionOptions && resultsData?.term_groups?.length > 1 ? (
               <CustomSelect
                 className="mb-6"
                 options={secondSelectionOptions}
@@ -151,10 +153,10 @@ const UBERONmapsSelection = withUrlQuery(({ urlQuery, setUrlQuery }) => {
               <div></div>
             )}
             <Loader isLoading={resultsLoading} hasError={resultsError}>
-              {resultsData?.data.code_groups?.length > 0 ? (
+              {resultsData?.term_groups?.length > 0 ? (
                 <CodeGroups
                   prefixes={prefixes}
-                  codeGroups={resultsData?.data.code_groups}
+                  codeGroups={resultsData?.term_groups}
                   ontomapsUrl={ontologymapsPrefUrl({ prefixes, filters })}
                 />
               ) : (
