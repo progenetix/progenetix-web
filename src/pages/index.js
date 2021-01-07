@@ -5,7 +5,7 @@ import { sample } from "lodash"
 import { PROGENETIX, tryFetch } from "../hooks/api"
 
 export default function Index({ ncitCount, dbstats, subsets }) {
-  const randomSubset = sample(subsets.data.filter((s) => s.count > 25))
+  const randomSubset = sample(subsets.filter((s) => s.count > 25))
   return (
     <Layout title="Progenetix" headline="Cancer genome data @ progenetix.org">
       <div className="content">
@@ -53,10 +53,10 @@ export const ExampleHistogram = ({ id }) => (
 export const getStaticProps = async () => {
   const dbstats = await tryFetch(`${PROGENETIX}/services/dbstats/`)
   const ncitCount = await tryFetch(
-    `${PROGENETIX}/services/collations/?datasetIds=progenetix&method=codematches&filters=NCIT`
+    `${PROGENETIX}/services/collations/?datasetIds=progenetix&responseFormat=simple&method=codematches&filters=NCIT`
   )
   const subsets = await tryFetch(
-    `${PROGENETIX}/services/collations/?datasetIds=progenetix&method=counts&filters=PMID,icdom,NCIT,icdot,UBERON`,
+    `${PROGENETIX}/services/collations/?datasetIds=progenetix&responseFormat=simple&method=counts&filters=PMID,icdom,NCIT,icdot,UBERON`,
     [
       {
         count: 243,
