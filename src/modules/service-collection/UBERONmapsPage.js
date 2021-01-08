@@ -16,15 +16,12 @@ import {
 
 const filterPrecision = "start"
 const docurl = `${PROGENETIXINFO}/doc/services/ontologymaps.html`
-const prefixes = "unique_terms,icdot"
+const prefixes = "UBERON,icdot"
 const apiAllMapsURL = `${ontologymapsBaseUrl}filters=${prefixes}`
 
 export default function UBERONmapsPage() {
   return (
-    <Layout
-      title="Ontologymaps"
-      headline="Services: Ontologymaps (unique_terms)"
-    >
+    <Layout title="Ontologymaps" headline="Services: Ontologymaps (UBERON)">
       <div className="content">
         <img
           src="/img/uberon-logo-120x120.png"
