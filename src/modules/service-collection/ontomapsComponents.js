@@ -66,12 +66,21 @@ export function useGetFilteredOptions({
 
 function mapToOptions(data) {
   if (!data || data.unique_terms == null) return []
-  const NCIT = data.unique_terms["NCIT"] ?? []
-  const icdom = data.unique_terms["icdom"] ?? []
-  const icdot = data.unique_terms["icdot"] ?? []
-  const UBERON = data.unique_terms["UBERON"] ?? []
+  const ut = data.unique_terms
+  const NCIT = filterTermlistByPrefix("NCIT", ut) ?? []
+  const icdom = filterTermlistByPrefix("icdom", ut) ?? []
+  const icdot = filterTermlistByPrefix("icdot", ut) ?? []
+  const UBERON = filterTermlistByPrefix("UBERON", ut) ?? []
   return [NCIT, icdom, icdot, UBERON].flat().map((c) => ({
     label: c.id + ": " + c.label,
     value: c.id
   }))
+}
+
+function filterTermlistByPrefix(prefix, ut) {
+  console.log(prefix)
+  var re = new RegExp(prefix, "g")
+  return ut.filter(function (el) {
+    return el.id.match(re)
+  })
 }
