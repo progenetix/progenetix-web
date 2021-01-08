@@ -65,8 +65,8 @@ export function useGetFilteredOptions({
 }
 
 function mapToOptions(data) {
-  if (!data || data.unique_terms == null) return []
-  const ut = data.unique_terms
+  if (!data || data.response.results[0].unique_terms == null) return []
+  const ut = data.response.results[0].unique_terms
   const NCIT = filterTermlistByPrefix("NCIT", ut) ?? []
   const icdom = filterTermlistByPrefix("icdom", ut) ?? []
   const icdot = filterTermlistByPrefix("icdot", ut) ?? []

@@ -142,7 +142,8 @@ const NCITmapsSelection = withUrlQuery(({ urlQuery, setUrlQuery }) => {
             isLoading={secondSelectionLoading}
             hasError={secondSelectionError}
           >
-            {secondSelectionOptions && resultsData?.term_groups?.length > 1 ? (
+            {secondSelectionOptions &&
+            resultsData?.response.results[0].term_groups?.length > 1 ? (
               <CustomSelect
                 className="mb-6"
                 options={secondSelectionOptions}
@@ -161,9 +162,9 @@ const NCITmapsSelection = withUrlQuery(({ urlQuery, setUrlQuery }) => {
               <div> </div>
             )}
             <Loader isLoading={resultsLoading} hasError={resultsError}>
-              {resultsData?.term_groups?.length > 0 ? (
+              {resultsData?.response.results[0].term_groups?.length > 0 ? (
                 <CodeGroups
-                  codeGroups={resultsData?.term_groups}
+                  codeGroups={resultsData?.response.results[0].term_groups}
                   ontomapsUrl={ontologymapsPrefUrl({
                     filters,
                     filterPrecision

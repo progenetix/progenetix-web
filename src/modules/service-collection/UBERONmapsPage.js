@@ -30,8 +30,8 @@ export default function UBERONmapsPage() {
         <p>
           The <strong>ontologymaps</strong> service provides equivalency mapping
           between ICD-O and other classification systems, notably NCIt and
-          unique_terms. It makes use of the sample-level mappings developed for
-          the individual samples in the Progenetix collection.
+          UBERON. It makes use of the sample-level mappings developed for the
+          individual samples in the Progenetix collection.
         </p>
         <h4>UBERON and ICD-O 3</h4>
         <p>
@@ -131,7 +131,8 @@ const UBERONmapsSelection = withUrlQuery(({ urlQuery, setUrlQuery }) => {
             isLoading={secondSelectionLoading}
             hasError={secondSelectionError}
           >
-            {secondSelectionOptions && resultsData?.term_groups?.length > 1 ? (
+            {secondSelectionOptions &&
+            resultsData?.response.results[0].term_groups?.length > 1 ? (
               <CustomSelect
                 className="mb-6"
                 options={secondSelectionOptions}
@@ -150,10 +151,10 @@ const UBERONmapsSelection = withUrlQuery(({ urlQuery, setUrlQuery }) => {
               <div></div>
             )}
             <Loader isLoading={resultsLoading} hasError={resultsError}>
-              {resultsData?.term_groups?.length > 0 ? (
+              {resultsData?.response.results[0].term_groups?.length > 0 ? (
                 <CodeGroups
                   prefixes={prefixes}
-                  codeGroups={resultsData?.term_groups}
+                  codeGroups={resultsData?.response.results[0].term_groups}
                   ontomapsUrl={ontologymapsPrefUrl({ prefixes, filters })}
                 />
               ) : (
