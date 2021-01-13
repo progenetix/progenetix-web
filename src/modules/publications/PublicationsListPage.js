@@ -201,7 +201,7 @@ function GeoCitySelector({ setGeoCity }) {
   const { data, isLoading } = useGeoCity({ city: inputValue })
   let options = []
   if (data) {
-    options = data.map((g) => ({
+    options = data.response.results.map((g) => ({
       value: g.id,
       data: g,
       label: `${g.city} (${g.country})`

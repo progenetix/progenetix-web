@@ -250,7 +250,7 @@ export function sampleSearchPageFiltersLink({
 }
 
 export function useGeoCity({ city }) {
-  const url = `${basePath}services/geolocations?city=${city}&responseFormat=simple`
+  const url = `${basePath}services/geolocations?city=${city}`
   return useExtendedSWR(url)
 }
 
