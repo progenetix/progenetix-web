@@ -71,12 +71,10 @@ function Biosample({ biosample, datasetIds }) {
       <ul>
         {biosample.biocharacteristics.map((biocharacteristic, i) => (
           <li key={i}>
-            <Link
-              href={`/subsets/biosubsets?filters=${biocharacteristic.type.id}`}
-            >
-              <a>{biocharacteristic.type.id}</a>
+            <Link href={`/subsets/biosubsets?filters=${biocharacteristic.id}`}>
+              <a>{biocharacteristic.id}</a>
             </Link>
-            : {biocharacteristic.type.label}
+            : {biocharacteristic.label}
           </li>
         ))}
       </ul>
@@ -107,9 +105,9 @@ function Biosample({ biosample, datasetIds }) {
 
       <h5>Provenance</h5>
       <ul>
-        {biosample.provenance?.material?.type.label && (
+        {biosample.provenance?.material?.label && (
           <>
-            <li>Material: {biosample.provenance.material.type.label}</li>
+            <li>Material: {biosample.provenance.material.label}</li>
           </>
         )}
         {biosample.provenance?.geo?.label && (
@@ -133,10 +131,10 @@ function Biosample({ biosample, datasetIds }) {
           <li key={i}>
             {referenceLink(externalReference) ? (
               <Link href={referenceLink(externalReference)}>
-                <a>{externalReference.type.id}</a>
+                <a>{externalReference.id}</a>
               </Link>
             ) : (
-              externalReference.type.id
+              externalReference.id
             )}
           </li>
         ))}

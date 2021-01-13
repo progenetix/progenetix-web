@@ -259,32 +259,32 @@ export function subsetSVGlink(id, datasetIds) {
 }
 
 export function referenceLink(externalReference) {
-  if (externalReference.type.id.includes("cellosaurus:")) {
+  if (externalReference.id.includes("cellosaurus:")) {
     return (
       "https://web.expasy.org/cgi-bin/cellosaurus/search?input=" +
-      externalReference.type.id.replace("cellosaurus:", "")
+      externalReference.id.replace("cellosaurus:", "")
     )
-  } else if (externalReference.type.id.includes("PMID:")) {
-    return "/publications/details?id=" + externalReference.type.id
-  } else if (externalReference.type.id.includes("geo:")) {
+  } else if (externalReference.id.includes("PMID:")) {
+    return "/publications/details?id=" + externalReference.id
+  } else if (externalReference.id.includes("geo:")) {
     return (
       "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=" +
-      externalReference.type.id.replace("geo:", "")
+      externalReference.id.replace("geo:", "")
     )
-  } else if (externalReference.type.id.includes("arrayexpress:")) {
+  } else if (externalReference.id.includes("arrayexpress:")) {
     return (
       "https://www.ebi.ac.uk/arrayexpress/experiments/" +
-      externalReference.type.id.replace("arrayexpress:", "")
+      externalReference.id.replace("arrayexpress:", "")
     )
-  } else if (externalReference.type.id.includes("cBP")) {
+  } else if (externalReference.id.includes("cBP")) {
     return (
       "https://www.cbioportal.org/study/summary?id=" +
-      externalReference.type.id.replace("cBP-", "").toLowerCase()
+      externalReference.id.replace("cBP-", "").toLowerCase()
     )
-  } else if (externalReference.type.id.includes("TCGA-")) {
+  } else if (externalReference.id.includes("TCGA-")) {
     return (
       "https://portal.gdc.cancer.gov/projects/" +
-      externalReference.type.id.replace("tcga:", "")
+      externalReference.id.replace("tcga:", "")
     )
   } else {
     return null

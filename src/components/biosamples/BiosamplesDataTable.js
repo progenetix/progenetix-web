@@ -38,11 +38,11 @@ export default function BiosamplesDataTable({ dataEffectResult, datasetId }) {
           biocharacteristics.map((biocharacteristic, i) => (
             <div key={i} title={biocharacteristic.label}>
               <Link
-                href={`/subsets/biosubsets?filters=${biocharacteristic.type.id}`}
+                href={`/subsets/biosubsets?filters=${biocharacteristic.id}`}
               >
-                <a>{biocharacteristic.type.id}</a>
+                <a>{biocharacteristic.id}</a>
               </Link>{" "}
-              {biocharacteristic.type.label}
+              {biocharacteristic.label}
             </div>
           ))
       },
@@ -57,12 +57,12 @@ export default function BiosamplesDataTable({ dataEffectResult, datasetId }) {
             <div key={i}>
               {referenceLink(externalReference) ? (
                 <Link href={referenceLink(externalReference)}>
-                  <a>{externalReference.type.id}</a>
+                  <a>{externalReference.id}</a>
                 </Link>
               ) : (
-                externalReference.type.id
+                externalReference.id
               )}{" "}
-              {externalReference.type.label}
+              {externalReference.label}
             </div>
           ))
       },

@@ -67,7 +67,7 @@ function Individual({ individual, datasetIds }) {
       <ul>
         {individual.biocharacteristics.map((biocharacteristic, i) => (
           <li key={i}>
-            {biocharacteristic.type.id} : {biocharacteristic.type.label}
+            {biocharacteristic.id} : {biocharacteristic.label}
           </li>
         ))}
       </ul>

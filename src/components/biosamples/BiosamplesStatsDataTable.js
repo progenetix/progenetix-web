@@ -92,8 +92,8 @@ function getFrequency(v, allSubsetsById, k) {
 }
 
 export function makeSubsetsData(biosamplesResponse, allSubsetsById) {
-  const ids = biosamplesResponse.flatMap((sample) =>
-    sample.biocharacteristics.map(({ type }) => type.id)
+  const ids = biosamplesResponse.flatMap(
+    (sample) => sample.biocharacteristics.id
   )
   const subsetCounts = _.countBy(ids)
   const subsets = Object.entries(subsetCounts).map(([k, v]) => ({
