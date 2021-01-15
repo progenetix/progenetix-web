@@ -31,7 +31,9 @@ export default function Index({ ncitCount, dbstats, subsets }) {
         <ExampleHistogram id={randomSubset.id} />
         <p>
           The resource currently contains genome profiles of{" "}
-          <strong>{dbstats.data.progenetix.counts.biosamples}</strong>{" "}
+          <strong>
+            {dbstats.response.results[0].datasets.progenetix.counts.biosamples}
+          </strong>{" "}
           individual samples and represents{" "}
           <strong>{ncitCount.response.info.count}</strong> cancer types,
           according to the NCIt &quot;neoplasm&quot; classification.
@@ -39,7 +41,12 @@ export default function Index({ ncitCount, dbstats, subsets }) {
         <p>
           Additionally to this genome profiles and associated metadata, the
           website present information about publications (currently{" "}
-          <strong>{dbstats.data.progenetix.counts.publications}</strong>{" "}
+          <strong>
+            {
+              dbstats.response.results[0].datasets.progenetix.counts
+                .publications
+            }
+          </strong>{" "}
           articles) referring to cancer genome profiling experiments.
         </p>
       </div>
