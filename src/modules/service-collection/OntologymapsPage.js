@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import { Infodot } from "../../components/Infodot"
 import { Layout } from "../../components/Layout"
 import {
   ontologymapsBaseUrl,
@@ -125,7 +126,10 @@ const NCITmapsSelection = withUrlQuery(({ urlQuery, setUrlQuery }) => {
 
   return (
     <div className="content">
-      <h5>Code Selection</h5>
+      <h5>
+        Code Selection
+        <Infodot infoText={"Select or type (prefixed) NCIT or ICD-O code"} />
+      </h5>
       <div className="mb-6">
         <CustomSelect
           className="mb-5"

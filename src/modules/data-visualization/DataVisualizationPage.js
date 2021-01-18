@@ -114,6 +114,7 @@ function DataVisualizationForm({ isQuerying, sampleCount, onSubmit }) {
           <InputField
             name="-chr2plot"
             label="Chromosomes"
+            infoText="The chromosomes to be included in the plo, in the order they should appear. The values should just be the comma-separated chromosome numbers."
             errors={errors}
             register={register}
             defaultValue="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22"

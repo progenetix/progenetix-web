@@ -25,6 +25,7 @@ export function GeoCitySelector({
     <SelectField
       name={name}
       label={label}
+      infoText="Start city selection by typing a city name..."
       isLoading={isLoading && !!inputValue}
       options={options}
       onInputChange={onInputChange}
