@@ -73,18 +73,18 @@ export function GeneSpansUtility({ onClose, setFormValue }) {
   const { inputValue, value, onChange, onInputChange } = useAsyncSelect()
   const { options, error, isLoading } = useGeneSpanSelect(inputValue)
   const onApply = (optionValue) => {
-    setFormValue("start", optionValue.cds_start_min)
-    setFormValue("end", optionValue.cds_end_max)
+    setFormValue("start", optionValue.start)
+    setFormValue("end", optionValue.end)
     setFormValue("referenceName", optionValue.reference_name)
     onClose()
   }
   const renderValue = (optionValue) => (
     <div className="content">
       <div>
-        Start: <b>{optionValue.cds_start_min}</b>
+        Start: <b>{optionValue.start}</b>
       </div>
       <div>
-        End: <b>{optionValue.cds_end_max}</b>
+        End: <b>{optionValue.end}</b>
       </div>
       <div>
         Reference: <b>{optionValue.reference_name}</b>
