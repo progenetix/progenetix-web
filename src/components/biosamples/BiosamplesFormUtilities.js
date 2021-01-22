@@ -139,9 +139,12 @@ export function CytoBandsUtility({ onClose, setFormValue }) {
   const [searchValue, setSearchValue] = useState("")
   const dataEffectResult = useCytomapper(searchValue)
   const onApply = (data) => {
-    setFormValue("start", data.data.GenomicLocation.interval.start)
-    setFormValue("end", data.data.GenomicLocation.interval.end)
-    setFormValue("referenceName", data.data.GenomicLocation.chr)
+    setFormValue(
+      "start",
+      data.response.results[0].GenomicLocation.interval.start
+    )
+    setFormValue("end", data.response.results[0].GenomicLocation.interval.end)
+    setFormValue("referenceName", data.response.results[0].GenomicLocation.chr)
     onClose()
   }
   const onSubmit = (e) => {
@@ -172,12 +175,12 @@ export function CytoBandsUtility({ onClose, setFormValue }) {
             <WithData
               dataEffectResult={dataEffectResult}
               render={(data) => {
-                const info = data.data?.info
+                const info = data.response.results[0]?.info
                 const hasResults = !!info?.cytoBands
                 return (
                   <>
                     {hasResults ? (
-                      <CytoBandsData data={data.data} />
+                      <CytoBandsData data={data.response.results} />
                     ) : (
                       <div className="notification is-light">No results.</div>
                     )}
@@ -208,16 +211,16 @@ function CytoBandsData({ data }) {
   return (
     <div className="content has-text-black">
       <div>
-        CytoBands: <b>{data.info.cytoBands}</b>
+        CytoBands: <b>{data[0].info.cytoBands}</b>
       </div>
       <div>
-        Start: <b>{data.GenomicLocation.interval.start}</b>
+        Start: <b>{data[0].GenomicLocation.interval.start}</b>
       </div>
       <div>
-        End: <b>{data.GenomicLocation.interval.end}</b>
+        End: <b>{data[0].GenomicLocation.interval.end}</b>
       </div>
       <div>
-        Reference Name: <b>{data.GenomicLocation.chr}</b>
+        Reference Name: <b>{data[0].GenomicLocation.chr}</b>
       </div>
     </div>
   )

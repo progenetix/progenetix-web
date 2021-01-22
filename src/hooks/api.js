@@ -142,7 +142,7 @@ export function buildDataVisualizationParameters(queryData) {
 }
 
 export function publicationDataUrl(id) {
-  return `${basePath}services/publications?filters=${id}&responseFormat=simple&filterPrecision=exact&method=all`
+  return `${basePath}services/publications?filters=${id}&filterPrecision=exact&method=all`
 }
 
 export function usePublication(id) {
@@ -157,8 +157,7 @@ export function usePublicationList({ geoCity, geodistanceKm }) {
   const geoParams = new URLSearchParams({
     ...mkGeoParams(geoCity, geodistanceKm),
     filters: "genomes:>0",
-    method: "details",
-    responseFormat: "simple"
+    method: "details"
   }).toString()
   const url = `${basePath}services/publications?${geoParams}`
   return useExtendedSWR(url)

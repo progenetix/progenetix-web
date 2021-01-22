@@ -12,7 +12,8 @@ import {
   FaAngleLeft,
   FaAngleRight,
   FaAngleUp,
-  FaAngleDown
+  FaAngleDown,
+  FaInfoCircle
 } from "react-icons/fa"
 import matchSorter from "match-sorter"
 import Tippy from "@tippyjs/react"
@@ -259,5 +260,18 @@ export function TooltipHeader(short, full) {
     <Tippy theme="light-border" content={full}>
       <abbr className="abbr">{short}</abbr>
     </Tippy>
+  )
+}
+
+export function InfodotHeader(short, full) {
+  return (
+    <span>
+      {short}
+      <Tippy theme="light-border" content={full}>
+        <span className="icon__wrapper">
+          <FaInfoCircle className="ml-2 icon is-small has-text-grey-light" />
+        </span>
+      </Tippy>
+    </span>
   )
 }

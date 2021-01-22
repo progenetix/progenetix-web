@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react"
 import { Layout } from "../../components/Layout"
+import { Infodot } from "../../components/Infodot"
 import { useGeoCity, usePublicationList } from "../../hooks/api"
 import { WithData } from "../../components/Loader"
-import Table, { TooltipHeader } from "../../components/Table"
+import Table, { TooltipHeader, InfodotHeader } from "../../components/Table"
 import { EpmcLink } from "./EpmcUrl"
 import cn from "classnames"
 import { useAsyncSelect } from "../../hooks/asyncSelect"
@@ -36,7 +37,10 @@ export default function PublicationsListPage() {
       <div className="mb-5">
         <div className="columns my-0">
           <div className="field column py-0 mb-3 is-one-third">
-            <label className="label">Search</label>{" "}
+            <label className="label">
+              Filter
+              <Infodot infoText={"Filter publications by keyword"} />
+            </label>{" "}
             <input
               className="input"
               value={searchInput}
@@ -44,7 +48,12 @@ export default function PublicationsListPage() {
             />
           </div>
           <div className="field column py-0 mb-3 is-one-third">
-            <label className="label">City</label>
+            <label className="label">
+              City
+              <Infodot
+                infoText={"Filter publications by city or proximity to one"}
+              />
+            </label>
             <GeoCitySelector geoCity={geoCity} setGeoCity={setGeoCity} />
           </div>
           {geoCity && (
@@ -95,11 +104,15 @@ function PublicationsLoader({ geoCity, geodistanceKm, textSearch }) {
       dataEffectResult={publicationsResult}
       background
       render={(data) => (
-        <FilteredPublication publications={data} textSearch={textSearch} />
+        <FilteredPublication
+          publications={data.response.results}
+          textSearch={textSearch}
+        />
       )}
     />
   )
 }
+
 function PublicationTable({ publications }) {
   const publicationsCount = publications.length
   const columns = React.useMemo(
@@ -108,7 +121,10 @@ function PublicationTable({ publications }) {
         Header: `Publications (${publicationsCount})`,
         columns: [
           {
-            Header: "id",
+            Header: InfodotHeader(
+              "id",
+              "Publication id (PubMed) with link to details page"
+            ),
             accessor: "id",
             // eslint-disable-next-line react/display-name
             Cell: (cellInfo) => (
