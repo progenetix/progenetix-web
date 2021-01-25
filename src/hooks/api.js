@@ -65,7 +65,7 @@ export function validateBeaconQuery(queryData) {
 
 export function mkGeoParams(geoCity, geodistanceKm) {
   if (!geoCity) return null
-  const coordinates = geoCity.data.geojson.coordinates ?? []
+  const coordinates = geoCity.data.geo_location.geometry.coordinates ?? []
   const [geolongitude, geolatitude] = coordinates
   const geodistance = geodistanceKm ? geodistanceKm * 1000 : 100 * 1000
   return { geolongitude, geolatitude, geodistance }

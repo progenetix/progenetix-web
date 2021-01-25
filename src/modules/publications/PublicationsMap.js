@@ -21,12 +21,12 @@ export default function PublicationsMap({ publications, height }) {
 
     const byCoordinates = groupBy(
       publications,
-      "provenance.geo.geojson.coordinates"
+      "provenance.geo_location.geometry.coordinates"
     )
 
     const circles = Object.entries(byCoordinates).map(([, publications]) => {
       const randomId = Math.random().toString(36).substring(2, 15)
-      const geo = publications[0].provenance.geo
+      const geoLocation = publications[0].provenance.geo_location
       const radius = 3000 + 2000 * publications.length
       const render = () =>
         // eslint-disable-next-line react/no-render-return-value
@@ -34,10 +34,10 @@ export default function PublicationsMap({ publications, height }) {
           <PublicationsTable publications={publications} />,
           document.getElementById(randomId)
         )
-      const latlng = getLatlngFromGeoJSON(geo)
+      const latlng = getLatlngFromGeoJSON(geoLocation)
       const circle = createCircle(latlng, radius).bindPopup(
         `
-        <div>${geo.city} (${geo.country}): <b>${publications.length}</b> publications</div>
+        <div>${geoLocation.properties.city} (${geoLocation.properties.country}): <b>${publications.length}</b> publications</div>
         <div id="${randomId}"></div>
         `,
         { minWidth: 400, keepInView: true }

@@ -18,7 +18,7 @@ export function GeoCitySelector({
     options = data.response.results.map((g) => ({
       value: g,
       data: g,
-      label: `${g.city} (${g.country})`
+      label: `${g.geo_location.properties.city} (${g.geo_location.properties.country})`
     }))
   }
   return (

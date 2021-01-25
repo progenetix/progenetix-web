@@ -220,7 +220,7 @@ function GeoCitySelector({ setGeoCity }) {
     options = data.response.results.map((g) => ({
       value: g.id,
       data: g,
-      label: `${g.city} (${g.country})`
+      label: `${g.geo_location.properties.city} (${g.geo_location.properties.country})`
     }))
   }
   return (

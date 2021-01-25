@@ -66,7 +66,7 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
   biosamplesHandover && tabNames.push(TABS.samples)
 
   biosamplesDataResults?.data?.some(
-    (biosample) => !!biosample.provenance?.geo
+    (biosample) => !!biosample.provenance?.geo_location
   ) && tabNames.push(TABS.samplesMap)
 
   if (handoverById(HANDOVER_IDS.variantsdata)) tabNames.push(TABS.variants)

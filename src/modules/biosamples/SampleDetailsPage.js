@@ -110,9 +110,11 @@ function Biosample({ biosample, datasetIds }) {
             <li>Material: {biosample.provenance.material.label}</li>
           </>
         )}
-        {biosample.provenance?.geo?.label && (
+        {biosample.provenance?.geo_location?.properties.label && (
           <>
-            <li>Origin: {biosample.provenance.geo.label}</li>
+            <li>
+              Origin: {biosample.provenance.geo_location.properties.label}
+            </li>
           </>
         )}
         {biosample.data_use_conditions?.id && (

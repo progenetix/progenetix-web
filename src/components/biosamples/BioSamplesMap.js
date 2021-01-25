@@ -34,13 +34,13 @@ function Map({ biosamples, height, datasetId }) {
 
     const byCoordinates = groupBy(
       biosamples,
-      "provenance.geo.geojson.coordinates"
+      "provenance.geo_location.geometry.coordinates"
     )
 
     const circles = Object.entries(byCoordinates).flatMap(([, biosamples]) => {
       const randomId = Math.random().toString(36).substring(2, 15)
-      const geo = biosamples[0].provenance?.geo
-      if (!geo) return []
+      const geoLocation = biosamples[0].provenance?.geo_location
+      if (!geoLocation) return []
       const radius = 3000 + 2000 * biosamples.length
       const render = () =>
         // eslint-disable-next-line react/no-render-return-value
@@ -48,10 +48,10 @@ function Map({ biosamples, height, datasetId }) {
           <BiosamplesTable biosamples={biosamples} datasetId={datasetId} />,
           document.getElementById(randomId)
         )
-      const latlng = getLatlngFromGeoJSON(geo)
+      const latlng = getLatlngFromGeoJSON(geoLocation)
       const circle = createCircle(latlng, radius).bindPopup(
         `
-        <div class="mb-4">${geo.city} (${geo.country}): <b>${biosamples.length}</b> biosamples</div>
+        <div class="mb-4">${geoLocation.properties.city} (${geoLocation.properties.country}): <b>${biosamples.length}</b> biosamples</div>
         <div id="${randomId}"></div>
         `,
         { minWidth: 400 }

@@ -64,6 +64,9 @@ export function createCircle(latlng, radius) {
   })
 }
 
-export function getLatlngFromGeoJSON(geo) {
-  return L.latLng(geo.geojson.coordinates[1], geo.geojson.coordinates[0])
+export function getLatlngFromGeoJSON(geo_location) {
+  return L.latLng(
+    geo_location.geometry.coordinates[1],
+    geo_location.geometry.coordinates[0]
+  )
 }

@@ -71,7 +71,7 @@ function PublicationDetails({ publication, id, filter }) {
       </p>
       <p>{publication.abstract}</p>
       <h5>Origin</h5>
-      <p>{publication.provenance.geo.label}</p>
+      <p>{publication.provenance.geo_location.properties.label}</p>
       <h5>Genome Screens</h5>
       <ul className="mb-5">
         {technologies.map((technologie, i) =>
