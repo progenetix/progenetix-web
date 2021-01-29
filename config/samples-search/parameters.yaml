@@ -25,7 +25,7 @@ includeDatasetResponses:
 requestType:
   label: Variant Request Type
   rules:
-    required: true
+    required: false
   options:
     - value: variantAlleleRequest
       label: variantAlleleRequest
@@ -39,50 +39,50 @@ referenceName:
   label: Reference name
   infoText: The chromosome with the variant(s). Required.
   options:
-    - label: '1'
-      value: '1'
-    - label: '2'
-      value: '2'
-    - label: '3'
-      value: '3'
-    - label: '4'
-      value: '4'
-    - label: '5'
-      value: '5'
-    - label: '6'
-      value: '6'
-    - label: '7'
-      value: '7'
-    - label: '8'
-      value: '8'
-    - label: '9'
-      value: '9'
-    - label: '10'
-      value: '10'
-    - label: '11'
-      value: '11'
-    - label: '12'
-      value: '12'
-    - label: '13'
-      value: '13'
-    - label: '14'
-      value: '14'
-    - label: '15'
-      value: '15'
-    - label: '16'
-      value: '16'
-    - label: '17'
-      value: '17'
-    - label: '18'
-      value: '18'
-    - label: '19'
-      value: '19'
-    - label: '20'
-      value: '20'
-    - label: '21'
-      value: '21'
-    - label: '22'
-      value: '22'
+    - label: "1"
+      value: "1"
+    - label: "2"
+      value: "2"
+    - label: "3"
+      value: "3"
+    - label: "4"
+      value: "4"
+    - label: "5"
+      value: "5"
+    - label: "6"
+      value: "6"
+    - label: "7"
+      value: "7"
+    - label: "8"
+      value: "8"
+    - label: "9"
+      value: "9"
+    - label: "10"
+      value: "10"
+    - label: "11"
+      value: "11"
+    - label: "12"
+      value: "12"
+    - label: "13"
+      value: "13"
+    - label: "14"
+      value: "14"
+    - label: "15"
+      value: "15"
+    - label: "16"
+      value: "16"
+    - label: "17"
+      value: "17"
+    - label: "18"
+      value: "18"
+    - label: "19"
+      value: "19"
+    - label: "20"
+      value: "20"
+    - label: "21"
+      value: "21"
+    - label: "22"
+      value: "22"
     - label: X
       value: X
     - label: Y
@@ -91,16 +91,20 @@ variantType:
   label: "(Structural) Variant Type"
   infoText: |
     The type of a structural variant for e.g. CNV searches.
-  defaultValue: ''
+  defaultValue: ""
   options:
-    - value: ''
+    - value: ""
       label: No structural variant specified
     - value: DEL
       label: DEL (Deletion)
     - value: DUP
       label: DUP (Duplication)
-    - value: CNV
+    - value: DUP,DEL
       label: CNV (any CNV - DUP or DEL)
+    - value: LOH
+      label: LOH (loss of heterozygosity)
+    - value: LOH,DEL
+      label: LOH or DEL
 start:
   label: Start or Position
   infoText: |
@@ -127,16 +131,16 @@ bioontology:
     codes please be aware that probably use of an "OR" filter logic will be needed.
   isMulti: true
   options:
-    - value: ''
+    - value: ""
       label: "(no selection)"
 materialtype:
   label: Biosample Type
   infoText: |
     Special filter type, to e.g. limit responses to neoplastic or reference
     samples, respectively, when not using specific cancer classification codes.
-  defaultValue: ''
+  defaultValue: ""
   options:
-    - value: ''
+    - value: ""
       label: "(no selection)"
     - value: EFO:0009656
       label: neoplastic sample
@@ -157,7 +161,7 @@ filterLogic:
     logical scopes for used filters (e.g. collision occurr if multiple cancer
     diagnoses are used with AND). Please be aware that "Filters" here include
     the "Cancer Classification", "Biosample Type" and "Filters" fields.
-  defaultValue: 'AND'
+  defaultValue: "AND"
   options:
     - value: AND
       label: AND

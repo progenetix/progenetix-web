@@ -491,8 +491,6 @@ function validateForm(formValues) {
       setMissing("referenceBases")
       setMissing("alternateBases")
     }
-  } else if (requestType === "variantFusionRequest") {
-    //
   }
 
   const queryError = validateBeaconQuery(formValues)

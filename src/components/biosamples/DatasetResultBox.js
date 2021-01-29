@@ -15,8 +15,8 @@ import { getVisualizationLink } from "../../modules/data-visualization/DataVisua
 
 const handoversInTab = [
   HANDOVER_IDS.cnvhistogram,
-  HANDOVER_IDS.biosamplesdata,
-  HANDOVER_IDS.variantsdata
+  HANDOVER_IDS.biosampleslist,
+  HANDOVER_IDS.variantslist
 ]
 
 const TABS = {
@@ -43,7 +43,7 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
     ({ handoverType: { id } }) => !handoversInTab.includes(id)
   )
 
-  const biosamplesHandover = handoverById(HANDOVER_IDS.biosamplesdata)
+  const biosamplesHandover = handoverById(HANDOVER_IDS.biosampleslist)
 
   const biosamplesDataResults = useExtendedSWR(
     biosamplesHandover && replaceWithProxy(biosamplesHandover.url)
@@ -69,7 +69,7 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
     (biosample) => !!biosample.provenance?.geo_location
   ) && tabNames.push(TABS.samplesMap)
 
-  if (handoverById(HANDOVER_IDS.variantsdata)) tabNames.push(TABS.variants)
+  if (handoverById(HANDOVER_IDS.variantslist)) tabNames.push(TABS.variants)
   const [selectedTab, setSelectedTab] = useState(tabNames[0])
 
   let tabComponent
@@ -98,7 +98,7 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
       />
     )
   } else if (selectedTab === TABS.variants) {
-    const handover = handoverById(HANDOVER_IDS.variantsdata)
+    const handover = handoverById(HANDOVER_IDS.variantslist)
     const url = replaceWithProxy(handover.url)
     tabComponent = <VariantsDataTable url={url} datasetId={datasetId} />
   }
@@ -107,7 +107,7 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
     <div className="box">
       <h2 className="subtitle has-text-dark">{datasetId}</h2>
       <div className="columns">
-        <div className="column is-one-fifth">
+        <div className="column is-one-fourth">
           <div>
             <b>Samples: </b>
             {sampleCount}
@@ -132,12 +132,12 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
             </div>
           ) : null}
         </div>
-        <div className="column is-one-fifth">
+        <div className="column is-one-fourth">
           {genericHandovers.map((handover, i) => (
             <GenericHandover key={i} handover={handover} />
           ))}
         </div>
-        <div className="column is-one-fifth">
+        <div className="column is-one-fourth">
           {variantCount > 0 ? (
             <div>
               <UCSCRegion query={query} />
@@ -149,7 +149,7 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
           />
         </div>
         {visualizationLink && (
-          <div className="column is-one-fifth">
+          <div className="column is-one-fourth">
             <a className="button is-info mb-5" href={visualizationLink}>
               Visualization options
             </a>

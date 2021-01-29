@@ -344,7 +344,6 @@ export function replaceWithProxy(
 
 export const HANDOVER_IDS = {
   cnvhistogram: "pgx:handover:cnvhistogram",
-  biosamplesdata: "pgx:handover:biosamplesdata",
-  progenetixtools: "pgx:handover:progenetixtools",
-  variantsdata: "pgx:handover:variantsdata"
+  biosampleslist: "pgx:handover:biosampleslist",
+  variantslist: "pgx:handover:variantslist"
 }
