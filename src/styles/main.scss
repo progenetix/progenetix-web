@@ -20,8 +20,8 @@ body {
 
 @import "button-link";
 
-@import "src/modules/beacon-plus/BeaconPlusPage";
-@import "src/modules/beacon-plus/Nav";
+@import "src/modules/beacon-instances/shared/BeaconForm";
+@import "src/modules/beacon-instances/shared/Nav";
 
 @import "src/modules/subsets/Subsets";
 

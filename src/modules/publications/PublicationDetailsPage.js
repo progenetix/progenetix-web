@@ -7,10 +7,10 @@ import { Layout } from "../../components/Layout"
 import { epmcUrl, EpmcLink } from "./EpmcUrl"
 
 const PublicationDetailsPage = withUrlQuery(({ urlQuery }) => {
-  const { id, filter } = urlQuery
+  const { id } = urlQuery
   return (
     <Layout title="Publication Details">
-      {!id ? <NoResultsHelp /> : <PublicationLoader id={id} filter={filter} />}
+      {!id ? <NoResultsHelp /> : <PublicationLoader id={id} />}
     </Layout>
   )
 })
@@ -29,31 +29,26 @@ function NoResultsHelp() {
   )
 }
 
-function PublicationLoader({ id, filter }) {
+function PublicationLoader({ id }) {
   const { data, error, isLoading } = usePublication(id)
   return (
     <Loader isLoading={isLoading} hasError={error} background>
-      <PublicationResponse response={data} id={id} filter={filter} />
+      <PublicationResponse response={data} id={id} />
     </Loader>
   )
 }
 
-function PublicationResponse({ response, id, filter }) {
+function PublicationResponse({ response, id }) {
   if (response?.length >= 1) {
     return response.map((publication, i) => (
-      <PublicationDetails
-        key={i}
-        publication={publication}
-        id={id}
-        filter={filter}
-      />
+      <PublicationDetails key={i} publication={publication} id={id} />
     ))
   } else {
     return <NoResultsHelp />
   }
 }
 
-function PublicationDetails({ publication, id, filter }) {
+function PublicationDetails({ publication, id }) {
   const progenetixBiosamplesCount = publication.counts?.progenetix ?? 0
   const arraymapBiosamplesCount = publication.counts?.arraymap ?? 0
   return (
@@ -108,11 +103,11 @@ function PublicationDetails({ publication, id, filter }) {
 
       {progenetixBiosamplesCount > 0 && (
         <div className="mb-5">
-          <SubsetHistogram id={id} filter={filter} datasetIds="progenetix" />
+          <SubsetHistogram id={id} filter={id} datasetIds="progenetix" />
         </div>
       )}
       {arraymapBiosamplesCount > 0 && (
-        <SubsetHistogram id={id} filter={filter} datasetIds="arraymap" />
+        <SubsetHistogram id={id} filter={id} datasetIds="arraymap" />
       )}
     </section>
   )

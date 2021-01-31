@@ -1,4 +1,4 @@
-import Nav from "../../modules/beacon-plus/Nav"
+import Nav from "../../modules/beacon-instances/beacon-plus/Nav"
 
 export default function About() {
   return (

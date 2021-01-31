@@ -1,4 +1,4 @@
-import Page from "../../modules/beacon-instances/beacon-plus/BeaconPage"
+import Page from "../../modules/beacon-instances/1000-genomes-cnv/BeaconPage"
 import { getStaticDatatasets } from "../../hooks/api"
 import { getCytoBands } from "../../utils/genome"
 export default Page

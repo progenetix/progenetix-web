@@ -1,10 +1,10 @@
 import React from "react"
-import parametersConfig from "../../../config/samples-search/parameters.yaml"
-import requestTypesConfig from "../../../config/samples-search/beacon-plus_requestTypes.yaml"
+import parametersConfig from "../../../../config/samples-search/parameters.yaml"
+import requestTypesConfig from "./requestTypes.yaml"
 import Nav from "./Nav"
-import BiosamplesSearchPanel from "../../components/biosamples/BiosamplesSearchPanel"
+import BiosamplesSearchPanel from "../../../components/biosamples/BiosamplesSearchPanel"
 
-export default function BeaconPlusPage({ datasets, cytoBands }) {
+export default function ThousandGenomesPage({ cytoBands }) {
   return (
     <>
       <Nav />
@@ -21,3 +21,5 @@ export default function BeaconPlusPage({ datasets, cytoBands }) {
     </>
   )
 }
+
+const datasets = [{ label: "1000genomesDRAGEN", value: "1000genomesDRAGEN" }]

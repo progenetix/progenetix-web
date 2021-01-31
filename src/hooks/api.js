@@ -110,7 +110,7 @@ export function buildQueryParameters(queryData) {
     const match = INTEGER_RANGE_REGEX.exec(end)
     if (!match) throw new Error("incorrect end range")
     const [, end0, end1] = match
-    ends.push(end0 > 0 ? end0 - 1 : end0)
+    ends.push(end0)
     end1 && ends.push(end1)
   }
   const filters = makeFilters({ freeFilters, bioontology, materialtype })
@@ -142,7 +142,7 @@ export function buildDataVisualizationParameters(queryData) {
 }
 
 export function publicationDataUrl(id) {
-  return `${basePath}services/publications?filters=${id}&filterPrecision=exact&method=all`
+  return `${basePath}services/publications?filters=${id}&filterPrecision=exact&method=all&responseFormat=simple`
 }
 
 export function usePublication(id) {
