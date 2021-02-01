@@ -34,10 +34,10 @@ function CallsetLoader({ id, datasetIds }) {
 }
 
 function CallsetResponse({ response, datasetIds }) {
-  if (!response.data) {
+  if (!response.response.results) {
     return NoResultsHelp(exampleId, itemColl)
   }
-  if (response.errors.length > 1) {
+  if (response.meta.errors.length > 1) {
     return (
       <div className="notification is-size-5">
         <div className="message-body">The request returned errors.</div>
@@ -45,7 +45,9 @@ function CallsetResponse({ response, datasetIds }) {
     )
   }
 
-  return <Callset callset={response.data} datasetIds={datasetIds} />
+  return (
+    <Callset callset={response.response.results[0]} datasetIds={datasetIds} />
+  )
 }
 
 function Callset({ callset, datasetIds }) {

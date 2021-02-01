@@ -34,10 +34,10 @@ function VariantLoader({ _id, datasetIds }) {
 }
 
 function VariantResponse({ response, datasetIds }) {
-  if (!response.data) {
+  if (!response.response.results) {
     return NoResultsHelp(exampleId, itemColl)
   }
-  if (response.errors.length > 1) {
+  if (response.meta.errors.length > 1) {
     return (
       <div className="notification is-size-5">
         <div className="message-body">The request returned errors.</div>
@@ -45,7 +45,9 @@ function VariantResponse({ response, datasetIds }) {
     )
   }
 
-  return <Variant variant={response.data} datasetIds={datasetIds} />
+  return (
+    <Variant variant={response.response.results[0]} datasetIds={datasetIds} />
+  )
 }
 
 function Variant({ variant, datasetIds }) {

@@ -183,10 +183,9 @@ variantRangeRequest:
   note: ""
   label: "Range Query"
   description: |
-    Range + wildcard query will return any variant between the given positions. Either a
-    "variant type" or alternate bases ("N" for wildcard) should be specified.
-    The exact variants which were being found can be retrieved through the variant
-    handover [H—>O] link.
+    A range query will return any variant between the given positions. Either a
+    "variant type" or alternate bases ("N" for wildcard) may be specified.
+    The exact variants which were being found can be retrieved through the variant handover [H—>O] link.
   parameters:
     datasetIds:
       placeholder: ""

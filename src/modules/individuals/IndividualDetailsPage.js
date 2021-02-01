@@ -35,10 +35,10 @@ function IndividualLoader({ id, datasetIds }) {
 }
 
 function IndividualResponse({ response, datasetIds }) {
-  if (!response.data) {
+  if (!response.response.results) {
     return NoResultsHelp(exampleId, itemColl)
   }
-  if (response.errors.length > 1) {
+  if (response.meta.errors.length > 1) {
     return (
       <div className="notification is-size-5">
         <div className="message-body">The request returned errors.</div>
@@ -46,7 +46,12 @@ function IndividualResponse({ response, datasetIds }) {
     )
   }
 
-  return <Individual individual={response.data} datasetIds={datasetIds} />
+  return (
+    <Individual
+      individual={response.response.results[0]}
+      datasetIds={datasetIds}
+    />
+  )
 }
 
 function Individual({ individual, datasetIds }) {

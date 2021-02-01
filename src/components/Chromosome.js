@@ -75,7 +75,7 @@ export function Chromosome({
                     className={cn(`stain stain--${band.stain}`, {
                       selected: true
                     })}
-                    width={rectWidth}
+                    width={rectWidth > 0 ? rectWidth : 1}
                     height={"100%"}
                   />
                 </Tippy>
@@ -99,7 +99,7 @@ export function Chromosome({
               pointerEvents="none"
               className="selection"
               x={calcX(start) + 1}
-              width={calcX(startMax) - calcX(start) - 2}
+              width={calcX(startMax) - calcX(start)}
               height="100%"
             />
           )}
@@ -108,17 +108,26 @@ export function Chromosome({
               pointerEvents="none"
               className="selectionEnd"
               x={calcX(endMin) + 1}
-              width={calcX(end) - calcX(endMin) - 2}
+              width={calcX(end) - calcX(endMin)}
               height="100%"
             />
           )}
         </svg>
         {start &&
           annotation(calcX)(start, start, startRangeColor, "top", "end")}
-        {startMax && startMax > start ? annotation(calcX)(startMax, startMax, startRangeColor, "top", "start") : "" }
-        {endMin && endMin < end ? annotation(calcX)(endMin, endMin, endRangeColor, "bottom", "end") : "" }
-        {end &&
-          annotation(calcX)(end, end, endRangeColor, "bottom", "start")}
+        {startMax && startMax > start
+          ? annotation(calcX)(
+              startMax,
+              startMax,
+              startRangeColor,
+              "top",
+              "start"
+            )
+          : ""}
+        {endMin && endMin < end
+          ? annotation(calcX)(endMin, endMin, endRangeColor, "bottom", "end")
+          : ""}
+        {end && annotation(calcX)(end, end, endRangeColor, "bottom", "start")}
       </svg>
     </>
   )

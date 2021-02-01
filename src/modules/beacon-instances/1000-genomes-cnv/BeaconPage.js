@@ -1,5 +1,5 @@
 import React from "react"
-import parametersConfig from "../../../../config/samples-search/parameters.yaml"
+import parametersConfig from "../shared/searchParameters.yaml"
 import requestTypesConfig from "./requestTypes.yaml"
 import Nav from "./Nav"
 import BiosamplesSearchPanel from "../../../components/biosamples/BiosamplesSearchPanel"
