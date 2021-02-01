@@ -311,24 +311,23 @@ export function Form({
           </div>
           <InputField {...parameters.accessid} {...fieldProps} />
           <InputField {...parameters.filterPrecision} {...fieldProps} />
-          <div className="columns my-0">
-            <GeoCitySelector
-              className={cn(
-                !parameters.geoCity.isHidden && "column",
-                "py-0 mb-3"
-              )}
-              {...parameters.geoCity}
-              {...selectProps}
-            />
-            <div
-              className={cn("column", "py-0 mb-3", {
-                "is-invisible": !showGeoDistance,
-                "animate__fadeIn animate__animated": showGeoDistance
-              })}
-            >
-              <InputField {...parameters.geodistanceKm} {...fieldProps} />
+          {!parameters.geoCity.isHidden && (
+            <div className="columns my-0">
+              <GeoCitySelector
+                className={cn("column", "py-0 mb-3")}
+                {...parameters.geoCity}
+                {...selectProps}
+              />
+              <div
+                className={cn("column", "py-0 mb-3", {
+                  "is-invisible": !showGeoDistance,
+                  "animate__fadeIn animate__animated": showGeoDistance
+                })}
+              >
+                <InputField {...parameters.geodistanceKm} {...fieldProps} />
+              </div>
             </div>
-          </div>
+          )}
           <ChromosomePreview watch={watch} cytoBands={cytoBands} />
           <div className="field mt-5">
             <div className="control">
