@@ -1,0 +1,165 @@
+---
+# variantCNVrequest:
+#   note: ""
+#   label: "CNV Request"
+#   description: |
+#     This query type is for copy number queries ("variantCNVrequest"), e.g. using fuzzy
+#     ranges for start and end positions to capture a set of similar variants.
+#   parameters:
+#     datasetIds:
+#       defaultValue: ["1000genomesDRAGEN"]
+#       isHidden: true
+#     includeDatasetResponses:
+#       placeholder: "ALL"
+#       isHidden: true
+#     requestType:
+#       defaultValue: "variantCNVrequest"
+#       isHidden: true
+#     assemblyId:
+#       defaultValue: "GRCh38"
+#       isHidden: true
+#     referenceName:
+#       placeholder: "9"
+#     start:
+#       placeholder: "19000001-21975098"
+#     end:
+#       placeholder: "21967753-24000000"
+#     variantType:
+#       placeholder: "DEL"
+#     alternateBases:
+#       defaultValue: ""
+#       isHidden: true
+#     referenceBases:
+#       defaultValue: ""
+#       isHidden: true
+#     materialtype:
+#       defaultValue: ""
+#       isHidden: true
+#     freeFilters:
+#       defaultValue: ""
+#       isHidden: true
+#     accessid:
+#       isHidden: true
+#     filterLogic:
+#       isHidden: true
+#   examples:
+#     - label: "CNV Example"
+#       note: "Example for focal CDKN2A deletion matches."
+#       description: |
+#         This example shows the query for CNV deletion variants overlapping the
+#         CDKN2A gene's coding region with at least a single base, but limited
+#         to "focal" hits (here i.e. <= ~2Mbp in size). The query is against the
+#         arrayMap collection and can be modified e.g. through changing the position
+#         parameters or data source.
+#       parameters:
+#         assemblyId:
+#           defaultValue: "GRCh38"
+#         referenceName:
+#           defaultValue: "9"
+#         start:
+#           defaultValue: "21000001-21975098"
+#         end:
+#           defaultValue: "21967753-23000000"
+#         variantType:
+#           defaultValue: "DEL"
+
+variantRangeRequest:
+  note: ""
+  label: "Range Query"
+  description: |
+    A range query will return any variant between the given positions. Either a
+    "variant type" or alternate bases ("N" for wildcard) may be specified.
+    The exact variants which were being found can be retrieved through the variant handover [H—>O] link.
+  parameters:
+    requestType:
+      defaultValue: "variantRangeRequest"
+      isHidden: true
+    includeDatasetResponses:
+      placeholder: "ALL"
+      isHidden: true
+    datasetIds:
+      defaultValue: ["cellosaurus"]
+      isHidden: true
+    assemblyId:
+      defaultValue: "GRCh38"
+      isHidden: true
+    referenceName:
+      placeholder: "17"
+    start:
+      placeholder: 7000000
+    end:
+      placeholder: 8000000
+    variantType:
+      placeholder: ""
+    alternateBases:
+      isHidden: true
+    referenceBases:
+      isHidden: true
+    bioontology:
+      isHidden: true
+    materialtype:
+      isHidden: true
+    freeFilters:
+      isHidden: true
+    accessid:
+      isHidden: true
+    filterLogic:
+      isHidden: true
+    geoCity:
+      isHidden: true
+  examples:
+    - label: "Range Example"
+      note: "Example for any change around TP53 locus"
+      description: |
+        The range reques matches all (DEL) variants somehow overlapping the interval.
+      parameters:
+        referenceName:
+          defaultValue: "17"
+        start:
+          defaultValue: 7000000
+        end:
+          defaultValue: 8000000
+
+allFieldsRequest:
+  note: ""
+  label: "Empty Fields"
+  description: |
+    All CNV form fields for composing your own queries.
+  parameters:
+    datasetIds:
+      defaultValue: ["cellosaurus"]
+      isHidden: true
+    includeDatasetResponses:
+      placeholder: "ALL"
+      isHidden: true
+    assemblyId:
+      defaultValue: "GRCh38"
+      isHidden: true
+    requestType: {}
+    referenceName:
+      placeholder: "9"
+    start:
+      placeholder: "20000001-21975098"
+    end:
+      placeholder: "21967753-23000000"
+    variantType:
+      placeholder: "DEL"
+    alternateBases:
+      isHidden: true
+    referenceBases:
+      isHidden: true
+    bioontology:
+      defaultValue: []
+      isHidden: true
+    materialtype:
+      isHidden: true
+    freeFilters:
+      isHidden: true
+    accessid:
+      isHidden: true
+    filterLogic:
+      isHidden: true
+    geoCity:
+      isHidden: true
+    geodistanceKm:
+      isHidden: true

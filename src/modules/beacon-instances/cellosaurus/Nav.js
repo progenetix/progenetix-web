@@ -11,18 +11,14 @@ export default function Nav() {
         role="navigation"
         aria-label="main navigation"
       >
-        <Link href="/beacon-plus/search">
+        <Link href="/cellosaurus/search">
           <a className="Nav__logo">
-            Beacon <sup className="Nav__plus">+</sup>
+            Cellosaurus Beacon<sup className="Nav__plus">+</sup>
           </a>
         </Link>
         <div className="Nav__links">
-          <ActiveLink
-            label="1000 Genomes CNVs"
-            href="/1000-genomes-cnv/search"
-          />
-          <ActiveLink label="Cell Line Beacon" href="/cellosaurus/search" />
-          <ActiveLink label="About" href="/beacon-plus/about" />
+          <ActiveLink label="Beacon+" href="/beacon-plus/search" />
+          <ActiveLink label="About" href="/cellosaurus/about" />
           <ActiveLink label="Progenetix" href="/" />
           <a
             href="https://info.progenetix.org/categories/howto.html"
