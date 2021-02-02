@@ -80,7 +80,7 @@ export default function FileLoaderPage() {
             </ul>
           </li>
           <li>
-            <code>probes</code>
+            <code>probes</code> (optional)
             <ul>
               <li>the number of array probes, call bins in the segment</li>
               <li>fallback filter removes</li>
@@ -95,7 +95,6 @@ export default function FileLoaderPage() {
 
 function DataVisualizationUpload() {
   const [result, setResult] = useState(null)
-
   return (
     <div>
       {result ? (
@@ -109,7 +108,7 @@ function DataVisualizationUpload() {
 
 function Dropzone({ setResult }) {
   const { getRootProps, getInputProps } = useDropzone({
-    accept: ".tsv",
+    accept: [".tsv", ".tab"],
     onDrop: async (acceptedFiles) => {
       const data = new FormData()
       data.append("upload_file_name", acceptedFiles[0], acceptedFiles[0].name)
@@ -130,6 +129,7 @@ function Dropzone({ setResult }) {
     </>
   )
 }
+
 function Results({ results, onCancelClicked }) {
   const accessId = results.accessid
   const visualizationLink = getVisualizationLink(accessId)
