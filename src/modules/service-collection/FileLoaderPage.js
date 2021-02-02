@@ -9,14 +9,28 @@ import Panel from "../../components/Panel"
 export default function FileLoaderPage() {
   return (
     <Layout
-      title="USer File Upload"
+      title="User File Upload"
       headline="Upload Files for CNV Visualization"
     >
+      <Panel heading="CNV Data Plotting" className="content">
+        <p>
+          Here we provide users an option to visualize their own CNV data, using
+          the standard Progenetix plotting options for histograms and samples.
+          This functionality is currently limited to single segmens files
+          without the group labeling options. However, we provide the plotting
+          libraries as a Perl package through our{" "}
+          <a href="https://github.com/progenetix/PGX" target="_blank">
+            Github
+          </a>{" "}
+          repository.
+        </p>
+      </Panel>
+
       <div className="mb-5">
         <DataVisualizationUpload />
       </div>
 
-      <Panel heading="File format" className="content">
+      <Panel heading="Segment File format" className="content">
         <p>
           Data has to be submitted as tab-delimited <b>.tsv</b> segment files.
           An example file is being provided{" "}
