@@ -128,7 +128,7 @@ export function buildQueryParameters(queryData) {
 export function useDataVisualization(queryData) {
   return useExtendedSWR(
     queryData
-      ? `${basePath}cgi/api_process.cgi?${buildDataVisualizationParameters(
+      ? `${basePath}cgi/PGX/cgi/samplePlots.cgi?${buildDataVisualizationParameters(
           queryData
         )}`
       : null

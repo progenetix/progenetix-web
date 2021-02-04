@@ -19,7 +19,11 @@ export default function FileLoaderPage() {
           This functionality is currently limited to single segmens files
           without the group labeling options. However, we provide the plotting
           libraries as a Perl package through our{" "}
-          <a href="https://github.com/progenetix/PGX" target="_blank">
+          <a
+            href="https://github.com/progenetix/PGX"
+            target="_blank"
+            rel="noreferrer"
+          >
             Github
           </a>{" "}
           repository.
