@@ -71,7 +71,13 @@ export function mkGeoParams(geoCity, geodistanceKm) {
   return { geolongitude, geolatitude, geodistance }
 }
 
-export function makeFilters({ freeFilters, bioontology, materialtype }) {
+export function makeFilters({
+  freeFilters,
+  bioontology,
+  cohorts,
+  genotypicSex,
+  materialtype
+}) {
   const parsedFreeFilters =
     freeFilters
       ?.split(",")
@@ -80,6 +86,8 @@ export function makeFilters({ freeFilters, bioontology, materialtype }) {
 
   return [
     ...(bioontology ?? []),
+    ...(cohorts ? [cohorts] : []),
+    ...(genotypicSex ? [genotypicSex] : []),
     ...(materialtype ? [materialtype] : []),
     ...parsedFreeFilters
   ]
@@ -90,6 +98,8 @@ export function buildQueryParameters(queryData) {
     start,
     end,
     bioontology,
+    cohorts,
+    genotypicSex,
     materialtype,
     freeFilters,
     geoCity,
@@ -113,7 +123,13 @@ export function buildQueryParameters(queryData) {
     ends.push(end0)
     end1 && ends.push(end1)
   }
-  const filters = makeFilters({ freeFilters, bioontology, materialtype })
+  const filters = makeFilters({
+    freeFilters,
+    bioontology,
+    cohorts,
+    genotypicSex,
+    materialtype
+  })
   const geoParams = mkGeoParams(geoCity, geodistanceKm) ?? {}
   return new URLSearchParams(
     flattenParams([
@@ -254,7 +270,7 @@ export function useGeoCity({ city }) {
 }
 
 export function subsetSVGlink(id, datasetIds) {
-  return `${basePath}cgi/api_collationhistogram.cgi?datasetIds=${datasetIds}&id=${id}`
+  return `${basePath}cgi/PGX/cgi/collationPlots.cgi?datasetIds=${datasetIds}&id=${id}`
 }
 
 export function referenceLink(externalReference) {

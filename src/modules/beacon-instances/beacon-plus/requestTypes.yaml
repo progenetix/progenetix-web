@@ -30,8 +30,9 @@ variantCNVrequest:
     referenceBases:
       placeholder: "N"
       isHidden: true
+    genotypicSex:
+      isHidden: true
     materialtype:
-      placeholder: "" #"EFO:0009656"
       isHidden: true
     freeFilters:
       placeholder: ""
@@ -110,8 +111,9 @@ variantAlleleRequest:
       placeholder: "A"
     referenceBases:
       placeholder: "G"
+    genotypicSex:
+      isHidden: true
     materialtype:
-      placeholder: ""
       isHidden: true
     freeFilters:
       placeholder: ""
@@ -173,6 +175,9 @@ variantAlleleRequest:
           defaultValue: "T"
         referenceBases:
           defaultValue: "C"
+        genotypicSex:
+          defaultValue: ""
+          isHidden: true
         materialtype:
           defaultValue: ""
           isHidden: true
@@ -274,6 +279,8 @@ allFieldsRequest:
       placeholder: "G"
     freeFilters:
       placeholder: "" # "geolat:49,geolong:8.69,geodist:2000000"
+    genotypicSex:
+      placeholder: "" #"EFO:0009656"
     materialtype:
       placeholder: "" #"EFO:0009656"
     accessid:

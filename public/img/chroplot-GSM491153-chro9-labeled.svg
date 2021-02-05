@@ -1,0 +1,309 @@
+<svg
+xmlns="http://www.w3.org/2000/svg"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+version="1.1"
+id="arrayplot"
+width="450px"
+height="245px"
+style="margin: auto; font-family: Helvetica, sans-serif;">
+
+<rect x="0" y="0" width="450" height="245" style="fill: #ffffff; " />
+
+
+<defs>
+<linearGradient id="arrayplotgpos100" x1="0%" x2="0%" y1="0%" y2="80%" spreadMethod="reflect">
+    <stop offset="0%" stop-color="rgb(39,39,39)" />
+    <stop offset="100%" stop-color="rgb(0,0,0)" />
+</linearGradient>
+<linearGradient id="arrayplotgpos75" x1="0%" x2="0%" y1="0%" y2="80%" spreadMethod="reflect">
+    <stop offset="0%" stop-color="rgb(87,87,87)" />
+    <stop offset="100%" stop-color="rgb(39,39,39)" />
+</linearGradient>
+<linearGradient id="arrayplotgpos50" x1="0%" x2="0%" y1="0%" y2="80%" spreadMethod="reflect">
+    <stop offset="0%" stop-color="rgb(196,196,196)" />
+    <stop offset="100%" stop-color="rgb(111,111,111)" />
+</linearGradient>
+<linearGradient id="arrayplotgpos25" x1="0%" x2="0%" y1="0%" y2="80%" spreadMethod="reflect">
+    <stop offset="0%" stop-color="rgb(223,223,223)" />
+    <stop offset="100%" stop-color="rgb(196,196,196)" />
+</linearGradient>
+<linearGradient id="arrayplotgneg" x1="0%" x2="0%" y1="0%" y2="80%" spreadMethod="reflect">
+    <stop offset="0%" stop-color="white" />
+    <stop offset="100%" stop-color="rgb(223,223,223)" />
+</linearGradient>
+<linearGradient id="arrayplotgvar" x1="0%" x2="0%" y1="0%" y2="80%" spreadMethod="reflect">
+    <stop offset="0%" stop-color="rgb(196,196,196)" />
+    <stop offset="100%" stop-color="rgb(111,111,111)" />
+</linearGradient>
+<linearGradient id="arrayplotstalk" x1="0%" x2="0%" y1="0%" y2="80%" spreadMethod="reflect">
+    <stop offset="0%" stop-color="rgb(39,39,39)" />
+    <stop offset="100%" stop-color="rgb(0,0,0)" />
+</linearGradient>
+<linearGradient id="arrayplotacen" x1="0%" x2="0%" y1="0%" y2="80%" spreadMethod="reflect">
+    <stop offset="0%" stop-color="rgb(163,55,247)" />
+    <stop offset="100%" stop-color="rgb(138,43,226)" />
+</linearGradient>
+
+<style type="text/css">
+<![CDATA[
+.chrlab { text-anchor: middle; font-size: 9px; fill: #000000 }
+]]>
+</style>
+</defs>
+<text x="225.0" y="37" class="chrlab">9 (19719573-37812790)</text>
+<rect x="30.0" y="41.2" width="3.9" height="9.6" style="fill: url(#arrayplotgneg); " />
+<rect x="33.9" y="40" width="122.9" height="12" style="fill: url(#arrayplotgpos100); " />
+<rect x="156.8" y="40" width="51.7" height="12" style="fill: url(#arrayplotgneg); " />
+<rect x="208.5" y="40" width="112.1" height="12" style="fill: url(#arrayplotgpos100); " />
+<rect x="320.6" y="40" width="66.8" height="12" style="fill: url(#arrayplotgneg); " />
+<rect x="387.4" y="41.2" width="32.6" height="9.6" style="fill: url(#arrayplotgpos25); " />
+<style type="text/css"><![CDATA[
+  .DUP {stroke-width: 4px; stroke: #FFC633; opacity: 0.8  }
+  .DEL {stroke-width: 4px; stroke: #33A0FF; opacity: 0.8  }
+  .cen {stroke-width: 1px; stroke: #c0e3ee; opacity: 0.8 ; }
+]]></style>
+<style type="text/css"><![CDATA[
+  .cen {stroke-width: 1px; stroke: #c0e3ee; opacity: 0.8 ; }
+  .tick {stroke-width: 1px; stroke: #666666; opacity: 0.8 ; }
+  .ylabs {text-anchor: end; font-size: 8px; fill: #666666;}
+  .ylabe {text-anchor: start; font-size: 8px; fill: #666666;}
+]]></style>
+<line x1="29"  y1="151.9"  x2="30"  y2="151.9"  class="tick"  />
+<line x1="420"  y1="151.9"  x2="421"  y2="151.9"  class="tick"  />
+<line x1="30"  y1="151.9"  x2="420"  y2="151.9"  class="cen"  />
+<text x="28" y="154.9" class="ylabs">-3</text>
+<line x1="29"  y1="144.1"  x2="30"  y2="144.1"  class="tick"  />
+<line x1="420"  y1="144.1"  x2="421"  y2="144.1"  class="tick"  />
+<line x1="30"  y1="144.1"  x2="420"  y2="144.1"  class="cen"  />
+<line x1="29"  y1="136.2"  x2="30"  y2="136.2"  class="tick"  />
+<line x1="420"  y1="136.2"  x2="421"  y2="136.2"  class="tick"  />
+<line x1="30"  y1="136.2"  x2="420"  y2="136.2"  class="cen"  />
+<text x="28" y="139.2" class="ylabs">-2</text>
+<line x1="29"  y1="128.4"  x2="30"  y2="128.4"  class="tick"  />
+<line x1="420"  y1="128.4"  x2="421"  y2="128.4"  class="tick"  />
+<line x1="30"  y1="128.4"  x2="420"  y2="128.4"  class="cen"  />
+<line x1="29"  y1="120.6"  x2="30"  y2="120.6"  class="tick"  />
+<line x1="420"  y1="120.6"  x2="421"  y2="120.6"  class="tick"  />
+<line x1="30"  y1="120.6"  x2="420"  y2="120.6"  class="cen"  />
+<text x="28" y="123.6" class="ylabs">-1</text>
+<line x1="29"  y1="112.8"  x2="30"  y2="112.8"  class="tick"  />
+<line x1="420"  y1="112.8"  x2="421"  y2="112.8"  class="tick"  />
+<line x1="30"  y1="112.8"  x2="420"  y2="112.8"  class="cen"  />
+<line x1="29"  y1="105.0"  x2="30"  y2="105.0"  class="tick"  />
+<line x1="420"  y1="105.0"  x2="421"  y2="105.0"  class="tick"  />
+<line x1="30"  y1="105.0"  x2="420"  y2="105.0"  class="cen"  />
+<text x="28" y="108" class="ylabs">0</text>
+<line x1="29"  y1="97.2"  x2="30"  y2="97.2"  class="tick"  />
+<line x1="420"  y1="97.2"  x2="421"  y2="97.2"  class="tick"  />
+<line x1="30"  y1="97.2"  x2="420"  y2="97.2"  class="cen"  />
+<line x1="29"  y1="89.4"  x2="30"  y2="89.4"  class="tick"  />
+<line x1="420"  y1="89.4"  x2="421"  y2="89.4"  class="tick"  />
+<line x1="30"  y1="89.4"  x2="420"  y2="89.4"  class="cen"  />
+<text x="28" y="92.4" class="ylabs">1</text>
+<line x1="29"  y1="81.6"  x2="30"  y2="81.6"  class="tick"  />
+<line x1="420"  y1="81.6"  x2="421"  y2="81.6"  class="tick"  />
+<line x1="30"  y1="81.6"  x2="420"  y2="81.6"  class="cen"  />
+<line x1="29"  y1="73.8"  x2="30"  y2="73.8"  class="tick"  />
+<line x1="420"  y1="73.8"  x2="421"  y2="73.8"  class="tick"  />
+<line x1="30"  y1="73.8"  x2="420"  y2="73.8"  class="cen"  />
+<text x="28" y="76.8" class="ylabs">2</text>
+<line x1="29"  y1="65.9"  x2="30"  y2="65.9"  class="tick"  />
+<line x1="420"  y1="65.9"  x2="421"  y2="65.9"  class="tick"  />
+<line x1="30"  y1="65.9"  x2="420"  y2="65.9"  class="cen"  />
+<line x1="29"  y1="58.1"  x2="30"  y2="58.1"  class="tick"  />
+<line x1="420"  y1="58.1"  x2="421"  y2="58.1"  class="tick"  />
+<line x1="30"  y1="58.1"  x2="420"  y2="58.1"  class="cen"  />
+<text x="28" y="61.1" class="ylabs">3</text>
+<rect x="30" y="55" width="390.0" height="100" style="fill: #f3f9ff; fill-opacity: 0.8; " />
+<image
+  x="30"
+  y="55"
+  width="390.0"
+  height="100"
+  xlink:href="data:image/png;base64,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
+4v8BCwbi9JfLUogAAAAASUVORK5CYII=
+"
+/>
+<line x1="30.0"  y1="111.7"  x2="60.5"  y2="111.7"  class="DEL"  />
+<a
+xlink:href="http://genome.ucsc.edu/cgi-bin/hgTracks?db=GRCh38&amp;position=chr9%3A19719573-21133233"
+xlink:show="new"
+xlink:title="-0.4306 at 9:19719573-21133233">
+<line x1="30.0"  y1="159"  x2="60.5"  y2="159"  class="DEL"  /></a>
+<line x1="61.5"  y1="130.7"  x2="99.5"  y2="130.7"  class="DEL"  />
+<a
+xlink:href="http://genome.ucsc.edu/cgi-bin/hgTracks?db=GRCh38&amp;position=chr9%3A21181455-22943510"
+xlink:show="new"
+xlink:title="-1.646 at 9:21181455-22943510">
+<line x1="61.5"  y1="159"  x2="99.5"  y2="159"  class="DEL"  /></a>
+<line x1="100.1"  y1="112.3"  x2="186"  y2="112.3"  class="DEL"  />
+<a
+xlink:href="http://genome.ucsc.edu/cgi-bin/hgTracks?db=GRCh38&amp;position=chr9%3A22973195-26958441"
+xlink:show="new"
+xlink:title="-0.4644 at 9:22973195-26958441">
+<line x1="100.1"  y1="159"  x2="186"  y2="159"  class="DEL"  /></a>
+<line x1="186.4"  y1="99.2"  x2="190.5"  y2="99.2"  class="DUP"  />
+<a
+xlink:href="http://genome.ucsc.edu/cgi-bin/hgTracks?db=GRCh38&amp;position=chr9%3A26975570-27166161"
+xlink:show="new"
+xlink:title="0.3693 at 9:26975570-27166161">
+<line x1="186.4"  y1="159"  x2="190.5"  y2="159"  class="DUP"  /></a>
+<line x1="190.7"  y1="77.1"  x2="191.3"  y2="77.1"  class="DUP"  />
+<a
+xlink:href="http://genome.ucsc.edu/cgi-bin/hgTracks?db=GRCh38&amp;position=chr9%3A27173064-27203136"
+xlink:show="new"
+xlink:title="1.7836 at 9:27173064-27203136">
+<line x1="190.7"  y1="159"  x2="191.3"  y2="159"  class="DUP"  /></a>
+<line x1="191.4"  y1="101.5"  x2="420"  y2="101.5"  class="DUP"  />
+<a
+xlink:href="http://genome.ucsc.edu/cgi-bin/hgTracks?db=GRCh38&amp;position=chr9%3A27209471-37812790"
+xlink:show="new"
+xlink:title="0.2266 at 9:27209471-37812790">
+<line x1="191.4"  y1="159"  x2="420"  y2="159"  class="DUP"  /></a>
+<line x1="30"  y1="105"  x2="420"  y2="105"  class="cen"  />
+<style type="text/css">
+<![CDATA[
+.marker { text-anchor: middle; font-size: 9px }
+]]>
+</style>
+<rect x="78.2" y="52" width="0.58" height="" style="fill: #3d7fe5; fill-opacity: 0.4; " />
+<rect x="78.2" y="52" width="0.58" height="112" style="fill: #3d7fe5; fill-opacity: 0.4; " />
+<rect x="57.5" y="164" width="42" height="13" style="fill: #3d7fe5; fill-opacity: 0.3; " />
+<text x="78.5" y="174" class="marker">CDKN2A</text>
+<rect x="189.1" y="52" width="2.61" height="" style="fill: #c9a8a8; fill-opacity: 0.4; " />
+<rect x="189.1" y="52" width="2.61" height="112" style="fill: #c9a8a8; fill-opacity: 0.4; " />
+<rect x="178.9" y="164" width="23" height="13" style="fill: #c9a8a8; fill-opacity: 0.3; " />
+<text x="190.4" y="174" class="marker">TEK</text>
+<rect x="79.0" y="52" width="0.5" height="" style="fill: #22eee7; fill-opacity: 0.4; " />
+<rect x="79.0" y="52" width="0.5" height="126" style="fill: #22eee7; fill-opacity: 0.4; " />
+<rect x="58.2" y="178" width="42" height="13" style="fill: #22eee7; fill-opacity: 0.3; " />
+<text x="79.2" y="188" class="marker">CDKN2B</text>
+<rect x="74.7" y="52" width="1.37" height="" style="fill: #5995ff; fill-opacity: 0.4; " />
+<rect x="74.7" y="52" width="1.37" height="140" style="fill: #5995ff; fill-opacity: 0.4; " />
+<rect x="60.9" y="192" width="29" height="13" style="fill: #5995ff; fill-opacity: 0.3; " />
+<text x="75.4" y="202" class="marker">MTAP</text>
+<text x="30" y="217" style="text-anchor: start; font-size: 9px; fill: #999999">pgxcs::GSE19612::GSM491153</text>
+<text x="420" y="217" style="text-anchor: end; font-size: 9px; fill: #999999">&#x24B8; 2020 progenetix.org</text>
+</svg>

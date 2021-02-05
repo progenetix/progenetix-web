@@ -93,6 +93,7 @@ function Side({ onClick }) {
           href="/biosamples/search"
           label="Search Samples"
         />
+        <MenuInternalLinkItem href="/arraymap/search" label="arrayMap" />
         <MenuInternalLinkItem
           href="/subsets/cohorts"
           label="Studies & Cohorts"

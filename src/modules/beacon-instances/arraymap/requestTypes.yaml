@@ -7,15 +7,17 @@ progenetix:
     datasetIds:
       defaultValue: ["progenetix"]
       isHidden: true
-    includeDatasetResponses:
-      defaultValue: "ALL"
+    cohorts:
+      defaultValue: ["pgxcohort-arraymap"]
       isHidden: true
-    assemblyId:
-      defaultValue: "GRCh38"
+    includeDatasetResponses:
+      placeholder: "ALL"
       isHidden: true
     requestType:
       rules:
         required: false
+      isHidden: true
+    assemblyId:
       isHidden: true
     referenceName:
       placeholder: "9"

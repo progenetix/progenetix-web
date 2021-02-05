@@ -17,7 +17,4 @@ export default function SearchSamplesPage({ cytoBands }) {
   )
 }
 
-const datasets = [
-  { label: "Progenetix", value: "progenetix" },
-  { label: "arrayMap", value: "arraymap" }
-]
+const datasets = [{ label: "Progenetix", value: "progenetix" }]

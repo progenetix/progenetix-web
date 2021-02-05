@@ -72,9 +72,17 @@ function useAutoExecuteSearch({
 function useIsFilterlogicWarningVisible(watch) {
   const filterLogic = watch("filterLogic")
   const bioontology = watch("bioontology")
+  const cohorts = watch("cohorts")
   const freeFilters = watch("freeFilters")
+  const genotypicSex = watch("genotypicSex")
   const materialtype = watch("materialtype")
-  const filters = makeFilters({ freeFilters, bioontology, materialtype })
+  const filters = makeFilters({
+    freeFilters,
+    bioontology,
+    cohorts,
+    genotypicSex,
+    materialtype
+  })
   return filterLogic === "AND" && filters.length > 1
 }
 
@@ -222,6 +230,7 @@ export function Form({
             </div>
           )}
           <SelectField {...parameters.datasetIds} {...selectProps} />
+          <SelectField {...parameters.cohorts} {...selectProps} />
           <SelectField {...parameters.assemblyId} {...selectProps} />
           <SelectField
             {...parameters.includeDatasetResponses}
@@ -290,7 +299,24 @@ export function Form({
             {...selectProps}
             isLoading={isSubsetsDataLoading}
           />
-          <SelectField {...parameters.materialtype} {...selectProps} />
+          <div className="columns my-0">
+            <SelectField
+              className={cn(
+                !parameters.genotypicSex.isHidden && "column",
+                "py-0 mb-3"
+              )}
+              {...parameters.genotypicSex}
+              {...selectProps}
+            />
+            <SelectField
+              className={cn(
+                !parameters.materialtype.isHidden && "column",
+                "py-0 mb-3"
+              )}
+              {...parameters.materialtype}
+              {...selectProps}
+            />
+          </div>
           <div className="columns my-0">
             <InputField
               className="column py-0 mb-3"

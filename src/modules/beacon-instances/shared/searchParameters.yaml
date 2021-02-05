@@ -4,6 +4,16 @@ datasetIds:
   rules:
     required: true
   isMulti: true
+cohorts:
+  label: Cohorts
+  rules:
+    required: false
+  defaultValue: ""
+  options:
+    - value: ""
+      label: "(no selection)"
+    - value: pgxcohort-arraymap
+      label: arrayMap Samples
 assemblyId:
   label: Genome Assembly
   infoText: |
@@ -146,6 +156,18 @@ materialtype:
       label: neoplastic sample
     - value: EFO:0009654
       label: reference sample
+genotypicSex:
+  label: Genotypic Sex
+  infoText: |
+    Genotypic sex of the individual.
+  defaultValue: ""
+  options:
+    - value: ""
+      label: "(no selection)"
+    - value: PATO:0020002
+      label: Female genotypic Sex
+    - value: PATO:0020001
+      label: Male genotypic Sex
 freeFilters:
   label: Filters
   infoText: |

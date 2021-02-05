@@ -97,6 +97,8 @@ variantRangeRequest:
       isHidden: true
     bioontology:
       isHidden: true
+    genotypicSex:
+      isHidden: true
     materialtype:
       isHidden: true
     freeFilters:
@@ -150,6 +152,8 @@ allFieldsRequest:
       isHidden: true
     bioontology:
       defaultValue: []
+      isHidden: true
+    genotypicSex:
       isHidden: true
     materialtype:
       isHidden: true

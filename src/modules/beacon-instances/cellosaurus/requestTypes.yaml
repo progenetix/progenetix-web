@@ -97,8 +97,10 @@ variantRangeRequest:
       isHidden: true
     bioontology:
       isHidden: true
+    genotypicSex:
+      isHidden: false
     materialtype:
-      isHidden: true
+      isHidden: false
     freeFilters:
       isHidden: true
     accessid:
@@ -151,8 +153,10 @@ allFieldsRequest:
     bioontology:
       defaultValue: []
       isHidden: true
+    genotypicSex:
+      isHidden: false
     materialtype:
-      isHidden: true
+      isHidden: false
     freeFilters:
       isHidden: true
     accessid:
