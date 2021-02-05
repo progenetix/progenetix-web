@@ -1,6 +1,10 @@
 import React, { useRef, useState } from "react"
-import { HANDOVER_IDS, replaceWithProxy, useExtendedSWR } from "../../hooks/api"
-import { FaExternalLinkAlt } from "react-icons/fa"
+import {
+  HANDOVER_IDS,
+  replaceWithProxy,
+  useExtendedSWR,
+  ExternalLink
+} from "../../hooks/api"
 import cn from "classnames"
 import BiosamplesDataTable from "./BiosamplesDataTable"
 import VariantsDataTable from "./VariantsDataTable"
@@ -256,13 +260,6 @@ function GenericHandover({ handover }) {
     <div>
       <ExternalLink href={handover.url} label={handover.handoverType.label} />
     </div>
-  )
-}
-function ExternalLink({ href, label, onClick }) {
-  return (
-    <a href={href} rel="noreferrer" target="_blank" onClick={onClick}>
-      {label} <FaExternalLinkAlt className="icon has-text-info is-small" />
-    </a>
   )
 }
 

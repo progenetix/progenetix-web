@@ -1,6 +1,7 @@
 import swr from "swr"
 import { svgFetcher } from "./fetcher"
 import { keyBy } from "lodash"
+import { FaExternalLinkAlt } from "react-icons/fa"
 
 // eslint-disable-next-line no-undef
 export const basePath = process.env.NEXT_PUBLIC_API_PATH
@@ -271,6 +272,14 @@ export function useGeoCity({ city }) {
 
 export function subsetSVGlink(id, datasetIds) {
   return `${basePath}cgi/PGX/cgi/collationPlots.cgi?datasetIds=${datasetIds}&id=${id}`
+}
+
+export function ExternalLink({ href, label, onClick }) {
+  return (
+    <a href={href} rel="noreferrer" target="_blank" onClick={onClick}>
+      {label} <FaExternalLinkAlt className="icon has-text-info is-small" />
+    </a>
+  )
 }
 
 export function referenceLink(externalReference) {

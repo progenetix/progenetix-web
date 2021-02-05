@@ -99,6 +99,11 @@ function Side({ onClick }) {
           label="Studies & Cohorts"
         />
         <MenuInternalLinkItem
+          href="/TCGA/search"
+          label="Search TCGA Samples"
+          isSub="isSub"
+        />
+        <MenuInternalLinkItem
           href="/publications.html"
           label="Publication DB"
         />
