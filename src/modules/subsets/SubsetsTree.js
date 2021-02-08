@@ -21,8 +21,15 @@ export function SubsetsTree({
   sampleFilterScope
 }) {
   const { searchInput, setSearchInput, filteredTree } = useFilterTree(tree)
-  const [levelSelector, setLevelSelector] = useState(1)
+  const [levelSelector, setLevelSelector] = useState(2)
   const treeRef = React.createRef()
+
+  if (searchInput) {
+    searchInput
+  }
+  if (setSearchInput) {
+    setSearchInput
+  }
 
   const hasSelectedSubsets = checkedSubsets.length > 0
   const selectSamplesHref =
@@ -50,38 +57,46 @@ export function SubsetsTree({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [levelSelector])
 
+  // <div className="field">
+  // <input
+  //   className="input "
+  //   placeholder="Filter subsets ..."
+  //   value={searchInput}
+  //   onChange={(e) => setSearchInput(e.target.value)}
+  // />
+  // </div>
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const treeWalker = useMemo(() => mkTreeWalker(filteredTree), [tree])
   const height = Math.min(size * ROW_HEIGHT, 800)
   return (
     <>
-      <div className="Subsets__controls">
-        <div className="field">
-          <input
-            className="input "
-            placeholder="Filter subsets ..."
-            value={searchInput}
-            onChange={(e) => setSearchInput(e.target.value)}
-          />
-        </div>
+      <div className="level">
         {!isFlat && (
           <>
-            <span className="select ">
-              <select
-                value={levelSelector}
-                onChange={(event) => {
-                  setLevelSelector(event.target.value)
-                }}
-              >
-                <option value={0}>collapsed</option>
-                <option value={1}>1 level</option>
-                <option value={2}>2 levels</option>
-                <option value={3}>3 levels</option>
-                <option value={4}>4 levels</option>
-                <option value={5}>5 levels</option>
-                <option value={999}>all</option>
-              </select>
-            </span>
+            <div className="level-left">
+              <div className="level-item">
+                <p>Hierarchy Depth:</p>
+              </div>
+              <div className="level-item">
+                <span className="select ">
+                  <select
+                    value={levelSelector}
+                    onChange={(event) => {
+                      setLevelSelector(event.target.value)
+                    }}
+                  >
+                    <option value={0}>collapsed</option>
+                    <option value={1}>1 level</option>
+                    <option value={2}>2 levels</option>
+                    <option value={3}>3 levels</option>
+                    <option value={4}>4 levels</option>
+                    <option value={5}>5 levels</option>
+                    <option value={999}>all</option>
+                  </select>
+                </span>
+              </div>
+            </div>
           </>
         )}
         {hasSelectedSubsets && (
