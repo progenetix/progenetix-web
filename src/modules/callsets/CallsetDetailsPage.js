@@ -38,10 +38,10 @@ function CallsetResponse({ response, datasetIds }) {
   if (!response.response.results) {
     return NoResultsHelp(exampleId, itemColl)
   }
-  if (response.meta.errors.length > 1) {
+  if (response.meta.errors.length > 0) {
     return (
       <div className="notification is-size-5">
-        <div className="message-body">The request returned errors.</div>
+        <div className="message-body">ERROR: {response.meta.errors[0]}</div>
       </div>
     )
   }
