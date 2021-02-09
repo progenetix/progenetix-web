@@ -10,7 +10,7 @@ import { useAsyncSelect } from "../../hooks/asyncSelect"
 import CustomSelect from "../../components/Select"
 import dynamic from "next/dynamic"
 import { sumBy } from "lodash"
-import matchSorter from "match-sorter"
+import { matchSorter } from "match-sorter"
 import useDebounce from "../../hooks/debounce"
 
 export default function PublicationsListPage() {
