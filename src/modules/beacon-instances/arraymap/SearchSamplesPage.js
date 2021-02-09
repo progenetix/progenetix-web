@@ -6,26 +6,21 @@ import BiosamplesSearchPanel from "../../../components/biosamples/BiosamplesSear
 import Panel from "../../../components/Panel"
 
 export default function SearchSamplesPage({ cytoBands }) {
-  const imgHere = {
-    float: "right",
-    width: "300px",
-    height: "160px",
-    border: "0px",
-    margin: "-90px -20px 0px 0px"
-  }
-
   return (
     <Layout title="Search arrayMap Samples" headline="arrayMap">
       <Panel heading="Search Genomic CNV Arrays" className="content">
-        <div>
-          <img
-            src={"/img/chroplot-GSM491153-chro9-labeled.svg"}
-            style={imgHere}
-          />
+        <div style={{ display: "flex" }}>
           The arrayMap data represents a subset of the Progenetix collection for
           which the probe-specific array has been used for data generation. For
           these samples, individual array probe plots will be accessible through
           the sample details pages.
+          <img
+            src={"/img/chroplot-GSM491153-chro9-labeled.svg"}
+            style={{
+              height: "160px",
+              margin: "-70px -24px -18px 0"
+            }}
+          />
         </div>
       </Panel>
       <BiosamplesSearchPanel
