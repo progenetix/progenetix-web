@@ -38,7 +38,7 @@ function PublicationLoader({ id }) {
       render={(response) => (
         <PublicationResponse results={response.results} id={id} />
       )}
-    ></WithData>
+    />
   )
 }
 
