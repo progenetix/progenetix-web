@@ -1,6 +1,6 @@
 import React from "react"
 import { usePublication } from "../../hooks/api"
-import { Loader, WithData } from "../../components/Loader"
+import { WithData } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { SubsetHistogram } from "../../components/Histogram"
 import { Layout } from "../../components/Layout"

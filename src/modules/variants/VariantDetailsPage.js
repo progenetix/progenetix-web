@@ -3,7 +3,7 @@ import {
   useDataItemDelivery,
   NoResultsHelp
 } from "../../hooks/api"
-import { Loader } from "../../components/Loader"
+import { WithData } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
 
@@ -27,26 +27,28 @@ const VariantDetailsPage = withUrlQuery(({ urlQuery }) => {
 export default VariantDetailsPage
 
 function VariantLoader({ _id, datasetIds }) {
-  const { data, error, isLoading } = useDataItemDelivery(
-    _id,
-    itemColl,
-    datasetIds
-  )
+  const apiReply = useDataItemDelivery(_id, itemColl, datasetIds)
   return (
-    <Loader isLoading={isLoading} error={error} background>
-      {data && (
-        <VariantResponse response={data} _id={_id} datasetIds={datasetIds} />
+    <WithData
+      apiReply={apiReply}
+      background
+      render={(response) => (
+        <VariantResponse
+          response={response}
+          _id={_id}
+          datasetIds={datasetIds}
+        />
       )}
-    </Loader>
+    />
   )
 }
 
 function VariantResponse({ response, datasetIds }) {
-  if (!results) {
+  if (!response.results) {
     return NoResultsHelp(exampleId, itemColl)
   }
 
-  return <Variant variant={results[0]} datasetIds={datasetIds} />
+  return <Variant variant={response.results[0]} datasetIds={datasetIds} />
 }
 
 function Variant({ variant, datasetIds }) {

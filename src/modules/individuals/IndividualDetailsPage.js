@@ -3,7 +3,7 @@ import {
   useDataItemDelivery,
   NoResultsHelp
 } from "../../hooks/api"
-import { Loader, WithData } from "../../components/Loader"
+import { WithData } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
 // import Link from "next/link"

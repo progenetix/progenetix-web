@@ -1,6 +1,6 @@
 import swr from "swr"
 import { svgFetcher } from "./fetcher"
-import { isArray, keyBy } from "lodash"
+import { keyBy } from "lodash"
 import { FaExternalLinkAlt } from "react-icons/fa"
 
 // eslint-disable-next-line no-undef

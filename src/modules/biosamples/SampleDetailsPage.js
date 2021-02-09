@@ -2,12 +2,11 @@ import {
   basePath,
   getDataItemUrl,
   referenceLink,
-  useProgenetixApi,
   useDataItemDelivery,
   NoResultsHelp,
   useExtendedSWR
 } from "../../hooks/api"
-import { Loader, WithData } from "../../components/Loader"
+import { WithData } from "../../components/Loader"
 import React, { useRef } from "react"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
