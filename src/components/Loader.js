@@ -5,8 +5,8 @@ import cn from "classnames"
 export function Loader({
   isLoading,
   hasError,
+  error,
   loadingMessage,
-  errorMessage = "Error while loading data. Please retry.",
   background = false,
   colored = false,
   children,
@@ -29,8 +29,17 @@ export function Loader({
       </div>
     )
   }
+  // Error with default error message
   if (hasError) {
-    return <div className="notification is-warning">{errorMessage}</div>
+    return (
+      <div className="notification is-warning">
+        Error while loading data. Please retry.
+      </div>
+    )
+  }
+
+  if (error) {
+    return <div className="notification is-warning">{error}</div>
   }
   return typeof children === "function" ? children() : children
 }
