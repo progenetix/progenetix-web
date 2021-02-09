@@ -139,13 +139,13 @@ export function Form({
   // reset form when default values changes
   useDeepCompareEffect(() => reset(initialValues), [initialValues])
 
-  const { data: subsets, isLoading: isSubsetsDataLoading } = useSubsets(watch)
-  const subsetsOptions =
-    subsets &&
-    subsets.map((value) => ({
-      value: value.id,
-      label: `${value.id}: ${value.label} (${value.count})`
-    }))
+  const { data: subsetsResponse, isLoading: isSubsetsDataLoading } = useSubsets(
+    watch
+  )
+  const subsetsOptions = subsetsResponse?.results.map((value) => ({
+    value: value.id,
+    label: `${value.id}: ${value.label} (${value.count})`
+  }))
   parameters = merge({}, parameters, {
     bioontology: { options: subsetsOptions }
   })
@@ -542,7 +542,7 @@ const handleRequestTypeClicked = (setExample, setRequestTypeId) => (
   setRequestTypeId(requestTypeId)
 }
 
-// Maps FilteringTerms hook to dataEffectResult usable by DataFetchSelect
+// Maps FilteringTerms hook to apiReply usable by DataFetchSelect
 function useSubsets(watchForm) {
   const datasetIds = watchForm("datasetIds")
   const { data, ...other } = useCollations({

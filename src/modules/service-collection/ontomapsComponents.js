@@ -1,4 +1,4 @@
-import { ontologymapsUrl, useExtendedSWR } from "../../hooks/api"
+import { ontologymapsUrl, useProgenetixApi } from "../../hooks/api"
 import Link from "next/link"
 
 export function CodeGroups({ codeGroups, ontomapsUrl }) {
@@ -44,7 +44,7 @@ export function CodeGroups({ codeGroups, ontomapsUrl }) {
 export function useOntologymaps({ filters, filterPrecision }) {
   const url =
     filters?.length > 0 && ontologymapsUrl({ filters, filterPrecision })
-  return useExtendedSWR(url)
+  return useProgenetixApi(url)
 }
 
 export function useGetFilteredOptions({
@@ -65,8 +65,8 @@ export function useGetFilteredOptions({
 }
 
 function mapToOptions(data) {
-  if (!data || data.response.results[0].unique_terms == null) return []
-  const ut = data.response.results[0].unique_terms
+  if (!data || data.results[0].unique_terms == null) return []
+  const ut = data.results[0].unique_terms
   const NCIT = filterTermlistByPrefix("NCIT", ut) ?? []
   const icdom = filterTermlistByPrefix("icdom", ut) ?? []
   const icdot = filterTermlistByPrefix("icdot", ut) ?? []

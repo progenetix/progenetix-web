@@ -2,8 +2,9 @@ import React, { useRef, useState } from "react"
 import {
   HANDOVER_IDS,
   replaceWithProxy,
-  useExtendedSWR,
-  ExternalLink
+  ExternalLink,
+  useProgenetixApi,
+  useExtendedSWR
 } from "../../hooks/api"
 import cn from "classnames"
 import BiosamplesDataTable from "./BiosamplesDataTable"
@@ -49,7 +50,7 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
 
   const biosamplesHandover = handoverById(HANDOVER_IDS.biosampleslist)
 
-  const biosamplesDataResults = useExtendedSWR(
+  const biosamplesReply = useProgenetixApi(
     biosamplesHandover && replaceWithProxy(biosamplesHandover.url)
   )
 
@@ -69,7 +70,7 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
 
   biosamplesHandover && tabNames.push(TABS.samples)
 
-  biosamplesDataResults?.data?.some(
+  biosamplesReply?.data?.results?.some(
     (biosample) => !!biosample.provenance?.geo_location
   ) && tabNames.push(TABS.samplesMap)
 
@@ -82,24 +83,18 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
       <ResultsTab
         variantType={query.alternateBases}
         histogramUrl={histogramUrl}
-        biosamplesDataResults={biosamplesDataResults}
+        biosamplesReply={biosamplesReply}
         variantCount={variantCount}
         datasetId={datasetId}
       />
     )
   } else if (selectedTab === TABS.samples) {
     tabComponent = (
-      <BiosamplesDataTable
-        dataEffectResult={biosamplesDataResults}
-        datasetId={datasetId}
-      />
+      <BiosamplesDataTable apiReply={biosamplesReply} datasetId={datasetId} />
     )
   } else if (selectedTab === TABS.samplesMap) {
     tabComponent = (
-      <BiosamplesMap
-        dataEffectResult={biosamplesDataResults}
-        datasetId={datasetId}
-      />
+      <BiosamplesMap apiReply={biosamplesReply} datasetId={datasetId} />
     )
   } else if (selectedTab === TABS.variants) {
     const handover = handoverById(HANDOVER_IDS.variantslist)
@@ -184,7 +179,7 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
 
 function ResultsTab({
   histogramUrl,
-  biosamplesDataResults,
+  biosamplesReply,
   alternateBases,
   variantCount,
   datasetId
@@ -197,11 +192,11 @@ function ResultsTab({
         </div>
       )}
       <WithData
-        dataEffectResult={biosamplesDataResults}
+        apiReply={biosamplesReply}
         background
-        render={(data) => (
+        render={(biosamplesResponse) => (
           <BiosamplesStatsDataTable
-            biosamplesResponse={data}
+            biosamplesResponse={biosamplesResponse}
             variantCount={variantCount}
             datasetId={datasetId}
           />
@@ -228,7 +223,7 @@ function CnvHistogramPreview({ url: urlString }) {
   const dataEffect = useExtendedSWR(width > 0 && withoutOrigin, svgFetcher)
   return (
     <div ref={componentRef}>
-      <Histogram dataEffectResult={dataEffect} />
+      <Histogram apiReply={dataEffect} />
     </div>
   )
 }

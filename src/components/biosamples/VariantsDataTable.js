@@ -2,12 +2,12 @@ import React from "react"
 import PropTypes from "prop-types"
 import { WithData } from "../Loader"
 import Table from "../Table"
-import { useExtendedSWR } from "../../hooks/api"
+import { useProgenetixApi } from "../../hooks/api"
 import DownloadButton from "../DownloadButton"
 import Link from "next/link"
 
 export default function VariantsDataTable({ url, datasetId }) {
-  const dataEffectResult = useExtendedSWR(url)
+  const apiReply = useProgenetixApi(url)
   const columns = React.useMemo(
     () => [
       {
@@ -64,17 +64,17 @@ export default function VariantsDataTable({ url, datasetId }) {
 
   return (
     <WithData
-      dataEffectResult={dataEffectResult}
-      render={(data) => (
+      apiReply={apiReply}
+      render={(response) => (
         <div>
           <div className="mb-4">
             <DownloadButton
               label="Download Response"
-              json={data}
+              json={response.results}
               fileName="variants"
             />
           </div>
-          <Table columns={columns} data={data} />
+          <Table columns={columns} data={response.results} />
         </div>
       )}
     />

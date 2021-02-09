@@ -5,8 +5,8 @@ import { useContainerDimensions } from "../hooks/containerDimensions"
 import PropTypes from "prop-types"
 import Link from "next/link"
 
-export default function Histogram({ dataEffectResult }) {
-  const { data, error, isLoading } = dataEffectResult
+export default function Histogram({ apiReply }) {
+  const { data, error, isLoading } = apiReply
   return (
     <Loader isLoading={isLoading} hasError={error} background>
       <div
@@ -24,7 +24,7 @@ export function SubsetHistogram({ id, filter, datasetIds, size: givenSize }) {
   return (
     <div ref={componentRef}>
       <Histogram
-        dataEffectResult={useSubsethistogram({
+        apiReply={useSubsethistogram({
           datasetIds,
           id,
           filter,

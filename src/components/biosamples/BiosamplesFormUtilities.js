@@ -137,14 +137,11 @@ GeneSpansUtility.propTypes = {
 export function CytoBandsUtility({ onClose, setFormValue }) {
   const [inputValue, setInputValue] = useState("")
   const [searchValue, setSearchValue] = useState("")
-  const dataEffectResult = useCytomapper(searchValue)
+  const apiReply = useCytomapper(searchValue)
   const onApply = (data) => {
-    setFormValue(
-      "start",
-      data.response.results[0].GenomicLocation.interval.start
-    )
-    setFormValue("end", data.response.results[0].GenomicLocation.interval.end)
-    setFormValue("referenceName", data.response.results[0].GenomicLocation.chr)
+    setFormValue("start", data.results[0].GenomicLocation.interval.start)
+    setFormValue("end", data.results[0].GenomicLocation.interval.end)
+    setFormValue("referenceName", data.results[0].GenomicLocation.chr)
     onClose()
   }
   const onSubmit = (e) => {
@@ -173,14 +170,14 @@ export function CytoBandsUtility({ onClose, setFormValue }) {
           </form>
           {searchValue && (
             <WithData
-              dataEffectResult={dataEffectResult}
+              apiReply={apiReply}
               render={(data) => {
-                const info = data.response.results[0]?.info
+                const info = data.results[0]?.info
                 const hasResults = !!info?.cytoBands
                 return (
                   <>
                     {hasResults ? (
-                      <CytoBandsData data={data.response.results} />
+                      <CytoBandsData data={data.results} />
                     ) : (
                       <div className="notification is-light">No results.</div>
                     )}

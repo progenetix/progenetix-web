@@ -4,9 +4,13 @@ import React from "react"
 import { sample } from "lodash"
 import { PROGENETIX, tryFetch } from "../hooks/api"
 
-export default function Index({ ncitCount, dbstats, subsets }) {
+export default function Index({
+  ncitCountResponse,
+  dbstatsResponse,
+  subsetsResponse
+}) {
   const randomSubset = sample(
-    subsets.response.results.filter((s) => s.count > 25)
+    subsetsResponse.results.filter((s) => s.count > 25)
   )
   return (
     <Layout title="Progenetix" headline="Cancer genome data @ progenetix.org">
@@ -32,20 +36,17 @@ export default function Index({ ncitCount, dbstats, subsets }) {
         <p>
           The resource currently contains genome profiles of{" "}
           <strong>
-            {dbstats.response.results[0].datasets.progenetix.counts.biosamples}
+            {dbstatsResponse.results[0].datasets.progenetix.counts.biosamples}
           </strong>{" "}
           individual samples and represents{" "}
-          <strong>{ncitCount.response.info.count}</strong> cancer types,
+          <strong>{ncitCountResponse.info.count}</strong> cancer types,
           according to the NCIt &quot;neoplasm&quot; classification.
         </p>
         <p>
           Additionally to this genome profiles and associated metadata, the
           website present information about publications (currently{" "}
           <strong>
-            {
-              dbstats.response.results[0].datasets.progenetix.counts
-                .publications
-            }
+            {dbstatsResponse.results[0].datasets.progenetix.counts.publications}
           </strong>{" "}
           articles) referring to cancer genome profiling experiments.
         </p>
@@ -60,18 +61,19 @@ export const ExampleHistogram = ({ id }) => (
 
 // This function gets called at build time on server-side.
 export const getStaticProps = async () => {
-  const dbstats = await tryFetch(`${PROGENETIX}/services/dbstats/`)
-  const ncitCount = await tryFetch(
+  const dbstatsReply = await tryFetch(`${PROGENETIX}/services/dbstats/`)
+  const ncitCountReply = await tryFetch(
     `${PROGENETIX}/services/collations/?datasetIds=progenetix&method=codematches&filters=NCIT`
   )
-  const subsets = await tryFetch(
+  const subsetsReply = await tryFetch(
     `${PROGENETIX}/services/collations/?datasetIds=progenetix&method=counts&filters=icdom,NCIT,PMID,icdot,UBERON`
   )
+
   return {
     props: {
-      dbstats,
-      ncitCount,
-      subsets
+      dbstatsResponse: dbstatsReply.response,
+      ncitCountResponse: ncitCountReply.response,
+      subsetsResponse: subsetsReply.response
     }
   }
 }

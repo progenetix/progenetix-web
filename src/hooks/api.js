@@ -1,6 +1,6 @@
 import swr from "swr"
 import { svgFetcher } from "./fetcher"
-import { keyBy } from "lodash"
+import { isArray, keyBy } from "lodash"
 import { FaExternalLinkAlt } from "react-icons/fa"
 
 // eslint-disable-next-line no-undef
@@ -16,11 +16,28 @@ export function useExtendedSWR(...args) {
 export const PROGENETIX = "https://progenetix.org"
 export const PROGENETIXINFO = "https://info.progenetix.org"
 
+export function useProgenetixApi(...args) {
+  const { data, ...other } = useExtendedSWR(...args)
+  if (data) {
+    const error = data.meta?.errors
+      ? Array.isArray(data.meta.errors)
+        ? data.meta.errors.join(", ")
+        : data.meta.errors
+      : null
+
+    // Compatible with the simple responses.
+    const mappedData = data.response ?? { results: data }
+    return { data: mappedData, error, ...other }
+  } else {
+    return { data, ...other }
+  }
+}
+
 export async function tryFetch(url, fallBack = "N/A") {
   console.info(`Fetching data from ${url}.`)
   try {
     const response = await fetch(url)
-    return await response.json()
+    return response.json()
   } catch (e) {
     console.error(`Count not fetch ${url}`)
     if (fallBack) {
@@ -46,7 +63,7 @@ export async function getStaticDatatasets() {
  * When param is null no query will be triggered.
  */
 export function useBeaconQuery(queryData) {
-  return useExtendedSWR(
+  return useProgenetixApi(
     queryData
       ? `${basePath}cgi/bycon/bycon/byconplus.py?${buildQueryParameters(
           queryData
@@ -143,7 +160,7 @@ export function buildQueryParameters(queryData) {
 }
 
 export function useDataVisualization(queryData) {
-  return useExtendedSWR(
+  return useProgenetixApi(
     queryData
       ? `${basePath}cgi/PGX/cgi/samplePlots.cgi?${buildDataVisualizationParameters(
           queryData
@@ -159,15 +176,11 @@ export function buildDataVisualizationParameters(queryData) {
 }
 
 export function publicationDataUrl(id) {
-  return `${basePath}services/publications?filters=${id}&filterPrecision=exact&method=all&responseFormat=simple`
+  return `${basePath}services/publications?filters=${id}&filterPrecision=exact&method=all`
 }
 
 export function usePublication(id) {
-  const { data: rawData, error, ...other } = useExtendedSWR(
-    publicationDataUrl(id)
-  )
-  const data = rawData && rawData.filter((r) => !!r) // when not defined the api returns an array with null elements.
-  return { data, error, ...other }
+  return useProgenetixApi(publicationDataUrl(id))
 }
 
 export function usePublicationList({ geoCity, geodistanceKm }) {
@@ -177,7 +190,7 @@ export function usePublicationList({ geoCity, geodistanceKm }) {
     method: "details"
   }).toString()
   const url = `${basePath}services/publications?${geoParams}`
-  return useExtendedSWR(url)
+  return useProgenetixApi(url)
 }
 
 export const ontologymapsBaseUrl = `${basePath}services/ontologymaps?`
@@ -194,8 +207,8 @@ export function ontologymapsPrefUrl({ prefixes, filters }) {
   return `${ontologymapsBaseUrl}filters=${prefixes},${filters}&filterPrecision=start`
 }
 
-export function DataItemDelivery(id, collection, datasetIds) {
-  return useExtendedSWR(DataItemUrl(id, collection, datasetIds))
+export function useDataItemDelivery(id, collection, datasetIds) {
+  return useProgenetixApi(DataItemUrl(id, collection, datasetIds))
 }
 
 export function DataItemUrl(id, collection, datasetIds) {
@@ -226,7 +239,7 @@ export function useCytomapper(querytext) {
     querytext &&
     querytext.length > 0 &&
     `${basePath}cgi/bycon/services/cytomapper.py?cytoBands=${querytext}`
-  return useExtendedSWR(url)
+  return useProgenetixApi(url)
 }
 
 export function useSubsethistogram({ datasetIds, id, filter, size, chr2plot }) {
@@ -240,21 +253,28 @@ export function useSubsethistogram({ datasetIds, id, filter, size, chr2plot }) {
 }
 
 export function useCollationsById({ datasetIds }) {
-  const { data: rawData, ...other } = useCollations({
+  const { data, ...other } = useCollations({
     filters: "",
     method: "counts",
     datasetIds
   })
-  const transformData = (rawData) => keyBy(rawData, "id")
-  const data = rawData && transformData(rawData)
+
+  if (data) {
+    const mappedResults = keyBy(data.results, "id")
+    return {
+      data: {
+        ...data,
+        results: mappedResults
+      },
+      ...other
+    }
+  }
   return { data, ...other }
 }
 
 export function useCollations({ datasetIds, method, filters }) {
-  const url = `${basePath}services/collations/?datasetIds=${datasetIds}&method=${method}&filters=${filters}&responseFormat=simple`
-  const { data: rawData, ...other } = useExtendedSWR(url)
-  const data = Array.isArray(rawData) ? rawData : null
-  return { data, ...other }
+  const url = `${basePath}services/collations/?datasetIds=${datasetIds}&method=${method}&filters=${filters}`
+  return useProgenetixApi(url)
 }
 
 export function sampleSearchPageFiltersLink({
@@ -267,7 +287,7 @@ export function sampleSearchPageFiltersLink({
 
 export function useGeoCity({ city }) {
   const url = `${basePath}services/geolocations?city=${city}`
-  return useExtendedSWR(url)
+  return useProgenetixApi(url)
 }
 
 export function subsetSVGlink(id, datasetIds) {

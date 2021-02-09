@@ -1,4 +1,8 @@
-import { DataItemUrl, DataItemDelivery, NoResultsHelp } from "../../hooks/api"
+import {
+  DataItemUrl,
+  useDataItemDelivery,
+  NoResultsHelp
+} from "../../hooks/api"
 import { Loader } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
@@ -23,9 +27,13 @@ const VariantDetailsPage = withUrlQuery(({ urlQuery }) => {
 export default VariantDetailsPage
 
 function VariantLoader({ _id, datasetIds }) {
-  const { data, error, isLoading } = DataItemDelivery(_id, itemColl, datasetIds)
+  const { data, error, isLoading } = useDataItemDelivery(
+    _id,
+    itemColl,
+    datasetIds
+  )
   return (
-    <Loader isLoading={isLoading} hasError={error} background>
+    <Loader isLoading={isLoading} error={error} background>
       {data && (
         <VariantResponse response={data} _id={_id} datasetIds={datasetIds} />
       )}
@@ -34,20 +42,11 @@ function VariantLoader({ _id, datasetIds }) {
 }
 
 function VariantResponse({ response, datasetIds }) {
-  if (!response.response.results) {
+  if (!results) {
     return NoResultsHelp(exampleId, itemColl)
   }
-  if (response.meta.errors.length > 0) {
-    return (
-      <div className="notification is-size-5">
-        <div className="message-body">ERROR: {response.meta.errors[0]}</div>
-      </div>
-    )
-  }
 
-  return (
-    <Variant variant={response.response.results[0]} datasetIds={datasetIds} />
-  )
+  return <Variant variant={results[0]} datasetIds={datasetIds} />
 }
 
 function Variant({ variant, datasetIds }) {

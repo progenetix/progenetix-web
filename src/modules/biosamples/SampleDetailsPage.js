@@ -2,7 +2,7 @@ import {
   basePath,
   DataItemUrl,
   referenceLink,
-  useExtendedSWR,
+  useProgenetixApi,
   DataItemDelivery,
   NoResultsHelp
 } from "../../hooks/api"
@@ -46,16 +46,11 @@ function BiosampleLoader({ id, datasetIds }) {
 }
 
 function BiosampleResponse({ response, datasetIds }) {
-  if (!response.response.results) {
+  if (!response.results) {
     return NoResultsHelp(exampleId, itemColl)
   }
 
-  return (
-    <Biosample
-      biosample={response.response.results[0]}
-      datasetIds={datasetIds}
-    />
-  )
+  return <Biosample biosample={response.results[0]} datasetIds={datasetIds} />
 }
 
 function Biosample({ biosample, datasetIds }) {
@@ -178,10 +173,10 @@ function CnvHistogramPreview({ csid, datasetIds }) {
   const { width } = useContainerDimensions(componentRef)
   const url = `${basePath}cgi/api_chroplot.cgi?callsets.id=${csid}$&datasetIds=${datasetIds}&-size_plotimage_w_px=${width}`
   // width > 0 to make sure the component is mounted and avoid double fetch
-  const dataEffect = useExtendedSWR(width > 0 && url, svgFetcher)
+  const dataEffect = useProgenetixApi(width > 0 && url, svgFetcher)
   return (
     <div ref={componentRef} className="mb-4">
-      <Histogram dataEffectResult={dataEffect} />
+      <Histogram apiReply={dataEffect} />
     </div>
   )
 }

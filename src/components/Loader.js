@@ -45,17 +45,17 @@ export function Loader({
 }
 
 export function WithData({
-  dataEffectResult,
+  apiReply,
   render,
   background = false,
   colored = false,
   height = null
 }) {
-  const { data, error, isLoading } = dataEffectResult
+  const { data, error, isLoading } = apiReply
   return (
     <Loader
       isLoading={isLoading}
-      hasError={error}
+      error={error}
       background={background}
       colored={colored}
       height={height}

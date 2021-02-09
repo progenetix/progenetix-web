@@ -35,7 +35,7 @@ function CallsetLoader({ id, datasetIds }) {
 }
 
 function CallsetResponse({ response, datasetIds }) {
-  if (!response.response.results) {
+  if (!response.results) {
     return NoResultsHelp(exampleId, itemColl)
   }
   if (response.meta.errors.length > 0) {
@@ -46,9 +46,7 @@ function CallsetResponse({ response, datasetIds }) {
     )
   }
 
-  return (
-    <Callset callset={response.response.results[0]} datasetIds={datasetIds} />
-  )
+  return <Callset callset={response.results[0]} datasetIds={datasetIds} />
 }
 
 function Callset({ callset, datasetIds }) {

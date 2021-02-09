@@ -92,8 +92,8 @@ function DataVisualizationPanel({ accessid, sampleCount, width }) {
       </div>
       <WithData
         background
-        dataEffectResult={dataResult}
-        render={(data) => <ResultPanel response={data} />}
+        apiReply={dataResult}
+        render={(data) => <ResultPanel response={data.results} />}
       />
     </div>
   )
