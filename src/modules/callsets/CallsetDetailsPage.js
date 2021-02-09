@@ -1,4 +1,8 @@
-import { DataItemUrl, DataItemDelivery, NoResultsHelp } from "../../hooks/api"
+import {
+  getDataItemUrl,
+  useDataItemDelivery,
+  NoResultsHelp
+} from "../../hooks/api"
 import { Loader } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
@@ -24,7 +28,11 @@ const CallsetDetailsPage = withUrlQuery(({ urlQuery }) => {
 export default CallsetDetailsPage
 
 function CallsetLoader({ id, datasetIds }) {
-  const { data, error, isLoading } = DataItemDelivery(id, itemColl, datasetIds)
+  const { data, error, isLoading } = useDataItemDelivery(
+    id,
+    itemColl,
+    datasetIds
+  )
   return (
     <Loader isLoading={isLoading} hasError={error} background>
       {data && (
@@ -82,7 +90,7 @@ function Callset({ callset, datasetIds }) {
           rel="noreferrer"
           target="_blank"
           href={
-            DataItemUrl(callset.id, itemColl, datasetIds) +
+            getDataItemUrl(callset.id, itemColl, datasetIds) +
             "&responseFormat=simple"
           }
         >

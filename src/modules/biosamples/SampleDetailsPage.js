@@ -1,12 +1,13 @@
 import {
   basePath,
-  DataItemUrl,
+  getDataItemUrl,
   referenceLink,
   useProgenetixApi,
-  DataItemDelivery,
-  NoResultsHelp
+  useDataItemDelivery,
+  NoResultsHelp,
+  useExtendedSWR
 } from "../../hooks/api"
-import { Loader } from "../../components/Loader"
+import { Loader, WithData } from "../../components/Loader"
 import React, { useRef } from "react"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
@@ -35,13 +36,19 @@ const SampleDetailsPage = withUrlQuery(({ urlQuery }) => {
 export default SampleDetailsPage
 
 function BiosampleLoader({ id, datasetIds }) {
-  const { data, error, isLoading } = DataItemDelivery(id, itemColl, datasetIds)
+  const apiReply = useDataItemDelivery(id, itemColl, datasetIds)
   return (
-    <Loader isLoading={isLoading} hasError={error} background>
-      {data && (
-        <BiosampleResponse response={data} id={id} datasetIds={datasetIds} />
+    <WithData
+      apiReply={apiReply}
+      background
+      render={(response) => (
+        <BiosampleResponse
+          response={response}
+          id={id}
+          datasetIds={datasetIds}
+        />
       )}
-    </Loader>
+    />
   )
 }
 
@@ -157,7 +164,7 @@ function Biosample({ biosample, datasetIds }) {
           rel="noreferrer"
           target="_blank"
           href={
-            DataItemUrl(biosample.id, itemColl, datasetIds) +
+            getDataItemUrl(biosample.id, itemColl, datasetIds) +
             "&responseFormat=simple"
           }
         >
@@ -173,7 +180,7 @@ function CnvHistogramPreview({ csid, datasetIds }) {
   const { width } = useContainerDimensions(componentRef)
   const url = `${basePath}cgi/api_chroplot.cgi?callsets.id=${csid}$&datasetIds=${datasetIds}&-size_plotimage_w_px=${width}`
   // width > 0 to make sure the component is mounted and avoid double fetch
-  const dataEffect = useProgenetixApi(width > 0 && url, svgFetcher)
+  const dataEffect = useExtendedSWR(width > 0 && url, svgFetcher)
   return (
     <div ref={componentRef} className="mb-4">
       <Histogram apiReply={dataEffect} />

@@ -1,5 +1,9 @@
-import { DataItemUrl, DataItemDelivery, NoResultsHelp } from "../../hooks/api"
-import { Loader } from "../../components/Loader"
+import {
+  getDataItemUrl,
+  useDataItemDelivery,
+  NoResultsHelp
+} from "../../hooks/api"
+import { Loader, WithData } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
 // import Link from "next/link"
@@ -24,13 +28,19 @@ const IndividualDetailsPage = withUrlQuery(({ urlQuery }) => {
 export default IndividualDetailsPage
 
 function IndividualLoader({ id, datasetIds }) {
-  const { data, error, isLoading } = DataItemDelivery(id, itemColl, datasetIds)
+  const apiReply = useDataItemDelivery(id, itemColl, datasetIds)
   return (
-    <Loader isLoading={isLoading} hasError={error} background>
-      {data && (
-        <IndividualResponse response={data} id={id} datasetIds={datasetIds} />
+    <WithData
+      apiReply={apiReply}
+      background
+      render={(response) => (
+        <IndividualResponse
+          response={response}
+          id={id}
+          datasetIds={datasetIds}
+        />
       )}
-    </Loader>
+    />
   )
 }
 
@@ -78,7 +88,7 @@ function Individual({ individual, datasetIds }) {
           rel="noreferrer"
           target="_blank"
           href={
-            DataItemUrl(individual.id, itemColl, datasetIds) +
+            getDataItemUrl(individual.id, itemColl, datasetIds) +
             "&responseFormat=simple"
           }
         >

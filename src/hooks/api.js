@@ -208,23 +208,23 @@ export function ontologymapsPrefUrl({ prefixes, filters }) {
 }
 
 export function useDataItemDelivery(id, collection, datasetIds) {
-  return useProgenetixApi(DataItemUrl(id, collection, datasetIds))
+  return useProgenetixApi(getDataItemUrl(id, collection, datasetIds))
 }
 
-export function DataItemUrl(id, collection, datasetIds) {
+export function getDataItemUrl(id, collection, datasetIds) {
   return `${basePath}services/deliveries/?datasetIds=${datasetIds}&collection=${collection}&${
     collection == "variants" ? "_id" : "id"
   }=${id}`
 }
 
-export function DataItemPageUrl(id, collection, datasetIds) {
+export function getDataItemPageUrl(id, collection, datasetIds) {
   return `${basePath}${collection}/?datasetIds=${datasetIds}&${
     collection == "variants" ? "_id" : "id"
   }=${id}`
 }
 
 export function NoResultsHelp(id, collection) {
-  const url = DataItemPageUrl(id, collection, "progenetix")
+  const url = getDataItemPageUrl(id, collection, "progenetix")
   return (
     <div className="notification is-size-5">
       This page will only show content if called with a specific biosample ID

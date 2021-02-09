@@ -1,5 +1,5 @@
 import {
-  DataItemUrl,
+  getDataItemUrl,
   useDataItemDelivery,
   NoResultsHelp
 } from "../../hooks/api"
@@ -69,7 +69,7 @@ function Variant({ variant, datasetIds }) {
           rel="noreferrer"
           target="_blank"
           href={
-            DataItemUrl(variant._id, itemColl, datasetIds) +
+            getDataItemUrl(variant._id, itemColl, datasetIds) +
             "&responseFormat=simple"
           }
         >
