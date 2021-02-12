@@ -45,6 +45,9 @@ requestType:
       label: variantRangeRequest
     - value: variantFusionRequest
       label: variantFusionRequest
+geneSymbol:
+  label: Gene Symbol
+  infoText: The gene symbol (HUGO).
 referenceName:
   label: Reference name
   infoText: The chromosome with the variant(s). Required.

@@ -1,0 +1,57 @@
+---
+geneVariantRequest:
+  note: ""
+  label: "Gene Variant Request"
+  description: |
+    This query type uses known gene symbols to search for variants inside or overlapping the gene's genomic coordinates.
+  parameters:
+    datasetIds:
+      defaultValue: ["progenetix"]
+      isHidden: true
+    includeDatasetResponses:
+      placeholder: "ALL"
+      isHidden: true
+    requestType:
+      defaultValue: "geneVariantRequest"
+      isHidden: true
+    assemblyId:
+      defaultValue: "GRCh38"
+      isHidden: true
+    geneSymbol:
+      placeholder: "TP53"
+    referenceName:
+      isHidden: true
+    start:
+      isHidden: true
+    end:
+      isHidden: true
+    variantType:
+      placeholder: "DEL"
+    alternateBases:
+      isHidden: true
+    referenceBases:
+      isHidden: true
+    genotypicSex:
+      isHidden: true
+    materialtype:
+      isHidden: true
+    freeFilters:
+      isHidden: true
+    accessid:
+      isHidden: true
+    filterLogic:
+      isHidden: true
+    city:
+      isHidden: true
+  examples:
+    - label: "TP53 Deletion"
+      note: "Example for any deletion involving TP53."
+      description: |
+        This example shows a gene symbol based query, which translates the TP53 coding region coordinates internally into a range query.
+      parameters:
+        geneSymbol:
+          defaultValue: "TP53"
+        variantType:
+          defaultValue: "DEL"
+        bioontology:
+          defaultValue: [NCIT:C3058]

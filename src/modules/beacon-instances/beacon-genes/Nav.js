@@ -11,13 +11,12 @@ export default function Nav() {
         role="navigation"
         aria-label="main navigation"
       >
-        <Link href="/beacon-plus/search">
+        <Link href="/beacon-genes/search">
           <a className="Nav__logo">
-            Beacon <sup className="Nav__plus">+</sup>
+            BeaconGenes <sup className="Nav__plus">+</sup>
           </a>
         </Link>
         <div className="Nav__links">
-          <ActiveLink label="Gene Beacon" href="/beacon-genes/search" />
           <ActiveLink
             label="1000 Genomes CNVs"
             href="/1000-genomes-cnv/search"

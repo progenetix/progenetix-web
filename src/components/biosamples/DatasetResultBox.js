@@ -10,6 +10,7 @@ import BiosamplesDataTable from "./BiosamplesDataTable"
 import VariantsDataTable from "./VariantsDataTable"
 import { useContainerDimensions } from "../../hooks/containerDimensions"
 import Histogram from "../Histogram"
+import { Infodot } from "../Infodot"
 import { svgFetcher } from "../../hooks/fetcher"
 import BiosamplesStatsDataTable from "./BiosamplesStatsDataTable"
 import { WithData } from "../Loader"
@@ -258,7 +259,12 @@ function ucscHref(query) {
 function GenericHandover({ handover }) {
   return (
     <div>
-      <ExternalLink href={handover.url} label={handover.handoverType.label} />
+      <ExternalLink
+        href={handover.url}
+        label={handover.handoverType.label}
+        download
+      />
+      <Infodot infoText={handover.description} />
     </div>
   )
 }

@@ -232,11 +232,12 @@ export function Form({
           <SelectField {...parameters.datasetIds} {...selectProps} />
           <SelectField {...parameters.cohorts} {...selectProps} />
           <SelectField {...parameters.assemblyId} {...selectProps} />
+          <SelectField {...parameters.requestType} {...selectProps} />
           <SelectField
             {...parameters.includeDatasetResponses}
             {...selectProps}
           />
-          <SelectField {...parameters.requestType} {...selectProps} />
+          <InputField {...fieldProps} {...parameters.geneSymbol} />
           <div className="columns my-0">
             <SelectField
               className={cn(
@@ -248,7 +249,7 @@ export function Form({
             />
             <SelectField
               className={cn(
-                !parameters.referenceName.isHidden && "column",
+                !parameters.variantType.isHidden && "column",
                 "py-0 mb-3"
               )}
               {...parameters.variantType}
