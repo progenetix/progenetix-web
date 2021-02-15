@@ -7,9 +7,9 @@ variantCNVrequest:
     ranges for start and end positions to capture a set of similar variants.
   parameters:
     datasetIds:
-      placeholder: "progenetix"
+      defaultValue: ["progenetix"]
     includeDatasetResponses:
-      placeholder: "ALL"
+      defaultValue: "ALL"
       isHidden: true
     requestType:
       defaultValue: "variantCNVrequest"
@@ -36,7 +36,6 @@ variantCNVrequest:
       isHidden: true
     freeFilters:
       placeholder: ""
-      isHidden: true
     accessid:
       isHidden: true
     filterLogic:
@@ -51,13 +50,6 @@ variantCNVrequest:
         arrayMap collection and can be modified e.g. through changing the position
         parameters or data source.
       parameters:
-        datasetIds:
-          defaultValue: ["progenetix"]
-        includeDatasetResponses:
-          defaultValue: "ALL"
-          isHidden: true
-        assemblyId:
-          defaultValue: "GRCh38"
         referenceName:
           defaultValue: "9"
         start:
@@ -66,16 +58,9 @@ variantCNVrequest:
           defaultValue: "21967753-23000000"
         variantType:
           defaultValue: "DEL"
-        alternateBases:
-          defaultValue: ""
-          isHidden: true
-        referenceBases:
-          defaultValue: "N"
-          isHidden: true
         bioontology:
           defaultValue: [NCIT:C3058]
         freeFilters:
-          defaultValue: ""
           isHidden: true
 
 variantAlleleRequest:
@@ -111,17 +96,6 @@ variantAlleleRequest:
       placeholder: "A"
     referenceBases:
       placeholder: "G"
-    genotypicSex:
-      isHidden: true
-    materialtype:
-      isHidden: true
-    freeFilters:
-      placeholder: ""
-      isHidden: true
-    accessid:
-      isHidden: true
-    filterLogic:
-      isHidden: true
   examples:
     - label: "SNV Example"
       note: "Example for specific EIF4A1 mutation"

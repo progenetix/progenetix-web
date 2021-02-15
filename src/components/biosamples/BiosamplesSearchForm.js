@@ -21,6 +21,7 @@ import InputField from "../form/InputField"
 import useDeepCompareEffect from "use-deep-compare-effect"
 import { withUrlQuery } from "../../hooks/url-query"
 import { GeoCitySelector } from "./GeoCitySelector"
+import { GeneSymbolSelector } from "./GeneSymbolSelector"
 import ChromosomePreview from "./ChromosomePreview"
 
 export const BiosamplesSearchForm = withUrlQuery(
@@ -195,22 +196,24 @@ export function Form({
         />
       )}
       <div>
-        <ExamplesButtons
-          onExampleClicked={handleExampleClicked(
-            reset,
-            setExample,
-            setUrlQuery
-          )}
-          requestTypeConfig={requestTypeConfig}
-        />
+        <div className="buttons">
+          <ExamplesButtons
+            onExampleClicked={handleExampleClicked(
+              reset,
+              setExample,
+              setUrlQuery
+            )}
+            requestTypeConfig={requestTypeConfig}
+          />
+          <FormUtilitiesButtons
+            onCytoBandClick={onCytoBandClick}
+            cytoBandPanelOpen={cytoBandPanelOpen}
+            onGeneSpansClick={onGeneSpansClick}
+            geneSpansPanelOpen={geneSpansPanelOpen}
+          />
+        </div>
         <ExampleDescription example={example} />
         <RequestTypeDescription requestConfig={requestTypeConfig} />
-        <FormUtilitiesButtons
-          onCytoBandClick={onCytoBandClick}
-          cytoBandPanelOpen={cytoBandPanelOpen}
-          onGeneSpansClick={onGeneSpansClick}
-          geneSpansPanelOpen={geneSpansPanelOpen}
-        />
         {cytoBandPanelOpen && (
           <CytoBandsUtility
             onClose={onCytoBandCloseClick}
@@ -237,7 +240,7 @@ export function Form({
             {...parameters.includeDatasetResponses}
             {...selectProps}
           />
-          <InputField {...fieldProps} {...parameters.geneSymbol} />
+          <GeneSymbolSelector {...selectProps} {...parameters.geneSymbol} />
           <div className="columns my-0">
             <SelectField
               className={cn(
@@ -272,6 +275,30 @@ export function Form({
               className={cn(!parameters.end.isHidden && "column", "py-0 mb-3")}
               {...fieldProps}
               {...parameters.end}
+              rules={{
+                validate: checkIntegerRange
+              }}
+            />
+          </div>
+          <div className="columns my-0">
+            <InputField
+              className={cn(
+                !parameters.varMinLength.isHidden && "column",
+                "py-0 mb-3"
+              )}
+              {...fieldProps}
+              {...parameters.varMinLength}
+              rules={{
+                validate: checkIntegerRange
+              }}
+            />
+            <InputField
+              className={cn(
+                !parameters.varMaxLength.isHidden && "column",
+                "py-0 mb-3"
+              )}
+              {...fieldProps}
+              {...parameters.varMaxLength}
               rules={{
                 validate: checkIntegerRange
               }}
@@ -418,7 +445,7 @@ function RequestTypeDescription({ requestConfig }) {
 
 function ExamplesButtons({ requestTypeConfig, onExampleClicked }) {
   return (
-    <div className="buttons">
+    <div>
       {Object.entries(requestTypeConfig?.examples || []).map(([id, value]) => (
         <button
           key={id}

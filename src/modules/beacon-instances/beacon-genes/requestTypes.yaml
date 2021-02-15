@@ -27,6 +27,10 @@ geneVariantRequest:
       isHidden: true
     variantType:
       placeholder: "DEL"
+    varMinLength:
+      defaultValue: 1000
+    varMaxLength:
+      defaultValue: ""
     alternateBases:
       isHidden: true
     referenceBases:
@@ -53,5 +57,9 @@ geneVariantRequest:
           defaultValue: "TP53"
         variantType:
           defaultValue: "DEL"
+        varMinLength:
+          defaultValue: 1000
+        varMaxLength:
+          defaultValue: 3000000
         bioontology:
           defaultValue: [NCIT:C3058]

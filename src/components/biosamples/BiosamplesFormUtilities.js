@@ -46,7 +46,7 @@ export function FormUtilitiesButtons({
   cytoBandPanelOpen
 }) {
   return (
-    <div className="buttons">
+    <div>
       <button
         className={cn("button", [geneSpansPanelOpen && "is-link"])}
         onClick={onGeneSpansClick}

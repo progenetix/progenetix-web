@@ -71,5 +71,5 @@ function geneLabel(gene) {
 }
 
 function geneSearchUrl(querytext) {
-  return `${basePath}cgi/bycon/services/genespans.py?geneId=${querytext}`
+  return `${basePath}cgi/bycon/services/genespans.py?geneSymbol=${querytext}`
 }

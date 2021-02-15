@@ -197,23 +197,27 @@ function ResultsTab({
           <CnvHistogramPreview url={histogramUrl} />
         </div>
       )}
-      <WithData
-        dataEffectResult={biosamplesDataResults}
-        background
-        render={(data) => (
-          <BiosamplesStatsDataTable
-            biosamplesResponse={data}
-            variantCount={variantCount}
-            datasetId={datasetId}
-          />
-        )}
-      />
+      {datasetId === "progenetix" && (
+        <WithData
+          dataEffectResult={biosamplesDataResults}
+          background
+          render={(data) => (
+            <BiosamplesStatsDataTable
+              biosamplesResponse={data}
+              variantCount={variantCount}
+              datasetId={datasetId}
+            />
+          )}
+        />
+      )}
     </div>
   )
 }
 
 function shouldShowHistogram(alternateBases) {
-  return alternateBases == null || alternateBases === ""
+  return (
+    alternateBases == null || alternateBases === "N" || alternateBases === ""
+  )
 }
 
 function CnvHistogramPreview({ url: urlString }) {
