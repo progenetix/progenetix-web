@@ -120,7 +120,9 @@ export function buildQueryParameters(queryData) {
     const match = INTEGER_RANGE_REGEX.exec(start)
     if (!match) throw new Error("incorrect start range")
     const [, start0, start1] = match
-    starts.push(start0 - 1)
+    var s0 = start0 - 1
+    s0 = s0.toString()
+    starts.push(s0)
     start1 && starts.push(start1)
   }
   const ends = []

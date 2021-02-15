@@ -6,6 +6,8 @@ datasetIds:
   isMulti: true
 cohorts:
   label: Cohorts
+  infoText: >
+    An aggregation of samples by origin (e.g. study, external resource), shared features or use in a publication.
   rules:
     required: false
   defaultValue: ""

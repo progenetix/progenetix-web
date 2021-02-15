@@ -7,6 +7,7 @@ import PropTypes from "prop-types"
 import cn from "classnames"
 import { FaCogs } from "react-icons/fa"
 import { WithData } from "../Loader"
+import { Infodot } from "../Infodot"
 
 FormUtilitiesButtons.propTypes = {
   onGeneSpansClick: PropTypes.func.isRequired,
@@ -49,6 +50,7 @@ export function FormUtilitiesButtons({
     <div>
       <button
         className={cn("button", [geneSpansPanelOpen && "is-link"])}
+        style={{ marginLeft: "8px" }}
         onClick={onGeneSpansClick}
       >
         <span className="icon">
@@ -94,7 +96,14 @@ export function GeneSpansUtility({ onClose, setFormValue }) {
   return (
     <div className="message is-link mb-6">
       <div className="message-body">
-        <p className="subtitle is-5">Gene Spans</p>
+        <p className="subtitle is-5">
+          Gene Spans{" "}
+          <Infodot
+            infoText={
+              "Type a gene symbol and select to transfer coordinates into Reference Name, Start and End fields, e.g. for a Range Query or further adjustment."
+            }
+          />
+        </p>
         <CustomSelect
           className="mb-3"
           options={options}
@@ -155,7 +164,14 @@ export function CytoBandsUtility({ onClose, setFormValue }) {
     <div>
       <div className="message is-link mb-6">
         <div className="message-body">
-          <p className="subtitle is-5">CytoBands</p>
+          <p className="subtitle is-5">
+            CytoBands
+            <Infodot
+              infoText={
+                "Type a cytoband or range and select to transfer coordinates into Reference Name, Start and End fields, e.g. for a Range Query or further adjustment."
+              }
+            />
+          </p>
           <form onSubmit={onSubmit} className="field has-addons mb-4">
             <div className="control">
               <input

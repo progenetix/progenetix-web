@@ -8,6 +8,8 @@ geneVariantRequest:
     datasetIds:
       defaultValue: ["progenetix"]
       isHidden: true
+    cohorts:
+      defaultValue: ["pgxcohort-TCGA", "pgxcohort-arraymap"]
     includeDatasetResponses:
       placeholder: "ALL"
       isHidden: true
