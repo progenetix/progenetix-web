@@ -11,6 +11,7 @@ import BiosamplesDataTable from "./BiosamplesDataTable"
 import VariantsDataTable from "./VariantsDataTable"
 import { useContainerDimensions } from "../../hooks/containerDimensions"
 import Histogram from "../Histogram"
+import { Infodot } from "../Infodot"
 import { svgFetcher } from "../../hooks/fetcher"
 import BiosamplesStatsDataTable from "./BiosamplesStatsDataTable"
 import { WithData } from "../Loader"
@@ -207,7 +208,9 @@ function ResultsTab({
 }
 
 function shouldShowHistogram(alternateBases) {
-  return alternateBases == null || alternateBases === ""
+  return (
+    alternateBases == null || alternateBases === "N" || alternateBases === ""
+  )
 }
 
 function CnvHistogramPreview({ url: urlString }) {
@@ -253,7 +256,12 @@ function ucscHref(query) {
 function GenericHandover({ handover }) {
   return (
     <div>
-      <ExternalLink href={handover.url} label={handover.handoverType.label} />
+      <ExternalLink
+        href={handover.url}
+        label={handover.handoverType.label}
+        download
+      />
+      <Infodot infoText={handover.description} />
     </div>
   )
 }

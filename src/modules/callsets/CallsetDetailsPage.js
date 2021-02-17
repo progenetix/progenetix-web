@@ -90,8 +90,7 @@ function Callset({ callset, datasetIds }) {
           rel="noreferrer"
           target="_blank"
           href={
-            getDataItemUrl(callset.id, itemColl, datasetIds) +
-            "&responseFormat=simple"
+            getDataItemUrl(callset.id, itemColl, datasetIds)
           }
         >
           {"{JSON↗}"}

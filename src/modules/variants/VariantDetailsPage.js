@@ -71,8 +71,7 @@ function Variant({ variant, datasetIds }) {
           rel="noreferrer"
           target="_blank"
           href={
-            getDataItemUrl(variant._id, itemColl, datasetIds) +
-            "&responseFormat=simple"
+            getDataItemUrl(variant._id, itemColl, datasetIds)
           }
         >
           {"{JSON↗}"}

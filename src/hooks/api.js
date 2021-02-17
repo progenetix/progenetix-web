@@ -89,6 +89,12 @@ export function mkGeoParams(geoCity, geodistanceKm) {
   return { geolongitude, geolatitude, geodistance }
 }
 
+export function mkGeneParams(gene) {
+  if (!gene) return null
+  const geneSymbol = gene.data.gene_symbol ?? []
+  return { geneSymbol }
+}
+
 export function makeFilters({
   freeFilters,
   bioontology,
@@ -120,6 +126,7 @@ export function buildQueryParameters(queryData) {
     genotypicSex,
     materialtype,
     freeFilters,
+    geneSymbol,
     geoCity,
     geodistanceKm,
     ...otherParams
@@ -130,7 +137,9 @@ export function buildQueryParameters(queryData) {
     const match = INTEGER_RANGE_REGEX.exec(start)
     if (!match) throw new Error("incorrect start range")
     const [, start0, start1] = match
-    starts.push(start0 - 1)
+    var s0 = start0 - 1
+    s0 = s0.toString()
+    starts.push(s0)
     start1 && starts.push(start1)
   }
   const ends = []
@@ -148,10 +157,11 @@ export function buildQueryParameters(queryData) {
     genotypicSex,
     materialtype
   })
+  const geneParams = mkGeneParams(geneSymbol) ?? {}
   const geoParams = mkGeoParams(geoCity, geodistanceKm) ?? {}
   return new URLSearchParams(
     flattenParams([
-      ...Object.entries({ ...otherParams, ...geoParams }),
+      ...Object.entries({ ...otherParams, ...geneParams, ...geoParams }),
       ["start", starts],
       ["end", ends],
       ["filters", filters]
@@ -290,6 +300,11 @@ export function useGeoCity({ city }) {
   return useProgenetixApi(url)
 }
 
+export function useGeneSymbol({ geneSymbol }) {
+  const url = `${basePath}services/genespans?geneSymbol=${geneSymbol}`
+  return useExtendedSWR(url)
+}
+
 export function subsetSVGlink(id, datasetIds) {
   return `${basePath}cgi/PGX/cgi/collationPlots.cgi?datasetIds=${datasetIds}&id=${id}`
 }
@@ -344,7 +359,7 @@ export function pluralizeWord(word, count) {
 
 export async function uploadFile(formData) {
   // Default options are marked with *
-  const response = await fetch(`${basePath}cgi/pgx_uploader.cgi`, {
+  const response = await fetch(`${basePath}cgi/PGX/cgi/uploader.cgi`, {
     method: "POST",
     headers: {
       "Content-Type": "multipart/form-data"

@@ -6,6 +6,8 @@ datasetIds:
   isMulti: true
 cohorts:
   label: Cohorts
+  infoText: >
+    An aggregation of samples by origin (e.g. study, external resource), shared features or use in a publication.
   rules:
     required: false
   defaultValue: ""
@@ -45,6 +47,9 @@ requestType:
       label: variantRangeRequest
     - value: variantFusionRequest
       label: variantFusionRequest
+geneSymbol:
+  label: Gene Symbol
+  infoText: The gene symbol (HUGO).
 referenceName:
   label: Reference name
   infoText: The chromosome with the variant(s). Required.
@@ -130,6 +135,14 @@ end:
     single value, or in case of fuzzy requests for e.g. copy number variants
     the end provided as a range for the possible occurrence of
     the CNV end (e.g. "21967753-22500000").
+varMinLength:
+  label: Minimum Variant Length
+  type: number
+  infoText: The minimal length, in bases, of a genomic variant. This parameter can be applied to e.g. CNV queries.
+varMaxLength:
+  label: Maximal Variant Length
+  type: number
+  infoText: The maximal length, in bases, of a genomic variant. This parameter can be applied to e.g. CNV queries.
 referenceBases:
   label: Reference Base(s)
 alternateBases:

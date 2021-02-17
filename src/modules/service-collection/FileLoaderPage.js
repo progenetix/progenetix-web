@@ -44,14 +44,22 @@ export default function FileLoaderPage() {
           >
             here
           </a>
-          .
+          . We are currently testing an extended <b>.pgxseg</b> file format
+          (documentation{" "}
+          <a
+            href="https://info.progenetix.org/doc/fileformats.html"
+            target="_blank"
+            rel="noreferrer"
+          >
+            here
+          </a>
+          ).
         </p>
-
         <p>
-          While the header values are not being interpreted, the column order
-          has to be followed:
+          While the header values are not being interpreted (i.e. it doesn not
+          matter if the column is labeled <code>reference_name</code> or{" "}
+          <code>chro</code>), the column order has to be respected:
         </p>
-
         <ol>
           <li>
             <code>sample</code>
@@ -64,7 +72,7 @@ export default function FileLoaderPage() {
             </ul>
           </li>
           <li>
-            <code>chro</code>
+            <code>reference_name</code>
             <ul>
               <li>the reference chromosome</li>
               <li>1-22, X, Y (23 =&gt; X; 24 =&gt; Y)</li>
@@ -105,6 +113,19 @@ export default function FileLoaderPage() {
               <li>optional (no filter on empty values)</li>
             </ul>
           </li>
+          <li>
+            <code>variant_type</code> (optional)
+            <ul>
+              <li>the called type of the segment</li>
+              <li>
+                one of <code>DUP</code> or <code>DEL</code>
+              </li>
+              <li>
+                this will override a status derived from thresholding the value
+                in <code>mean</code>
+              </li>
+            </ul>
+          </li>
         </ol>
       </Panel>
     </Layout>
@@ -126,7 +147,7 @@ function DataVisualizationUpload() {
 
 function Dropzone({ setResult }) {
   const { getRootProps, getInputProps } = useDropzone({
-    accept: [".tsv", ".tab"],
+    accept: [".tsv", ".tab", ".pgxseg"],
     onDrop: async (acceptedFiles) => {
       const data = new FormData()
       data.append("upload_file_name", acceptedFiles[0], acceptedFiles[0].name)

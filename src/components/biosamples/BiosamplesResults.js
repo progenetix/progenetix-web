@@ -46,6 +46,12 @@ function QuerySummary({ query }) {
           {query.assemblyId}
         </li>
       )}
+      {query.geneSymbol && (
+        <li>
+          <small>Gene: </small>
+          {query.geneSymbol}
+        </li>
+      )}
       {query.referenceName && (
         <li>
           <small>Chro: </small>

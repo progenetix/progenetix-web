@@ -37,7 +37,7 @@ export default function BiosamplesStatsDataTable({
           Header: "Query Matches",
           accessor: "count"
         },
-        variantCount > 0
+        variantCount > 0 && datasetId === "progenetix"
           ? [
               {
                 Header: "Subset Match Frequencies",

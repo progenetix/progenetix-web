@@ -104,6 +104,11 @@ function Side({ onClick }) {
           isSub="isSub"
         />
         <MenuInternalLinkItem
+          href="/DIPG/search"
+          label="Search DIPG Samples"
+          isSub="isSub"
+        />
+        <MenuInternalLinkItem
           href="/publications.html"
           label="Publication DB"
         />
