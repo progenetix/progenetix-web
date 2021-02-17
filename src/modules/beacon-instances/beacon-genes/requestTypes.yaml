@@ -27,16 +27,14 @@ geneVariantRequest:
       isHidden: true
     end:
       isHidden: true
-    variantType:
-      placeholder: "DEL"
     varMinLength:
       defaultValue: 1000
-    varMaxLength:
-      defaultValue: ""
     alternateBases:
       isHidden: true
     referenceBases:
       isHidden: true
+    bioontology:
+      placeholder: ["NCIT:C3058"]
     genotypicSex:
       isHidden: true
     materialtype:
@@ -64,4 +62,4 @@ geneVariantRequest:
         varMaxLength:
           defaultValue: 3000000
         bioontology:
-          defaultValue: [NCIT:C3058]
+          defaultValue: ["NCIT:C3058"]

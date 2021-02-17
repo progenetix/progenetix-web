@@ -21,8 +21,8 @@ import { getVisualizationLink } from "../../modules/data-visualization/DataVisua
 
 const handoversInTab = [
   HANDOVER_IDS.cnvhistogram,
-  HANDOVER_IDS.biosampleslist,
-  HANDOVER_IDS.variantslist
+  HANDOVER_IDS.biosamples,
+  HANDOVER_IDS.variants
 ]
 
 const TABS = {
@@ -49,7 +49,7 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
     ({ handoverType: { id } }) => !handoversInTab.includes(id)
   )
 
-  const biosamplesHandover = handoverById(HANDOVER_IDS.biosampleslist)
+  const biosamplesHandover = handoverById(HANDOVER_IDS.biosamples)
 
   const biosamplesReply = useProgenetixApi(
     biosamplesHandover && replaceWithProxy(biosamplesHandover.url)
@@ -75,7 +75,7 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
     (biosample) => !!biosample.provenance?.geo_location
   ) && tabNames.push(TABS.samplesMap)
 
-  if (handoverById(HANDOVER_IDS.variantslist)) tabNames.push(TABS.variants)
+  if (handoverById(HANDOVER_IDS.variants)) tabNames.push(TABS.variants)
   const [selectedTab, setSelectedTab] = useState(tabNames[0])
 
   let tabComponent
@@ -98,7 +98,7 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
       <BiosamplesMap apiReply={biosamplesReply} datasetId={datasetId} />
     )
   } else if (selectedTab === TABS.variants) {
-    const handover = handoverById(HANDOVER_IDS.variantslist)
+    const handover = handoverById(HANDOVER_IDS.variants)
     const url = replaceWithProxy(handover.url)
     tabComponent = <VariantsDataTable url={url} datasetId={datasetId} />
   }

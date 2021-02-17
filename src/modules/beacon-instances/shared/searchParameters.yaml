@@ -52,7 +52,7 @@ geneSymbol:
   infoText: The gene symbol (HUGO).
 referenceName:
   label: Reference name
-  infoText: The chromosome with the variant(s). Required.
+  infoText: The chromosome with the variant(s).
   options:
     - label: "1"
       value: "1"

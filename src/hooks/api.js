@@ -19,15 +19,10 @@ export const PROGENETIXINFO = "https://info.progenetix.org"
 export function useProgenetixApi(...args) {
   const { data, ...other } = useExtendedSWR(...args)
   if (data) {
-    const error = data.meta?.errors
-      ? Array.isArray(data.meta.errors)
-        ? data.meta.errors.join(", ")
-        : data.meta.errors
-      : null
-
+    const errorMessage = data.response?.error?.error_message
     // Compatible with the simple responses.
     const mappedData = data.response ?? { results: data }
-    return { data: mappedData, error, ...other }
+    return { data: mappedData, error: errorMessage, ...other }
   } else {
     return { data, ...other }
   }
@@ -404,6 +399,6 @@ export function replaceWithProxy(
 
 export const HANDOVER_IDS = {
   cnvhistogram: "pgx:handover:cnvhistogram",
-  biosampleslist: "pgx:handover:biosampleslist",
-  variantslist: "pgx:handover:variantslist"
+  biosamples: "pgx:handover:biosamples",
+  variants: "pgx:handover:variants"
 }
