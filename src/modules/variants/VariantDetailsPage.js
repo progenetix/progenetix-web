@@ -1,5 +1,9 @@
-import { DataItemUrl, DataItemDelivery, NoResultsHelp } from "../../hooks/api"
-import { Loader } from "../../components/Loader"
+import {
+  getDataItemUrl,
+  useDataItemDelivery,
+  NoResultsHelp
+} from "../../hooks/api"
+import { WithData } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
 
@@ -23,31 +27,28 @@ const VariantDetailsPage = withUrlQuery(({ urlQuery }) => {
 export default VariantDetailsPage
 
 function VariantLoader({ _id, datasetIds }) {
-  const { data, error, isLoading } = DataItemDelivery(_id, itemColl, datasetIds)
+  const apiReply = useDataItemDelivery(_id, itemColl, datasetIds)
   return (
-    <Loader isLoading={isLoading} hasError={error} background>
-      {data && (
-        <VariantResponse response={data} _id={_id} datasetIds={datasetIds} />
+    <WithData
+      apiReply={apiReply}
+      background
+      render={(response) => (
+        <VariantResponse
+          response={response}
+          _id={_id}
+          datasetIds={datasetIds}
+        />
       )}
-    </Loader>
+    />
   )
 }
 
 function VariantResponse({ response, datasetIds }) {
-  if (!response.response.results) {
+  if (!response.results) {
     return NoResultsHelp(exampleId, itemColl)
   }
-  if (response.meta.errors.length > 0) {
-    return (
-      <div className="notification is-size-5">
-        <div className="message-body">ERROR: {response.meta.errors[0]}</div>
-      </div>
-    )
-  }
 
-  return (
-    <Variant variant={response.response.results[0]} datasetIds={datasetIds} />
-  )
+  return <Variant variant={response.results[0]} datasetIds={datasetIds} />
 }
 
 function Variant({ variant, datasetIds }) {
@@ -69,7 +70,9 @@ function Variant({ variant, datasetIds }) {
         <a
           rel="noreferrer"
           target="_blank"
-          href={DataItemUrl(variant._id, itemColl, datasetIds)}
+          href={
+            getDataItemUrl(variant._id, itemColl, datasetIds)
+          }
         >
           {"{JSON↗}"}
         </a>

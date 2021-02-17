@@ -72,13 +72,16 @@ export default function BiosamplesStatsDataTable({
     [variantCount, datasetId]
   )
 
-  const allSubsets = useCollationsById({ datasetIds: datasetId })
+  const allSubsetsReply = useCollationsById({ datasetIds: datasetId })
   return (
     <WithData
-      dataEffectResult={allSubsets}
+      apiReply={allSubsetsReply}
       background
-      render={(allSubsets) => {
-        const subsets = makeSubsetsData(biosamplesResponse, allSubsets)
+      render={(allSubsetsResponse) => {
+        const subsets = makeSubsetsData(
+          biosamplesResponse.results,
+          allSubsetsResponse.results
+        )
         return <Table columns={columns} data={subsets} pageSize={20} />
       }}
     />
@@ -91,8 +94,8 @@ function getFrequency(v, allSubsetsById, k) {
   return (v / allSubsetsCount).toFixed(3).toString()
 }
 
-export function makeSubsetsData(biosamplesResponse, allSubsetsById) {
-  const ids = biosamplesResponse
+export function makeSubsetsData(biosamplesResults, allSubsetsById) {
+  const ids = biosamplesResults
     .flatMap((sample) => sample.biocharacteristics)
     .map(function (a) {
       return a.id
@@ -109,5 +112,5 @@ export function makeSubsetsData(biosamplesResponse, allSubsetsById) {
 }
 
 BiosamplesStatsDataTable.propTypes = {
-  biosamplesResponse: PropTypes.array.isRequired
+  biosamplesResponse: PropTypes.object.isRequired
 }

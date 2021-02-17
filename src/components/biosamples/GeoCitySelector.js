@@ -15,7 +15,7 @@ export function GeoCitySelector({
   const { data, isLoading } = useGeoCity({ city: inputValue })
   let options = []
   if (data) {
-    options = data.response.results.map((g) => ({
+    options = data.results.map((g) => ({
       value: g,
       data: g,
       label: `${g.geo_location.properties.city} (${g.geo_location.properties.country})`

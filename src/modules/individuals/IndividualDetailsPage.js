@@ -1,5 +1,9 @@
-import { DataItemUrl, DataItemDelivery, NoResultsHelp } from "../../hooks/api"
-import { Loader } from "../../components/Loader"
+import {
+  getDataItemUrl,
+  useDataItemDelivery,
+  NoResultsHelp
+} from "../../hooks/api"
+import { WithData } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
 // import Link from "next/link"
@@ -24,18 +28,24 @@ const IndividualDetailsPage = withUrlQuery(({ urlQuery }) => {
 export default IndividualDetailsPage
 
 function IndividualLoader({ id, datasetIds }) {
-  const { data, error, isLoading } = DataItemDelivery(id, itemColl, datasetIds)
+  const apiReply = useDataItemDelivery(id, itemColl, datasetIds)
   return (
-    <Loader isLoading={isLoading} hasError={error} background>
-      {data && (
-        <IndividualResponse response={data} id={id} datasetIds={datasetIds} />
+    <WithData
+      apiReply={apiReply}
+      background
+      render={(response) => (
+        <IndividualResponse
+          response={response}
+          id={id}
+          datasetIds={datasetIds}
+        />
       )}
-    </Loader>
+    />
   )
 }
 
 function IndividualResponse({ response, datasetIds }) {
-  if (!response.response.results) {
+  if (!response.results) {
     return NoResultsHelp(exampleId, itemColl)
   }
   if (response.meta.errors.length > 0) {
@@ -46,12 +56,7 @@ function IndividualResponse({ response, datasetIds }) {
     )
   }
 
-  return (
-    <Individual
-      individual={response.response.results[0]}
-      datasetIds={datasetIds}
-    />
-  )
+  return <Individual individual={response.results[0]} datasetIds={datasetIds} />
 }
 
 function Individual({ individual, datasetIds }) {
@@ -83,7 +88,7 @@ function Individual({ individual, datasetIds }) {
           rel="noreferrer"
           target="_blank"
           href={
-            DataItemUrl(individual.id, itemColl, datasetIds) +
+            getDataItemUrl(individual.id, itemColl, datasetIds) +
             "&responseFormat=simple"
           }
         >

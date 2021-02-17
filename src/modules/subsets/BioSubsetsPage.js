@@ -62,27 +62,28 @@ const BioSubsetsContent = withUrlQuery(({ urlQuery, setUrlQuery }) => {
 })
 
 function SubsetsLoader({ filters, datasetIds }) {
-  const bioSubsetsHierarchies = useCollations({
+  const bioSubsetsHierarchiesReply = useCollations({
     filters,
     datasetIds,
     method: "paths"
   })
 
-  const allBioSubsets = useCollationsById({
+  const allBioSubsetsReply = useCollationsById({
     datasetIds
   })
+
   return (
     <WithData
-      dataEffectResult={bioSubsetsHierarchies}
+      apiReply={bioSubsetsHierarchiesReply}
       background
-      render={(bioSubsetsHierarchies) => (
+      render={(bioSubsetsHierarchiesResponse) => (
         <WithData
-          dataEffectResult={allBioSubsets}
+          apiReply={allBioSubsetsReply}
           background
-          render={(allBioSubsets) => (
+          render={(allBioSubsetsResponse) => (
             <SubsetsResponse
-              bioSubsetsHierarchies={bioSubsetsHierarchies}
-              allBioSubsets={allBioSubsets}
+              bioSubsetsHierarchies={bioSubsetsHierarchiesResponse.results}
+              allBioSubsets={allBioSubsetsResponse.results}
               datasetIds={datasetIds}
             />
           )}

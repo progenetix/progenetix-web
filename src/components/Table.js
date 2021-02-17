@@ -15,7 +15,7 @@ import {
   FaAngleDown,
   FaInfoCircle
 } from "react-icons/fa"
-import matchSorter from "match-sorter"
+import { matchSorter } from "match-sorter"
 import Tippy from "@tippyjs/react"
 
 export default function Table({

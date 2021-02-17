@@ -1,4 +1,4 @@
-import { useExtendedSWR, basePath } from "../../hooks/api"
+import { useProgenetixApi, basePath } from "../../hooks/api"
 import { useEffect, useState } from "react"
 import { keyBy } from "lodash"
 
@@ -7,7 +7,7 @@ export function LabeledGeneSpanOptions(inputValue) {
   const [cachedGenes, setCachedGenes] = useState({})
   useEffect(() => {
     if (data) {
-      const genes = keyBy(data.response.results, "gene_symbol")
+      const genes = keyBy(data.results, "gene_symbol")
       setCachedGenes({ ...genes, ...cachedGenes })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -25,7 +25,7 @@ export function useGeneSpanSelect(inputValue) {
   const { data, error, isLoading } = useGeneSpans(inputValue)
   let options = []
   if (data) {
-    options = data.response.results.map((gene) => ({
+    options = data.results.map((gene) => ({
       value: gene,
       label: labeledGeneSpan(gene)
     }))
@@ -35,11 +35,11 @@ export function useGeneSpanSelect(inputValue) {
 
 function useGeneSpans(querytext) {
   const url = querytext && querytext.length > 0 && geneSearchUrl(querytext)
-  return useExtendedSWR(url, (...args) =>
+  return useProgenetixApi(url, (...args) =>
     fetch(...args)
       .then((res) => res.text())
       .then((t) => {
-        // dataEffectResult returned is not JSON
+        // apiReply returned is not JSON
         return JSON.parse(t)
       })
   )

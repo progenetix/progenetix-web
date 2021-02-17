@@ -8,19 +8,19 @@ import PropTypes from "prop-types"
 import { WithData } from "../Loader"
 import Table from "../Table"
 
-export default function BiosamplesMap({ dataEffectResult, datasetId }) {
+export default function BiosamplesMap({ apiReply, datasetId }) {
   return (
     <WithData
-      dataEffectResult={dataEffectResult}
-      render={(data) => (
-        <Map biosamples={data} height={640} datasetId={datasetId} />
+      apiReply={apiReply}
+      render={(response) => (
+        <Map biosamples={response.results} height={640} datasetId={datasetId} />
       )}
     />
   )
 }
 
 BiosamplesMap.propTypes = {
-  dataEffectResult: PropTypes.object.isRequired,
+  apiReply: PropTypes.object.isRequired,
   datasetId: PropTypes.string.isRequired
 }
 

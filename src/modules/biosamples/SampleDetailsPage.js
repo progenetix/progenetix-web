@@ -1,12 +1,12 @@
 import {
   basePath,
-  DataItemUrl,
+  getDataItemUrl,
   referenceLink,
-  useExtendedSWR,
-  DataItemDelivery,
-  NoResultsHelp
+  useDataItemDelivery,
+  NoResultsHelp,
+  useExtendedSWR
 } from "../../hooks/api"
-import { Loader } from "../../components/Loader"
+import { WithData } from "../../components/Loader"
 import React, { useRef } from "react"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
@@ -35,27 +35,28 @@ const SampleDetailsPage = withUrlQuery(({ urlQuery }) => {
 export default SampleDetailsPage
 
 function BiosampleLoader({ id, datasetIds }) {
-  const { data, error, isLoading } = DataItemDelivery(id, itemColl, datasetIds)
+  const apiReply = useDataItemDelivery(id, itemColl, datasetIds)
   return (
-    <Loader isLoading={isLoading} hasError={error} background>
-      {data && (
-        <BiosampleResponse response={data} id={id} datasetIds={datasetIds} />
+    <WithData
+      apiReply={apiReply}
+      background
+      render={(response) => (
+        <BiosampleResponse
+          response={response}
+          id={id}
+          datasetIds={datasetIds}
+        />
       )}
-    </Loader>
+    />
   )
 }
 
 function BiosampleResponse({ response, datasetIds }) {
-  if (!response.response.results) {
+  if (!response.results) {
     return NoResultsHelp(exampleId, itemColl)
   }
 
-  return (
-    <Biosample
-      biosample={response.response.results[0]}
-      datasetIds={datasetIds}
-    />
-  )
+  return <Biosample biosample={response.results[0]} datasetIds={datasetIds} />
 }
 
 function Biosample({ biosample, datasetIds }) {
@@ -162,7 +163,7 @@ function Biosample({ biosample, datasetIds }) {
           rel="noreferrer"
           target="_blank"
           href={
-            DataItemUrl(biosample.id, itemColl, datasetIds) +
+            getDataItemUrl(biosample.id, itemColl, datasetIds) +
             "&responseFormat=simple"
           }
         >
@@ -181,7 +182,7 @@ function CnvHistogramPreview({ csid, datasetIds }) {
   const dataEffect = useExtendedSWR(width > 0 && url, svgFetcher)
   return (
     <div ref={componentRef} className="mb-4">
-      <Histogram dataEffectResult={dataEffect} />
+      <Histogram apiReply={dataEffect} />
     </div>
   )
 }

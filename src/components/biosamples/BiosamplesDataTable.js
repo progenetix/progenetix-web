@@ -6,7 +6,7 @@ import Table, { TooltipHeader } from "../Table"
 import DownloadButton from "../DownloadButton"
 import Link from "next/link"
 
-export default function BiosamplesDataTable({ dataEffectResult, datasetId }) {
+export default function BiosamplesDataTable({ apiReply, datasetId }) {
   const columns = React.useMemo(
     () => [
       {
@@ -79,17 +79,17 @@ export default function BiosamplesDataTable({ dataEffectResult, datasetId }) {
 
   return (
     <WithData
-      dataEffectResult={dataEffectResult}
-      render={(data) => (
+      apiReply={apiReply}
+      render={(response) => (
         <div>
           <div className="mb-4">
             <DownloadButton
               label="Download Response"
-              json={data}
+              json={response.results}
               fileName="biosamples"
             />
           </div>
-          <Table columns={columns} data={data} />
+          <Table columns={columns} data={response.results} />
         </div>
       )}
     />
@@ -97,5 +97,5 @@ export default function BiosamplesDataTable({ dataEffectResult, datasetId }) {
 }
 
 BiosamplesDataTable.propTypes = {
-  dataEffectResult: PropTypes.object.isRequired
+  apiReply: PropTypes.object.isRequired
 }

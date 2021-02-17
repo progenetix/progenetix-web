@@ -1,4 +1,8 @@
-import { DataItemUrl, DataItemDelivery, NoResultsHelp } from "../../hooks/api"
+import {
+  getDataItemUrl,
+  useDataItemDelivery,
+  NoResultsHelp
+} from "../../hooks/api"
 import { Loader } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
@@ -24,7 +28,11 @@ const CallsetDetailsPage = withUrlQuery(({ urlQuery }) => {
 export default CallsetDetailsPage
 
 function CallsetLoader({ id, datasetIds }) {
-  const { data, error, isLoading } = DataItemDelivery(id, itemColl, datasetIds)
+  const { data, error, isLoading } = useDataItemDelivery(
+    id,
+    itemColl,
+    datasetIds
+  )
   return (
     <Loader isLoading={isLoading} hasError={error} background>
       {data && (
@@ -35,7 +43,7 @@ function CallsetLoader({ id, datasetIds }) {
 }
 
 function CallsetResponse({ response, datasetIds }) {
-  if (!response.response.results) {
+  if (!response.results) {
     return NoResultsHelp(exampleId, itemColl)
   }
   if (response.meta.errors.length > 0) {
@@ -46,9 +54,7 @@ function CallsetResponse({ response, datasetIds }) {
     )
   }
 
-  return (
-    <Callset callset={response.response.results[0]} datasetIds={datasetIds} />
-  )
+  return <Callset callset={response.results[0]} datasetIds={datasetIds} />
 }
 
 function Callset({ callset, datasetIds }) {
@@ -83,7 +89,9 @@ function Callset({ callset, datasetIds }) {
         <a
           rel="noreferrer"
           target="_blank"
-          href={DataItemUrl(callset.id, itemColl, datasetIds)}
+          href={
+            getDataItemUrl(callset.id, itemColl, datasetIds)
+          }
         >
           {"{JSON↗}"}
         </a>

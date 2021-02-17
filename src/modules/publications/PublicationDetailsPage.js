@@ -1,6 +1,6 @@
 import React from "react"
 import { usePublication } from "../../hooks/api"
-import { Loader } from "../../components/Loader"
+import { WithData } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { SubsetHistogram } from "../../components/Histogram"
 import { Layout } from "../../components/Layout"
@@ -30,17 +30,21 @@ function NoResultsHelp() {
 }
 
 function PublicationLoader({ id }) {
-  const { data, error, isLoading } = usePublication(id)
+  const publicationReply = usePublication(id)
   return (
-    <Loader isLoading={isLoading} hasError={error} background>
-      <PublicationResponse response={data} id={id} />
-    </Loader>
+    <WithData
+      apiReply={publicationReply}
+      background
+      render={(response) => (
+        <PublicationResponse results={response.results} id={id} />
+      )}
+    />
   )
 }
 
-function PublicationResponse({ response, id }) {
-  if (response?.length >= 1) {
-    return response.map((publication, i) => (
+function PublicationResponse({ results, id }) {
+  if (results?.length >= 1) {
+    return results.map((publication, i) => (
       <PublicationDetails key={i} publication={publication} id={id} />
     ))
   } else {
