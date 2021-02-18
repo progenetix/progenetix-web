@@ -539,11 +539,11 @@ function validateForm(formValues) {
       errors.push(["referenceBases", error])
       errors.push(["alternateBases", error])
     }
-    // if (!variantType && !(referenceBases || alternateBases)) {
-    //   setMissing("variantType")
-    //   setMissing("referenceBases")
-    //   setMissing("alternateBases")
-    // }
+      // if (!variantType && !(referenceBases || alternateBases)) {
+      //   setMissing("variantType")
+      //   setMissing("referenceBases")
+      //   setMissing("alternateBases")
+      // }
   }
 
   const queryError = validateBeaconQuery(formValues)
