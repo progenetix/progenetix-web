@@ -1,5 +1,5 @@
 import swr from "swr"
-import { svgFetcher } from "./fetcher"
+import defaultFetcher, { svgFetcher } from "./fetcher"
 import { keyBy } from "lodash"
 import { FaExternalLinkAlt } from "react-icons/fa"
 
@@ -8,8 +8,8 @@ export const basePath = process.env.NEXT_PUBLIC_API_PATH
 // eslint-disable-next-line no-undef
 export const useProxy = process.env.NEXT_PUBLIC_USE_PROXY === "true"
 
-export function useExtendedSWR(...args) {
-  const { data, error, ...other } = swr(...args)
+export function useExtendedSWR(url, fetcher = defaultFetcher) {
+  const { data, error, ...other } = swr(url, fetcher)
   return { data, error, ...other, isLoading: !data && !error }
 }
 
@@ -17,15 +17,36 @@ export const PROGENETIX = "https://progenetix.org"
 export const PROGENETIXINFO = "https://info.progenetix.org"
 
 export function useProgenetixApi(...args) {
-  const { data, ...other } = useExtendedSWR(...args)
+  const { data, error, ...other } = useExtendedSWR(...args)
+
   if (data) {
-    const errorMessage = data.response?.error?.error_message
+    const errorMessage = findErrorMessage(data)
     // Compatible with the simple responses.
     const mappedData = data.response ?? { results: data }
-    return { data: mappedData, error: errorMessage, ...other }
-  } else {
-    return { data, ...other }
+    return { ...other, data: mappedData, error: errorMessage ?? error }
   }
+  // Connection error or http error code
+  else if (error) {
+    const errorMessage = error.info
+      ? findErrorMessage(error.info)
+      : error.message
+    return { ...other, error: errorMessage }
+  } else {
+    return { ...other }
+  }
+}
+
+// Return an error message contained in the payload.
+function findErrorMessage(data) {
+  return (
+    data.response?.error?.error_message ||
+    (data.errors ? errorsToMessage(data.errors) : null) ||
+    null
+  )
+}
+
+function errorsToMessage(errors) {
+  return errors.join(", ")
 }
 
 export async function tryFetch(url, fallBack = "N/A") {
