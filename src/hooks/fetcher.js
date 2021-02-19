@@ -5,7 +5,12 @@ export default async (url) => {
   if (!res.ok) {
     const error = new Error("An error occurred while fetching the data.")
     // Attach extra info to the error object.
-    error.info = await res.json()
+
+    try {
+      error.info = await res.json()
+    } catch (err) {
+      //ignore
+    }
     error.status = res.status
     throw error
   }
