@@ -297,7 +297,7 @@ export function useGeoCity({ city }) {
 
 export function useGeneSymbol({ geneSymbol }) {
   const url = `${basePath}services/genespans?geneSymbol=${geneSymbol}`
-  return useExtendedSWR(url)
+  return useProgenetixApi(url)
 }
 
 export function subsetSVGlink(id, datasetIds) {

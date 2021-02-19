@@ -49,7 +49,7 @@ function QuerySummary({ query }) {
       {query.geneSymbol && (
         <li>
           <small>Gene: </small>
-          {query.geneSymbol}
+          {query.geneSymbol.value}
         </li>
       )}
       {query.referenceName && (
