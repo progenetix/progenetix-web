@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from "react"
 import cn from "classnames"
 import { FaAngleDown, FaAngleRight } from "react-icons/fa"
 import Tippy from "@tippyjs/react"
-import { FixedSizeTree as Tree } from "react-vtree"
+import { FixedSizeTree as VTree } from "react-vtree"
 import useDebounce from "../../hooks/debounce"
 import { min } from "lodash"
 import { filterNode } from "./tree"
@@ -20,58 +20,31 @@ export function SubsetsTree({
   subsetScope,
   sampleFilterScope
 }) {
-  const { searchInput, setSearchInput, filteredTree } = useFilterTree(tree)
+  const {
+    searchInput,
+    setSearchInput,
+    filteredTree,
+    debouncedSearchInput
+  } = useFilterTree(tree)
   const [levelSelector, setLevelSelector] = useState(2)
-  const treeRef = React.createRef()
-
-  if (searchInput) {
-    searchInput
-  }
-  if (setSearchInput) {
-    setSearchInput
-  }
 
   const hasSelectedSubsets = checkedSubsets.length > 0
   const selectSamplesHref =
     hasSelectedSubsets &&
     sampleSelectUrl({ subsets: checkedSubsets, datasetIds, sampleFilterScope })
 
-  useEffect(() => {
-    const state = Object.fromEntries(
-      tree.children.map((rootNode) => [
-        rootNode.uid,
-        {
-          open: levelSelector > 0,
-          subtreeCallback(node, ownerNode) {
-            // Since subtreeWalker affects the ownerNode as well, we can check if the
-            if (node !== ownerNode) {
-              // nodes are the same, and run the action only if they aren't
-              node.isOpen =
-                node.isOpen || node.data.nestingLevel < levelSelector
-            }
-          }
-        }
-      ])
-    )
-    treeRef.current.recomputeTree(state)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [levelSelector])
-
-  // <div className="field">
-  // <input
-  //   className="input "
-  //   placeholder="Filter subsets ..."
-  //   value={searchInput}
-  //   onChange={(e) => setSearchInput(e.target.value)}
-  // />
-  // </div>
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const treeWalker = useMemo(() => mkTreeWalker(filteredTree), [tree])
   const height = Math.min(size * ROW_HEIGHT, 800)
   return (
     <>
-      <div className="level">
+      <div className="Subsets__controls">
+        <div className="field">
+          <input
+            className="input "
+            placeholder="Filter subsets ..."
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+          />
+        </div>
         {!isFlat && (
           <>
             <div className="level-left">
@@ -115,22 +88,77 @@ export function SubsetsTree({
           </li>
         ))}
       </ul>
-      <Tree
-        ref={treeRef}
-        treeWalker={treeWalker}
-        height={height}
-        itemSize={ROW_HEIGHT}
-        itemData={{
-          datasetIds,
-          checkboxClicked,
-          sampleFilterScope,
-          subsetScope,
-          isFlat
-        }}
-      >
-        {Node}
-      </Tree>
+      {filteredTree ? (
+        <Tree
+          levelSelector={levelSelector}
+          height={height}
+          datasetIds={datasetIds}
+          checkboxClicked={checkboxClicked}
+          sampleFilterScope={sampleFilterScope}
+          subsetScope={subsetScope}
+          isFlat={isFlat}
+          search={debouncedSearchInput}
+          tree={filteredTree}
+        />
+      ) : (
+        <div className="notification">No results</div>
+      )}
     </>
+  )
+}
+
+function Tree({
+  levelSelector,
+  height,
+  datasetIds,
+  checkboxClicked,
+  sampleFilterScope,
+  subsetScope,
+  isFlat,
+  tree,
+  search
+}) {
+  useEffect(() => {
+    const state = Object.fromEntries(
+      tree.children.map((rootNode) => [
+        rootNode.uid,
+        {
+          open: search?.length > 0 || levelSelector > 0,
+          subtreeCallback(node, ownerNode) {
+            // Since subtreeWalker affects the ownerNode as well, we can check if the
+            if (node !== ownerNode) {
+              // nodes are the same, and run the action only if they aren't
+              node.isOpen = search || node.data.nestingLevel < levelSelector
+            }
+          }
+        }
+      ])
+    )
+    treeRef.current.recomputeTree(state)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [levelSelector, tree])
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // Memo needed for the checkbox state to work properly
+  const treeWalker = useMemo(() => mkTreeWalker(tree), [search])
+  const treeRef = React.createRef()
+
+  return (
+    <VTree
+      ref={treeRef}
+      treeWalker={treeWalker}
+      height={height}
+      itemSize={ROW_HEIGHT}
+      itemData={{
+        datasetIds,
+        checkboxClicked,
+        sampleFilterScope,
+        subsetScope,
+        isFlat
+      }}
+    >
+      {Node}
+    </VTree>
   )
 }
 
@@ -265,14 +293,12 @@ const getNodeData = (node, nestingLevel) => {
   const defaultHeight =
     ROW_HEIGHT + Math.floor(labelLength / 150) * lineHeightPx
 
-  const openByDefault = false
-
   return {
     data: {
       id: node.uid.toString(),
       defaultHeight,
       isLeaf: node.children.length === 0,
-      isOpenByDefault: openByDefault,
+      isOpenByDefault: false,
       name: node.name,
       subsetId: node.id,
       subset,
@@ -304,14 +330,18 @@ const mkTreeWalker = (tree) => {
   }
 }
 
-const match = (debouncedSearchInput) => (node) =>
-  node.id.toLowerCase().includes(debouncedSearchInput.toLowerCase()) ||
-  node.subset?.label.toLowerCase().includes(debouncedSearchInput.toLowerCase())
+const match = (debouncedSearchInput) => (node) => {
+  const search = debouncedSearchInput.trim().toLowerCase()
+  return (
+    node.id.toLowerCase().includes(search) ||
+    node.subset?.label.toLowerCase().includes(search)
+  )
+}
 
 function useFilterTree(tree) {
   const [searchInput, setSearchInput] = useState("")
   const debouncedSearchInput = useDebounce(searchInput, 500) || ""
-  const filteredTree = filterNode(tree, match(debouncedSearchInput)) || []
+  const filteredTree = filterNode(tree, match(debouncedSearchInput))
   return { searchInput, debouncedSearchInput, setSearchInput, filteredTree }
 }
 
