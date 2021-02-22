@@ -36,24 +36,24 @@ export default function FileLoaderPage() {
 
       <Panel heading="Segment File format" className="content">
         <p>
-          Data has to be submitted as tab-delimited <b>.tsv</b> segment files.
-          An example file is being provided{" "}
-          <a
-            href="/examples/multi-sample-segments-unfiltered.tsv"
-            target="_blank"
-          >
-            here
-          </a>
-          . We are currently testing an extended <b>.pgxseg</b> file format
-          (documentation{" "}
+          <b>NEW 2021</b>: We now recommend the use of our <code>.pgxseg</code> file format for th eupload of CNV segments files. As an extension of the standard tab-delimited segment file format below, the <code>.pgxseg</code> file format allows the addition of e.g. group label information. The file format is described on our{" "}
           <a
             href="https://info.progenetix.org/doc/fileformats.html"
             target="_blank"
             rel="noreferrer"
           >
+            documentation site
+          </a>{""}, including link to an example file.
+        </p>
+        <p>
+          Otherwise, data has to be submitted as tab-delimited <code>.tsv</code> segment files. An example file is being provided{" "}
+          <a
+            href="/examples/multi-sample-segments-unfiltered.tsv"
+            target="_blank"
+            rel="noreferrer"
+          >
             here
-          </a>
-          ).
+          </a>.
         </p>
         <p>
           While the header values are not being interpreted (i.e. it doesn not
