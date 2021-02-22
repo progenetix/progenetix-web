@@ -32,7 +32,7 @@ export default function Index({
             </li>
           </ul>
         </p>
-        <ExampleHistogram id={randomSubset.id} />
+        <SubsetHistogram datasetIds="progenetix" id={randomSubset.id} />
         <p>
           The resource currently contains genome profiles of{" "}
           <strong>
@@ -55,11 +55,6 @@ export default function Index({
   )
 }
 
-export const ExampleHistogram = ({ id }) => (
-  <SubsetHistogram datasetIds="progenetix" id={id} />
-)
-
-// This function gets called at build time on server-side.
 export const getStaticProps = async () => {
   const dbstatsReply = await tryFetch(`${PROGENETIX}/services/dbstats/`)
   const ncitCountReply = await tryFetch(

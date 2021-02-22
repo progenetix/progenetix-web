@@ -76,6 +76,18 @@ function QuerySummary({ query }) {
           {query.variantType}
         </li>
       )}
+      {query.varMinLength && (
+        <li>
+          <small>Min. Length: </small>
+          {query.varMinLength}
+        </li>
+      )}
+      {query.varMaxLength && (
+        <li>
+          <small>Max. Length: </small>
+          {query.varMaxLength}
+        </li>
+      )}
       {query.referenceBases && (
         <li>
           <small>Ref. Base(s): </small>

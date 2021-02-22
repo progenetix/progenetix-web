@@ -4,6 +4,7 @@ import { Layout } from "../../../components/Layout"
 import parametersConfig from "../shared/searchParameters.yaml"
 import requestTypesConfig from "./requestTypes.yaml"
 import BiosamplesSearchPanel from "../../../components/biosamples/BiosamplesSearchPanel"
+import { SubsetHistogram } from "../../../components/Histogram"
 import Panel from "../../../components/Panel"
 import Link from "next/link"
 
@@ -35,6 +36,7 @@ export default function SearchSamplesPage({ cytoBands }) {
           </Link>{" "}
           page.
         </div>
+        <SubsetHistogram datasetIds="progenetix" id="pgxcohort-TCGAcancers" />
       </Panel>
       <BiosamplesSearchPanel
         datasets={datasets}

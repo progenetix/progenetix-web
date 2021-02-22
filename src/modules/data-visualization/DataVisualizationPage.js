@@ -263,6 +263,7 @@ function DataVisualizationForm({ isQuerying, sampleCount, onSubmit }) {
 function ResultPanel({ response }) {
   const histogramUrl = response.data?.plots?.histogram?.svg_link_tmp
   const multistripUrl = response.data?.plots?.multistrip?.svg_link_tmp
+  const multihistoUrl = response.data?.plots?.multihistogram?.svg_link_tmp
   const samplematrixUrl = response.data?.samplematrix_link_tmp
   return (
     <div>
@@ -273,10 +274,16 @@ function ResultPanel({ response }) {
         </a>
       </div>
       <div>
-        <img src={replaceWithProxy(multistripUrl)} />
-        <a href={multistripUrl} target="_blank" rel="noreferrer">
-          Open Sample Plot
-        </a>
+      <img src={replaceWithProxy(multihistoUrl)} />
+      <a href={multihistoUrl} target="_blank" rel="noreferrer">
+        Open Group Histogram Plot
+      </a>
+      </div>
+      <div>
+      <img src={replaceWithProxy(multistripUrl)} />
+      <a href={multistripUrl} target="_blank" rel="noreferrer">
+        Open Sample Plot
+      </a>
       </div>
       <div>
         <a href={samplematrixUrl} target="_blank" rel="noreferrer">
