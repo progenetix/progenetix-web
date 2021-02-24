@@ -33,10 +33,6 @@ progenetix:
       isHidden: true
     accessid:
       isHidden: true
-    genotypicSex:
-      placeholder: ""
-    materialtype:
-      placeholder: "" #"EFO:0009656"
   examples:
     - label: "CDKN2A Deletion Example"
       note: "Example for focal CDKN2A deletion matches."

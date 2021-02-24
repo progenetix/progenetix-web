@@ -205,12 +205,14 @@ export function Form({
             )}
             requestTypeConfig={requestTypeConfig}
           />
-          <FormUtilitiesButtons
-            onCytoBandClick={onCytoBandClick}
-            cytoBandPanelOpen={cytoBandPanelOpen}
-            onGeneSpansClick={onGeneSpansClick}
-            geneSpansPanelOpen={geneSpansPanelOpen}
-          />
+          {requestTypeId == "progenetix" || requestTypeId == "allFieldsRequest" || requestTypeId ==  "variantRangeRequest" && (
+            <FormUtilitiesButtons
+              onCytoBandClick={onCytoBandClick}
+              cytoBandPanelOpen={cytoBandPanelOpen}
+              onGeneSpansClick={onGeneSpansClick}
+              geneSpansPanelOpen={geneSpansPanelOpen}
+            />
+          ) }
         </div>
         <ExampleDescription example={example} />
         <RequestTypeDescription requestConfig={requestTypeConfig} />
@@ -240,7 +242,9 @@ export function Form({
             {...parameters.includeDatasetResponses}
             {...selectProps}
           />
-          <GeneSymbolSelector {...selectProps} {...parameters.geneSymbol} />
+          {!parameters.geneSymbol.isHidden && (
+            <GeneSymbolSelector {...parameters.geneSymbol} {...selectProps} />
+          ) }
           <div className="columns my-0">
             <SelectField
               className={cn(

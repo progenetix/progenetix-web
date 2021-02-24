@@ -6,7 +6,7 @@ import { PROGENETIX, tryFetch } from "../hooks/api"
 
 export default function Index({
   ncitCountResponse,
-  dbstatsResponse,
+  progenetixStats,
   subsetsResponse
 }) {
   const randomSubset = sample(
@@ -36,7 +36,7 @@ export default function Index({
         <p>
           The resource currently contains genome profiles of{" "}
           <strong>
-            {dbstatsResponse.results[0].datasets.progenetix.counts.biosamples}
+            {progenetixStats.results[0].counts.biosamples}
           </strong>{" "}
           individual samples and represents{" "}
           <strong>{ncitCountResponse.info.count}</strong> cancer types,
@@ -46,7 +46,7 @@ export default function Index({
           Additionally to this genome profiles and associated metadata, the
           website present information about publications (currently{" "}
           <strong>
-            {dbstatsResponse.results[0].datasets.progenetix.counts.publications}
+            {progenetixStats.results[0].counts.publications}
           </strong>{" "}
           articles) referring to cancer genome profiling experiments.
         </p>
@@ -56,7 +56,7 @@ export default function Index({
 }
 
 export const getStaticProps = async () => {
-  const dbstatsReply = await tryFetch(`${PROGENETIX}/services/dbstats/`)
+  const dbstatsReply = await tryFetch(`${PROGENETIX}/services/dbstats/?datasetIds=progenetix`)
   const ncitCountReply = await tryFetch(
     `${PROGENETIX}/services/collations/?datasetIds=progenetix&method=codematches&filters=NCIT`
   )
@@ -66,7 +66,7 @@ export const getStaticProps = async () => {
 
   return {
     props: {
-      dbstatsResponse: dbstatsReply.response,
+      progenetixStats: dbstatsReply.response,
       ncitCountResponse: ncitCountReply.response,
       subsetsResponse: subsetsReply.response
     }

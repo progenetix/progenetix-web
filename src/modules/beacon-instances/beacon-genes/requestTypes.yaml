@@ -9,7 +9,8 @@ geneVariantRequest:
       defaultValue: ["progenetix"]
       isHidden: true
     cohorts:
-      defaultValue: ["pgxcohort-TCGA", "pgxcohort-arraymap"]
+      defaultValue: []
+      isHidden: true
     includeDatasetResponses:
       placeholder: "ALL"
       isHidden: true
@@ -19,22 +20,16 @@ geneVariantRequest:
     assemblyId:
       defaultValue: "GRCh38"
       isHidden: true
-    geneSymbol:
-      placeholder: "TP53"
     referenceName:
       isHidden: true
     start:
       isHidden: true
     end:
       isHidden: true
-    varMinLength:
-      defaultValue: 1000
     alternateBases:
       isHidden: true
     referenceBases:
       isHidden: true
-    bioontology:
-      placeholder: ["NCIT:C3058"]
     genotypicSex:
       isHidden: true
     materialtype:
@@ -45,15 +40,16 @@ geneVariantRequest:
       isHidden: true
     filterLogic:
       isHidden: true
-    city:
+    geoCity:
       isHidden: true
   examples:
-    - label: "TP53 Deletion"
-      note: "Example for any deletion involving TP53."
-      description: |
-        This example shows a gene symbol based query, which translates the TP53 coding region coordinates internally into a range query.
+    - label: "Gene Deletion"
+      note: "Example for any deletion involving a selected gene."
+      description: >
+        This example shows a gene symbol based query, which translates the gene's coding region coordinates internally into a range query. Please type & select a gene symbol to start. Queries here are scoped to the Glioblastoma diagnosis.
       parameters:
         geneSymbol:
+          placeholder: "CDKN2A"
           defaultValue: "TP53"
         variantType:
           defaultValue: "DEL"

@@ -50,6 +50,16 @@ requestType:
 geneSymbol:
   label: Gene Symbol
   infoText: The gene symbol (HUGO).
+  defaultValue: ""
+  options:
+    - value: ""
+      label: No gene specified
+    - label: "TP53"
+      value: "TP53"
+    - label: "CDKN2A"
+      value: "CDKN2A"
+    - label: "MYCN"
+      value: "MYCN"
 referenceName:
   label: Reference name
   infoText: The chromosome with the variant(s).

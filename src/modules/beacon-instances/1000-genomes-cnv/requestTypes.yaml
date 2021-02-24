@@ -16,6 +16,9 @@ variantRangeRequest:
     datasetIds:
       defaultValue: ["1000genomesDRAGEN"]
       isHidden: true
+    cohorts:
+      defaultValue: []
+      isHidden: true
     assemblyId:
       defaultValue: "GRCh38"
       isHidden: true
@@ -25,12 +28,14 @@ variantRangeRequest:
       placeholder: 7000000
     end:
       placeholder: 8000000
+    geneSymbol:
+      isHidden: true
+    varMinLength:
+      isHidden: true
+    varMaxLength:
+      isHidden: true
     variantType:
-      placeholder: ""
-    alternateBases:
-      isHidden: true
-    referenceBases:
-      isHidden: true
+      defaultValue: ""
     bioontology:
       isHidden: true
     genotypicSex:
@@ -82,10 +87,6 @@ allFieldsRequest:
       placeholder: "21967753-23000000"
     variantType:
       placeholder: "DEL"
-    alternateBases:
-      isHidden: true
-    referenceBases:
-      isHidden: true
     bioontology:
       defaultValue: []
       isHidden: true
