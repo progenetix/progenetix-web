@@ -317,7 +317,7 @@ export function useGeoCity({ city }) {
 }
 
 export function useGeneSymbol({ geneSymbol }) {
-  const url = `${basePath}services/genespans?geneSymbol=${geneSymbol}`
+  const url = `${basePath}services/genespans/?geneSymbol=${geneSymbol}&filterPrecision=start`
   return useProgenetixApi(url)
 }
 

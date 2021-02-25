@@ -205,7 +205,7 @@ export function Form({
             )}
             requestTypeConfig={requestTypeConfig}
           />
-          {requestTypeId == "progenetix" || requestTypeId == "allFieldsRequest" || requestTypeId ==  "variantRangeRequest" && (
+          {parameters.geneSymbol.isHidden && (
             <FormUtilitiesButtons
               onCytoBandClick={onCytoBandClick}
               cytoBandPanelOpen={cytoBandPanelOpen}
