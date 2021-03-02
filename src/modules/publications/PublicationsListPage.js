@@ -129,7 +129,7 @@ function PublicationTable({ publications }) {
             // eslint-disable-next-line react/display-name
             Cell: (cellInfo) => (
               <a
-                href={`/publications/details?id=${cellInfo.value}&filterPrecision=exact`}
+                href={`/publications/details?id=${cellInfo.value}`}
               >
                 {cellInfo.value}
               </a>

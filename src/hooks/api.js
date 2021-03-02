@@ -202,7 +202,7 @@ export function buildDataVisualizationParameters(queryData) {
 }
 
 export function publicationDataUrl(id) {
-  return `${basePath}services/publications?filters=${id}&filterPrecision=exact&method=all`
+  return `${basePath}services/publications?filters=${id}&method=details`
 }
 
 export function usePublication(id) {
