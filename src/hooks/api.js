@@ -361,6 +361,11 @@ export function referenceLink(externalReference) {
       "https://portal.gdc.cancer.gov/projects/" +
       externalReference.id.replace("tcga:", "")
     )
+  } else if (externalReference.id.includes("biosample")) {
+    return (
+      "https://www.ebi.ac.uk/biosamples/samples/" +
+      externalReference.id.replace("biosample:", "")
+    )
   } else {
     return null
   }

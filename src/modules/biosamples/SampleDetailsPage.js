@@ -144,11 +144,14 @@ function Biosample({ biosample, datasetIds }) {
             ) : (
               externalReference.id
             )}
-          </li>
+           {" "} {externalReference?.label && (
+             ": "+externalReference?.label
+           )}
+          </li>          
         ))}
       </ul>
 
-      {biosample.info.callset_ids?.length > 0 && (
+      {biosample.info?.callset_ids?.length > 0 && (
         <>
           <h5>CNV Profile(s)</h5>
           {biosample.info.callset_ids?.map((csid, i) => (
