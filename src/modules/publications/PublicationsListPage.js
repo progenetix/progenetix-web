@@ -72,7 +72,7 @@ export default function PublicationsListPage() {
       <PublicationsLoader
         geoCity={geoCity}
         geodistanceKm={geodistanceKm}
-        textSearch={debouncedSearchInput}
+        textSearch={debouncedSearchInput?.trim() ?? ""}
       />
     </Layout>
   )
@@ -128,9 +128,7 @@ function PublicationTable({ publications }) {
             accessor: "id",
             // eslint-disable-next-line react/display-name
             Cell: (cellInfo) => (
-              <a
-                href={`/publications/details?id=${cellInfo.value}`}
-              >
+              <a href={`/publications/details?id=${cellInfo.value}`}>
                 {cellInfo.value}
               </a>
             )
