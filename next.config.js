@@ -6,5 +6,6 @@ module.exports = {
       use: "js-yaml-loader"
     })
     return config
-  }
+  },
+  exportTrailingSlash: true
 }

@@ -86,7 +86,7 @@ function Side({ onClick }) {
       <ul className="Layout__side__items">
         <MenuInternalLinkItem href="/about" label="About Progenetix" />
         <li>
-          <MenuLink 
+          <MenuLink
             href="https://info.progenetix.org/categories/news.html"
             isSub="isSub"
           >
@@ -116,10 +116,7 @@ function Side({ onClick }) {
           label="Search DIPG Samples"
           isSub="isSub"
         />
-        <MenuInternalLinkItem
-          href="/publications.html"
-          label="Publication DB"
-        />
+        <MenuInternalLinkItem href="/publications" label="Publication DB" />
         <MenuInternalLinkItem
           href="/service-collection/ontologymaps"
           label="Services"
