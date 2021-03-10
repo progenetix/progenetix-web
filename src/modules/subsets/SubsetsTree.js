@@ -140,6 +140,7 @@ function Tree({
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   // Memo needed for the checkbox state to work properly
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const treeWalker = useMemo(() => mkTreeWalker(tree), [search])
   const treeRef = React.createRef()
 
