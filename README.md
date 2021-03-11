@@ -2,10 +2,6 @@
 
 Access live version: http://progenetix.org/
 
-Beta version, automatically deployed from master branch:
-https://progenetix-next.vercel.app/
-
-
 ## How to use
 
 Install it and run:
