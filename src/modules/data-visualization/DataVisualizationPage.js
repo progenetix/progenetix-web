@@ -166,7 +166,7 @@ function DataVisualizationForm({ isQuerying, sampleCount, onSubmit }) {
       <div className="columns">
         <div className="column">
           <InputField
-            name="-size_title_left_px"
+            name="-size_title_left_w_px"
             label="Left Labels Width (px)"
             errors={errors}
             register={register}
