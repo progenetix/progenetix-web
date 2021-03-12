@@ -212,7 +212,7 @@ export function usePublication(id) {
 export function usePublicationList({ geoCity, geodistanceKm }) {
   const geoParams = new URLSearchParams({
     ...mkGeoParams(geoCity, geodistanceKm),
-    filters: "genomes:>0",
+    filters: "PMID,genomes:>0",
     method: "details"
   }).toString()
   const url = `${basePath}services/publications?${geoParams}`
