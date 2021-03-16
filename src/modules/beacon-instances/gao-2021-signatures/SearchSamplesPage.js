@@ -6,7 +6,7 @@ import requestTypesConfig from "./requestTypes.yaml"
 import BiosamplesSearchPanel from "../../../components/biosamples/BiosamplesSearchPanel"
 import { SubsetHistogram } from "../../../components/Histogram"
 import Panel from "../../../components/Panel"
-import Link from "next/link"
+// import Link from "next/link"
 
 export default function SearchSamplesPage({ cytoBands }) {
   const imgHere = {
@@ -17,26 +17,18 @@ export default function SearchSamplesPage({ cytoBands }) {
   }
 
   return (
-    <Layout title="Search TCGA Samples" headline="TCGA CNV Data">
-      <Panel heading="Search Genomic CNV Data from TCGA" className="content">
+    <Layout title="Search Samples from Gao & Baudis, 2021" headline="Data from 2021 Signatures Publication">
+      <Panel heading="Search Genomic CNV Data Signatures of Discriminative Copy Number Aberrations..." className="content">
         <div>
-          <img src={"/img/tcga.png"} style={imgHere} />
-          This search page accesses the TCGA subset of the Progenetix
-          collection, based on 22142 samples (tumor and reeferences) from The
-          Cancer Genome Atlas project. The results are based upon data generated
-          by the{" "}
+          <img src={"/img/gao-2021-signatures-landscape.png"} style={imgHere} />
+          This search page uses the subset of Progenetix data - including TCGA samples - used in the{" "}
           <ExternalLink
-            href="https://www.cancer.gov/tcga"
-            label="TCGA Research Network"
+            href="https://info.baudisgroup.org/publications/2020-12-18-publication-Bo-classifiers/"
+            label="Signatures of Discriminative Copy Number Aberrations in 31 Cancer Subtypes"
           />
-          . Disease-specific subsets of TCGA data (aka. projects) can be
-          accessed through the{" "}
-          <Link href="/subsets/cohorts?filters=TCGA">
-            <a>Studies and Cohorts</a>
-          </Link>{" "}
-          page.
+          {" "}publication.<br/>For access restriction imposed by PCAWG the data cannot not include the samples from this consortium which have been used in our publication.
         </div>
-        <SubsetHistogram datasetIds="progenetix" id="pgxcohort-TCGAcancers" />
+        <SubsetHistogram datasetIds="progenetix" id="pgxcohort-gao2021signatures" />
       </Panel>
       <BiosamplesSearchPanel
         datasets={datasets}
