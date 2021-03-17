@@ -30,11 +30,11 @@ export default function SearchSamplesPage({ cytoBands }) {
         </div>
         <div>
          <ExternalLink
-            href="storage-ext/sample_segments_arraymap.tsv.zip"
+            href="/_static/supplements/gao-2021-signatures/sample_segments_arraymap.tsv.zip"
             label="All Progenetix(arrayMap)samples and segmentations used in the study "
           />
          <ExternalLink
-            href="storage-ext/sample_segments_tcga.tsv.zip"
+            href="/_static/supplements/gao-2021-signatures/sample_segments_tcga.tsv.zip"
             label="All TCGA samples and segmentations used in the study"
           />
          <ExternalLink
