@@ -28,6 +28,35 @@ export default function SearchSamplesPage({ cytoBands }) {
           />
           {" "}publication.<br/>For access restriction imposed by PCAWG the data cannot not include the samples from this consortium which have been used in our publication.
         </div>
+        <div>
+         <ExternalLink
+            href="storage-ext/sample_segments_arraymap.tsv.zip"
+            label="All Progenetix(arrayMap)samples and segmentations used in the study "
+          />
+         <ExternalLink
+            href="storage-ext/sample_segments_tcga.tsv.zip"
+            label="All TCGA samples and segmentations used in the study"
+          />
+         <ExternalLink
+            href="https://github.com/baudisgroup/cancer-signatures/blob/master/data/sample_ids_arraymap.txt"
+            label="IDs of all Progenetix(arrayMap) samples used in the study"
+          />
+         <ExternalLink
+            href="https://github.com/baudisgroup/cancer-signatures/blob/master/data/sample_ids_tcga.txt"
+            label="IDs of all TCGA files used in the study"
+          />
+         <ExternalLink
+            href="https://github.com/baudisgroup/cancer-signatures/blob/master/data/sample_ids_pcawg.txt"
+            label="IDs of all PCAWG files used in the study"
+          />
+         <ExternalLink
+            href=""
+            label="Metadata of Progenetix(arrayMap) samples"
+          />
+         <ExternalLink
+            href=""
+            label="Metadata of TCGA samples"
+          />
         <SubsetHistogram datasetIds="progenetix" id="pgxcohort-gao2021signatures" />
       </Panel>
       <BiosamplesSearchPanel
