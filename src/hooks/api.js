@@ -67,9 +67,9 @@ export async function tryFetch(url, fallBack = "N/A") {
 
 // This function gets called at build time on server-side.
 export async function getStaticDatatasets() {
-  const url = `${PROGENETIX}/cgi/bycon/bycon/byconplus.py/get-datasetids/`
+  const url = `${PROGENETIX}/cgi/bycon/bycon/datasets.py`
   const data = await tryFetch(url, null)
-  return data.datasets.map((value) => ({
+  return data.response.results.map((value) => ({
     value: value.id,
     label: value.name
   }))

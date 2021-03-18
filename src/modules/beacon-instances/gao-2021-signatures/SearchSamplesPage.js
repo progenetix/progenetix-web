@@ -18,8 +18,8 @@ export default function SearchSamplesPage({ cytoBands }) {
 
   return (
     <Layout title="Search Samples from Gao & Baudis, 2021" headline="Data from 2021 Signatures Publication">
-      <Panel heading="Search Genomic CNV Data Signatures of Discriminative Copy Number Aberrations..." className="content">
-        <div>
+      <Panel heading="Genomic CNVs from publication..." className="content">
+        <div>            
           <img src={"/img/gao-2021-signatures-landscape.png"} style={imgHere} />
           This search page uses the subset of Progenetix data - including TCGA samples - used in the{" "}
           <ExternalLink
@@ -28,35 +28,56 @@ export default function SearchSamplesPage({ cytoBands }) {
           />
           {" "}publication.<br/>For access restriction imposed by PCAWG the data cannot not include the samples from this consortium which have been used in our publication.
         </div>
+      </Panel>
+      <Panel heading="Downloads and Source Links">
         <div>
-         <ExternalLink
-            href="/_static/supplements/gao-2021-signatures/sample_segments_arraymap.tsv.zip"
-            label="All Progenetix(arrayMap)samples and segmentations used in the study "
-          />
-         <ExternalLink
-            href="/_static/supplements/gao-2021-signatures/sample_segments_tcga.tsv.zip"
-            label="All TCGA samples and segmentations used in the study"
-          />
-         <ExternalLink
-            href="https://github.com/baudisgroup/cancer-signatures/blob/master/data/sample_ids_arraymap.txt"
-            label="IDs of all Progenetix(arrayMap) samples used in the study"
-          />
-         <ExternalLink
-            href="https://github.com/baudisgroup/cancer-signatures/blob/master/data/sample_ids_tcga.txt"
-            label="IDs of all TCGA files used in the study"
-          />
-         <ExternalLink
-            href="https://github.com/baudisgroup/cancer-signatures/blob/master/data/sample_ids_pcawg.txt"
-            label="IDs of all PCAWG files used in the study"
-          />
-         <ExternalLink
-            href=""
-            label="Metadata of Progenetix(arrayMap) samples"
-          />
-         <ExternalLink
-            href=""
-            label="Metadata of TCGA samples"
-          />
+          <ul>
+            <li>
+              <ExternalLink
+                href="/_static/supplements/gao-2021-signatures/sample_segments_arraymap.tsv.zip"
+                label="All Progenetix(arrayMap)samples and segmentations used in the study "
+              />
+            </li>
+            <li>
+              <ExternalLink
+                href="/_static/supplements/gao-2021-signatures/sample_segments_tcga.tsv.zip"
+                label="All TCGA samples and segmentations used in the study"
+              />
+            </li>
+            <li>
+              <ExternalLink
+                href="https://github.com/baudisgroup/cancer-signatures/blob/master/data/sample_ids_arraymap.txt"
+                label="IDs of all Progenetix(arrayMap) samples used in the study"
+              />
+            </li>
+            <li>
+              <ExternalLink
+                href="https://github.com/baudisgroup/cancer-signatures/blob/master/data/sample_ids_tcga.txt"
+                label="IDs of all TCGA files used in the study"
+              />
+            </li>
+            <li>
+              <ExternalLink
+                href="https://github.com/baudisgroup/cancer-signatures/blob/master/data/sample_ids_pcawg.txt"
+                label="IDs of all PCAWG files used in the study"
+              />
+            </li>
+            <li>
+              <ExternalLink
+                href=""
+                label="Metadata of Progenetix(arrayMap) samples"
+              />
+            </li>
+            <li>
+              <ExternalLink
+                href=""
+                label="Metadata of TCGA samples"
+              />
+            </li>
+          </ul>
+        </div>
+      </Panel>
+      <Panel heading="CNV Frequency Plot">
         <SubsetHistogram datasetIds="progenetix" id="pgxcohort-gao2021signatures" />
       </Panel>
       <BiosamplesSearchPanel
