@@ -34,13 +34,13 @@ export default function SearchSamplesPage({ cytoBands }) {
           <ul>
             <li>
               <ExternalLink
-                href="/_static/supplements/gao-2021-signatures/sample_segments_arraymap.tsv.zip"
+                href="/_static/gao-2021-signatures/sample_segments_arraymap.tsv.zip"
                 label="All Progenetix(arrayMap)samples and segmentations used in the study "
               />
             </li>
             <li>
               <ExternalLink
-                href="/_static/supplements/gao-2021-signatures/sample_segments_tcga.tsv.zip"
+                href="/_static/gao-2021-signatures/sample_segments_tcga.tsv.zip"
                 label="All TCGA samples and segmentations used in the study"
               />
             </li>
@@ -64,13 +64,13 @@ export default function SearchSamplesPage({ cytoBands }) {
             </li>
             <li>
               <ExternalLink
-                href=""
+                href="/_static/gao-2021-signatures/arraymap_meta.csv"
                 label="Metadata of Progenetix(arrayMap) samples"
               />
             </li>
             <li>
               <ExternalLink
-                href=""
+                href="/_static/gao-2021-signatures/tcga_meta.csv"
                 label="Metadata of TCGA samples"
               />
             </li>
