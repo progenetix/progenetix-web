@@ -4,7 +4,9 @@ import requestTypesConfig from "./requestTypes.yaml"
 import Nav from "./Nav"
 import BiosamplesSearchPanel from "../../../components/biosamples/BiosamplesSearchPanel"
 
-export default function BeaconPlusPage({ datasets, cytoBands }) {
+const datasets = [{ label: "Progenetix", value: "progenetix" }]
+
+export default function BeaconPlusPage({ cytoBands }) {
   return (
     <>
       <Nav />
@@ -21,3 +23,4 @@ export default function BeaconPlusPage({ datasets, cytoBands }) {
     </>
   )
 }
+

@@ -60,7 +60,7 @@ function PublicationDetails({ publication, id }) {
       <h2 className="tile">
         {publication.id}{" "}
         <a rel="noreferrer" target="_blank" href={epmcUrl(publication.id)}>
-          {"{EPMC ↗}"}
+          {" {EPMC ↗}"}
         </a>
       </h2>
       <h3 className="subtitle is-5">{publication.title}</h3>

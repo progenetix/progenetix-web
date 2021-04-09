@@ -9,7 +9,7 @@ biofilters:
     label: UBERON Anatomy Ontology
 cohortfilters:
   TCGA:
-    label: The Cancer Genome Anatomy Project (projects)
+    label: The Cancer Genome Atlas (projects)
   cellosaurus:
     label: Cellosaurus Cell Line Resource
   cBP:

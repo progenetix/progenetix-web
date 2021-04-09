@@ -61,7 +61,7 @@ geneSymbol:
     - label: "MYCN"
       value: "MYCN"
 referenceName:
-  label: Reference name
+  label: Chromosome
   infoText: The chromosome with the variant(s).
   options:
     - label: "1"

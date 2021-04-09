@@ -1,10 +1,11 @@
 import React, { useState } from "react"
 import { useBeaconQuery } from "../../hooks/api"
 import Panel from "../Panel"
-import { FaSlidersH } from "react-icons/fa"
+// import { FaSlidersH } from "react-icons/fa"
 import { BiosamplesSearchForm } from "./BiosamplesSearchForm"
 import { BiosamplesResults } from "./BiosamplesResults"
 import PropTypes from "prop-types"
+// import cn from "classnames"
 
 BiosamplesSearchPanel.propTypes = {
   datasets: PropTypes.array.isRequired,
@@ -38,6 +39,9 @@ export default function BiosamplesSearchPanel({
     clearQuery()
     setQuery(formValues)
   }
+  
+  // button className="button ml-3"
+//    className="icon has-text-info"
 
   return (
     <>
@@ -45,20 +49,25 @@ export default function BiosamplesSearchPanel({
         <Panel
           isOpened={!searchCollapsed}
           heading={
-            <>
-              <span>Search Samples</span>
-              {searchCollapsed && (
-                <button className="button ml-3">
-                  <FaSlidersH
-                    onClick={() => {
+            <div>
+              <div className="columns">
+                <div className="column">
+                  Search Samples
+                </div>
+                {searchCollapsed && (
+                  <div className="column">
+                    <button className="button is-info mb-5"
+                      onClick={() => {
                       clearQuery()
                       setSearchCollapsed(false)
                     }}
-                    className="icon has-text-info"
-                  />
-                </button>
-              )}
-            </>
+                    >
+                      Modify Query
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
           }
         >
           <BiosamplesSearchForm

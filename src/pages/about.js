@@ -1,4 +1,5 @@
 import { Layout } from "../components/Layout"
+import { ExternalLink } from "../hooks/api"
 
 export default function About() {
   return (
@@ -50,6 +51,20 @@ export default function About() {
           Many previous members and external collaborators have contributed to
           data content and resource features. Participation (features, data,
           comments) by volunteers are welcome.
+        </p>
+        <h3>Requests</h3>
+        <p>
+        While we try to respond to emails in a timely manner, for requests regarding
+        interface improvements, new use case scenarios or bug reporting we recommend
+        to use the Github issue trackers of the {" "}
+        <ExternalLink
+          href="https://github.com/progenetix/progenetix-next/issues"
+          label="progenetix-next web frontend"
+        />{" "}or of the{" "}
+        <ExternalLink
+          href="https://github.com/progenetix/progenetix.github.io/issues"
+          label="Progenetix documentation"
+        />{"."}
         </p>
       </div>
     </Layout>

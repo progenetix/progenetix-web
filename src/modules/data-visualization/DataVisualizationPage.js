@@ -105,7 +105,7 @@ function DataVisualizationForm({ isQuerying, sampleCount, onSubmit }) {
     randNo = sampleMaxNo
   }
 
-  const defaultValues = { group_by: "", "-markers": null, "-randno": randNo }
+  const defaultValues = { "-group_by": "NCIT", "-markers": null, "-randno": randNo }
   const { register, handleSubmit, errors, control } = useForm({ defaultValues })
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -133,7 +133,7 @@ function DataVisualizationForm({ isQuerying, sampleCount, onSubmit }) {
       <div className="columns">
         <div className="column">
           <SelectField
-            name="group_by"
+            name="-group_by"
             register={register}
             label="Plot Grouping"
             options={groupByOptions}

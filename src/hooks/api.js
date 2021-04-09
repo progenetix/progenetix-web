@@ -66,14 +66,16 @@ export async function tryFetch(url, fallBack = "N/A") {
 }
 
 // This function gets called at build time on server-side.
-export async function getStaticDatatasets() {
-  const url = `${PROGENETIX}/cgi/bycon/bycon/datasets.py`
-  const data = await tryFetch(url, null)
-  return data.response.results.map((value) => ({
-    value: value.id,
-    label: value.name
-  }))
-}
+// const url = `${PROGENETIX}/cgi/bycon/beaconServer/datasets.py`
+// 
+// export async function getStaticDatatasets() {
+//   const url = `http://127.0.0.1/cgi/bycon/beaconServer/datasets.py`
+//   const data = await tryFetch(url, null)
+//   return data.response.results.map((value) => ({
+//     value: value.id,
+//     label: value.name
+//   }))
+// }
 
 /**
  * When param is null no query will be triggered.
@@ -81,7 +83,7 @@ export async function getStaticDatatasets() {
 export function useBeaconQuery(queryData) {
   return useProgenetixApi(
     queryData
-      ? `${basePath}cgi/bycon/bycon/byconplus.py?${buildQueryParameters(
+      ? `${basePath}cgi/bycon/beaconServer/byconplus.py?${buildQueryParameters(
           queryData
         )}`
       : null

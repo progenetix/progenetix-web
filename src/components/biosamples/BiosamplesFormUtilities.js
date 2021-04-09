@@ -100,7 +100,7 @@ export function GeneSpansUtility({ onClose, setFormValue }) {
           Gene Spans{" "}
           <Infodot
             infoText={
-              "Type a gene symbol and select to transfer coordinates into Reference Name, Start and End fields, e.g. for a Range Query or further adjustment."
+              "Type a gene symbol and select to transfer coordinates into Reference Name (chromosome), Start and End fields, e.g. for a Range Query or further adjustment."
             }
           />
         </p>
@@ -165,7 +165,7 @@ export function CytoBandsUtility({ onClose, setFormValue }) {
             CytoBands
             <Infodot
               infoText={
-                "Type a cytoband or range and select to transfer coordinates into Reference Name, Start and End fields, e.g. for a Range Query or further adjustment."
+                "Type a cytoband or range and select to transfer coordinates into Reference Name (chromosome), Start and End fields, e.g. for a Range Query or further adjustment."
               }
             />
           </p>
@@ -233,7 +233,7 @@ function CytoBandsData({ data }) {
         End: <b>{data[0].GenomicLocation.interval.end}</b>
       </div>
       <div>
-        Reference Name: <b>{data[0].GenomicLocation.chr}</b>
+        Chromosome: <b>{data[0].GenomicLocation.chr}</b>
       </div>
     </div>
   )

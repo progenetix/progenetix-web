@@ -95,7 +95,18 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
     )
   } else if (selectedTab === TABS.samplesMap) {
     tabComponent = (
-      <BiosamplesMap apiReply={biosamplesReply} datasetId={datasetId} />
+      <div>
+        <h2 className="subtitle has-text-dark">Sample Origins</h2>
+        <p>
+        The map represents the origins of the matched samples, as derived from the original publication or resource repository. In the majority of cases this will correspond to the proxy information of the corresponding author&apos;s institution. Additional information can be found in the{" "}
+          <ExternalLink
+            href="https://info.progenetix.org/geolocations.html"
+            label="Geographic Coordinates documentation"
+          />
+          {"."}
+        </p>
+        <BiosamplesMap apiReply={biosamplesReply} datasetId={datasetId} />
+      </div>
     )
   } else if (selectedTab === TABS.variants) {
     const handover = handoverById(HANDOVER_IDS.variants)

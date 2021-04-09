@@ -5,6 +5,8 @@ import requestTypesConfig from "./requestTypes.yaml"
 import BiosamplesSearchPanel from "../../../components/biosamples/BiosamplesSearchPanel"
 import Panel from "../../../components/Panel"
 
+const datasets = [{ label: "Progenetix", value: "progenetix" }]
+
 export default function SearchSamplesPage({ cytoBands }) {
   return (
     <Layout title="Search arrayMap Samples" headline="arrayMap">
@@ -33,4 +35,3 @@ export default function SearchSamplesPage({ cytoBands }) {
   )
 }
 
-const datasets = [{ label: "Progenetix", value: "progenetix" }]

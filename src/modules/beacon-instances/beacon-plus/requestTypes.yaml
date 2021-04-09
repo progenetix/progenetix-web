@@ -72,7 +72,7 @@ variantAlleleRequest:
     matched. "N" here can stand in as wildcard nucleotide.
   parameters:
     datasetIds:
-      placeholder: "dipg"
+      placeholder: "progenetix"
     includeDatasetResponses:
       placeholder: "ALL"
       isHidden: true
@@ -104,7 +104,7 @@ variantAlleleRequest:
         mutation in the EIF4A1 gene, in the DIPG childhood brain tumor dataset.
       parameters:
         datasetIds:
-          defaultValue: ["dipg"]
+          defaultValue: ["progenetix"]
         includeDatasetResponses:
           defaultValue: "ALL"
           isHidden: true
@@ -205,7 +205,7 @@ variantRangeRequest:
         handover [H—>O] link.
       parameters:
         datasetIds:
-          defaultValue: ["dipg"]
+          defaultValue: ["progenetix"]
         includeDatasetResponses:
           defaultValue: "ALL"
           isHidden: true
