@@ -124,40 +124,40 @@ variantAlleleRequest:
           defaultValue: "G"
         freeFilters:
           defaultValue: ""
-    - label: "ClinVar Example"
-      note: "Example for TP53 mutation (ClinVar annotated) in a cell line"
-      description: |
-        This example shows a core Beacon query, against a specific
-        mutation in the TP53 gene, in cellosaurus, with ClinVar data.
-      parameters:
-        datasetIds:
-          defaultValue: ["cellosaurus"]
-        includeDatasetResponses:
-          defaultValue: "ALL"
-          isHidden: true
-        assemblyId:
-          defaultValue: "GRCh38"
-        referenceName:
-          defaultValue: "17"
-        start:
-          defaultValue: 7673767
-        end:
-          defaultValue: ""
-        variantType:
-          defaultValue: ""
-        alternateBases:
-          defaultValue: "T"
-        referenceBases:
-          defaultValue: "C"
-        genotypicSex:
-          defaultValue: ""
-          isHidden: true
-        materialtype:
-          defaultValue: ""
-          isHidden: true
-        freeFilters:
-          defaultValue: ""
-
+#     - label: "ClinVar Example"
+#       note: "Example for TP53 mutation (ClinVar annotated) in a cell line"
+#       description: |
+#         This example shows a core Beacon query, against a specific
+#         mutation in the TP53 gene, in cellosaurus, with ClinVar data.
+#       parameters:
+#         datasetIds:
+#           defaultValue: ["cellosaurus"]
+#         includeDatasetResponses:
+#           defaultValue: "ALL"
+#           isHidden: true
+#         assemblyId:
+#           defaultValue: "GRCh38"
+#         referenceName:
+#           defaultValue: "17"
+#         start:
+#           defaultValue: 7673767
+#         end:
+#           defaultValue: ""
+#         variantType:
+#           defaultValue: ""
+#         alternateBases:
+#           defaultValue: "T"
+#         referenceBases:
+#           defaultValue: "C"
+#         genotypicSex:
+#           defaultValue: ""
+#           isHidden: true
+#         materialtype:
+#           defaultValue: ""
+#           isHidden: true
+#         freeFilters:
+#           defaultValue: ""
+# 
 variantRangeRequest:
   note: ""
   label: "Range Query"

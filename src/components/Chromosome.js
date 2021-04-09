@@ -3,6 +3,7 @@ import Tippy, { useSingleton } from "@tippyjs/react"
 import cn from "classnames"
 import React, { useState } from "react"
 import { checkIntegerRange, INTEGER_RANGE_REGEX } from "../hooks/api"
+import { Label } from "./form/Label"
 
 const outerBandsHeightRatio = 0.65 // pt
 const innerBandsHeightRatio = 0.8 // pt
@@ -13,6 +14,7 @@ const autoZoomFactor = 1.4
 export function Chromosome({
   bands,
   startRange,
+  chro,
   endRange,
   zoomStart = 0,
   zoomEnd = getMax(bands),
@@ -39,10 +41,15 @@ export function Chromosome({
   const [source, target] = useSingleton()
 
   const bandsHeight = height * outerBandsHeightRatio
+  
+  const chroLabel = "Chromosome " + chro
 
   return (
     <>
       <Tippy singleton={source} delay={0} theme="light" placement="top" />
+      <p>
+        <Label label={chroLabel} infoText="Selected chromosome and position(s)" />
+      </p>
       <svg
         style={{
           cursor: autoZoom ? "zoom-out" : "zoom-in",

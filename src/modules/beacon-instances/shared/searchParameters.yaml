@@ -118,8 +118,6 @@ variantType:
     The type of a structural variant for e.g. CNV searches.
   defaultValue: ""
   options:
-    - value: ""
-      label: No structural variant specified
     - value: DEL
       label: DEL (Deletion)
     - value: DUP
@@ -130,6 +128,8 @@ variantType:
       label: LOH (loss of heterozygosity)
     - value: LOH,DEL
       label: LOH or DEL
+    - value: ""
+      label: ""
 start:
   label: Start or Position
   infoText: |

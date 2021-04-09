@@ -15,6 +15,7 @@ export default function ChromosomePreview({ watch, cytoBands }) {
       {shouldDisplay && (
         <Chromosome
           bands={bands}
+          chro={referenceName}
           startRange={startRange}
           endRange={endRange}
           width={width}

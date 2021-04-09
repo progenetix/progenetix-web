@@ -205,7 +205,7 @@ export function CytoBandsUtility({ onClose, setFormValue }) {
                       >
                         Apply
                       </button>
-                      <button onClick={onClose} className="button  is-outlined">
+                      <button onClick={onClose} className="button is-outlined">
                         Close
                       </button>
                     </div>

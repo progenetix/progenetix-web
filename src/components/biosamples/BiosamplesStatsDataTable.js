@@ -1,7 +1,7 @@
 /* eslint-disable react/display-name */
 import React from "react"
 import PropTypes from "prop-types"
-import Table from "../Table"
+import Table, { InfodotHeader } from "../Table"
 import _ from "lodash"
 import { useCollationsById } from "../../hooks/api"
 import { WithData } from "../Loader"
@@ -15,7 +15,10 @@ export default function BiosamplesStatsDataTable({
     () =>
       [
         {
-          Header: "Subsets",
+          Header: InfodotHeader(
+            "Matched Subset Codes",
+            "Codes diagnoses or other biocharacteristics which are represented in the matched samples."
+          ),
           accessor: "id",
           Cell: ({ value, row: { original } }) => {
             return (
@@ -30,17 +33,26 @@ export default function BiosamplesStatsDataTable({
           }
         },
         {
-          Header: "Subset Samples",
+          Header: InfodotHeader(
+            "Subset Samples",
+            "Overall number of samples in the database which match the given subset code."
+          ),
           accessor: "samples"
         },
         {
-          Header: "Query Matches",
+          Header: InfodotHeader(
+            "Matched Samples",
+            "Number of matched samples with the given code."
+          ),
           accessor: "count"
         },
         variantCount > 0 && datasetId === "progenetix"
           ? [
               {
-                Header: "Subset Match Frequencies",
+                Header: InfodotHeader(
+                  "Subset Match Frequencies",
+                  "Proportion of matched samples with the given code, relativ to the overall number of samples with the code. Please be aware that the frequence e.g. does not correspond to e.g. the frequency in a pre-selected cohort but to the whole dataset."
+                ),
                 accessor: "frequency",
                 Cell: ({ value }) => {
                   return (
