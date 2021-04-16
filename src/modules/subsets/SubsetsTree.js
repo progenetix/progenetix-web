@@ -335,7 +335,7 @@ const match = (debouncedSearchInput) => (node) => {
   const search = debouncedSearchInput.trim().toLowerCase()
   return (
     node.id.toLowerCase().includes(search) ||
-    node.subset?.label.toLowerCase().includes(search)
+    node.subset?.label?.toLowerCase().includes(search)
   )
 }
 
