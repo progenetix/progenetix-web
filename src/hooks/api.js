@@ -266,7 +266,7 @@ export function useCytomapper(querytext) {
   const url =
     querytext &&
     querytext.length > 0 &&
-    `${basePath}services/cytomapper/?cytoBands=${querytext}`
+    `${basePath}cgi/bycon/services/cytomapper.py?cytoBands=${querytext}`
   return useProgenetixApi(url)
 }
 

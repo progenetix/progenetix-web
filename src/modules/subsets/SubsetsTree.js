@@ -10,21 +10,6 @@ import { filterNode } from "./tree"
 
 const ROW_HEIGHT = 30
 
-
-
-// <div className="field">
-// <input
-//   className="input "
-//   placeholder="Filter subsets ..."
-//   value={searchInput}
-//   onChange={(e) => setSearchInput(e.target.value)}
-// />
-// </div>
-
-
-// searchInput,
-// setSearchInput,
-
 export function SubsetsTree({
   tree,
   size,
@@ -36,6 +21,8 @@ export function SubsetsTree({
   sampleFilterScope
 }) {
   const {
+    searchInput,
+    setSearchInput,
     filteredTree,
     debouncedSearchInput
   } = useFilterTree(tree)
@@ -50,6 +37,14 @@ export function SubsetsTree({
   return (
     <>
       <div className="Subsets__controls">
+        <div className="field">
+          <input
+            className="input "
+            placeholder="Filter subsets ..."
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+          />
+        </div>
         {!isFlat && (
           <>
             <div className="level-left">
