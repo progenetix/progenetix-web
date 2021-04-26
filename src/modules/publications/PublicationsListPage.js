@@ -139,9 +139,7 @@ function PublicationTable({ publications }) {
             Cell: ({ row: { original } }) => {
               return (
                 <>
-                  <div>{original.label}</div>
-                  <div>
-                    {original.journal} <EpmcLink publicationId={original.id} />
+                  <div>{original.label}{" "}{original.journal}{" "}<EpmcLink publicationId={original.id} />
                   </div>
                 </>
               )

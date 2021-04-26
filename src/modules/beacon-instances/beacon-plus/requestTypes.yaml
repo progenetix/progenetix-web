@@ -8,6 +8,9 @@ variantCNVrequest:
   parameters:
     datasetIds:
       defaultValue: ["progenetix"]
+    cohorts:
+      defaultValue: [""]
+      isHidden: true
     includeDatasetResponses:
       defaultValue: "ALL"
       isHidden: true

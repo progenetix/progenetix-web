@@ -4,6 +4,7 @@ import { FaBars, FaTimes } from "react-icons/fa"
 import { useRouter } from "next/router"
 import Head from "next/head"
 import Link from "next/link"
+import { ABOUTLINK, DOCLINK, NEWSLINK, PROGENETIXINFO, YEAR } from "../hooks/api"
 
 export function Layout({ title, headline, children }) {
   const [sideOpen, setSideOpen] = useState(false)
@@ -45,7 +46,7 @@ export function Layout({ title, headline, children }) {
       </main>
       <footer className="footer">
         <div className="content container has-text-centered">
-          © 2000 - 2020 Progenetix Cancer Genomics Information Resource by the
+          © 2000 - {YEAR} Progenetix Cancer Genomics Information Resource by the
           group of{" "}
           <a href="https://info.baudisgroup.org/group/Michael_Baudis/">
             Michael Baudis
@@ -84,15 +85,6 @@ function Side({ onClick }) {
         />
       </a>
       <ul className="Layout__side__items">
-        <MenuInternalLinkItem href="/about" label="About Progenetix" />
-        <li>
-          <MenuLink
-            href="https://info.progenetix.org/categories/news.html"
-            isSub="isSub"
-          >
-            News
-          </MenuLink>
-        </li>
         <MenuInternalLinkItem
           href="/subsets/biosubsets"
           label="Cancer CNV Profiles"
@@ -101,19 +93,28 @@ function Side({ onClick }) {
           href="/biosamples/search"
           label="Search Samples"
         />
-        <MenuInternalLinkItem href="/arraymap/search" label="arrayMap" />
         <MenuInternalLinkItem
           href="/subsets/cohorts"
           label="Studies & Cohorts"
         />
         <MenuInternalLinkItem
-          href="/TCGA/search"
-          label="Search TCGA Samples"
-          isSub="isSub"
+        href="/arraymap/search"
+        label="arrayMap"
+        isSub="isSub"
+        />
+        <MenuInternalLinkItem
+        href="/TCGA/search"
+        label="TCGA Samples"
+        isSub="isSub"
         />
         <MenuInternalLinkItem
           href="/DIPG/search"
-          label="Search DIPG Samples"
+          label="DIPG Samples"
+          isSub="isSub"
+        />
+        <MenuInternalLinkItem
+          href="/gao-2021-signatures/search"
+          label="Gao & Baudis, 2021"
           isSub="isSub"
         />
         <MenuInternalLinkItem href="/publications" label="Publication DB" />
@@ -135,11 +136,6 @@ function Side({ onClick }) {
           href="/service-collection/uploader"
           label="Upload & Plot"
         />
-        <li>
-          <MenuLink href="https://info.progenetix.org/">
-            Documentation{" "}
-          </MenuLink>
-        </li>
         <MenuInternalLinkItem
           href="/beacon-plus/search"
           label={
@@ -148,11 +144,30 @@ function Side({ onClick }) {
             </>
           }
         />
-        <li>
-          <MenuLink href="https://info.baudisgroup.org/">
-            Baudisgroup @ UZH{" "}
-          </MenuLink>
-        </li>
+        <MenuInternalLinkItem
+          href={PROGENETIXINFO}
+          label="Progenetix Info"
+        />
+        <MenuInternalLinkItem
+          href={NEWSLINK}
+          label="News"
+          isSub="isSub"
+        />
+        <MenuInternalLinkItem
+          href={ABOUTLINK}
+          label="About Progenetix"
+          isSub="isSub"
+        />
+        <MenuInternalLinkItem
+          href={DOCLINK}
+          label="Documentation"
+          isSub="isSub"
+        />
+        <MenuInternalLinkItem
+          href="https://info.baudisgroup.org/"
+          label="Baudisgroup @ UZH"
+          isSub="isSub"
+        />
       </ul>
     </div>
   )

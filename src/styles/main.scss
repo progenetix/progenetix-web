@@ -51,6 +51,14 @@ body {
   color: #3333ff;
   font-weight: 700;
 }
+.span-loss-color {
+  color: #33A0FF;
+  font-weight: 700;
+}
+.span-gain-color {
+  color: #FFC633;
+  font-weight: 700;
+}
 .span-purple {
   color: #ff33ff;
   font-weight: 700;
@@ -58,4 +66,11 @@ body {
 .span-red {
   color: #ff3333;
   font-weight: 700;
+}
+
+.svg-histolinks {
+  padding: 0px;
+  font-size: 0.8em;
+  margin-top: -10px;
+  margin-bottom: 10px;
 }

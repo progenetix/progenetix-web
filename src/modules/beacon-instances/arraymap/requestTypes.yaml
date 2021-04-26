@@ -91,11 +91,11 @@ progenetix:
           defaultValue: "DEL"
         freeFilters:
           defaultValue: "cellosaurus"
-    - label: "HeLa Cell Line"
-      note: "Instances of HeLa and daughter cell lines, searched by Cellosaurus id"
+    - label: "K-562 Cell Line"
+      note: "Instances of K-562 and daughter cell lines, searched by Cellosaurus id"
       description: |
-        The query retrieves all instances of HeLa and derived cell lines
-        using the "cellosaurus:CVCL_0030" identifier. This is an example for a
+        The query retrieves all instances of K-562 and derived cell lines
+        using the "cellosaurus:CVCL_0004" identifier. This is an example for a
         pure "non-variant" query.
       parameters:
         referenceName:
@@ -107,4 +107,4 @@ progenetix:
         variantType:
           defaultValue: ""
         freeFilters:
-          defaultValue: "cellosaurus:CVCL_0030"
+          defaultValue: "cellosaurus:CVCL_0004"

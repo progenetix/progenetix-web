@@ -161,7 +161,7 @@ bioontology:
   label: Cancer Classification(s)
   infoText: |
     Special filter type for disease classification codes. If using multiple
-    codes please be aware that probably use of an "OR" filter logic will be needed.
+    codes please be aware that probably use of an "OR" filter logic will be appropriate.
   isMulti: true
   options:
     - value: ""
@@ -196,7 +196,8 @@ freeFilters:
   infoText: |
     Add free comma-concatenated **filters** to the search. These will usually
     correspond to CURIE values supported by the resource (e.g.
-    "cellosaurus:CVCL_0139"; "NCIT:C3222"; "PMID:18559507").
+    "cellosaurus:CVCL_0004"; "NCIT:C3222"; "PMID:18559507"). Please see the 
+    Documentation for details.
 accessid:
   label: Accession Prefilter
 filterLogic:

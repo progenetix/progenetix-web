@@ -1,4 +1,4 @@
-# progenetix-next - Web front-end for Beacon+ and the Progenetix resource
+# progenetix-web - Web front-end for Beacon+ and the Progenetix resource
 
 Access live version: http://progenetix.org/
 

@@ -2,6 +2,7 @@ import React from "react"
 import { useRouter } from "next/router"
 import Link from "next/link"
 import cn from "classnames"
+import {DOCLINK} from "../../../hooks/api"
 
 export default function Nav() {
   return (
@@ -25,7 +26,7 @@ export default function Nav() {
           <ActiveLink label="About" href="/beacon-plus/about" />
           <ActiveLink label="Progenetix" href="/" />
           <a
-            href="https://info.progenetix.org/categories/howto.html"
+            href={DOCLINK}
             className="navbar-item"
           >
             Help

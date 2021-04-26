@@ -58,8 +58,8 @@ export default function About() {
         interface improvements, new use case scenarios or bug reporting we recommend
         to use the Github issue trackers of the {" "}
         <ExternalLink
-          href="https://github.com/progenetix/progenetix-next/issues"
-          label="progenetix-next web frontend"
+          href="https://github.com/progenetix/progenetix-web/issues"
+          label="progenetix-web web frontend"
         />{" "}or of the{" "}
         <ExternalLink
           href="https://github.com/progenetix/progenetix.github.io/issues"

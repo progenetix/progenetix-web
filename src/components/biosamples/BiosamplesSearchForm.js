@@ -179,6 +179,10 @@ export function Form({
     setError
   })
 
+
+// {parameters.geneSymbol.isHidden && (
+// ) }
+
   const isFilterlogicWarningVisible = useIsFilterlogicWarningVisible(watch)
   const geoCity = watch("geoCity")
   const showGeoDistance = !parameters.geoCity.isHidden && geoCity != null
@@ -205,14 +209,12 @@ export function Form({
             )}
             requestTypeConfig={requestTypeConfig}
           />
-          {parameters.geneSymbol.isHidden && (
             <FormUtilitiesButtons
               onCytoBandClick={onCytoBandClick}
               cytoBandPanelOpen={cytoBandPanelOpen}
               onGeneSpansClick={onGeneSpansClick}
               geneSpansPanelOpen={geneSpansPanelOpen}
             />
-          ) }
         </div>
         <ExampleDescription example={example} />
         <RequestTypeDescription requestConfig={requestTypeConfig} />
@@ -580,7 +582,7 @@ function useSubsets(watchForm) {
   const { data, ...other } = useCollations({
     datasetIds,
     method: "children",
-    filters: "NCIT,icdom,icdot"
+    filters: "NCIT,icdom,icdot,UBERON"
   })
   return { data, ...other }
 }

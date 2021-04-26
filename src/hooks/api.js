@@ -15,6 +15,10 @@ export function useExtendedSWR(url, fetcher = defaultFetcher) {
 
 export const PROGENETIX = "https://progenetix.org"
 export const PROGENETIXINFO = "https://info.progenetix.org"
+export const ABOUTLINK = `${PROGENETIXINFO}/categories/about.html`
+export const DOCLINK = `${PROGENETIXINFO}/categories/documentation.html`
+export const NEWSLINK = `${PROGENETIXINFO}/categories/news.html`
+export const YEAR = new Date().getFullYear()
 
 export function useProgenetixApi(...args) {
   const { data, error, ...other } = useExtendedSWR(...args)
@@ -266,7 +270,7 @@ export function useCytomapper(querytext) {
   const url =
     querytext &&
     querytext.length > 0 &&
-    `${basePath}cgi/bycon/services/cytomapper.py?cytoBands=${querytext}`
+    `${basePath}/services/cytomapper/?cytoBands=${querytext}`
   return useProgenetixApi(url)
 }
 
@@ -325,6 +329,10 @@ export function useGeneSymbol({ geneSymbol }) {
 
 export function subsetSVGlink(id, datasetIds) {
   return `${basePath}cgi/PGX/cgi/collationPlots.cgi?datasetIds=${datasetIds}&id=${id}`
+}
+
+export function subsetIdlink(id) {
+  return `${basePath}services/ids/${id}`
 }
 
 export function ExternalLink({ href, label, onClick }) {
