@@ -331,8 +331,12 @@ export function subsetSVGlink(id, datasetIds) {
   return `${basePath}cgi/PGX/cgi/collationPlots.cgi?datasetIds=${datasetIds}&id=${id}`
 }
 
-export function subsetIdlink(id) {
+export function subsetIdLink(id) {
   return `${basePath}services/ids/${id}`
+}
+
+export function subsetPgxsegLink(id) {
+  return `${basePath}services/intervalFrequencies/?&method=pgxseg&filters=${id}`
 }
 
 export function ExternalLink({ href, label, onClick }) {
