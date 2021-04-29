@@ -4,7 +4,7 @@ import requestTypesConfig from "./requestTypes.yaml"
 import BeaconPlusNav from "../../../components/BeaconPlusNav"
 import BiosamplesSearchPanel from "../../../components/biosamples/BiosamplesSearchPanel"
 
-export default function ThousandGenomesPage({ cytoBands }) {
+export default function CellosaurusPage({ cytoBands }) {
   return (
     <>
       <BeaconPlusNav beaconName="Cell Line" />
