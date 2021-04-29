@@ -1,17 +1,17 @@
 import React from "react"
-import parametersConfig from "../shared/searchParameters.yaml"
+import parametersConfig from "../../shared/searchParameters.yaml"
 import requestTypesConfig from "./requestTypes.yaml"
 import BeaconPlusNav from "../../../components/BeaconPlusNav"
 import BiosamplesSearchPanel from "../../../components/biosamples/BiosamplesSearchPanel"
 
-export default function CellosaurusPage({ cytoBands }) {
+export default function BeaconPlusPage() {
   return (
     <>
-      <BeaconPlusNav beaconName="Cell Line" />
+      <BeaconPlusNav beaconName="Gene Symbol" />
       <div className="section">
         <div className="BeaconPlus__container">
           <BiosamplesSearchPanel
-            cytoBands={cytoBands}
+            cytoBands={ {} }
             datasets={datasets}
             parametersConfig={parametersConfig}
             requestTypesConfig={requestTypesConfig}
@@ -22,4 +22,4 @@ export default function CellosaurusPage({ cytoBands }) {
   )
 }
 
-const datasets = [{ label: "Cellosaurus Cell Lines", value: "cellosaurus" }]
+const datasets = [{ label: "Progenetix", value: "progenetix" }]

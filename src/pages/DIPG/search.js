@@ -1,4 +1,4 @@
-import Page from "../../modules/beacon-instances/DIPG/SearchSamplesPage"
+import Page from "../../modules/progenetix-searchpages/DIPG/SearchSamplesPage"
 import { getCytoBands } from "../../utils/genome"
 export default Page
 

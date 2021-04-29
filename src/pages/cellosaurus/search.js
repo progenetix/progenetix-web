@@ -1,4 +1,4 @@
-import Page from "../../modules/beacon-instances/cellosaurus/BeaconPage"
+import Page from "../../modules/beaconplus-instances/cellosaurus/BeaconPage"
 import { getCytoBands } from "../../utils/genome"
 export default Page
 
