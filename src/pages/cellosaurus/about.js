@@ -1,9 +1,9 @@
-import Nav from "../../modules/beacon-instances/cellosaurus/Nav"
+import BeaconPlusNav from "../../components/BeaconPlusNav"
 
 export default function About() {
   return (
     <>
-      <Nav />
+      <BeaconPlusNav beaconName="Cell Line" />
       <section className="section">
         <div className="BeaconPlus__container">
           <div className="content">

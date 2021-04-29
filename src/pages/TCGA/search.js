@@ -1,4 +1,4 @@
-import Page from "../../modules/beacon-instances/TCGA/SearchSamplesPage"
+import Page from "../../modules/progenetix-searchpages/TCGA/SearchSamplesPage"
 import { getCytoBands } from "../../utils/genome"
 export default Page
 

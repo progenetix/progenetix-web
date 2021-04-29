@@ -2,9 +2,10 @@ import React from "react"
 import { useRouter } from "next/router"
 import Link from "next/link"
 import cn from "classnames"
-import {DOCLINK} from "../../../hooks/api"
+import {DOCLINK} from "../hooks/api"
 
-export default function Nav() {
+export default function BeaconPlusNav( { beaconName } ) {
+  const router = useRouter()
   return (
     <header className="section Nav__header">
       <nav
@@ -12,12 +13,15 @@ export default function Nav() {
         role="navigation"
         aria-label="main navigation"
       >
-        <Link href="/beacon-genes/search">
+        <Link href={router}>
           <a className="Nav__logo">
-            BeaconGenes <sup className="Nav__plus">+</sup>
+            {beaconName}{" "}Beacon<sup className="Nav__plus">+</sup>
           </a>
         </Link>
+
         <div className="Nav__links">
+          <ActiveLink label="Beacon+" href="/beacon-plus/search/" />         
+          <ActiveLink label="Gene Beacon" href="/beacon-genes/search" />
           <ActiveLink
             label="1000 Genomes CNVs"
             href="/1000-genomes-cnv/search"
@@ -48,3 +52,9 @@ function ActiveLink({ href, label }) {
     </Link>
   )
 }
+
+// <Link href="/1000-genomes-cnv/search">
+// <a className="Nav__logo">
+//   1000 Genomes Beacon <sup className="Nav__plus">+</sup>
+// </a>
+// </Link>

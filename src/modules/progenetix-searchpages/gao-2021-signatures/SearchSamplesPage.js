@@ -1,7 +1,7 @@
 import React from "react"
 import { ExternalLink } from "../../../hooks/api"
 import { Layout } from "../../../components/Layout"
-import parametersConfig from "../shared/searchParameters.yaml"
+import parametersConfig from "../../shared/searchParameters.yaml"
 import requestTypesConfig from "./requestTypes.yaml"
 import BiosamplesSearchPanel from "../../../components/biosamples/BiosamplesSearchPanel"
 import { SubsetHistogram } from "../../../components/Histogram"

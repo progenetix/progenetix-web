@@ -1,9 +1,9 @@
-import Nav from "../../modules/beacon-instances/1000-genomes-cnv/Nav"
+import BeaconPlusNav from "../../components/BeaconPlusNav"
 
 export default function About() {
   return (
     <>
-      <Nav />
+      <BeaconPlusNav beaconName="1kG CNV" />
       <section className="section">
         <div className="BeaconPlus__container">
           <div className="content">

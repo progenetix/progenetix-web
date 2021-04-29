@@ -1,2 +1,2 @@
-import Page from "../../modules/beacon-instances/beacon-genes/BeaconPage"
+import Page from "../../modules/beaconplus-instances/beacon-genes/BeaconPage"
 export default Page

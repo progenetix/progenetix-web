@@ -1,13 +1,14 @@
 import React from "react"
-import parametersConfig from "../shared/searchParameters.yaml"
+import parametersConfig from "../../shared/searchParameters.yaml"
 import requestTypesConfig from "./requestTypes.yaml"
-import Nav from "./Nav"
+import BeaconPlusNav from "../../../components/BeaconPlusNav"
+// import Nav from "./Nav"
 import BiosamplesSearchPanel from "../../../components/biosamples/BiosamplesSearchPanel"
 
-export default function ThousandGenomesPage({ cytoBands }) {
+export default function SearchSamplesPage({ cytoBands }) {
   return (
     <>
-      <Nav />
+      <BeaconPlusNav beaconName="1kG CNV" />
       <div className="section">
         <div className="BeaconPlus__container">
           <BiosamplesSearchPanel
@@ -22,4 +23,4 @@ export default function ThousandGenomesPage({ cytoBands }) {
   )
 }
 
-const datasets = [{ label: "Cellosaurus Cell Lines", value: "cellosaurus" }]
+const datasets = [{ label: "1000genomesDRAGEN", value: "1000genomesDRAGEN" }]
