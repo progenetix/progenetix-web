@@ -103,17 +103,17 @@ function Side({ onClick }) {
         isSub="isSub"
         />
         <MenuInternalLinkItem
-        href="/TCGA/"
+        href="/progenetix-cohorts/TCGA"
         label="TCGA Samples"
         isSub="isSub"
         />
         <MenuInternalLinkItem
-          href="/DIPG/"
+          href="/progenetix-cohorts/DIPG"
           label="DIPG Samples"
           isSub="isSub"
         />
         <MenuInternalLinkItem
-          href="/gao-2021-signatures/"
+          href="/progenetix-cohorts/gao-2021-signatures"
           label="Gao & Baudis, 2021"
           isSub="isSub"
         />
