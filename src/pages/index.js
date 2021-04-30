@@ -6,7 +6,7 @@ import { sample } from "lodash"
 import { PROGENETIX, tryFetch, ExternalLink } from "../hooks/api"
 
 
-// const searchLink = 'Use case: Local CNV Frequencies <a href="/biosamples/search">{↗}</a>'+
+// const searchLink = 'Use case: Local CNV Frequencies <a href="/biosamples/">{↗}</a>'+
 
 
 const imgFocal = {
@@ -46,14 +46,14 @@ export default function Index({
       
         <h4> 
           <ExternalLink
-            href="/biosamples/search"
+            href="/biosamples/"
             label="Local CNV Frequencies"
           />
         </h4>
 
         <p>
             <img src={"/img/9p-example-histogram.png"} style={imgFocal} />
-            A typical use case on Progenetix is the search for local copy number aberrations - e.g. involving a gene - and the exploration of cancer types with these CNVs. The <a href="/biosamples/search">[ Search Page ]</a> provides example use cases for designing queries. Results contain basic statistics as well as visualization and download options.
+            A typical use case on Progenetix is the search for local copy number aberrations - e.g. involving a gene - and the exploration of cancer types with these CNVs. The <a href="/biosamples/">[ Search Page ]</a> provides example use cases for designing queries. Results contain basic statistics as well as visualization and download options.
         </p>
         
         <h4>

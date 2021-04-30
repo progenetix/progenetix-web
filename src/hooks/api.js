@@ -314,7 +314,7 @@ export function sampleSearchPageFiltersLink({
   sampleFilterScope,
   filters
 }) {
-  return `/biosamples/search?${sampleFilterScope}=${filters}&datasetIds=${datasetIds}&filterLogic=OR`
+  return `/biosamples/?${sampleFilterScope}=${filters}&datasetIds=${datasetIds}&filterLogic=OR`
 }
 
 export function useGeoCity({ city }) {

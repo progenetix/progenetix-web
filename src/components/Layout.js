@@ -90,7 +90,7 @@ function Side({ onClick }) {
           label="Cancer CNV Profiles"
         />
         <MenuInternalLinkItem
-          href="/biosamples/search"
+          href="/biosamples/"
           label="Search Samples"
         />
         <MenuInternalLinkItem
@@ -98,22 +98,22 @@ function Side({ onClick }) {
           label="Studies & Cohorts"
         />
         <MenuInternalLinkItem
-        href="/arraymap/search"
+        href="/arraymap/"
         label="arrayMap"
         isSub="isSub"
         />
         <MenuInternalLinkItem
-        href="/TCGA/search"
+        href="/TCGA/"
         label="TCGA Samples"
         isSub="isSub"
         />
         <MenuInternalLinkItem
-          href="/DIPG/search"
+          href="/DIPG/"
           label="DIPG Samples"
           isSub="isSub"
         />
         <MenuInternalLinkItem
-          href="/gao-2021-signatures/search"
+          href="/gao-2021-signatures/"
           label="Gao & Baudis, 2021"
           isSub="isSub"
         />
@@ -137,7 +137,7 @@ function Side({ onClick }) {
           label="Upload & Plot"
         />
         <MenuInternalLinkItem
-          href="/beacon-plus/search"
+          href="/beacon-plus/"
           label={
             <>
               Beacon<sup style={{ color: "red" }}>+</sup>

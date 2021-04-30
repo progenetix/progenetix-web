@@ -126,7 +126,7 @@ function sampleSearchHref({
   if (progenetixSamplesCount > 0) datasetsIds.push("progenetix")
   if (arraymapSamplesCount > 0) datasetsIds.push("arraymap")
 
-  return `/biosamples/search?freeFilters=${id}&datasetIds=${datasetsIds.join(
+  return `/biosamples/index?freeFilters=${id}&datasetIds=${datasetsIds.join(
     ","
   )}&filterPrecision=exact&executeSearch=true`
 }

@@ -20,13 +20,13 @@ export default function BeaconPlusNav( { beaconName } ) {
         </Link>
 
         <div className="Nav__links">
-          <ActiveLink label="Beacon+" href="/beacon-plus/search/" />         
-          <ActiveLink label="Gene Beacon" href="/beacon-genes/search" />
+          <ActiveLink label="Beacon+" href="/beacon-plus/" />         
+          <ActiveLink label="Gene Beacon" href="/beacon-genes/" />
           <ActiveLink
             label="1000 Genomes CNVs"
             href="/1000-genomes-cnv/search"
           />
-          <ActiveLink label="Cell Line Beacon" href="/cellosaurus/search" />
+          <ActiveLink label="Cell Line Beacon" href="/cellosaurus/" />
           <ActiveLink label="About" href="/beacon-plus/about" />
           <ActiveLink label="Progenetix" href="/" />
           <a
