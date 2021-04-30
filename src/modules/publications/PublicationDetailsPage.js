@@ -98,7 +98,6 @@ function PublicationDetails({ publication, id }) {
           href={sampleSearchHref({
             id,
             progenetixSamplesCount: progenetixBiosamplesCount,
-            arraymapSamplesCount: arraymapBiosamplesCount
           })}
         >
           Retrieve Publication Samples
@@ -110,9 +109,6 @@ function PublicationDetails({ publication, id }) {
           <SubsetHistogram id={id} filter={id} datasetIds="progenetix" />
         </div>
       )}
-      {arraymapBiosamplesCount > 0 && (
-        <SubsetHistogram id={id} filter={id} datasetIds="arraymap" />
-      )}
     </section>
   )
 }
@@ -120,13 +116,11 @@ function PublicationDetails({ publication, id }) {
 function sampleSearchHref({
   id,
   progenetixSamplesCount,
-  arraymapSamplesCount
 }) {
   const datasetsIds = []
   if (progenetixSamplesCount > 0) datasetsIds.push("progenetix")
-  if (arraymapSamplesCount > 0) datasetsIds.push("arraymap")
 
-  return `/biosamples/index?freeFilters=${id}&datasetIds=${datasetsIds.join(
+  return `/biosamples/?freeFilters=${id}&datasetIds=${datasetsIds.join(
     ","
   )}&filterPrecision=exact&executeSearch=true`
 }

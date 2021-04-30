@@ -26,8 +26,7 @@ export default function PublicationsListPage() {
           (WGS, WES, aCGH, cCGH) experiments in cancer, registered in the
           Progenetix publication collection. For each publication the table
           indicates the numbers of samples analysed with a given technology and
-          if sample profiles are available in Progenetix and/or arraymap (array
-          source files).
+          if sample profiles are available in Progenetix.
         </p>
         <p>
           Please <a href="mailto:contact@progenetix.org">contact us</a> to alert

@@ -98,7 +98,7 @@ function Side({ onClick }) {
           label="Studies & Cohorts"
         />
         <MenuInternalLinkItem
-        href="/arraymap/"
+        href="/progenetix-cohorts/arraymap"
         label="arrayMap"
         isSub="isSub"
         />
@@ -137,7 +137,7 @@ function Side({ onClick }) {
           label="Upload & Plot"
         />
         <MenuInternalLinkItem
-          href="/beacon-plus/"
+          href="/beaconplus-instances/beaconplus"
           label={
             <>
               Beacon<sup style={{ color: "red" }}>+</sup>
