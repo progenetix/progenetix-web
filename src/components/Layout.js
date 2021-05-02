@@ -47,9 +47,9 @@ export function Layout({ title, headline, children }) {
       <footer className="footer">
         <div className="content container has-text-centered">
           © 2000 - {YEAR} Progenetix Cancer Genomics Information Resource by the
-          group of{" "}
-          <a href="https://info.baudisgroup.org/group/Michael_Baudis/">
-            Michael Baudis
+          {" "}
+          <a href="https://info.baudisgroup.org">
+            Computational Oncogenomics Group
           </a>{" "}
           at the{" "}
           <a href="https://www.mls.uzh.ch/en/research/baudis/">
@@ -98,14 +98,14 @@ function Side({ onClick }) {
           label="Studies & Cohorts"
         />
         <MenuInternalLinkItem
-        href="/progenetix-cohorts/arraymap"
-        label="arrayMap"
-        isSub="isSub"
+          href="/progenetix-cohorts/arraymap"
+          label="arrayMap"
+          isSub="isSub"
         />
         <MenuInternalLinkItem
-        href="/progenetix-cohorts/TCGA"
-        label="TCGA Samples"
-        isSub="isSub"
+          href="/progenetix-cohorts/TCGA"
+          label="TCGA Samples"
+          isSub="isSub"
         />
         <MenuInternalLinkItem
           href="/progenetix-cohorts/DIPG"

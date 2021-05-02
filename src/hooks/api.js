@@ -270,7 +270,7 @@ export function useCytomapper(querytext) {
   const url =
     querytext &&
     querytext.length > 0 &&
-    `${basePath}/services/cytomapper/?cytoBands=${querytext}`
+    `${basePath}services/cytomapper/?cytoBands=${querytext}`
   return useProgenetixApi(url)
 }
 

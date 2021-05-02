@@ -112,6 +112,8 @@ function PublicationsLoader({ geoCity, geodistanceKm, textSearch }) {
   )
 }
 
+
+
 function PublicationTable({ publications }) {
   const publicationsCount = publications.length
   const columns = React.useMemo(
@@ -119,6 +121,7 @@ function PublicationTable({ publications }) {
       {
         Header: `Publications (${publicationsCount})`,
         columns: [
+          { accessor: "sortid" },
           {
             Header: InfodotHeader(
               "id",
@@ -186,6 +189,7 @@ function PublicationTable({ publications }) {
         ]
       },
       { accessor: "authors" },
+      { accessor: "abstract" },
       { accessor: "title" }
     ],
     [publicationsCount]
@@ -194,8 +198,8 @@ function PublicationTable({ publications }) {
     <Table
       columns={columns}
       data={publications}
-      pageSize={15}
-      hiddenColumns={["authors", "title"]}
+      pageSize={25}
+      hiddenColumns={["authors", "abstract", "sortid", "title"]}
     />
   )
 }
