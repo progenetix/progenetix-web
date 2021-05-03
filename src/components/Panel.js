@@ -20,10 +20,10 @@ export default function Panel({
   } 
   return (
     <div className={cn("Panel panel", className)}>
-    
+      {heading ? (
       <div className="Panel_heading">
         {heading}{" "}{headlink}
-      </div>
+      </div>) : null}
       <Collapse isOpened={isOpened}>
         <div className="Panel__block">{children} </div>
       </Collapse>
