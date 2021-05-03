@@ -20,6 +20,7 @@ export default function Panel({
   } 
   return (
     <div className={cn("Panel panel", className)}>
+    
       <div className="Panel_heading">
         {heading}{" "}{headlink}
       </div>

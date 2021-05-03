@@ -84,15 +84,28 @@ export async function tryFetch(url, fallBack = "N/A") {
 /**
  * When param is null no query will be triggered.
  */
+
+// export function useBeaconQuery(queryData) {
+//   return useProgenetixApi(
+//     queryData
+//       ? `${basePath}cgi/bycon/beaconServer/byconplus.py?${buildQueryParameters(
+//           queryData
+//         )}`
+//       : null
+//   )
+// }
+
+
 export function useBeaconQuery(queryData) {
   return useProgenetixApi(
     queryData
-      ? `${basePath}cgi/bycon/beaconServer/byconplus.py?${buildQueryParameters(
+      ? `${basePath}services/biosamples/?${buildQueryParameters(
           queryData
         )}`
       : null
   )
 }
+
 
 export function validateBeaconQuery(queryData) {
   try {
