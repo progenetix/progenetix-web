@@ -1,4 +1,4 @@
-import Page from "../../modules/beaconplus-instances/beacon-plus/BeaconPage"
+import Page from "../../modules/progenetix-searchpages/progenetix/SearchSamplesPage"
 import { getCytoBands } from "../../utils/genome"
 export default Page
 

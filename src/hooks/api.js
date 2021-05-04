@@ -84,15 +84,28 @@ export async function tryFetch(url, fallBack = "N/A") {
 /**
  * When param is null no query will be triggered.
  */
+
+// export function useBeaconQuery(queryData) {
+//   return useProgenetixApi(
+//     queryData
+//       ? `${basePath}cgi/bycon/beaconServer/byconplus.py?${buildQueryParameters(
+//           queryData
+//         )}`
+//       : null
+//   )
+// }
+
+
 export function useBeaconQuery(queryData) {
   return useProgenetixApi(
     queryData
-      ? `${basePath}cgi/bycon/beaconServer/byconplus.py?${buildQueryParameters(
+      ? `${basePath}services/biosamples/?${buildQueryParameters(
           queryData
         )}`
       : null
   )
 }
+
 
 export function validateBeaconQuery(queryData) {
   try {
@@ -270,7 +283,7 @@ export function useCytomapper(querytext) {
   const url =
     querytext &&
     querytext.length > 0 &&
-    `${basePath}/services/cytomapper/?cytoBands=${querytext}`
+    `${basePath}services/cytomapper/?cytoBands=${querytext}`
   return useProgenetixApi(url)
 }
 
@@ -314,7 +327,7 @@ export function sampleSearchPageFiltersLink({
   sampleFilterScope,
   filters
 }) {
-  return `/biosamples/search?${sampleFilterScope}=${filters}&datasetIds=${datasetIds}&filterLogic=OR`
+  return `/biosamples/?${sampleFilterScope}=${filters}&datasetIds=${datasetIds}&filterLogic=OR`
 }
 
 export function useGeoCity({ city }) {

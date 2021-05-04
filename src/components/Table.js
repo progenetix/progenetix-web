@@ -21,7 +21,7 @@ import Tippy from "@tippyjs/react"
 export default function Table({
   columns,
   data,
-  pageSize = 5,
+  pageSize = 10,
   hasGlobalFilter = false,
   hiddenColumns = []
 }) {

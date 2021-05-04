@@ -133,6 +133,7 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
                 <b>Calls: </b>
                 {callCount}
               </div>
+              {frequency > 0 ? (
               <div>
                 <b>
                   <i>f</i>
@@ -140,6 +141,7 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
                 </b>
                 {frequency}
               </div>
+            ) : null}
             </div>
           ) : null}
         </div>

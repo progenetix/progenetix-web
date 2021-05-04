@@ -12,7 +12,15 @@ export default function BeaconPlusPage({ cytoBands }) {
       <div className="section">
         <div className="BeaconPlus__container">
           <Panel heading="Germline CNVs from the 1000 Genomes Project" className="content">
-          This Beacon allows to query CNVs from the 1000 Genomes project.      
+            <p>
+              This forward looking Cellosaurus Cell Line Beacon service tests
+              experimental features and proposed extensions to the{" "}
+              <a href="http://beacon-project.io">Beacon</a> protocol. The
+              service is implemented using the{" "}
+              <a href="https://github.com/progenetix/bycon">bycon</a> backend
+              and part of the <a href="http://progenetix.org">Progenetix</a>{" "}
+              cancer genomics resource.
+            </p>
           </Panel>
           <BiosamplesSearchPanel
             cytoBands={cytoBands}

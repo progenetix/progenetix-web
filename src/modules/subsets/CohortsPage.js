@@ -110,7 +110,7 @@ function SubsetsResponse({ bioSubsetsHierarchies, allBioSubsets, datasetIds }) {
           <h3>
             Find{" "}
             <a
-              href={`/biosamples/search?${sampleFilterScope}=${bioSubsetsHierarchies[0].id}&datasetIds=${datasetIds}`}
+              href={`/biosamples/?${sampleFilterScope}=${bioSubsetsHierarchies[0].id}&datasetIds=${datasetIds}`}
             >
               {bioSubsetsHierarchies[0].id} samples
             </a>

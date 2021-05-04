@@ -26,8 +26,7 @@ export default function PublicationsListPage() {
           (WGS, WES, aCGH, cCGH) experiments in cancer, registered in the
           Progenetix publication collection. For each publication the table
           indicates the numbers of samples analysed with a given technology and
-          if sample profiles are available in Progenetix and/or arraymap (array
-          source files).
+          if sample profiles are available in Progenetix.
         </p>
         <p>
           Please <a href="mailto:contact@progenetix.org">contact us</a> to alert
@@ -113,6 +112,8 @@ function PublicationsLoader({ geoCity, geodistanceKm, textSearch }) {
   )
 }
 
+
+
 function PublicationTable({ publications }) {
   const publicationsCount = publications.length
   const columns = React.useMemo(
@@ -120,6 +121,7 @@ function PublicationTable({ publications }) {
       {
         Header: `Publications (${publicationsCount})`,
         columns: [
+          { accessor: "sortid" },
           {
             Header: InfodotHeader(
               "id",
@@ -187,6 +189,7 @@ function PublicationTable({ publications }) {
         ]
       },
       { accessor: "authors" },
+      { accessor: "abstract" },
       { accessor: "title" }
     ],
     [publicationsCount]
@@ -195,8 +198,8 @@ function PublicationTable({ publications }) {
     <Table
       columns={columns}
       data={publications}
-      pageSize={15}
-      hiddenColumns={["authors", "title"]}
+      pageSize={25}
+      hiddenColumns={["authors", "abstract", "sortid", "title"]}
     />
   )
 }

@@ -21,5 +21,3 @@ cohortfilters:
 datasetIds:
   progenetix:
     label: Progenetix
-  arraymap:
-    label: arrayMap

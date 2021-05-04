@@ -47,9 +47,9 @@ export function Layout({ title, headline, children }) {
       <footer className="footer">
         <div className="content container has-text-centered">
           © 2000 - {YEAR} Progenetix Cancer Genomics Information Resource by the
-          group of{" "}
-          <a href="https://info.baudisgroup.org/group/Michael_Baudis/">
-            Michael Baudis
+          {" "}
+          <a href="https://info.baudisgroup.org">
+            Computational Oncogenomics Group
           </a>{" "}
           at the{" "}
           <a href="https://www.mls.uzh.ch/en/research/baudis/">
@@ -90,7 +90,7 @@ function Side({ onClick }) {
           label="Cancer CNV Profiles"
         />
         <MenuInternalLinkItem
-          href="/biosamples/search"
+          href="/biosamples/"
           label="Search Samples"
         />
         <MenuInternalLinkItem
@@ -98,22 +98,22 @@ function Side({ onClick }) {
           label="Studies & Cohorts"
         />
         <MenuInternalLinkItem
-        href="/arraymap/search"
-        label="arrayMap"
-        isSub="isSub"
+          href="/progenetix-cohorts/arraymap"
+          label="arrayMap"
+          isSub="isSub"
         />
         <MenuInternalLinkItem
-        href="/TCGA/search"
-        label="TCGA Samples"
-        isSub="isSub"
+          href="/progenetix-cohorts/TCGA"
+          label="TCGA Samples"
+          isSub="isSub"
         />
         <MenuInternalLinkItem
-          href="/DIPG/search"
+          href="/progenetix-cohorts/DIPG"
           label="DIPG Samples"
           isSub="isSub"
         />
         <MenuInternalLinkItem
-          href="/gao-2021-signatures/search"
+          href="/progenetix-cohorts/gao-2021-signatures"
           label="Gao & Baudis, 2021"
           isSub="isSub"
         />
@@ -137,7 +137,7 @@ function Side({ onClick }) {
           label="Upload & Plot"
         />
         <MenuInternalLinkItem
-          href="/beacon-plus/search"
+          href="/beaconplus-instances/beaconplus"
           label={
             <>
               Beacon<sup style={{ color: "red" }}>+</sup>

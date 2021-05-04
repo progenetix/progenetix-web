@@ -47,9 +47,9 @@ export function Chromosome({
   return (
     <>
       <Tippy singleton={source} delay={0} theme="light" placement="top" />
-      <p>
+      <div>
         <Label label={chroLabel} infoText="Selected chromosome and position(s)" />
-      </p>
+      </div>
       <svg
         style={{
           cursor: autoZoom ? "zoom-out" : "zoom-in",
