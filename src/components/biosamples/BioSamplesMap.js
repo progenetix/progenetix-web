@@ -79,14 +79,15 @@ function BiosamplesTable({ biosamples, datasetId }) {
     () => [
       {
         accessor: "id",
-        // eslint-disable-next-line react/display-name
-        Cell: (cellInfo) => (
-          <a
-            href={`/biosamples/details?id=${cellInfo.value}&datasetIds=${datasetId}`}
-          >
-            {cellInfo.value}
-          </a>
-        )
+        Cell: function Cell(cellInfo) {
+          return (
+            <a
+              href={`/biosamples/details?id=${cellInfo.value}&datasetIds=${datasetId}`}
+            >
+              {cellInfo.value}
+            </a>
+          )
+        }
       },
       {
         accessor: "description"

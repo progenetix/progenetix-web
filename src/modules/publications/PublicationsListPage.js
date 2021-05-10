@@ -126,17 +126,17 @@ function PublicationTable({ publications }) {
               "Publication id (PubMed) with link to details page"
             ),
             accessor: "id",
-            // eslint-disable-next-line react/display-name
-            Cell: (cellInfo) => (
-              <a href={`/publications/details?id=${cellInfo.value}`}>
-                {cellInfo.value}
-              </a>
-            )
+            Cell: function Cell(cellInfo) {
+              return (
+                <a href={`/publications/details?id=${cellInfo.value}`}>
+                  {cellInfo.value}
+                </a>
+              )
+            }
           },
           {
             Header: "Publication",
-            // eslint-disable-next-line react/display-name
-            Cell: ({ row: { original } }) => {
+            Cell: function Cell({ row: { original } }) {
               return (
                 <>
                   <div>

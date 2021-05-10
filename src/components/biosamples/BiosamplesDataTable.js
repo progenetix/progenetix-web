@@ -15,14 +15,15 @@ export default function BiosamplesDataTable({ apiReply, datasetId }) {
           "Internal, stable (Progenetix) identifier for the biosample"
         ),
         accessor: "id",
-        // eslint-disable-next-line react/display-name
-        Cell: (cellInfo) => (
-          <Link
-            href={`/biosamples/details?id=${cellInfo.value}&datasetIds=${datasetId}`}
-          >
-            {cellInfo.value}
-          </Link>
-        )
+        Cell: function Cell(cellInfo) {
+          return (
+            <Link
+              href={`/biosamples/details?id=${cellInfo.value}&datasetIds=${datasetId}`}
+            >
+              {cellInfo.value}
+            </Link>
+          )
+        }
       },
       {
         Header: TooltipHeader("Description", "Text description of the sample"),

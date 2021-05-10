@@ -182,27 +182,27 @@ function MenuInternalLinkItem({ href, label, isSub }) {
 
 // `onClick`, `href`, and `ref` need to be passed to the DOM element
 // for proper handling
-// eslint-disable-next-line react/display-name
-const MenuLink = React.forwardRef(
-  ({ onClick, href, isActive, children, isSub }, ref) => {
-    const className = isSub ? "Layout__side__sub" : "Layout__side__category"
-    return (
-      <Link href={href}>
-        <a
-          onClick={onClick}
-          ref={ref}
-          className={cn(
-            { "is-active": isActive },
-            "Layout__side__item",
-            className
-          )}
-        >
-          {children}
-        </a>
-      </Link>
-    )
-  }
-)
+const MenuLink = React.forwardRef(function MenuLink(
+  { onClick, href, isActive, children, isSub },
+  ref
+) {
+  const className = isSub ? "Layout__side__sub" : "Layout__side__category"
+  return (
+    <Link href={href}>
+      <a
+        onClick={onClick}
+        ref={ref}
+        className={cn(
+          { "is-active": isActive },
+          "Layout__side__item",
+          className
+        )}
+      >
+        {children}
+      </a>
+    </Link>
+  )
+})
 
 function removeQuery(href) {
   if (href.indexOf("?") > 0) return href.slice(0, href.indexOf("?"))

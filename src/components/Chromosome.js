@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import Tippy, { useSingleton } from "@tippyjs/react"
 import cn from "classnames"
 import React, { useState } from "react"
@@ -143,45 +142,43 @@ export function Chromosome({
   )
 }
 
-const verticalLine = (calcX) => (bandPosition, stroke) => (
-  <line
-    x1={calcX(bandPosition)}
-    x2={calcX(bandPosition)}
-    y1={0}
-    y2="100%"
-    stroke={stroke}
-    strokeWidth={2}
-  />
-)
-
-const annotation = (calcX) => (
-  bandPosition,
-  text,
-  fill,
-  position,
-  anchor = "middle"
-) => {
-  const x = calcX(bandPosition)
-
-  let y = "0"
-  let alignmentBaseline = "hanging"
-  if (position === "bottom") {
-    y = height
-    alignmentBaseline = ""
+const verticalLine = (calcX) =>
+  function VerticalLine(bandPosition, stroke) {
+    return (
+      <line
+        x1={calcX(bandPosition)}
+        x2={calcX(bandPosition)}
+        y1={0}
+        y2="100%"
+        stroke={stroke}
+        strokeWidth={2}
+      />
+    )
   }
-  return (
-    <text
-      x={x}
-      y={y}
-      className="annotation"
-      textAnchor={anchor}
-      fill={fill}
-      alignmentBaseline={alignmentBaseline}
-    >
-      {text}
-    </text>
-  )
-}
+
+const annotation = (calcX) =>
+  function VerticalLine(bandPosition, text, fill, position, anchor = "middle") {
+    const x = calcX(bandPosition)
+
+    let y = "0"
+    let alignmentBaseline = "hanging"
+    if (position === "bottom") {
+      y = height
+      alignmentBaseline = ""
+    }
+    return (
+      <text
+        x={x}
+        y={y}
+        className="annotation"
+        textAnchor={anchor}
+        fill={fill}
+        alignmentBaseline={alignmentBaseline}
+      >
+        {text}
+      </text>
+    )
+  }
 
 function getMax(bands) {
   return bands[bands.length - 1].end
