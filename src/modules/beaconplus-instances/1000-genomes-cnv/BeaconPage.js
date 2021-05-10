@@ -25,7 +25,6 @@ export default function BeaconPlusPage({ cytoBands }) {
 
 const datasets = [{ label: "1000genomesDRAGEN", value: "1000genomesDRAGEN" }]
 
-
 // <p>
 // This forward looking Beacon is based on the 1000 Genomes CNV
 // dataset from the 2020 Dragen re-processing. The service tests

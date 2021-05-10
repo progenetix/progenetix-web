@@ -4,7 +4,13 @@ import { FaBars, FaTimes } from "react-icons/fa"
 import { useRouter } from "next/router"
 import Head from "next/head"
 import Link from "next/link"
-import { ABOUTLINK, DOCLINK, NEWSLINK, PROGENETIXINFO, YEAR } from "../hooks/api"
+import {
+  ABOUTLINK,
+  DOCLINK,
+  NEWSLINK,
+  PROGENETIXINFO,
+  YEAR
+} from "../hooks/api"
 
 export function Layout({ title, headline, children }) {
   const [sideOpen, setSideOpen] = useState(false)
@@ -46,8 +52,7 @@ export function Layout({ title, headline, children }) {
       </main>
       <footer className="footer">
         <div className="content container has-text-centered">
-          © 2000 - {YEAR} Progenetix Cancer Genomics Information Resource by the
-          {" "}
+          © 2000 - {YEAR} Progenetix Cancer Genomics Information Resource by the{" "}
           <a href="https://info.baudisgroup.org">
             Computational Oncogenomics Group
           </a>{" "}
@@ -89,10 +94,7 @@ function Side({ onClick }) {
           href="/subsets/biosubsets"
           label="Cancer CNV Profiles"
         />
-        <MenuInternalLinkItem
-          href="/biosamples/"
-          label="Search Samples"
-        />
+        <MenuInternalLinkItem href="/biosamples/" label="Search Samples" />
         <MenuInternalLinkItem
           href="/subsets/cohorts"
           label="Studies & Cohorts"
@@ -144,15 +146,8 @@ function Side({ onClick }) {
             </>
           }
         />
-        <MenuInternalLinkItem
-          href={PROGENETIXINFO}
-          label="Progenetix Info"
-        />
-        <MenuInternalLinkItem
-          href={NEWSLINK}
-          label="News"
-          isSub="isSub"
-        />
+        <MenuInternalLinkItem href={PROGENETIXINFO} label="Progenetix Info" />
+        <MenuInternalLinkItem href={NEWSLINK} label="News" isSub="isSub" />
         <MenuInternalLinkItem
           href={ABOUTLINK}
           label="About Progenetix"

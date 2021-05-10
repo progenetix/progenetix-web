@@ -71,7 +71,7 @@ export async function tryFetch(url, fallBack = "N/A") {
 
 // This function gets called at build time on server-side.
 // const url = `${PROGENETIX}/cgi/bycon/beaconServer/datasets.py`
-// 
+//
 // export async function getStaticDatatasets() {
 //   const url = `http://127.0.0.1/cgi/bycon/beaconServer/datasets.py`
 //   const data = await tryFetch(url, null)
@@ -95,17 +95,13 @@ export async function tryFetch(url, fallBack = "N/A") {
 //   )
 // }
 
-
 export function useBeaconQuery(queryData) {
   return useProgenetixApi(
     queryData
-      ? `${basePath}services/biosamples/?${buildQueryParameters(
-          queryData
-        )}`
+      ? `${basePath}services/biosamples/?${buildQueryParameters(queryData)}`
       : null
   )
 }
-
 
 export function validateBeaconQuery(queryData) {
   try {

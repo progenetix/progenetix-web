@@ -160,7 +160,7 @@ variantAlleleRequest:
 #           isHidden: true
 #         freeFilters:
 #           defaultValue: ""
-# 
+#
 variantRangeRequest:
   note: ""
   label: "Range Query"

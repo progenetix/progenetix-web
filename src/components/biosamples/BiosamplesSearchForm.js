@@ -179,9 +179,8 @@ export function Form({
     setError
   })
 
-
-// {parameters.geneSymbol.isHidden && (
-// ) }
+  // {parameters.geneSymbol.isHidden && (
+  // ) }
 
   const isFilterlogicWarningVisible = useIsFilterlogicWarningVisible(watch)
   const geoCity = watch("geoCity")
@@ -209,12 +208,12 @@ export function Form({
             )}
             requestTypeConfig={requestTypeConfig}
           />
-            <FormUtilitiesButtons
-              onCytoBandClick={onCytoBandClick}
-              cytoBandPanelOpen={cytoBandPanelOpen}
-              onGeneSpansClick={onGeneSpansClick}
-              geneSpansPanelOpen={geneSpansPanelOpen}
-            />
+          <FormUtilitiesButtons
+            onCytoBandClick={onCytoBandClick}
+            cytoBandPanelOpen={cytoBandPanelOpen}
+            onGeneSpansClick={onGeneSpansClick}
+            geneSpansPanelOpen={geneSpansPanelOpen}
+          />
         </div>
         <ExampleDescription example={example} />
         <RequestTypeDescription requestConfig={requestTypeConfig} />
@@ -246,7 +245,7 @@ export function Form({
           />
           {!parameters.geneSymbol.isHidden && (
             <GeneSymbolSelector {...parameters.geneSymbol} {...selectProps} />
-          ) }
+          )}
           <div className="columns my-0">
             <SelectField
               className={cn(
@@ -545,11 +544,11 @@ function validateForm(formValues) {
       errors.push(["referenceBases", error])
       errors.push(["alternateBases", error])
     }
-      // if (!variantType && !(referenceBases || alternateBases)) {
-      //   setMissing("variantType")
-      //   setMissing("referenceBases")
-      //   setMissing("alternateBases")
-      // }
+    // if (!variantType && !(referenceBases || alternateBases)) {
+    //   setMissing("variantType")
+    //   setMissing("referenceBases")
+    //   setMissing("alternateBases")
+    // }
   }
 
   const queryError = validateBeaconQuery(formValues)

@@ -11,7 +11,7 @@ export default function BeaconPlusPage() {
       <div className="section">
         <div className="BeaconPlus__container">
           <BiosamplesSearchPanel
-            cytoBands={ {} }
+            cytoBands={{}}
             datasets={datasets}
             parametersConfig={parametersConfig}
             requestTypesConfig={requestTypesConfig}

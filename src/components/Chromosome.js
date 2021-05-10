@@ -41,14 +41,17 @@ export function Chromosome({
   const [source, target] = useSingleton()
 
   const bandsHeight = height * outerBandsHeightRatio
-  
+
   const chroLabel = "Chromosome " + chro
 
   return (
     <>
       <Tippy singleton={source} delay={0} theme="light" placement="top" />
       <div>
-        <Label label={chroLabel} infoText="Selected chromosome and position(s)" />
+        <Label
+          label={chroLabel}
+          infoText="Selected chromosome and position(s)"
+        />
       </div>
       <svg
         style={{
