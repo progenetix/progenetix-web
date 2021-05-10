@@ -337,7 +337,7 @@ export function useGeneSymbol({ geneSymbol }) {
 }
 
 export function subsetSVGlink(id, datasetIds) {
-  return `${basePath}cgi/PGX/cgi/collationPlots.cgi?datasetIds=${datasetIds}&id=${id}`
+  return `${basePath}services/collationPlots/?datasetIds=${datasetIds}&id=${id}`
 }
 
 export function subsetIdLink(id) {
