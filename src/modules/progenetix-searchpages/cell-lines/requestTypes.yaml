@@ -1,0 +1,74 @@
+---
+variantCNVrequest:
+  note: ""
+  label: ""
+  description: ""
+  parameters:
+    datasetIds:
+      defaultValue: ["progenetix"]
+      isHidden: true
+    cohorts:
+      defaultValue: ["pgxcohort-celllines"]
+      isHidden: true
+    includeDatasetResponses:
+      placeholder: "ALL"
+      isHidden: true
+    requestType:
+      rules:
+        required: false
+      isHidden: true
+    assemblyId:
+      isHidden: true
+    referenceName:
+      placeholder: "9"
+    start:
+      placeholder: "19000001-21975098"
+    end:
+      placeholder: "21967753-24000000"
+    variantType:
+      placeholder: "DEL"
+    alternateBases:
+      placeholder: ""
+      isHidden: true
+    referenceBases:
+      placeholder: ""
+      isHidden: true
+    accessid:
+      isHidden: true
+    genotypicSex:
+      placeholder: ""
+    materialtype:
+      placeholder: "EFO:0009656" #"EFO:0009656"
+  examples:
+    - label: "CDKN2A Deletion Example"
+      note: "Example for focal CDKN2A deletion matches."
+      description: |
+        This example shows the query for CNV deletion variants overlapping the
+        CDKN2A gene's coding region with at least a single base, but limited
+        to "highly focal" hits (here i.e. <= ~1Mbp in size) in Glioblastoma samples. The query can be modified e.g. through changing the position parameters or diagnosis.
+      parameters:
+        referenceName:
+          defaultValue: "9"
+        start:
+          defaultValue: "21500001-21975098"
+        end:
+          defaultValue: "21967753-22500000"
+        variantType:
+          defaultValue: "DEL"
+        bioontology:
+          defaultValue: ["NCIT:C3058"]
+    - label: "MYC Duplication"
+      note: "Example for focal MYC Duplications."
+      description: |
+        The example parameters will select samples with a continuous, focal duplication of the complete MYC coding region. The serarch will be limited to  neoplastic samples (EFO:0009656).
+      parameters:
+        referenceName:
+          defaultValue: "8"
+        start:
+          defaultValue: "124000000-127736593"
+        end:
+          defaultValue: "127740957-130000000"
+        variantType:
+          defaultValue: "DUP"
+        materialtype:
+          defaultValue: "EFO:0009656"
