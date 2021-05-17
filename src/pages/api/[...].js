@@ -1,6 +1,7 @@
 import { createProxyMiddleware } from "http-proxy-middleware"
+
 export default createProxyMiddleware({
-  target: "https://progenetix.org/",
+  target: process.env.NEXT_PUBLIC_PROGENETIX_URL,
   pathRewrite: { "^/api": "/" },
   changeOrigin: true,
   followRedirects: true
