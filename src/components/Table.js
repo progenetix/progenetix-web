@@ -24,7 +24,7 @@ export default function Table({
   pageSize = 10,
   hasGlobalFilter = false,
   hiddenColumns = [],
-  sortBy
+  sortBy = []
 }) {
   const filterTypes = React.useMemo(
     () => ({
