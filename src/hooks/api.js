@@ -16,9 +16,10 @@ export function useExtendedSWR(url, fetcher = defaultFetcher) {
 export const PROGENETIX = "https://progenetix.org"
 export const PROGENETIXINFO = "https://info.progenetix.org"
 export const ABOUTLINK = `${PROGENETIXINFO}/categories/about.html`
+export const USECASESLINK = `${PROGENETIXINFO}/categories/usecases.html`
 export const DOCLINK = `${PROGENETIXINFO}/categories/documentation.html`
 export const NEWSLINK = `${PROGENETIXINFO}/categories/news.html`
-export const YEAR = new Date().getFullYear()
+export const THISYEAR = new Date().getFullYear()
 
 export function useProgenetixApi(...args) {
   const { data, error, ...other } = useExtendedSWR(...args)

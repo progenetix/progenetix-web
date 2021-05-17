@@ -7,9 +7,9 @@ import Link from "next/link"
 import {
   ABOUTLINK,
   DOCLINK,
-  NEWSLINK,
+  USECASESLINK,
   PROGENETIXINFO,
-  YEAR
+  THISYEAR
 } from "../hooks/api"
 
 export function Layout({ title, headline, children }) {
@@ -52,7 +52,7 @@ export function Layout({ title, headline, children }) {
       </main>
       <footer className="footer">
         <div className="content container has-text-centered">
-          © 2000 - {YEAR} Progenetix Cancer Genomics Information Resource by the{" "}
+          © 2000 - {THISYEAR} Progenetix Cancer Genomics Information Resource by the{" "}
           <a href="https://info.baudisgroup.org">
             Computational Oncogenomics Group
           </a>{" "}
@@ -147,10 +147,14 @@ function Side({ onClick }) {
           }
         />
         <MenuInternalLinkItem href={PROGENETIXINFO} label="Progenetix Info" />
-        <MenuInternalLinkItem href={NEWSLINK} label="News" isSub="isSub" />
         <MenuInternalLinkItem
           href={ABOUTLINK}
           label="About Progenetix"
+          isSub="isSub"
+        />
+        <MenuInternalLinkItem
+          href={USECASESLINK}
+          label="Use Cases"
           isSub="isSub"
         />
         <MenuInternalLinkItem
