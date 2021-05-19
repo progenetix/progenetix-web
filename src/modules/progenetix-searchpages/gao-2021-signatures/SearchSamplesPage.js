@@ -18,7 +18,7 @@ export default function SearchSamplesPage({ cytoBands }) {
 
   return (
     <Layout title="Search Samples from Gao & Baudis, 2021" headline="Data from 2021 Signatures Publication">
-      <Panel heading="Genomic CNVs from publication...TESTTTTTTTT" className="content">
+      <Panel heading="Genomic CNVs from publication..." className="content">
         <div>            
           <img src={"/img/gao-2021-signatures-landscape.png"} style={imgHere} />
           This search page uses the subset of Progenetix data - including TCGA samples - used in the{" "}

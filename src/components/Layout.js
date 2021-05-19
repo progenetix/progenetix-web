@@ -117,6 +117,11 @@ function Side({ onClick }) {
           label="Gao & Baudis, 2021"
           isSub="isSub"
         />
+        <MenuInternalLinkItem
+          href="/progenetix-cohorts/cell-lines"
+          label="Cancer Cell Lines"
+          isSub="isSub"
+        />
         <MenuInternalLinkItem href="/publications" label="Publication DB" />
         <MenuInternalLinkItem
           href="/service-collection/ontologymaps"
