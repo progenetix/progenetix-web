@@ -14,6 +14,7 @@ export function useExtendedSWR(url, fetcher = defaultFetcher) {
   return { data, error, ...other, isLoading: !data && !error }
 }
 
+export const MAX_HISTO_SAMPLES = 4000
 export const PROGENETIXINFO = "https://info.progenetix.org"
 export const ABOUTLINK = `${PROGENETIXINFO}/categories/about.html`
 export const USECASESLINK = `${PROGENETIXINFO}/categories/usecases.html`

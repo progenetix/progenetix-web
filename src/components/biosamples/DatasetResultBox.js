@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react"
 import {
+  MAX_HISTO_SAMPLES,
   HANDOVER_IDS,
   replaceWithProxy,
   ExternalLink,
@@ -57,11 +58,13 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
   let histogramUrl
   let visualizationLink
   if (handoverById(HANDOVER_IDS.cnvhistogram)) {
-    histogramUrl = handoverById(HANDOVER_IDS.cnvhistogram).url
-    let visualizationAccessId = new URLSearchParams(
-      new URL(histogramUrl).search
-    ).get("accessid")
-    visualizationLink = getVisualizationLink(visualizationAccessId, sampleCount)
+    if (sampleCount <= MAX_HISTO_SAMPLES) {
+      histogramUrl = handoverById(HANDOVER_IDS.cnvhistogram).url
+      let visualizationAccessId = new URLSearchParams(
+        new URL(histogramUrl).search
+      ).get("accessid")
+      visualizationLink = getVisualizationLink(visualizationAccessId, sampleCount)
+    }
   }
 
   // main / samples / variants
