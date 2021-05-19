@@ -38,8 +38,7 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
     datasetHandover,
     variantCount,
     callCount,
-    sampleCount,
-    frequency
+    sampleCount
   } = datasetAlleleResponse
 
   const handoverById = (givenId) =>
@@ -137,15 +136,6 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
                 <b>Calls: </b>
                 {callCount}
               </div>
-              {frequency > 0 ? (
-                <div>
-                  <b>
-                    <i>f</i>
-                    <sub>alleles</sub>:{" "}
-                  </b>
-                  {frequency}
-                </div>
-              ) : null}
             </div>
           ) : null}
         </div>
