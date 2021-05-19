@@ -97,7 +97,7 @@ function PublicationDetails({ publication, id }) {
           className="button is-info mb-5"
           href={sampleSearchHref({
             id,
-            progenetixSamplesCount: progenetixBiosamplesCount,
+            progenetixSamplesCount: progenetixBiosamplesCount
           })}
         >
           Retrieve Publication Samples
@@ -113,10 +113,7 @@ function PublicationDetails({ publication, id }) {
   )
 }
 
-function sampleSearchHref({
-  id,
-  progenetixSamplesCount,
-}) {
+function sampleSearchHref({ id, progenetixSamplesCount }) {
   const datasetsIds = []
   if (progenetixSamplesCount > 0) datasetsIds.push("progenetix")
 

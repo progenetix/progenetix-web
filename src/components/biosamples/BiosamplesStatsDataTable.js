@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import React from "react"
 import PropTypes from "prop-types"
 import Table, { InfodotHeader } from "../Table"
@@ -20,7 +19,7 @@ export default function BiosamplesStatsDataTable({
             "Codes diagnoses or other biocharacteristics which are represented in the matched samples."
           ),
           accessor: "id",
-          Cell: ({ value, row: { original } }) => {
+          Cell: function Cell({ value, row: { original } }) {
             return (
               <span>
                 <a
@@ -54,7 +53,7 @@ export default function BiosamplesStatsDataTable({
                   "Proportion of matched samples with the given code, relativ to the overall number of samples with the code. Please be aware that the frequence e.g. does not correspond to e.g. the frequency in a pre-selected cohort but to the whole dataset."
                 ),
                 accessor: "frequency",
-                Cell: ({ value }) => {
+                Cell: function Cell({ value }) {
                   return (
                     <>
                       <span

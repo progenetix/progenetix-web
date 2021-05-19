@@ -89,9 +89,7 @@ function Callset({ callset, datasetIds }) {
         <a
           rel="noreferrer"
           target="_blank"
-          href={
-            getDataItemUrl(callset.id, itemColl, datasetIds)
-          }
+          href={getDataItemUrl(callset.id, itemColl, datasetIds)}
         >
           {"{JSON↗}"}
         </a>

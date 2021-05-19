@@ -23,7 +23,8 @@ export default function Table({
   data,
   pageSize = 10,
   hasGlobalFilter = false,
-  hiddenColumns = []
+  hiddenColumns = [],
+  sortBy = []
 }) {
   const filterTypes = React.useMemo(
     () => ({
@@ -52,7 +53,12 @@ export default function Table({
     {
       columns,
       data,
-      initialState: { pageIndex: 0, pageSize, hiddenColumns },
+      initialState: {
+        pageIndex: 0,
+        pageSize,
+        hiddenColumns,
+        sortBy
+      },
       globalFilter: "fuzzyText",
       filterTypes
     },
@@ -172,11 +178,11 @@ function Header({ headerGroups }) {
                   <span>
                     {column.isSortedDesc ? (
                       <span className="icon">
-                        <FaAngleUp />
+                        <FaAngleDown />
                       </span>
                     ) : (
                       <span className="icon">
-                        <FaAngleDown />
+                        <FaAngleUp />
                       </span>
                     )}
                   </span>

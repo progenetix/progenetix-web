@@ -105,7 +105,11 @@ function DataVisualizationForm({ isQuerying, sampleCount, onSubmit }) {
     randNo = sampleMaxNo
   }
 
-  const defaultValues = { "-group_by": "NCIT", "-markers": null, "-randno": randNo }
+  const defaultValues = {
+    "-group_by": "NCIT",
+    "-markers": null,
+    "-randno": randNo
+  }
   const { register, handleSubmit, errors, control } = useForm({ defaultValues })
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -274,16 +278,16 @@ function ResultPanel({ response }) {
         </a>
       </div>
       <div>
-      <img src={replaceWithProxy(multihistoUrl)} />
-      <a href={multihistoUrl} target="_blank" rel="noreferrer">
-        Open Group Histogram Plot
-      </a>
+        <img src={replaceWithProxy(multihistoUrl)} />
+        <a href={multihistoUrl} target="_blank" rel="noreferrer">
+          Open Group Histogram Plot
+        </a>
       </div>
       <div>
-      <img src={replaceWithProxy(multistripUrl)} />
-      <a href={multistripUrl} target="_blank" rel="noreferrer">
-        Open Sample Plot
-      </a>
+        <img src={replaceWithProxy(multistripUrl)} />
+        <a href={multistripUrl} target="_blank" rel="noreferrer">
+          Open Sample Plot
+        </a>
       </div>
       <div>
         <a href={samplematrixUrl} target="_blank" rel="noreferrer">

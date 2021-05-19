@@ -4,7 +4,13 @@ import { FaBars, FaTimes } from "react-icons/fa"
 import { useRouter } from "next/router"
 import Head from "next/head"
 import Link from "next/link"
-import { ABOUTLINK, DOCLINK, NEWSLINK, PROGENETIXINFO, YEAR } from "../hooks/api"
+import {
+  ABOUTLINK,
+  DOCLINK,
+  USECASESLINK,
+  PROGENETIXINFO,
+  THISYEAR
+} from "../hooks/api"
 
 export function Layout({ title, headline, children }) {
   const [sideOpen, setSideOpen] = useState(false)
@@ -46,8 +52,7 @@ export function Layout({ title, headline, children }) {
       </main>
       <footer className="footer">
         <div className="content container has-text-centered">
-          © 2000 - {YEAR} Progenetix Cancer Genomics Information Resource by the
-          {" "}
+          © 2000 - {THISYEAR} Progenetix Cancer Genomics Information Resource by the{" "}
           <a href="https://info.baudisgroup.org">
             Computational Oncogenomics Group
           </a>{" "}
@@ -89,10 +94,7 @@ function Side({ onClick }) {
           href="/subsets/biosubsets"
           label="Cancer CNV Profiles"
         />
-        <MenuInternalLinkItem
-          href="/biosamples/"
-          label="Search Samples"
-        />
+        <MenuInternalLinkItem href="/biosamples/" label="Search Samples" />
         <MenuInternalLinkItem
           href="/subsets/cohorts"
           label="Studies & Cohorts"
@@ -149,18 +151,15 @@ function Side({ onClick }) {
             </>
           }
         />
-        <MenuInternalLinkItem
-          href={PROGENETIXINFO}
-          label="Progenetix Info"
-        />
-        <MenuInternalLinkItem
-          href={NEWSLINK}
-          label="News"
-          isSub="isSub"
-        />
+        <MenuInternalLinkItem href={PROGENETIXINFO} label="Progenetix Info" />
         <MenuInternalLinkItem
           href={ABOUTLINK}
           label="About Progenetix"
+          isSub="isSub"
+        />
+        <MenuInternalLinkItem
+          href={USECASESLINK}
+          label="Use Cases"
           isSub="isSub"
         />
         <MenuInternalLinkItem
@@ -192,27 +191,27 @@ function MenuInternalLinkItem({ href, label, isSub }) {
 
 // `onClick`, `href`, and `ref` need to be passed to the DOM element
 // for proper handling
-// eslint-disable-next-line react/display-name
-const MenuLink = React.forwardRef(
-  ({ onClick, href, isActive, children, isSub }, ref) => {
-    const className = isSub ? "Layout__side__sub" : "Layout__side__category"
-    return (
-      <Link href={href}>
-        <a
-          onClick={onClick}
-          ref={ref}
-          className={cn(
-            { "is-active": isActive },
-            "Layout__side__item",
-            className
-          )}
-        >
-          {children}
-        </a>
-      </Link>
-    )
-  }
-)
+const MenuLink = React.forwardRef(function MenuLink(
+  { onClick, href, isActive, children, isSub },
+  ref
+) {
+  const className = isSub ? "Layout__side__sub" : "Layout__side__category"
+  return (
+    <Link href={href}>
+      <a
+        onClick={onClick}
+        ref={ref}
+        className={cn(
+          { "is-active": isActive },
+          "Layout__side__item",
+          className
+        )}
+      >
+        {children}
+      </a>
+    </Link>
+  )
+})
 
 function removeQuery(href) {
   if (href.indexOf("?") > 0) return href.slice(0, href.indexOf("?"))

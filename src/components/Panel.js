@@ -12,18 +12,18 @@ export default function Panel({
   isOpened = true,
   className = "is-light"
 }) {
-  
   var headlink = ""
-  
+
   if (href) {
     headlink = <a href={href}>{"{↗}"}</a>
-  } 
+  }
   return (
     <div className={cn("Panel panel", className)}>
       {heading ? (
-      <div className="Panel_heading">
-        {heading}{" "}{headlink}
-      </div>) : null}
+        <div className="Panel_heading">
+          {heading} {headlink}
+        </div>
+      ) : null}
       <Collapse isOpened={isOpened}>
         <div className="Panel__block">{children} </div>
       </Collapse>

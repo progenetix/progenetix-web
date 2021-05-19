@@ -7,18 +7,19 @@ import { FaExternalLinkAlt } from "react-icons/fa"
 export const basePath = process.env.NEXT_PUBLIC_API_PATH
 // eslint-disable-next-line no-undef
 export const useProxy = process.env.NEXT_PUBLIC_USE_PROXY === "true"
+export const PROGENETIX = process.env.NEXT_PUBLIC_PROGENETIX_URL
 
 export function useExtendedSWR(url, fetcher = defaultFetcher) {
   const { data, error, ...other } = swr(url, fetcher)
   return { data, error, ...other, isLoading: !data && !error }
 }
 
-export const PROGENETIX = "https://progenetix.org"
 export const PROGENETIXINFO = "https://info.progenetix.org"
 export const ABOUTLINK = `${PROGENETIXINFO}/categories/about.html`
+export const USECASESLINK = `${PROGENETIXINFO}/categories/usecases.html`
 export const DOCLINK = `${PROGENETIXINFO}/categories/documentation.html`
 export const NEWSLINK = `${PROGENETIXINFO}/categories/news.html`
-export const YEAR = new Date().getFullYear()
+export const THISYEAR = new Date().getFullYear()
 
 export function useProgenetixApi(...args) {
   const { data, error, ...other } = useExtendedSWR(...args)
@@ -71,7 +72,7 @@ export async function tryFetch(url, fallBack = "N/A") {
 
 // This function gets called at build time on server-side.
 // const url = `${PROGENETIX}/cgi/bycon/beaconServer/datasets.py`
-// 
+//
 // export async function getStaticDatatasets() {
 //   const url = `http://127.0.0.1/cgi/bycon/beaconServer/datasets.py`
 //   const data = await tryFetch(url, null)
@@ -95,17 +96,13 @@ export async function tryFetch(url, fallBack = "N/A") {
 //   )
 // }
 
-
 export function useBeaconQuery(queryData) {
   return useProgenetixApi(
     queryData
-      ? `${basePath}services/biosamples/?${buildQueryParameters(
-          queryData
-        )}`
+      ? `${basePath}services/biosamples/?${buildQueryParameters(queryData)}`
       : null
   )
 }
-
 
 export function validateBeaconQuery(queryData) {
   try {
@@ -341,7 +338,7 @@ export function useGeneSymbol({ geneSymbol }) {
 }
 
 export function subsetSVGlink(id, datasetIds) {
-  return `${basePath}cgi/PGX/cgi/collationPlots.cgi?datasetIds=${datasetIds}&id=${id}`
+  return `${basePath}services/collationPlots/?datasetIds=${datasetIds}&id=${id}`
 }
 
 export function subsetIdLink(id) {

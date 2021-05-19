@@ -38,8 +38,7 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
     datasetHandover,
     variantCount,
     callCount,
-    sampleCount,
-    frequency
+    sampleCount
   } = datasetAlleleResponse
 
   const handoverById = (givenId) =>
@@ -98,7 +97,11 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
       <div>
         <h2 className="subtitle has-text-dark">Sample Origins</h2>
         <p>
-        The map represents the origins of the matched samples, as derived from the original publication or resource repository. In the majority of cases this will correspond to the proxy information of the corresponding author&apos;s institution. Additional information can be found in the{" "}
+          The map represents the origins of the matched samples, as derived from
+          the original publication or resource repository. In the majority of
+          cases this will correspond to the proxy information of the
+          corresponding author&apos;s institution. Additional information can be
+          found in the{" "}
           <ExternalLink
             href="https://info.progenetix.org/geolocations.html"
             label="Geographic Coordinates documentation"
@@ -133,15 +136,6 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
                 <b>Calls: </b>
                 {callCount}
               </div>
-              {frequency > 0 ? (
-              <div>
-                <b>
-                  <i>f</i>
-                  <sub>alleles</sub>:{" "}
-                </b>
-                {frequency}
-              </div>
-            ) : null}
             </div>
           ) : null}
         </div>

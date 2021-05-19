@@ -11,7 +11,12 @@ export default function BeaconPlusPage({ cytoBands }) {
       <BeaconPlusNav beaconName="Cell Line" />
       <div className="section">
         <div className="BeaconPlus__container">
+
           <Panel heading="Cellosaurus" className="content">
+          <Panel
+            heading="Germline CNVs from the 1000 Genomes Project"
+            className="content"
+          >
             <p>
               This forward looking Cellosaurus Cell Line Beacon service tests
               experimental features and proposed extensions to the{" "}

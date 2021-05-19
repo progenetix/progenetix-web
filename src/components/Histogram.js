@@ -1,6 +1,11 @@
 import { Loader } from "./Loader"
 import React, { useRef } from "react"
-import { useSubsethistogram, subsetSVGlink, subsetIdLink, subsetPgxsegLink } from "../hooks/api"
+import {
+  useSubsethistogram,
+  subsetSVGlink,
+  subsetIdLink,
+  subsetPgxsegLink
+} from "../hooks/api"
 import { useContainerDimensions } from "../hooks/containerDimensions"
 import PropTypes from "prop-types"
 import Link from "next/link"
@@ -34,10 +39,12 @@ export function SubsetHistogram({ id, filter, datasetIds, size: givenSize }) {
       <div className="svg-histolinks">
         <Link href={subsetSVGlink(id, datasetIds)}>
           <a>Download SVG</a>
-        </Link>{" | "}
+        </Link>
+        {" | "}
         <Link href={subsetIdLink(id)}>
           <a>Go to {id}</a>
-        </Link>{" | "}
+        </Link>
+        {" | "}
         <Link href={subsetPgxsegLink(id)}>
           <a>Download CNV Frequencies</a>
         </Link>

@@ -17,16 +17,24 @@ export default function SearchSamplesPage({ cytoBands }) {
   }
 
   return (
-    <Layout title="Search Samples from Gao & Baudis, 2021" headline="Data from 2021 Signatures Publication">
+    <Layout
+      title="Search Samples from Gao & Baudis, 2021"
+      headline="Data from 2021 Signatures Publication"
+    >
       <Panel heading="Genomic CNVs from publication..." className="content">
-        <div>            
+        <div>
           <img src={"/img/gao-2021-signatures-landscape.png"} style={imgHere} />
-          This search page uses the subset of Progenetix data - including TCGA samples - used in the{" "}
+          This search page uses the subset of Progenetix data - including TCGA
+          samples - used in the{" "}
           <ExternalLink
             href="https://info.baudisgroup.org/publications/2020-12-18-publication-Bo-classifiers/"
             label="Signatures of Discriminative Copy Number Aberrations in 31 Cancer Subtypes"
-          />
-          {" "}publication.<br/>For access restriction imposed by PCAWG the data cannot not include the samples from this consortium which have been used in our publication.
+          />{" "}
+          publication.
+          <br />
+          For access restriction imposed by PCAWG the data cannot not include
+          the samples from this consortium which have been used in our
+          publication.
         </div>
       </Panel>
       <Panel heading="Downloads and Source Links">
@@ -78,7 +86,10 @@ export default function SearchSamplesPage({ cytoBands }) {
         </div>
       </Panel>
       <Panel heading="CNV Frequency Plot">
-        <SubsetHistogram datasetIds="progenetix" id="pgxcohort-gao2021signatures" />
+        <SubsetHistogram
+          datasetIds="progenetix"
+          id="pgxcohort-gao2021signatures"
+        />
       </Panel>
       <BiosamplesSearchPanel
         datasets={datasets}

@@ -2,9 +2,9 @@ import React from "react"
 import { useRouter } from "next/router"
 import Link from "next/link"
 import cn from "classnames"
-import {DOCLINK} from "../hooks/api"
+import { DOCLINK } from "../hooks/api"
 
-export default function BeaconPlusNav( { beaconName } ) {
+export default function BeaconPlusNav({ beaconName }) {
   const router = useRouter()
   return (
     <header className="section Nav__header">
@@ -15,24 +15,27 @@ export default function BeaconPlusNav( { beaconName } ) {
       >
         <Link href={router}>
           <a className="Nav__logo">
-            {beaconName}{" "}Beacon<sup className="Nav__plus">+</sup>
+            {beaconName} Beacon<sup className="Nav__plus">+</sup>
           </a>
         </Link>
 
         <div className="Nav__links">
-          <ActiveLink label="Beacon+" href="/beaconplus-instances/beaconplus" />         
-          <ActiveLink label="Gene Beacon" href="/beaconplus-instances/genesymbols" />
+          <ActiveLink label="Beacon+" href="/beaconplus-instances/beaconplus" />
+          <ActiveLink
+            label="Gene Beacon"
+            href="/beaconplus-instances/genesymbols"
+          />
           <ActiveLink
             label="1000 Genomes CNVs"
             href="/beaconplus-instances/1000-genomes-cnv"
           />
-          <ActiveLink label="Cell Line Beacon" href="/beaconplus-instances/cellosaurus" />
+          <ActiveLink
+            label="Cell Line Beacon"
+            href="/beaconplus-instances/cellosaurus"
+          />
           <ActiveLink label="About" href="/beaconplus-instances/about" />
           <ActiveLink label="Progenetix" href="/" />
-          <a
-            href={DOCLINK}
-            className="navbar-item"
-          >
+          <a href={DOCLINK} className="navbar-item">
             Help
           </a>
         </div>

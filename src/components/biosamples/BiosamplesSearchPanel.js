@@ -39,9 +39,9 @@ export default function BiosamplesSearchPanel({
     clearQuery()
     setQuery(formValues)
   }
-  
+
   // button className="button ml-3"
-//    className="icon has-text-info"
+  //    className="icon has-text-info"
 
   return (
     <>
@@ -51,16 +51,15 @@ export default function BiosamplesSearchPanel({
           heading={
             <div>
               <div className="columns">
-                <div className="column">
-                  Search Samples
-                </div>
+                <div className="column">Search Samples</div>
                 {searchCollapsed && (
                   <div className="column">
-                    <button className="button is-info mb-5"
+                    <button
+                      className="button is-info mb-5"
                       onClick={() => {
-                      clearQuery()
-                      setSearchCollapsed(false)
-                    }}
+                        clearQuery()
+                        setSearchCollapsed(false)
+                      }}
                     >
                       Modify Query
                     </button>

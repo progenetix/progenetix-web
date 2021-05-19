@@ -112,36 +112,51 @@ function PublicationsLoader({ geoCity, geodistanceKm, textSearch }) {
   )
 }
 
-
+function getPublicationIdNumber(publicationId) {
+  return +publicationId.substring(
+    publicationId.indexOf(":") + 1,
+    publicationId.length
+  )
+}
 
 function PublicationTable({ publications }) {
   const publicationsCount = publications.length
+  const sortType = React.useMemo(
+    () => (rowA, rowB, id) => {
+      const idA = getPublicationIdNumber(rowA.original[id])
+      const idB = getPublicationIdNumber(rowB.original[id])
+      return idA > idB ? 1 : idB > idA ? -1 : 0
+    },
+    []
+  )
   const columns = React.useMemo(
     () => [
       {
         Header: `Publications (${publicationsCount})`,
         columns: [
-          { accessor: "sortid" },
           {
             Header: InfodotHeader(
               "id",
               "Publication id (PubMed) with link to details page"
             ),
             accessor: "id",
-            // eslint-disable-next-line react/display-name
-            Cell: (cellInfo) => (
-              <a href={`/publications/details?id=${cellInfo.value}`}>
-                {cellInfo.value}
-              </a>
-            )
+            sortType,
+            Cell: function Cell(cellInfo) {
+              return (
+                <a href={`/publications/details?id=${cellInfo.value}`}>
+                  {cellInfo.value}
+                </a>
+              )
+            }
           },
           {
             Header: "Publication",
-            // eslint-disable-next-line react/display-name
-            Cell: ({ row: { original } }) => {
+            Cell: function Cell({ row: { original } }) {
               return (
                 <>
-                  <div>{original.label}{" "}{original.journal}{" "}<EpmcLink publicationId={original.id} />
+                  <div>
+                    {original.label} {original.journal}{" "}
+                    <EpmcLink publicationId={original.id} />
                   </div>
                 </>
               )
@@ -192,7 +207,7 @@ function PublicationTable({ publications }) {
       { accessor: "abstract" },
       { accessor: "title" }
     ],
-    [publicationsCount]
+    [publicationsCount, sortType]
   )
   return (
     <Table
@@ -200,6 +215,7 @@ function PublicationTable({ publications }) {
       data={publications}
       pageSize={25}
       hiddenColumns={["authors", "abstract", "sortid", "title"]}
+      sortBy={[{ id: "id", desc: true }]}
     />
   )
 }

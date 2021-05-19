@@ -143,11 +143,9 @@ function Biosample({ biosample, datasetIds }) {
               </Link>
             ) : (
               externalReference.id
-            )}
-           {" "} {externalReference?.label && (
-             ": "+externalReference?.label
-           )}
-          </li>          
+            )}{" "}
+            {externalReference?.label && ": " + externalReference?.label}
+          </li>
         ))}
       </ul>
 

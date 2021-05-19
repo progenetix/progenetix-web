@@ -7,7 +7,7 @@ progenetix:
     datasetIds:
       defaultValue: ["progenetix"]
       isHidden: true
-    cohorts:                # TODO
+    cohorts: # TODO
       isHidden: true
     includeDatasetResponses:
       defaultValue: "ALL"
