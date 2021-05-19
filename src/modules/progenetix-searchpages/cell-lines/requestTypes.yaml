@@ -1,0 +1,59 @@
+---
+variantCNVrequest:
+  note: ""
+  label: ""
+  description: ""
+  parameters:
+    datasetIds:
+      defaultValue: ["progenetix"]
+      isHidden: true
+    cohorts:
+      defaultValue: ["pgxcohort-celllines"]
+      isHidden: true
+    includeDatasetResponses:
+      placeholder: "ALL"
+      isHidden: true
+    requestType:
+      rules:
+        required: false
+      isHidden: true
+    assemblyId:
+      isHidden: true
+    referenceName:
+      placeholder: "9"
+    start:
+      placeholder: "19000001-21975098"
+    end:
+      placeholder: "21967753-24000000"
+    variantType:
+      placeholder: "DEL"
+    alternateBases:
+      placeholder: ""
+      isHidden: true
+    referenceBases:
+      placeholder: ""
+      isHidden: true
+    accessid:
+      isHidden: true
+    genotypicSex:
+      placeholder: ""
+    materialtype:
+      placeholder: "EFO:0009656" #"EFO:0009656"
+  examples:
+    - label: "K-562 Cell Line"
+      note: "Instances of K-562 and daughter cell lines, searched by Cellosaurus id"
+      description: |
+        The query retrieves all instances of K-562 and derived cell lines
+        using the "cellosaurus:CVCL_0004" identifier. This is an example for a
+        pure "non-variant" query.
+      parameters:
+        referenceName:
+          defaultValue: ""
+        start:
+          defaultValue: ""
+        end:
+          defaultValue: ""
+        variantType:
+          defaultValue: ""
+        freeFilters:
+          defaultValue: "cellosaurus:CVCL_0004"

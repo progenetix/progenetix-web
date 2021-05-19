@@ -8,3 +8,4 @@ export const getStaticProps = async () => ({
     cytoBands: await getCytoBands()
   }
 })
+
