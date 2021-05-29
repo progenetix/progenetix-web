@@ -11,9 +11,6 @@ variantCNVrequest:
     cohorts:
       defaultValue: [""]
       isHidden: true
-    includeDatasetResponses:
-      defaultValue: "ALL"
-      isHidden: true
     requestType:
       defaultValue: "variantCNVrequest"
       isHidden: true
@@ -76,9 +73,6 @@ variantAlleleRequest:
   parameters:
     datasetIds:
       placeholder: "progenetix"
-    includeDatasetResponses:
-      placeholder: "ALL"
-      isHidden: true
     requestType:
       defaultValue: "variantAlleleRequest"
       isHidden: true
@@ -108,9 +102,6 @@ variantAlleleRequest:
       parameters:
         datasetIds:
           defaultValue: ["progenetix"]
-        includeDatasetResponses:
-          defaultValue: "ALL"
-          isHidden: true
         assemblyId:
           defaultValue: "GRCh38"
         referenceName:
@@ -135,9 +126,6 @@ variantAlleleRequest:
 #       parameters:
 #         datasetIds:
 #           defaultValue: ["cellosaurus"]
-#         includeDatasetResponses:
-#           defaultValue: "ALL"
-#           isHidden: true
 #         assemblyId:
 #           defaultValue: "GRCh38"
 #         referenceName:
@@ -171,9 +159,6 @@ variantRangeRequest:
   parameters:
     datasetIds:
       placeholder: ""
-    includeDatasetResponses:
-      placeholder: "ALL"
-      isHidden: true
     requestType:
       defaultValue: "variantRangeRequest"
       isHidden: true
@@ -209,9 +194,6 @@ variantRangeRequest:
       parameters:
         datasetIds:
           defaultValue: ["progenetix"]
-        includeDatasetResponses:
-          defaultValue: "ALL"
-          isHidden: true
         assemblyId:
           defaultValue: "GRCh38"
         referenceName:
@@ -237,8 +219,6 @@ allFieldsRequest:
   parameters:
     datasetIds:
       placeholder: "progenetix"
-    includeDatasetResponses:
-      placeholder: "ALL"
     requestType: {}
     assemblyId:
       placeholder: "GRCh38"

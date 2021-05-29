@@ -71,31 +71,9 @@ export async function tryFetch(url, fallBack = "N/A") {
   }
 }
 
-// This function gets called at build time on server-side.
-// const url = `${PROGENETIX}/cgi/bycon/beaconServer/datasets.py`
-//
-// export async function getStaticDatatasets() {
-//   const url = `http://127.0.0.1/cgi/bycon/beaconServer/datasets.py`
-//   const data = await tryFetch(url, null)
-//   return data.response.results.map((value) => ({
-//     value: value.id,
-//     label: value.name
-//   }))
-// }
-
 /**
  * When param is null no query will be triggered.
  */
-
-// export function useBeaconQuery(queryData) {
-//   return useProgenetixApi(
-//     queryData
-//       ? `${basePath}cgi/bycon/beaconServer/byconplus.py?${buildQueryParameters(
-//           queryData
-//         )}`
-//       : null
-//   )
-// }
 
 export function useBeaconQuery(queryData) {
   return useProgenetixApi(
@@ -255,11 +233,15 @@ export function useDataItemDelivery(id, collection, datasetIds) {
 }
 
 export function getDataItemUrl(id, collection, datasetIds) {
-  return `${basePath}services/deliveries/?datasetIds=${datasetIds}&collection=${collection}&${
-    collection == "variants" ? "_id" : "id"
-  }=${id}`
+  return `${basePath}beacon/${collection}/${id}/?datasetIds=${datasetIds}`
 }
 
+// export function getDataItemUrl(id, collection, datasetIds) {
+//   return `${basePath}services/deliveries/?datasetIds=${datasetIds}&collection=${collection}&${
+//     collection == "variants" ? "_id" : "id"
+//   }=${id}`
+// }
+// 
 export function getDataItemPageUrl(id, collection, datasetIds) {
   return `${basePath}${collection}/?datasetIds=${datasetIds}&${
     collection == "variants" ? "_id" : "id"

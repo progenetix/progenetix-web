@@ -9,9 +9,6 @@ progenetix:
       isHidden: true
     cohorts: # TODO
       isHidden: true
-    includeDatasetResponses:
-      defaultValue: "ALL"
-      isHidden: true
     assemblyId:
       defaultValue: "GRCh38"
       isHidden: true

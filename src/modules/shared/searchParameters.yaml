@@ -24,16 +24,6 @@ assemblyId:
   options:
     - value: GRCh38
       label: GRCh38 / hg38
-includeDatasetResponses:
-  label: Dataset Responses
-  defaultValue: ALL
-  options:
-    - value: HIT
-      label: Datasets With Hits
-    - value: ALL
-      label: All Selected Datasets
-    - value: MISS
-      label: Datasets Without Hits
 requestType:
   label: Variant Request Type
   rules:

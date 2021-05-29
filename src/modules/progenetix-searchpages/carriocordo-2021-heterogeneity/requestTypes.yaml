@@ -10,9 +10,6 @@ variantCNVrequest:
     cohorts:
       defaultValue: ["pgxcohort-carriocordo2021heterogeneity"]
       isHidden: true
-    includeDatasetResponses:
-      placeholder: "ALL"
-      isHidden: true
     requestType:
       rules:
         required: false

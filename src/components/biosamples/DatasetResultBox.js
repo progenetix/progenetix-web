@@ -33,37 +33,39 @@ const TABS = {
   variants: "Variants"
 }
 
-export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
+export function DatasetResultBox({ data: responseSet, query }) {
   const {
-    datasetId,
-    datasetHandover,
-    variantCount,
-    callCount,
-    sampleCount
-  } = datasetAlleleResponse
+    id,
+    results_handovers,
+    info
+  } = responseSet
 
   const handoverById = (givenId) =>
-    datasetHandover.find(({ handoverType: { id } }) => id === givenId)
+    results_handovers.find(({ handoverType: { id } }) => id === givenId)
 
-  const genericHandovers = datasetHandover.filter(
+  const genericHandovers = results_handovers.filter(
     ({ handoverType: { id } }) => !handoversInTab.includes(id)
   )
 
   const biosamplesHandover = handoverById(HANDOVER_IDS.biosamples)
-
   const biosamplesReply = useProgenetixApi(
     biosamplesHandover && replaceWithProxy(biosamplesHandover.url)
+  )
+  
+  const variantsHandover = handoverById(HANDOVER_IDS.variants)
+  const variantsReply = useProgenetixApi(
+    variantsHandover && replaceWithProxy(variantsHandover.url)
   )
 
   let histogramUrl
   let visualizationLink
   if (handoverById(HANDOVER_IDS.cnvhistogram)) {
-    if (sampleCount <= MAX_HISTO_SAMPLES) {
+    if (info.counts.sampleCount <= MAX_HISTO_SAMPLES) {
       histogramUrl = handoverById(HANDOVER_IDS.cnvhistogram).url
       let visualizationAccessId = new URLSearchParams(
         new URL(histogramUrl).search
       ).get("accessid")
-      visualizationLink = getVisualizationLink(visualizationAccessId, sampleCount)
+      visualizationLink = getVisualizationLink(visualizationAccessId, info.counts.sampleCount)
     }
   }
 
@@ -73,7 +75,7 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
 
   biosamplesHandover && tabNames.push(TABS.samples)
 
-  biosamplesReply?.data?.results?.some(
+  biosamplesReply?.data?.result_sets[0].results?.some(
     (biosample) => !!biosample.provenance?.geo_location
   ) && tabNames.push(TABS.samplesMap)
 
@@ -87,13 +89,13 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
         variantType={query.alternateBases}
         histogramUrl={histogramUrl}
         biosamplesReply={biosamplesReply}
-        variantCount={variantCount}
-        datasetId={datasetId}
+        variantCount={info.counts.variantCount}
+        datasetId={id}
       />
     )
   } else if (selectedTab === TABS.samples) {
     tabComponent = (
-      <BiosamplesDataTable apiReply={biosamplesReply} datasetId={datasetId} />
+      <BiosamplesDataTable apiReply={biosamplesReply} datasetId={id} />
     )
   } else if (selectedTab === TABS.samplesMap) {
     tabComponent = (
@@ -111,33 +113,37 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
           />
           {"."}
         </p>
-        <BiosamplesMap apiReply={biosamplesReply} datasetId={datasetId} />
+        <BiosamplesMap apiReply={biosamplesReply} datasetId={id} />
       </div>
     )
+  // } else if (selectedTab === TABS.variants) {
+  //   const handover = handoverById(HANDOVER_IDS.variants)
+  //   const url = replaceWithProxy(handover.url)
+  //   tabComponent = <VariantsDataTable url={url} datasetId={id} />
   } else if (selectedTab === TABS.variants) {
-    const handover = handoverById(HANDOVER_IDS.variants)
-    const url = replaceWithProxy(handover.url)
-    tabComponent = <VariantsDataTable url={url} datasetId={datasetId} />
+    tabComponent = (
+      <VariantsDataTable apiReply={variantsReply} datasetId={id} />
+    )
   }
 
   return (
     <div className="box">
-      <h2 className="subtitle has-text-dark">{datasetId}</h2>
+      <h2 className="subtitle has-text-dark">{id}</h2>
       <div className="columns">
         <div className="column is-one-fourth">
           <div>
             <b>Samples: </b>
-            {sampleCount}
+            {info.counts.sampleCount}
           </div>
-          {variantCount > 0 ? (
+          {info.counts.variantCount > 0 ? (
             <div>
               <div>
                 <b>Variants: </b>
-                {variantCount}
+                {info.counts.variantCount}
               </div>
               <div>
                 <b>Calls: </b>
-                {callCount}
+                {info.counts.callCount}
               </div>
             </div>
           ) : null}
@@ -148,14 +154,14 @@ export function DatasetResultBox({ data: datasetAlleleResponse, query }) {
           ))}
         </div>
         <div className="column is-one-fourth">
-          {variantCount > 0 ? (
+          {info.counts.variantCount > 0 ? (
             <div>
               <UCSCRegion query={query} />
             </div>
           ) : null}
           <ExternalLink
             label="JSON Response"
-            onClick={() => openJsonInNewTab(datasetAlleleResponse)}
+            onClick={() => openJsonInNewTab(responseSet)}
           />
         </div>
         {visualizationLink && (

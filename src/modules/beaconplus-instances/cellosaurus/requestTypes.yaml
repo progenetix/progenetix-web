@@ -9,9 +9,6 @@
 #     datasetIds:
 #       defaultValue: ["1000genomesDRAGEN"]
 #       isHidden: true
-#     includeDatasetResponses:
-#       placeholder: "ALL"
-#       isHidden: true
 #     requestType:
 #       defaultValue: "variantCNVrequest"
 #       isHidden: true
@@ -74,9 +71,6 @@ variantRangeRequest:
     requestType:
       defaultValue: "variantRangeRequest"
       isHidden: true
-    includeDatasetResponses:
-      placeholder: "ALL"
-      isHidden: true
     datasetIds:
       defaultValue: ["cellosaurus"]
       isHidden: true
@@ -130,9 +124,6 @@ allFieldsRequest:
   parameters:
     datasetIds:
       defaultValue: ["cellosaurus"]
-      isHidden: true
-    includeDatasetResponses:
-      placeholder: "ALL"
       isHidden: true
     assemblyId:
       defaultValue: "GRCh38"

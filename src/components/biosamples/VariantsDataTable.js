@@ -2,21 +2,20 @@ import React from "react"
 import PropTypes from "prop-types"
 import { WithData } from "../Loader"
 import Table from "../Table"
-import { useProgenetixApi } from "../../hooks/api"
+// import { useProgenetixApi } from "../../hooks/api"
 import DownloadButton from "../DownloadButton"
 import Link from "next/link"
 
-export default function VariantsDataTable({ url, datasetId }) {
-  const apiReply = useProgenetixApi(url)
+export default function VariantsDataTable({ apiReply, datasetId }) {
   const columns = React.useMemo(
     () => [
       {
         Header: "Int. ID",
-        accessor: "_id",
+        accessor: "id",
         // eslint-disable-next-line react/display-name
         Cell: (cellInfo) => (
           <Link
-            href={`/variants/details?_id=${cellInfo.value}&datasetIds=${datasetId}`}
+            href={`/variants/details?id=${cellInfo.value}&datasetIds=${datasetId}`}
           >
             {cellInfo.value}
           </Link>
@@ -69,12 +68,12 @@ export default function VariantsDataTable({ url, datasetId }) {
         <div>
           <div className="mb-4">
             <DownloadButton
-              label="Download Response"
-              json={response.results}
+              label="Download Variants"
+              json={response.result_sets[0].results}
               fileName="variants"
             />
           </div>
-          <Table columns={columns} data={response.results} />
+          <Table columns={columns} data={response.result_sets[0].results} />
         </div>
       )}
     />
@@ -82,5 +81,5 @@ export default function VariantsDataTable({ url, datasetId }) {
 }
 
 VariantsDataTable.propTypes = {
-  url: PropTypes.string.isRequired
+  apiReply: PropTypes.object.isRequired
 }

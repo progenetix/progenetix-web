@@ -11,9 +11,6 @@ geneVariantRequest:
     cohorts:
       defaultValue: []
       isHidden: true
-    includeDatasetResponses:
-      placeholder: "ALL"
-      isHidden: true
     requestType:
       defaultValue: "geneVariantRequest"
       isHidden: true

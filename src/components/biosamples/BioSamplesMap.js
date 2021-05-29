@@ -13,7 +13,7 @@ export default function BiosamplesMap({ apiReply, datasetId }) {
     <WithData
       apiReply={apiReply}
       render={(response) => (
-        <Map biosamples={response.results} height={640} datasetId={datasetId} />
+        <Map biosamples={response.result_sets[0].results} height={640} datasetId={datasetId} />
       )}
     />
   )

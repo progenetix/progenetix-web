@@ -40,8 +40,6 @@ labels~~
 * ~~Cytobands: To be implemented ...~~
 * ~~Search Result: "Show JSON Response" should just open a new page/pop-up/panel w/
 the (nice) JSON response, not initiate a download ([part of issue 33](https://github.com/ptoussai/progenetix-web/issues/33))~~
-* ~~"Dataset Responses" is shown on the Progenetix samples Search page although `includeDatasetResponses` is set to `hidden`. This parameter is anyway confusing
-and could be excluded from visibility altogether (but not completely "purged").~~
 * ~~The Histogram should (in Beacon+) _only_ being shown if the `variantType`
 parameter was DUP/DEL; For the Progenetix interface it could be default (i.e.
 since the subsets don't have variant queries ...).~~

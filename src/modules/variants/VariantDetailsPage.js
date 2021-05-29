@@ -11,14 +11,14 @@ const itemColl = "variants"
 const exampleId = "5bab576a727983b2e00b8d32"
 
 const VariantDetailsPage = withUrlQuery(({ urlQuery }) => {
-  const { _id, datasetIds } = urlQuery
-  const hasAllParams = _id && datasetIds
+  const { id, datasetIds } = urlQuery
+  const hasAllParams = id && datasetIds
   return (
     <Layout title="Variant Details" headline="Variant Details">
       {!hasAllParams ? (
         NoResultsHelp(exampleId, itemColl)
       ) : (
-        <VariantLoader _id={_id} datasetIds={datasetIds} />
+        <VariantLoader id={id} datasetIds={datasetIds} />
       )}
     </Layout>
   )
@@ -26,8 +26,8 @@ const VariantDetailsPage = withUrlQuery(({ urlQuery }) => {
 
 export default VariantDetailsPage
 
-function VariantLoader({ _id, datasetIds }) {
-  const apiReply = useDataItemDelivery(_id, itemColl, datasetIds)
+function VariantLoader({ id, datasetIds }) {
+  const apiReply = useDataItemDelivery(id, itemColl, datasetIds)
   return (
     <WithData
       apiReply={apiReply}
@@ -35,7 +35,7 @@ function VariantLoader({ _id, datasetIds }) {
       render={(response) => (
         <VariantResponse
           response={response}
-          _id={_id}
+          id={id}
           datasetIds={datasetIds}
         />
       )}
@@ -44,18 +44,18 @@ function VariantLoader({ _id, datasetIds }) {
 }
 
 function VariantResponse({ response, datasetIds }) {
-  if (!response.results) {
+  if (!response.result_sets[0].results[0]) {
     return NoResultsHelp(exampleId, itemColl)
   }
 
-  return <Variant variant={response.results[0]} datasetIds={datasetIds} />
+  return <Variant variant={response.result_sets[0].results[0]} datasetIds={datasetIds} />
 }
 
 function Variant({ variant, datasetIds }) {
   return (
     <section className="content">
       <h3 className="mb-6">
-        {variant._id} ({datasetIds})
+        {variant.id} ({datasetIds})
       </h3>
 
       {variant.digest && (
@@ -70,7 +70,7 @@ function Variant({ variant, datasetIds }) {
         <a
           rel="noreferrer"
           target="_blank"
-          href={getDataItemUrl(variant._id, itemColl, datasetIds)}
+          href={getDataItemUrl(variant.id, itemColl, datasetIds)}
         >
           {"{JSON↗}"}
         </a>

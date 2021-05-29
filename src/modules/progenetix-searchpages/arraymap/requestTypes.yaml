@@ -10,9 +10,6 @@ progenetix:
     cohorts:
       defaultValue: ["pgxcohort-arraymap"]
       isHidden: true
-    includeDatasetResponses:
-      placeholder: "ALL"
-      isHidden: true
     requestType:
       rules:
         required: false

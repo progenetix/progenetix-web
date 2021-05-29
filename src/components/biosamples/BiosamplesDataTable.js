@@ -85,12 +85,12 @@ export default function BiosamplesDataTable({ apiReply, datasetId }) {
         <div>
           <div className="mb-4">
             <DownloadButton
-              label="Download Response"
-              json={response.results}
+              label="Download Biosamples"
+              json={response.result_sets[0].results}
               fileName="biosamples"
             />
           </div>
-          <Table columns={columns} data={response.results} />
+          <Table columns={columns} data={response.result_sets[0].results} />
         </div>
       )}
     />

@@ -52,11 +52,11 @@ function BiosampleLoader({ id, datasetIds }) {
 }
 
 function BiosampleResponse({ response, datasetIds }) {
-  if (!response.results) {
+  if (!response.result_sets[0].results) {
     return NoResultsHelp(exampleId, itemColl)
   }
 
-  return <Biosample biosample={response.results[0]} datasetIds={datasetIds} />
+  return <Biosample biosample={response.result_sets[0].results[0]} datasetIds={datasetIds} />
 }
 
 function Biosample({ biosample, datasetIds }) {

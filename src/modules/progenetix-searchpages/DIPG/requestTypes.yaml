@@ -13,9 +13,6 @@ variantAlleleRequest:
     cohorts:
       defaultValue: ["pgxcohort-DIPG"]
       isHidden: true
-    includeDatasetResponses:
-      placeholder: "ALL"
-      isHidden: true
     requestType:
       defaultValue: "variantAlleleRequest"
       isHidden: true
@@ -55,9 +52,6 @@ variantRangeRequest:
     cohorts:
       defaultValue: ["pgxcohort-DIPG"]
       isHidden: true
-    includeDatasetResponses:
-      placeholder: "ALL"
-      isHidden: true
     requestType:
       defaultValue: "variantRangeRequest"
       isHidden: true
@@ -96,9 +90,6 @@ variantCNVrequest:
       isHidden: true
     cohorts:
       defaultValue: ["pgxcohort-DIPG"]
-      isHidden: true
-    includeDatasetResponses:
-      placeholder: "ALL"
       isHidden: true
     assemblyId:
       isHidden: true

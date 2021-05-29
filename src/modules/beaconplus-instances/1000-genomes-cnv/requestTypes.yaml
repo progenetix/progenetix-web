@@ -10,9 +10,6 @@ variantRangeRequest:
     requestType:
       defaultValue: "variantRangeRequest"
       isHidden: true
-    includeDatasetResponses:
-      placeholder: "ALL"
-      isHidden: true
     datasetIds:
       defaultValue: ["1000genomesDRAGEN"]
       isHidden: true
@@ -71,9 +68,6 @@ allFieldsRequest:
   parameters:
     datasetIds:
       defaultValue: ["1000genomesDRAGEN"]
-      isHidden: true
-    includeDatasetResponses:
-      placeholder: "ALL"
       isHidden: true
     assemblyId:
       defaultValue: "GRCh38"

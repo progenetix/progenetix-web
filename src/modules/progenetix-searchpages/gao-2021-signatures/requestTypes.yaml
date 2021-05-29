@@ -10,9 +10,6 @@ variantCNVrequest:
     cohorts:
       defaultValue: ["pgxcohort-gao2021signatures"]
       isHidden: true
-    includeDatasetResponses:
-      placeholder: "ALL"
-      isHidden: true
     requestType:
       rules:
         required: false

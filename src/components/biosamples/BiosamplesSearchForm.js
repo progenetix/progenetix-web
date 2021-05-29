@@ -239,10 +239,6 @@ export function Form({
           <SelectField {...parameters.cohorts} {...selectProps} />
           <SelectField {...parameters.assemblyId} {...selectProps} />
           <SelectField {...parameters.requestType} {...selectProps} />
-          <SelectField
-            {...parameters.includeDatasetResponses}
-            {...selectProps}
-          />
           {!parameters.geneSymbol.isHidden && (
             <GeneSymbolSelector {...parameters.geneSymbol} {...selectProps} />
           )}
