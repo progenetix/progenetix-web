@@ -78,7 +78,7 @@ export async function tryFetch(url, fallBack = "N/A") {
 export function useBeaconQuery(queryData) {
   return useProgenetixApi(
     queryData
-      ? `${basePath}services/biosamples/?${buildQueryParameters(queryData)}`
+      ? `${basePath}beacon/biosamples/?${buildQueryParameters(queryData)}`
       : null
   )
 }

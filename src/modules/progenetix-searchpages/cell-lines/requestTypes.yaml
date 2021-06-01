@@ -28,10 +28,6 @@ celllines:
       isHidden: true
     accessid:
       isHidden: true
-    genotypicSex:
-      placeholder: ""
-    materialtype:
-      placeholder: "EFO:0009656" #"EFO:0009656"
   examples:
     - label: "K-562 Cell Line"
       note: "Instances of K-562 and daughter cell lines, searched by Cellosaurus id"
@@ -42,11 +38,16 @@ celllines:
       parameters:
         referenceName:
           defaultValue: ""
+          isHidden: true
         start:
           defaultValue: ""
+          isHidden: true
         end:
           defaultValue: ""
+          isHidden: true
         variantType:
           defaultValue: ""
+          isHidden: true
         referenceid:
           defaultValue: ["cellosaurus:CVCL_0004"]
+
