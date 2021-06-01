@@ -52,5 +52,5 @@ variantCNVrequest:
           defaultValue: ""
         variantType:
           defaultValue: ""
-        freeFilters:
-          defaultValue: "cellosaurus:CVCL_0004"
+        referenceid:
+          defaultValue: ["cellosaurus:CVCL_0004"]

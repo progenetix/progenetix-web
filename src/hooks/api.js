@@ -109,6 +109,7 @@ export function mkGeneParams(gene) {
 export function makeFilters({
   freeFilters,
   bioontology,
+  referenceid,
   cohorts,
   genotypicSex,
   materialtype
@@ -121,6 +122,7 @@ export function makeFilters({
 
   return [
     ...(bioontology ?? []),
+    ...(referenceid ?? []),
     ...(cohorts ? [cohorts] : []),
     ...(genotypicSex ? [genotypicSex] : []),
     ...(materialtype ? [materialtype] : []),
@@ -133,6 +135,7 @@ export function buildQueryParameters(queryData) {
     start,
     end,
     bioontology,
+    referenceid,
     cohorts,
     genotypicSex,
     materialtype,
@@ -164,6 +167,7 @@ export function buildQueryParameters(queryData) {
   const filters = makeFilters({
     freeFilters,
     bioontology,
+    referenceid,
     cohorts,
     genotypicSex,
     materialtype
@@ -236,12 +240,6 @@ export function getDataItemUrl(id, collection, datasetIds) {
   return `${basePath}beacon/${collection}/${id}/?datasetIds=${datasetIds}`
 }
 
-// export function getDataItemUrl(id, collection, datasetIds) {
-//   return `${basePath}services/deliveries/?datasetIds=${datasetIds}&collection=${collection}&${
-//     collection == "variants" ? "_id" : "id"
-//   }=${id}`
-// }
-// 
 export function getDataItemPageUrl(id, collection, datasetIds) {
   return `${basePath}${collection}/?datasetIds=${datasetIds}&${
     collection == "variants" ? "_id" : "id"

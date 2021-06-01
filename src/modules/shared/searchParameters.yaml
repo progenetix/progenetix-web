@@ -156,6 +156,17 @@ bioontology:
   options:
     - value: ""
       label: "(no selection)"
+referenceid:
+  label: Reference ID(s)
+  infoText: |
+    Special filter type for external reference codes such as PMIDs or cellosaurus
+    id values.
+    If using multiple codes please be aware that probably use of an "OR" filter
+    logic will be appropriate.
+  isMulti: true
+  options:
+    - value: ""
+      label: "(no selection)"
 materialtype:
   label: Biosample Type
   infoText: |
@@ -204,8 +215,17 @@ filterLogic:
     - value: OR
       label: OR
 filterPrecision:
-  label: filterPrecision
-  isHidden: true
+  label: Filter Precision
+  infoText: |
+    Logic for the matching of filter terms. The use of "start" will e.g.
+    allow to match all "icdom-8500_" values (i.e. ductal breast carcinomas
+    and precursors - "...85000, ...85001, ...85002, ...85003")
+  defaultValue: "exact"
+  options:
+  - value: exact
+    label: Exact term match
+  - value: start
+    label: Start-anchored term match
 geoCity:
   label: City
   infoText: |

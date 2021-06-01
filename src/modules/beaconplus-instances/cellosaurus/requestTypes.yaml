@@ -7,7 +7,7 @@
 #     ranges for start and end positions to capture a set of similar variants.
 #   parameters:
 #     datasetIds:
-#       defaultValue: ["1000genomesDRAGEN"]
+#       defaultValue: ["cellosaurus"]
 #       isHidden: true
 #     requestType:
 #       defaultValue: "variantCNVrequest"
@@ -32,12 +32,7 @@
 #     materialtype:
 #       defaultValue: ""
 #       isHidden: true
-#     freeFilters:
-#       defaultValue: ""
-#       isHidden: true
 #     accessid:
-#       isHidden: true
-#     filterLogic:
 #       isHidden: true
 #   examples:
 #     - label: "CNV Example"
@@ -89,32 +84,33 @@ variantRangeRequest:
       isHidden: true
     referenceBases:
       isHidden: true
-    bioontology:
-      isHidden: true
-    genotypicSex:
-      isHidden: false
-    materialtype:
-      isHidden: false
-    freeFilters:
-      isHidden: true
     accessid:
       isHidden: true
-    filterLogic:
-      isHidden: true
-    geoCity:
-      isHidden: true
-  examples:
-    - label: "Range Example"
-      note: "Example for any change around TP53 locus"
-      description: |
-        The range reques matches all (DEL) variants somehow overlapping the interval.
-      parameters:
-        referenceName:
-          defaultValue: "17"
-        start:
-          defaultValue: 7000000
-        end:
-          defaultValue: 8000000
+    examples:
+      - label: "SNV Range Example"
+        note: "Example for EIF4A1 transcript region matches (precise variants)"
+        description: |
+          As in the standard SNV query, this example shows a Beacon query against
+          mutations in the EIF4A1.
+        parameters:
+          datasetIds:
+            defaultValue: ["cellosaurus"]
+          assemblyId:
+            defaultValue: "GRCh38"
+          referenceName:
+            defaultValue: "17"
+          start:
+            defaultValue: 7572826
+          end:
+            defaultValue: 7579005
+          variantType:
+            defaultValue: ""
+          alternateBases:
+            defaultValue: "N"
+          referenceBases:
+            defaultValue: "N"
+          freeFilters:
+            defaultValue: ""
 
 allFieldsRequest:
   note: ""
@@ -137,24 +133,3 @@ allFieldsRequest:
       placeholder: "21967753-23000000"
     variantType:
       placeholder: "DEL"
-    alternateBases:
-      isHidden: true
-    referenceBases:
-      isHidden: true
-    bioontology:
-      defaultValue: []
-      isHidden: true
-    genotypicSex:
-      isHidden: false
-    materialtype:
-      isHidden: false
-    freeFilters:
-      isHidden: true
-    accessid:
-      isHidden: true
-    filterLogic:
-      isHidden: true
-    geoCity:
-      isHidden: true
-    geodistanceKm:
-      isHidden: true

@@ -73,6 +73,7 @@ function useAutoExecuteSearch({
 function useIsFilterlogicWarningVisible(watch) {
   const filterLogic = watch("filterLogic")
   const bioontology = watch("bioontology")
+  const referenceid = watch("referenceid")
   const cohorts = watch("cohorts")
   const freeFilters = watch("freeFilters")
   const genotypicSex = watch("genotypicSex")
@@ -80,6 +81,7 @@ function useIsFilterlogicWarningVisible(watch) {
   const filters = makeFilters({
     freeFilters,
     bioontology,
+    referenceid,
     cohorts,
     genotypicSex,
     materialtype
@@ -139,17 +141,31 @@ export function Form({
 
   // reset form when default values changes
   useDeepCompareEffect(() => reset(initialValues), [initialValues])
-
-  const { data: subsetsResponse, isLoading: isSubsetsDataLoading } = useSubsets(
+  
+  // biosubsets lookup
+  const { data: biosubsetsResponse, isLoading: isBioSubsetsDataLoading } = useBioSubsets(
     watch
   )
-  const subsetsOptions = subsetsResponse?.results.map((value) => ({
+  const biosubsetsOptions = biosubsetsResponse?.results.map((value) => ({
     value: value.id,
     label: `${value.id}: ${value.label} (${value.count})`
   }))
   parameters = merge({}, parameters, {
-    bioontology: { options: subsetsOptions }
+    bioontology: { options: biosubsetsOptions }
   })
+  
+  // referenceid lookup
+  const { data: refsubsetsResponse, isLoading: isRefSubsetsDataLoading } = useReferencesSubsets(
+    watch
+  )
+  const refsubsetsOptions = refsubsetsResponse?.results.map((value) => ({
+    value: value.id,
+    label: `${value.id}: ${value.label} (${value.count})`
+  }))
+  parameters = merge({}, parameters, {
+    referenceid: { options: refsubsetsOptions }
+  })
+  
 
   const {
     cytoBandPanelOpen,
@@ -326,7 +342,12 @@ export function Form({
           <SelectField
             {...parameters.bioontology}
             {...selectProps}
-            isLoading={isSubsetsDataLoading}
+            isLoading={isBioSubsetsDataLoading}
+          />
+          <SelectField
+            {...parameters.referenceid}
+            {...selectProps}
+            isLoading={isRefSubsetsDataLoading}
           />
           <div className="columns my-0">
             <SelectField
@@ -572,12 +593,22 @@ const handleRequestTypeClicked = (setExample, setRequestTypeId) => (
 }
 
 // Maps FilteringTerms hook to apiReply usable by DataFetchSelect
-function useSubsets(watchForm) {
+function useBioSubsets(watchForm) {
   const datasetIds = watchForm("datasetIds")
   const { data, ...other } = useCollations({
     datasetIds,
     method: "children",
     filters: "NCIT,icdom,icdot,UBERON"
+  })
+  return { data, ...other }
+}
+
+function useReferencesSubsets(watchForm) {
+  const datasetIds = watchForm("datasetIds")
+  const { data, ...other } = useCollations({
+    datasetIds,
+    method: "children",
+    filters: "PMID,geo,cellosaurus"
   })
   return { data, ...other }
 }
