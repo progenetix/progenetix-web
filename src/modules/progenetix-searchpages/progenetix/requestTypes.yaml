@@ -12,10 +12,6 @@ progenetix:
     assemblyId:
       defaultValue: "GRCh38"
       isHidden: true
-    requestType:
-      rules:
-        required: false
-      isHidden: true
     referenceName:
       placeholder: "9"
     start:

@@ -1,15 +1,9 @@
 ---
-variantRangeRequest:
+OneKgenomesDRAGEN:
   note: ""
-  label: "Range Query"
-  description: |
-    A range query will return any variant between the given positions. Either a
-    "variant type" or alternate bases ("N" for wildcard) may be specified.
-    The exact variants which were being found can be retrieved through the variant handover [H—>O] link.
+  label: ""
+  description: ""
   parameters:
-    requestType:
-      defaultValue: "variantRangeRequest"
-      isHidden: true
     datasetIds:
       defaultValue: ["1000genomesDRAGEN"]
       isHidden: true
@@ -59,42 +53,3 @@ variantRangeRequest:
           defaultValue: 7000000
         end:
           defaultValue: 8000000
-
-allFieldsRequest:
-  note: ""
-  label: "Empty Fields"
-  description: |
-    All CNV form fields for composing your own queries.
-  parameters:
-    datasetIds:
-      defaultValue: ["1000genomesDRAGEN"]
-      isHidden: true
-    assemblyId:
-      defaultValue: "GRCh38"
-      isHidden: true
-    requestType: {}
-    referenceName:
-      placeholder: "9"
-    start:
-      placeholder: "20000001-21975098"
-    end:
-      placeholder: "21967753-23000000"
-    variantType:
-      placeholder: "DEL"
-    bioontology:
-      defaultValue: []
-      isHidden: true
-    genotypicSex:
-      isHidden: true
-    materialtype:
-      isHidden: true
-    freeFilters:
-      isHidden: true
-    accessid:
-      isHidden: true
-    filterLogic:
-      isHidden: true
-    geoCity:
-      isHidden: true
-    geodistanceKm:
-      isHidden: true

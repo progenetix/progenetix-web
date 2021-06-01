@@ -1,5 +1,5 @@
 ---
-variantCNVrequest:
+gao2021:
   note: ""
   label: ""
   description: ""
@@ -9,10 +9,6 @@ variantCNVrequest:
       isHidden: true
     cohorts:
       defaultValue: ["pgxcohort-gao2021signatures"]
-      isHidden: true
-    requestType:
-      rules:
-        required: false
       isHidden: true
     assemblyId:
       isHidden: true

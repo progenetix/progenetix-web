@@ -100,17 +100,9 @@ export function Form({
   setUrlQuery
 }) {
   const autoExecuteSearch = urlQuery.executeSearch === "true"
-  const displayTabs = Object.keys(requestTypesConfig).length > 1
-  // auto select first requestType from the file or from the query
-  const defaultRequestTypeId =
-    Object.entries(requestTypesConfig).find(
-      ([k]) => k === urlQuery.requestTypeId
-    )?.[0] ?? Object.entries(requestTypesConfig)[0][0]
 
-  const [requestTypeId, setRequestTypeId] = useState(defaultRequestTypeId)
-
+  const requestTypeId = Object.entries(requestTypesConfig)[0][0]
   const requestTypeConfig = requestTypesConfig[requestTypeId]
-
   const [example, setExample] = useState(null)
   let parameters = useMemo(
     () =>
@@ -204,16 +196,6 @@ export function Form({
 
   return (
     <>
-      {displayTabs && (
-        <Tabs
-          requestTypesConfig={requestTypesConfig}
-          requestType={requestTypeId}
-          onRequestTypeClicked={handleRequestTypeClicked(
-            setExample,
-            setRequestTypeId
-          )}
-        />
-      )}
       <div>
         <div className="buttons">
           <ExamplesButtons
@@ -232,7 +214,6 @@ export function Form({
           />
         </div>
         <ExampleDescription example={example} />
-        <RequestTypeDescription requestConfig={requestTypeConfig} />
         {cytoBandPanelOpen && (
           <CytoBandsUtility
             onClose={onCytoBandCloseClick}
@@ -254,7 +235,6 @@ export function Form({
           <SelectField {...parameters.datasetIds} {...selectProps} />
           <SelectField {...parameters.cohorts} {...selectProps} />
           <SelectField {...parameters.assemblyId} {...selectProps} />
-          <SelectField {...parameters.requestType} {...selectProps} />
           {!parameters.geneSymbol.isHidden && (
             <GeneSymbolSelector {...parameters.geneSymbol} {...selectProps} />
           )}
@@ -423,48 +403,6 @@ export function Form({
   )
 }
 
-Tabs.propTypes = {
-  requestType: PropTypes.string.isRequired,
-  requestTypesConfig: PropTypes.object.isRequired,
-  onRequestTypeClicked: PropTypes.func.isRequired
-}
-
-function Tabs({ requestTypesConfig, requestType, onRequestTypeClicked }) {
-  return (
-    <div className="tabs">
-      <ul>
-        {Object.entries(requestTypesConfig).map(([id, value]) => (
-          <li
-            className={cn({ "is-active": id === requestType })}
-            key={id}
-            onClick={() => onRequestTypeClicked(id)}
-          >
-            <a>{value.label}</a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
-}
-
-RequestTypeDescription.propTypes = {
-  requestConfig: PropTypes.object.isRequired
-}
-
-function RequestTypeDescription({ requestConfig }) {
-  return (
-    requestConfig.description && (
-      <article className="message">
-        <div className="message-body">
-          <div className="content">
-            {markdownToReact(requestConfig?.description)}
-          </div>
-        </div>
-      </article>
-    )
-  )
-}
-
 function ExamplesButtons({ requestTypeConfig, onExampleClicked }) {
   return (
     <div>
@@ -528,7 +466,6 @@ function onSubmitHandler({ clearErrors, setError, setSearchQuery }) {
 
 function validateForm(formValues) {
   const {
-    requestType,
     variantType,
     referenceBases,
     alternateBases,
@@ -539,34 +476,23 @@ function validateForm(formValues) {
   const errors = []
   const setMissing = (name) =>
     errors.push([name, { type: "manual", message: "Parameter is missing" }])
-  if (requestType === "variantAlleleRequest") {
-    if (!referenceBases || !alternateBases || !start) {
-      !referenceBases && setMissing("referenceBases")
-      !alternateBases && setMissing("alternateBases")
-      !start && setMissing("start")
-    }
-  } else if (requestType === "variantCNVrequest") {
-    if (!start || !end || !variantType) {
-      !start && setMissing("start")
-      !end && setMissing("end")
-      !variantType && setMissing("variantType")
-    }
-  } else if (requestType === "variantRangeRequest") {
-    if (variantType && (referenceBases || alternateBases)) {
-      const error = {
-        type: "manual",
-        message: "Use either Variant Type or Ref. Base(s) and Alt. Base(s)."
-      }
-      errors.push(["variantType", error])
-      errors.push(["referenceBases", error])
-      errors.push(["alternateBases", error])
-    }
-    // if (!variantType && !(referenceBases || alternateBases)) {
-    //   setMissing("variantType")
-    //   setMissing("referenceBases")
-    //   setMissing("alternateBases")
-    // }
+
+  if (!referenceBases && !alternateBases && !start && !end && !variantType) {
+    !referenceBases && setMissing("referenceBases")
+    !alternateBases && setMissing("alternateBases")
+    !start && setMissing("start")
+    !end && setMissing("end")
+    !variantType && setMissing("variantType")
   }
+  // if (!start || !end || !variantType) {
+  //   !start && setMissing("start")
+  //   !end && setMissing("end")
+  //   !variantType && setMissing("variantType")
+  // }
+  // if (!start || !end) {
+  //   !start && setMissing("start")
+  //   !end && setMissing("end")
+  // }
 
   const queryError = validateBeaconQuery(formValues)
   if (queryError) {
@@ -583,13 +509,6 @@ function validateForm(formValues) {
 const handleExampleClicked = (reset, setExample, setUrlQuery) => (example) => {
   setUrlQuery({}, { replace: true })
   setExample(example)
-}
-
-const handleRequestTypeClicked = (setExample, setRequestTypeId) => (
-  requestTypeId
-) => {
-  setExample(null)
-  setRequestTypeId(requestTypeId)
 }
 
 // Maps FilteringTerms hook to apiReply usable by DataFetchSelect
@@ -626,3 +545,4 @@ function FilterLogicWarning({ isVisible }) {
     </span>
   )
 }
+

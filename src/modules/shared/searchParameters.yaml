@@ -24,19 +24,6 @@ assemblyId:
   options:
     - value: GRCh38
       label: GRCh38 / hg38
-requestType:
-  label: Variant Request Type
-  rules:
-    required: false
-  options:
-    - value: variantAlleleRequest
-      label: variantAlleleRequest
-    - value: variantCNVrequest
-      label: variantCNVrequest
-    - value: variantRangeRequest
-      label: variantRangeRequest
-    - value: variantFusionRequest
-      label: variantFusionRequest
 geneSymbol:
   label: Gene Symbol
   infoText: The gene symbol (HUGO).

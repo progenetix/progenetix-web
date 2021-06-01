@@ -73,14 +73,14 @@ function Biosample({ biosample, datasetIds }) {
         </>
       )}
 
-      <h5>Diagnostic Classifications</h5>
+      <h5>Diagnostic Classifications </h5>
       <ul>
         {biosample.biocharacteristics.map((biocharacteristic, i) => (
           <li key={i}>
+            {biocharacteristic.id}: {biocharacteristic.label}{" "}
             <Link href={`/subsets/biosubsets?filters=${biocharacteristic.id}`}>
-              <a>{biocharacteristic.id}</a>
+              <a>{"{↗}"}</a>
             </Link>
-            : {biocharacteristic.label}
           </li>
         ))}
       </ul>

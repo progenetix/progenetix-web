@@ -1,5 +1,5 @@
 ---
-progenetix:
+arraymap:
   note: ""
   label: ""
   description: ""
@@ -9,10 +9,6 @@ progenetix:
       isHidden: true
     cohorts:
       defaultValue: ["pgxcohort-arraymap"]
-      isHidden: true
-    requestType:
-      rules:
-        required: false
       isHidden: true
     assemblyId:
       isHidden: true

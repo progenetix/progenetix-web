@@ -1,5 +1,5 @@
 ---
-geneVariantRequest:
+genesymbols:
   note: ""
   label: "Gene Variant Request"
   description: |
@@ -10,9 +10,6 @@ geneVariantRequest:
       isHidden: true
     cohorts:
       defaultValue: []
-      isHidden: true
-    requestType:
-      defaultValue: "geneVariantRequest"
       isHidden: true
     assemblyId:
       defaultValue: "GRCh38"

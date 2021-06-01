@@ -1,5 +1,5 @@
 ---
-variantCNVrequest:
+TCGA:
   note: ""
   label: ""
   description: ""
@@ -9,10 +9,6 @@ variantCNVrequest:
       isHidden: true
     cohorts:
       defaultValue: ["pgxcohort-TCGA"]
-      isHidden: true
-    requestType:
-      rules:
-        required: false
       isHidden: true
     assemblyId:
       isHidden: true
