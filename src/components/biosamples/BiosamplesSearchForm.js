@@ -471,20 +471,24 @@ function validateForm(formValues) {
     alternateBases,
     start,
     end,
-    geneSymbol
+    geneSymbol,
+    bioontology,
+    freeFilters
   } = formValues
 
   const errors = []
   const setMissing = (name) =>
     errors.push([name, { type: "manual", message: "Parameter is missing" }])
 
-  if (!referenceBases && !alternateBases && !start && !end && !variantType && !geneSymbol) {
+  if (!referenceBases && !alternateBases && !start && !end && !variantType && !geneSymbol && !bioontology && !freeFilters) {
     !referenceBases && setMissing("referenceBases")
     !alternateBases && setMissing("alternateBases")
     !start && setMissing("start")
     !end && setMissing("end")
     !variantType && setMissing("variantType")
+    !bioontology && setMissing("bioontology")
     !geneSymbol && setMissing("geneSymbol")
+    !freeFilters && setMissing("freeFilters")
   }
 
   const queryError = validateBeaconQuery(formValues)

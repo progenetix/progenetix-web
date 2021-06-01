@@ -37,6 +37,7 @@ const BioSubsetsContent = withUrlQuery(({ urlQuery, setUrlQuery }) => {
     setSelected: setSelectedFilters,
     options: filtersOptions
   } = useConfigSelect(config.biofilters, "filters", urlQuery, setUrlQuery)
+  const { datasetIds } = urlQuery
   return (
     <>
       <div className="level">
@@ -56,7 +57,7 @@ const BioSubsetsContent = withUrlQuery(({ urlQuery, setUrlQuery }) => {
           </div>
         </div>
       </div>
-      <SubsetsLoader filters={selectedFilters} datasetIds="progenetix" />
+      <SubsetsLoader filters={selectedFilters} datasetIds={ datasetIds } />
     </>
   )
 })

@@ -31,6 +31,7 @@ const CohortsContent = withUrlQuery(({ urlQuery, setUrlQuery }) => {
     setSelected: setSelectedFilters,
     options: filtersOptions
   } = useConfigSelect(config.cohortfilters, "filters", urlQuery, setUrlQuery)
+  const { datasetIds } = urlQuery
   return (
     <>
       <div className="level">
@@ -50,7 +51,7 @@ const CohortsContent = withUrlQuery(({ urlQuery, setUrlQuery }) => {
           </div>
         </div>
       </div>
-      <SubsetsLoader filters={selectedFilters} datasetIds="progenetix" />
+      <SubsetsLoader filters={selectedFilters} datasetIds={ datasetIds } />
     </>
   )
 })
