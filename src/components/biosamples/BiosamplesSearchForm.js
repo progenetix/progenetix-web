@@ -473,6 +473,7 @@ function validateForm(formValues) {
     end,
     geneSymbol,
     bioontology,
+    referenceid,
     freeFilters
   } = formValues
 
@@ -480,14 +481,15 @@ function validateForm(formValues) {
   const setMissing = (name) =>
     errors.push([name, { type: "manual", message: "Parameter is missing" }])
 
-  if (!referenceBases && !alternateBases && !start && !end && !variantType && !geneSymbol && !bioontology && !freeFilters) {
+  if (!referenceBases && !alternateBases && !start && !end && !variantType && !geneSymbol && !bioontology && !referenceid && !freeFilters) {
     !referenceBases && setMissing("referenceBases")
     !alternateBases && setMissing("alternateBases")
     !start && setMissing("start")
     !end && setMissing("end")
     !variantType && setMissing("variantType")
-    !bioontology && setMissing("bioontology")
     !geneSymbol && setMissing("geneSymbol")
+    !bioontology && setMissing("bioontology")
+    !referenceid && setMissing("referenceid")
     !freeFilters && setMissing("freeFilters")
   }
 
