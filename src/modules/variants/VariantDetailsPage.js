@@ -62,7 +62,7 @@ function VariantResponse({ response, datasetIds }) {
 function VariantsInterpretationResponse({ response, datasetIds }) {
   
   const handoverById = (givenId) => response.result_sets[0].results_handovers.find(({ handoverType: { id } }) => id === givenId)
-  const variantsAnnotationsHandover = handoverById(HANDOVER_IDS.variantsannotations)
+  const variantsAnnotationsHandover = handoverById(HANDOVER_IDS.variantsinterpretations)
   const variantsAnnotationsReply= useProgenetixApi(
     variantsAnnotationsHandover && replaceWithProxy(variantsAnnotationsHandover.url)
   )

@@ -10,6 +10,7 @@ import {
 import cn from "classnames"
 import BiosamplesDataTable from "./BiosamplesDataTable"
 import VariantsDataTable from "./VariantsDataTable"
+import VariantsInterpretationsDataTable from "./VariantsInterpretationsDataTable"
 import { useContainerDimensions } from "../../hooks/containerDimensions"
 import Histogram from "../Histogram"
 import { Infodot } from "../Infodot"
@@ -23,14 +24,16 @@ import { getVisualizationLink } from "../../modules/data-visualization/DataVisua
 const handoversInTab = [
   HANDOVER_IDS.cnvhistogram,
   HANDOVER_IDS.biosamples,
-  HANDOVER_IDS.variants
+  HANDOVER_IDS.variants,
+  HANDOVER_IDS.variantsinterpretations
 ]
 
 const TABS = {
   results: "Results",
   samples: "Biosamples",
   samplesMap: "Biosamples Map",
-  variants: "Variants"
+  variants: "Variants",
+  variantsinterpretations: "Variant Interpretations"
 }
 
 export function DatasetResultBox({ data: responseSet, query }) {
@@ -56,6 +59,10 @@ export function DatasetResultBox({ data: responseSet, query }) {
   const variantsReply = useProgenetixApi(
     variantsHandover && replaceWithProxy(variantsHandover.url)
   )
+  const variantsInterpretationsHandover = handoverById(HANDOVER_IDS.variantsinterpretations)
+  const variantsInterpretationsReply = useProgenetixApi(
+    variantsInterpretationsHandover && replaceWithProxy(variantsInterpretationsHandover.url)
+  )
 
   let histogramUrl
   let visualizationLink
@@ -80,6 +87,8 @@ export function DatasetResultBox({ data: responseSet, query }) {
   ) && tabNames.push(TABS.samplesMap)
 
   if (handoverById(HANDOVER_IDS.variants)) tabNames.push(TABS.variants)
+  if (handoverById(HANDOVER_IDS.variantsinterpretations)) tabNames.push(TABS.variantsinterpretations)
+  
   const [selectedTab, setSelectedTab] = useState(tabNames[0])
 
   let tabComponent
@@ -116,13 +125,13 @@ export function DatasetResultBox({ data: responseSet, query }) {
         <BiosamplesMap apiReply={biosamplesReply} datasetId={id} />
       </div>
     )
-  // } else if (selectedTab === TABS.variants) {
-  //   const handover = handoverById(HANDOVER_IDS.variants)
-  //   const url = replaceWithProxy(handover.url)
-  //   tabComponent = <VariantsDataTable url={url} datasetId={id} />
   } else if (selectedTab === TABS.variants) {
     tabComponent = (
       <VariantsDataTable apiReply={variantsReply} datasetId={id} />
+    )
+  } else if (selectedTab === TABS.variantsinterpretations) {
+    tabComponent = (
+      <VariantsInterpretationsDataTable apiReply={variantsInterpretationsReply} datasetId={id} />
     )
   }
 
