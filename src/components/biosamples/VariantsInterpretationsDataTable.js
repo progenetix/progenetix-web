@@ -11,8 +11,8 @@ export default function VariantsInterpretationsDataTable({ apiReply, datasetId }
   const columns = React.useMemo(
     () => [
       {
-        Header: "Int. ID",
-        accessor: "id",
+        Header: "Variant ID",
+        accessor: a => `${a.variant_name} (${a.id})`
       },
       {
         Header: "Gene ID",
@@ -33,7 +33,7 @@ export default function VariantsInterpretationsDataTable({ apiReply, datasetId }
                 </Link>
               ) : (
                 externalReference.id
-              )}{" "}
+              )}{" - "}
               {externalReference.label}
             </div>
           ))
@@ -42,22 +42,6 @@ export default function VariantsInterpretationsDataTable({ apiReply, datasetId }
         Header: "Cytoband",
         accessor: "cytoband"
       },
-      {
-        Header: "Chr.",
-        accessor: "reference_name"
-      },
-      {
-        Header: "Ref. Base(s)",
-        accessor: "reference_bases"
-      },
-      {
-        Header: "Alt. Base(s)",
-        accessor: "alternate_bases"
-      },
-      {
-        Header: "Type",
-        accessor: "variant_type"
-      }
     ],
     [datasetId]
   )
