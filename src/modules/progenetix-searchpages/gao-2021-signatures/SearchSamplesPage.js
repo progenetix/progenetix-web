@@ -27,7 +27,7 @@ export default function SearchSamplesPage({ cytoBands }) {
           This search page uses the subset of Progenetix data - including TCGA
           samples - used in the{" "}
           <ExternalLink
-            href="https://info.baudisgroup.org/publications/2020-12-18-publication-Bo-classifiers/"
+            href="https://info.baudisgroup.org/publications/2021-gao-signatures.html"
             label="Signatures of Discriminative Copy Number Aberrations in 31 Cancer Subtypes"
           />{" "}
           publication.

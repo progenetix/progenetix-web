@@ -26,10 +26,6 @@ export default function VariantsDataTable({ apiReply, datasetId }) {
         accessor: "digest"
       },
       {
-        Header: "Callset",
-        accessor: "callset_id"
-      },
-      {
         Header: "Biosample",
         accessor: "biosample_id",
         // eslint-disable-next-line react/display-name

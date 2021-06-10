@@ -33,7 +33,7 @@ export default function VariantsInterpretationsDataTable({ apiReply, datasetId }
                 </Link>
               ) : (
                 externalReference.id
-              )}{" - "}
+              )}{" : "}
               {externalReference.label}
             </div>
           ))
