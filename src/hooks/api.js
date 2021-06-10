@@ -371,6 +371,56 @@ export function referenceLink(externalReference) {
       "https://www.ebi.ac.uk/biosamples/samples/" +
       externalReference.id.replace("biosample:", "")
     )
+  } else if (externalReference.id.includes("MedGen")) {
+    return (
+      "https://www.ncbi.nlm.nih.gov/medgen/" +
+      externalReference.id.replace("MedGen:", "").toLowerCase()
+    )
+  } else if (externalReference.id.includes("MONDO")) {
+    return (
+      "https://monarchinitiative.org/disease/MONDO:" +
+      externalReference.id.replace("MONDO:", "").toLowerCase()
+    )
+  } else if (externalReference.id.includes("OMIM")) {
+    return (
+      "https://omim.org/clinicalSynopsis/" +
+      externalReference.id.replace("OMIM:", "").toLowerCase()
+    )
+  } else if (externalReference.id.includes("Orphanet")) {
+    return (
+      "https://www.orpha.net/consor/cgi-bin/OC_Exp.php?lng=EN&Expert=" +
+      externalReference.id.replace("Orphanet:", "").toLowerCase()
+    )
+  } else if (externalReference.id.includes("MeSH")) {
+    return (
+      "https://www.ncbi.nlm.nih.gov/mesh/" +
+      externalReference.id.replace("MeSH:", "").toLowerCase()
+    )
+  } else if (externalReference.id.includes("Human Phenotype Ontology")) {
+    return (
+      "https://hpo.jax.org/app/browse/term/" +
+      externalReference.id.replace("Human Phenotype Ontology:", "").toLowerCase()
+    )
+  } else if (externalReference.id.includes("SNOMED CT")) {
+    return (
+      "https://snomedbrowser.com/Codes/Details/" +
+      externalReference.id.replace("SNOMED CT:", "").toLowerCase()
+    )
+  } else if (externalReference.id.includes("dbSNP")) {
+    return (
+      "https://www.ncbi.nlm.nih.gov/snp/rs" +
+      externalReference.id.replace("dbSNP:", "").toLowerCase()
+    )
+  } else if (externalReference.id.includes("ClinGen")) {
+    return (
+      "http://reg.clinicalgenome.org/redmine/projects/registry/genboree_registry/by_caid?caid=" +
+      externalReference.id.replace("ClinGen:", "").toLowerCase()
+    )
+  } else if (externalReference.id.includes("ClinVar")) {
+    return (
+      "https://www.ncbi.nlm.nih.gov/clinvar/variation/" +
+      externalReference.id.replace("ClinVar:", "").toLowerCase()
+    )
   } else {
     return null
   }
