@@ -15,6 +15,18 @@ cellosaurus:
       isHidden: true
     accessid:
       isHidden: true
+    variantType:
+      isHidden: true
+    varMinLength:
+      isHidden: true
+    varMaxLength:
+      isHidden: true
+    materialtype:
+      isHidden: true
+    filterLogic:
+      isHidden: true
+    geoCity:
+      isHidden: true
   examples:
     - label: "Range Example"
       note: "Example for any change around TP53 locus"
@@ -49,5 +61,6 @@ cellosaurus:
           defaultValue: "T"
         referenceBases:
           defaultValue: "G"
-        
+        geoCity:
+          isHidden: true
       
