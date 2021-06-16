@@ -393,7 +393,7 @@ export function referenceLink(externalReference) {
     )
   } else if (externalReference.id.includes("MeSH")) {
     return (
-      "https://www.ncbi.nlm.nih.gov/mesh/" +
+      "https://www.ncbi.nlm.nih.gov/mesh/?term=" +
       externalReference.id.replace("MeSH:", "").toLowerCase()
     )
   } else if (externalReference.id.includes("Human Phenotype Ontology")) {
