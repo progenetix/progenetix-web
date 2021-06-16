@@ -327,7 +327,7 @@ export function subsetIdLink(id) {
 }
 
 export function subsetPgxsegLink(id) {
-  return `${basePath}services/intervalFrequencies/?&method=pgxseg&filters=${id}`
+  return `${basePath}services/intervalFrequencies/?&output=pgxseg&filters=${id}`
 }
 
 export function ExternalLink({ href, label, onClick }) {
