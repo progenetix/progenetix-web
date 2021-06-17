@@ -1,7 +1,7 @@
 import swr from "swr"
 import defaultFetcher, { svgFetcher } from "./fetcher"
 import { keyBy } from "lodash"
-import { FaExternalLinkAlt } from "react-icons/fa"
+import { FaExternalLinkAlt, FaLink } from "react-icons/fa"
 
 // eslint-disable-next-line no-undef
 export const basePath = process.env.NEXT_PUBLIC_API_PATH
@@ -334,6 +334,14 @@ export function ExternalLink({ href, label, onClick }) {
   return (
     <a href={href} rel="noreferrer" target="_blank" onClick={onClick}>
       {label} <FaExternalLinkAlt className="icon has-text-info is-small" />
+    </a>
+  )
+}
+
+export function Link({ href, label, onClick }) {
+  return (
+    <a href={href} onClick={onClick}>
+      {label} <FaLink className="icon has-text-grey-light is-small" />
     </a>
   )
 }
