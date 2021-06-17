@@ -7,6 +7,7 @@ InputField.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.node.isRequired,
   infoText: PropTypes.string,
+  infoLink: PropTypes.string,
   placeholder: PropTypes.any,
   isHidden: PropTypes.bool,
   errors: PropTypes.object,
@@ -18,6 +19,7 @@ export default function InputField({
   name,
   label,
   infoText,
+  infoLink,
   placeholder,
   isHidden,
   errors,
@@ -30,7 +32,7 @@ export default function InputField({
   const help = errors[name]?.message
   return (
     <div className={cn("field", { "is-hidden": isHidden }, className)}>
-      <Label label={label} infoText={infoText} />
+      <Label label={label} infoText={infoText} infoLink={infoLink} />
       <p className="control">
         <input
           name={name}

@@ -136,6 +136,7 @@ alternateBases:
   label: Alternate Base(s)
 bioontology:
   label: Cancer Classification(s)
+  infoLink: "https://info.progenetix.org/doc/filters-documentation.html"
   infoText: |
     Special filter type for disease classification codes. If using multiple
     codes please be aware that probably use of an "OR" filter logic will be appropriate.
@@ -181,6 +182,7 @@ genotypicSex:
       label: Male genotypic Sex
 freeFilters:
   label: Filters
+  infoLink: "https://info.progenetix.org/doc/filters-documentation.html"
   infoText: |
     Add free comma-concatenated **filters** to the search. These will usually
     correspond to CURIE values supported by the resource (e.g.
