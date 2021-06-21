@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Layout } from "../../components/Layout"
 import { Infodot } from "../../components/Infodot"
-import { useGeoCity, usePublicationList } from "../../hooks/api"
+import { useGeoCity, usePublicationList, Link } from "../../hooks/api"
 import { WithData } from "../../components/Loader"
 import Table, { TooltipHeader, InfodotHeader } from "../../components/Table"
 import { EpmcLink } from "./EpmcUrl"
@@ -30,7 +30,12 @@ export default function PublicationsListPage() {
         </p>
         <p>
           Please <a href="mailto:contact@progenetix.org">contact us</a> to alert
-          us about additional articles you are aware of.
+          us about additional articles you are aware of. The
+          inclusion criteria are described{" "}
+          <Link
+            href="https://info.progenetix.org/doc/publication-collection.html"
+            label="in the documentation"
+          />.
         </p>
       </article>
       <div className="mb-5">

@@ -67,12 +67,12 @@ export function DatasetResultBox({ data: responseSet, query }) {
   let histogramUrl
   let visualizationLink
   if (handoverById(HANDOVER_IDS.cnvhistogram)) {
-    if (info.counts.sampleCount <= MAX_HISTO_SAMPLES) {
+    if (info.counts.sample_count <= MAX_HISTO_SAMPLES) {
       histogramUrl = handoverById(HANDOVER_IDS.cnvhistogram).url
       let visualizationAccessId = new URLSearchParams(
         new URL(histogramUrl).search
       ).get("accessid")
-      visualizationLink = getVisualizationLink(visualizationAccessId, info.counts.sampleCount)
+      visualizationLink = getVisualizationLink(visualizationAccessId, info.counts.sample_count)
     }
   }
 
@@ -142,17 +142,17 @@ export function DatasetResultBox({ data: responseSet, query }) {
         <div className="column is-one-fourth">
           <div>
             <b>Samples: </b>
-            {info.counts.sampleCount}
+            {info.counts.sample_count}
           </div>
-          {info.counts.variantCount > 0 ? (
+          {info.counts.variant_count > 0 ? (
             <div>
               <div>
                 <b>Variants: </b>
-                {info.counts.variantCount}
+                {info.counts.variant_count}
               </div>
               <div>
                 <b>Calls: </b>
-                {info.counts.callCount}
+                {info.counts.call_count}
               </div>
             </div>
           ) : null}
@@ -163,7 +163,7 @@ export function DatasetResultBox({ data: responseSet, query }) {
           ))}
         </div>
         <div className="column is-one-fourth">
-          {info.counts.variantCount > 0 ? (
+          {info.counts.variant_count > 0 ? (
             <div>
               <UCSCRegion query={query} />
             </div>
