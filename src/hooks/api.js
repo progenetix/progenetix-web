@@ -28,7 +28,7 @@ export function useProgenetixApi(...args) {
   if (data) {
     const errorMessage = findErrorMessage(data)
     // Compatible with the simple responses.
-    const mappedData = data.response ?? { results: data }
+    const mappedData = data ?? { results: data }
     return { ...other, data: mappedData, error: errorMessage ?? error }
   }
   // Connection error or http error code
@@ -482,6 +482,7 @@ export function replaceWithProxy(
   useProxyOpt = useProxy,
   basePathOpt = basePath
 ) {
+  if (!url) return false
   if (!useProxyOpt) return url
   return url.toString().replace(new URL(url).origin + "/", basePathOpt)
 }

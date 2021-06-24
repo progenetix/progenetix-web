@@ -93,7 +93,7 @@ function DataVisualizationPanel({ accessid, sampleCount, width }) {
       <WithData
         background
         apiReply={dataResult}
-        render={(data) => <ResultPanel response={data.results} />}
+        render={(dataResult) => <ResultPanel response={dataResult.data} />}
       />
     </div>
   )
@@ -276,12 +276,14 @@ function ResultPanel({ response }) {
           Open Histogram
         </a>
       </div>
-      <div>
-        <img src={replaceWithProxy(multihistoUrl)} />
-        <a href={multihistoUrl} target="_blank" rel="noreferrer">
-          Open Group Histogram Plot
-        </a>
-      </div>
+      {replaceWithProxy(multihistoUrl) && (        
+        <div>
+          <img src={replaceWithProxy(multihistoUrl)} />
+          <a href={multihistoUrl} target="_blank" rel="noreferrer">
+            Open Group Histogram Plot
+          </a>
+        </div>
+      )}
       <div>
         <img src={replaceWithProxy(multistripUrl)} />
         <a href={multistripUrl} target="_blank" rel="noreferrer">

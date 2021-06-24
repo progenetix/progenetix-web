@@ -118,9 +118,9 @@ export const getStaticProps = async () => {
 
   return {
     props: {
-      progenetixStats: dbstatsReply.response,
-      ncitCountResponse: ncitCountReply.response.num_total_results,
-      subsetsResponse: subsetsReply.response
+      progenetixStats: dbstatsReply,
+      ncitCountResponse: ncitCountReply.response_summary.num_total_results,
+      subsetsResponse: subsetsReply
     }
   }
 }
