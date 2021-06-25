@@ -7,5 +7,6 @@ module.exports = {
     })
     return config
   },
-  trailingSlash: true
+  trailingSlash: true,
+  productionBrowserSourceMaps: true
 }
