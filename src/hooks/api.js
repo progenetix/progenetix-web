@@ -28,8 +28,7 @@ export function useProgenetixApi(...args) {
   if (data) {
     const errorMessage = findErrorMessage(data)
     // Compatible with the simple responses.
-    const mappedData = data ?? { results: data }
-    return { ...other, data: mappedData, error: errorMessage ?? error }
+    return { ...other, data, error: errorMessage ?? error }
   }
   // Connection error or http error code
   else if (error) {
@@ -309,12 +308,12 @@ export function sampleSearchPageFiltersLink({
 }
 
 export function useGeoCity({ city }) {
-  const url = `${basePath}services/geolocations?city=${city}`
+  const url = city ?`${basePath}services/geolocations?city=${city}` : null
   return useProgenetixApi(url)
 }
 
 export function useGeneSymbol({ geneSymbol }) {
-  const url = `${basePath}services/genespans/?geneSymbol=${geneSymbol}&filterPrecision=start`
+  const url = geneSymbol ? `${basePath}services/genespans/?geneSymbol=${geneSymbol}&filterPrecision=start` :null
   return useProgenetixApi(url)
 }
 
