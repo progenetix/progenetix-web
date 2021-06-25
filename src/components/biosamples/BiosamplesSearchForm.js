@@ -513,22 +513,20 @@ const handleExampleClicked = (reset, setExample, setUrlQuery) => (example) => {
 // Maps FilteringTerms hook to apiReply usable by DataFetchSelect
 function useBioSubsets(watchForm) {
   const datasetIds = watchForm("datasetIds")
-  const { data, ...other } = useCollations({
+  return useCollations({
     datasetIds,
     method: "children",
     filters: "NCIT,icdom,icdot,UBERON"
   })
-  return { data, ...other }
 }
 
 function useReferencesSubsets(watchForm) {
   const datasetIds = watchForm("datasetIds")
-  const { data, ...other } = useCollations({
+ return useCollations({
     datasetIds,
     method: "children",
     filters: "PMID,geo,cellosaurus"
   })
-  return { data, ...other }
 }
 
 function FilterLogicWarning({ isVisible }) {
