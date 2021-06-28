@@ -44,7 +44,7 @@ export function useProgenetixApi(...args) {
 // Return an error message contained in the payload.
 function findErrorMessage(data) {
   return (
-    data.response?.error?.error_message ||
+    data.error?.error_message ||
     (data.errors ? errorsToMessage(data.errors) : null) ||
     null
   )
