@@ -1,5 +1,5 @@
 import React from "react"
-import { usePublication } from "../../hooks/api"
+import { usePublication, Link } from "../../hooks/api"
 import { WithData } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { SubsetHistogram } from "../../components/Histogram"
@@ -58,10 +58,10 @@ function PublicationDetails({ publication, id }) {
   return (
     <section className="content">
       <h2 className="tile">
-        {publication.id}{" "}
-        <a rel="noreferrer" target="_blank" href={epmcUrl(publication.id)}>
-          {" {EPMC ↗}"}
-        </a>
+        <Link
+          href={epmcUrl(publication.id)}
+          label={publication.id}
+        />
       </h2>
       <h3 className="subtitle is-5">{publication.title}</h3>
       <p className="has-text-weight-semibold">{publication.authors}</p>

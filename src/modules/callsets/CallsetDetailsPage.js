@@ -1,12 +1,12 @@
 import {
   getDataItemUrl,
   useDataItemDelivery,
-  NoResultsHelp
+  NoResultsHelp,
+  Link
 } from "../../hooks/api"
 import { Loader } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
-import Link from "next/link"
 
 const itemColl = "callsets"
 const exampleId = "pgxcs-kftvlijb"
@@ -77,9 +77,8 @@ function Callset({ callset, datasetIds }) {
           <p>
             <Link
               href={`/biosamples/details?id=${callset.biosample_id}&datasetIds=${datasetIds}`}
-            >
-              {callset.biosample_id}
-            </Link>
+              label={callset.biosample_id}
+            />
           </p>
         </>
       )}

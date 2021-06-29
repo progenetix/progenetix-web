@@ -90,7 +90,7 @@ export default function Index({
         </h4>
 
         <p>
-          Through the <a href="/subsets/biosubsets">[ Publications ]</a> page
+          Through the <a href="/publications">[ Publications ]</a> page
           Progenetix provides{" "}
           <span className="span-red">
             {progenetixStats.results[0].counts.publications}
