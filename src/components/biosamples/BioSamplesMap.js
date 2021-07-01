@@ -13,7 +13,7 @@ export default function BiosamplesMap({ apiReply, datasetId }) {
     <WithData
       apiReply={apiReply}
       render={(response) => (
-        <Map biosamples={response.result_sets[0].results} height={640} datasetId={datasetId} />
+        <Map biosamples={response.resultSets[0].results} height={640} datasetId={datasetId} />
       )}
     />
   )
@@ -34,12 +34,12 @@ function Map({ biosamples, height, datasetId }) {
 
     const byCoordinates = groupBy(
       biosamples,
-      "provenance.geo_location.geometry.coordinates"
+      "provenance.geoLocation.geometry.coordinates"
     )
 
     const circles = Object.entries(byCoordinates).flatMap(([, biosamples]) => {
       const randomId = Math.random().toString(36).substring(2, 15)
-      const geoLocation = biosamples[0].provenance?.geo_location
+      const geoLocation = biosamples[0].provenance?.geoLocation
       if (!geoLocation) return []
       const radius = 3000 + 2000 * biosamples.length
       const render = () =>

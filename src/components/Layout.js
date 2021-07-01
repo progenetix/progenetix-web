@@ -143,6 +143,7 @@ function Side({ onClick }) {
           href="/service-collection/uploader"
           label="Upload & Plot"
         />
+        <MenuInternalLinkItem href={PROGENETIXINFO+"/doc/downloads.html"} label="Download Data" />
         <MenuInternalLinkItem
           href="/beaconplus-instances/beaconplus"
           label={

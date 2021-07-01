@@ -21,12 +21,12 @@ export default function PublicationsMap({ publications, height }) {
 
     const byCoordinates = groupBy(
       publications,
-      "provenance.geo_location.geometry.coordinates"
+      "provenance.geoLocation.geometry.coordinates"
     )
 
     const circles = Object.entries(byCoordinates).map(([, publications]) => {
       const randomId = Math.random().toString(36).substring(2, 15)
-      const geoLocation = publications[0].provenance.geo_location
+      const geoLocation = publications[0].provenance.geoLocation
       const radius = 3000 + 2000 * publications.length
       const render = () =>
         // eslint-disable-next-line react/no-render-return-value

@@ -44,7 +44,7 @@ export function useProgenetixApi(...args) {
 // Return an error message contained in the payload.
 function findErrorMessage(data) {
   return (
-    data.error?.error_message ||
+    data.error?.errorMessage ||
     (data.errors ? errorsToMessage(data.errors) : null) ||
     null
   )
@@ -93,7 +93,7 @@ export function validateBeaconQuery(queryData) {
 
 export function mkGeoParams(geoCity, geodistanceKm) {
   if (!geoCity) return null
-  const coordinates = geoCity.data.geo_location.geometry.coordinates ?? []
+  const coordinates = geoCity.data.geoLocation.geometry.coordinates ?? []
   const [geolongitude, geolatitude] = coordinates
   const geodistance = geodistanceKm ? geodistanceKm * 1000 : 100 * 1000
   return { geolongitude, geolatitude, geodistance }

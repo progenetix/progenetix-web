@@ -27,7 +27,7 @@ export default function VariantsDataTable({ apiReply, datasetId }) {
       },
       {
         Header: "Biosample",
-        accessor: "biosample_id",
+        accessor: "biosampleId",
         // eslint-disable-next-line react/display-name
         Cell: (cellInfo) => (
           <Link
@@ -65,11 +65,11 @@ export default function VariantsDataTable({ apiReply, datasetId }) {
           <div className="mb-4">
             <DownloadButton
               label="Download Variants"
-              json={response.result_sets[0].results}
+              json={response.resultSets[0].results}
               fileName="variants"
             />
           </div>
-          <Table columns={columns} data={response.result_sets[0].results} />
+          <Table columns={columns} data={response.resultSets[0].results} />
         </div>
       )}
     />

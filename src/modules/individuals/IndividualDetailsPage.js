@@ -45,7 +45,7 @@ function IndividualLoader({ id, datasetIds }) {
 }
 
 function IndividualResponse({ response, datasetIds }) {
-  if (!response.result_sets[0].results) {
+  if (!response.resultSets[0].results) {
     return NoResultsHelp(exampleId, itemColl)
   }
   if (response.meta.errors.length > 0) {
@@ -56,7 +56,7 @@ function IndividualResponse({ response, datasetIds }) {
     )
   }
 
-  return <Individual individual={response.result_sets[0].results[0]} datasetIds={datasetIds} />
+  return <Individual individual={response.resultSets[0].results[0]} datasetIds={datasetIds} />
 }
 
 function Individual({ individual, datasetIds }) {
