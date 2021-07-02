@@ -31,13 +31,15 @@ export default function BioSubsetsPage() {
   )
 }
 
+// const { datasetIds } = urlQuery
+
 const BioSubsetsContent = withUrlQuery(({ urlQuery, setUrlQuery }) => {
   const {
     selected: selectedFilters,
     setSelected: setSelectedFilters,
     options: filtersOptions
   } = useConfigSelect(config.biofilters, "filters", urlQuery, setUrlQuery)
-  const { datasetIds } = urlQuery
+  const datasetIds = "progenetix"
   return (
     <>
       <div className="level">
