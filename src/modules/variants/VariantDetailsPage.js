@@ -4,11 +4,13 @@ import {
   useDataItemDelivery,
   replaceWithProxy,
   useProgenetixApi,
-  NoResultsHelp
+  NoResultsHelp, referenceLink
 } from "../../hooks/api"
 import { WithData } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
+import Link from "next/link"
+import React from "react"
 
 const itemColl = "variants"
 const exampleId = "5bab576a727983b2e00b8d32"
@@ -114,6 +116,46 @@ function VariantInterpretation({ ho, apiReply, datasetIds }) {
         <ul>
           <li>Cytoband: {response.result_sets[0].results[0].cytoband}</li>
           <li>Gene ID: {response.result_sets[0].results[0].gene_id}</li>
+          <li>Clinical effect: {response.result_sets[0].results[0].clinical_relevance.clinical_effect.label}</li>
+          <h5>Disease ID</h5>
+          {response.result_sets[0].results[0].clinical_relevance.disease_id.map((externalReference, i) => (
+            <li key={i}>
+              {referenceLink(externalReference) ? (
+                <Link href={referenceLink(externalReference)}>
+                  <a>{externalReference.id}</a>
+                </Link>
+              ) : (
+                externalReference.id
+              )}{" "}
+              {externalReference?.label && ": " + externalReference?.label}
+            </li>
+          ))}
+          <h5>External References</h5>
+            {response.result_sets[0].results[0].external_references.map((externalReference, i) => (
+              <li key={i}>
+                {referenceLink(externalReference) ? (
+                  <Link href={referenceLink(externalReference)}>
+                    <a>{externalReference.id}</a>
+                  </Link>
+                ) : (
+                  externalReference.id
+                )}{" "}
+                {externalReference?.label && ": " + externalReference?.label}
+              </li>
+            ))}
+          <h5>Publications</h5>
+          {response.result_sets[0].results[0].references.map((externalReference, i) => (
+            <li key={i}>
+              {referenceLink(externalReference) ? (
+                <Link href={referenceLink(externalReference)}>
+                  <a>{externalReference.id}</a>
+                </Link>
+              ) : (
+                externalReference.id
+              )}{" "}
+              {externalReference?.label && ": " + externalReference?.label}
+            </li>
+          ))}
         </ul>
         <h5>
         Download Data as{" "}
