@@ -43,7 +43,7 @@ function CallsetLoader({ id, datasetIds }) {
 }
 
 function CallsetResponse({ response, datasetIds }) {
-  if (!response.result_sets[0].results) {
+  if (!response.resultSets[0].results) {
     return NoResultsHelp(exampleId, itemColl)
   }
   if (response.meta.errors.length > 0) {
@@ -54,7 +54,7 @@ function CallsetResponse({ response, datasetIds }) {
     )
   }
 
-  return <Callset callset={response.result_sets[0].results[0]} datasetIds={datasetIds} />
+  return <Callset callset={response.resultSets[0].results[0]} datasetIds={datasetIds} />
 }
 
 function Callset({ callset, datasetIds }) {
@@ -71,13 +71,13 @@ function Callset({ callset, datasetIds }) {
         </>
       )}
 
-      {callset.biosample_id && (
+      {callset.biosampleId && (
         <>
           <h5>Biosample</h5>
           <p>
             <Link
-              href={`/biosamples/details?id=${callset.biosample_id}&datasetIds=${datasetIds}`}
-              label={callset.biosample_id}
+              href={`/biosamples/details?id=${callset.biosampleId}&datasetIds=${datasetIds}`}
+              label={callset.biosampleId}
             />
           </p>
         </>

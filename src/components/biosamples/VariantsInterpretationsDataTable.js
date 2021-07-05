@@ -23,7 +23,7 @@ export default function VariantsInterpretationsDataTable({ apiReply, datasetId }
           "Interpretations & Evidences",
           "Identifiers for external information about the variant or its interpretation"
         ),
-        accessor: "external_references",
+        accessor: "externalReferences",
         Cell: ({ value: externalReferences }) =>
           externalReferences.map((externalReference, i) => (
             <div key={i}>
@@ -54,11 +54,11 @@ export default function VariantsInterpretationsDataTable({ apiReply, datasetId }
           <div className="mb-4">
             <DownloadButton
               label="Download Variants"
-              json={response.result_sets[0].results}
+              json={response.resultSets[0].results}
               fileName="variants"
             />
           </div>
-          <Table columns={columns} data={response.result_sets[0].results} />
+          <Table columns={columns} data={response.resultSets[0].results} />
         </div>
       )}
     />

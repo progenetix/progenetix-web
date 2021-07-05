@@ -55,15 +55,15 @@ function VariantLoader({ id, datasetIds }) {
 }
 
 function VariantResponse({ response, datasetIds }) {
-  if (!response.result_sets[0].results[0]) {
+  if (!response.resultSets[0].results[0]) {
     return NoResultsHelp(exampleId, itemColl)
   }
-  return <Variant variant={response.result_sets[0].results[0]} datasetIds={datasetIds} />
+  return <Variant variant={response.resultSets[0].results[0]} datasetIds={datasetIds} />
 }
 
 function VariantsInterpretationResponse({ response, datasetIds }) {
   
-  const handoverById = (givenId) => response.result_sets[0].results_handovers.find(({ handoverType: { id } }) => id === givenId)
+  const handoverById = (givenId) => response.resultSets[0].resultsHandovers.find(({ handoverType: { id } }) => id === givenId)
   const variantsAnnotationsHandover = handoverById(HANDOVER_IDS.variantsinterpretations)
   const variantsAnnotationsReply= useProgenetixApi(
     variantsAnnotationsHandover && replaceWithProxy(variantsAnnotationsHandover.url)
@@ -111,7 +111,7 @@ function VariantInterpretation({ ho, apiReply, datasetIds }) {
         <section className="content">
         <hr/>
         <h3 className="mb-6">
-          {response.result_sets[0].results[0].id}
+          {response.resultSets[0].results[0].id}
         </h3>
         <ul>
           <li>Cytoband: {response.result_sets[0].results[0].cytoband}</li>
@@ -156,6 +156,9 @@ function VariantInterpretation({ ho, apiReply, datasetIds }) {
               {externalReference?.label && ": " + externalReference?.label}
             </li>
           ))}
+=======
+          <li>Cytoband: {response.resultSets[0].results[0].cytoband}</li>
+          <li>Gene ID: {response.resultSets[0].results[0].gene_id}</li>
         </ul>
         <h5>
         Download Data as{" "}

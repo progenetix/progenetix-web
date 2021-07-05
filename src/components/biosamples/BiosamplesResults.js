@@ -13,7 +13,7 @@ export function BiosamplesResults({ response, isLoading, error, query }) {
         {() => (
           <>
             <AlleleResponses
-              biosampleResponseSets={response.result_sets}
+              biosampleResponseSets={response.resultSets}
               query={query}
             />
           </>

@@ -33,7 +33,7 @@ can be called on any page.~~
 
 #### Fixes
 
-*  ~~Subsets: Selecting a subset shows the number of child_terms in the selector
+*  ~~Subsets: Selecting a subset shows the number of childTerms in the selector
 collection, not the number of selected samples~~
 *  ~~In the DataVisualizationPage, the gene label selector should allow multiple
 labels~~

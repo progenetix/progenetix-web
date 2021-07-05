@@ -90,7 +90,7 @@ export default function BiosamplesStatsDataTable({
       background
       render={(allSubsetsResponse) => {
         const subsets = makeSubsetsData(
-          biosamplesResponse.result_sets[0].results,
+          biosamplesResponse.resultSets[0].results,
           allSubsetsResponse.results
         )
         return <Table columns={columns} data={subsets} pageSize={20} />

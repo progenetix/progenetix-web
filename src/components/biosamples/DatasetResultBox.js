@@ -39,14 +39,14 @@ const TABS = {
 export function DatasetResultBox({ data: responseSet, query }) {
   const {
     id,
-    results_handovers,
+    resultsHandovers,
     info
   } = responseSet
 
   const handoverById = (givenId) =>
-    results_handovers.find(({ handoverType: { id } }) => id === givenId)
+    resultsHandovers.find(({ handoverType: { id } }) => id === givenId)
 
-  const genericHandovers = results_handovers.filter(
+  const genericHandovers = resultsHandovers.filter(
     ({ handoverType: { id } }) => !handoversInTab.includes(id)
   )
 
@@ -67,12 +67,12 @@ export function DatasetResultBox({ data: responseSet, query }) {
   let histogramUrl
   let visualizationLink
   if (handoverById(HANDOVER_IDS.cnvhistogram)) {
-    if (info.counts.sample_count <= MAX_HISTO_SAMPLES) {
+    if (info.counts.sampleCount <= MAX_HISTO_SAMPLES) {
       histogramUrl = handoverById(HANDOVER_IDS.cnvhistogram).url
       let visualizationAccessId = new URLSearchParams(
         new URL(histogramUrl).search
       ).get("accessid")
-      visualizationLink = getVisualizationLink(visualizationAccessId, info.counts.sample_count)
+      visualizationLink = getVisualizationLink(visualizationAccessId, info.counts.sampleCount)
     }
   }
 
@@ -82,8 +82,8 @@ export function DatasetResultBox({ data: responseSet, query }) {
 
   biosamplesHandover && tabNames.push(TABS.samples)
 
-  biosamplesReply?.data?.result_sets[0].results?.some(
-    (biosample) => !!biosample.provenance?.geo_location
+  biosamplesReply?.data?.resultSets[0].results?.some(
+    (biosample) => !!biosample.provenance?.geoLocation
   ) && tabNames.push(TABS.samplesMap)
 
   if (handoverById(HANDOVER_IDS.variants)) tabNames.push(TABS.variants)
@@ -142,17 +142,17 @@ export function DatasetResultBox({ data: responseSet, query }) {
         <div className="column is-one-fourth">
           <div>
             <b>Samples: </b>
-            {info.counts.sample_count}
+            {info.counts.sampleCount}
           </div>
-          {info.counts.variant_count > 0 ? (
+          {info.counts.variantCount > 0 ? (
             <div>
               <div>
                 <b>Variants: </b>
-                {info.counts.variant_count}
+                {info.counts.variantCount}
               </div>
               <div>
                 <b>Calls: </b>
-                {info.counts.call_count}
+                {info.counts.callCount}
               </div>
             </div>
           ) : null}
@@ -163,7 +163,7 @@ export function DatasetResultBox({ data: responseSet, query }) {
           ))}
         </div>
         <div className="column is-one-fourth">
-          {info.counts.variant_count > 0 ? (
+          {info.counts.variantCount > 0 ? (
             <div>
               <UCSCRegion query={query} />
             </div>

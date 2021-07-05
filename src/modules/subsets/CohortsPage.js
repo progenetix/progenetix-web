@@ -25,13 +25,15 @@ export default function CohortsPage() {
   )
 }
 
+// const { datasetIds } = urlQuery
+
 const CohortsContent = withUrlQuery(({ urlQuery, setUrlQuery }) => {
   const {
     selected: selectedFilters,
     setSelected: setSelectedFilters,
     options: filtersOptions
   } = useConfigSelect(config.cohortfilters, "filters", urlQuery, setUrlQuery)
-  const { datasetIds } = urlQuery
+  const datasetIds = "progenetix"
   return (
     <>
       <div className="level">

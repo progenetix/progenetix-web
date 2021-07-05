@@ -52,11 +52,11 @@ function BiosampleLoader({ id, datasetIds }) {
 }
 
 function BiosampleResponse({ response, datasetIds }) {
-  if (!response.result_sets[0].results) {
+  if (!response.resultSets[0].results) {
     return NoResultsHelp(exampleId, itemColl)
   }
 
-  return <Biosample biosample={response.result_sets[0].results[0]} datasetIds={datasetIds} />
+  return <Biosample biosample={response.resultSets[0].results[0]} datasetIds={datasetIds} />
 }
 
 function Biosample({ biosample, datasetIds }) {
@@ -116,10 +116,10 @@ function Biosample({ biosample, datasetIds }) {
             <li>Material: {biosample.provenance.material.label}</li>
           </>
         )}
-        {biosample.provenance?.geo_location?.properties.label && (
+        {biosample.provenance?.geoLocation?.properties.label && (
           <>
             <li>
-              Origin: {biosample.provenance.geo_location.properties.label}
+              Origin: {biosample.provenance.geoLocation.properties.label}
             </li>
           </>
         )}
@@ -135,7 +135,7 @@ function Biosample({ biosample, datasetIds }) {
 
       <h5>External References</h5>
       <ul>
-        {biosample.external_references.map((externalReference, i) => (
+        {biosample.externalReferences.map((externalReference, i) => (
           <li key={i}>
             {referenceLink(externalReference) ? (
               <Link href={referenceLink(externalReference)}>
@@ -149,10 +149,10 @@ function Biosample({ biosample, datasetIds }) {
         ))}
       </ul>
 
-      {biosample.info?.callset_ids?.length > 0 && (
+      {biosample.info?.callsetIds?.length > 0 && (
         <>
           <h5>CNV Profile(s)</h5>
-          {biosample.info?.callset_ids?.map((csid, i) => (
+          {biosample.info?.callsetIds?.map((csid, i) => (
             <CnvHistogramPreview key={i} csid={csid} datasetIds={datasetIds} />
           ))}
         </>
