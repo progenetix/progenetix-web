@@ -7,7 +7,7 @@ export function LabeledGeneSpanOptions(inputValue) {
   const [cachedGenes, setCachedGenes] = useState({})
   useEffect(() => {
     if (data) {
-      const genes = keyBy(data.results, "gene_symbol")
+      const genes = keyBy(data.results, "geneSymbol")
       setCachedGenes({ ...genes, ...cachedGenes })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -47,21 +47,21 @@ function useGeneSpans(querytext) {
 
 function labeledGeneSpan(gene) {
   return (
-    gene.reference_name +
+    gene.referenceName +
     ":" +
     gene.start +
     "-" +
     gene.end +
     ":" +
-    gene.gene_symbol
+    gene.geneSymbol
   )
 }
 
 function geneLabel(gene) {
   return (
-    gene.gene_symbol +
+    gene.geneSymbol +
     " (" +
-    gene.reference_name +
+    gene.referenceName +
     ":" +
     gene.start +
     "-" +

@@ -158,7 +158,7 @@ function VariantInterpretation({ ho, apiReply, datasetIds }) {
           ))}
 =======
           <li>Cytoband: {response.resultSets[0].results[0].cytoband}</li>
-          <li>Gene ID: {response.resultSets[0].results[0].gene_id}</li>
+          <li>Gene ID: {response.resultSets[0].results[0].geneId}</li>
         </ul>
         <h5>
         Download Data as{" "}

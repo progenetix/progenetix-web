@@ -12,11 +12,11 @@ export default function VariantsInterpretationsDataTable({ apiReply, datasetId }
     () => [
       {
         Header: "Variant ID",
-        accessor: a => `${a.variant_name} (${a.id})`
+        accessor: a => `${a.variantName} (${a.id})`
       },
       {
         Header: "Gene ID",
-        accessor: "gene_id"
+        accessor: "geneId"
       },
       {
         Header: TooltipHeader(

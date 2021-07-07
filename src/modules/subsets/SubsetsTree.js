@@ -355,8 +355,8 @@ function sampleSelectUrl({ subsets, datasetIds, sampleFilterScope }) {
 function canSearch(subset) {
   // Only necessary for NCIT
   if (!subset.id.includes("NCIT:")) return true
-  const minDepth = subset.hierarchy_paths
-    ? min(subset.hierarchy_paths?.map((hp) => hp.depth))
+  const minDepth = subset.hierarchyPaths
+    ? min(subset.hierarchyPaths?.map((hp) => hp.depth))
     : 999
   return minDepth >= 2
 }

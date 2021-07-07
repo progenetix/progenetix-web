@@ -64,7 +64,7 @@ export default function FileLoaderPage() {
         </p>
         <p>
           While the header values are not being interpreted (i.e. it doesn not
-          matter if the column is labeled <code>reference_name</code> or{" "}
+          matter if the column is labeled <code>referenceName</code> or{" "}
           <code>chro</code>), the column order has to be respected:
         </p>
         <ol>
@@ -79,7 +79,7 @@ export default function FileLoaderPage() {
             </ul>
           </li>
           <li>
-            <code>reference_name</code>
+            <code>referenceName</code>
             <ul>
               <li>the reference chromosome</li>
               <li>1-22, X, Y (23 =&gt; X; 24 =&gt; Y)</li>
