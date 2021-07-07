@@ -39,19 +39,19 @@ export default function VariantsDataTable({ apiReply, datasetId }) {
       },
       {
         Header: "Chr.",
-        accessor: "reference_name"
+        accessor: "referenceName"
       },
       {
         Header: "Ref. Base(s)",
-        accessor: "reference_bases"
+        accessor: "referenceBases"
       },
       {
         Header: "Alt. Base(s)",
-        accessor: "alternate_bases"
+        accessor: "alternateBases"
       },
       {
         Header: "Type",
-        accessor: "variant_type"
+        accessor: "variantType"
       }
     ],
     [datasetId]
