@@ -101,7 +101,7 @@ export function mkGeoParams(geoCity, geodistanceKm) {
 
 export function mkGeneParams(gene) {
   if (!gene) return null
-  const geneSymbol = gene.data.gene_symbol ?? []
+  const geneSymbol = gene.data.geneSymbol ?? []
   return { geneSymbol }
 }
 
@@ -274,6 +274,7 @@ export function useSubsethistogram({ datasetIds, id, filter, size, chr2plot }) {
   return useExtendedSWR(size > 0 && `${svgbaseurl}&${searchQuery}`, svgFetcher)
 }
 
+// method is "counts" for smaller payloads 
 export function useCollationsById({ datasetIds }) {
   const { data, ...other } = useCollations({
     filters: "",

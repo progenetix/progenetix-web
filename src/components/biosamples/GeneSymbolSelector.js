@@ -16,9 +16,9 @@ export function GeneSymbolSelector({
   let options = []
   if (data) {
     options = data.results.map((g) => ({
-      value: g.gene_symbol,
+      value: g.geneSymbol,
       data: g,
-      label: `${g.gene_symbol} (${g.reference_name}:${g.start}-${g.end})`
+      label: `${g.geneSymbol} (${g.referenceName}:${g.start}-${g.end})`
     }))
   }
   return (

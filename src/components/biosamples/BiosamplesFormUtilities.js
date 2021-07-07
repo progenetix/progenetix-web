@@ -77,7 +77,7 @@ export function GeneSpansUtility({ onClose, setFormValue }) {
   const onApply = (optionValue) => {
     setFormValue("start", optionValue.start)
     setFormValue("end", optionValue.end)
-    setFormValue("referenceName", optionValue.reference_name)
+    setFormValue("referenceName", optionValue.referenceName)
     onClose()
   }
   const renderValue = (optionValue) => (
@@ -89,7 +89,7 @@ export function GeneSpansUtility({ onClose, setFormValue }) {
         End: <b>{optionValue.end}</b>
       </div>
       <div>
-        Reference: <b>{optionValue.reference_name}</b>
+        Reference: <b>{optionValue.referenceName}</b>
       </div>
     </div>
   )
