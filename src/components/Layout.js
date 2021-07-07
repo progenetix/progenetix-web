@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import cn from "classnames"
 import { FaBars, FaTimes } from "react-icons/fa"
 import { useRouter } from "next/router"
+import { ErrorBoundary } from "react-error-boundary"
 import Head from "next/head"
 import Link from "next/link"
 import {
@@ -46,13 +47,21 @@ export function Layout({ title, headline, children }) {
           </aside>
           <div className="Layout__lead">
             {headline && <h1 className="title is-4">{headline}</h1>}
-            {children}
+            <ErrorBoundary
+              FallbackComponent={ErrorFallback}
+              onReset={() => {
+                // reset the state of your app so the error doesn't happen again
+              }}
+            >
+              {children}
+            </ErrorBoundary>
           </div>
         </div>
       </main>
       <footer className="footer">
         <div className="content container has-text-centered">
-          © 2000 - {THISYEAR} Progenetix Cancer Genomics Information Resource by the{" "}
+          © 2000 - {THISYEAR} Progenetix Cancer Genomics Information Resource by
+          the{" "}
           <a href="https://info.baudisgroup.org">
             Computational Oncogenomics Group
           </a>{" "}
@@ -75,6 +84,23 @@ export function Layout({ title, headline, children }) {
           nor the results achieved with the Progenetix tools.
         </div>
       </footer>
+    </div>
+  )
+}
+
+function ErrorFallback({ error }) {
+  return (
+    <div>
+      <article className="message is-danger">
+        <div className="message-header">
+          <p>Something went wrong</p>
+        </div>
+        <div className="message-body">{error.message}</div>
+      </article>
+
+      <button className="button" onClick={() => location.reload()}>
+        Reload
+      </button>
     </div>
   )
 }
@@ -143,7 +169,10 @@ function Side({ onClick }) {
           href="/service-collection/uploader"
           label="Upload & Plot"
         />
-        <MenuInternalLinkItem href={PROGENETIXINFO+"/doc/downloads.html"} label="Download Data" />
+        <MenuInternalLinkItem
+          href={PROGENETIXINFO + "/doc/downloads.html"}
+          label="Download Data"
+        />
         <MenuInternalLinkItem
           href="/beaconplus-instances/beaconplus"
           label={
