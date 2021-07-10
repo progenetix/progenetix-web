@@ -74,6 +74,7 @@ function useIsFilterlogicWarningVisible(watch) {
   const filterLogic = watch("filterLogic")
   const bioontology = watch("bioontology")
   const referenceid = watch("referenceid")
+  const clinicalClasses = watch("clinicalClasses")
   const cohorts = watch("cohorts")
   const freeFilters = watch("freeFilters")
   const genotypicSex = watch("genotypicSex")
@@ -82,6 +83,7 @@ function useIsFilterlogicWarningVisible(watch) {
     freeFilters,
     bioontology,
     referenceid,
+    clinicalClasses,
     cohorts,
     genotypicSex,
     materialtype
@@ -138,10 +140,12 @@ export function Form({
   const { data: biosubsetsResponse, isLoading: isBioSubsetsDataLoading } = useBioSubsets(
     watch
   )
+  
   const biosubsetsOptions = biosubsetsResponse?.results.map((value) => ({
     value: value.id,
     label: `${value.id}: ${value.label} (${value.count})`
   }))
+  
   parameters = merge({}, parameters, {
     bioontology: { options: biosubsetsOptions }
   })
@@ -150,14 +154,29 @@ export function Form({
   const { data: refsubsetsResponse, isLoading: isRefSubsetsDataLoading } = useReferencesSubsets(
     watch
   )
+  
   const refsubsetsOptions = refsubsetsResponse?.results.map((value) => ({
     value: value.id,
     label: `${value.id}: ${value.label} (${value.count})`
   }))
+    
   parameters = merge({}, parameters, {
     referenceid: { options: refsubsetsOptions }
   })
   
+// clinical lookup
+const { data: clinicalResponse, isLoading: isClinicalDataLoading } = useClinicalSubsets(
+  watch
+)
+
+const clinicalOptions = clinicalResponse?.results.map((value) => ({
+  value: value.id,
+  label: `${value.id}: ${value.label} (${value.count})`
+}))
+  
+parameters = merge({}, parameters, {
+  clinicalClasses: { options: clinicalOptions }
+})
 
   const {
     cytoBandPanelOpen,
@@ -329,6 +348,11 @@ export function Form({
             {...selectProps}
             isLoading={isRefSubsetsDataLoading}
           />
+          <SelectField
+            {...parameters.clinicalClasses}
+            {...selectProps}
+            isLoading={isClinicalDataLoading}
+          />
           <div className="columns my-0">
             <SelectField
               className={cn(
@@ -473,6 +497,7 @@ function validateForm(formValues) {
     end,
     geneSymbol,
     bioontology,
+    clinicalClasses,
     referenceid,
     freeFilters
   } = formValues
@@ -481,7 +506,7 @@ function validateForm(formValues) {
   const setMissing = (name) =>
     errors.push([name, { type: "manual", message: "Parameter is missing" }])
 
-  if (!referenceBases && !alternateBases && !start && !end && !variantType && !geneSymbol && !bioontology && !referenceid && !freeFilters) {
+  if (!referenceBases && !alternateBases && !start && !end && !variantType && !geneSymbol && !bioontology && !referenceid && !freeFilters && !clinicalClasses) {
     !referenceBases && setMissing("referenceBases")
     !alternateBases && setMissing("alternateBases")
     !start && setMissing("start")
@@ -489,6 +514,7 @@ function validateForm(formValues) {
     !variantType && setMissing("variantType")
     !geneSymbol && setMissing("geneSymbol")
     !bioontology && setMissing("bioontology")
+    !clinicalClasses && setMissing("clinicalClasses")
     !referenceid && setMissing("referenceid")
     !freeFilters && setMissing("freeFilters")
   }
@@ -516,16 +542,25 @@ function useBioSubsets(watchForm) {
   return useCollations({
     datasetIds,
     method: "children",
-    filters: "NCIT,icdom,icdot,UBERON"
+    filters: "NCIT,icdom,icdot,UBERON,TNM"
   })
 }
 
 function useReferencesSubsets(watchForm) {
   const datasetIds = watchForm("datasetIds")
- return useCollations({
+  return useCollations({
     datasetIds,
     method: "children",
     filters: "PMID,geo,cellosaurus"
+  })
+}
+
+function useClinicalSubsets(watchForm) {
+  const datasetIds = watchForm("datasetIds")
+  return useCollations({
+    datasetIds,
+    method: "children",
+    filters: "TNM"
   })
 }
 

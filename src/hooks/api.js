@@ -107,6 +107,7 @@ export function mkGeneParams(gene) {
 
 export function makeFilters({
   freeFilters,
+  clinicalClasses,
   bioontology,
   referenceid,
   cohorts,
@@ -121,6 +122,7 @@ export function makeFilters({
 
   return [
     ...(bioontology ?? []),
+    ...(clinicalClasses ?? []), 
     ...(referenceid ?? []),
     ...(cohorts ? [cohorts] : []),
     ...(genotypicSex ? [genotypicSex] : []),
@@ -139,6 +141,7 @@ export function buildQueryParameters(queryData) {
     genotypicSex,
     materialtype,
     freeFilters,
+    clinicalClasses,
     geneSymbol,
     geoCity,
     geodistanceKm,
@@ -165,6 +168,7 @@ export function buildQueryParameters(queryData) {
   }
   const filters = makeFilters({
     freeFilters,
+    clinicalClasses,
     bioontology,
     referenceid,
     cohorts,

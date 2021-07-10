@@ -72,7 +72,7 @@ export function buildTreeForDetails(response, subsetById) {
   const childTerms = rootSubset.childTerms
   childTerms.forEach((c) => {
     // some subsets have themselves in the children list
-    if (rootSubset.id !== c) {
+    if (rootSubset.code !== c) {
       const node = getOrMakeChild(rootNode, c, randomStringGenerator)
       node.subset = subsetById[node.id]
       size++

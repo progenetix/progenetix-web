@@ -304,6 +304,7 @@ const groupByOptions = [
   { value: "icdom", label: "ICD-O Morphology Code" },
   { value: "icdot", label: "ICD Topography Code" },
   { value: "UBERON", label: "UBERON Anatomy Concepts" },
+  { value: "TNM", label: "NCIT TNM Finding" },
   { value: "PMID", label: "Publication (PubMed ID)" },
   { value: "geo:GSE", label: "GEO Series ID" },
   { value: "geo:GPL", label: "GEO Platform ID" },
