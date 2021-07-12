@@ -9,8 +9,9 @@ import {
 import { WithData } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
-import Link from "next/link"
 import React from "react"
+import Link from "next/link"
+// import Link from "next/link"
 
 const itemColl = "variants"
 const exampleId = "5bab576a727983b2e00b8d32"
@@ -39,15 +40,15 @@ function VariantLoader({ id, datasetIds }) {
       background
       render={(response) => (
         <>
-        <VariantResponse
-          response={response}
-          id={id}
-          datasetIds={datasetIds}
-        />
-        <VariantsInterpretationResponse
-          response={response}
-          datasetIds={datasetIds}
-        />
+          <VariantResponse
+            response={response}
+            id={id}
+            datasetIds={datasetIds}
+          />
+          <VariantsInterpretationResponse
+            response={response}
+            datasetIds={datasetIds}
+          />
         </>
       )}
     />
@@ -62,7 +63,7 @@ function VariantResponse({ response, datasetIds }) {
 }
 
 function VariantsInterpretationResponse({ response, datasetIds }) {
-  
+
   const handoverById = (givenId) => response.resultSets[0].resultsHandovers.find(({ handoverType: { id } }) => id === givenId)
   const variantsAnnotationsHandover = handoverById(HANDOVER_IDS.variantsinterpretations)
   const variantsAnnotationsReply= useProgenetixApi(
@@ -103,75 +104,74 @@ function Variant({ variant, datasetIds }) {
 // replace this with a table
 
 function VariantInterpretation({ ho, apiReply, datasetIds }) {
+
   return (
     <WithData
       apiReply={apiReply}
       datasetIds={datasetIds}
-      render={(response) => (
+      render={(response) =>
         <section className="content">
-        <hr/>
-        <h3 className="mb-6">
-          {response.resultSets[0].results[0].id}
-        </h3>
-        <ul>
-          <li>Cytoband: {response.result_sets[0].results[0].cytoband}</li>
-          <li>Gene ID: {response.result_sets[0].results[0].gene_id}</li>
-          <li>Clinical effect: {response.result_sets[0].results[0].clinical_relevance.clinical_effect.label}</li>
-          <h5>Disease ID</h5>
-          {response.result_sets[0].results[0].clinical_relevance.disease_id.map((externalReference, i) => (
-            <li key={i}>
-              {referenceLink(externalReference) ? (
-                <Link href={referenceLink(externalReference)}>
-                  <a>{externalReference.id}</a>
-                </Link>
-              ) : (
-                externalReference.id
-              )}{" "}
-              {externalReference?.label && ": " + externalReference?.label}
-            </li>
-          ))}
-          <h5>External References</h5>
-            {response.result_sets[0].results[0].external_references.map((externalReference, i) => (
-              <li key={i}>
+          {console.log(response)}
+          <hr/>
+          <h3 className="mb-6">
+            {response.resultSets[0].results[0].id}
+          </h3>
+          <ul>
+            <li>Gene ID: {response.resultSets[0].results[0].geneId}</li>
+            <li>Cytoband: {response.resultSets[0].results[0].cytoband}</li>
+            <li>Aminoacid changes: {response.resultSets[0].results[0].aminoacidChanges}</li>
+          </ul>
+          <ul>
+            <h5>Clinical Effect </h5>
+
+
+            <li> {response.resultSets[0].results[0].clinicalRelevances[0].clinicalEffect.label} (FATHMM score: {response.resultSets[0].results[0].clinicalRelevances[0].clinicalEffect.score} )</li>
+          </ul>
+          <ul>
+            <h5>Disease ontologies </h5>
+
+            {response.resultSets[0].results[0].clinicalRelevances[1]?.diseaseId?.map((disease, i) => (
+              <div key={i}>
+                {referenceLink(disease) ? (
+                  <Link href={referenceLink(disease)}>
+                    <a>{disease.id}</a>
+                  </Link>
+                ) : (
+                  disease.id
+                )}{" : "}
+                {disease.label}
+              </div>
+            ))}
+          </ul>
+          <ul>
+            <h5>Alternative IDs </h5>
+
+            {response.resultSets[0].results[0].alternativeIds?.map((externalReference, i) => (
+              <div key={i}>
                 {referenceLink(externalReference) ? (
                   <Link href={referenceLink(externalReference)}>
                     <a>{externalReference.id}</a>
                   </Link>
                 ) : (
                   externalReference.id
-                )}{" "}
-                {externalReference?.label && ": " + externalReference?.label}
-              </li>
+                )}{" : "}
+                {externalReference.label}
+              </div>
             ))}
-          <h5>Publications</h5>
-          {response.result_sets[0].results[0].references.map((externalReference, i) => (
-            <li key={i}>
-              {referenceLink(externalReference) ? (
-                <Link href={referenceLink(externalReference)}>
-                  <a>{externalReference.id}</a>
-                </Link>
-              ) : (
-                externalReference.id
-              )}{" "}
-              {externalReference?.label && ": " + externalReference?.label}
-            </li>
-          ))}
-=======
-          <li>Cytoband: {response.resultSets[0].results[0].cytoband}</li>
-          <li>Gene ID: {response.resultSets[0].results[0].geneId}</li>
-        </ul>
-        <h5>
-        Download Data as{" "}
-        <a
-          rel="noreferrer"
-          target="_blank"
-          href={ho.url}
-        >
-          {"{JSON↗}"}
-        </a>
-        </h5>
+          </ul>
+
+          <h5>
+            Download Data as{" "}
+            <a
+              rel="noreferrer"
+              target="_blank"
+              href={ho.url}
+            >
+              {"{JSON↗}"}
+            </a>
+          </h5>
         </section>
-      )}
+      }
     />
   )
 }
