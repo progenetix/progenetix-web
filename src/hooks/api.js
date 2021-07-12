@@ -433,6 +433,11 @@ export function referenceLink(externalReference) {
       "https://www.ncbi.nlm.nih.gov/clinvar/variation/" +
       externalReference.id.replace("ClinVar:", "").toLowerCase()
     )
+  } else if (externalReference.id.includes("HGNC")) {
+    return (
+      "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/" +
+      externalReference.id.replace("HGNC:", "").toLowerCase()
+    )
   } else {
     return null
   }

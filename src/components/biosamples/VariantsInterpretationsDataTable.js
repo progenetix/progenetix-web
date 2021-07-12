@@ -1,17 +1,18 @@
-import { referenceLink } from "../../hooks/api"
+// import { referenceLink } from "../../hooks/api"
 import React from "react"
 import PropTypes from "prop-types"
 import { WithData } from "../Loader"
-import Table, { TooltipHeader } from "../Table"
+// import Table, { TooltipHeader } from "../Table"
+import Table  from "../Table"
 // import { useProgenetixApi } from "../../hooks/api"
 import DownloadButton from "../DownloadButton"
-import Link from "next/link"
+// import Link from "next/link"
 
 export default function VariantsInterpretationsDataTable({ apiReply, datasetId }) {
   const columns = React.useMemo(
     () => [
       {
-        Header: "Variant ID",
+        Header: "Annotation ID",
         accessor: a => `${a.variantName} (${a.id})`
       },
       {
@@ -19,28 +20,10 @@ export default function VariantsInterpretationsDataTable({ apiReply, datasetId }
         accessor: "geneId"
       },
       {
-        Header: TooltipHeader(
-          "Interpretations & Evidences",
-          "Identifiers for external information about the variant or its interpretation"
-        ),
-        accessor: "externalReferences",
-        Cell: ({ value: externalReferences }) =>
-          externalReferences.map((externalReference, i) => (
-            <div key={i}>
-              {referenceLink(externalReference) ? (
-                <Link href={referenceLink(externalReference)}>
-                  <a>{externalReference.id}</a>
-                </Link>
-              ) : (
-                externalReference.id
-              )}{" : "}
-              {externalReference.label}
-            </div>
-          ))
-      },
-      {
-        Header: "Cytoband",
-        accessor: "cytoband"
+        Header: "Clinical Effect",
+        accessor: "clinicalRelevances",
+          Cell: ({ value: clinicalRelevances }) =>
+            clinicalRelevances[0].clinicalEffect.label
       },
     ],
     [datasetId]
