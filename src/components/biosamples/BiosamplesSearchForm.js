@@ -542,7 +542,7 @@ function useBioSubsets(watchForm) {
   return useCollations({
     datasetIds,
     method: "children",
-    filters: "NCIT,icdom,icdot,UBERON,TNM"
+    filters: "NCIT,icdom,icdot,UBERON"
   })
 }
 
@@ -560,7 +560,7 @@ function useClinicalSubsets(watchForm) {
   return useCollations({
     datasetIds,
     method: "children",
-    filters: "TNM"
+    filters: "TNM,NCITgrade,NCITstage"
   })
 }
 

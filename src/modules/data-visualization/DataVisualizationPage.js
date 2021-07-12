@@ -305,6 +305,8 @@ const groupByOptions = [
   { value: "icdot", label: "ICD Topography Code" },
   { value: "UBERON", label: "UBERON Anatomy Concepts" },
   { value: "TNM", label: "NCIT TNM Finding" },
+  { value: "NCITgrade", label: "NCIT Disease Grade" },
+  { value: "NCITstage", label: "NCIT Disease Stage" },
   { value: "PMID", label: "Publication (PubMed ID)" },
   { value: "geo:GSE", label: "GEO Series ID" },
   { value: "geo:GPL", label: "GEO Platform ID" },
