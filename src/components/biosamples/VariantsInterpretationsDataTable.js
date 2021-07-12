@@ -2,8 +2,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { WithData } from "../Loader"
-// import Table, { TooltipHeader } from "../Table"
-import Table  from "../Table"
+import Table, { TooltipHeader } from "../Table"
 // import { useProgenetixApi } from "../../hooks/api"
 import DownloadButton from "../DownloadButton"
 // import Link from "next/link"
@@ -20,7 +19,10 @@ export default function VariantsInterpretationsDataTable({ apiReply, datasetId }
         accessor: "geneId"
       },
       {
-        Header: "Clinical Effect",
+        Header: TooltipHeader(
+          "Clinical Effect",
+          "Known clinical effect about variant. Click on variant ID to find available disease associations."
+        ),
         accessor: "clinicalRelevances",
           Cell: ({ value: clinicalRelevances }) =>
             clinicalRelevances[0].clinicalEffect.label
