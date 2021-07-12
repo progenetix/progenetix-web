@@ -20,7 +20,10 @@ export default function VariantsInterpretationsDataTable({ apiReply, datasetId }
         accessor: "geneId"
       },
       {
-        Header: "Clinical Effect",
+        Header: TooltipHeader(
+          "Clinical Effect",
+          "Known clinical effect about variant. Click on variant ID to find available disease associations."
+        ),
         accessor: "clinicalRelevances",
           Cell: ({ value: clinicalRelevances }) =>
             clinicalRelevances[0].clinicalEffect.label
