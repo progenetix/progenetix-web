@@ -53,3 +53,4 @@ export default function VariantsInterpretationsDataTable({ apiReply, datasetId }
 VariantsInterpretationsDataTable.propTypes = {
   apiReply: PropTypes.object.isRequired
 }
+
