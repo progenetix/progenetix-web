@@ -76,7 +76,7 @@ function VariantsInterpretationResponse({ response, datasetIds }) {
 function Variant({ variant, datasetIds }) {
   return (
     <section className="content">
-      <h3 className="mb-6">
+      <h3>
         {variant.id} ({datasetIds})
       </h3>
 
@@ -113,12 +113,17 @@ function VariantInterpretation({ ho, apiReply, datasetIds }) {
         <section className="content">
           {console.log(response)}
           <hr/>
+<<<<<<< HEAD
           <h3 className="mb-6">
+=======
+          <h3>
+>>>>>>> 48709f0e538afa423019f4067cd4923b670bbb11
             {response.resultSets[0].results[0].id}
           </h3>
           <ul>
             <li>Gene ID: {response.resultSets[0].results[0].geneId}</li>
             <li>Cytoband: {response.resultSets[0].results[0].cytoband}</li>
+<<<<<<< HEAD
             <li>Aminoacid changes: {response.resultSets[0].results[0].aminoacidChanges}</li>
           </ul>
           <ul>
@@ -160,6 +165,54 @@ function VariantInterpretation({ ho, apiReply, datasetIds }) {
             ))}
           </ul>
 
+=======
+            {response.resultSets[0].results[0].aminoacidChanges ? (
+            <li>Aminoacid changes: {response.resultSets[0].results[0].aminoacidChanges}</li>
+            ) : ""}
+          </ul>
+          {response.resultSets[0].results[0].clinicalRelevances[0].clinicalEffect ? (
+            <div>
+              <h5>Clinical Effect </h5>
+              <ul>
+                <li>{response.resultSets[0].results[0].clinicalRelevances[0].clinicalEffect.label} (FATHMM score: {response.resultSets[0].results[0].clinicalRelevances[0].clinicalEffect.score} )</li>
+              </ul>
+            </div>
+          ) : ""}
+          {response.resultSets[0].results[0].clinicalRelevances[1]?.diseaseId ? (
+            <div>
+              <h5>Disease ontologies </h5>
+              {response.resultSets[0].results[0].clinicalRelevances[1]?.diseaseId?.map((disease, i) => (
+                <div key={i}>
+                  {referenceLink(disease) ? (
+                    <Link href={referenceLink(disease)}>
+                      <a>{disease.id}</a>
+                    </Link>
+                  ) : (
+                    disease.id
+                  )}{" : "}
+                  {disease.label}
+                </div>
+              ))}
+            </div>
+          ) : ""}
+          {response.resultSets[0].results[0].alternativeIds ? (
+            <div>
+              <h5>Alternative IDs</h5>
+              {response.resultSets[0].results[0].alternativeIds?.map((externalReference, i) => (
+                <div key={i}>
+                  {referenceLink(externalReference) ? (
+                    <Link href={referenceLink(externalReference)}>
+                      <a>{externalReference.id}</a>
+                    </Link>
+                  ) : (
+                    externalReference.id
+                  )}{" : "}
+                  {externalReference.label}
+                </div>
+              ))}
+            </div>
+          ) : ""}
+>>>>>>> 48709f0e538afa423019f4067cd4923b670bbb11
           <h5>
             Download Data as{" "}
             <a

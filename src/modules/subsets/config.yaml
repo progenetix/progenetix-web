@@ -7,6 +7,12 @@ biofilters:
     label: ICD-O Topography
   UBERON:
     label: UBERON Anatomy Ontology
+  TNM:
+    label: NCIT TNM Finding
+  NCITgrade:
+    label: NCIT Disease Grade
+  NCITstage:
+      label: NCIT Disease Stage
 cohortfilters:
   TCGA:
     label: The Cancer Genome Atlas (projects)

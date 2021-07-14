@@ -155,6 +155,14 @@ referenceid:
   options:
     - value: ""
       label: "(no selection)"
+clinicalClasses:
+  label: Clinical Classes
+  infoText: |
+    Clinical and diagnostic support classifications, such as tumor grading or staging.
+  isMulti: true
+  options:
+    - value: ""
+      label: "(no selection)"
 materialtype:
   label: Biosample Type
   infoText: |
