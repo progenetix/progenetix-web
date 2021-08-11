@@ -353,7 +353,7 @@ export function Link({ href, label, onClick }) {
 export function referenceLink(externalReference) {
   if (externalReference.id.includes("cellosaurus:")) {
     return (
-      "https://web.expasy.org/cgi-bin/cellosaurus/search?input=" +
+      "https://web.expasy.org/cellosaurus/" +
       externalReference.id.replace("cellosaurus:", "")
     )
   } else if (externalReference.id.includes("PMID:")) {
