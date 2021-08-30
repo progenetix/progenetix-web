@@ -1,10 +1,12 @@
 import {
+  BIOKEYS,
   basePath,
   getDataItemUrl,
   referenceLink,
   useDataItemDelivery,
   NoResultsHelp,
-  useExtendedSWR
+  useExtendedSWR,
+  Link
 } from "../../hooks/api"
 import { WithData } from "../../components/Loader"
 import React, { useRef } from "react"
@@ -13,7 +15,6 @@ import { Layout } from "../../components/Layout"
 import { useContainerDimensions } from "../../hooks/containerDimensions"
 import { svgFetcher } from "../../hooks/fetcher"
 import Histogram from "../../components/Histogram"
-import Link from "next/link"
 
 const itemColl = "biosamples"
 const exampleId = "pgxbs-kftvir6m"
@@ -75,14 +76,15 @@ function Biosample({ biosample, datasetIds }) {
 
       <h5>Diagnostic Classifications </h5>
       <ul>
-        {biosample.biocharacteristics.map((biocharacteristic, i) => (
-          <li key={i}>
-            {biocharacteristic.id}: {biocharacteristic.label}{" "}
-            <Link href={`/subsets/biosubsets?filters=${biocharacteristic.id}&datasetIds=${ datasetIds }`}>
-              <a>{"{↗}"}</a>
-            </Link>
-          </li>
-        ))}
+      {BIOKEYS.map(bioc => (
+        <li key={bioc}>
+          {biosample[bioc].label}{": "}
+          <Link
+            href={`/subsets/biosubsets?filters=${biosample[bioc].id}&datasetIds=${ datasetIds }`}
+            label={biosample[bioc].id}
+          />
+        </li>
+      ))}      
       </ul>
 
       <h5>Clinical Data</h5>
@@ -132,19 +134,30 @@ function Biosample({ biosample, datasetIds }) {
           </>
         )}
       </ul>
+      
+      <h5>Individual</h5>
+      <ul>
+        <li>Progenetix entry:{" "}
+          <Link
+            href={`/individuals/details/?id=${biosample.individualId}&datasetIds=${ datasetIds }`}
+            label={biosample.individualId}
+          />
+        </li>
+      </ul>
 
       <h5>External References</h5>
       <ul>
         {biosample.externalReferences.map((externalReference, i) => (
           <li key={i}>
+            {externalReference?.label}{" "}
             {referenceLink(externalReference) ? (
-              <Link href={referenceLink(externalReference)}>
-                <a>{externalReference.id}</a>
-              </Link>
+              <Link
+                href={referenceLink(externalReference)}
+                label={`: ${externalReference.id}`}
+              />
             ) : (
               externalReference.id
-            )}{" "}
-            {externalReference?.label && ": " + externalReference?.label}
+            )}
           </li>
         ))}
       </ul>
@@ -178,7 +191,7 @@ function Biosample({ biosample, datasetIds }) {
 function CnvHistogramPreview({ csid, datasetIds }) {
   const componentRef = useRef()
   const { width } = useContainerDimensions(componentRef)
-  const url = `${basePath}cgi/api_chroplot.cgi?callsets.id=${csid}$&datasetIds=${datasetIds}&-size_plotimage_w_px=${width}`
+  const url = `${basePath}cgi/callsetPlots.cgi?callsets.id=${csid}$&datasetIds=${datasetIds}&-size_plotimage_w_px=${width}`
   // width > 0 to make sure the component is mounted and avoid double fetch
   const dataEffect = useExtendedSWR(width > 0 && url, svgFetcher)
   return (

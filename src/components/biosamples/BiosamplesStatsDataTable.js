@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import Table, { InfodotHeader } from "../Table"
 import _ from "lodash"
-import { useCollationsById } from "../../hooks/api"
+import { BIOKEYS, useCollationsById } from "../../hooks/api"
 import { WithData } from "../Loader"
 
 export default function BiosamplesStatsDataTable({
@@ -16,7 +16,7 @@ export default function BiosamplesStatsDataTable({
         {
           Header: InfodotHeader(
             "Matched Subset Codes",
-            "Codes diagnoses or other biocharacteristics which are represented in the matched samples."
+            "Coded diagnoses or other biomedical classifications which are represented in the matched samples."
           ),
           accessor: "id",
           Cell: function Cell({ value, row: { original } }) {
@@ -107,7 +107,7 @@ function getFrequency(v, allSubsetsById, k) {
 
 export function makeSubsetsData(biosamplesResults, allSubsetsById) {
   const ids = biosamplesResults
-    .flatMap((sample) => sample.biocharacteristics)
+    .flatMap((sample) => BIOKEYS.map(bioc => (sample[bioc])))
     .map(function (a) {
       return a.id
     })

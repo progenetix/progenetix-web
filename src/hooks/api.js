@@ -22,6 +22,8 @@ export const DOCLINK = `${PROGENETIXINFO}/categories/documentation.html`
 export const NEWSLINK = `${PROGENETIXINFO}/categories/news.html`
 export const THISYEAR = new Date().getFullYear()
 
+export const BIOKEYS = ["histologicalDiagnosis", "icdoMorphology", "icdoTopography", "sampledTissue"]
+
 export function useProgenetixApi(...args) {
   const { data, error, ...other } = useExtendedSWR(...args)
 

@@ -1,10 +1,11 @@
 import React from "react"
+import { ExternalLink } from "../../../hooks/api"
 import { Layout } from "../../../components/Layout"
 import parametersConfig from "../../shared/searchParameters.yaml"
 import requestTypesConfig from "./requestTypes.yaml"
 import BiosamplesSearchPanel from "../../../components/biosamples/BiosamplesSearchPanel"
+import { SubsetHistogram } from "../../../components/Histogram"
 import Panel from "../../../components/Panel"
-import { ExternalLink } from "../../../hooks/api"
 // import Link from "next/link"
 
 export default function SearchSamplesPage({ cytoBands }) {
@@ -28,6 +29,12 @@ export default function SearchSamplesPage({ cytoBands }) {
           />
           {" "} - a knowledge resource on cell lines.
         </div>
+      </Panel>
+      <Panel heading="CNV Frequency Plot">
+      <SubsetHistogram
+        datasetIds="progenetix"
+        id="pgxcohort-celllines"
+      />
       </Panel>
       <BiosamplesSearchPanel
         datasets={datasets}

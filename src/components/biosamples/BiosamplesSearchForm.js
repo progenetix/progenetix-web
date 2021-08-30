@@ -252,7 +252,6 @@ parameters = merge({}, parameters, {
             </div>
           )}
           <SelectField {...parameters.datasetIds} {...selectProps} />
-          <SelectField {...parameters.cohorts} {...selectProps} />
           <SelectField {...parameters.assemblyId} {...selectProps} />
           {!parameters.geneSymbol.isHidden && (
             <GeneSymbolSelector {...parameters.geneSymbol} {...selectProps} />
@@ -338,21 +337,45 @@ parameters = merge({}, parameters, {
               {...parameters.alternateBases}
             />
           </div>
-          <SelectField
-            {...parameters.bioontology}
-            {...selectProps}
-            isLoading={isBioSubsetsDataLoading}
-          />
-          <SelectField
-            {...parameters.referenceid}
-            {...selectProps}
-            isLoading={isRefSubsetsDataLoading}
-          />
-          <SelectField
-            {...parameters.clinicalClasses}
-            {...selectProps}
-            isLoading={isClinicalDataLoading}
-          />
+          <div className="columns my-0">
+            <SelectField
+              className={cn(
+                !parameters.referenceid.isHidden && "column",
+                "py-0 mb-3"
+              )}
+              {...parameters.referenceid}
+              {...selectProps}
+              isLoading={isRefSubsetsDataLoading}
+            />
+            <InputField
+              className={cn(
+                !parameters.cohorts.isHidden && "column",
+                "py-0 mb-3"
+              )}
+              {...fieldProps}
+              {...parameters.cohorts}
+            />
+          </div>
+          <div className="columns my-0">
+            <SelectField
+              className={cn(
+                !parameters.bioontology.isHidden && "column",
+                "py-0 mb-3"
+              )}
+              {...parameters.bioontology}
+              {...selectProps}
+              isLoading={isBioSubsetsDataLoading}
+            />
+            <SelectField
+              className={cn(
+                !parameters.clinicalClasses.isHidden && "column",
+                "py-0 mb-3"
+              )}
+              {...parameters.clinicalClasses}
+              {...selectProps}
+              isLoading={isClinicalDataLoading}
+            />
+          </div>
           <div className="columns my-0">
             <SelectField
               className={cn(
@@ -491,6 +514,7 @@ function onSubmitHandler({ clearErrors, setError, setSearchQuery }) {
 function validateForm(formValues) {
   const {
     variantType,
+    referenceName,
     referenceBases,
     alternateBases,
     start,
@@ -499,6 +523,7 @@ function validateForm(formValues) {
     bioontology,
     clinicalClasses,
     referenceid,
+    cohorts,
     freeFilters
   } = formValues
 
@@ -506,7 +531,8 @@ function validateForm(formValues) {
   const setMissing = (name) =>
     errors.push([name, { type: "manual", message: "Parameter is missing" }])
 
-  if (!referenceBases && !alternateBases && !start && !end && !variantType && !geneSymbol && !bioontology && !referenceid && !freeFilters && !clinicalClasses) {
+  if (!referenceName && !referenceBases && !alternateBases && !start && !end && !variantType && !geneSymbol && !bioontology && !referenceid && !freeFilters && !clinicalClasses && !cohorts) {
+    !referenceName && setMissing("referenceName")
     !referenceBases && setMissing("referenceBases")
     !alternateBases && setMissing("alternateBases")
     !start && setMissing("start")
@@ -517,13 +543,14 @@ function validateForm(formValues) {
     !clinicalClasses && setMissing("clinicalClasses")
     !referenceid && setMissing("referenceid")
     !freeFilters && setMissing("freeFilters")
+    !cohorts && setMissing("freeFilters")
   }
 
   const queryError = validateBeaconQuery(formValues)
   if (queryError) {
     const error = {
       type: "manual",
-      message: "Cannot build the beacon query."
+      message: "Cannot build the database query."
     }
     errors.push(["global", error])
   }

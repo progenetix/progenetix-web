@@ -9,7 +9,7 @@ celllines:
       isHidden: true
     cohorts:
       defaultValue: ["pgxcohort-celllines"]
-      isHidden: true
+      # isHidden: true
     assemblyId:
       isHidden: true
     referenceName:
