@@ -63,6 +63,7 @@ function BiosampleResponse({ response, datasetIds }) {
 function Biosample({ biosample, datasetIds }) {
   return (
     <section className="content">
+    
       <h3 className="mb-6">
         {biosample.id} ({datasetIds})
       </h3>
@@ -89,25 +90,19 @@ function Biosample({ biosample, datasetIds }) {
 
       <h5>Clinical Data</h5>
       <ul>
-        {biosample.individual_age_at_collection?.age && (
-          <>
-            <li>
-              Age at Collection: {biosample.individual_age_at_collection.age}
-            </li>
-          </>
+        {biosample.individualAgeAtCollection?.age && (
+          <li>
+            Age at Collection: {biosample.individualAgeAtCollection.age}
+          </li>
         )}
         {biosample.info?.tnm && (
-          <>
-            <li>TNM: {biosample.info.tnm}</li>
-          </>
+          <li>TNM: {biosample.info.tnm}</li>
         )}
         {biosample.info?.death && (
-          <>
-            <li>
-              Death: {biosample.info.death} (at {biosample.info.followup_months}{" "}
-              months)
-            </li>
-          </>
+          <li>
+            Death: {biosample.info.death} (at {biosample.info.followup_months}{" "}
+            months)
+          </li>
         )}
       </ul>
 
@@ -125,11 +120,11 @@ function Biosample({ biosample, datasetIds }) {
             </li>
           </>
         )}
-        {biosample.data_use_conditions?.id && (
+        {biosample.dataUseConditions?.id && (
           <>
             <li>
-              Data Use Conditions: {biosample.data_use_conditions.id} (
-              {biosample.data_use_conditions?.label})
+              Data Use Conditions: {biosample.dataUseConditions.id} (
+              {biosample.dataUseConditions?.label})
             </li>
           </>
         )}
