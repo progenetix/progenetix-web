@@ -103,7 +103,7 @@ export function mkGeoParams(geoCity, geodistanceKm) {
 
 export function mkGeneParams(gene) {
   if (!gene) return null
-  const geneSymbol = gene.data.geneSymbol ?? []
+  const geneSymbol = gene.data.symbol ?? []
   return { geneSymbol }
 }
 

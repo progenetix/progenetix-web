@@ -7,7 +7,7 @@ export function LabeledGeneSpanOptions(inputValue) {
   const [cachedGenes, setCachedGenes] = useState({})
   useEffect(() => {
     if (data) {
-      const genes = keyBy(data.results, "geneSymbol")
+      const genes = keyBy(data.results, "symbol")
       setCachedGenes({ ...genes, ...cachedGenes })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -53,13 +53,13 @@ function labeledGeneSpan(gene) {
     "-" +
     gene.end +
     ":" +
-    gene.geneSymbol
+    gene.symbol
   )
 }
 
 function geneLabel(gene) {
   return (
-    gene.geneSymbol +
+    gene.symbol +
     " (" +
     gene.referenceName +
     ":" +

@@ -12,7 +12,10 @@ const itemColl = "individuals"
 const exampleId = "pgxind-kftx266l"
 
 const IndividualDetailsPage = withUrlQuery(({ urlQuery }) => {
-  const { id, datasetIds } = urlQuery
+  var { id, datasetIds } = urlQuery
+  if (! datasetIds) {
+    datasetIds = "progenetix"
+  }
   const hasAllParams = id && datasetIds
   return (
     <Layout title="Individual Details" headline="Individual Details">

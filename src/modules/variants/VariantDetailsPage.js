@@ -17,7 +17,10 @@ const itemColl = "variants"
 const exampleId = "5bab576a727983b2e00b8d32"
 
 const VariantDetailsPage = withUrlQuery(({ urlQuery }) => {
-  const { id, datasetIds } = urlQuery
+  var { id, datasetIds } = urlQuery
+  if (! datasetIds) {
+    datasetIds = "progenetix"
+  }
   const hasAllParams = id && datasetIds
   return (
     <Layout title="Variant Details" headline="Variant Details">

@@ -12,7 +12,10 @@ const itemColl = "callsets"
 const exampleId = "pgxcs-kftvlijb"
 
 const CallsetDetailsPage = withUrlQuery(({ urlQuery }) => {
-  const { id, datasetIds } = urlQuery
+  var { id, datasetIds } = urlQuery
+  if (! datasetIds) {
+    datasetIds = "progenetix"
+  }
   const hasAllParams = id && datasetIds
   return (
     <Layout title="Callset Details" headline="Callset Details">

@@ -20,7 +20,10 @@ const itemColl = "biosamples"
 const exampleId = "pgxbs-kftvir6m"
 
 const SampleDetailsPage = withUrlQuery(({ urlQuery }) => {
-  const { id, datasetIds } = urlQuery
+  var { id, datasetIds } = urlQuery
+  if (! datasetIds) {
+    datasetIds = "progenetix"
+  }
   const hasAllParams = id && datasetIds
   return (
     <Layout title="Sample Details" headline="Sample Details">
