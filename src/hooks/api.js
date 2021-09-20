@@ -320,7 +320,7 @@ export function useGeoCity({ city }) {
 }
 
 export function useGeneSymbol({ geneSymbol }) {
-  const url = geneSymbol ? `${basePath}services/genespans/?geneSymbol=${geneSymbol}&filterPrecision=start` :null
+  const url = geneSymbol ? `${basePath}services/genespans/?geneSymbol=${geneSymbol}&filterPrecision=start&method=genespan` :null
   return useProgenetixApi(url)
 }
 
