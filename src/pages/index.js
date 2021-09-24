@@ -113,7 +113,7 @@ export const getStaticProps = async () => {
     `${PROGENETIX}/services/collations/?datasetIds=progenetix&method=codematches&filters=NCIT`
   )
   const subsetsReply = await tryFetch(
-    `${PROGENETIX}/services/collations/?datasetIds=progenetix&method=paths&filters=icdom,NCIT,PMID,icdot,UBERON`
+    `${PROGENETIX}/services/collations/?datasetIds=progenetix&method=paths&filters=icdom,NCIT,PMID,icdot,UBERON,TNM,NCITgrade,NCITstage`
   )
 
   return {
