@@ -11,11 +11,11 @@ cohorts:
   rules:
     required: false
   defaultValue: ""
-  options:
-    - value: ""
-      label: "(no selection)"
-    - value: pgxcohort-arraymap
-      label: arrayMap Samples
+  # options:
+  #   - value: ""
+  #     label: "(no selection)"
+  #   - value: pgxcohort-arraymap
+  #     label: arrayMap Samples
 assemblyId:
   label: Genome Assembly
   infoText: |

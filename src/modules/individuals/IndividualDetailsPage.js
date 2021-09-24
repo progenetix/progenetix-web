@@ -12,7 +12,10 @@ const itemColl = "individuals"
 const exampleId = "pgxind-kftx266l"
 
 const IndividualDetailsPage = withUrlQuery(({ urlQuery }) => {
-  const { id, datasetIds } = urlQuery
+  var { id, datasetIds } = urlQuery
+  if (! datasetIds) {
+    datasetIds = "progenetix"
+  }
   const hasAllParams = id && datasetIds
   return (
     <Layout title="Individual Details" headline="Individual Details">
@@ -48,14 +51,6 @@ function IndividualResponse({ response, datasetIds }) {
   if (!response.resultSets[0].results) {
     return NoResultsHelp(exampleId, itemColl)
   }
-  if (response.meta.errors.length > 0) {
-    return (
-      <div className="notification is-size-5">
-        <div className="message-body">ERROR: {response.meta.errors[0]}</div>
-      </div>
-    )
-  }
-
   return <Individual individual={response.resultSets[0].results[0]} datasetIds={datasetIds} />
 }
 
@@ -73,14 +68,12 @@ function Individual({ individual, datasetIds }) {
         </>
       )}
 
-      <h5>Biocharacteristics</h5>
-      <ul>
-        {individual.biocharacteristics.map((biocharacteristic, i) => (
-          <li key={i}>
-            {biocharacteristic.id} : {biocharacteristic.label}
-          </li>
-        ))}
-      </ul>
+      {individual.genotypicSex && (
+        <>
+          <h5>Genotypic Sex</h5>
+          <p>{individual.genotypicSex.label}</p>
+        </>
+      )}
 
       <h5>
         Download Data as{" "}

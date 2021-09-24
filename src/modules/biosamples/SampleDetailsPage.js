@@ -1,10 +1,12 @@
 import {
+  BIOKEYS,
   basePath,
   getDataItemUrl,
   referenceLink,
   useDataItemDelivery,
   NoResultsHelp,
-  useExtendedSWR
+  useExtendedSWR,
+  Link
 } from "../../hooks/api"
 import { WithData } from "../../components/Loader"
 import React, { useRef } from "react"
@@ -13,13 +15,15 @@ import { Layout } from "../../components/Layout"
 import { useContainerDimensions } from "../../hooks/containerDimensions"
 import { svgFetcher } from "../../hooks/fetcher"
 import Histogram from "../../components/Histogram"
-import Link from "next/link"
 
 const itemColl = "biosamples"
 const exampleId = "pgxbs-kftvir6m"
 
 const SampleDetailsPage = withUrlQuery(({ urlQuery }) => {
-  const { id, datasetIds } = urlQuery
+  var { id, datasetIds } = urlQuery
+  if (! datasetIds) {
+    datasetIds = "progenetix"
+  }
   const hasAllParams = id && datasetIds
   return (
     <Layout title="Sample Details" headline="Sample Details">
@@ -62,6 +66,7 @@ function BiosampleResponse({ response, datasetIds }) {
 function Biosample({ biosample, datasetIds }) {
   return (
     <section className="content">
+    
       <h3 className="mb-6">
         {biosample.id} ({datasetIds})
       </h3>
@@ -75,37 +80,32 @@ function Biosample({ biosample, datasetIds }) {
 
       <h5>Diagnostic Classifications </h5>
       <ul>
-        {biosample.biocharacteristics.map((biocharacteristic, i) => (
-          <li key={i}>
-            {biocharacteristic.id}: {biocharacteristic.label}{" "}
-            <Link href={`/subsets/biosubsets?filters=${biocharacteristic.id}&datasetIds=${ datasetIds }`}>
-              <a>{"{↗}"}</a>
-            </Link>
-          </li>
-        ))}
+      {BIOKEYS.map(bioc => (
+        <li key={bioc}>
+          {biosample[bioc].label}{": "}
+          <Link
+            href={`/subsets/biosubsets?filters=${biosample[bioc].id}&datasetIds=${ datasetIds }`}
+            label={biosample[bioc].id}
+          />
+        </li>
+      ))}      
       </ul>
 
       <h5>Clinical Data</h5>
       <ul>
-        {biosample.individual_age_at_collection?.age && (
-          <>
-            <li>
-              Age at Collection: {biosample.individual_age_at_collection.age}
-            </li>
-          </>
+        {biosample.individualAgeAtCollection?.age && (
+          <li>
+            Age at Collection: {biosample.individualAgeAtCollection.age}
+          </li>
         )}
         {biosample.info?.tnm && (
-          <>
-            <li>TNM: {biosample.info.tnm}</li>
-          </>
+          <li>TNM: {biosample.info.tnm}</li>
         )}
         {biosample.info?.death && (
-          <>
-            <li>
-              Death: {biosample.info.death} (at {biosample.info.followup_months}{" "}
-              months)
-            </li>
-          </>
+          <li>
+            Death: {biosample.info.death} (at {biosample.info.followup_months}{" "}
+            months)
+          </li>
         )}
       </ul>
 
@@ -123,28 +123,39 @@ function Biosample({ biosample, datasetIds }) {
             </li>
           </>
         )}
-        {biosample.data_use_conditions?.id && (
+        {biosample.dataUseConditions?.id && (
           <>
             <li>
-              Data Use Conditions: {biosample.data_use_conditions.id} (
-              {biosample.data_use_conditions?.label})
+              Data Use Conditions: {biosample.dataUseConditions.id} (
+              {biosample.dataUseConditions?.label})
             </li>
           </>
         )}
+      </ul>
+      
+      <h5>Individual</h5>
+      <ul>
+        <li>Progenetix entry:{" "}
+          <Link
+            href={`/individuals/details/?id=${biosample.individualId}&datasetIds=${ datasetIds }`}
+            label={biosample.individualId}
+          />
+        </li>
       </ul>
 
       <h5>External References</h5>
       <ul>
         {biosample.externalReferences.map((externalReference, i) => (
           <li key={i}>
+            {externalReference?.label}{" "}
             {referenceLink(externalReference) ? (
-              <Link href={referenceLink(externalReference)}>
-                <a>{externalReference.id}</a>
-              </Link>
+              <Link
+                href={referenceLink(externalReference)}
+                label={`: ${externalReference.id}`}
+              />
             ) : (
               externalReference.id
-            )}{" "}
-            {externalReference?.label && ": " + externalReference?.label}
+            )}
           </li>
         ))}
       </ul>
@@ -178,7 +189,7 @@ function Biosample({ biosample, datasetIds }) {
 function CnvHistogramPreview({ csid, datasetIds }) {
   const componentRef = useRef()
   const { width } = useContainerDimensions(componentRef)
-  const url = `${basePath}cgi/api_chroplot.cgi?callsets.id=${csid}$&datasetIds=${datasetIds}&-size_plotimage_w_px=${width}`
+  const url = `${basePath}cgi/callsetPlots.cgi?callsets.id=${csid}$&datasetIds=${datasetIds}&-size_plotimage_w_px=${width}`
   // width > 0 to make sure the component is mounted and avoid double fetch
   const dataEffect = useExtendedSWR(width > 0 && url, svgFetcher)
   return (

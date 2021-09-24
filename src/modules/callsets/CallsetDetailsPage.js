@@ -12,7 +12,10 @@ const itemColl = "callsets"
 const exampleId = "pgxcs-kftvlijb"
 
 const CallsetDetailsPage = withUrlQuery(({ urlQuery }) => {
-  const { id, datasetIds } = urlQuery
+  var { id, datasetIds } = urlQuery
+  if (! datasetIds) {
+    datasetIds = "progenetix"
+  }
   const hasAllParams = id && datasetIds
   return (
     <Layout title="Callset Details" headline="Callset Details">
@@ -46,13 +49,13 @@ function CallsetResponse({ response, datasetIds }) {
   if (!response.resultSets[0].results) {
     return NoResultsHelp(exampleId, itemColl)
   }
-  if (response.meta.errors.length > 0) {
-    return (
-      <div className="notification is-size-5">
-        <div className="message-body">ERROR: {response.meta.errors[0]}</div>
-      </div>
-    )
-  }
+  // if (response.meta.errors.length > 0) {
+  //   return (
+  //     <div className="notification is-size-5">
+  //       <div className="message-body">ERROR: {response.meta.errors[0]}</div>
+  //     </div>
+  //   )
+  // }
 
   return <Callset callset={response.resultSets[0].results[0]} datasetIds={datasetIds} />
 }

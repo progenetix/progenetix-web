@@ -9,7 +9,7 @@ gao2021:
       isHidden: true
     cohorts:
       defaultValue: ["pgxcohort-gao2021signatures"]
-      isHidden: true
+      # isHidden: true
     assemblyId:
       isHidden: true
     referenceName:

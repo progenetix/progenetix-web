@@ -1,4 +1,4 @@
-import { referenceLink } from "../../hooks/api"
+import { BIOKEYS, referenceLink } from "../../hooks/api"
 import React from "react"
 import PropTypes from "prop-types"
 import { WithData } from "../Loader"
@@ -24,29 +24,30 @@ export default function BiosamplesDataTable({ apiReply, datasetId }) {
             </Link>
           )
         }
-      },
-      {
-        Header: TooltipHeader("Description", "Text description of the sample"),
-        accessor: "description"
-      },
+      },      
       {
         Header: TooltipHeader(
-          "Classifications",
+          "Dx Classifications",
           "Terms for biological classifications associated with the sample (e.g. diagnosis, histology, organ site)"
         ),
-        accessor: "biocharacteristics",
-        Cell: ({ value: biocharacteristics }) =>
-          biocharacteristics.map((biocharacteristic, i) => (
-            <div key={i} title={biocharacteristic.label}>
-              <Link
-                href={`/subsets/biosubsets?filters=${biocharacteristic.id}`}
-              >
-                <a>{biocharacteristic.id}</a>
-              </Link>{" "}
-              {biocharacteristic.label}
-            </div>
-          ))
+        accessor: "icdoMorphology.id",
+        // eslint-disable-next-line react/display-name
+        Cell: (cell) => (
+          <div>
+            {BIOKEYS.map(bioc => (
+              <div key={bioc}>
+                <Link
+                href={`/subsets/biosubsets?filters=${cell.row.original[bioc].id}`}
+                >
+                  <a>{cell.row.original[bioc].id}</a>
+                </Link>{" "}
+                {cell.row.original[bioc].label}
+              </div>
+            ))}
+          </div>
+        )
       },
+
       {
         Header: TooltipHeader(
           "Identifiers",
@@ -69,7 +70,7 @@ export default function BiosamplesDataTable({ apiReply, datasetId }) {
       },
       {
         Header: TooltipHeader(
-          "CNVs",
+          "CNV Fraction",
           "Fraction of the sample's genome covered by CNV events (DUP or DEL)"
         ),
         accessor: "info.cnvstatistics.cnvfraction"

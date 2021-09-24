@@ -22,6 +22,8 @@ export const DOCLINK = `${PROGENETIXINFO}/categories/documentation.html`
 export const NEWSLINK = `${PROGENETIXINFO}/categories/news.html`
 export const THISYEAR = new Date().getFullYear()
 
+export const BIOKEYS = ["histologicalDiagnosis", "icdoMorphology", "icdoTopography", "sampledTissue"]
+
 export function useProgenetixApi(...args) {
   const { data, error, ...other } = useExtendedSWR(...args)
 
@@ -101,7 +103,7 @@ export function mkGeoParams(geoCity, geodistanceKm) {
 
 export function mkGeneParams(gene) {
   if (!gene) return null
-  const geneSymbol = gene.data.geneSymbol ?? []
+  const geneSymbol = gene.data.symbol ?? []
   return { geneSymbol }
 }
 
@@ -318,7 +320,7 @@ export function useGeoCity({ city }) {
 }
 
 export function useGeneSymbol({ geneSymbol }) {
-  const url = geneSymbol ? `${basePath}services/genespans/?geneSymbol=${geneSymbol}&filterPrecision=start` :null
+  const url = geneSymbol ? `${basePath}services/genespans/?geneSymbol=${geneSymbol}&filterPrecision=start&method=genespan` :null
   return useProgenetixApi(url)
 }
 
@@ -353,7 +355,7 @@ export function Link({ href, label, onClick }) {
 export function referenceLink(externalReference) {
   if (externalReference.id.includes("cellosaurus:")) {
     return (
-      "https://web.expasy.org/cgi-bin/cellosaurus/search?input=" +
+      "https://web.expasy.org/cellosaurus/" +
       externalReference.id.replace("cellosaurus:", "")
     )
   } else if (externalReference.id.includes("PMID:")) {

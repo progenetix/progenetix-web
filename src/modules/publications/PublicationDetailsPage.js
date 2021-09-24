@@ -21,8 +21,8 @@ function NoResultsHelp() {
     <div className="notification is-size-5">
       This page will only show content if called with a specific Pubmed ID which
       already exists in the Progenetix `publications` database, e.g.{" "}
-      <a href={"/publications/details?id=PMID:28966033"}>
-        /publication/details?id=PMID:28966033
+      <a href={"/publications/details?id=PMID:9405679"}>
+        /publication/details?id=PMID:9405679
       </a>
       . Please start over from the Progenetix Publication Collection page.
     </div>
@@ -70,7 +70,7 @@ function PublicationDetails({ publication, id }) {
       </p>
       <p>{publication.abstract}</p>
       <h5>Origin</h5>
-      <p>{publication.provenance.geoLocation.properties.label}</p>
+      <p>{publication.provenance.geoLocation.properties?.label}</p>
       <h5>Genome Screens</h5>
       <ul className="mb-5">
         {technologies.map((technologie, i) =>

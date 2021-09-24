@@ -9,7 +9,7 @@ TCGA:
       isHidden: true
     cohorts:
       defaultValue: ["pgxcohort-TCGA"]
-      isHidden: true
+      # isHidden: true
     assemblyId:
       isHidden: true
     referenceName:
