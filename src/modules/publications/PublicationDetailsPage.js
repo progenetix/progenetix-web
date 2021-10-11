@@ -1,10 +1,9 @@
 import React from "react"
-import { usePublication, Link } from "../../hooks/api"
+import { usePublication, Link, epmcUrl, EpmcLink } from "../../hooks/api"
 import { WithData } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { SubsetHistogram } from "../../components/Histogram"
 import { Layout } from "../../components/Layout"
-import { epmcUrl, EpmcLink } from "./EpmcUrl"
 
 const PublicationDetailsPage = withUrlQuery(({ urlQuery }) => {
   const { id } = urlQuery

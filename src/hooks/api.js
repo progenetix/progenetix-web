@@ -320,7 +320,7 @@ export function useGeoCity({ city }) {
 }
 
 export function useGeneSymbol({ geneSymbol }) {
-  const url = geneSymbol ? `${basePath}services/genespans/?geneSymbol=${geneSymbol}&filterPrecision=start&method=genespan` :null
+  const url = geneSymbol ? `${basePath}services/genespans/?geneSymbol=${geneSymbol}&filterPrecision=start` :null
   return useProgenetixApi(url)
 }
 
@@ -503,4 +503,20 @@ export const HANDOVER_IDS = {
   biosamples: "pgx:handover:biosamples",
   variants: "pgx:handover:variants",
   variantsinterpretations: "pgx:handover:variantsinterpretations"
+}
+
+export function epmcId(publicationId) {
+  return publicationId.split(":")[1]
+}
+
+export function epmcUrl(publicationId) {
+  return `http://www.europepmc.org/abstract/MED/${epmcId(publicationId)}`
+}
+
+export function EpmcLink({ publicationId }) {
+  return (
+    <a href={epmcUrl(publicationId)} rel="noreferrer" target="_BLANK">
+      <img src="/img/icon_EPMC_16.gif" />
+    </a>
+  )
 }

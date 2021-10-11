@@ -7,6 +7,7 @@ import {
   useMap
 } from "../../components/map"
 import { groupBy } from "lodash"
+import { EpmcLink } from "../../hooks/api"
 import useDeepCompareEffect from "use-deep-compare-effect"
 import Table from "../../components/Table"
 import ReactDOM from "react-dom"
@@ -69,11 +70,24 @@ function PublicationsTable({ publications }) {
         // eslint-disable-next-line react/display-name
         Cell: (cellInfo) => (
           <a
-            href={`/publications/details?id=${cellInfo.value}&filterPrecision=exact`}
+            href={`/publications/details?id=${cellInfo.value}`}
           >
             {cellInfo.value}
           </a>
         )
+      },
+      {
+        Header: "Publication",
+        Cell: function Cell({ row: { original } }) {
+          return (
+            <>
+              <div>
+                {original.label} {original.journal}{" "}
+                <EpmcLink publicationId={original.id} />
+              </div>
+            </>
+          )
+        }
       }
     ],
     []
