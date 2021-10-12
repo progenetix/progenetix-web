@@ -6,10 +6,9 @@ import {
   getLatlngFromGeoJSON,
   useMap
 } from "../../components/map"
+import { PublicationCompactTable } from "./PublicationTables"
 import { groupBy } from "lodash"
-import { EpmcLink } from "../../hooks/api"
 import useDeepCompareEffect from "use-deep-compare-effect"
-import Table from "../../components/Table"
 import ReactDOM from "react-dom"
 
 export default function PublicationsMap({ publications, height }) {
@@ -32,7 +31,7 @@ export default function PublicationsMap({ publications, height }) {
       const render = () =>
         // eslint-disable-next-line react/no-render-return-value
         ReactDOM.render(
-          <PublicationsTable publications={publications} />,
+          <PublicationCompactTable publications={publications} />,
           document.getElementById(randomId)
         )
       const latlng = getLatlngFromGeoJSON(geoLocation)
@@ -59,39 +58,4 @@ export default function PublicationsMap({ publications, height }) {
   }, [publications, mapRef])
 
   return <div style={{ height, zIndex: 0 }} id="map" />
-}
-
-function PublicationsTable({ publications }) {
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: "id",
-        accessor: "id",
-        // eslint-disable-next-line react/display-name
-        Cell: (cellInfo) => (
-          <a
-            href={`/publications/details?id=${cellInfo.value}`}
-          >
-            {cellInfo.value}
-          </a>
-        )
-      },
-      {
-        Header: "Publication",
-        Cell: function Cell({ row: { original } }) {
-          return (
-            <>
-              <div>
-                {original.label} {original.journal}{" "}
-                <EpmcLink publicationId={original.id} />
-              </div>
-            </>
-          )
-        }
-      }
-    ],
-    []
-  )
-
-  return <Table columns={columns} data={publications} pageSize={8} />
 }

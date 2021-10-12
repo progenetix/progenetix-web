@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react"
 import { Layout } from "../../components/Layout"
 import { Infodot } from "../../components/Infodot"
-import { EpmcLink, useGeoCity, useProgenetixrefPublicationList } from "../../hooks/api"
+import { PublicationFewCountTable } from "./PublicationTables"
+import { useGeoCity, useProgenetixrefPublicationList } from "../../hooks/api"
 import { WithData } from "../../components/Loader"
-import Table, { TooltipHeader, InfodotHeader } from "../../components/Table"
-import cn from "classnames"
 import { useAsyncSelect } from "../../hooks/asyncSelect"
 import CustomSelect from "../../components/Select"
 import dynamic from "next/dynamic"
-import { sumBy } from "lodash"
 import { matchSorter } from "match-sorter"
 import useDebounce from "../../hooks/debounce"
 
@@ -82,7 +80,7 @@ function FilteredPublication({ publications, textSearch }) {
   return (
     <>
       <div className="mb-5">
-        <PublicationTable publications={filteredPublications} />
+        <PublicationFewCountTable publications={filteredPublications} />
       </div>
       <PublicationsMapContainer publications={filteredPublications} />
     </>
@@ -106,120 +104,6 @@ function PublicationsLoader({ geoCity, geodistanceKm, textSearch }) {
         />
       )}
     />
-  )
-}
-
-function getPublicationIdNumber(publicationId) {
-  return +publicationId.substring(
-    publicationId.indexOf(":") + 1,
-    publicationId.length
-  )
-}
-
-function PublicationTable({ publications }) {
-  const publicationsCount = publications.length
-  const sortType = React.useMemo(
-    () => (rowA, rowB, id) => {
-      const idA = getPublicationIdNumber(rowA.original[id])
-      const idB = getPublicationIdNumber(rowB.original[id])
-      return idA > idB ? 1 : idB > idA ? -1 : 0
-    },
-    []
-  )
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: `Publications (${publicationsCount})`,
-        columns: [
-          {
-            Header: InfodotHeader(
-              "id",
-              "Publication id (PubMed) with link to details page"
-            ),
-            accessor: "id",
-            sortType,
-            Cell: function Cell(cellInfo) {
-              return (
-                <a href={`/publications/details?id=${cellInfo.value}`}>
-                  {cellInfo.value}
-                </a>
-              )
-            }
-          },
-          {
-            Header: "Publication",
-            Cell: function Cell({ row: { original } }) {
-              return (
-                <>
-                  <div>
-                    {original.label} {original.journal}{" "}
-                    <EpmcLink publicationId={original.id} />
-                  </div>
-                </>
-              )
-            }
-          }
-        ]
-      },
-      {
-        Header: "Samples",
-        columns: [
-          {
-            Header: TooltipHeader(
-              "cCGH",
-              "Chromosomal Comparative Genomic Hybridization samples in publication"
-            ),
-            accessor: "counts.ccgh",
-            Cell: CountCell
-          },
-          {
-            Header: TooltipHeader("aCGH", "Genomic Arrays in publication"),
-            accessor: "counts.acgh",
-            Cell: CountCell
-          },
-          {
-            Header: TooltipHeader(
-              "WES",
-              "Whole Exome Sequencing experiments in publication"
-            ),
-            accessor: "counts.wes",
-            Cell: CountCell
-          },
-          {
-            Header: TooltipHeader(
-              "WGS",
-              "Whole Genome Sequencing experiments in publication"
-            ),
-            accessor: "counts.wgs",
-            Cell: CountCell
-          },
-          {
-            Header: TooltipHeader("pgx", "Samples in Progenetix"),
-            accessor: "counts.progenetix",
-            Cell: CountCell
-          }
-        ]
-      },
-      { accessor: "authors" },
-      { accessor: "abstract" },
-      { accessor: "title" }
-    ],
-    [publicationsCount, sortType]
-  )
-  return (
-    <Table
-      columns={columns}
-      data={publications}
-      pageSize={25}
-      hiddenColumns={["authors", "abstract", "sortid", "title"]}
-      sortBy={[{ id: "id", desc: true }]}
-    />
-  )
-}
-
-function CountCell({ value }) {
-  return (
-    <span className={cn(value === 0 && "has-text-grey-light")}>{value}</span>
   )
 }
 
@@ -249,10 +133,6 @@ function GeoCitySelector({ setGeoCity }) {
 }
 
 function PublicationsMapContainer({ publications }) {
-  const acghSum = sumBy(publications, "counts.acgh")
-  const ccghSum = sumBy(publications, "counts.ccgh")
-  const wesSum = sumBy(publications, "counts.wes")
-  const wgsSum = sumBy(publications, "counts.wgs")
   const publicationsCount = publications.length
   return (
     <>
@@ -261,10 +141,8 @@ function PublicationsMapContainer({ publications }) {
       </div>
       <p className="content">
         Geographic distribution (by corresponding author) of the{" "}
-        <b>{acghSum}</b> genomic array, <b>{ccghSum}</b> chromosomal CGH and{" "}
-        <b>{wesSum + wgsSum}</b> whole genome/exome based cancer genome datasets
-        from the <b>{publicationsCount}</b> listed publications. Area sizes
-        correspond to the sample numbers reported from a given location.
+        <b>{publicationsCount}</b> listed publications which have been found to
+        cite and/or use Progenetix.
       </p>
     </>
   )
