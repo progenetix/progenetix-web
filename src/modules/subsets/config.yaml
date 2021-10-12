@@ -12,7 +12,9 @@ biofilters:
   NCITgrade:
     label: NCIT Disease Grade
   NCITstage:
-      label: NCIT Disease Stage
+    label: NCIT Disease Stage
+  pgxfus:
+    label: followup status
 cohortfilters:
   TCGA:
     label: The Cancer Genome Atlas (projects)
