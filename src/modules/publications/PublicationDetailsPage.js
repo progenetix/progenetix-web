@@ -68,8 +68,30 @@ function PublicationDetails({ publication, id }) {
         <i>{publication.journal}</i> {id} <EpmcLink publicationId={id} />
       </p>
       <p>{publication.abstract}</p>
+
+      <h5>Contact</h5>
+      <ul className="mb-5">
+      {publication.contact?.name != "" && (
+        <li>{publication.contact.name}</li>
+      )}
+      {publication.contact?.affiliation != "" && (
+        <li>{publication.contact.affiliation}</li>
+      )}
+      {publication.contact?.email != "" && (
+        <li>{publication.contact.email}</li>
+      )}  
+      </ul>
+
       <h5>Origin</h5>
-      <p>{publication.provenance.geoLocation.properties?.label}</p>
+      <p>{publication.provenance.geoLocation.properties?.city}, {publication.provenance.geoLocation.properties?.country}</p>
+
+      {publication.progenetixCurator && (
+        <div>
+        <h5>Progenetix Curator</h5>
+        <p>{publication.progenetixCurator}</p>
+        </div>
+      )}
+      
       <h5>Genome Screens</h5>
       <ul className="mb-5">
         {technologies.map((technologie, i) =>
