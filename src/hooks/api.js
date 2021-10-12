@@ -223,6 +223,17 @@ export function usePublicationList({ geoCity, geodistanceKm }) {
   return useProgenetixApi(url)
 }
 
+export function useProgenetixrefPublicationList({ geoCity, geodistanceKm }) {
+  const geoParams = new URLSearchParams({
+    ...mkGeoParams(geoCity, geodistanceKm),
+    filters: "PMID,pgxuse:yes",
+    method: "details"
+  }).toString()
+  const url = `${basePath}services/publications?${geoParams}`
+  return useProgenetixApi(url)
+}
+
+
 export const ontologymapsBaseUrl = `${basePath}services/ontologymaps?`
 
 export function ontologymapsUrl({ filters, filterPrecision }) {
@@ -320,7 +331,7 @@ export function useGeoCity({ city }) {
 }
 
 export function useGeneSymbol({ geneSymbol }) {
-  const url = geneSymbol ? `${basePath}services/genespans/?geneSymbol=${geneSymbol}&filterPrecision=start` :null
+  const url = geneSymbol ? `${basePath}services/genespans/?geneSymbol=${geneSymbol}&filterPrecision=start&method=genespan` :null
   return useProgenetixApi(url)
 }
 
