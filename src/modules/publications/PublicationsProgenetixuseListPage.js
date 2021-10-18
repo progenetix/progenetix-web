@@ -9,21 +9,29 @@ import CustomSelect from "../../components/Select"
 import dynamic from "next/dynamic"
 import { matchSorter } from "match-sorter"
 import useDebounce from "../../hooks/debounce"
+import Panel from "../../components/Panel"
 
 export default function PublicationsProgenetixuseListPage() {
   const [geoCity, setGeoCity] = useState(null)
   const [geodistanceKm, setGeodistanceKm] = useState(100)
   const [searchInput, setSearchInput] = useState(null)
   const debouncedSearchInput = useDebounce(searchInput, 500)
+  const imgHere = {
+    float: "right",
+    width: "400px",
+    border: "0px",
+    margin: "-90px -10px 0px 0px"
+  }
+
   return (
-    <Layout title="Publications" headline="Articles Citing - or Using - Progenetix">
-      <article className="content">
-        <p>
-          This page lists articles which we found to have made use of, or referred to,
-          the Progenetix resource ecosystem. These articles may not necessarily contain original
-          case profiles themselves.
-        </p>
-        <p>
+    <Layout title="Publications" headline="Progenetix References">
+    
+      <Panel heading="Articles Citing - or Using - Progenetix" className="content">
+        <div>
+          <img src={"/img/progenetix-arraymap-1200x180.png"} style={imgHere} />
+          This page lists articles which we found to have made use of, or referred to, the Progenetix resource ecosystem. These articles may not necessarily contain original case profiles themselves.
+        </div>
+        <div>
           Please <a href="mailto:contact@progenetix.org">contact us</a> to alert
           us about additional articles you are aware of.
           <br/>
@@ -33,9 +41,9 @@ export default function PublicationsProgenetixuseListPage() {
             href="https://github.com/progenetix/oncopubs"
             label="oncopubs repository on Github"
           />.
-        </p>
-      </article>
-      <div className="mb-5">
+        </div>
+
+        {/*Some article filtering */}
         <div className="columns my-0">
           <div className="field column py-0 mb-3 is-one-third">
             <label className="label">
@@ -69,12 +77,19 @@ export default function PublicationsProgenetixuseListPage() {
             </div>
           )}
         </div>
-      </div>
+      </Panel>
+      
+      {/*
+        The PublicationsLoader creates her own Panel for the article table
+        and then adds the map below.
+      */}
+
       <PublicationsLoader
         geoCity={geoCity}
         geodistanceKm={geodistanceKm}
         textSearch={debouncedSearchInput?.trim() ?? ""}
       />
+      
     </Layout>
   )
 }
@@ -86,9 +101,9 @@ function FilteredPublication({ publications, textSearch }) {
   })
   return (
     <>
-      <div className="mb-5">
+      <Panel className="content">
         <PublicationFewCountTable publications={filteredPublications} />
-      </div>
+      </Panel>
       <PublicationsMapContainer publications={filteredPublications} />
     </>
   )
