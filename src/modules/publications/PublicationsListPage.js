@@ -34,6 +34,13 @@ export default function PublicationsListPage() {
             href="https://info.progenetix.org/doc/publication-collection.html"
             label="in the documentation"
           />.
+          <br/>
+          <b>New Oct 2021</b> You can now directly submit suggestions for matching
+          publications to the{" "}
+          <Link
+            href="https://github.com/progenetix/oncopubs"
+            label="oncopubs repository on Github"
+          />.
         </p>
       </article>
       <div className="mb-5">

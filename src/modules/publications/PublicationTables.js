@@ -99,7 +99,7 @@ export function PublicationTable({ publications }) {
       data={publications}
       pageSize={25}
       hiddenColumns={["authors", "abstract", "sortid", "title"]}
-      sortBy={[{ id: "sortid", desc: true }]}
+      sortBy={[{ id: "id", desc: true }]}
     />
   )
 }
@@ -179,7 +179,7 @@ export function PublicationFewCountTable({ publications }) {
       data={publications}
       pageSize={25}
       hiddenColumns={["authors", "abstract", "sortid", "title"]}
-      sortBy={[{ id: "sortid", desc: true }]}
+      sortBy={[{ id: "id", desc: true }]}
     />
   )
 }
@@ -239,12 +239,10 @@ return (
     data={publications}
     pageSize={4}
     hiddenColumns={["sortid"]}
-    sortBy={[{ id: "sortid", desc: true }]}
+    sortBy={[{ id: "id", desc: true }]}
   />
 )
 }
-
-
 
 function CountCell({ value }) {
   return (
