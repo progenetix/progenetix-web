@@ -1,60 +1,42 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { WithData } from "../Loader"
-import Table from "../Table"
+import Table, { TooltipHeader } from "../Table"
 // import { useProgenetixApi } from "../../hooks/api"
 import DownloadButton from "../DownloadButton"
-import Link from "next/link"
+// import Link from "next/link"
 
 export default function VariantsDataTable({ apiReply, datasetId }) {
   const columns = React.useMemo(
     () => [
       {
-        Header: "Int. ID",
-        accessor: "id",
-        // eslint-disable-next-line react/display-name
-        Cell: (cellInfo) => (
-          <Link
-            href={`/variants/details?id=${cellInfo.value}&datasetIds=${datasetId}`}
-          >
-            {cellInfo.value}
-          </Link>
-        )
-      },
-      {
         Header: "Digest",
-        accessor: "digest"
+        accessor: "variantInternalId"
       },
       {
-        Header: "Biosample",
-        accessor: "biosampleId",
-        // eslint-disable-next-line react/display-name
-        Cell: (cellInfo) => (
-          <Link
-            href={`/biosamples/details?id=${cellInfo.value}&datasetIds=${datasetId}`}
-          >
-            {cellInfo.value}
-          </Link>
-        )
-      },
-      {
-        Header: "Chr.",
-        accessor: "referenceName"
-      },
-      {
-        Header: "Ref. Base(s)",
-        accessor: "referenceBases"
-      },
-      {
-        Header: "Alt. Base(s)",
-        accessor: "alternateBases"
-      },
-      {
-        Header: "Type",
-        accessor: "variantType"
+        Header: TooltipHeader(
+          "Variant Instances",
+          "Case level instances of this variant with links to the variant (V) and biosample (B) information."
+        ),
+        accessor: "caseLevelData",
+        Cell: ({ value: caseLevelData }) =>
+        caseLevelData.map((cld, i) => (
+          <div key={i}>
+            <a href={`/variants/details?id=${cld.id}&datasetIds=${datasetId}`} target="_blank" rel="noreferrer">
+              V: {cld.id}
+            </a>
+            <br/>
+            <a href={`/biosamples/details?id=${cld.biosampleId}&datasetIds=${datasetId}`} target="_blank" rel="noreferrer">
+              B: {cld.biosampleId}
+            </a>
+          </div>
+        ))
       }
-    ],
-    [datasetId]
+      // {
+      //   Header: "Type",
+      //   accessor: "variantType"
+      // }
+    ]
   )
 
   return (
@@ -65,11 +47,11 @@ export default function VariantsDataTable({ apiReply, datasetId }) {
           <div className="mb-4">
             <DownloadButton
               label="Download Variants"
-              json={response.resultSets[0].results}
+              json={response.response.resultSets[0].results}
               fileName="variants"
             />
           </div>
-          <Table columns={columns} data={response.resultSets[0].results} />
+          <Table columns={columns} data={response.response.resultSets[0].results} />
         </div>
       )}
     />

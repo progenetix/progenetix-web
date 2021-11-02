@@ -59,15 +59,15 @@ function VariantLoader({ id, datasetIds }) {
 }
 
 function VariantResponse({ response, datasetIds }) {
-  if (!response.resultSets[0].results[0]) {
+  if (!response.response.resultSets[0].results[0]) {
     return NoResultsHelp(exampleId, itemColl)
   }
-  return <Variant variant={response.resultSets[0].results[0]} datasetIds={datasetIds} />
+  return <Variant variant={response.response.resultSets[0].results[0]} datasetIds={datasetIds} />
 }
 
 function VariantsInterpretationResponse({ response, datasetIds }) {
 
-  const handoverById = (givenId) => response.resultSets[0].resultsHandovers.find(({ handoverType: { id } }) => id === givenId)
+  const handoverById = (givenId) => response.response.resultSets[0].resultsHandovers.find(({ handoverType: { id } }) => id === givenId)
   const variantsAnnotationsHandover = handoverById(HANDOVER_IDS.variantsinterpretations)
   const variantsAnnotationsReply= useProgenetixApi(
     variantsAnnotationsHandover && replaceWithProxy(variantsAnnotationsHandover.url)
@@ -80,7 +80,7 @@ function Variant({ variant, datasetIds }) {
   return (
     <section className="content">
       <h3>
-        {variant.id} ({datasetIds})
+        {variant.variantInternalId} ({datasetIds})
       </h3>
 
       {variant.digest && (
@@ -95,7 +95,7 @@ function Variant({ variant, datasetIds }) {
         <a
           rel="noreferrer"
           target="_blank"
-          href={getDataItemUrl(variant.id, itemColl, datasetIds)}
+          href={getDataItemUrl(variant.variantInternalId, itemColl, datasetIds)}
         >
           {"{JSON↗}"}
         </a>
@@ -117,27 +117,27 @@ function VariantInterpretation({ ho, apiReply, datasetIds }) {
           {console.log(response)}
           <hr/>
           <h3>
-            {response.resultSets[0].results[0].id}
+            {response.response.resultSets[0].results[0].id}
           </h3>
           <ul>
-            <li>Gene ID: {response.resultSets[0].results[0].geneId}</li>
-            <li>Cytoband: {response.resultSets[0].results[0].cytoband}</li>
-            {response.resultSets[0].results[0].aminoacidChanges ? (
+            <li>Gene ID: {response.response.resultSets[0].results[0].geneId}</li>
+            <li>Cytoband: {response.response.resultSets[0].results[0].cytoband}</li>
+            {response.response.resultSets[0].results[0].aminoacidChanges ? (
             <li>Aminoacid changes: {response.resultSets[0].results[0].aminoacidChanges}</li>
             ) : ""}
           </ul>
-          {response.resultSets[0].results[0].clinicalRelevances[0].clinicalEffect ? (
+          {response.response.resultSets[0].results[0].clinicalRelevances[0].clinicalEffect ? (
             <div>
               <h5>Clinical Effect </h5>
               <ul>
-                <li>{response.resultSets[0].results[0].clinicalRelevances[0].clinicalEffect.label} (FATHMM score: {response.resultSets[0].results[0].clinicalRelevances[0].clinicalEffect.score} )</li>
+                <li>{response.response.resultSets[0].results[0].clinicalRelevances[0].clinicalEffect.label} (FATHMM score: {response.response.resultSets[0].results[0].clinicalRelevances[0].clinicalEffect.score} )</li>
               </ul>
             </div>
           ) : ""}
-          {response.resultSets[0].results[0].clinicalRelevances[1]?.diseaseId ? (
+          {response.response.resultSets[0].results[0].clinicalRelevances[1]?.diseaseId ? (
             <div>
               <h5>Disease ontologies </h5>
-              {response.resultSets[0].results[0].clinicalRelevances[1]?.diseaseId?.map((disease, i) => (
+              {response.response.resultSets[0].results[0].clinicalRelevances[1]?.diseaseId?.map((disease, i) => (
                 <div key={i}>
                   {referenceLink(disease) ? (
                     <Link href={referenceLink(disease)}>
@@ -151,10 +151,10 @@ function VariantInterpretation({ ho, apiReply, datasetIds }) {
               ))}
             </div>
           ) : ""}
-          {response.resultSets[0].results[0].alternativeIds ? (
+          {response.response.resultSets[0].results[0].alternativeIds ? (
             <div>
               <h5>Alternative IDs</h5>
-              {response.resultSets[0].results[0].alternativeIds?.map((externalReference, i) => (
+              {response.response.resultSets[0].results[0].alternativeIds?.map((externalReference, i) => (
                 <div key={i}>
                   {referenceLink(externalReference) ? (
                     <Link href={referenceLink(externalReference)}>

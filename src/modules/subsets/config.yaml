@@ -13,7 +13,7 @@ biofilters:
     label: NCIT Disease Grade
   NCITstage:
     label: NCIT Disease Stage
-  pgxfus:
+  EFOfus:
     label: followup status
 cohortfilters:
   TCGA:

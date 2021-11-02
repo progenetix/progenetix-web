@@ -587,7 +587,7 @@ function useClinicalSubsets(watchForm) {
   return useCollations({
     datasetIds,
     method: "children",
-    filters: "TNM,NCITgrade,NCITstage,pgxfus"
+    filters: "TNM,NCITgrade,NCITstage,EFOfus"
   })
 }
 
