@@ -77,7 +77,7 @@ function useIsFilterlogicWarningVisible(watch) {
   const clinicalClasses = watch("clinicalClasses")
   const cohorts = watch("cohorts")
   const freeFilters = watch("freeFilters")
-  const genotypicSex = watch("genotypicSex")
+  const sex = watch("sex")
   const materialtype = watch("materialtype")
   const filters = makeFilters({
     freeFilters,
@@ -85,7 +85,7 @@ function useIsFilterlogicWarningVisible(watch) {
     referenceid,
     clinicalClasses,
     cohorts,
-    genotypicSex,
+    sex,
     materialtype
   })
   return filterLogic === "AND" && filters.length > 1
@@ -141,7 +141,7 @@ export function Form({
     watch
   )
   
-  const biosubsetsOptions = biosubsetsResponse?.results.map((value) => ({
+  const biosubsetsOptions = biosubsetsResponse?.response.results.map((value) => ({
     value: value.id,
     label: `${value.id}: ${value.label} (${value.count})`
   }))
@@ -155,7 +155,7 @@ export function Form({
     watch
   )
   
-  const refsubsetsOptions = refsubsetsResponse?.results.map((value) => ({
+  const refsubsetsOptions = refsubsetsResponse?.response.results.map((value) => ({
     value: value.id,
     label: `${value.id}: ${value.label} (${value.count})`
   }))
@@ -169,7 +169,7 @@ const { data: clinicalResponse, isLoading: isClinicalDataLoading } = useClinical
   watch
 )
 
-const clinicalOptions = clinicalResponse?.results.map((value) => ({
+const clinicalOptions = clinicalResponse?.response.results.map((value) => ({
   value: value.id,
   label: `${value.id}: ${value.label} (${value.count})`
 }))
@@ -379,10 +379,10 @@ parameters = merge({}, parameters, {
           <div className="columns my-0">
             <SelectField
               className={cn(
-                !parameters.genotypicSex.isHidden && "column",
+                !parameters.sex.isHidden && "column",
                 "py-0 mb-3"
               )}
-              {...parameters.genotypicSex}
+              {...parameters.sex}
               {...selectProps}
             />
             <SelectField
@@ -568,7 +568,7 @@ function useBioSubsets(watchForm) {
   const datasetIds = watchForm("datasetIds")
   return useCollations({
     datasetIds,
-    method: "children",
+    method: "counts",
     filters: "NCIT,icdom,icdot,UBERON"
   })
 }
@@ -577,7 +577,7 @@ function useReferencesSubsets(watchForm) {
   const datasetIds = watchForm("datasetIds")
   return useCollations({
     datasetIds,
-    method: "children",
+    method: "counts",
     filters: "PMID,geo,cellosaurus"
   })
 }
@@ -586,7 +586,7 @@ function useClinicalSubsets(watchForm) {
   const datasetIds = watchForm("datasetIds")
   return useCollations({
     datasetIds,
-    method: "children",
+    method: "counts",
     filters: "TNM,NCITgrade,NCITstage,EFOfus"
   })
 }

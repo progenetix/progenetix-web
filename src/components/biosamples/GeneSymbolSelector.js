@@ -15,7 +15,7 @@ export function GeneSymbolSelector({
   const { data, isLoading } = useGeneSymbol({ geneSymbol: inputValue })
   let options = []
   if (data) {
-    options = data.results.map((g) => ({
+    options = data.response.results.map((g) => ({
       value: g.symbol,
       data: g,
       label: `${g.symbol} (${g.referenceName}:${g.start}-${g.end})`

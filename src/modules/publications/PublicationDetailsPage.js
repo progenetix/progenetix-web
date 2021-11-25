@@ -35,7 +35,7 @@ function PublicationLoader({ id }) {
       apiReply={publicationReply}
       background
       render={(response) => (
-        <PublicationResponse results={response.results} id={id} />
+        <PublicationResponse results={response.response?.results} id={id} />
       )}
     />
   )

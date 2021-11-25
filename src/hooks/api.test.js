@@ -14,7 +14,7 @@ test("build a complete query", () => {
       referenceBases: "N",
       alternateBases: "G",
       bioontology: ["NCIT:C102872", "NCIT:C102873"],
-      genotypicSex: "PATO:0020002",
+      sex: "PATO:0020002",
       materialtype: "EFO:0009656",
       freeFilters: "geolat:49,geolong:8.69,geodist:2000000"
     })

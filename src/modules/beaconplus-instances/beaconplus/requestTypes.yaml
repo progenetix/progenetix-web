@@ -103,7 +103,7 @@ beaconplus:
 #           defaultValue: "T"
 #         referenceBases:
 #           defaultValue: "C"
-#         genotypicSex:
+#         sex:
 #           defaultValue: ""
 #           isHidden: true
 #         materialtype:
@@ -164,7 +164,7 @@ beaconplus:
 #       placeholder: "G"
 #     freeFilters:
 #       placeholder: "" # "geolat:49,geolong:8.69,geodist:2000000"
-#     genotypicSex:
+#     sex:
 #       placeholder: "" #"EFO:0009656"
 #     materialtype:
 #       placeholder: "" #"EFO:0009656"

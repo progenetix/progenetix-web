@@ -148,9 +148,9 @@ export function CytoBandsUtility({ onClose, setFormValue }) {
   const [searchValue, setSearchValue] = useState("")
   const apiReply = useCytomapper(searchValue)
   const onApply = (data) => {
-    setFormValue("start", data.results[0].genomicLocation.interval.start)
-    setFormValue("end", data.results[0].genomicLocation.interval.end)
-    setFormValue("referenceName", data.results[0].genomicLocation.chr)
+    setFormValue("start", data.response.results[0].genomicLocation.interval.start)
+    setFormValue("end", data.response.results[0].genomicLocation.interval.end)
+    setFormValue("referenceName", data.response.results[0].genomicLocation.chr)
     onClose()
   }
   const onSubmit = (e) => {
@@ -188,12 +188,12 @@ export function CytoBandsUtility({ onClose, setFormValue }) {
             <WithData
               apiReply={apiReply}
               render={(data) => {
-                const info = data.results[0]?.info
+                const info = data.response.results[0]?.info
                 const hasResults = !!info?.cytoBands
                 return (
                   <>
                     {hasResults ? (
-                      <CytoBandsData data={data.results} />
+                      <CytoBandsData data={data.response.results} />
                     ) : (
                       <div className="notification is-light">No results.</div>
                     )}

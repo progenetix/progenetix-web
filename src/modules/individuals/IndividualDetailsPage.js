@@ -68,10 +68,10 @@ function Individual({ individual, datasetIds }) {
         </>
       )}
 
-      {individual.genotypicSex && (
+      {individual.sex && (
         <>
           <h5>Genotypic Sex</h5>
-          <p>{individual.genotypicSex.label}</p>
+          <p>{individual.sex.label}</p>
         </>
       )}
 

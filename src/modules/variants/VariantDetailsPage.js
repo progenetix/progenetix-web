@@ -83,10 +83,10 @@ function Variant({ variant, datasetIds }) {
         {variant.variantInternalId} ({datasetIds})
       </h3>
 
-      {variant.digest && (
+      {variant.variantInternalId && (
         <>
           <h5>Digest</h5>
-          <p>{variant.digest}</p>
+          <p>{variant.variantInternalId}</p>
         </>
       )}
 
@@ -95,7 +95,7 @@ function Variant({ variant, datasetIds }) {
         <a
           rel="noreferrer"
           target="_blank"
-          href={getDataItemUrl(variant.variantInternalId, itemColl, datasetIds)}
+          href={getDataItemUrl(variant.id, itemColl, datasetIds)}
         >
           {"{JSON↗}"}
         </a>

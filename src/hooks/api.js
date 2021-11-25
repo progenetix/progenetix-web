@@ -113,7 +113,7 @@ export function makeFilters({
   bioontology,
   referenceid,
   cohorts,
-  genotypicSex,
+  sex,
   materialtype
 }) {
   const parsedFreeFilters =
@@ -127,7 +127,7 @@ export function makeFilters({
     ...(clinicalClasses ?? []), 
     ...(referenceid ?? []),
     ...(cohorts ? [cohorts] : []),
-    ...(genotypicSex ? [genotypicSex] : []),
+    ...(sex ? [sex] : []),
     ...(materialtype ? [materialtype] : []),
     ...parsedFreeFilters
   ]
@@ -140,7 +140,7 @@ export function buildQueryParameters(queryData) {
     bioontology,
     referenceid,
     cohorts,
-    genotypicSex,
+    sex,
     materialtype,
     freeFilters,
     clinicalClasses,
@@ -174,7 +174,7 @@ export function buildQueryParameters(queryData) {
     bioontology,
     referenceid,
     cohorts,
-    genotypicSex,
+    sex,
     materialtype
   })
   const geneParams = mkGeneParams(geneSymbol) ?? {}
@@ -300,7 +300,7 @@ export function useCollationsById({ datasetIds }) {
   })
 
   if (data) {
-    const mappedResults = keyBy(data.results, "id")
+    const mappedResults = keyBy(data.response.results, "id")
     return {
       data: {
         ...data,

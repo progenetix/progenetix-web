@@ -178,7 +178,7 @@ materialtype:
       label: cancer cell line sample
     - value: EFO:0009654
       label: reference sample
-genotypicSex:
+sex:
   label: Genotypic Sex
   infoText: |
     Genotypic sex of the individual.

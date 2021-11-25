@@ -121,7 +121,7 @@ function PublicationsLoader({ geoCity, geodistanceKm, textSearch }) {
       background
       render={(data) => (
         <FilteredPublication
-          publications={data.results}
+          publications={data.response.results}
           textSearch={textSearch}
         />
       )}
@@ -135,7 +135,7 @@ function GeoCitySelector({ setGeoCity }) {
   const { data, isLoading } = useGeoCity({ city: inputValue })
   let options = []
   if (data) {
-    options = data.results.map((g) => ({
+    options = data.response.results.map((g) => ({
       value: g.id,
       data: g,
       label: `${g.geoLocation.properties.city} (${g.geoLocation.properties.country})`

@@ -136,7 +136,7 @@ const UBERONmapsSelection = withUrlQuery(({ urlQuery, setUrlQuery }) => {
             hasError={secondSelectionError}
           >
             {secondSelectionOptions &&
-            resultsData?.results[0].termGroups?.length > 1 ? (
+            resultsData?.response.results[0].termGroups?.length > 1 ? (
               <CustomSelect
                 className="mb-6"
                 options={secondSelectionOptions}
@@ -155,10 +155,10 @@ const UBERONmapsSelection = withUrlQuery(({ urlQuery, setUrlQuery }) => {
               <div></div>
             )}
             <Loader isLoading={resultsLoading} hasError={resultsError}>
-              {resultsData?.results[0].termGroups?.length > 0 ? (
+              {resultsData?.response.results[0].termGroups?.length > 0 ? (
                 <CodeGroups
                   prefixes={prefixes}
-                  codeGroups={resultsData?.results[0].termGroups}
+                  codeGroups={resultsData?.response.results[0].termGroups}
                   ontomapsUrl={ontologymapsPrefUrl({ prefixes, filters })}
                 />
               ) : (

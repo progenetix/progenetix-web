@@ -59,7 +59,7 @@ celllines:
           isHidden: true
         bioontology:
           isHidden: true
-        genotypicSex:
+        sex:
           isHidden: true
         materialtype:
           isHidden: true

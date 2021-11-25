@@ -79,8 +79,8 @@ function SubsetsLoader({ filters, datasetIds }) {
           background
           render={(allBioSubsetsResponse) => (
             <SubsetsResponse
-              bioSubsetsHierarchies={bioSubsetsHierarchiesResponse.results}
-              allBioSubsets={allBioSubsetsResponse.results}
+              bioSubsetsHierarchies={bioSubsetsHierarchiesResponse.response.results}
+              allBioSubsets={allBioSubsetsResponse.response.results}
               datasetIds={datasetIds}
             />
           )}
