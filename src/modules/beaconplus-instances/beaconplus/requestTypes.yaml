@@ -81,36 +81,6 @@ beaconplus:
           isHidden: false
         freeFilters:
           defaultValue: ""
-#     - label: "ClinVar Example"
-#       note: "Example for TP53 mutation (ClinVar annotated) in a cell line"
-#       description: |
-#         This example shows a core Beacon query, against a specific
-#         mutation in the TP53 gene, in cellosaurus, with ClinVar data.
-#       parameters:
-#         datasetIds:
-#           defaultValue: ["cellosaurus"]
-#         assemblyId:
-#           defaultValue: "GRCh38"
-#         referenceName:
-#           defaultValue: "17"
-#         start:
-#           defaultValue: 7673767
-#         end:
-#           defaultValue: ""
-#         variantType:
-#           defaultValue: ""
-#         alternateBases:
-#           defaultValue: "T"
-#         referenceBases:
-#           defaultValue: "C"
-#         sex:
-#           defaultValue: ""
-#           isHidden: true
-#         materialtype:
-#           defaultValue: ""
-#           isHidden: true
-#         freeFilters:
-#           defaultValue: ""
     - label: "SNV Range Example"
       note: "Example for EIF4A1 transcript region matches (precise variants)"
       description: |
@@ -141,32 +111,3 @@ beaconplus:
           defaultValue: "N"
         freeFilters:
           defaultValue: ""
-# 
-# allFieldsRequest:
-#   note: ""
-#   label: "All Fields"
-#   description: |
-#     All form fields for composing your own queries.
-#   parameters:
-#     datasetIds:
-#       placeholder: "progenetix"
-#     referenceName:
-#       placeholder: "9"
-#     start:
-#       placeholder: "20000001-21975098"
-#     end:
-#       placeholder: "21967753-23000000"
-#     variantType:
-#       placeholder: "DEL"
-#     alternateBases:
-#       placeholder: "A"
-#     referenceBases:
-#       placeholder: "G"
-#     freeFilters:
-#       placeholder: "" # "geolat:49,geolong:8.69,geodist:2000000"
-#     sex:
-#       placeholder: "" #"EFO:0009656"
-#     materialtype:
-#       placeholder: "" #"EFO:0009656"
-#     accessid:
-#       isHidden: true

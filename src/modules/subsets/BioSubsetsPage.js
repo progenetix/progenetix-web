@@ -66,9 +66,10 @@ const BioSubsetsContent = withUrlQuery(({ urlQuery, setUrlQuery }) => {
 
 function SubsetsLoader({ filters, datasetIds }) {
   const bioSubsetsHierarchiesReply = useCollations({
-    filters,
     datasetIds,
-    method: "paths"
+    method: "paths",
+    filters,
+    collationTypes: ""
   })
 
   const allBioSubsetsReply = useCollationsById({

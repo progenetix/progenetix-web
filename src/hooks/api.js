@@ -296,6 +296,7 @@ export function useCollationsById({ datasetIds }) {
   const { data, ...other } = useCollations({
     filters: "",
     method: "counts",
+    collationTypes: "",
     datasetIds
   })
 
@@ -312,8 +313,8 @@ export function useCollationsById({ datasetIds }) {
   return { data, ...other }
 }
 
-export function useCollations({ datasetIds, method, filters }) {
-  const url = `${basePath}services/collations/?datasetIds=${datasetIds}&method=${method}&filters=${filters}`
+export function useCollations({ datasetIds, method, filters, collationTypes }) {
+  const url = `${basePath}services/collations/?datasetIds=${datasetIds}&method=${method}&filters=${filters}&collationTypes=${collationTypes}`
   return useProgenetixApi(url)
 }
 

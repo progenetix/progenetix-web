@@ -109,8 +109,7 @@ celllines:
       note: "Example for TP53 deletion"
       description: |
         Query example for an "any overlap", focal deletion in TP53 where the
-        search will be limited to cell lines, searched as having ids from the
-        "cellosaurus" cell line database.
+        search will be limited to cell lines (EFO:0030035).
       parameters:
         referenceName:
           defaultValue: "17"

@@ -5,7 +5,7 @@ import {
   useCollations,
   validateBeaconQuery
 } from "../../hooks/api"
-import React, { useEffect, useMemo, useState } from "react"
+import React, { useMemo, useState } from "react" //useEffect, 
 import { markdownToReact } from "../../utils/md"
 import { useForm } from "react-hook-form"
 import {
@@ -49,26 +49,26 @@ function urlQueryToFormParam(urlQuery, key, parametersConfig) {
   } else return value
 }
 
-function useAutoExecuteSearch({
-  autoExecuteSearch,
-  initialValues,
-  setSearchQuery,
-  setError
-}) {
-  useEffect(() => {
-    if (autoExecuteSearch) {
-      // At this stage individual parameters are already validated.
-      const values = initialValues
-      const errors = validateForm(values)
-      if (errors.length > 0) {
-        errors.forEach(([name, error]) => setError(name, error))
-      } else {
-        setSearchQuery(values)
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [autoExecuteSearch])
-}
+// function useAutoExecuteSearch({
+//   autoExecuteSearch,
+//   initialValues,
+//   setSearchQuery,
+//   setError
+// }) {
+//   useEffect(() => {
+//     if (autoExecuteSearch) {
+//       // At this stage individual parameters are already validated.
+//       const values = initialValues
+//       const errors = validateForm(values)
+//       if (errors.length > 0) {
+//         errors.forEach(([name, error]) => setError(name, error))
+//       } else {
+//         setSearchQuery(values)
+//       }
+//     }
+//     // eslint-disable-next-line react-hooks/exhaustive-deps
+//   }, [autoExecuteSearch])
+// }
 
 function useIsFilterlogicWarningVisible(watch) {
   const filterLogic = watch("filterLogic")
@@ -101,7 +101,7 @@ export function Form({
   urlQuery,
   setUrlQuery
 }) {
-  const autoExecuteSearch = urlQuery.executeSearch === "true"
+  // const autoExecuteSearch = urlQuery.executeSearch === "true"
 
   const requestTypeId = Object.entries(requestTypesConfig)[0][0]
   const requestTypeConfig = requestTypesConfig[requestTypeId]
@@ -199,12 +199,12 @@ parameters = merge({}, parameters, {
     ...fieldProps,
     control
   }
-  useAutoExecuteSearch({
-    autoExecuteSearch,
-    initialValues,
-    setSearchQuery,
-    setError
-  })
+  // useAutoExecuteSearch({
+  //   autoExecuteSearch,
+  //   initialValues,
+  //   setSearchQuery,
+  //   setError
+  // })
 
   // {parameters.geneSymbol.isHidden && (
   // ) }
@@ -413,7 +413,6 @@ parameters = merge({}, parameters, {
             />
           </div>
           <InputField {...parameters.accessid} {...fieldProps} />
-          <InputField {...parameters.filterPrecision} {...fieldProps} />
           {!parameters.geoCity.isHidden && (
             <div className="columns my-0">
               <GeoCitySelector
@@ -449,6 +448,8 @@ parameters = merge({}, parameters, {
     </>
   )
 }
+
+// <InputField {...parameters.filterPrecision} {...fieldProps} />}
 
 function ExamplesButtons({ requestTypeConfig, onExampleClicked }) {
   return (
@@ -569,7 +570,8 @@ function useBioSubsets(watchForm) {
   return useCollations({
     datasetIds,
     method: "counts",
-    filters: "NCIT,icdom,icdot,UBERON"
+    filters: "",
+    collationTypes: "NCIT,icdom,icdot,UBERON"
   })
 }
 
@@ -578,7 +580,8 @@ function useReferencesSubsets(watchForm) {
   return useCollations({
     datasetIds,
     method: "counts",
-    filters: "PMID,geo,cellosaurus"
+    filters: "",
+    collationTypes: "PMID,geo,cellosaurus"
   })
 }
 
@@ -587,7 +590,8 @@ function useClinicalSubsets(watchForm) {
   return useCollations({
     datasetIds,
     method: "counts",
-    filters: "TNM,NCITgrade,NCITstage,EFOfus"
+    filters: "",
+    collationTypes: "TNM,NCITgrade,NCITstage,EFOfus"
   })
 }
 

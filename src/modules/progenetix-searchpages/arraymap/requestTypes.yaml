@@ -69,10 +69,10 @@ arraymap:
           defaultValue: ["icdom-80463"]
     - label: "TP53 Del. in Cell Lines"
       note: "Example for TP53 deletion"
-      description: |
+      description: >-
         Query example for an "any overlap", focal deletion in TP53 where the
-        search will be limited to cell lines, searched as having ids from the
-        "cellosaurus" cell line database.
+        search will be limited to cell lines, searched with limit to the "EFO:0030035"
+        material code.
       parameters:
         referenceName:
           defaultValue: "17"
@@ -83,7 +83,7 @@ arraymap:
         variantType:
           defaultValue: "DEL"
         freeFilters:
-          defaultValue: "cellosaurus"
+          defaultValue: "EFO:0030035"
     - label: "K-562 Cell Line"
       note: "Instances of K-562 and daughter cell lines, searched by Cellosaurus id"
       description: |
