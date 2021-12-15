@@ -20,7 +20,7 @@ cohortfilters:
     label: The Cancer Genome Atlas (projects)
   cellosaurus:
     label: Cellosaurus Cell Line Resource
-  cBP:
+  cbioportalcBP:
     label: cBioPortal Projects
   GEOseries:
     label: Gene Expression Omnibus (Series)

@@ -382,10 +382,10 @@ export function referenceLink(externalReference) {
       "https://www.ebi.ac.uk/arrayexpress/experiments/" +
       externalReference.id.replace("arrayexpress:", "")
     )
-  } else if (externalReference.id.includes("cBP")) {
+  } else if (externalReference.id.includes("cbioportal")) {
     return (
       "https://www.cbioportal.org/study/summary?id=" +
-      externalReference.id.replace("cBP-", "").toLowerCase()
+      externalReference.id.replace("cbioportal:", "").toLowerCase()
     )
   } else if (externalReference.id.includes("TCGA-")) {
     return (
