@@ -56,11 +56,11 @@ function BiosampleLoader({ id, datasetIds }) {
 }
 
 function BiosampleResponse({ response, datasetIds }) {
-  if (!response.resultSets[0].results) {
+  if (!response.response.resultSets[0].results) {
     return NoResultsHelp(exampleId, itemColl)
   }
 
-  return <Biosample biosample={response.resultSets[0].results[0]} datasetIds={datasetIds} />
+  return <Biosample biosample={response.response.resultSets[0].results[0]} datasetIds={datasetIds} />
 }
 
 function Biosample({ biosample, datasetIds }) {
@@ -113,7 +113,7 @@ function Biosample({ biosample, datasetIds }) {
       <ul>
         {biosample.provenance?.material?.label && (
           <>
-            <li>Material: {biosample.provenance.material.label}</li>
+            <li>Material: {biosample.biosampleStatus.label}</li>
           </>
         )}
         {biosample.provenance?.geoLocation?.properties.label && (

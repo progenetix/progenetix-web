@@ -152,6 +152,16 @@ function Side({ onClick }) {
         />
         <MenuInternalLinkItem href="/publications" label="Publication DB" />
         <MenuInternalLinkItem
+          href="/publications"
+          label="Genome Profiling"
+          isSub="isSub"
+        />
+        <MenuInternalLinkItem
+          href="/publications/progenetixuse"
+          label="Progenetix Use"
+          isSub="isSub"
+        />
+        <MenuInternalLinkItem
           href="/service-collection/ontologymaps"
           label="Services"
         />

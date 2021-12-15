@@ -1,39 +1,39 @@
 import React, { useEffect, useState } from "react"
 import { Layout } from "../../components/Layout"
 import { Infodot } from "../../components/Infodot"
-import { PublicationTable } from "./PublicationTables"
-import { useGeoCity, usePublicationList, Link } from "../../hooks/api"
+import { PublicationFewCountTable } from "./PublicationTables"
+import { useGeoCity, useProgenetixrefPublicationList, Link } from "../../hooks/api"
 import { WithData } from "../../components/Loader"
 import { useAsyncSelect } from "../../hooks/asyncSelect"
 import CustomSelect from "../../components/Select"
 import dynamic from "next/dynamic"
-import { sumBy } from "lodash"
 import { matchSorter } from "match-sorter"
 import useDebounce from "../../hooks/debounce"
+import Panel from "../../components/Panel"
 
-export default function PublicationsListPage() {
+export default function PublicationsProgenetixuseListPage() {
   const [geoCity, setGeoCity] = useState(null)
   const [geodistanceKm, setGeodistanceKm] = useState(100)
   const [searchInput, setSearchInput] = useState(null)
   const debouncedSearchInput = useDebounce(searchInput, 500)
+  const imgHere = {
+    float: "right",
+    width: "400px",
+    border: "0px",
+    margin: "-90px -10px 0px 0px"
+  }
+
   return (
-    <Layout title="Publications" headline="Progenetix Publication Collection">
-      <article className="content">
-        <p>
-          The current page lists articles describing whole genome screening
-          (WGS, WES, aCGH, cCGH) experiments in cancer, registered in the
-          Progenetix publication collection. For each publication the table
-          indicates the numbers of samples analysed with a given technology and
-          if sample profiles are available in Progenetix.
-        </p>
-        <p>
+    <Layout title="Publications" headline="Progenetix References">
+    
+      <Panel heading="Articles Citing - or Using - Progenetix" className="content">
+        <div>
+          <img src={"/img/progenetix-arraymap-1200x180.png"} style={imgHere} />
+          This page lists articles which we found to have made use of, or referred to, the Progenetix resource ecosystem. These articles may not necessarily contain original case profiles themselves.
+        </div>
+        <div>
           Please <a href="mailto:contact@progenetix.org">contact us</a> to alert
-          us about additional articles you are aware of. The
-          inclusion criteria are described{" "}
-          <Link
-            href="https://info.progenetix.org/doc/publication-collection.html"
-            label="in the documentation"
-          />.
+          us about additional articles you are aware of.
           <br/>
           <b>New Oct 2021</b> You can now directly submit suggestions for matching
           publications to the{" "}
@@ -41,9 +41,9 @@ export default function PublicationsListPage() {
             href="https://github.com/progenetix/oncopubs"
             label="oncopubs repository on Github"
           />.
-        </p>
-      </article>
-      <div className="mb-5">
+        </div>
+
+        {/*Some article filtering */}
         <div className="columns my-0">
           <div className="field column py-0 mb-3 is-one-third">
             <label className="label">
@@ -77,12 +77,19 @@ export default function PublicationsListPage() {
             </div>
           )}
         </div>
-      </div>
+      </Panel>
+      
+      {/*
+        The PublicationsLoader creates her own Panel for the article table
+        and then adds the map below.
+      */}
+
       <PublicationsLoader
         geoCity={geoCity}
         geodistanceKm={geodistanceKm}
         textSearch={debouncedSearchInput?.trim() ?? ""}
       />
+      
     </Layout>
   )
 }
@@ -94,16 +101,16 @@ function FilteredPublication({ publications, textSearch }) {
   })
   return (
     <>
-      <div className="mb-5">
-        <PublicationTable publications={filteredPublications} />
-      </div>
+      <Panel className="content">
+        <PublicationFewCountTable publications={filteredPublications} />
+      </Panel>
       <PublicationsMapContainer publications={filteredPublications} />
     </>
   )
 }
 
 function PublicationsLoader({ geoCity, geodistanceKm, textSearch }) {
-  const publicationsResult = usePublicationList({
+  const publicationsResult = useProgenetixrefPublicationList({
     geoCity,
     geodistanceKm
   })
@@ -148,10 +155,6 @@ function GeoCitySelector({ setGeoCity }) {
 }
 
 function PublicationsMapContainer({ publications }) {
-  const acghSum = sumBy(publications, "counts.acgh")
-  const ccghSum = sumBy(publications, "counts.ccgh")
-  const wesSum = sumBy(publications, "counts.wes")
-  const wgsSum = sumBy(publications, "counts.wgs")
   const publicationsCount = publications.length
   return (
     <>
@@ -160,10 +163,8 @@ function PublicationsMapContainer({ publications }) {
       </div>
       <p className="content">
         Geographic distribution (by corresponding author) of the{" "}
-        <b>{acghSum}</b> genomic array, <b>{ccghSum}</b> chromosomal CGH and{" "}
-        <b>{wesSum + wgsSum}</b> whole genome/exome based cancer genome datasets
-        from the <b>{publicationsCount}</b> listed publications. Area sizes
-        correspond to the sample numbers reported from a given location.
+        <b>{publicationsCount}</b> listed publications which have been found to
+        cite and/or use Progenetix.
       </p>
     </>
   )

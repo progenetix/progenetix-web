@@ -5,7 +5,7 @@ import {
   useCollations,
   validateBeaconQuery
 } from "../../hooks/api"
-import React, { useEffect, useMemo, useState } from "react"
+import React, { useMemo, useState } from "react" //useEffect, 
 import { markdownToReact } from "../../utils/md"
 import { useForm } from "react-hook-form"
 import {
@@ -49,26 +49,26 @@ function urlQueryToFormParam(urlQuery, key, parametersConfig) {
   } else return value
 }
 
-function useAutoExecuteSearch({
-  autoExecuteSearch,
-  initialValues,
-  setSearchQuery,
-  setError
-}) {
-  useEffect(() => {
-    if (autoExecuteSearch) {
-      // At this stage individual parameters are already validated.
-      const values = initialValues
-      const errors = validateForm(values)
-      if (errors.length > 0) {
-        errors.forEach(([name, error]) => setError(name, error))
-      } else {
-        setSearchQuery(values)
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [autoExecuteSearch])
-}
+// function useAutoExecuteSearch({
+//   autoExecuteSearch,
+//   initialValues,
+//   setSearchQuery,
+//   setError
+// }) {
+//   useEffect(() => {
+//     if (autoExecuteSearch) {
+//       // At this stage individual parameters are already validated.
+//       const values = initialValues
+//       const errors = validateForm(values)
+//       if (errors.length > 0) {
+//         errors.forEach(([name, error]) => setError(name, error))
+//       } else {
+//         setSearchQuery(values)
+//       }
+//     }
+//     // eslint-disable-next-line react-hooks/exhaustive-deps
+//   }, [autoExecuteSearch])
+// }
 
 function useIsFilterlogicWarningVisible(watch) {
   const filterLogic = watch("filterLogic")
@@ -77,7 +77,7 @@ function useIsFilterlogicWarningVisible(watch) {
   const clinicalClasses = watch("clinicalClasses")
   const cohorts = watch("cohorts")
   const freeFilters = watch("freeFilters")
-  const genotypicSex = watch("genotypicSex")
+  const sex = watch("sex")
   const materialtype = watch("materialtype")
   const filters = makeFilters({
     freeFilters,
@@ -85,7 +85,7 @@ function useIsFilterlogicWarningVisible(watch) {
     referenceid,
     clinicalClasses,
     cohorts,
-    genotypicSex,
+    sex,
     materialtype
   })
   return filterLogic === "AND" && filters.length > 1
@@ -101,7 +101,7 @@ export function Form({
   urlQuery,
   setUrlQuery
 }) {
-  const autoExecuteSearch = urlQuery.executeSearch === "true"
+  // const autoExecuteSearch = urlQuery.executeSearch === "true"
 
   const requestTypeId = Object.entries(requestTypesConfig)[0][0]
   const requestTypeConfig = requestTypesConfig[requestTypeId]
@@ -141,7 +141,7 @@ export function Form({
     watch
   )
   
-  const biosubsetsOptions = biosubsetsResponse?.results.map((value) => ({
+  const biosubsetsOptions = biosubsetsResponse?.response.results.map((value) => ({
     value: value.id,
     label: `${value.id}: ${value.label} (${value.count})`
   }))
@@ -155,7 +155,7 @@ export function Form({
     watch
   )
   
-  const refsubsetsOptions = refsubsetsResponse?.results.map((value) => ({
+  const refsubsetsOptions = refsubsetsResponse?.response.results.map((value) => ({
     value: value.id,
     label: `${value.id}: ${value.label} (${value.count})`
   }))
@@ -169,7 +169,7 @@ const { data: clinicalResponse, isLoading: isClinicalDataLoading } = useClinical
   watch
 )
 
-const clinicalOptions = clinicalResponse?.results.map((value) => ({
+const clinicalOptions = clinicalResponse?.response.results.map((value) => ({
   value: value.id,
   label: `${value.id}: ${value.label} (${value.count})`
 }))
@@ -199,12 +199,12 @@ parameters = merge({}, parameters, {
     ...fieldProps,
     control
   }
-  useAutoExecuteSearch({
-    autoExecuteSearch,
-    initialValues,
-    setSearchQuery,
-    setError
-  })
+  // useAutoExecuteSearch({
+  //   autoExecuteSearch,
+  //   initialValues,
+  //   setSearchQuery,
+  //   setError
+  // })
 
   // {parameters.geneSymbol.isHidden && (
   // ) }
@@ -379,10 +379,10 @@ parameters = merge({}, parameters, {
           <div className="columns my-0">
             <SelectField
               className={cn(
-                !parameters.genotypicSex.isHidden && "column",
+                !parameters.sex.isHidden && "column",
                 "py-0 mb-3"
               )}
-              {...parameters.genotypicSex}
+              {...parameters.sex}
               {...selectProps}
             />
             <SelectField
@@ -413,7 +413,6 @@ parameters = merge({}, parameters, {
             />
           </div>
           <InputField {...parameters.accessid} {...fieldProps} />
-          <InputField {...parameters.filterPrecision} {...fieldProps} />
           {!parameters.geoCity.isHidden && (
             <div className="columns my-0">
               <GeoCitySelector
@@ -449,6 +448,8 @@ parameters = merge({}, parameters, {
     </>
   )
 }
+
+// <InputField {...parameters.filterPrecision} {...fieldProps} />}
 
 function ExamplesButtons({ requestTypeConfig, onExampleClicked }) {
   return (
@@ -568,8 +569,9 @@ function useBioSubsets(watchForm) {
   const datasetIds = watchForm("datasetIds")
   return useCollations({
     datasetIds,
-    method: "children",
-    filters: "NCIT,icdom,icdot,UBERON"
+    method: "counts",
+    filters: "",
+    collationTypes: "NCIT,icdom,icdot,UBERON"
   })
 }
 
@@ -577,8 +579,9 @@ function useReferencesSubsets(watchForm) {
   const datasetIds = watchForm("datasetIds")
   return useCollations({
     datasetIds,
-    method: "children",
-    filters: "PMID,geo,cellosaurus"
+    method: "counts",
+    filters: "",
+    collationTypes: "PMID,geo,cellosaurus"
   })
 }
 
@@ -586,8 +589,9 @@ function useClinicalSubsets(watchForm) {
   const datasetIds = watchForm("datasetIds")
   return useCollations({
     datasetIds,
-    method: "children",
-    filters: "TNM,NCITgrade,NCITstage"
+    method: "counts",
+    filters: "",
+    collationTypes: "TNM,NCITgrade,NCITstage,EFOfus"
   })
 }
 

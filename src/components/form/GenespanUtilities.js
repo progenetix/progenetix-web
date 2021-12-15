@@ -7,7 +7,7 @@ export function LabeledGeneSpanOptions(inputValue) {
   const [cachedGenes, setCachedGenes] = useState({})
   useEffect(() => {
     if (data) {
-      const genes = keyBy(data.results, "symbol")
+      const genes = keyBy(data.response.results, "symbol")
       setCachedGenes({ ...genes, ...cachedGenes })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -25,7 +25,7 @@ export function useGeneSpanSelect(inputValue) {
   const { data, error, isLoading } = useGeneSpans(inputValue)
   let options = []
   if (data) {
-    options = data.results.map((gene) => ({
+    options = data.response.results.map((gene) => ({
       value: gene,
       label: labeledGeneSpan(gene)
     }))

@@ -82,7 +82,7 @@ export function DatasetResultBox({ data: responseSet, query }) {
 
   biosamplesHandover && tabNames.push(TABS.samples)
 
-  biosamplesReply?.data?.resultSets[0].results?.some(
+  biosamplesReply?.data?.response?.resultSets[0].results?.some(
     (biosample) => !!biosample.provenance?.geoLocation
   ) && tabNames.push(TABS.samplesMap)
 

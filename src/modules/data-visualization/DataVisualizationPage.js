@@ -307,6 +307,7 @@ const groupByOptions = [
   { value: "TNM", label: "NCIT TNM Finding" },
   { value: "NCITgrade", label: "NCIT Disease Grade" },
   { value: "NCITstage", label: "NCIT Disease Stage" },
+  { value: "EFOfus", label: "followup status" },
   { value: "PMID", label: "Publication (PubMed ID)" },
   { value: "geo:GSE", label: "GEO Series ID" },
   { value: "geo:GPL", label: "GEO Platform ID" },

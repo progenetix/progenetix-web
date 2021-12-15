@@ -113,7 +113,7 @@ export function makeFilters({
   bioontology,
   referenceid,
   cohorts,
-  genotypicSex,
+  sex,
   materialtype
 }) {
   const parsedFreeFilters =
@@ -127,7 +127,7 @@ export function makeFilters({
     ...(clinicalClasses ?? []), 
     ...(referenceid ?? []),
     ...(cohorts ? [cohorts] : []),
-    ...(genotypicSex ? [genotypicSex] : []),
+    ...(sex ? [sex] : []),
     ...(materialtype ? [materialtype] : []),
     ...parsedFreeFilters
   ]
@@ -140,7 +140,7 @@ export function buildQueryParameters(queryData) {
     bioontology,
     referenceid,
     cohorts,
-    genotypicSex,
+    sex,
     materialtype,
     freeFilters,
     clinicalClasses,
@@ -174,7 +174,7 @@ export function buildQueryParameters(queryData) {
     bioontology,
     referenceid,
     cohorts,
-    genotypicSex,
+    sex,
     materialtype
   })
   const geneParams = mkGeneParams(geneSymbol) ?? {}
@@ -222,6 +222,17 @@ export function usePublicationList({ geoCity, geodistanceKm }) {
   const url = `${basePath}services/publications?${geoParams}`
   return useProgenetixApi(url)
 }
+
+export function useProgenetixrefPublicationList({ geoCity, geodistanceKm }) {
+  const geoParams = new URLSearchParams({
+    ...mkGeoParams(geoCity, geodistanceKm),
+    filters: "PMID,pgxuse:yes",
+    method: "details"
+  }).toString()
+  const url = `${basePath}services/publications?${geoParams}`
+  return useProgenetixApi(url)
+}
+
 
 export const ontologymapsBaseUrl = `${basePath}services/ontologymaps?`
 
@@ -285,11 +296,12 @@ export function useCollationsById({ datasetIds }) {
   const { data, ...other } = useCollations({
     filters: "",
     method: "counts",
+    collationTypes: "",
     datasetIds
   })
 
   if (data) {
-    const mappedResults = keyBy(data.results, "id")
+    const mappedResults = keyBy(data.response.results, "id")
     return {
       data: {
         ...data,
@@ -301,8 +313,8 @@ export function useCollationsById({ datasetIds }) {
   return { data, ...other }
 }
 
-export function useCollations({ datasetIds, method, filters }) {
-  const url = `${basePath}services/collations/?datasetIds=${datasetIds}&method=${method}&filters=${filters}`
+export function useCollations({ datasetIds, method, filters, collationTypes }) {
+  const url = `${basePath}services/collations/?datasetIds=${datasetIds}&method=${method}&filters=${filters}&collationTypes=${collationTypes}`
   return useProgenetixApi(url)
 }
 
@@ -503,4 +515,20 @@ export const HANDOVER_IDS = {
   biosamples: "pgx:handover:biosamples",
   variants: "pgx:handover:variants",
   variantsinterpretations: "pgx:handover:variantsinterpretations"
+}
+
+export function epmcId(publicationId) {
+  return publicationId.split(":")[1]
+}
+
+export function epmcUrl(publicationId) {
+  return `http://www.europepmc.org/abstract/MED/${epmcId(publicationId)}`
+}
+
+export function EpmcLink({ publicationId }) {
+  return (
+    <a href={epmcUrl(publicationId)} rel="noreferrer" target="_BLANK">
+      <img src="/img/icon_EPMC_16.gif" />
+    </a>
+  )
 }

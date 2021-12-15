@@ -29,7 +29,7 @@ OneKgenomesDRAGEN:
       defaultValue: ""
     bioontology:
       isHidden: true
-    genotypicSex:
+    sex:
       isHidden: true
     materialtype:
       isHidden: true

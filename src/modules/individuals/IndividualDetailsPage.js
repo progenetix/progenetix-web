@@ -48,10 +48,10 @@ function IndividualLoader({ id, datasetIds }) {
 }
 
 function IndividualResponse({ response, datasetIds }) {
-  if (!response.resultSets[0].results) {
+  if (!response.response.resultSets[0].results) {
     return NoResultsHelp(exampleId, itemColl)
   }
-  return <Individual individual={response.resultSets[0].results[0]} datasetIds={datasetIds} />
+  return <Individual individual={response.response.resultSets[0].results[0]} datasetIds={datasetIds} />
 }
 
 function Individual({ individual, datasetIds }) {
@@ -68,10 +68,10 @@ function Individual({ individual, datasetIds }) {
         </>
       )}
 
-      {individual.genotypicSex && (
+      {individual.sex && (
         <>
           <h5>Genotypic Sex</h5>
-          <p>{individual.genotypicSex.label}</p>
+          <p>{individual.sex.label}</p>
         </>
       )}
 

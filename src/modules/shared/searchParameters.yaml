@@ -174,9 +174,11 @@ materialtype:
       label: "(no selection)"
     - value: EFO:0009656
       label: neoplastic sample
+    - value: EFO:0030035
+      label: cancer cell line sample
     - value: EFO:0009654
       label: reference sample
-genotypicSex:
+sex:
   label: Genotypic Sex
   infoText: |
     Genotypic sex of the individual.
@@ -211,18 +213,18 @@ filterLogic:
       label: AND
     - value: OR
       label: OR
-filterPrecision:
-  label: Filter Precision
-  infoText: |
-    Logic for the matching of filter terms. The use of "start" will e.g.
-    allow to match all "icdom-8500_" values (i.e. ductal breast carcinomas
-    and precursors - "...85000, ...85001, ...85002, ...85003")
-  defaultValue: "exact"
-  options:
-  - value: exact
-    label: Exact term match
-  - value: start
-    label: Start-anchored term match
+# filterPrecision:
+#   label: Filter Precision
+#   infoText: |
+#     Logic for the matching of filter terms. The use of "start" will e.g.
+#     allow to match all "icdom-8500_" values (i.e. ductal breast carcinomas
+#     and precursors - "...85000, ...85001, ...85002, ...85003")
+#   defaultValue: "exact"
+#   options:
+#   - value: exact
+#     label: Exact term match
+#   - value: start
+#     label: Start-anchored term match
 geoCity:
   label: City
   infoText: |

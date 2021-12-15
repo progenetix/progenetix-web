@@ -20,7 +20,7 @@ export default function Index({
   subsetsResponse
 }) {
   const randomSubset = sample(
-    subsetsResponse.results.filter((s) => s.count > 30)
+    subsetsResponse.response.results.filter((s) => s.count > 30)
   )
 
   return (
@@ -32,7 +32,7 @@ export default function Index({
           types of human malignancies. The data is based on{" "}
           <i>individual sample data</i> from currently{" "}
           <span className="span-red">
-            {progenetixStats.results[0].counts.biosamples}
+            {progenetixStats.response.results[0].counts.biosamples}
           </span>{" "}
           samples.
           <SubsetHistogram datasetIds="progenetix" id={randomSubset.id} />
@@ -93,7 +93,7 @@ export default function Index({
           Through the <a href="/publications">[ Publications ]</a> page
           Progenetix provides{" "}
           <span className="span-red">
-            {progenetixStats.results[0].counts.publications}
+            {progenetixStats.response.results[0].counts.publications}
           </span>{" "}
           annotated references to research articles from cancer genome screening
           experiments (WGS, WES, aCGH, cCGH). The numbers of analyzed samples
@@ -110,10 +110,10 @@ export const getStaticProps = async () => {
     `${PROGENETIX}/services/dbstats/?datasetIds=progenetix`
   )
   const ncitCountReply = await tryFetch(
-    `${PROGENETIX}/services/collations/?datasetIds=progenetix&method=codematches&filters=NCIT`
+    `${PROGENETIX}/services/collations/?datasetIds=progenetix&method=codematches&collationTypes=NCIT`
   )
   const subsetsReply = await tryFetch(
-    `${PROGENETIX}/services/collations/?datasetIds=progenetix&method=paths&filters=icdom,NCIT,PMID,icdot,UBERON,TNM,NCITgrade,NCITstage`
+    `${PROGENETIX}/services/collations/?datasetIds=progenetix&method=paths&collationTypes=icdom,NCIT,PMID,icdot,UBERON,TNM,NCITgrade,NCITstage,EFOfus`
   )
 
   return {

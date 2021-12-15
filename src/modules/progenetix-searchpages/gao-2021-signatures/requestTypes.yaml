@@ -28,7 +28,7 @@ gao2021:
       isHidden: true
     accessid:
       isHidden: true
-    genotypicSex:
+    sex:
       placeholder: ""
     materialtype:
       placeholder: "EFO:0009656" #"EFO:0009656"
