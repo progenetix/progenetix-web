@@ -64,7 +64,7 @@ export default function BiosamplesDataTable({ apiReply, datasetId }) {
               ) : (
                 externalReference.id
               )}{" "}
-              {externalReference.label}
+              {externalReference.description}
             </div>
           ))
       },

@@ -581,7 +581,7 @@ function useReferencesSubsets(watchForm) {
     datasetIds,
     method: "counts",
     filters: "",
-    collationTypes: "PMID,geo,cellosaurus"
+    collationTypes: "PMID,GEOseries,GEOplatform,cellosaurus"
   })
 }
 

@@ -291,7 +291,7 @@ export function useSubsethistogram({ datasetIds, id, filter, size, chr2plot }) {
   return useExtendedSWR(size > 0 && `${svgbaseurl}&${searchQuery}`, svgFetcher)
 }
 
-// method is "counts" for smaller payloads 
+// method is "counts" / "child_terms" for smaller payloads 
 export function useCollationsById({ datasetIds }) {
   const { data, ...other } = useCollations({
     filters: "",
