@@ -116,13 +116,11 @@ function VariantInterpretation({ ho, apiReply, datasetIds }) {
         <section className="content">
           {console.log(response)}
           <hr/>
-          <h3>
-            {response.response.resultSets[0].results[0].id}
+            {response.resultSets[0].results[0].id}
           </h3>
           <ul>
-            <li>Gene ID: {response.response.resultSets[0].results[0].geneId}</li>
-            <li>Cytoband: {response.response.resultSets[0].results[0].cytoband}</li>
-            {response.response.resultSets[0].results[0].aminoacidChanges ? (
+            <li>Gene ID: {response.resultSets[0].results[0].geneId}</li>
+            <li>Cytoband: {response.resultSets[0].results[0].cytoband}</li>
             <li>Aminoacid changes: {response.resultSets[0].results[0].aminoacidChanges}</li>
             ) : ""}
           </ul>
@@ -168,6 +166,7 @@ function VariantInterpretation({ ho, apiReply, datasetIds }) {
               ))}
             </div>
           ) : ""}
+
           <h5>
             Download Data as{" "}
             <a
