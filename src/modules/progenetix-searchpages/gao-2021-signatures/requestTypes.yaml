@@ -8,7 +8,7 @@ gao2021:
       defaultValue: ["progenetix"]
       isHidden: true
     cohorts:
-      defaultValue: ["pgxcohort-gao2021signatures"]
+      defaultValue: ["pgx:cohort-gao2021signatures"]
       # isHidden: true
     assemblyId:
       isHidden: true

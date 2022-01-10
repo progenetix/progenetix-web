@@ -8,7 +8,7 @@ arraymap:
       defaultValue: ["progenetix"]
       isHidden: true
     cohorts:
-      defaultValue: ["pgxcohort-arraymap"]
+      defaultValue: ["pgx:cohort-arraymap"]
       isHidden: true
     assemblyId:
       isHidden: true

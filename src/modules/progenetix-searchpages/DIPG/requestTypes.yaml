@@ -8,7 +8,7 @@ dipg:
       defaultValue: ["progenetix"]
       isHidden: true
     cohorts:
-      defaultValue: ["pgxcohort-DIPG"]
+      defaultValue: ["pgx:cohort-DIPG"]
       isHidden: true
     assemblyId:
       defaultValue: "GRCh38"

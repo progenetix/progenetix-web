@@ -37,7 +37,7 @@ export default function BiosamplesDataTable({ apiReply, datasetId }) {
             {BIOKEYS.map(bioc => (
               <div key={bioc}>
                 <Link
-                href={`/subsets/biosubsets?filters=${cell.row.original[bioc].id}`}
+                href={`/subsets/subsetdetails/?id=${cell.row.original[bioc].id}&datasetIds=${datasetId}`}
                 >
                   <a>{cell.row.original[bioc].id}</a>
                 </Link>{" "}

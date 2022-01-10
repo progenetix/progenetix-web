@@ -8,7 +8,7 @@ celllines:
       defaultValue: ["progenetix"]
       isHidden: true
     cohorts:
-      defaultValue: ["pgxcohort-celllines"]
+      defaultValue: ["pgx:cohort-celllines"]
       # isHidden: true
     assemblyId:
       isHidden: true

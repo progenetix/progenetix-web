@@ -14,7 +14,7 @@ cohorts:
   # options:
   #   - value: ""
   #     label: "(no selection)"
-  #   - value: pgxcohort-arraymap
+  #   - value: pgx:cohort-arraymap
   #     label: arrayMap Samples
 assemblyId:
   label: Genome Assembly

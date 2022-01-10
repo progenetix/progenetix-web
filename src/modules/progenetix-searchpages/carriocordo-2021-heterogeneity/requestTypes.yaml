@@ -8,7 +8,7 @@ carriocordo2021:
       defaultValue: ["progenetix"]
       isHidden: true
     cohorts:
-      defaultValue: ["pgxcohort-carriocordo2021heterogeneity"]
+      defaultValue: ["pgx:cohort-carriocordo2021heterogeneity"]
       isHidden: true
     assemblyId:
       isHidden: true

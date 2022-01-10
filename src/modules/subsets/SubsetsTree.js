@@ -166,12 +166,13 @@ function Tree({
 // Node component receives all the data we created in the `treeWalker` +
 // internal openness state (`isOpen`), function to change internal openness
 // state (`toggle`) and `style` parameter that should be added to the root div.
+//    subsetScope,
+
 function Node({
   data: { isLeaf, subsetId, subset, nestingLevel },
   treeData: {
     datasetIds,
     checkboxClicked,
-    subsetScope,
     sampleFilterScope,
     isFlat
   },
@@ -222,7 +223,7 @@ function Node({
           )}
           <Tippy content={`Show data for subset ${subsetId}`}>
             <a
-              href={`/subsets/${subsetScope}?filters=${subsetId}&datasetIds=${datasetIds}`}
+              href={`/subsets/subsetdetails/?id=${subsetId}&datasetIds=${datasetIds}`}
             >
               <span>{subsetId}</span>
             </a>

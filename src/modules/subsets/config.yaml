@@ -16,16 +16,16 @@ biofilters:
   EFOfus:
     label: followup status
 cohortfilters:
-  TCGAproject:
-    label: The Cancer Genome Atlas (projects)
+  # TCGAproject:
+  #   label: The Cancer Genome Atlas (projects)
   cellosaurus:
     label: Cellosaurus Cell Line Resource
-  cbioportalcBP:
+  cbioportal:
     label: cBioPortal Projects
-  GEOseries:
-    label: Gene Expression Omnibus (Series)
-  GEOplatform:
-    label: Gene Expression Omnibus (Platforms)
+  # GEOseries:
+  #   label: Gene Expression Omnibus (Series)
+  # GEOplatform:
+  #   label: Gene Expression Omnibus (Platforms)
   PMID:
     label: Publications
 datasetIds:

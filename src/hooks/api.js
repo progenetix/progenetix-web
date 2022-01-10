@@ -256,6 +256,14 @@ export function getDataItemUrl(id, collection, datasetIds) {
   return `${basePath}beacon/${collection}/${id}/?datasetIds=${datasetIds}`
 }
 
+export function useServiceItemDelivery(id, collection, datasetIds) {
+  return useProgenetixApi(getServiceItemUrl(id, collection, datasetIds))
+}
+
+export function getServiceItemUrl(id, collection, datasetIds) {
+  return `${basePath}services/${collection}?id=${id}&datasetIds=${datasetIds}`
+}
+
 export function getDataItemPageUrl(id, collection, datasetIds) {
   return `${basePath}${collection}/?datasetIds=${datasetIds}&${
     collection == "variants" ? "_id" : "id"
@@ -296,7 +304,6 @@ export function useCollationsById({ datasetIds }) {
   const { data, ...other } = useCollations({
     filters: "",
     method: "counts",
-    collationTypes: "",
     datasetIds
   })
 
@@ -313,8 +320,13 @@ export function useCollationsById({ datasetIds }) {
   return { data, ...other }
 }
 
-export function useCollations({ datasetIds, method, filters, collationTypes }) {
-  const url = `${basePath}services/collations/?datasetIds=${datasetIds}&method=${method}&filters=${filters}&collationTypes=${collationTypes}`
+export function useCollations({ datasetIds, method, filters }) {
+  const url = `${basePath}services/collations/?datasetIds=${datasetIds}&method=${method}&filters=${filters}`
+  return useProgenetixApi(url)
+}
+
+export function useCollationsByType({ datasetIds, method, collationTypes }) {
+  const url = `${basePath}services/collations/?datasetIds=${datasetIds}&method=${method}&collationTypes=${collationTypes}`
   return useProgenetixApi(url)
 }
 
@@ -323,7 +335,7 @@ export function sampleSearchPageFiltersLink({
   sampleFilterScope,
   filters
 }) {
-  return `/biosamples/?${sampleFilterScope}=${filters}&datasetIds=${datasetIds}&filterLogic=OR`
+  return `/biosamples/?${sampleFilterScope}=${filters}&datasetIds=${datasetIds}`
 }
 
 export function useGeoCity({ city }) {
@@ -390,7 +402,7 @@ export function referenceLink(externalReference) {
   } else if (externalReference.id.includes("TCGA-")) {
     return (
       "https://portal.gdc.cancer.gov/projects/" +
-      externalReference.id.replace("tcga:", "")
+      externalReference.id.replace("pgx:", "")
     )
   } else if (externalReference.id.includes("biosample")) {
     return (

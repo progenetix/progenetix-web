@@ -22,8 +22,9 @@ export default function BiosamplesStatsDataTable({
           Cell: function Cell({ value, row: { original } }) {
             return (
               <span>
+              
                 <a
-                  href={`/subsets/biosubsets?filters=${original.id}&datasetIds=${datasetId}`}
+                  href={`/subsets/subsetdetails/?id=${original.id}&datasetIds=${datasetId}`}
                 >
                   {value}
                 </a>

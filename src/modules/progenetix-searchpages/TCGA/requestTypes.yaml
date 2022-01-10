@@ -8,7 +8,7 @@ TCGA:
       defaultValue: ["progenetix"]
       isHidden: true
     cohorts:
-      defaultValue: ["pgxcohort-TCGA"]
+      defaultValue: ["pgx:cohort-TCGA"]
       # isHidden: true
     assemblyId:
       isHidden: true
