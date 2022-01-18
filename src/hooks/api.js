@@ -16,9 +16,10 @@ export function useExtendedSWR(url, fetcher = defaultFetcher) {
 
 export const MAX_HISTO_SAMPLES = 4000
 export const PROGENETIXINFO = "https://info.progenetix.org"
+export const PROGENETIXDOCS = "https://docs.progenetix.org"
 export const ABOUTLINK = `${PROGENETIXINFO}/categories/about.html`
 export const USECASESLINK = `${PROGENETIXINFO}/categories/usecases.html`
-export const DOCLINK = `${PROGENETIXINFO}/categories/documentation.html`
+export const DOCLINK = `${PROGENETIXDOCS}`
 export const NEWSLINK = `${PROGENETIXINFO}/categories/news.html`
 export const THISYEAR = new Date().getFullYear()
 
