@@ -411,6 +411,16 @@ parameters = merge({}, parameters, {
                 </span>
               }
             />
+            <SelectField
+              className="column py-0 mb-3"
+              {...parameters.includeDescendantTerms}
+              {...selectProps}
+              label={
+                <span>
+                  <span>{parameters.includeDescendantTerms.label}</span>
+                </span>
+              }
+            />
           </div>
           <InputField {...parameters.accessid} {...fieldProps} />
           {!parameters.geoCity.isHidden && (

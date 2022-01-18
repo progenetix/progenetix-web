@@ -4,18 +4,6 @@ datasetIds:
   rules:
     required: true
   isMulti: true
-cohorts:
-  label: Cohorts
-  infoText: >
-    An aggregation of samples by origin (e.g. study, external resource), shared features or use in a publication.
-  rules:
-    required: false
-  defaultValue: ""
-  # options:
-  #   - value: ""
-  #     label: "(no selection)"
-  #   - value: pgx:cohort-arraymap
-  #     label: arrayMap Samples
 assemblyId:
   label: Genome Assembly
   infoText: |
@@ -95,16 +83,12 @@ variantType:
     The type of a structural variant for e.g. CNV searches.
   defaultValue: ""
   options:
-    - value: DEL
-      label: DEL (Deletion)
-    - value: DUP
-      label: DUP (Duplication)
-    - value: DUP,DEL
-      label: CNV (any CNV - DUP or DEL)
-    - value: LOH
-      label: LOH (loss of heterozygosity)
-    - value: LOH,DEL
-      label: LOH or DEL
+    - value: "EFO:0030067"
+      label: "EFO:0030067 (copy number deletion)"
+    - value: "EFO:0030070"
+      label: "EFO:0030070 (copy number gain)"
+    - value: "EFO:0030066"
+      label: "EFO:0030066 (relative copy number variation)"
     - value: ""
       label: ""
 start:
@@ -134,6 +118,18 @@ referenceBases:
   label: Reference Base(s)
 alternateBases:
   label: Alternate Base(s)
+cohorts:
+  label: Cohorts
+  infoText: >
+    An aggregation of samples by origin (e.g. study, external resource), shared features or use in a publication.
+  rules:
+    required: false
+  defaultValue: ""
+  # options:
+  #   - value: ""
+  #     label: "(no selection)"
+  #   - value: pgx:cohort-arraymap
+  #     label: arrayMap Samples
 bioontology:
   label: Cancer Classification(s)
   infoLink: "https://info.progenetix.org/doc/filters-documentation.html"
@@ -213,6 +209,19 @@ filterLogic:
       label: AND
     - value: OR
       label: OR
+includeDescendantTerms:
+  label: Include Child Terms
+  infoText: >-
+    As standard, any selected filter will also include matches on its child
+    terms; i.e. NCIT:C3052 - Digestive System Neoplasm will include results
+    from gastric, esophagus, colon ... cancer. However, this parameter allows
+    to limit searches to the exact code match.
+  defaultValue: "True"
+  options:
+    - value: "true"
+      label: always match child terms
+    - value: "false"
+      label: only match exact code(s)
 # filterPrecision:
 #   label: Filter Precision
 #   infoText: |

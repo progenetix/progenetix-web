@@ -110,7 +110,7 @@ export function makeSubsetsData(biosamplesResults, allSubsetsById) {
   const ids = biosamplesResults
     .flatMap((sample) => BIOKEYS.map(bioc => (sample[bioc])))
     .map(function (a) {
-      return a.id
+      return a.id     
     })
   const subsetCounts = _.countBy(ids)
   const subsets = Object.entries(subsetCounts).map(([k, v]) => ({

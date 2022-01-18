@@ -71,7 +71,7 @@ export default function BiosamplesDataTable({ apiReply, datasetId }) {
       {
         Header: TooltipHeader(
           "CNV Fraction",
-          "Fraction of the sample's genome covered by CNV events (DUP or DEL)"
+          "Fraction of the sample's genome covered by CNV events (genomic gain or deletion)"
         ),
         accessor: "info.cnvstatistics.cnvfraction"
       }

@@ -47,7 +47,7 @@ genesymbols:
         geneSymbol:
           defaultValue: "TP53"
         variantType:
-          defaultValue: "DEL"
+          defaultValue: "EFO:0030067"
         varMinLength:
           defaultValue: 1000
         varMaxLength:
