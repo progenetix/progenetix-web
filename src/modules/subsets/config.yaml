@@ -22,10 +22,10 @@ cohortfilters:
     label: Cellosaurus Cell Line Resource
   cbioportal:
     label: cBioPortal Projects
-  # GEOseries:
-  #   label: Gene Expression Omnibus (Series)
-  # GEOplatform:
-  #   label: Gene Expression Omnibus (Platforms)
+  GEOseries:
+    label: Gene Expression Omnibus (Series)
+  GenomePlatforms:
+    label: Profiling Platforms
   PMID:
     label: Publications
 datasetIds:

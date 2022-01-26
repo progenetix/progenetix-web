@@ -129,7 +129,7 @@ function SubsetsResponse({ bioSubsetsHierarchies, allBioSubsets, datasetIds }) {
           sampleFilterScope={sampleFilterScope}
           tree={tree}
           size={size}
-          isFlat
+          // isFlat
         />
       )}
     </>

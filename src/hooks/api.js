@@ -18,9 +18,9 @@ export const MAX_HISTO_SAMPLES = 4000
 export const PROGENETIXINFO = "https://info.progenetix.org"
 export const PROGENETIXDOCS = "https://docs.progenetix.org"
 export const ABOUTLINK = `${PROGENETIXINFO}/categories/about.html`
-export const USECASESLINK = `${PROGENETIXINFO}/categories/usecases.html`
 export const DOCLINK = `${PROGENETIXDOCS}`
-export const NEWSLINK = `${PROGENETIXINFO}/categories/news.html`
+export const NEWSLINK = `${PROGENETIXDOCS}/en/latest/use-cases.html`
+export const USECASESLINK = `${PROGENETIXINFO}/categories/usecases.html`
 export const THISYEAR = new Date().getFullYear()
 
 export const BIOKEYS = ["histologicalDiagnosis", "icdoMorphology", "icdoTopography", "sampledTissue"]
