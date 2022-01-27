@@ -1,0 +1,25 @@
+site_name: Progenetix Documentation
+site_description: 'Read the Docs Documentation for the Progenetix oncogenomics resource'
+site_author: Michael Baudis
+copyright: '&copy; Copyright 2022, Michael Baudis and progenetix.org'
+repo_name: 'beacon-schema-2'
+
+#extra_css: [css/theme_overrides.css]
+
+markdown_extensions:
+  - admonition
+#  - attr_list
+
+theme: readthedocs
+
+nav:
+  - Publication Collection: publication-collection.md
+  - Classifications and Ontologies: classifications-and-ontologies.md
+  - Services: services.md
+  - Use Case Examples: use-cases.md
+  - Changelog: changelog.md
+  - BeaconPlus: beaconplus.md
+  - Progenetix Site: http://progenetix.org
+  - Baudisgroup: http://info.baudisgroup.org
+
+# Options
