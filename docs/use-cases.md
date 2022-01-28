@@ -21,7 +21,7 @@ The [Progenetix Search Page](https://progenetix.org/biosamples/) supports the ex
 
 The response of the queries for genomic variants provide some basic statistics, e.g. the relative frequencies of these variants for each classification code (e.g. NCIT, ICD-O) encountered in teh matched samples.
 
-#### Example Procedure
+### Example Procedure
 
 **TBD**
 
@@ -78,14 +78,10 @@ For any of those codes one can create a `.pgxseg` file downloader link for the
 ### Example Procedure - Download or embed CNV frequency plot
 
 For the generation of CNV frequency plots, the same procedure as above for
-identifying existing frequency maps can be applied. CNV hsitograms in [SVG format](/services.html#image-formats)
+identifying existing frequency maps can be applied. CNV hsitograms in [SVG format](services.md#image-formats)
 can be generated for download or embedding through a canonical service URL with
 added (single) collation code.
 
-##### Examples
-
-* [progenetix.org/services/collationPlots/?id=pgx:icdom-85003](https://progenetix.org/services/collationPlots/?id=pgx:icdom-85003)
-* [progenetix.org/services/collationPlots/?id=PMID:22824167](https://progenetix.org/services/collationPlots/?id=PMID:22824167)
 
 #### Additional plot parameters
 
@@ -117,6 +113,12 @@ syntax. Please be aware of the `-` prefix.
 
   - [progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=NCIT:C7376&-size_plotarea_h_px=40&-value_plot_y_max=50&-colorschema=bluered&-chr2plot=1,3,9,17,22](https://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=NCIT:C7376&-size_plotarea_h_px=40&-value_plot_y_max=50&-colorschema=bluered&-chr2plot=1,3,9,17,22)
     * see example above (live representation of embedded API call for this example)
+
+
+##### Examples
+
+* [progenetix.org/services/collationPlots/?id=pgx:icdom-85003](https://progenetix.org/services/collationPlots/?id=pgx:icdom-85003)
+* [progenetix.org/services/collationPlots/?id=PMID:22824167](https://progenetix.org/services/collationPlots/?id=PMID:22824167)
 
 --------------------------------------------------------------------------------
 
