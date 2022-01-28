@@ -25,8 +25,6 @@ The response of the queries for genomic variants provide some basic statistics, 
 
 **TBD**
 
---------------------------------------------------------------------------------
-
 ## Download or Plot CNV Frequencies
 
 The Progenetix resource provides pre-computed CNV frequencies for all its
