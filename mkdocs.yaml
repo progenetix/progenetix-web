@@ -4,7 +4,7 @@ site_author: Michael Baudis
 copyright: '&copy; Copyright 2022, Michael Baudis and progenetix.org'
 repo_name: 'beacon-schema-2'
 
-#extra_css: [css/theme_overrides.css]
+extra_css: [css/extra.css]
 
 markdown_extensions:
   - admonition
