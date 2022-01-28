@@ -1,6 +1,10 @@
 # Beacon - Discovery Services for Genomic Data
 
-<p><img align="right" style="float: right; max-width: 25px; margin-top: -20px;" src="http://info.progenetix.org/assets/img/logo_beacon.png" />The Beacon protocol defines an open standard for genomics data discovery,
+[TOC]
+
+-------------------------------------------------------------------------------
+
+![Beacon Icon](http://info.progenetix.org/assets/img/logo_beacon.png){ align=right width=25px}The Beacon protocol defines an open standard for genomics data discovery,
 developed by members of the Global Alliance for Genomics & Health. Since 2016,
 the Beacon protocols is being developed through the
 <a href="https://beacon-project.io">ELIXIR Beacon project</a> as a GA4GH driver project.</p>

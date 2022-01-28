@@ -2,16 +2,28 @@ site_name: Progenetix Documentation
 site_description: 'Read the Docs Documentation for the Progenetix oncogenomics resource'
 site_author: Michael Baudis
 copyright: '&copy; Copyright 2022, Michael Baudis and progenetix.org'
-repo_name: 'beacon-schema-2'
+repo_name: 'progenetix-web'
 
 extra_css: [css/extra.css]
 
 markdown_extensions:
+  - toc:
+      toc_depth: 2-3
+      permalink: true
   - admonition
   - footnotes
-#  - attr_list
+  - attr_list
 
-theme: readthedocs
+theme:
+  name: readthedocs
+  favicon: docs/img/favicon.ico
+  logo: docs/img/site-logo-topright.png
+  icon:
+    repo: fontawesome/brands/github-alt 
+
+repo_url: https://github.com/progenetix/progenetix-web
+
+edit_uri: edit/master/docs/
 
 nav:
   - Use Case Examples: use-cases.md

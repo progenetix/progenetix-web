@@ -26,12 +26,9 @@ Note that, despite containing data about tumor samples at a whole-genome level, 
 * publications with tumor data obtained from animal models (i.e. not measuring a human genome)
 * articles which report germline analyses - e.g. **GWAS** studies of individuals with a risk for - or manifestation of - a malignancy are **not** included
 
----
 
-[^1]: Whole-genome screening techniques:
-    * cCGH: chromosomal Comparative Genomic Hybridization
-    * aCGH: genomic arrays (including single color oligonucleotide, SNP, and large-insert clone arrays)
-    * WES: Whole Exome Sequencing
-    * WGS: Whole Genome Sequencing
+[^1]:
+    Whole-genome screening techniques: **cCGH** chromosomal Comparative Genomic Hybridization; **aCGH** genomic arrays (including single color oligonucleotide, SNP, and large-insert clone arrays); **WES** Whole Exome Sequencing; **WGS** Whole Genome Sequencing
 
-[^2]: In principle, methylation arrays could be considered as "genome screening experiments", since one may extract e.g. CNV profiles from some platforms/experiments. However, at this time we do not consider them as "compatible" platforms.
+[^2]:
+    In principle, methylation arrays could be considered as "genome screening experiments", since one may extract e.g. CNV profiles from some platforms/experiments. However, at this time we do not consider them as "compatible" platforms.
