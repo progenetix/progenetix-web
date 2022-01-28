@@ -13,11 +13,13 @@ markdown_extensions:
   - admonition
   - footnotes
   - attr_list
+  - mdx_gh_links:
+      user: progenetix
+      repo: progenetix.github.io
 
 theme:
   name: readthedocs
-  favicon: docs/img/favicon.ico
-  logo: docs/img/site-logo-topright.png
+  favicon: img/site-logo-topright.png
   icon:
     repo: fontawesome/brands/github-alt 
 
@@ -35,4 +37,8 @@ nav:
   - Progenetix Site: http://progenetix.org
   - Baudisgroup: http://info.baudisgroup.org
 
-# Options
+extra:
+  logo: img/site-logo-main.png
+  
+plugins:
+  - search

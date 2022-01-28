@@ -20,7 +20,7 @@ export const PROGENETIXDOCS = "https://docs.progenetix.org"
 export const ABOUTLINK = `${PROGENETIXINFO}/categories/about.html`
 export const DOCLINK = `${PROGENETIXDOCS}`
 export const NEWSLINK = `${PROGENETIXDOCS}/categories/news.html`
-export const USECASESLINK = `${PROGENETIXDOCS}/en/latest/use-cases.html`
+export const USECASESLINK = `${PROGENETIXDOCS}/use-cases.html`
 export const THISYEAR = new Date().getFullYear()
 
 export const BIOKEYS = ["histologicalDiagnosis", "icdoMorphology", "icdoTopography", "sampledTissue"]

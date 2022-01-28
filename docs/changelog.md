@@ -19,7 +19,7 @@ terms used in a query. More information is available in the [Filtering Terms](be
 
 ## 2022-01-17: Introducing `variant_state` classes for CNVs
 
-More information can be found in the [description of ontology use for CNVs](/en/latest/classifications-and-ontologies.html#genomic-variations-cnv-ontology).
+More information can be found in the [description of ontology use for CNVs](classifications-and-ontologies.md#genomic-variations-cnv-ontology).
 
 ## 2022-01-10: BUG FIX Frequency Maps
 
