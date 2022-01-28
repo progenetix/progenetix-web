@@ -8,6 +8,7 @@ extra_css: [css/extra.css]
 
 markdown_extensions:
   - admonition
+  - footnotes
 #  - attr_list
 
 theme: readthedocs

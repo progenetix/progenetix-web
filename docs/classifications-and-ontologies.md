@@ -61,9 +61,9 @@ The mappings used here for the ICD morphology codings (mapped to ICDMORPHOLOGY a
 #### Current ICD-O sample codes
 
 * ICD-O Morphologies
-  - [progenetix.org/services/collations?collationTypes=icdom&output=text](https://progenetix.org/services/collations/?collationTypes=icdom&output=text)
+    - [progenetix.org/services/collations?collationTypes=icdom&output=text](https://progenetix.org/services/collations/?collationTypes=icdom&output=text)
 * ICD-O Topographies
-  - [progenetix.org/services/collations/?collationTypes=icdot&method=ids&output=text](https://progenetix.org/services/collations/?collationTypes=icdot&method=ids&output=text)
+    - [progenetix.org/services/collations/?collationTypes=icdot&method=ids&output=text](https://progenetix.org/services/collations/?collationTypes=icdot&method=ids&output=text)
 
 ### UBERON codes
 

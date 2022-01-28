@@ -32,28 +32,28 @@ a variation is now being provided for CNV frequencies.
 #### `.pgxseg` Sample Segment Files
 
 * a standard tab-delimited Progenetix segments file
-  - an additional header may exist
-  - only first 5 columns are necessary
-  - column 5 (mean) can be empty or dot, if column 6 exists and contains status value
-  - undefined fields in existing columns are replaced with the "." character
+    - an additional header may exist
+    - only first 5 columns are necessary
+    - column 5 (mean) can be empty or dot, if column 6 exists and contains status value
+    - undefined fields in existing columns are replaced with the "." character
 * header (optional)
-  - header lines start with the `#` character
-  - Plot parameters:
-    * lines start with `#plotpars=>`
-    * parameters are added in `parameter_name=value;other_parameter=itsValue` format - see below
-    * basically any [plot parameter from PGX](https://github.com/progenetix/PGX/blob/master/config/plotdefaults.yaml) can be used
-  - Sample / grouping parameters
-    * the `biosample_id` parameter is required to assign values (e.g. group labels) to samples
-    * `biosample_id` has to correspond to the identifiers used in column 1 of the following segments data
-    * `parameter=value` pairs are semicolon-separated
-    * values may be wrapped in double quotation marks (`group_label="Ductal Breast Carcinoma"`)
-    * `group_id` __should__ be used for grouping
+    - header lines start with the `#` character
+    - Plot parameters:
+        * lines start with `#plotpars=>`
+        * parameters are added in `parameter_name=value;other_parameter=itsValue` format - see below
+        * basically any [plot parameter from PGX](https://github.com/progenetix/PGX/blob/master/config/plotdefaults.yaml) can be used
+    - Sample / grouping parameters
+        * the `biosample_id` parameter is required to assign values (e.g. group labels) to samples
+        * `biosample_id` has to correspond to the identifiers used in column 1 of the following segments data
+        * `parameter=value` pairs are semicolon-separated
+        * values may be wrapped in double quotation marks (`group_label="Ductal Breast Carcinoma"`)
+        * `group_id` __should__ be used for grouping
       - this is a convention for the Progenetix plotting engine
       - `group_label` is optional for grouping / labeling of the groups
-  - Metadata
-    * lines start with `#meta=>`
-    * additional information about the file
-    * (so far) only informative
+    - Metadata
+        * lines start with `#meta=>`
+        * additional information about the file
+        * (so far) only informative
 
 For example, this API call retireves the variants for 78 samples from two NCIt
 cancer types (please be aware of the `&filterLogic=OR` pragma!):
@@ -90,7 +90,7 @@ pgxbs-kftvhhmm  3 4662952 4857477 0.9273 DUP  .
 In the frequency file
 
 * `group_id` values replace the `biosample_id`
-  - multiple groups can be concatenated in the file
+    - multiple groups can be concatenated in the file
 * `chro`, `start` and `end` are the same as in the sample files
 * `gain_frequency` and `loss_frequency` indicate the *percent* values for gains and losses overlapping the segment, respectively
 
@@ -99,9 +99,9 @@ Future options are under evaluation.
 Examples can be derived from the Progenetix "Services" API:
 
 * [/services/intervalFrequencies/pgxcohort-TCGAcancers/?output=pgxseg](https://progenetix.org/services/intervalFrequencies/pgxcohort-TCGAcancers/?output=pgxseg)
-  - single group in REST syntax (here overall CNV frequencies in >11000 cancer samples from the TCGA sample collection)
+    - single group in REST syntax (here overall CNV frequencies in >11000 cancer samples from the TCGA sample collection)
 * [/services/intervalFrequencies/?filters=icdom-81403,icdom-81443&output=pgxseg](https://progenetix.org/services/intervalFrequencies/?filters=icdom-81403,icdom-81443&output=pgxseg)
-  - 2 sets using the `filters` parameter
+    - 2 sets using the `filters` parameter
 
 ```
 #meta=>genome_binning=1Mb;interval_number=3102
@@ -155,8 +155,8 @@ API offers the delivery of a binned status matrix. This matrix can e.g. directly
 be used for clustering CNV patterns.
 
 * id columns, followed by
-  - all "gain status" columns (e.g. 3102, see above), followed by
-  - all "loss status" columns
+    - all "gain status" columns (e.g. 3102, see above), followed by
+    - all "loss status" columns
 * the status is indicated by a coverage value, i.e. the fraction of how much the
 binned interval overlaps with one or more CNVs of the given type.
 
@@ -223,10 +223,10 @@ Since 2021 you can now directly submit suggestions for matching publications to 
 This services parses either:
 
 * a properly formatted cytoband annotation (`assemblyId`, `cytoBands`)
-  - "8", "9p11q21", "8q", "1p12qter"
+    - "8", "9p11q21", "8q", "1p12qter"
 * a concatenated `chroBases` parameter
-  - `7:23028447-45000000`
-  - `X:99202660`
+    - `7:23028447-45000000`
+    - `X:99202660`
 
 <!--
 While the return object is JSON by default, specifying `text=1`, together with the `cytoBands` or
@@ -240,20 +240,20 @@ The `cytobands` and `chrobases` parameters can be used for running the script on
 
 #### Examples
 
-* retrieve coordinates for some bands on chromosome 8
-  - [progenetix.org/services/cytomapper?assemblyId=NCBI36.1&cytoBands=8q24.1](https://progenetix.org/services/cytomapper?assemblyId=NCBI36.1&cytoBands=8q24.1)
+* retrieve coordinates for some bands on chromosome 8  
+    - [progenetix.org/services/cytomapper?assemblyId=NCBI36.1&cytoBands=8q24.1](https://progenetix.org/services/cytomapper?assemblyId=NCBI36.1&cytoBands=8q24.1)
 * as above, just as text:
-  - [progenetix.org/services/cytomapper?assemblyId=NCBI.1&cytoBands=8q&output=text](https://progenetix.org/services/cytomapper?assemblyId=NCBI.1&cytoBands=8q&output=text)
-  - *cytomapper shortcut*: [progenetix.org/services/cytomapper/?assemblyId=NCBI36.1&cytoBands=8q&text=1](https://progenetix.org/services/cytomapper/?assemblyId=NCBI36.1&cytoBands=8q&output=text)
+    - [progenetix.org/services/cytomapper?assemblyId=NCBI.1&cytoBands=8q&output=text](https://progenetix.org/services/cytomapper?assemblyId=NCBI.1&cytoBands=8q&output=text)
+    - *cytomapper shortcut*: [progenetix.org/services/cytomapper/?assemblyId=NCBI36.1&cytoBands=8q&output=text](https://progenetix.org/services/cytomapper/?assemblyId=NCBI36.1&cytoBands=8q&output=text)
 * get the cytobands whith which a base range on chromosome 17 overlaps, in short and long form
-  - [progenetix.org/services/cytomapper?assemblyId=GRCh37&chroBases=17:800000-24326000](https://progenetix.org/services/cytomapper?assemblyId=GRCh37&chroBases=17:800000-24326000)
+    - [progenetix.org/services/cytomapper?assemblyId=GRCh37&chroBases=17:800000-24326000](https://progenetix.org/services/cytomapper?assemblyId=GRCh37&chroBases=17:800000-24326000)
 * using `curl` to get the text format mapping of a cytoband range, using the API `services` shortcut:
-  - `curl -k https://progenetix.org/services/cytomapper?cytoBands\=8q21q24.1&assemblyId\=hg18&text\=1`
+    - `curl -k https://progenetix.org/services/cytomapper?cytoBands\=8q21q24.1&assemblyId\=hg18&text\=1`
 * command line version of the above
-  - `bin/cytomapper.py --chrobases 17:800000-24326000 -g NCBI36`
-  - `bin/cytomapper.py -b 17:800000-24326000`
-  - `bin/cytomapper.py --cytobands 9p11q21 -g GRCh38`
-  - `bin/cytomapper.py -c Xpterq24`
+    - `bin/cytomapper.py --chrobases 17:800000-24326000 -g NCBI36`
+    - `bin/cytomapper.py -b 17:800000-24326000`
+    - `bin/cytomapper.py --cytobands 9p11q21 -g GRCh38`
+    - `bin/cytomapper.py -c Xpterq24`
 
 #### Response
 
@@ -289,11 +289,11 @@ classification systems, notably NCIt. The mappings are represented in the [ICDOn
 Our resources use an internal representation of ICD-O 3 codes since no official CURIES are provided by the IARC. The syntax is:
 
 * ICD-O 3 morphologies
-  - "pgx:icdom-"`s/\///`; i.e. number only code
-  - "8500/3" => `pgx:icdom-85003`
+    - "pgx:icdom-"`s/\///`; i.e. number only code
+    - "8500/3" => `pgx:icdom-85003`
 * ICD-O 3 Topographies
-  - "icdot-" + code
-  - "C53.9" => `pgx:icdot-C53.9`
+    - "icdot-" + code
+    - "C53.9" => `pgx:icdot-C53.9`
 
 #### Parameters
 
@@ -316,15 +316,15 @@ Our resources use an internal representation of ICD-O 3 codes since no official 
 * [https://progenetix.org/services/ontologymaps/?filters=NCIT](https://progenetix.org/services/ontologymaps/?filters=NCIT)
 * [progenetix.org/services/ontologymaps/?filters=pgx:icdom-85003,pgx:icdot-C50.9](https://progenetix.org/services/ontologymaps/?filters=pgx:icdom-85003,pgx:icdot-C50.9)
 * [progenetix.org/services/ontologymaps/?filters=icdom-85,icdot-C50&filterPrecision=start](https://progenetix.org/services/ontologymaps/?filters=icdom-85,icdot-C50&filterPrecision=start)
-  - As in the example above, but by stemmming the query parameters and providing the `filterPrecision=start` pragma, the response will now be a list of matched data objects (inputs and equivalents)
+    - As in the example above, but by stemmming the query parameters and providing the `filterPrecision=start` pragma, the response will now be a list of matched data objects (inputs and equivalents)
 
 ##### UBERON and ICD-O 3 Topography
 
 * [progenetix.org/services/ontologymaps/?filters=UBERON&filterPrecision=start](https://progenetix.org/services/ontologymaps/?filters=UBERON&filterPrecision=start)
-  - all mappings
+    - all mappings
 * [progenetix.org/services/ontologymaps/?filters=UBERON,icdot-C0&filterPrecision=start](https://progenetix.org/services/ontologymaps/?filters=UBERON,icdot-C0&filterPrecision=start)
-  - all `C0...` ICD-O T matches
-  - limited to `UBERON` mappings since the prefix was given, too (otherwise all the NCIT mappings would also be listed for these ICD-O T code matches)
+    - all `C0...` ICD-O T matches
+    - limited to `UBERON` mappings since the prefix was given, too (otherwise all the NCIT mappings would also be listed for these ICD-O T code matches)
 
 #### More Information
 
