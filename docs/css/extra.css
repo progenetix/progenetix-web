@@ -16,13 +16,14 @@ body {
 }
 **/
 
-div.admonition tt.xref, div.admonition code.xref, div.admonition a tt {
-  background-color: #ff6f48;
-  border-bottom: 1px solid #dd6940;
-  font-size: 0.9em;
-  padding:  4px;
+li.toctree-l1 {
+  font-size: 1.2em;
 }
 
-.admonition > * {
+div.admonition tt.xref, div.admonition code.xref, div.admonition a tt {
   font-size: 0.9em;
+}
+
+div.admonition {
+  border: 1px solid #dd6940;
 }

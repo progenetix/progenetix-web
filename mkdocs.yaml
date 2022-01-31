@@ -2,7 +2,7 @@ site_name: Progenetix Documentation
 site_description: 'Read the Docs Documentation for the Progenetix oncogenomics resource'
 site_author: Michael Baudis
 copyright: '&copy; Copyright 2022, Michael Baudis and progenetix.org'
-repo_name: 'progenetix-web'
+repo_name: 'pgx'
 
 extra_css: [css/extra.css]
 
@@ -13,6 +13,7 @@ markdown_extensions:
   - admonition
   - footnotes
   - attr_list
+  - md_in_html
   - mdx_gh_links:
       user: progenetix
       repo: progenetix.github.io
@@ -28,6 +29,7 @@ repo_url: https://github.com/progenetix/progenetix-web
 edit_uri: edit/master/docs/
 
 nav:
+  - Documentation Home: index.md
   - Use Case Examples: use-cases.md
   - Services: services.md
   - Classifications and Ontologies: classifications-and-ontologies.md
@@ -38,7 +40,8 @@ nav:
   - Baudisgroup: http://info.baudisgroup.org
 
 extra:
-  logo: img/site-logo-main.png
-  
+  logo: img/progenetix_black_300.png
+
+
 plugins:
   - search
