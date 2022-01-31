@@ -24,11 +24,14 @@ theme:
   name: readthedocs
   favicon: img/site-logo-topright.png
   icon:
-    repo: fontawesome/brands/github-alt 
+    repo: fontawesome/brands/github-alt
+    admonition:
+      example: octicons/list-ordered-24
+      
 
 repo_url: https://github.com/progenetix/progenetix-web
 
-edit_uri: edit/master/docs/
+edit_uri: edit/main/docs/
 
 nav:
   - Documentation Home: index.md
