@@ -28,6 +28,7 @@ parameters such as platform technologies. Overall, the Progenetix resource uses 
 | Uberon | Uberon Anatomical Ontology [^6] |UBERON:0000992|
 | cbioportal      | cBioPortal[^9] | [cbioportal:msk_impact_2017](https://progenetix.org/services/ids/cbioportal:msk_impact_2017) |
 
+
 ### Private filters
 
 Since some classifications cannot directly be referenced, and in accordance with
@@ -42,6 +43,9 @@ For terms with a `pgx` prefix, the [identifiers.org resolver](http://identifiers
 | pgx:icdot... | ICD-O 3[^7] Topographies(Progenetix)| pgx:icdot-C04.9 |
 | TCGA  | The Cancer Genome Atlas (Progenetix)[^8] | TCGA-000002fc-53a0-420e-b2aa-a40a358bba37 |
 | pgx:pgxcohort-...  | Progenetix cohorts [^10]| pgx:pgxcohort-arraymap |
+
+
+-------------------------------------------------------------------------------
 
 ## Diagnoses, Phenotypes and Histologies
 

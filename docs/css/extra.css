@@ -20,10 +20,6 @@ li.toctree-l1 {
   font-size: 1.2em;
 }
 
-div.admonition tt.xref, div.admonition code.xref, div.admonition a tt {
+.admonition .details {
   font-size: 0.9em;
-}
-
-div.admonition {
-  border: 1px solid #dd6940;
 }
