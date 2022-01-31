@@ -1,9 +1,5 @@
 # Use Cases
 
-[TOC]
-
--------------------------------------------------------------------------------
-
 ## Explore Gene CNVs
 
 One of the main use cases for the Progenetix resource is the exploration of frequency and disease specificity of genes of interest. Traditionally, the relevance of somatic CNVs hitting a gene in the context of cancer are judged by
