@@ -63,7 +63,7 @@ more complex terms are only available through `PUT` requests.
 
 ##### Example
 
-```
+``` JSON
 "filters": [
     {
         "id": "NCIT:C4536",
