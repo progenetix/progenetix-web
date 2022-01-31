@@ -53,3 +53,4 @@ nav:
 
 plugins:
   - search
+  - pdf-export
