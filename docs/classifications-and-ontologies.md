@@ -1,4 +1,4 @@
-# Classifications, Ontologies and Concepts
+# Classifications, Ontologies and Standards
 
 The Progenetix resource utilizes standardized diagnostic coding systems, with a
 move towards hierarchical ontologies. As part of the coding process we have
@@ -138,8 +138,51 @@ label: copy number assessment
                    copies
 ```
 
+-------------------------------------------------------------------------------
 
-----
+## Geolocation Data
+
+### Provenance and use of geolocation data
+
+Geographic point coordinates are assigned to each sample after review of existing information from associated publications or repository information for their ”best available” geographic origin using a precedence of:  
+
+1. sample specific data (e.g. from article text)
+2. experiment location
+3. first author proxy
+
+For publications w/o accessible sample data in general the "author proxy" is being used, unless specific annotations have been found in the article.
+
+A more detailed discussion of the problems and benefits of geographic provenance tagging can be found in [Carrio-Cordo _et al._, DATABASE 2020](https://academic.oup.com/database/article/doi/10.1093/database/baaa009/5812711).
+
+#### Geolocations Service
+
+The Progenetix API provides a service for [retrieving geographic coordinates](/https://docs.progenetix.org/services/#geographic-locations-cities-geolocations) as point coordinates, for the majority of cities.
+
+#### `GeoLocation` schema
+
+The current version of the JSON Schema data schema for the geolocation object can be accessed through the [Progenetix services API](https://progenetix.org/services/schemas/GeoLocation/).
+
+```
+"geometry": {
+  "coordinates": [
+    8.69,
+    49.41
+  ],
+  "type": "Point"
+},
+"properties": {
+  "ISO3166alpha2": "DE",
+  "ISO3166alpha3": "DEU",
+  "city": "Heidelberg",
+  "continent": "Europe",
+  "country": "Germany"
+},
+"type": "Feature"
+```
+
+
+
+-------------------------------------------------------------------------------
 
 [^1]: National Cancer Institute Thesaurus Neoplasm [NCIt Neoplasm](https://bioportal.bioontology.org/ontologies/NCIT_NEOPLASM)
 [^2]: Human phenotype ontology [HPO](https://hpo.jax.org)
