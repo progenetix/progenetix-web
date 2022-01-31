@@ -16,6 +16,9 @@ markdown_extensions:
   - footnotes
   - attr_list
   - md_in_html
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
   - mdx_gh_links:
       user: progenetix
       repo: progenetix.github.io

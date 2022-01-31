@@ -1,9 +1,5 @@
 # Classifications, Ontologies and Concepts
 
-[TOC]
-
--------------------------------------------------------------------------------
-
 The Progenetix resource utilizes standardized diagnostic coding systems, with a
 move towards hierarchical ontologies. As part of the coding process we have
 developed and provide several code mapping resources through repositories, the
