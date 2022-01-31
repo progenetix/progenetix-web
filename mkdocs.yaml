@@ -11,6 +11,8 @@ markdown_extensions:
       toc_depth: 2-3
       permalink: true
   - admonition
+  - pymdownx.details
+  - pymdownx.superfences
   - footnotes
   - attr_list
   - md_in_html
