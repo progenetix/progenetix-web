@@ -9,3 +9,6 @@ The Progenetix database and cancer genomic information resource  contains genome
 Additional information - e.g. about contacts or related publications - is available
 through the [group page](http://info.baudisgroup.org) of the Baudis group at the University of Zürich.
 
+??? Additional Articles & Citation Options...
+    Cai H, Kumar N, Ai N, Gupta S, Rath P, Baudis M. **Progenetix: 12 years of oncogenomic data curation.** Nucleic Acids Res (2014) Jan;42  
+    Baudis M et al. **Progenetix oncogenomic online resource: progenetix.org.**  (2022)
