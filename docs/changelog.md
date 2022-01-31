@@ -56,4 +56,4 @@ project. Contributions welcome!
 
 ### Example
 
-* [progenetix.org/beacon/variants/?referenceBases=G&alternateBases=A&assemblyId=GRCh38&referenceName=17&start=7577120&filters=pgxcohort-DIPG](https://progenetix.org/beacon/variants/?referenceBases=G&alternateBases=A&assemblyId=GRCh38&referenceName=17&start=7577120&filters=pgxcohort-DIPG)
+* [progenetix.org/beacon/variants/?referenceBases=G&alternateBases=A&assemblyId=GRCh38&referenceName=17&start=7577120&filters=pgx:cohort-DIPG](https://progenetix.org/beacon/variants/?referenceBases=G&alternateBases=A&assemblyId=GRCh38&referenceName=17&start=7577120&filters=pgx:cohort-DIPG)

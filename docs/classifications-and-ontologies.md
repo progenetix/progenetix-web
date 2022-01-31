@@ -38,7 +38,7 @@ For terms with a `pgx` prefix, the [identifiers.org resolver](http://identifiers
 | pgx:icdom-... | ICD-O 3[^7] Morphologies (Progenetix)| pgx:icdom-81703 |
 | pgx:icdot... | ICD-O 3[^7] Topographies(Progenetix)| pgx:icdot-C04.9 |
 | TCGA  | The Cancer Genome Atlas (Progenetix)[^8] | TCGA-000002fc-53a0-420e-b2aa-a40a358bba37 |
-| pgx:pgxcohort-...  | Progenetix cohorts [^10]| pgx:pgxcohort-arraymap |
+| pgx:pgx:cohort-...  | Progenetix cohorts [^10]| pgx:pgx:cohort-arraymap |
 
 
 -------------------------------------------------------------------------------
@@ -150,4 +150,4 @@ label: copy number assessment
 [^7]:International Classification of Diseases for Oncology, 3rd Edition [ICD-O-3](https://www.who.int/standards/classifications/other-classifications/international-classification-of-diseases-for-oncology)
 [^8]: Supports [TCGA](https://portal.gdc.cancer.gov) Sample UUID.
 [^9]: Supports [cBioPortal](https://www.cbioportal.org/datasets) Study ID.
-[^10]: Cohorts defined in Progenetix involving a collection of related samples. Currently includes (add `pgxcohort-`): arraymap, 2021progenetix, DIPG, TCGA, TCGAcancers, [gao2021signatures](https://progenetix.org/progenetix-cohorts/gao-2021-signatures/).
+[^10]: Cohorts defined in Progenetix involving a collection of related samples. Currently includes (add `pgx:cohort-`): arraymap, 2021progenetix, DIPG, TCGA, TCGAcancers, [gao2021signatures](https://progenetix.org/progenetix-cohorts/gao-2021-signatures/).

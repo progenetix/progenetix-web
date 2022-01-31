@@ -90,7 +90,7 @@ syntax. Please be aware of the `-` prefix.
   - [progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=NCIT:C7376&-size_plotarea_h_px=300](https://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=NCIT:C7376&-size_plotarea_h_px=300)
 * `-value_plot_y_max`
   - modifies the histogram's maximum value in percent (default 100)
-  - [progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=pgxcohort-TCGAcancers&-value_plot_y_max=50](https://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=pgxcohort-TCGAcancers&-value_plot_y_max=50)
+  - [progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=pgx:cohort-TCGAcancers&-value_plot_y_max=50](https://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=pgx:cohort-TCGAcancers&-value_plot_y_max=50)
 * `-colorschema`
   - change of colors used for gains and losses
   - options

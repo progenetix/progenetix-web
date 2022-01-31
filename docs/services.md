@@ -98,7 +98,7 @@ Future options are under evaluation.
 
 Examples can be derived from the Progenetix "Services" API:
 
-* [/services/intervalFrequencies/pgxcohort-TCGAcancers/?output=pgxseg](https://progenetix.org/services/intervalFrequencies/pgxcohort-TCGAcancers/?output=pgxseg)
+* [/services/intervalFrequencies/pgx:cohort-TCGAcancers/?output=pgxseg](https://progenetix.org/services/intervalFrequencies/pgx:cohort-TCGAcancers/?output=pgxseg)
     - single group in REST syntax (here overall CNV frequencies in >11000 cancer samples from the TCGA sample collection)
 * [/services/intervalFrequencies/?filters=icdom-81403,icdom-81443&output=pgxseg](https://progenetix.org/services/intervalFrequencies/?filters=icdom-81403,icdom-81443&output=pgxseg)
     - 2 sets using the `filters` parameter
