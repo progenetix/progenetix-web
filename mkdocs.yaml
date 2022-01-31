@@ -56,3 +56,5 @@ plugins:
   - search
   - pdf-export:
       combined: true
+      
+# https://github.com/zhaoterryy/mkdocs-pdf-export-plugin

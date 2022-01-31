@@ -12,7 +12,8 @@ through the [group page](http://info.baudisgroup.org) of the Baudis group at the
 
 ??? tip "Additional Articles & Citation Options"
 
-    Baudis M et al. **Progenetix oncogenomic online resource: progenetix.org.**  (2022)Cai H, Kumar N, Ai N, Gupta S, Rath P, Baudis M.  **Progenetix: 12 years of oncogenomic data curation.** Nucleic Acids Res (2014) Jan;42   
+    Baudis M et al. **Progenetix oncogenomic online resource: progenetix.org.** (2022)   
+    Cai H, Kumar N, Ai N, Gupta S, Rath P, Baudis M.  **Progenetix: 12 years of oncogenomic data curation.** Nucleic Acids Res (2014) Jan;42   
     Cai H, Kumar N, Baudis M. (2012) **arrayMap: a reference resource for genomic copy number imbalances in human malignancies.** _PLoS One._ 7:e36944.    
     Baudis M. (2007) **Genomic imbalances in 5918 malignant epithelial tumors: an explorative meta-analysis of chromosomal CGH data.** _BMC Cancer._ 7:226.    
     Baudis M. (2006) **Online database and bioinformatics toolbox to support data mining in cancer cytogenetics.** _Biotechniques._ 40:296-272.
