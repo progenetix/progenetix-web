@@ -22,6 +22,9 @@ markdown_extensions:
 
 theme:
   # name: readthedocs
+  name: material
+  palette:
+    primary: deep orange
   favicon: img/site-logo-topright.png
   logo: img/progenetix_black_300.png
   icon:
