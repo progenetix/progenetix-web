@@ -20,6 +20,6 @@ li.toctree-l1 {
   font-size: 1.2em;
 }
 
-.admonition .details {
+.admonition .details .example {
   font-size: 0.9em;
 }
