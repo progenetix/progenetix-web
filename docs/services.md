@@ -350,3 +350,37 @@ and the service can also be used to access identifiers at Progenetix.
 
 * <https://identifiers.org/pgx:pgxbs-kftva5zv>
 
+--------------------------------------------------------------------------------
+
+### Geographic Locations / Cities _geolocations_
+
+This service provides geographic location mapping for cities above 25'000
+inhabitants (\~22750 cities), through either:
+
+* matching of the (start-anchored) name
+* providing GeoJSON compatible parameters:
+    - `geolongitude`
+    - `geolatitude`
+    - `geodistance`
+        * optional, in meters; a default of 10'000m (10km) is provided
+        * can be used for e.g. retrieving all places (or data from places if used
+        with publication or sample searches) in an approximate region (e.g. for
+        Europe using `2500000` around Heidelberg...)
+
+
+#### Query Types
+
+* by `city`
+  - start-anchored, case insensitive match `?city=heide`
+* by `id`
+  - this uses the `city::country` "id" value, e.g. `lecce::italy`
+* by `geolatitude`, `geolongitude`, `geodistance`
+
+##### Examples
+
+* [progenetix.org/services/geolocations?city=zurich](https://progenetix.org/services/geolocations?city=zurich)
+* [progenetix.org/services/geolocations?city=New](https://progenetix.org/services/geolocations?city=New)
+* [progenetix.org/services/geolocations?geolongitude=-0.13&geolatitude=51.51&geodistance=100000](https://progenetix.org/services/geolocations?geolongitude=-0.13&geolatitude=51.51&geodistance=100000)
+
+
+
