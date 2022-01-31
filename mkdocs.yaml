@@ -21,8 +21,9 @@ markdown_extensions:
       repo: progenetix.github.io
 
 theme:
-  name: readthedocs
+  # name: readthedocs
   favicon: img/site-logo-topright.png
+  logo: img/progenetix_black_300.png
   icon:
     repo: fontawesome/brands/github-alt
     admonition:
@@ -43,9 +44,6 @@ nav:
   - BeaconPlus: beaconplus.md
   - Progenetix Site: http://progenetix.org
   - Baudisgroup: http://info.baudisgroup.org
-
-extra:
-  logo: img/progenetix_black_300.png
 
 plugins:
   - search
