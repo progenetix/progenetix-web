@@ -1,5 +1,5 @@
 site_name: Progenetix Documentation
-site_description: 'Read the Docs Documentation for the Progenetix oncogenomics resource'
+site_description: 'Documentation for the Progenetix oncogenomics resource'
 site_author: Michael Baudis
 copyright: '&copy; Copyright 2022, Michael Baudis and progenetix.org'
 repo_name: 'progenetix-web'
