@@ -209,6 +209,15 @@ CNV statistics or binned genome calls.
   identifier (K562)
 
 
+-------------------------------------------------------------------------------
+
+## `bycon` Beacon Server
+
+The [`bycon`](https://github.com/progenetix/bycon) project provides a combination of a Beacon-protocol based API with additional API services, used as backend and middleware for the Progenetix resource.
+
+`bycon` has been developed to support Beacon protocol development following earlier implementations of Beacon+ ("beaconPlus") with now deprected Perl libraries. The work tightly integrates with the [ELIXIR Beacon](http://beacon-project.io) project.
+
+
 
 
 
