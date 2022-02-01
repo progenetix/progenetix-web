@@ -23,3 +23,7 @@ li.toctree-l1 {
 .admonition .details .example {
   font-size: 0.9em;
 }
+
+.md-typeset ol li, .md-typeset ul li {
+    margin-bottom:.1em
+}
