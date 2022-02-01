@@ -9,6 +9,8 @@ Additionally to diagnostic and other clinical concepts, Progenetix increasingly
 uses hierarchical terms and concepts for the annotation and querying of technical
 parameters such as platform technologies. Overall, the Progenetix resource uses a query syntax based around the [Beacon v2 "filters"](https://beacon-project.io/v2/filters.html) concept with a [CURIE](https://www.w3.org/TR/2010/NOTE-curie-20101216/) based syntax.
 
+-------------------------------------------------------------------------------
+
 ## List of filters recognized by different query endpoints
 
 ### Public Ontologies with CURIE-based syntax

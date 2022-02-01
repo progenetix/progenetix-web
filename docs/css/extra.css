@@ -27,3 +27,5 @@ li.toctree-l1 {
 .md-typeset ol li, .md-typeset ul li {
     margin-bottom:.1em
 }
+
+ul ul { list-style-type: circle; }
