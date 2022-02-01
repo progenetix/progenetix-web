@@ -36,7 +36,7 @@ This data can be accessed through the Progenetix API in data and image format.
 ![Example CNV histogram with custom parameters](https://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=NCIT:C7376&-size_plotarea_h_px=40&-value_plot_y_max=50&-colorschema=bluered&-chr2plot=1,3,9,17,22)
 
 Interval frequencies are per default stored in a 1Mb binned format. More
-information about the API use can be found [in the IntervalFrequencies API documentation](services/#pgxseg-segment-cnv-frequencies).
+information about the API use can be found [in the IntervalFrequencies API documentation](services.md#pgxseg-segment-cnv-frequencies).
 
 ### Example Procedure - Download CNV Frequencies
 
@@ -61,7 +61,7 @@ All cancer codes for a given classification system can be retrieved though:
 #### Download the data file
 
 For any of those codes one can create a `.pgxseg` file downloader link for the
-["IntervalFrequencies" service](services/#pgxseg-segment-cnv-frequencies):
+["IntervalFrequencies" service](services.md#pgxseg-segment-cnv-frequencies):
 
 ##### Examples
 
@@ -134,7 +134,7 @@ or in a tab-delimited text format (`&output=table`).
 `pgxRpi` is an API wrapper package to access data from Progenetix database. You can
 use it to
 
-* Retrieve biosample information for specific group of interests, chosen by a filter. Foir more details about _filters_ follow this [link](classifications-and-ontologies/#list-of-filters-recognized-by-different-query-endpoints).
+* Retrieve biosample information for specific group of interests, chosen by a filter. Foir more details about _filters_ follow this [link](./classifications-and-ontologies/#list-of-filters-recognized-by-different-query-endpoints).
 * Query and export copy number variant data with different output formats, which are compatible for different visualization tools.
 * Query and visualize CNV frequency data. Details about how to calculate the frequency map see [here](https://info.progenetix.org/doc/genomic_intervals.html).
 
@@ -145,7 +145,7 @@ The vignettes are available on [Github](https://github.com/progenetix/pgxRpi).
 
 ## User-Provided CNV Data
 
-The Progenetix resource has a limited option to visualize CNV data provided by the users. Data has to be formatted in a standard tab-delimited columnar format, preferably using the [`.pgxseg` file format](services/#data-file-formats-pgxseg-segments). Additional information can be found on the upload service page:
+The Progenetix resource has a limited option to visualize CNV data provided by the users. Data has to be formatted in a standard tab-delimited columnar format, preferably using the [`.pgxseg` file format](services.md#data-file-formats-pgxseg-segments). Additional information can be found on the upload service page:
 
 * [Upload Files for CNV Visualization](https://progenetix.org/service-collection/uploader/)
 
