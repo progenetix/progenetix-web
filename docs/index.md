@@ -18,10 +18,10 @@ through the [group page](http://info.baudisgroup.org) of the Baudis group at the
     Baudis M. (2007) **Genomic imbalances in 5918 malignant epithelial tumors: an explorative meta-analysis of chromosomal CGH data.** _BMC Cancer._ 7:226.    
     Baudis M. (2006) **Online database and bioinformatics toolbox to support data mining in cancer cytogenetics.** _Biotechniques._ 40:296-272.
 
-## Registration
+??? info "Registration & Licenses"
 
-As of March 2012, no specific registration is required for using the Progenetix and and arrayMap resources. While the 
-data is licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0) we suggest that you contact [Michael Baudis](https://info.baudisgroup.org/group/Michael_Baudis/) if you plan any commercial use of the database or are interested to incorporate the data into your research projects.
+    As of March 2012, no specific registration is required for using the Progenetix and and arrayMap resources. While the data is licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0) we suggest that you contact [Michael Baudis](https://info.baudisgroup.org/group/Michael_Baudis/) if you plan any commercial use of the database or are interested to incorporate the data into your research projects.
+
     
 ## Progenetix Source Code
 
