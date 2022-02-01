@@ -50,13 +50,13 @@ local, disease-specific CNV frequencies.
 All cancer codes for a given classification system can be retrieved though:
 
 * NCIT
-    - <https://progenetix.org/services/collations?filters=NCIT&method=counts&output=text>
+    - [progenetix.org/services/collations?filters=NCIT&output=text](https://progenetix.org/services/collations?filters=NCIT&output=text)
 * ICD-O Morphologies
-    - <https://progenetix.org/services/collations?filters=icdom&method=counts&output=text>
+    - [progenetix.org/services/collations?filters=icdom&method=counts&output=text](https://progenetix.org/services/collations?filters=icdom&method=counts&output=text)
     - please be aware that we have to use transformed ICD-O codes; e.g.
   "ICD-O 8500/3" is represented as `pgx:icdom-85003` (`s/^(\d{4})\/(\d)$/pgx:icdom-$1$2/`)
 * ICD-O Topographies
-    - <https://progenetix.org/services/collations?filters=icdot&method=counts&output=text>
+    - [progenetix.org/services/collations?filters=icdot&method=counts&output=text](https://progenetix.org/services/collations?filters=icdot&method=counts&output=text)
 
 #### Download the data file
 
