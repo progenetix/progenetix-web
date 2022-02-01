@@ -86,6 +86,24 @@ Examples for codes with hierarchical treatment within the filter space are:
 
 ## Beacon API
 
+
+### Beacon-style JSON responses
+
+The Progenetix resource's API utilizes the `bycon` framework for data query and
+delivery and represents a custom implementation of the Beacon _v2_ API.
+
+The standard format for JSON responses corresponds to a generic Beacon v2
+response, with the `meta` and `response` root elements. Depending on the endpoint,
+the main data will be a list of objects either inside `response.results` or (mostly)
+in `response.resultSets.results`. Additionally, most API responses (e.g. for biosamples
+or variants) provide access to data using _handover_ objects.
+
+Example responses can be genrated through the [path examples](#beacon-v2-path-examples-in-progenetix)
+below. 
+
+Please be aware that Beacon responses use `camelCased` parameter names.
+
+
 ### Beacon v2: Path Examples in Progenetix
 
 The Beacon v2 protocol uses a REST path structure for consistant data access.
