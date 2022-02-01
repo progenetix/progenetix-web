@@ -40,7 +40,7 @@ The GA4GH data model for genomics recommends the use of a principle object hiera
 In the Progenetix backend we mirror the GA4GH data model in the storage system, consisting of the corresponding
 
 * variants
-* callsets (analyses)
+* callsets (compares to runs + analyses)
 * biosamples
 * individuals
 
