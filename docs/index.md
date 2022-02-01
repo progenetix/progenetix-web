@@ -7,9 +7,6 @@ The Progenetix database and cancer genomic information resource  contains genome
     Baudis M, Cleary ML. (2001) **Progenetix.net: an online repository for molecular cytogenetic aberration data.** _Bioinformatics._ 17:1228-1229      
     Huang Q, Carrio-Cordo P, Gao B, Paloots R, Baudis M. (2021) **The Progenetix oncogenomic resource in 2021.** _Database (Oxford)._ 2021 Jul 17    
 
-Additional information - e.g. about contacts or related publications - is available
-through the [group page](http://info.baudisgroup.org) of the Baudis group at the University of Zürich.
-
 ??? tip "Additional Articles & Citation Options"
 
     Baudis M et al. **Progenetix oncogenomic online resource: progenetix.org.** (2022)   
@@ -21,6 +18,9 @@ through the [group page](http://info.baudisgroup.org) of the Baudis group at the
 ??? info "Registration & Licenses"
 
     As of March 2012, no specific registration is required for using the Progenetix and and arrayMap resources. While the data is licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0) we suggest that you contact [Michael Baudis](https://info.baudisgroup.org/group/Michael_Baudis/) if you plan any commercial use of the database or are interested to incorporate the data into your research projects.
+
+Additional information - e.g. about contacts or related publications - is available
+through the [group page](http://info.baudisgroup.org) of the Baudis group at the University of Zürich.
 
     
 ## Progenetix Source Code
