@@ -129,6 +129,20 @@ or in a tab-delimited text format (`&output=table`).
 
 --------------------------------------------------------------------------------
 
+## pgxRpi, an R Library to Access Progenetix Data
+
+`pgxRpi` is an API wrapper package to access data from Progenetix database. You can
+use it to
+
+* Retrieve biosample information for specific group of interests, chosen by a filter. Foir more details about _filters_ follow this [link](classifications-and-ontologies/#list-of-filters-recognized-by-different-query-endpoints).
+* Query and export copy number variant data with different output formats, which are compatible for different visualization tools.
+* Query and visualize CNV frequency data. Details about how to calculate the frequency map see [here](https://info.progenetix.org/doc/genomic_intervals.html).
+
+
+The vignettes are available on [Github](https://github.com/progenetix/pgxRpi).
+
+--------------------------------------------------------------------------------
+
 ## User-Provided CNV Data
 
 The Progenetix resource has a limited option to visualize CNV data provided by the users. Data has to be formatted in a standard tab-delimited columnar format, preferably using the [`.pgxseg` file format](/doc/fileformats.html). Additional information can be found on the upload service page:
@@ -141,3 +155,4 @@ The data is only temporary stored on the server with a randomiized access path. 
 
 **TBD**
 
+--------------------------------------------------------------------------------
