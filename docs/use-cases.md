@@ -131,11 +131,11 @@ or in a tab-delimited text format (`&output=table`).
 
 ## pgxRpi, an R Library to Access Progenetix Data
 
-`pgxRpi` is an API wrapper package to access data from Progenetix database. More details about this package are in the vignettes ([link](https://github.com/progenetix/pgxRpi)). There are several functions in this R package.
+`pgxRpi` is an API wrapper package to access data from Progenetix database. More details about this package are in the [vignettes](https://github.com/progenetix/pgxRpi). There are several functions in this R package.
 
 ### Retrieve biosample information 
 
-You can select biosamples from specific groups of interests, chosen by a filter. The description about _filters_ is in this [link](https://docs.progenetix.org/classifications-and-ontologies/).
+You can select biosamples from specific groups of interests, chosen by a filter. The description about _filters_ is [here](https://docs.progenetix.org/classifications-and-ontologies/).
 
 ```
 biosamples <- pgxLoader(type="biosample", filters = "NCIT:C3512",codematches = TRUE)
