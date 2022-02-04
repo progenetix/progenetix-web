@@ -173,7 +173,7 @@ pgxFreqplot(frequency, filters='pgx:icdom-85003')
 pgxFreqplot(frequency, filters='NCIT:C4038',chrom=c(1,2,3), layout = c(3,1))
 ```
 
-<img src="../img/img/pgxRpi-freq-plot-by-chrom.png" style="margin-left: auto; margin-right:auto" />
+<img src="../img/pgxRpi-freq-plot-by-chrom.png" style="margin-left: auto; margin-right:auto" />
 
 ```
 pgxFreqplot(frequency,filters= c("NCIT:C4038","pgx:icdom-85003"),circos = TRUE) 
