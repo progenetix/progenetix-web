@@ -123,6 +123,7 @@ icdom-81403 2 232000000 233000000 9.1 7.89  481
 
 --------------------------------------------------------------------------------
 
+
 ### Data Matrix Files
 
 #### CNV Frequency Matrix
@@ -182,15 +183,13 @@ pgxcs-kftwwbry  pgxbs-kftvkzwp  NCIT:C3908  0.5801  0 0.6415  1.0
 
 * [progenetix.org/beacon/biosamples/?output=pgxmatrix&filters=NCIT:C4443](https://progenetix.org/beacon/biosamples/?output=pgxmatrix&filters=NCIT:C4443)
 
---------------------------------------------------------------------------------
 
 ### Image Formats
 
 The standard format for (plot-)images generated on Progenetix is Scalable Vector Graphics ([SVG](https://en.wikipedia.org/wiki/Scalable_Vector_Graphics)). As the name implies, SVG is _scalable_, i.e. images can be scaled up without loosing quality or expanding in storage size. However, some of teh generated images use also embedded rastered components which will deteriorate during scaling - this is e.g. the case for array probe plots.
 
-```{admonition} [Wikipedia](https://en.wikipedia.org/wiki/Scalable_Vector_Graphics)
-  All major modern web browsers—including Mozilla Firefox, Internet Explorer, Google Chrome, Opera, Safari, and Microsoft Edge—have SVG rendering support.
-```
+!!! note [Wikipedia](https://en.wikipedia.org/wiki/Scalable_Vector_Graphics)
+    All major modern web browsers—including Mozilla Firefox, Internet Explorer, Google Chrome, Opera, Safari, and Microsoft Edge—have SVG rendering support.
 
 On most pages where plots are being displayed there is a download option for the images - (please alert us where those are missing). Browsers also have the option to export SVGs themselves e.g. as PDF.
 
@@ -201,6 +200,10 @@ Plots on Progenetix are generated using the [PGX package](http://github.com/prog
 * read and write e.g. [Progentix segment files](/doc/fileformats.html)
 * generate binned status maps
 * render plots of sample-specific and aggregate CNV data, such as histograms and CNV frequency heatmaps
+
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 
 ## Services
