@@ -12,16 +12,6 @@ edit_uri: edit/main/docs/
 
 ###############################################################################
 
-blog:
-  dir: blog
-  author: Baudisgroup
-  author_image: img/site-logo-topright.png
-  # words_read_per_minute: 300
-  list_length: 50
-  extended_preview: true
-
-###############################################################################
-
 nav:
   - Documentation Home: index.md
   - News: blog/index.md
@@ -78,5 +68,15 @@ plugins:
   - search
   - pdf-export:
       combined: true
+
+extra:
+  blog:
+    dir: blog
+    author: Baudisgroup
+    author_image: img/site-logo-topright.png
+    # words_read_per_minute: 300
+    list_length: 50
+    extended_preview: true
+
       
 # https://github.com/zhaoterryy/mkdocs-pdf-export-plugin
