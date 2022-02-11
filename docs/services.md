@@ -104,7 +104,7 @@ Examples can be derived from the Progenetix "Services" API:
     - 2 sets using the `filters` parameter
 
 ```
-#meta=>genome_binning=1Mb;interval_number=3102
+#meta=>genome_binning=1Mb;interval_number=3106
 #group=>group_id=icdom-81403;label=Adenocarcinoma, NOS;dataset_id=progenetix;sample_count=18559
 group_id  chro  start end gain_frequency  loss_frequency  index
 icdom-81403 1 0 1000000 8.8 9.12  0
@@ -132,12 +132,12 @@ The CNV frequency matrix contains interval CNV frequencies for genomic bins, sep
 
 * header similar to segment frequency files
 * first column with group identifier
-* standard genome binning on GRCh38 results in 2 x 3102 value columns
+* standard genome binning on GRCh38 results in 2 x 3106[^1] value columns
 * header line indicates genomic ranges for the bins
 * first all gain frequencies (in %), then all losses
 
 ```
-#meta=>genome_binning=1Mb;interval_number=3102
+#meta=>genome_binning=1Mb;interval_number=3106
 #group=>group_id=NCIT:C7376;label=Pleural Malignant Mesothelioma;dataset_id=progenetix;sample_count=240
 #group=>group_id=PMID:22824167;label=Beleut M et al. (2012)...;dataset_id=progenetix;sample_count=159
 group_id  1:0-1000000:gainF 1:1000000-2000000:gainF ...  1:0-1000000:lossF  1:1000000-2000000:lossF ...
@@ -156,7 +156,7 @@ API offers the delivery of a binned status matrix. This matrix can e.g. directly
 be used for clustering CNV patterns.
 
 * id columns, followed by
-    - all "gain status" columns (e.g. 3102, see above), followed by
+    - all "gain status" columns (e.g. 3106[^1], see above), followed by
     - all "loss status" columns
 * the status is indicated by a coverage value, i.e. the fraction of how much the
 binned interval overlaps with one or more CNVs of the given type.
@@ -167,8 +167,8 @@ The header will contain sample specific information.
 #meta=>id=progenetix
 #meta=>assemblyId=GRCh38
 #meta=>filters=NCIT:C4443
-#meta=>genome_binning=1Mb;interval_number=3102
-#meta=>no_info_columns=3;no_interval_columns=6204
+#meta=>genome_binning=1Mb;interval_number=3106
+#meta=>no_info_columns=3;no_interval_columns=6212
 #sample=>biosample_id=pgxbs-kftvktaz;analysis_ids=pgxcs-kftwu9ca;group_id=NCIT:C6650;group_label=Ampulla of Vater adenocarcinoma;NCIT::id=NCIT:C6650;NCIT::label=Ampulla of Vater adenocarcinoma
 #sample=>biosample_id=pgxbs-kftvkyeq;analysis_ids=pgxcs-kftwvv3p;group_id=NCIT:C3908;group_label=Ampulla of Vater Carcinoma;NCIT::id=NCIT:C3908;NCIT::label=Ampulla of Vater Carcinoma
 ...
@@ -385,5 +385,9 @@ inhabitants (\~22750 cities), through either:
 * [progenetix.org/services/geolocations?city=New](https://progenetix.org/services/geolocations?city=New)
 * [progenetix.org/services/geolocations?geolongitude=-0.13&geolatitude=51.51&geodistance=100000](https://progenetix.org/services/geolocations?geolongitude=-0.13&geolatitude=51.51&geodistance=100000)
 
+
+[^1]: Before 2022-02-11 there where 3102 (or 6204) intervals. After this, a changed algorithm lead to
+avoidance of centromere-spanning intervals, i.e. shortened last intervals assigned to the chromosomal
+p-arm and downstream shifts of interval positions.
 
 
