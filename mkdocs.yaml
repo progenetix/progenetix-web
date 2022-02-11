@@ -16,8 +16,7 @@ nav:
   - Documentation Home: index.md
   - News:
       - blog/index.md
-      - 2022:
-        - blog/2022/2022-02-11-change-interval-map.md
+      - blog/2022/2022-02-11-change-interval-map.md
   - Use Case Examples: use-cases.md
   - Services: services.md
   - Classifications, Ontologies & Standards: classifications-and-ontologies.md
@@ -76,8 +75,8 @@ extra:
   blog:
     dir: blog
     author: Baudisgroup
-    author_image: img/site-logo-topright.png
-    # words_read_per_minute: 300
+#    author_image: img/site-logo-topright.png
+    words_read_per_minute: 200
     list_length: 50
     extended_preview: true
 
