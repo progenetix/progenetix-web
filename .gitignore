@@ -10,3 +10,4 @@
 .nova/Artwork
 .nova/Configuration.json
 site/
+package-lock.json
