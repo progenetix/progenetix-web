@@ -14,3 +14,8 @@
 .mdx-author p > span {
   display: block;
 }
+
+.blog-post-aside {
+  margin-top: -5px;
+  font-size: 0.9em;
+}

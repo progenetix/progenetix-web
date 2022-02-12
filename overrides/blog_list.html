@@ -15,12 +15,12 @@
   {% endfor %}
 
   {% for page in (blog_posts|sort(attribute="meta.date", reverse=True))[:config.extra.blog.list_length] %}
-      <h2><a href="{{ page.url|url }}">{{ page.title }}</a></h2>
-      <p>
+
+      <h3 class="mdx-author"><a href="{{ page.url|url }}">{{ page.title }}</a></h3>
+      <h5>
         <b>{{ page.meta.description }}</b>
-      </p>
+      </h5>
       {% include "partials/blog_metadata.html" %}
-      <hr>
       <!-- Use a hidden p tag to provide a preview -->
       {% if config.extra.blog.extended_preview %}
         {{ page.content.split(config.extra.blog.excerpt_separator, 1)[0] }}
