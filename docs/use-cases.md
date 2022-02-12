@@ -1,6 +1,3 @@
----
----
-
 # Use Cases
 
 ## Explore Gene CNVs

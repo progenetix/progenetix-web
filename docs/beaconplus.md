@@ -1,6 +1,3 @@
----
----
-
 # Beacon - Discovery Services for Genomic Data
 
 ![Beacon Icon](http://info.progenetix.org/assets/img/logo_beacon.png){ align=right width=25px}The Beacon protocol defines an open standard for genomics data discovery,

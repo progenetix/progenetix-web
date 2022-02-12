@@ -1,6 +1,3 @@
----
----
-
 # Progenetix Cancer Genomics Resource Documentation
 
 The Progenetix database and cancer genomic information resource  contains genome profiles of more than 100’000 individual cancer genome screening experiments. The genomic profiling data was derived from genomic arrays and chromosomal Comparative Genomic Hybridization (CGH) experiments as well as Whole Genome or Whole Exome Sequencing (WGS, WES) studies. Genomic profiles are either processed from various raw data formats or are extracted from published experimental results.
