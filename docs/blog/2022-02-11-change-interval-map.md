@@ -16,6 +16,8 @@ arm of any chromosome is terminated at the centromere, leading to
 * a shift of most interval positions
 * a changed interval number from 3102 to **3106**
 
+<!--more-->
+
 Also, since a few qter intervals were very small we now use a padding factor (currently
 100000 bases) to determine if the last band would be smaller - in which case it is
 discarded and the previous interval extended to cover up to the telomere. This applies

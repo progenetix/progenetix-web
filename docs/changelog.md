@@ -1,3 +1,6 @@
+---
+---
+
 # Change Log
 
 This page lists changes for the [Beacon+](http://beacon.progenetix.org/ui/)

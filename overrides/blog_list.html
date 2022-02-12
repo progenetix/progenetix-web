@@ -3,10 +3,14 @@
 {% block content %}
   {{ page.content }}
   {% set blog_posts = [] %}
-  {% for page in nav.pages %}
-    {% if page.url.startswith(config.extra.blog.dir) and page.meta.date is defined %}
-      <!-- or "" suppresses "None" output-->
-      {{ blog_posts.append( page ) or "" }}
+
+    {% for this_file in pages %}
+
+      {% set this_page = this_file.page %}
+      {% if this_page.meta is defined %}
+        {% if this_page.url.startswith(config.extra.blog.dir) and this_page.meta.date is defined %}
+          {{ blog_posts.append( this_page ) or "" }}
+      {% endif %}
     {% endif %}
   {% endfor %}
 
@@ -19,7 +23,7 @@
       <hr>
       <!-- Use a hidden p tag to provide a preview -->
       {% if config.extra.blog.extended_preview %}
-        {{ page.content.split("<p hidden>#more</p>", 1)[0] }}
+        {{ page.content.split(config.extra.blog.excerpt_separator, 1)[0] }}
         <a href="{{ page.url|url }}#more">
           <span class="twemoji">
             {% include ".icons/octicons/arrow-right-24.svg" %}

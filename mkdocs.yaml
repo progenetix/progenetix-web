@@ -14,9 +14,7 @@ edit_uri: edit/main/docs/
 
 nav:
   - Documentation Home: index.md
-  - News:
-      - blog/index.md
-      - blog/2022/2022-02-11-change-interval-map.md
+  - News: blog/index.md
   - Use Case Examples: use-cases.md
   - Services: services.md
   - Classifications, Ontologies & Standards: classifications-and-ontologies.md
@@ -68,8 +66,8 @@ theme:
       
 plugins:
   - search
-  - pdf-export:
-      combined: true
+  # - pdf-export:
+  #     combined: true
 
 extra:
   blog:
@@ -79,6 +77,7 @@ extra:
     words_read_per_minute: 200
     list_length: 50
     extended_preview: true
+    excerpt_separator: <!--more-->
 
       
 # https://github.com/zhaoterryy/mkdocs-pdf-export-plugin
