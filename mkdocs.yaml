@@ -17,12 +17,12 @@ nav:
   - News: blog/index.md
   - Use Case Examples: use-cases.md
   - Services: services.md
-  - Classifications, Ontologies & Standards: classifications-and-ontologies.md
+  - 'Classifications, Ontologies & Standards': classifications-and-ontologies.md
   - Publication Collection: publication-collection.md
   - Changelog: changelog.md
   - 'Beacon+ &amp; bycon': beaconplus.md
-  - Progenetix Site: http://progenetix.org
-  - Baudisgroup: http://info.baudisgroup.org
+  - Progenetix Data: http://progenetix.org
+  - 'Baudisgroup @ UZH': http://info.baudisgroup.org
 
 ###############################################################################
 
