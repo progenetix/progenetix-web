@@ -16,21 +16,19 @@
 
   {% for page in (blog_posts|sort(attribute="meta.date", reverse=True))[:config.extra.blog.list_length] %}
 
-      <h3 class="mdx-author"><a href="{{ page.url|url }}">{{ page.title }}</a></h3>
-      <h5>
-        <b>{{ page.meta.description }}</b>
-      </h5>
+<h3 class="mdx-author"><a href="{{ page.url|url }}">{{ page.title }}</a></h3>
+      {% if page.meta.description is defined %}
+<h5>{{ page.meta.description }}</h5>
+      {% endif %}
       {% include "partials/blog_metadata.html" %}
       <!-- Use a hidden p tag to provide a preview -->
       {% if config.extra.blog.extended_preview %}
         {{ page.content.split(config.extra.blog.excerpt_separator, 1)[0] }}
-        <a href="{{ page.url|url }}#more">
-          <span class="twemoji">
-            {% include ".icons/octicons/arrow-right-24.svg" %}
-          </span>
-          Continue reading
-          <hr>
-        </a>
+<a href="{{ page.url|url }}#more"><span class="twemoji">
+    {% include ".icons/octicons/arrow-right-24.svg" %}
+</span>Continue reading</a>
+
+<hr>
       {% endif %}
   {% endfor %}
 {% endblock %}
