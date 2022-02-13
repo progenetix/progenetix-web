@@ -4,7 +4,6 @@ date: 2021-04-15
 template: blog_post.html
 ---
 
-## Signatures of Discriminative Copy Number Aberrations in 31 Cancer Subtypes
 #### Bo Gao and Michael Baudis (2021)
 ##### Accepted at _Frontiers in Genetics_, 2021-04-15
 
