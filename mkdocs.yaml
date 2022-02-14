@@ -19,7 +19,7 @@ nav:
   - 'Classifications, Ontologies & Standards': classifications-and-ontologies.md
   - Publication Collection: publication-collection.md
   - Changelog: changelog.md
-  - 'Beacon+ &amp; bycon': beaconplus.md
+  - 'Beacon~+~ &amp; bycon': beaconplus.md
   - Technical Notes: technical-notes.md
   - Progenetix Data: http://progenetix.org
   - 'Baudisgroup @ UZH': http://info.baudisgroup.org
@@ -38,6 +38,7 @@ markdown_extensions:
   - pymdownx.caret
   - pymdownx.mark
   - pymdownx.tilde
+  - pymdownx.keys
   - footnotes
   - attr_list
   - md_in_html
