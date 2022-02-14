@@ -4,7 +4,6 @@ site_author: Michael Baudis
 copyright: '&copy; Copyright 2022, Michael Baudis and progenetix.org'
 repo_name: 'progenetix-web'
 extra_css:
-  - css/blog.css
   - css/extra.css
 
 repo_url: https://github.com/progenetix/progenetix-web
@@ -14,7 +13,7 @@ edit_uri: edit/main/docs/
 
 nav:
   - Documentation Home: index.md
-  - 'Progenetix News': blog/index.md
+  - 'Progenetix News': news/index.md
   - Use Case Examples: use-cases.md
   - 'Services & API': services.md
   - 'Classifications, Ontologies & Standards': classifications-and-ontologies.md
@@ -71,10 +70,9 @@ plugins:
 
 extra:
   blog:
-    dir: blog
+    dir: news
     author: Baudisgroup
 #    author_image: img/site-logo-topright.png
-    words_read_per_minute: 200
     list_length: 50
     extended_preview: true
     excerpt_separator: <!--more-->

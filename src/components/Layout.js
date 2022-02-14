@@ -6,10 +6,10 @@ import { ErrorBoundary } from "react-error-boundary"
 import Head from "next/head"
 import Link from "next/link"
 import {
-  ABOUTLINK,
+  SERVICEINFOLINK,
   DOCLINK,
   USECASESLINK,
-  PROGENETIXINFO,
+  NEWSLINK,
   THISYEAR
 } from "../hooks/api"
 
@@ -180,10 +180,6 @@ function Side({ onClick }) {
           label="Upload & Plot"
         />
         <MenuInternalLinkItem
-          href={PROGENETIXINFO + "/doc/downloads.html"}
-          label="Download Data"
-        />
-        <MenuInternalLinkItem
           href="/beaconplus-instances/beaconplus"
           label={
             <>
@@ -191,26 +187,27 @@ function Side({ onClick }) {
             </>
           }
         />
-        <MenuInternalLinkItem href={PROGENETIXINFO} label="Progenetix Info" />
+        <MenuInternalLinkItem href={DOCLINK} label="Documentation" />
         <MenuInternalLinkItem
-          href={ABOUTLINK}
-          label="About Progenetix"
+          href={NEWSLINK}
+          label="News"
           isSub="isSub"
         />
         <MenuInternalLinkItem
           href={USECASESLINK}
-          label="Use Cases"
+          label="Downloads & Use Cases"
           isSub="isSub"
         />
+
         <MenuInternalLinkItem
-          href={DOCLINK}
-          label="Documentation"
+          href={SERVICEINFOLINK}
+          label="Sevices & API"
           isSub="isSub"
         />
+
         <MenuInternalLinkItem
           href="https://info.baudisgroup.org/"
           label="Baudisgroup @ UZH"
-          isSub="isSub"
         />
       </ul>
     </div>
