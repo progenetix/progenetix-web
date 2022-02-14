@@ -252,11 +252,6 @@ The `cytobands` and `chrobases` parameters can be used for running the script on
     - [progenetix.org/services/cytomapper?assemblyId=GRCh37&chroBases=17:800000-24326000](https://progenetix.org/services/cytomapper?assemblyId=GRCh37&chroBases=17:800000-24326000)
 * using `curl` to get the text format mapping of a cytoband range, using the API `services` shortcut:
     - `curl -k https://progenetix.org/services/cytomapper?cytoBands\=8q21q24.1&assemblyId\=hg18&text\=1`
-* command line version of the above
-    - `bin/cytomapper.py --chrobases 17:800000-24326000 -g NCBI36`
-    - `bin/cytomapper.py -b 17:800000-24326000`
-    - `bin/cytomapper.py --cytobands 9p11q21 -g GRCh38`
-    - `bin/cytomapper.py -c Xpterq24`
 
 #### Response
 
