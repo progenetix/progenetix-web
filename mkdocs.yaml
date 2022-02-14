@@ -14,13 +14,14 @@ edit_uri: edit/main/docs/
 
 nav:
   - Documentation Home: index.md
-  - News: blog/index.md
+  - 'Progenetix News': blog/index.md
   - Use Case Examples: use-cases.md
-  - Services: services.md
+  - 'Services & API': services.md
   - 'Classifications, Ontologies & Standards': classifications-and-ontologies.md
   - Publication Collection: publication-collection.md
   - Changelog: changelog.md
   - 'Beacon+ &amp; bycon': beaconplus.md
+  - Technical Notes: technical-notes.md
   - Progenetix Data: http://progenetix.org
   - 'Baudisgroup @ UZH': http://info.baudisgroup.org
 

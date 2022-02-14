@@ -1,4 +1,4 @@
-# Progenetix Services
+# Progenetix API & Services
 
 The _bycon_ environment provides a number of data services which make use of
 resources in the _Progenetix_ environment.
@@ -199,10 +199,10 @@ Plots on Progenetix are generated using the [PGX package](http://github.com/prog
 
 * read and write e.g. [Progentix segment files](/doc/fileformats.html)
 * generate binned status maps
-* render plots of sample-specific and aggregate CNV data, such as histograms and CNV frequency heatmaps
+* render plots of sample-specific and aggregate CNV data, such as histograms and CNV frequency heatmaps     
 
 
---------------------------------------------------------------------------------
+
 --------------------------------------------------------------------------------
 
 

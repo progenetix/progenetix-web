@@ -21,6 +21,26 @@ The response of the queries for genomic variants provide some basic statistics, 
 
 **TBD**
 
+---
+
+## Visualize CNV patterns
+
+The Progenetix resource contains pre-computed CNV frequency profiles for all diagnostic
+and technical (e.g. derived from a publication or technical platform) categories. These
+profiles provide a rapid overview of CNV events along the genome but also can serve for
+the exploration of possible genomic subsets hidden behind the overview profiles.
+
+
+#### CNV profile clustering
+
+
+
+### Example Procedure
+
+**TBD**
+
+---
+
 ## Download or Plot CNV Frequencies
 
 The Progenetix resource provides pre-computed CNV frequencies for all its

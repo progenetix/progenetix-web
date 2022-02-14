@@ -4,6 +4,20 @@ This page lists changes for the [Beacon+](http://beacon.progenetix.org/ui/)
 implementation of the ["Beacon" genomics API](http://beacon-project.io), as well
 as related updates for the [Progenetix](http://progenetix.org) front-end.
 
+
+## 2022-02-11: Genomic Interval Changes
+
+So far, CNV histograms and .pgxseg segment and matrix files used a 1Mb genome binning,
+based on the consecutive assignment of 1Mb intervals from 1pter -> Yqter. This resulted
+in **3102** intervals, with the last interval of each chromosome being smaller.
+
+On 2022-02-11 we have changed the procedure. Now, the last interval of the short
+arm of any chromosome is terminated at the centromere, leading to a changed interval number from 3102 to **3106** and shifted interval positions, accordingly.
+
+More information can be found on the related [news page](2022-02-11-change-interval-map.md)
+and in the [technical notes](technical-notes.md#genomic-intervals-and-binning).
+
+
 ## 2022-01-17: Term-specific queries
 
 <img src="http://info.progenetix.org/assets/img/2022-01-17-includeDescendantTerms-ui.png" style="float: right; width: 222px; margin-top: -15px;" alt="includeDescendantTerms selector" />So far (and still as standard), any
