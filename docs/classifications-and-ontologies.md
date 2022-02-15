@@ -35,12 +35,12 @@ additionally a set of structured non-CURIE identifiers.
 
 For terms with a `pgx` prefix, the [identifiers.org resolver](http://identifiers.org/pgx/) will 
 
-| Filter prefix / local part |  Code/Ontology          | Example  |
-| ------------- |:-------------:| ----- |
-| pgx:icdom-... | ICD-O 3[^7] Morphologies (Progenetix)| pgx:icdom-81703 |
-| pgx:icdot... | ICD-O 3[^7] Topographies(Progenetix)| pgx:icdot-C04.9 |
-| TCGA  | The Cancer Genome Atlas (Progenetix)[^8] | TCGA-000002fc-53a0-420e-b2aa-a40a358bba37 |
-| pgx:pgx:cohort-...  | Progenetix cohorts [^10]| pgx:pgx:cohort-arraymap |
+| Filter prefix / local part |  Code/Ontology                            | Example                                   |
+| -------------------------- | ----------------------------------------- | ----------------------------------------- |
+| pgx:icdom-...              | ICD-O 3[^7] Morphologies (Progenetix)     | pgx:icdom-81703                           |
+| pgx:icdot...               | ICD-O 3[^7] Topographies(Progenetix)      | pgx:icdot-C04.9                           |
+| TCGA                       | The Cancer Genome Atlas (Progenetix)[^8]  | TCGA-000002fc-53a0-420e-b2aa-a40a358bba37 |
+| pgx:pgxcohort-...          | Progenetix cohorts [^10]                  | pgx:pgxcohort-arraymap                    |
 
 
 -------------------------------------------------------------------------------
