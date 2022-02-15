@@ -15,16 +15,16 @@ parameters such as platform technologies. Overall, the Progenetix resource uses 
 
 ### Public Ontologies with CURIE-based syntax
 
-| CURIE prefix | Code/Ontology  | Examples |
-| ------------ |----------------| -------- |
-| NCIT         | NCIt Neoplasm[^1] | NCIT:C27676 |
-| HP           | HPO[^2]        | HP:0012209 |
-| PMID         | NCBI Pubmed ID | [PMID:18810378](https://progenetix.org/services/ids/PMID:18810378) |
+| CURIE prefix | Code/Ontology                    | Examples |
+| ------------ | -------------------------------- | -------- |
+| NCIT         | NCIt Neoplasm[^1]                | NCIT:C27676 |
+| HP           | HPO[^2]                          | HP:0012209 |
+| PMID         | NCBI Pubmed ID                   | [PMID:18810378](https://progenetix.org/services/ids/PMID:18810378) |
 | geo          | NCBI Gene Expression Omnibus[^3] | [geo:GPL6801](https://progenetix.org/services/ids/geo:GPL6801), [geo:GSE19399](https://progenetix.org/services/ids/geo:GSE19399), [geo:GSM491153](https://progenetix.org/services/ids/geo:GSM491153) |
-| arrayexpress | EBI ArrayExpress[^4] | arrayexpress:E-MEXP-1008 |
+| arrayexpress | EBI ArrayExpress[^4]             | arrayexpress:E-MEXP-1008 |
 | cellosaurus  | Cellosaurus - a knowledge resource on cell lines [^5]| cellosaurus:CVCL_1650 |
-| UBERON       | Uberon Anatomical Ontology[^6] |UBERON:0000992|
-| cbioportal   | cBioPortal[^9] | [cbioportal:msk_impact_2017](https://progenetix.org/services/ids/cbioportal:msk_impact_2017) |
+| UBERON       | Uberon Anatomical Ontology[^6]   |UBERON:0000992|
+| cbioportal   | cBioPortal[^9]                   | [cbioportal:msk_impact_2017](https://progenetix.org/services/ids/cbioportal:msk_impact_2017) |
 
 
 ### Private filters
@@ -35,7 +35,7 @@ additionally a set of structured non-CURIE identifiers.
 
 For terms with a `pgx` prefix, the [identifiers.org resolver](http://identifiers.org/pgx/) will 
 
-| Filter prefix / local part |  Code/Ontology                            | Example                                   |
+| Filter prefix / local part | Code/Ontology                             | Example                                   |
 | -------------------------- | ----------------------------------------- | ----------------------------------------- |
 | pgx:icdom-...              | ICD-O 3[^7] Morphologies (Progenetix)     | pgx:icdom-81703                           |
 | pgx:icdot...               | ICD-O 3[^7] Topographies(Progenetix)      | pgx:icdot-C04.9                           |
