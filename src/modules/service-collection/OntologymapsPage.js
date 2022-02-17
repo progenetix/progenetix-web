@@ -16,7 +16,7 @@ import {
 } from "./ontomapsComponents"
 
 const filterPrecision = "start"
-const prefixes = "NCIT,icdom,icdot"
+const prefixes = "NCIT,pgx:icdom,pgx:icdot"
 const docurl = `${PROGENETIXINFO}/doc/services/ontologymaps.html`
 const apiAllMapsURL = `${ontologymapsBaseUrl}filters=${prefixes}`
 

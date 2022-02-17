@@ -17,7 +17,7 @@ import {
 
 const filterPrecision = "start"
 const docurl = `${PROGENETIXINFO}/doc/services/ontologymaps.html`
-const prefixes = "UBERON,icdot"
+const prefixes = "UBERON,pgx:icdot"
 const apiAllMapsURL = `${ontologymapsBaseUrl}filters=${prefixes}`
 
 export default function UBERONmapsPage() {
