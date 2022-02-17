@@ -181,7 +181,7 @@ pgxcs-kftwwbry  pgxbs-kftvkzwp  NCIT:C3908  0.5801  0 0.6415  1.0
 
 ##### Examples
 
-* [progenetix.org/beacon/biosamples/?output=pgxmatrix&filters=NCIT:C4443](https://progenetix.org/beacon/biosamples/?output=pgxmatrix&filters=NCIT:C4443)
+* [progenetix.org/beacon/callsets/?output=pgxmatrix&filters=NCIT:C4443](https://progenetix.org/beacon/callsets/?output=pgxmatrix&filters=NCIT:C4443)
 
 
 ### Image Formats
