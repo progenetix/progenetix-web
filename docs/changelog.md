@@ -4,6 +4,26 @@ This page lists changes for the [Beacon+](http://beacon.progenetix.org/ui/)
 implementation of the ["Beacon" genomics API](http://beacon-project.io), as well
 as related updates for the [Progenetix](http://progenetix.org) front-end.
 
+## 2022-02-18: Excluding reference samples from histograms
+
+So far all samples matching a grouping code ("collation"; disease, publication etc.)
+have been included when generating the pre-computed CNV frequencies. However, the
+potential inclusion of normal/refernce samples sometimes lead to "dampened" CNV
+profiles. Now, samples labeled as "reference sample" ([`EFO:0009654`](http://www.ebi.ac.uk/efo/EFO_0009654)) - 
+a term we had introduced into the Experimental Factor Ontology - are excluded from
+pre-computed histograms. However, when e.g. calling up samples from publications
+using the search panel referencve samples will be included unless specifically excluded.
+
+<figure markdown>
+	![](https://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?datasetIds=progenetix&id=PMID:22824167)
+	<figcaption>Pre-computed CNV Frequencies for [PMID:22824167](http://progenetix.org/publications/details/?id=PMID:22824167), now ommitting
+	reference samples</figcaption>
+</figure>
+
+<figure markdown>
+	![](https://progenetix.org/beacon/biosamples?datasetIds=progenetix&filters=PMID:22824167)
+	<figcaption>All samples for [PMID:22824167](http://progenetix.org/publications/details/?id=PMID:22824167) were used when just retrieving by PMID</figcaption>
+</figure>
 
 ## 2022-02-11: Genomic Interval Changes
 
