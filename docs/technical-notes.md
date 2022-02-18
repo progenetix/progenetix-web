@@ -18,18 +18,18 @@ genomic variants are stored and being queried with their original parameters.
 ### Binning Procedure
 
 Binned CNV mappings are generated through utility functions in the
-[**bycon**](http://github.com/progenetix/bycon/) package.
+[**bycon**](http://github.com/progenetix/bycon/) package:
 
 * a standard set of 1Mb genomic intervals (0-based interbase coordinates)
-is generated, with breaks at chromosomal telomeres using the chromosome size
-coordinates from the current (GRCh38) cytoband mapping file
+is generated (with the last bands at pter and qter potentially differing in size)
+using coordinates from the current (GRCh38) cytoband mapping file
 * for each analysis/callset, all its CNV variants are collected and for each
-of the (currently 3102) intervals the sum of variant intersections is used to
+of the (currently 3106) intervals the sum of variant intersections is used to
 calculate the overlap fraction, for gains and losses separately (accommodating
 for the smaller sizes of q-telomeric bins)
 * additionally, the maximum and minimum CNV values (log2) are stored for each bin
 
-As a result, all samples have now 2x3102 values for gain and loss overlap fractions
+As a result, all samples have now 2x3106 values for gain and loss overlap fractions
 as well as - for samples with accessible original data - relative CNV intensities.
 
 ### Frequency Maps
