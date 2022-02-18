@@ -43,6 +43,8 @@ the exploration of possible genomic subsets hidden behind the overview profiles.
 
 ## Download or Plot CNV Frequencies
 
+### Collation plots
+
 The Progenetix resource provides pre-computed CNV frequencies for all its
 "collations" such as
 
@@ -57,6 +59,24 @@ This data can be accessed through the Progenetix API in data and image format.
 
 Interval frequencies are per default stored in a 1Mb binned format. More
 information about the API use can be found [in the IntervalFrequencies API documentation](services.md#pgxseg-segment-cnv-frequencies).
+
+### Query-based histograms
+
+The Progenetix Beacon responses - depending on their type - usually contain a _handover_
+URL to retrieve CNV histogram and/or sample plots of the samples matched by the query.
+The `bycon` API now offers a direct access to the histograms without the need to deparse
+JSON response first. The switch to the histogram is ionitiated by adding `&output=histoplot`
+to the Beacon query URL. Then, the API will first query the samples and then perfor
+a handover to the plotting API. Please be aware that this procedure is best suited for limited
+queries and may lead to a time-out.
+
+#### Examples:
+
+![Example query-based CNV histogram](https://progenetix.org/beacon/biosamples/?referenceName=9&variantType=EFO:0030067&start=21500000&start=21975098&end=21967753&end=22500000&filters=NCIT:C3058&filters=pgx:cohort-celllines&output=histoplot)
+
+* [progenetix.org/beacon/biosamples/?referenceName=9&variantType=EFO:0030067&start=21500000&start=21975098&end=21967753&end=22500000&filters=NCIT:C3058&filters=pgx:cohort-celllines](https://progenetix.org/beacon/biosamples/?referenceName=9&variantType=EFO:0030067&start=21500000&start=21975098&end=21967753&end=22500000&filters=NCIT:C3058&filters=pgx:cohort-celllines)
+    - a search for samples with focal deletion in the _CDKN2A_ locus, limited to glioblastoma cell lines 
+
 
 ### Example Procedure - Download CNV Frequencies
 
