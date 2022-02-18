@@ -64,6 +64,8 @@ theme:
     repo: fontawesome/brands/github-alt
     admonition:
       example: octicons/list-ordered-24
+  features:
+    - content.tabs.link
   custom_dir: overrides
       
 plugins:
