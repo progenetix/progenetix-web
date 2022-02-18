@@ -14,16 +14,12 @@ a term we had introduced into the Experimental Factor Ontology - are excluded fr
 pre-computed histograms. However, when e.g. calling up samples from publications
 using the search panel referencve samples will be included unless specifically excluded.
 
-<figure markdown>
-	![](https://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?datasetIds=progenetix&id=PMID:22824167)
-	<figcaption>Pre-computed CNV Frequencies for [PMID:22824167](http://progenetix.org/publications/details/?id=PMID:22824167), now ommitting
-	reference samples</figcaption>
-</figure>
+![](https://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?datasetIds=progenetix&id=PMID:22824167)
+<div style="font-size:  0.8em;>Pre-computed CNV Frequencies for <a href="http://progenetix.org/publications/details/?id=PMID:22824167">PMID:22824167</a>, now ommitting
+reference samples by default</div>
 
-<figure markdown>
-	![](https://progenetix.org/beacon/biosamples?datasetIds=progenetix&filters=PMID:22824167)
-	<figcaption>All samples for [PMID:22824167](http://progenetix.org/publications/details/?id=PMID:22824167) were used when just retrieving by PMID</figcaption>
-</figure>
+![](https://progenetix.org/beacon/biosamples?datasetIds=progenetix&filters=PMID:22824167)
+<div style="font-size:  0.8em;>All samples for <a href="http://progenetix.org/publications/details/?id=PMID:22824167">PMID:22824167</a> were used when just retrieving by PMID</div>
 
 ## 2022-02-11: Genomic Interval Changes
 
