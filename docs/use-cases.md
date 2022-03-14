@@ -182,7 +182,23 @@ biosamples <- pgxLoader(type="biosample", filters = "NCIT:C3512",codematches = T
 ```
 The returned biosample information includes biosample id, various codes for tumor types, tumor stage, survival data, associated literature or research project, etc.
 
-### Query and export copy number variant data 
+### Query CNV coverage data of biosamples from specific cohorts
+
+The coverage is calculated across 1MB genomic bins, chromosomal arms, whole chromosomes, or whole genome.
+
+The CNV coverage across genomic bins can be accessed by setting `output` = "pgxmatrix". More details about the data format "pgxmatrix" see the [documentation](https://docs.progenetix.org/services/#cnv-status-matrix).
+
+```
+cnv.status <- pgxLoader(type="variant", filters = "NCIT:C3058", output="pgxmatrix", codematches = T)
+```
+
+The CNV coverage across chromosomal arms, chromosomes, or whole genome can be accessed by setting `output` = "coverage".
+
+```
+cnv.status <- pgxLoader(type="variant", filters = "NCIT:C4443", output="coverage", codematches = F)
+```
+
+### Query and export segment copy number variant data 
 
 You can download the copy number variant data of individual biosamples. The biosample id can be queried by pgxRpi or by Progenetix [website](https://progenetix.org/biosamples/).
 The variant data exportation supports different output formats, more information see vignettes.

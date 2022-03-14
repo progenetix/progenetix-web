@@ -42,6 +42,7 @@ With exception of some utility scripts and external dependencies (e.g. [MongoDB]
 - website for Progenetix and its Beacon<span style="vertical-align: super; color: red; font-weight: 800;">+</span> implementations
 - provides Beacon interfaces for the `bycon` server, as well as other Progenetix sevices (e.g. the [publications](http://progenetix.org/publications/) repository)
 - implemented as [React](https://reactjs.org) / [Next.js](https://nextjs.org) project
+- contains this documentation tree here as `mkdocs` project, with files in the `docs` directory
 
 ### [`PGX`](https://github.com/progenetix/PGX)
 
