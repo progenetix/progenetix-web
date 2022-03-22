@@ -85,9 +85,9 @@ theme:
       
 plugins:
     - search
-    # - with-pdf:
-    #     author: Progenetix
-    #     output_path: pdf/progenetix-documentation.pdf
+    - with-pdf:
+        author: Progenetix
+        output_path: pdf/progenetix-documentation.pdf
     - macros
     - mermaid2
 
