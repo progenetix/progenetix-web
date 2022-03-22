@@ -3,8 +3,6 @@ site_description: 'Documentation for the Progenetix oncogenomics resource'
 site_author: Michael Baudis
 copyright: '&copy; Copyright 2022, Michael Baudis and progenetix.org'
 repo_name: 'progenetix-web'
-extra_css:
-  - css/extra.css
 
 repo_url: https://github.com/progenetix/progenetix-web
 edit_uri: edit/main/docs/
@@ -49,7 +47,7 @@ markdown_extensions:
       custom_fences:
         - name: mermaid
           class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format    
+          format: !!python/name:mermaid2.fence_mermaid   
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.tasklist:
@@ -87,10 +85,11 @@ theme:
       
 plugins:
     - search
-    - with-pdf:
-        author: Progenetix
-        output_path: pdf/progenetix-documentation.pdf
+    # - with-pdf:
+    #     author: Progenetix
+    #     output_path: pdf/progenetix-documentation.pdf
     - macros
+    - mermaid2
 
 extra:
   blog:
@@ -100,8 +99,9 @@ extra:
     list_length: 50
     extended_preview: true
     excerpt_separator: <!--more-->
-
+extra_css:
+  - css/extra.css
 extra_javascript:
+  # - https://unpkg.com/mermaid/dist/mermaid.min.js
   - https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js
-  - javascripts/tablesort.js
     

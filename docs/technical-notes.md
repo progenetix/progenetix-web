@@ -72,15 +72,16 @@ For visualization, while clustering is performed on the matrix with separate val
   - this results in the natural sequence of gain and loss segments, **not** in a separate display
 * for CNV frequencies, a mixed color is generated fro the combined gain and loss values for each 1Mb bin
   - technically, each of the red, green, blue channels of the RGB values for the gain and loss frequencies the channel values for DUP and DEL are added, normalized for the overall maximum CNV frequency in the data  
-```
-    for my $i (0..2) {
-        $dupRGB->[$i] = int($dupRGB->[$i] * $dupF / $maxF);
-        $delRGB->[$i] = int($delRGB->[$i] * $delF / $maxF);
-        if (($dupRGB->[$i] + $delRGB->[$i]) < 255) {
-            $RGB[$i] = $dupRGB->[$i] + $delRGB->[$i] }
-        else {
-            $RGB[$i] = 255 }
-    }
+
+```Perl
+for my $i (0..2) {
+    $dupRGB->[$i] = int($dupRGB->[$i] * $dupF / $maxF);
+    $delRGB->[$i] = int($delRGB->[$i] * $delF / $maxF);
+    if (($dupRGB->[$i] + $delRGB->[$i]) < 255) {
+        $RGB[$i] = $dupRGB->[$i] + $delRGB->[$i] }
+    else {
+        $RGB[$i] = 255 }
+}
 ```
 
 Clustering can be omitted by setting `Cluster Tree Width` to `0`.
@@ -90,3 +91,51 @@ More information is made availanble in the [Use Cases](use-cases.md) category.
 [^1]: Before 2022-02-11 there where 3102 (or 6204) intervals. After this, a changed algorithm lead to
 avoidance of centromere-spanning intervals, i.e. shortened last intervals assigned to the chromosomal
 p-arm and downstream shifts of interval positions.
+
+---
+
+## Data Model & Database
+
+The Progenetix data model is based on a hierarchy in which `variant`s are from `callset`s (or "analyses")
+which are based on material from `biosample`s which were derived from `individual`s.
+
+These entities are represented in a MongoDB database with eponymous collections:
+
+* variants
+* callsets
+* biosamples
+* individuals
+
+```mermaid
+classDiagram
+
+    Individual <-- Biosample : 1..n
+    Biosample <-- Callset : 1..n
+    Individual <-- Callset : 1..n
+    Biosample <-- Variant : 1..n
+    Callset <-- Variant : 1..n
+
+    class Biosample{
+        individual_id
+        histological_diagnosis
+        ...
+    }
+    class Individual{
+        sex
+        diseases
+        ...
+    }
+    class Callset{
+        individual_id
+        biosample_id
+        cnv_statusmaps
+        cnv_statistics
+        ...
+        }
+    class Variant{
+        biosample_id
+        callset_id
+        variant_type
+        ...
+    }
+```
