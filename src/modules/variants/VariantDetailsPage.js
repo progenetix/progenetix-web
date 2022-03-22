@@ -95,7 +95,7 @@ function Variant({ variant, datasetIds }) {
         <a
           rel="noreferrer"
           target="_blank"
-          href={getDataItemUrl(variant.id, itemColl, datasetIds)}
+          href={getDataItemUrl(variant.caseLevelData[0].id, itemColl, datasetIds)}
         >
           {"{JSON↗}"}
         </a>
