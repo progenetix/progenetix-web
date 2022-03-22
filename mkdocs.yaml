@@ -24,6 +24,7 @@ nav:
   - Technical Notes: technical-notes.md
   - Progenetix Data: http://progenetix.org
   - 'Baudisgroup @ UZH': http://info.baudisgroup.org
+  - Documentation PDF: pdf/progenetix-documentation.pdf
 
 ###############################################################################
 
@@ -32,24 +33,34 @@ markdown_extensions:
       toc_depth: 2-3
       permalink: true
   - admonition
-  - pymdownx.details
-  - pymdownx.superfences
-  - pymdownx.tabbed:
-      alternate_style: true 
+  - attr_list
+  - footnotes
+  - md_in_html
+  - pymdownx.critic
   - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      hide_protocol: true
   - pymdownx.mark
   - pymdownx.tilde
-  - pymdownx.keys
-  - footnotes
-  - attr_list
-  - md_in_html
-  - def_list
+  - pymdownx.saneheaders
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format    
+  - pymdownx.tabbed:
+      alternate_style: true
   - pymdownx.tasklist:
       custom_checkbox: true
+  - tables
   - mdx_gh_links:
       user: progenetix
-      repo: progenetix.github.io
-  - tables
+      repo: progenetix-web
+  - pymdownx.emoji:
+        emoji_index: !!python/name:materialx.emoji.twemoji
+        emoji_generator: !!python/name:materialx.emoji.to_svg
 
 ###############################################################################
 
@@ -66,12 +77,20 @@ theme:
       example: octicons/list-ordered-24
   features:
     - content.tabs.link
+    - search.highlight
+    - search.share
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - toc.integrate
   custom_dir: overrides
       
 plugins:
-  - search
-  # - pdf-export:
-  #     combined: true
+    - search
+    - with-pdf:
+        author: Progenetix
+        output_path: pdf/progenetix-documentation.pdf
+    - macros
 
 extra:
   blog:
@@ -86,4 +105,3 @@ extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js
   - javascripts/tablesort.js
     
-# https://github.com/zhaoterryy/mkdocs-pdf-export-plugin
