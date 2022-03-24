@@ -88,3 +88,8 @@ li.toctree-l1 {
   margin-top: -5px;
   font-size: 0.9em;
 }
+
+.mermaid {
+  display: flex;
+  justify-content: center;
+}
