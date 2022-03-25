@@ -4,6 +4,16 @@ This page lists changes for the [Beacon+](http://beacon.progenetix.org/ui/)
 implementation of the ["Beacon" genomics API](http://beacon-project.io), as well
 as related updates for the [Progenetix](http://progenetix.org) front-end.
 
+## 2022-03-24 Limiting Document Numbers through Pagination
+
+A problem with the Prgenetix API comes from potential time-outs when returning large am,ounts
+of records or from the inability of client browsers to handle such data (especially in JSON).
+
+Now, API responses are capped through the `limit` parameter to default "sensible" values
+which, however, can be adjusted for systematic data access & retrieval.
+
+Please see the Beacon dopcumentation for a detailed description.
+
 ## 2022-02-18: Excluding reference samples from histograms
 
 So far all samples matching a grouping code ("collation"; disease, publication etc.)
