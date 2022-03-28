@@ -99,6 +99,11 @@ extra:
     list_length: 50
     extended_preview: true
     excerpt_separator: <!--more-->
+  social:
+    - icon: fontawesome/brands/twitter 
+      link: https://twitter.com/progenetix
+    - icon: fontawesome/brands/github 
+      link: https://github.com/progenetix
 extra_css:
   - css/extra.css
 extra_javascript:
