@@ -264,7 +264,7 @@ content being contained in the `response.results` field.
 
 * genomic mappings of gene coordinats
 * initially limited to _GRCh38_ and overall CDS extension
-* responds to (start-anchored) text input of HUGO gene symbols using the `geneSymbol`
+* responds to (start-anchored) text input of HUGO gene symbols using the `geneId`
 parameter or path value
 * returns a list of matching gene objects (see below under __Response Formats__)
 * the `filterPrecision=exact` query parameter restricts the response to a single
@@ -272,7 +272,7 @@ exact gene symbol match
 
 #### Examples
 
-* [progenetix.org/services/genespans/?geneSymbol=TP53&filterPrecision=exact](https://progenetix.org/services/genespans/?geneSymbol=TP53&filterPrecision=exact)
+* [progenetix.org/services/genespans/?geneId=TP53&filterPrecision=exact](https://progenetix.org/services/genespans/?geneId=TP53&filterPrecision=exact)
 * [progenetix.org/services/genespans/CDKN2A](https://progenetix.org/services/genespans/CDKN2A)
 
 --------------------------------------------------------------------------------

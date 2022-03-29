@@ -40,11 +40,11 @@ celllines:
           isHidden: true
         referenceName:
           isHidden: true
-        geneSymbol:
+        geneId:
           isHidden: true
-        varMinLength:
+        variantMinLength:
           isHidden: true
-        varMaxLength:
+        variantMaxLength:
           isHidden: true
         clinicalClasses:
           isHidden: true

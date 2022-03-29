@@ -13,7 +13,7 @@ progenetix:
     assemblyId:
       defaultValue: "GRCh38"
       isHidden: true
-    geneSymbol:
+    geneId:
       placeholder: ""
     referenceName:
       placeholder: "9"

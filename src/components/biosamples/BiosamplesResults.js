@@ -46,10 +46,10 @@ function QuerySummary({ query }) {
           {query.assemblyId}
         </li>
       )}
-      {query.geneSymbol && (
+      {query.geneId && (
         <li>
           <small>Gene: </small>
-          {query.geneSymbol.value}
+          {query.geneId.value}
         </li>
       )}
       {query.referenceName && (
@@ -76,16 +76,16 @@ function QuerySummary({ query }) {
           {query.variantType}
         </li>
       )}
-      {query.varMinLength && (
+      {query.variantMinLength && (
         <li>
           <small>Min. Length: </small>
-          {query.varMinLength}
+          {query.variantMinLength}
         </li>
       )}
-      {query.varMaxLength && (
+      {query.variantMaxLength && (
         <li>
           <small>Max. Length: </small>
-          {query.varMaxLength}
+          {query.variantMaxLength}
         </li>
       )}
       {query.referenceBases && (

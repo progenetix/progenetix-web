@@ -14,7 +14,7 @@ genesymbols:
     assemblyId:
       defaultValue: "GRCh38"
       isHidden: true
-    geneSymbol:
+    geneId:
       placeholder: "CDKN2A"
     referenceName:
       isHidden: true
@@ -44,13 +44,13 @@ genesymbols:
       description: >
         This example shows a gene symbol based query, which translates the gene's coding region coordinates internally into a range query. Please type & select a gene symbol to start. Queries here are scoped to the Glioblastoma diagnosis.
       parameters:
-        geneSymbol:
+        geneId:
           defaultValue: "TP53"
         variantType:
           defaultValue: "EFO:0030067"
-        varMinLength:
+        variantMinLength:
           defaultValue: 1000
-        varMaxLength:
+        variantMaxLength:
           defaultValue: 3000000
         bioontology:
           defaultValue: ["NCIT:C3058"]

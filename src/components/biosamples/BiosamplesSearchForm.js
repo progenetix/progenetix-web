@@ -206,7 +206,7 @@ parameters = merge({}, parameters, {
   //   setError
   // })
 
-  // {parameters.geneSymbol.isHidden && (
+  // {parameters.geneId.isHidden && (
   // ) }
 
   const isFilterlogicWarningVisible = useIsFilterlogicWarningVisible(watch)
@@ -253,8 +253,8 @@ parameters = merge({}, parameters, {
           )}
           <SelectField {...parameters.datasetIds} {...selectProps} />
           <SelectField {...parameters.assemblyId} {...selectProps} />
-          {!parameters.geneSymbol.isHidden && (
-            <GeneSymbolSelector {...parameters.geneSymbol} {...selectProps} />
+          {!parameters.geneId.isHidden && (
+            <GeneSymbolSelector {...parameters.geneId} {...selectProps} />
           )}
           <div className="columns my-0">
             <SelectField
@@ -298,22 +298,22 @@ parameters = merge({}, parameters, {
           <div className="columns my-0">
             <InputField
               className={cn(
-                !parameters.varMinLength.isHidden && "column",
+                !parameters.variantMinLength.isHidden && "column",
                 "py-0 mb-3"
               )}
               {...fieldProps}
-              {...parameters.varMinLength}
+              {...parameters.variantMinLength}
               rules={{
                 validate: checkIntegerRange
               }}
             />
             <InputField
               className={cn(
-                !parameters.varMaxLength.isHidden && "column",
+                !parameters.variantMaxLength.isHidden && "column",
                 "py-0 mb-3"
               )}
               {...fieldProps}
-              {...parameters.varMaxLength}
+              {...parameters.variantMaxLength}
               rules={{
                 validate: checkIntegerRange
               }}
@@ -530,7 +530,7 @@ function validateForm(formValues) {
     alternateBases,
     start,
     end,
-    geneSymbol,
+    geneId,
     bioontology,
     clinicalClasses,
     referenceid,
@@ -542,14 +542,14 @@ function validateForm(formValues) {
   const setMissing = (name) =>
     errors.push([name, { type: "manual", message: "Parameter is missing" }])
 
-  if (!referenceName && !referenceBases && !alternateBases && !start && !end && !variantType && !geneSymbol && !bioontology && !referenceid && !freeFilters && !clinicalClasses && !cohorts) {
+  if (!referenceName && !referenceBases && !alternateBases && !start && !end && !variantType && !geneId && !bioontology && !referenceid && !freeFilters && !clinicalClasses && !cohorts) {
     !referenceName && setMissing("referenceName")
     !referenceBases && setMissing("referenceBases")
     !alternateBases && setMissing("alternateBases")
     !start && setMissing("start")
     !end && setMissing("end")
     !variantType && setMissing("variantType")
-    !geneSymbol && setMissing("geneSymbol")
+    !geneId && setMissing("geneId")
     !bioontology && setMissing("bioontology")
     !clinicalClasses && setMissing("clinicalClasses")
     !referenceid && setMissing("referenceid")

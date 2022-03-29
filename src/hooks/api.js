@@ -103,8 +103,8 @@ export function mkGeoParams(geoCity, geodistanceKm) {
 
 export function mkGeneParams(gene) {
   if (!gene) return null
-  const geneSymbol = gene.data.symbol ?? []
-  return { geneSymbol }
+  const geneId = gene.data.symbol ?? []
+  return { geneId }
 }
 
 export function makeFilters({
@@ -144,7 +144,7 @@ export function buildQueryParameters(queryData) {
     materialtype,
     freeFilters,
     clinicalClasses,
-    geneSymbol,
+    geneId,
     geoCity,
     geodistanceKm,
     ...otherParams
@@ -177,7 +177,7 @@ export function buildQueryParameters(queryData) {
     sex,
     materialtype
   })
-  const geneParams = mkGeneParams(geneSymbol) ?? {}
+  const geneParams = mkGeneParams(geneId) ?? {}
   const geoParams = mkGeoParams(geoCity, geodistanceKm) ?? {}
   return new URLSearchParams(
     flattenParams([
@@ -343,8 +343,8 @@ export function useGeoCity({ city }) {
   return useProgenetixApi(url)
 }
 
-export function useGeneSymbol({ geneSymbol }) {
-  const url = geneSymbol ? `${basePath}services/genespans/?geneSymbol=${geneSymbol}&filterPrecision=start&method=genespan` :null
+export function useGeneSymbol({ geneId }) {
+  const url = geneId ? `${basePath}services/genespans/?geneId=${geneId}&filterPrecision=start&method=genespan` :null
   return useProgenetixApi(url)
 }
 

@@ -12,7 +12,7 @@ export function GeneSymbolSelector({
   className
 }) {
   const { inputValue, onInputChange } = useAsyncSelect()
-  const { data, isLoading } = useGeneSymbol({ geneSymbol: inputValue })
+  const { data, isLoading } = useGeneSymbol({ geneId: inputValue })
   let options = []
   if (data) {
     options = data.response.results.map((g) => ({

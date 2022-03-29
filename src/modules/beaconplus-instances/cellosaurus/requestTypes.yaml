@@ -17,9 +17,9 @@ cellosaurus:
       isHidden: true
     variantType:
       isHidden: true
-    varMinLength:
+    variantMinLength:
       isHidden: true
-    varMaxLength:
+    variantMaxLength:
       isHidden: true
     materialtype:
       isHidden: true

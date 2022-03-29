@@ -19,11 +19,11 @@ OneKgenomesDRAGEN:
       placeholder: 7000000
     end:
       placeholder: 8000000
-    geneSymbol:
+    geneId:
       isHidden: true
-    varMinLength:
+    variantMinLength:
       isHidden: true
-    varMaxLength:
+    variantMaxLength:
       isHidden: true
     variantType:
       defaultValue: ""

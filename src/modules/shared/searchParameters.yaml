@@ -12,7 +12,7 @@ assemblyId:
   options:
     - value: GRCh38
       label: GRCh38 / hg38
-geneSymbol:
+geneId:
   label: Gene Symbol
   infoText: The gene symbol (HUGO).
   defaultValue: ""
@@ -106,11 +106,11 @@ end:
     single value, or in case of fuzzy requests for e.g. copy number variants
     the end provided as a range for the possible occurrence of
     the CNV end (e.g. "21967753-22500000").
-varMinLength:
+variantMinLength:
   label: Minimum Variant Length
   type: number
   infoText: The minimal length, in bases, of a genomic variant. This parameter can be applied to e.g. CNV queries.
-varMaxLength:
+variantMaxLength:
   label: Maximal Variant Length
   type: number
   infoText: The maximal length, in bases, of a genomic variant. This parameter can be applied to e.g. CNV queries.
