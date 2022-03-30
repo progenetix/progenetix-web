@@ -10,7 +10,7 @@ import {
 import cn from "classnames"
 import BiosamplesDataTable from "./BiosamplesDataTable"
 import VariantsDataTable from "./VariantsDataTable"
-import VariantsInterpretationsDataTable from "./VariantsInterpretationsDataTable"
+// import VariantsInterpretationsDataTable from "./VariantsInterpretationsDataTable"
 import { useContainerDimensions } from "../../hooks/containerDimensions"
 import Histogram from "../Histogram"
 import { Infodot } from "../Infodot"
@@ -58,10 +58,6 @@ export function DatasetResultBox({ data: responseSet, query }) {
   const variantsHandover = handoverById(HANDOVER_IDS.variants)
   const variantsReply = useProgenetixApi(
     variantsHandover && replaceWithProxy(variantsHandover.url)
-  )
-  const variantsInterpretationsHandover = handoverById(HANDOVER_IDS.variantsinterpretations)
-  const variantsInterpretationsReply = useProgenetixApi(
-    variantsInterpretationsHandover && replaceWithProxy(variantsInterpretationsHandover.url)
   )
 
   let histogramUrl
@@ -128,10 +124,6 @@ export function DatasetResultBox({ data: responseSet, query }) {
   } else if (selectedTab === TABS.variants) {
     tabComponent = (
       <VariantsDataTable apiReply={variantsReply} datasetId={id} />
-    )
-  } else if (selectedTab === TABS.variantsinterpretations) {
-    tabComponent = (
-      <VariantsInterpretationsDataTable apiReply={variantsInterpretationsReply} datasetId={id} />
     )
   }
 

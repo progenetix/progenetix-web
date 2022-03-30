@@ -49,27 +49,6 @@ function urlQueryToFormParam(urlQuery, key, parametersConfig) {
   } else return value
 }
 
-// function useAutoExecuteSearch({
-//   autoExecuteSearch,
-//   initialValues,
-//   setSearchQuery,
-//   setError
-// }) {
-//   useEffect(() => {
-//     if (autoExecuteSearch) {
-//       // At this stage individual parameters are already validated.
-//       const values = initialValues
-//       const errors = validateForm(values)
-//       if (errors.length > 0) {
-//         errors.forEach(([name, error]) => setError(name, error))
-//       } else {
-//         setSearchQuery(values)
-//       }
-//     }
-//     // eslint-disable-next-line react-hooks/exhaustive-deps
-//   }, [autoExecuteSearch])
-// }
-
 function useIsFilterlogicWarningVisible(watch) {
   const filterLogic = watch("filterLogic")
   const bioontology = watch("bioontology")
@@ -199,15 +178,6 @@ parameters = merge({}, parameters, {
     ...fieldProps,
     control
   }
-  // useAutoExecuteSearch({
-  //   autoExecuteSearch,
-  //   initialValues,
-  //   setSearchQuery,
-  //   setError
-  // })
-
-  // {parameters.geneId.isHidden && (
-  // ) }
 
   const isFilterlogicWarningVisible = useIsFilterlogicWarningVisible(watch)
   const geoCity = watch("geoCity")
@@ -458,8 +428,6 @@ parameters = merge({}, parameters, {
     </>
   )
 }
-
-// <InputField {...parameters.filterPrecision} {...fieldProps} />}
 
 function ExamplesButtons({ requestTypeConfig, onExampleClicked }) {
   return (
