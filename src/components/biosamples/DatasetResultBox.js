@@ -40,7 +40,9 @@ export function DatasetResultBox({ data: responseSet, query }) {
   const {
     id,
     resultsHandovers,
-    info
+    info,
+    resultsCount,
+    paginatedResultsCount
   } = responseSet
 
   const handoverById = (givenId) =>
@@ -63,7 +65,7 @@ export function DatasetResultBox({ data: responseSet, query }) {
   let histogramUrl
   let visualizationLink
   if (handoverById(HANDOVER_IDS.cnvhistogram)) {
-    if (info.counts.sampleCount <= MAX_HISTO_SAMPLES) {
+    if (paginatedResultsCount <= MAX_HISTO_SAMPLES) {
       histogramUrl = handoverById(HANDOVER_IDS.cnvhistogram).url
       let visualizationAccessId = new URLSearchParams(
         new URL(histogramUrl).search
@@ -133,8 +135,12 @@ export function DatasetResultBox({ data: responseSet, query }) {
       <div className="columns">
         <div className="column is-one-fourth">
           <div>
-            <b>Samples: </b>
-            {info.counts.sampleCount}
+            <b>Matched Samples: </b>
+            {resultsCount}
+          </div>
+          <div>
+            <b>Retrieved Samples: </b>
+            {paginatedResultsCount}
           </div>
           {info.counts.variantCount > 0 ? (
             <div>

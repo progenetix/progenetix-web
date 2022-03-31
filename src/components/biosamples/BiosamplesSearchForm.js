@@ -392,6 +392,30 @@ parameters = merge({}, parameters, {
               }
             />
           </div>
+          <div className="columns my-0">
+            <InputField
+              className={cn(
+                !parameters.skip.isHidden && "column",
+                "py-0 mb-3"
+              )}
+              {...fieldProps}
+              {...parameters.skip}
+              rules={{
+                validate: checkIntegerRange
+              }}
+            />
+            <InputField
+              className={cn(
+                !parameters.limit.isHidden && "column",
+                "py-0 mb-3"
+              )}
+              {...fieldProps}
+              {...parameters.limit}
+              rules={{
+                validate: checkIntegerRange
+              }}
+            />
+          </div>
           <InputField {...parameters.accessid} {...fieldProps} />
           {!parameters.geoCity.isHidden && (
             <div className="columns my-0">

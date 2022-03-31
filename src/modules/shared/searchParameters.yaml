@@ -246,3 +246,17 @@ geodistanceKm:
   label: Range (km)
   type: number
   defaultValue: 100
+skip:
+  label: Skip Pages
+  infoText: >
+    The number of result pages to skip when retrieving data.
+  rules:
+    required: false
+  defaultValue: 0
+limit:
+  label: Response Limit
+  infoText: >
+    The maximum number of data items to retrieve.
+  rules:
+    required: false
+  defaultValue: 1000
