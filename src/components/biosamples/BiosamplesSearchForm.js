@@ -395,22 +395,22 @@ parameters = merge({}, parameters, {
           <div className="columns my-0">
             <InputField
               className={cn(
-                !parameters.skip.isHidden && "column",
+                !parameters.limit.isHidden && "column",
                 "py-0 mb-3"
               )}
               {...fieldProps}
-              {...parameters.skip}
+              {...parameters.limit}
               rules={{
                 validate: checkIntegerRange
               }}
             />
             <InputField
               className={cn(
-                !parameters.limit.isHidden && "column",
+                !parameters.skip.isHidden && "column",
                 "py-0 mb-3"
               )}
               {...fieldProps}
-              {...parameters.limit}
+              {...parameters.skip}
               rules={{
                 validate: checkIntegerRange
               }}

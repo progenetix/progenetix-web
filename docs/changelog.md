@@ -4,13 +4,92 @@ This page lists changes for the [Beacon+](http://beacon.progenetix.org/ui/)
 implementation of the ["Beacon" genomics API](http://beacon-project.io), as well
 as related updates for the [Progenetix](http://progenetix.org) front-end.
 
+## 2022-03-30 Variant Response in GA4GH Variant Representation Standard (VRS) Format
+
+=== "VRSified CNV"
+
+	```
+    {
+        "caseLevelData": [
+            {
+                "analysisId": "pgxcs-kftwfurn",
+                "biosampleId": "pgxbs-kftvj7rz",
+                "id": "pgxvar-5c86664409d374f2dc4eeb93"
+            }
+        ],
+        "variation": {
+            "location": {
+                "interval": {
+                    "end": {
+                        "type": "Number",
+                        "value": 62947165
+                    },
+                    "start": {
+                        "type": "Number",
+                        "value": 23029501
+                    }
+                },
+                "sequenceId": "refseq:NC_000018.10",
+                "type": "SequenceLocation"
+            },
+            "relativeCopyClass": "partial loss",
+            "updated": "2022-03-29T15:06:46.526020",
+            "variantInternalId": "18:23029501-62947165:DEL"
+        }
+    }
+
+=== "VRSified SNV"
+
+    {
+        "caseLevelData": [
+            {
+                "analysisId": "pgxcs-kl8hg4ky",
+                "biosampleId": "pgxbs-kl8hg4ku",
+                "id": "pgxvar-5be1840772798347f0eda0d8"
+            }
+        ],
+        "variation": {
+            "location": {
+                "interval": {
+                    "end": {
+                        "type": "Number",
+                        "value": 7577121
+                    },
+                    "start": {
+                        "type": "Number",
+                        "value": 7577120
+                    },
+                    "type": "SequenceInterval"
+                },
+                "sequenceId": "refseq:NC_000017.11",
+                "type": "SequenceLocation"
+            },
+            "state": {
+                "sequence": "G",
+                "type": "LiteralSequenceExpression"
+            },
+            "updated": "2022-03-29T15:35:35.700954",
+            "variantInternalId": "17:7577121:C>G"
+        }
+    }
+	```
+
+=== "Legacy CNV"
+
+
+=== "Legacy SNV"
+
+
 ## 2022-03-24 Limiting Document Numbers through Pagination
 
 A problem with the Prgenetix API comes from potential time-outs when returning large am,ounts
 of records or from the inability of client browsers to handle such data (especially in JSON).
 
 Now, API responses are capped through the `limit` parameter to default "sensible" values
-which, however, can be adjusted for systematic data access & retrieval.
+which, however, can be adjusted for systematic data access & retrieval. This functionality
+is also implemented in the sample search form, allowing e.g. the limited retrieval of
+a subset of samples from large or general cancer types, or the "paging" through consecutive
+sample groups for partitioned data retrieval.
 
 Please see the Beacon dopcumentation for a detailed description.
 
