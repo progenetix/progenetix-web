@@ -12,8 +12,9 @@ edit_uri: edit/main/docs/
 nav:
   - Documentation Home: index.md
   - 'Progenetix News': news/index.md
-  - Use Case Examples: use-cases.md
+  - 'Pages and Forms': ui.md
   - 'Services & API': services.md
+  - Use Case Examples: use-cases.md
   - 'Classifications, Ontologies & Standards': classifications-and-ontologies.md
   - Publication Collection: publication-collection.md
   - Changelog: changelog.md
