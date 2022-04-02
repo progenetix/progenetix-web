@@ -25,7 +25,7 @@ server corresponding to the **chr 1 only** arrays from GEO
 
 * This example really looks like a combination of whole-chromosome CNVs & array for chr1:
 
-![](https://progenetix.org/cgi/callsetPlots.cgi?callsets.id=pgxcs-kftw94yk$&datasetIds=progenetix)
+![](https://progenetix.org/cgi/PGX/cgi/singlePlot.cgi?analysisIds=pgxcs-kftw94yk&datasetIds=progenetix)
 
 
 --------------------------------------------------------------------------------

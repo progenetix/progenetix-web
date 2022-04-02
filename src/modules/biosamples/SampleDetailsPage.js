@@ -189,7 +189,7 @@ function Biosample({ biosample, datasetIds }) {
 function CnvHistogramPreview({ csid, datasetIds }) {
   const componentRef = useRef()
   const { width } = useContainerDimensions(componentRef)
-  const url = `${basePath}cgi/callsetPlots.cgi?callsets.id=${csid}$&datasetIds=${datasetIds}&-size_plotimage_w_px=${width}`
+  const url = `${basePath}cgi/PGX/cgi/singlePlot.cgi?analysisIds=${csid}&datasetIds=${datasetIds}&-size_plotimage_w_px=${width}`
   // width > 0 to make sure the component is mounted and avoid double fetch
   const dataEffect = useExtendedSWR(width > 0 && url, svgFetcher)
   return (

@@ -70,7 +70,13 @@ export function DatasetResultBox({ data: responseSet, query }) {
       let visualizationAccessId = new URLSearchParams(
         new URL(histogramUrl).search
       ).get("accessid")
-      visualizationLink = getVisualizationLink(visualizationAccessId, info.counts.sampleCount)
+      let visualizationSkip = new URLSearchParams(
+        new URL(histogramUrl).search
+      ).get("skip")
+      let visualizationLimit = new URLSearchParams(
+        new URL(histogramUrl).search
+      ).get("limit")
+      visualizationLink = getVisualizationLink(visualizationAccessId, visualizationSkip, visualizationLimit, paginatedResultsCount)
     }
   }
 
