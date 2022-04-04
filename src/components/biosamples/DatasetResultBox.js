@@ -58,7 +58,7 @@ export function DatasetResultBox({ data: responseSet, query }) {
     biosamplesHandover && replaceWithProxy(biosamplesHandover.url)
   )
   const paginatedHandovers = biosamplesHandover.pages
-
+  const paginatedBiosTableHandovers = handoverById(HANDOVER_IDS.biosamplestable).pages
   const paginatedBiosVarsHandovers = handoverById(HANDOVER_IDS.biosamplevariants).pages
   const paginatedBiosVarsPgxsegHandovers = handoverById(HANDOVER_IDS.biosamplepgxsegvariants).pages
   
@@ -209,7 +209,18 @@ export function DatasetResultBox({ data: responseSet, query }) {
       ) : null}
       {tabComponent ? <div>{tabComponent}</div> : null}
       <hr/>
-            <div className="tabs">
+      <div className="tabs">
+        <div>
+          <b>Download Sample Data (TSV)</b>
+          <br/>
+          <ul>
+            {paginatedBiosTableHandovers.map((handover, i) => (
+              <PagedLink key={i} handover={handover} />
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className="tabs">
         <div>
           <b>Download Sample Data (JSON)</b>
           <br/>
