@@ -254,9 +254,9 @@ skip:
     required: false
   defaultValue: 0
 limit:
-  label: Response Limit
+  label: Response Limit / Page Size
   infoText: >
-    The maximum number of data items to retrieve.
+    The maximum number of biosamples to retrieve per page and also the size of response pages.
   rules:
     required: false
   defaultValue: 1000

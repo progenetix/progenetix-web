@@ -57,8 +57,10 @@ export function DatasetResultBox({ data: responseSet, query }) {
   const biosamplesReply = useProgenetixApi(
     biosamplesHandover && replaceWithProxy(biosamplesHandover.url)
   )
-
   const paginatedHandovers = biosamplesHandover.pages
+
+  const paginatedBiosVarsHandovers = handoverById(HANDOVER_IDS.biosamplevariants).pages
+  const paginatedBiosVarsPgxsegHandovers = handoverById(HANDOVER_IDS.biosamplepgxsegvariants).pages
   
   const variantsHandover = handoverById(HANDOVER_IDS.variants)
   const variantsReply = useProgenetixApi(
@@ -188,13 +190,6 @@ export function DatasetResultBox({ data: responseSet, query }) {
           </div>
         )}
       </div>
-       <div className="tabs is-boxed ">
-        <ul>
-          {paginatedHandovers.map((handover, i) => (
-            <PagedLink key={i} handover={handover} />
-          ))}
-        </ul>
-      </div>
       {tabNames?.length > 0 ? (
         <div className="tabs is-boxed ">
           <ul>
@@ -213,6 +208,40 @@ export function DatasetResultBox({ data: responseSet, query }) {
         </div>
       ) : null}
       {tabComponent ? <div>{tabComponent}</div> : null}
+      <hr/>
+            <div className="tabs">
+        <div>
+          <b>Download Sample Data (JSON)</b>
+          <br/>
+          <ul>
+            {paginatedHandovers.map((handover, i) => (
+              <PagedLink key={i} handover={handover} />
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className="tabs">
+        <div>
+          <b>Download Sample Variants (JSON)</b>
+          <br/>
+          <ul>
+            {paginatedBiosVarsHandovers.map((handover, i) => (
+              <PagedLink key={i} handover={handover} />
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className="tabs ">
+        <div>
+          <b>Download Sample Variants (pgxseg)</b>
+          <br/>
+          <ul>
+            {paginatedBiosVarsPgxsegHandovers.map((handover, i) => (
+              <PagedLink key={i} handover={handover} />
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   )
 }
