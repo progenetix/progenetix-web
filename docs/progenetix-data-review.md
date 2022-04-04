@@ -4,6 +4,12 @@ This is a tracker for datasets which should be reviewed / flagged / re-processed
 added to Progenetix in the first place. Please check & comment when done.
 
 
+* [ ] **2022-04-04 [pgx:icdom-84421](https://progenetix.org/subsets/subsetdetails/?datasetIds=progenetix&id=pgx:icdom-84421)**
+
+The samples are highly skewed towards deletion...
+
+![](https://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?datasetIds=progenetix&id=pgx:icdom-84421)
+
 --------------------------------------------------------------------------------
 
 * [X] **2022-02-07 [PMID:16737909](https://progenetix.org/publications/details/?id=PMID:16737909)**
