@@ -13,6 +13,7 @@ import VariantsDataTable from "./VariantsDataTable"
 // import VariantsInterpretationsDataTable from "./VariantsInterpretationsDataTable"
 import { useContainerDimensions } from "../../hooks/containerDimensions"
 import Histogram from "../Histogram"
+// import Link from "next/link"
 import { Infodot } from "../Infodot"
 import { svgFetcher } from "../../hooks/fetcher"
 import BiosamplesStatsDataTable from "./BiosamplesStatsDataTable"
@@ -56,6 +57,8 @@ export function DatasetResultBox({ data: responseSet, query }) {
   const biosamplesReply = useProgenetixApi(
     biosamplesHandover && replaceWithProxy(biosamplesHandover.url)
   )
+
+  const paginatedHandovers = biosamplesHandover.pages
   
   const variantsHandover = handoverById(HANDOVER_IDS.variants)
   const variantsReply = useProgenetixApi(
@@ -185,6 +188,13 @@ export function DatasetResultBox({ data: responseSet, query }) {
           </div>
         )}
       </div>
+       <div className="tabs is-boxed ">
+        <ul>
+          {paginatedHandovers.map((handover, i) => (
+            <PagedLink key={i} handover={handover} />
+          ))}
+        </ul>
+      </div>
       {tabNames?.length > 0 ? (
         <div className="tabs is-boxed ">
           <ul>
@@ -294,6 +304,19 @@ function GenericHandover({ handover }) {
     </div>
   )
 }
+
+function PagedLink({ handover }) {
+  return (
+    <li>
+      <ExternalLink
+        href={handover.url}
+        label={handover.handoverType.label}
+        download
+      />
+    </li>
+  )
+}
+
 
 const BiosamplesMap = dynamic(() => import("./BioSamplesMap"), {
   ssr: false
