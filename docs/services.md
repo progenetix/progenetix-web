@@ -201,7 +201,16 @@ Plots on Progenetix are generated using the [PGX package](http://github.com/prog
 * generate binned status maps
 * render plots of sample-specific and aggregate CNV data, such as histograms and CNV frequency heatmaps     
 
+#### CNV Histogram Plots
 
+There are two possibilities to plot CNV histograms through the Progenetix API w/o using the user interface:
+
+1. direct visualization of pre-computed collations, e.g. publications or diagnosttic entities
+    * [progenetix.org/cgi/PGX/cgi/collationPlots.cgi?datasetIds=progenetix&id=NCIT:C4443]()
+2. a Beacon API query with the added option `&output=histoplot`
+    * [progenetix.org/beacon/biosamples/?limit=200&datasetIds=progenetix&referenceName=refseq:NC_000009.12&variantType=EFO:0030067&start=21500000,21975098&end=21967753,22500000&filters=NCIT:C3058&output=histoplot](https://progenetix.org/beacon/biosamples/?limit=200&datasetIds=progenetix&referenceName=refseq:NC_000009.12&variantType=EFO:0030067&start=21500000,21975098&end=21967753,22500000&filters=NCIT:C3058&output=histoplot)
+
+Please **use option 1** if accessing complete entities (i.e. only using a single `filters` value) - this option is not limited through large sample numbers.
 
 --------------------------------------------------------------------------------
 
