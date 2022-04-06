@@ -58,7 +58,7 @@ a variation is now being provided for CNV frequencies.
 For example, this API call retireves the variants for 78 samples from two NCIt
 cancer types (please be aware of the `&filterLogic=OR` pragma!):
 
-* [progenetix.org/beacon/variants/?filters=NCIT:C6958,NCIT:C4504&filterLogic=OR&output=pgxseg](https://progenetix.org/beacon/variants/?filters=NCIT:C6958,NCIT:C4504&filterLogic=OR&output=pgxseg)
+* [progenetix.org/beacon/variants/?filters=NCIT:C6393,NCIT:C4504&filterLogic=OR&output=pgxseg](https://progenetix.org/beacon/variants/?filters=NCIT:C6393,NCIT:C4504&filterLogic=OR&output=pgxseg)
 
 An excerpt of the segment file would look like below:
 
