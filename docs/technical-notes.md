@@ -139,3 +139,14 @@ classDiagram
         ...
     }
 ```
+
+## Data Query Model
+
+==TBD==
+```mermaid
+flowchart
+
+    A(queries) --> B{ biosamples Q? }
+    B --> |yes| C[/ query biosamples /]
+    C --> D[ store biosample `_id` values ]
+```

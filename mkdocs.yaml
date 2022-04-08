@@ -23,7 +23,7 @@ nav:
   - Technical Notes: technical-notes.md
   - Progenetix Data: http://progenetix.org
   - 'Baudisgroup @ UZH': http://info.baudisgroup.org
-  - Documentation PDF: pdf/progenetix-documentation.pdf
+  # - Documentation PDF: pdf/progenetix-documentation.pdf
 
 ###############################################################################
 
@@ -86,9 +86,9 @@ theme:
       
 plugins:
     - search
-    - with-pdf:
-        author: Progenetix
-        output_path: pdf/progenetix-documentation.pdf
+    # - with-pdf:
+    #     author: Progenetix
+    #     output_path: pdf/progenetix-documentation.pdf
     - macros
     - mermaid2
 
