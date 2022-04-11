@@ -11,18 +11,17 @@ edit_uri: edit/main/docs/
 
 nav:
   - Documentation Home: index.md
-  - 'Progenetix News': news/index.md
-  - 'Pages and Forms': ui.md
-  - 'Services & API': services.md
+  - News & Changes: news/index.md
+  - Pages & Forms: ui.md
+  - Services & API: services.md
   - Use Case Examples: use-cases.md
-  - 'Classifications, Ontologies & Standards': classifications-and-ontologies.md
+  - Classifications, Ontologies & Standards: classifications-and-ontologies.md
   - Publication Collection: publication-collection.md
-  - Changelog: changelog.md
   - Data Review: progenetix-data-review.md
-  - 'Beacon+ &amp; bycon': beaconplus.md
+  - Beacon+ & bycon: beaconplus.md
   - Technical Notes: technical-notes.md
   - Progenetix Data: http://progenetix.org
-  - 'Baudisgroup @ UZH': http://info.baudisgroup.org
+  - Baudisgroup @ UZH: http://info.baudisgroup.org
   # - Documentation PDF: pdf/progenetix-documentation.pdf
 
 ###############################################################################

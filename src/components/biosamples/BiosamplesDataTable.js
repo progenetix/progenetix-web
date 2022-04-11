@@ -3,7 +3,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { WithData } from "../Loader"
 import Table, { TooltipHeader } from "../Table"
-import DownloadButton from "../DownloadButton"
+// import DownloadButton from "../DownloadButton"
 import Link from "next/link"
 
 export default function BiosamplesDataTable({ apiReply, datasetId }) {
@@ -84,6 +84,7 @@ export default function BiosamplesDataTable({ apiReply, datasetId }) {
       apiReply={apiReply}
       render={(response) => (
         <div>
+{/*
           <div className="mb-4">
             <DownloadButton
               label="Download Biosamples"
@@ -91,6 +92,7 @@ export default function BiosamplesDataTable({ apiReply, datasetId }) {
               fileName="biosamples"
             />
           </div>
+*/}
           <Table columns={columns} data={response.response.resultSets[0].results} />
         </div>
       )}

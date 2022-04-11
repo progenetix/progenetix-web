@@ -14,7 +14,7 @@ import VariantsDataTable from "./VariantsDataTable"
 import { useContainerDimensions } from "../../hooks/containerDimensions"
 import Histogram from "../Histogram"
 // import Link from "next/link"
-import { Infodot } from "../Infodot"
+// import { Infodot } from "../Infodot"
 import { svgFetcher } from "../../hooks/fetcher"
 import BiosamplesStatsDataTable from "./BiosamplesStatsDataTable"
 import { WithData } from "../Loader"
@@ -22,12 +22,12 @@ import { openJsonInNewTab } from "../../utils/files"
 import dynamic from "next/dynamic"
 import { getVisualizationLink } from "../../modules/data-visualization/DataVisualizationPage"
 
-const handoversInTab = [
-  HANDOVER_IDS.cnvhistogram,
-  HANDOVER_IDS.biosamples,
-  HANDOVER_IDS.variants,
-  HANDOVER_IDS.variantsinterpretations
-]
+// const handoversInTab = [
+//   HANDOVER_IDS.cnvhistogram,
+//   HANDOVER_IDS.biosamples,
+//   HANDOVER_IDS.variants,
+//   HANDOVER_IDS.variantsinterpretations
+// ]
 
 const TABS = {
   results: "Results",
@@ -49,9 +49,9 @@ export function DatasetResultBox({ data: responseSet, query }) {
   const handoverById = (givenId) =>
     resultsHandovers.find(({ handoverType: { id } }) => id === givenId)
 
-  const genericHandovers = resultsHandovers.filter(
-    ({ handoverType: { id } }) => !handoversInTab.includes(id)
-  )
+  // const genericHandovers = resultsHandovers.filter(
+  //   ({ handoverType: { id } }) => !handoversInTab.includes(id)
+  // )
 
   const biosamplesHandover = handoverById(HANDOVER_IDS.biosamples)
   const biosamplesReply = useProgenetixApi(
@@ -144,7 +144,7 @@ export function DatasetResultBox({ data: responseSet, query }) {
     <div className="box">
       <h2 className="subtitle has-text-dark">{id}</h2>
       <div className="columns">
-        <div className="column is-one-fourth">
+        <div className="column is-one-third">
           <div>
             <b>Matched Samples: </b>
             {resultsCount}
@@ -166,12 +166,13 @@ export function DatasetResultBox({ data: responseSet, query }) {
             </div>
           ) : null}
         </div>
-        <div className="column is-one-fourth">
+{/*        <div className="column is-one-fourth">
           {genericHandovers.map((handover, i) => (
             <GenericHandover key={i} handover={handover} />
           ))}
         </div>
-        <div className="column is-one-fourth">
+*/}        
+        <div className="column is-one-third">
           {info.counts.variantCount > 0 ? (
             <div>
               <UCSCRegion query={query} />
@@ -183,7 +184,7 @@ export function DatasetResultBox({ data: responseSet, query }) {
           />
         </div>
         {visualizationLink && (
-          <div className="column is-one-fourth">
+          <div className="column is-one-third">
             <a className="button is-info mb-5" href={visualizationLink}>
               Visualization options
             </a>
@@ -315,35 +316,40 @@ function UCSCRegion({ query }) {
 }
 
 function ucscHref(query) {
-  let ucscgenome = query.assemblyId
-  if (ucscgenome === "GRCh36") {
-    ucscgenome = "hg18"
-  } else if (ucscgenome === "GRCh37") {
-    ucscgenome = "hg19"
-  } else if (ucscgenome === "GRCh38") {
-    ucscgenome = "hg38"
-  }
+
+  // Fixing this ...
+
+  // let ucscgenome = query.assemblyId
+  // if (ucscgenome === "GRCh36") {
+  //   ucscgenome = "hg18"
+  // } else if (ucscgenome === "GRCh37") {
+  //   ucscgenome = "hg19"
+  // } else if (ucscgenome === "GRCh38") {
+  //   ucscgenome = "hg38"
+  // }
+
   let ucscstart = query.start
   let ucscend = query.end
   if (query.start > 0) {
     ucscstart = query.start
     ucscend = query.start
   }
-  return `http://www.genome.ucsc.edu/cgi-bin/hgTracks?db${ucscgenome}&position=chr${query.referenceName}%3A${ucscstart}%2D${ucscend}`
+
+  return `http://www.genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr${query.referenceName}%3A${ucscstart}%2D${ucscend}`
 }
 
-function GenericHandover({ handover }) {
-  return (
-    <div>
-      <ExternalLink
-        href={handover.url}
-        label={handover.handoverType.label}
-        download
-      />
-      <Infodot infoText={handover.description} />
-    </div>
-  )
-}
+// function GenericHandover({ handover }) {
+//   return (
+//     <div>
+//       <ExternalLink
+//         href={handover.url}
+//         label={handover.handoverType.label}
+//         download
+//       />
+//       <Infodot infoText={handover.description} />
+//     </div>
+//   )
+// }
 
 function PagedLink({ handover }) {
   return (

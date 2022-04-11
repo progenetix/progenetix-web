@@ -29,4 +29,7 @@ to chromosomes 6 and X, where the last intervals become now slightly larger than
 Since many CNVs have natural breakpoints at chromosomal centromeres the new
 interval mapping should provide a better representation of genomic events. Also,
 such a mapping facilitates the calculation of e.g. arm specific CNV fractions which
-are sometimes used as statistical indicators. Enjoy!
+are sometimes used as statistical indicators.
+
+More information can be found on the related [news page](2022-02-11-change-interval-map.md)
+and in the [technical notes](technical-notes.md#genomic-intervals-and-binning).
