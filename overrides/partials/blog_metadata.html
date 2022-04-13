@@ -1,14 +1,11 @@
 <aside class="blog-post-aside">
-  {% if config.extra.blog.author_image is defined %}
-    <p>
-      <img alt={{ config.extra.blog.author }} src={{ config.extra.blog.author_image }}>
-    </p>
-  {% endif %}
   <p>
     <span>
-      {% if config.extra.blog.author %}
-        <strong>{{ config.extra.blog.author }}</strong>
-         ·
+      {% if page.meta.author %}
+        {% if "@" in page.meta.author %}
+          {% set auth = page.meta.author.replace("@", "") %}
+            <strong><a href="https://github.com/{{auth}}">{{ page.meta.author }}</a></strong>
+        {% endif %}
       {% endif %}
       {% include "partials/blog_social.html" %}
       <span class="twemoji">
