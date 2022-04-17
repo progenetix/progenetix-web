@@ -61,6 +61,8 @@ export function DatasetResultBox({ data: responseSet, query }) {
   const paginatedBiosTableHandovers = handoverById(HANDOVER_IDS.biosamplestable).pages
   const paginatedBiosVarsHandovers = handoverById(HANDOVER_IDS.biosamplevariants).pages
   const paginatedBiosVarsPgxsegHandovers = handoverById(HANDOVER_IDS.biosamplepgxsegvariants).pages
+
+  const paginatedPhenopacketsHandovers = handoverById(HANDOVER_IDS.phenopackets).pages
   
   const variantsHandover = handoverById(HANDOVER_IDS.variants)
   const variantsReply = useProgenetixApi(
@@ -249,6 +251,17 @@ export function DatasetResultBox({ data: responseSet, query }) {
           <br/>
           <ul>
             {paginatedBiosVarsPgxsegHandovers.map((handover, i) => (
+              <PagedLink key={i} handover={handover} />
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className="tabs">
+        <div>
+          <b>Download Phenopackets (JSON)</b>
+          <br/>
+          <ul>
+            {paginatedPhenopacketsHandovers.map((handover, i) => (
               <PagedLink key={i} handover={handover} />
             ))}
           </ul>

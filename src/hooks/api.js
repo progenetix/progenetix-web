@@ -530,6 +530,7 @@ export const HANDOVER_IDS = {
   biosamplestable: 'pgx:handover:biosamplestable',
   biosamplevariants: "pgx:handover:biosamplevariants",
   biosamplepgxsegvariants: "pgx:handover:biosamplevariants:pgxseg",
+  phenopackets: "pgx:handover:phenopackets",
   variants: "pgx:handover:variants",
   variantsinterpretations: "pgx:handover:variantsinterpretations"
 }
