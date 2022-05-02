@@ -148,8 +148,8 @@ export function CytoBandsUtility({ onClose, setFormValue }) {
   const [searchValue, setSearchValue] = useState("")
   const apiReply = useCytomapper(searchValue)
   const onApply = (data) => {
-    setFormValue("start", data.response.results[0].genomicLocation.interval.start.value)
-    setFormValue("end", data.response.results[0].genomicLocation.interval.end.value)
+    setFormValue("start", data.response.results[0].genomic_location.interval.start.value)
+    setFormValue("end", data.response.results[0].genomic_location.interval.end.value)
     setFormValue("referenceName", data.response.results[0].info.referenceName)
     onClose()
   }
@@ -227,10 +227,10 @@ function CytoBandsData({ data }) {
         CytoBands: <b>{data[0].info.cytoBands}</b>
       </div>
       <div>
-        Start: <b>{data[0].genomicLocation.interval.start.value}</b>
+        Start: <b>{data[0].genomic_location.interval.start.value}</b>
       </div>
       <div>
-        End: <b>{data[0].genomicLocation.interval.end.value}</b>
+        End: <b>{data[0].genomic_location.interval.end.value}</b>
       </div>
       <div>
         Chromosome: <b>{data[0].info.referenceName}</b>
