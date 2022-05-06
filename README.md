@@ -1,6 +1,16 @@
 # progenetix-web - Web front-end for Beacon+ and the Progenetix resource
 
-Access live version: http://progenetix.org/
+Access live version at http://progenetix.org/
+
+The repository contains
+
+* the Progenetix documentation, as a Mkdocs project with
+    - files in [`docs/`](docs/)
+    - configuration in [`mkdocs.yaml`](./mkdocs.yaml)
+    - additional configuration files in [`mkdocs_overrides/`](mkdocs_overrides/)
+* the Progenetix resource website, a React project with
+    - code in [`src/`](src/)
+    - static files in [`public/`](public/)
 
 ## How to use
 

@@ -81,7 +81,7 @@ theme:
     - navigation.tracking
     - navigation.sections
     - toc.integrate
-  custom_dir: overrides
+  custom_dir: mkdocs_overrides
       
 plugins:
     - search
