@@ -4,7 +4,7 @@ This is a tracker for datasets which should be reviewed / flagged / re-processed
 added to Progenetix in the first place. Please check & comment when done.
 
 
-* [ ] **2022-04-04 [pgx:icdom-84421](https://progenetix.org/subsets/subsetdetails/?datasetIds=progenetix&id=pgx:icdom-84421)**
+* [ ] **2022-04-04 [pgx:icdom-84421](https://progenetix.org/subset/?datasetIds=progenetix&id=pgx:icdom-84421)**
 
 The samples are highly skewed towards deletion...
 
@@ -45,7 +45,7 @@ server corresponding to the **chr 1 only** arrays from GEO
 
 --------------------------------------------------------------------------------
 
-* [ ] **2022-01-18 [geo:GSE58579](https://progenetix.org/subsets/subsetdetails/?datasetIds=progenetix&id=geo:GSE58579)**
+* [ ] **2022-01-18 [geo:GSE58579](https://progenetix.org/subset/?datasetIds=progenetix&id=geo:GSE58579)**
 
 * very biased towards deletion
 

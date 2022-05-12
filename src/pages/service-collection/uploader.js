@@ -1,2 +1,2 @@
-import Page from "../../modules/service-collection/FileLoaderPage"
+import Page from "../../modules/service-pages/FileLoaderPage"
 export default Page

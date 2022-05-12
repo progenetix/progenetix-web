@@ -22,11 +22,11 @@ export default function VariantsDataTable({ apiReply, datasetId }) {
         Cell: ({ value: caseLevelData }) =>
         caseLevelData.map((cld, i) => (
           <div key={i}>
-            <a href={`/variants/details?id=${cld.id}&datasetIds=${datasetId}`} target="_blank" rel="noreferrer">
+            <a href={`/variant?id=${cld.id}&datasetIds=${datasetId}`} target="_blank" rel="noreferrer">
               V: {cld.id}
             </a>
             <br/>
-            <a href={`/biosamples/details?id=${cld.biosampleId}&datasetIds=${datasetId}`} target="_blank" rel="noreferrer">
+            <a href={`/biosample?id=${cld.biosampleId}&datasetIds=${datasetId}`} target="_blank" rel="noreferrer">
               B: {cld.biosampleId}
             </a>
           </div>

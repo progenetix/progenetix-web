@@ -10,17 +10,19 @@ import PropTypes from "prop-types"
 BiosamplesSearchPanel.propTypes = {
   datasets: PropTypes.array.isRequired,
   requestTypesConfig: PropTypes.object.isRequired,
-  parametersConfig: PropTypes.object.isRequired
+  parametersConfig: PropTypes.object.isRequired,
+  collapsed: false
 }
 
 export default function BiosamplesSearchPanel({
   datasets,
   requestTypesConfig,
   parametersConfig,
-  cytoBands
+  cytoBands,
+  collapsed
 }) {
   const [query, setQuery] = useState(null) // actual valid query
-  const [searchCollapsed, setSearchCollapsed] = useState(false)
+  const [searchCollapsed, setSearchCollapsed] = useState(collapsed)
 
   const {
     data: queryResponse,
@@ -43,52 +45,48 @@ export default function BiosamplesSearchPanel({
   // button className="button ml-3"
   //    className="icon has-text-info"
 
-  return (
+  return  (
     <>
-      <div className="mb-6">
-        <Panel
-          isOpened={!searchCollapsed}
-          heading={
-            <div>
-              <div className="columns">
-                <div className="column">Search Samples</div>
-                {searchCollapsed && (
-                  <div className="column">
-                    <button
-                      className="button is-info mb-5"
-                      onClick={() => {
-                        clearQuery()
-                        setSearchCollapsed(false)
-                      }}
-                    >
-                      Modify Query
-                    </button>
-                  </div>
-                )}
-              </div>
+      <Panel
+        isOpened={!searchCollapsed}
+        heading={
+            <div className="columns">
+              {(searchCollapsed && (
+                <div className="column">
+                  <button
+                    className="button is-info mb-5"
+                    onClick={() => {
+                      clearQuery()
+                      setSearchCollapsed(false)
+                    }}
+                  >
+                    Edit Query
+                  </button>
+                </div>
+              ))
+               ||
+              <div className="column">Search Samples</div>
+            }
             </div>
-          }
-        >
-          <BiosamplesSearchForm
-            cytoBands={cytoBands}
-            datasets={datasets}
-            requestTypesConfig={requestTypesConfig}
-            parametersConfig={parametersConfig}
-            isQuerying={isLoading}
-            setSearchQuery={onValidFormQuery}
-          />
-        </Panel>
-      </div>
-      <div className="mb-6">
-        {query && (
-          <BiosamplesResults
-            isLoading={isLoading}
-            response={queryResponse}
-            error={queryError}
-            query={query}
-          />
-        )}
-      </div>
+        }
+      >
+        <BiosamplesSearchForm
+          cytoBands={cytoBands}
+          datasets={datasets}
+          requestTypesConfig={requestTypesConfig}
+          parametersConfig={parametersConfig}
+          isQuerying={isLoading}
+          setSearchQuery={onValidFormQuery}
+        />
+      </Panel>
+      {query && (
+        <BiosamplesResults
+          isLoading={isLoading}
+          response={queryResponse}
+          error={queryError}
+          query={query}
+        />
+      )}
     </>
   )
 }

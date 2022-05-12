@@ -1,4 +1,4 @@
-import Page from "../../modules/progenetix-searchpages/arraymap/SearchSamplesPage"
+import Page from "../../modules/data-pages/arraymap_dataPage"
 import { getCytoBands } from "../../utils/genome"
 export default Page
 

@@ -20,7 +20,7 @@ import BiosamplesStatsDataTable from "./BiosamplesStatsDataTable"
 import { WithData } from "../Loader"
 import { openJsonInNewTab } from "../../utils/files"
 import dynamic from "next/dynamic"
-import { getVisualizationLink } from "../../modules/data-visualization/DataVisualizationPage"
+import { getVisualizationLink } from "../../modules/service-pages/dataVisualizationPage"
 
 // const handoversInTab = [
 //   HANDOVER_IDS.cnvhistogram,

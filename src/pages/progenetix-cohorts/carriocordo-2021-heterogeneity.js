@@ -1,4 +1,4 @@
-import Page from "../../modules/progenetix-searchpages/carriocordo-2021-heterogeneity/SearchSamplesPage"
+import Page from "../../modules/data-pages/carriocordo2021heterogeneity_dataPage"
 import { getCytoBands } from "../../utils/genome"
 export default Page
 

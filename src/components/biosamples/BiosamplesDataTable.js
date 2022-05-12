@@ -18,7 +18,7 @@ export default function BiosamplesDataTable({ apiReply, datasetId }) {
         Cell: function Cell(cellInfo) {
           return (
             <Link
-              href={`/biosamples/details?id=${cellInfo.value}&datasetIds=${datasetId}`}
+              href={`/biosample?id=${cellInfo.value}&datasetIds=${datasetId}`}
             >
               {cellInfo.value}
             </Link>
@@ -37,7 +37,7 @@ export default function BiosamplesDataTable({ apiReply, datasetId }) {
             {BIOKEYS.map(bioc => (
               <div key={bioc}>
                 <Link
-                href={`/subsets/subsetdetails/?id=${cell.row.original[bioc].id}&datasetIds=${datasetId}`}
+                href={`/subset/?id=${cell.row.original[bioc].id}&datasetIds=${datasetId}`}
                 >
                   <a>{cell.row.original[bioc].id}</a>
                 </Link>{" "}

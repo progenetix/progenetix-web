@@ -82,7 +82,7 @@ function BiosamplesTable({ biosamples, datasetId }) {
         Cell: function Cell(cellInfo) {
           return (
             <a
-              href={`/biosamples/details?id=${cellInfo.value}&datasetIds=${datasetId}`}
+              href={`/biosample?id=${cellInfo.value}&datasetIds=${datasetId}`}
             >
               {cellInfo.value}
             </a>

@@ -1,2 +1,2 @@
-import Page from "../../modules/service-collection/OntologymapsPage"
+import Page from "../../modules/service-pages/OntologymapsPage"
 export default Page

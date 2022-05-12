@@ -117,18 +117,33 @@ function Side({ onClick }) {
       </a>
       <ul className="Layout__side__items">
         <MenuInternalLinkItem
-          href="/subsets/biosubsets"
+          href="/subsets/NCIT-subsets"
           label="Cancer CNV Profiles"
         />
-        <MenuInternalLinkItem href="/biosamples/" label="Search Samples" />
         <MenuInternalLinkItem
-          href="/subsets/cohorts"
-          label="Studies & Cohorts"
+          href="/subsets/icdom-subsets"
+          label="ICD-O Morphologies"
+          isSub="isSub"
         />
+        <MenuInternalLinkItem
+          href="/subsets/icdot-subsets"
+          label="ICD-O Organ Sites"
+          isSub="isSub"
+        />
+        <MenuInternalLinkItem
+          href="/progenetix-cohorts/cell-lines"
+          label="Cancer Cell Lines"
+          isSub="isSub"
+        />
+        <MenuInternalLinkItem
+          href="/subsets/NCITclinical-subsets"
+          label="Clinical Categories"
+          isSub="isSub"
+        />
+        <MenuInternalLinkItem href="/search/" label="Search Samples" />
         <MenuInternalLinkItem
           href="/progenetix-cohorts/arraymap"
           label="arrayMap"
-          isSub="isSub"
         />
         <MenuInternalLinkItem
           href="/progenetix-cohorts/TCGA"
@@ -141,13 +156,13 @@ function Side({ onClick }) {
           isSub="isSub"
         />
         <MenuInternalLinkItem
-          href="/progenetix-cohorts/gao-2021-signatures"
-          label="Gao & Baudis, 2021"
+          href="/subsets/cbioportal-subsets"
+          label="cBioPortal Studies"
           isSub="isSub"
         />
         <MenuInternalLinkItem
-          href="/progenetix-cohorts/cell-lines"
-          label="Cancer Cell Lines"
+          href="/progenetix-cohorts/gao-2021-signatures"
+          label="Gao & Baudis, 2021"
           isSub="isSub"
         />
         <MenuInternalLinkItem href="/publications" label="Publication DB" />
@@ -157,7 +172,7 @@ function Side({ onClick }) {
           isSub="isSub"
         />
         <MenuInternalLinkItem
-          href="/publications/progenetixuse"
+          href="/publicationsProgenetixuse"
           label="Progenetix Use"
           isSub="isSub"
         />

@@ -1,4 +1,4 @@
-import Page from "../../modules/progenetix-searchpages/DIPG/SearchSamplesPage"
+import Page from "../../modules/data-pages/DIPG_dataPage"
 import { getCytoBands } from "../../utils/genome"
 export default Page
 

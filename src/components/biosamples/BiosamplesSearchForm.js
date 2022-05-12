@@ -603,7 +603,7 @@ function FilterLogicWarning({ isVisible }) {
         { "is-hidden": !isVisible }
       )}
     >
-      Multiple term selected !
+      Multiple terms - use OR ?
     </span>
   )
 }

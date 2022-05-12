@@ -1,4 +1,4 @@
-import Page from "../../modules/progenetix-searchpages/cell-lines/SearchSamplesPage"
+import Page from "../../modules/data-pages/cellLines_dataPage"
 import { getCytoBands } from "../../utils/genome"
 export default Page
 
