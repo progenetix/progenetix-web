@@ -7,7 +7,8 @@ export const getCytoBands = async () => {
   const csv = require("neat-csv")
   const cytoBandIdeoPath = path.join(
     process.cwd(),
-    "config",
+    "public",
+    "rsrc",
     "cytoBandIdeo.txt"
   )
   const rows = await csv(fs.createReadStream(cytoBandIdeoPath), {
