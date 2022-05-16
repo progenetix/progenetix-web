@@ -151,6 +151,11 @@ function Side({ onClick }) {
           isSub="isSub"
         />
         <MenuInternalLinkItem
+          href="/progenetix-cohorts/oneKgenomes"
+          label="1000 Genomes Reference Samples"
+          isSub="isSub"
+        />
+        <MenuInternalLinkItem
           href="/progenetix-cohorts/DIPG"
           label="DIPG Samples"
           isSub="isSub"

@@ -6,7 +6,7 @@ import requestTypesConfig from "./TCGA_searchParameters.yaml"
 import BiosamplesSearchPanel from "../../components/biosamples/BiosamplesSearchPanel"
 import { SubsetHistogram } from "../../components/Histogram"
 import Panel from "../../components/Panel"
-import Link from "next/link"
+// import Link from "next/link"
 import SubsetsLoader from  "../../components/SubsetsLoader"
 
 export default function TCGA_dataPage({ cytoBands }) {
@@ -29,13 +29,8 @@ export default function TCGA_dataPage({ cytoBands }) {
           <ExternalLink
             href="https://www.cancer.gov/tcga"
             label="TCGA Research Network"
-          />
-          . Disease-specific subsets of TCGA data (aka. projects) can be
-          accessed through the{" "}
-          <Link href="/subsets/cohorts?filters=TCGA">
-            <a>Studies and Cohorts</a>
-          </Link>{" "}
-          page.
+          />{" "}. Disease-specific subsets of TCGA data (aka. projects) can be
+          accessed below.
         </div>
         <SubsetHistogram datasetIds="progenetix" id="pgx:cohort-TCGAcancers" />
       </Panel>

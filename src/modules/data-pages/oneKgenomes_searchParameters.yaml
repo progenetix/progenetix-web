@@ -5,10 +5,10 @@ OneKgenomesDRAGEN:
   description: ""
   parameters:
     datasetIds:
-      defaultValue: ["oneKgenomes"]
+      defaultValue: ["progenetix"]
       isHidden: true
     cohorts:
-      defaultValue: []
+      defaultValue: ["pgx:cohort-oneKgenomes"]
       isHidden: true
     assemblyId:
       defaultValue: "GRCh38"
@@ -43,9 +43,9 @@ OneKgenomesDRAGEN:
       isHidden: true
   examples:
     - label: "Range Example"
-      note: "Example for any change around TP53 locus"
+      note: "Example for a deletion around the TP53 locus"
       description: >-
-        The range reques matches all variants somehow overlapping the interval.
+        The range reques matches all deletion CNVs somehow overlapping the interval.
       parameters:
         referenceName:
           defaultValue: "17"
@@ -53,3 +53,6 @@ OneKgenomesDRAGEN:
           defaultValue: 7000000
         end:
           defaultValue: 8000000
+        variantType:
+          defaultValue: EFO:0030067
+
