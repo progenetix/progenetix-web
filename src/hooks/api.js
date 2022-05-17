@@ -385,7 +385,7 @@ export function referenceLink(externalReference) {
       externalReference.id.replace("cellosaurus:", "")
     )
   } else if (externalReference.id.includes("PMID:")) {
-    return "/publications/details?id=" + externalReference.id
+    return "/publication/?id=" + externalReference.id
   } else if (externalReference.id.includes("geo:")) {
     return (
       "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=" +

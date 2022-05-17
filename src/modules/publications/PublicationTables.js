@@ -27,7 +27,7 @@ export function PublicationTable({ publications }) {
             sortType,
             Cell: function Cell(cellInfo) {
               return (
-                <a href={`/publications/details?id=${cellInfo.value}`}>
+                <a href={`/publication/?id=${cellInfo.value}`}>
                   {cellInfo.value}
                 </a>
               )
@@ -128,7 +128,7 @@ export function PublicationFewCountTable({ publications }) {
             sortType,
             Cell: function Cell(cellInfo) {
               return (
-                <a href={`/publications/details?id=${cellInfo.value}`}>
+                <a href={`/publication/?id=${cellInfo.value}`}>
                   {cellInfo.value}
                 </a>
               )
@@ -209,7 +209,7 @@ const columns = React.useMemo(
           sortType,
           Cell: function Cell(cellInfo) {
             return (
-              <a href={`/publications/details?id=${cellInfo.value}`}>
+              <a href={`/publication/?id=${cellInfo.value}`}>
                 {cellInfo.value}
               </a>
             )
