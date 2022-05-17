@@ -12,13 +12,13 @@ The samples are highly skewed towards deletion...
 
 --------------------------------------------------------------------------------
 
-* [X] **2022-02-07 [PMID:16737909](https://progenetix.org/publications/details/?id=PMID:16737909)**
-* [X] **2022-02-07 [PMID:16790082](https://progenetix.org/publications/details/?id=PMID:16790082)**
+* [X] **2022-02-07 [PMID:16737909](https://progenetix.org/publication/?id=PMID:16737909)**
+* [X] **2022-02-07 [PMID:16790082](https://progenetix.org/publication/?id=PMID:16790082)**
 
 Excluded due to lacking CNV annotations (source file w/ complex karyotypes but
 not parsed correctly in FMP).
 
-* [X] **2022-02-02 [PMID:17934521](https://progenetix.org/publications/details/?id=PMID:17934521)**
+* [X] **2022-02-02 [PMID:17934521](https://progenetix.org/publication/?id=PMID:17934521)**
 
 * SOLVED 2022-02-02: the 12 samples w/ platform geo:GPL5055 have _only_ chr1 probes; **removed**. The other 96 arrays (like the exaample below) are GPL5056 and have also genome covering probes
 
@@ -36,7 +36,7 @@ server corresponding to the **chr 1 only** arrays from GEO
 
 --------------------------------------------------------------------------------
 
-* [ ] **2022-01-19 [PMID:24454681](https://progenetix.org/publications/details/?id=PMID:24454681)**
+* [ ] **2022-01-19 [PMID:24454681](https://progenetix.org/publication/?id=PMID:24454681)**
 
 * noisy
 
@@ -53,7 +53,7 @@ server corresponding to the **chr 1 only** arrays from GEO
 
 --------------------------------------------------------------------------------
 
-* [ ] **2022-01-18 [PMID:23583283](https://progenetix.org/publications/details/?id=PMID:23583283)**
+* [ ] **2022-01-18 [PMID:23583283](https://progenetix.org/publication/?id=PMID:23583283)**
 
 * noisy and biased to deletion
 
@@ -61,14 +61,14 @@ server corresponding to the **chr 1 only** arrays from GEO
 
 --------------------------------------------------------------------------------
 
-* [X] **2021-12-17 [PMID:19330026](https://progenetix.org/publications/details/?id=PMID:19330026)**
+* [X] **2021-12-17 [PMID:19330026](https://progenetix.org/publication/?id=PMID:19330026)**
 
 * SOLVED 2022-02-03: removed
 * only partial genome coverage => should be flagged/removed?
 
 --------------------------------------------------------------------------------
 
-* [ ] **2021-10-29 [PMID:22962301](https://progenetix.org/publications/details/?id=PMID:22962301)**
+* [ ] **2021-10-29 [PMID:22962301](https://progenetix.org/publication/?id=PMID:22962301)**
 
 * baseline shifted towards deletions
 
@@ -76,7 +76,7 @@ server corresponding to the **chr 1 only** arrays from GEO
 
 --------------------------------------------------------------------------------
 
-* [ ] **2021-09-07 [PMID:23417712](https://progenetix.org/publications/details/?id=PMID:23417712)**
+* [ ] **2021-09-07 [PMID:23417712](https://progenetix.org/publication/?id=PMID:23417712)**
 
 * highly noisy/spiky
 * AFAIK was from methylation arrays & kept for DIPG project?

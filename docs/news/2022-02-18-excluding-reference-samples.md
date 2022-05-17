@@ -14,10 +14,10 @@ pre-computed histograms. However, when e.g. calling up samples from publications
 using the search panel referencve samples will be included unless specifically excluded.
 
 ![](https://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?datasetIds=progenetix&id=PMID:22824167)
-<div style="font-size:  0.8em;">Pre-computed CNV Frequencies for <a href="http://progenetix.org/publications/details/?id=PMID:22824167">PMID:22824167</a>, now ommitting reference samples by default</div>
+<div style="font-size:  0.8em;">Pre-computed CNV Frequencies for <a href="http://progenetix.org/publication/?id=PMID:22824167">PMID:22824167</a>, now ommitting reference samples by default</div>
 
 <!--more-->
 
 ![](https://progenetix.org/beacon/biosamples?datasetIds=progenetix&filters=PMID:22824167&output=histoplot)
-<div style="font-size:  0.8em;">All samples for <a href="http://progenetix.org/publications/details/?id=PMID:22824167">PMID:22824167</a> were used when just retrieving by PMID</div>
+<div style="font-size:  0.8em;">All samples for <a href="http://progenetix.org/publication/?id=PMID:22824167">PMID:22824167</a> were used when just retrieving by PMID</div>
 
