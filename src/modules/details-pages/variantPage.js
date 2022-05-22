@@ -1,6 +1,5 @@
 import {
   getDataItemUrl,
-  // HANDOVER_IDS,
   useDataItemDelivery,
   // replaceWithProxy,
   // useProgenetixApi,
@@ -68,7 +67,6 @@ function VariantResponse({ response, datasetIds }) {
 // function VariantsInterpretationResponse({ response, datasetIds }) {
 // 
 //   const handoverById = (givenId) => response.response.resultSets[0].resultsHandovers.find(({ handoverType: { id } }) => id === givenId)
-//   const variantsAnnotationsHandover = handoverById(HANDOVER_IDS.variantsinterpretations)
 //   const variantsAnnotationsReply= useProgenetixApi(
 //     variantsAnnotationsHandover && replaceWithProxy(variantsAnnotationsHandover.url)
 //   )
@@ -105,6 +103,7 @@ function Variant({ variant, datasetIds }) {
 }
 
 // replace this with a table
+// DEPRECATED; just kept for ref ...
 
 // function VariantInterpretation({ ho, apiReply, datasetIds }) {
 // 

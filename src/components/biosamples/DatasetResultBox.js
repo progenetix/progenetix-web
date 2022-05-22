@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react"
 import {
   MAX_HISTO_SAMPLES,
-  HANDOVER_IDS,
   replaceWithProxy,
   ExternalLink,
   useProgenetixApi,
@@ -10,7 +9,6 @@ import {
 import cn from "classnames"
 import BiosamplesDataTable from "./BiosamplesDataTable"
 import VariantsDataTable from "./VariantsDataTable"
-// import VariantsInterpretationsDataTable from "./VariantsInterpretationsDataTable"
 import { useContainerDimensions } from "../../hooks/containerDimensions"
 import Histogram from "../Histogram"
 // import Link from "next/link"
@@ -22,19 +20,22 @@ import { openJsonInNewTab } from "../../utils/files"
 import dynamic from "next/dynamic"
 import { getVisualizationLink } from "../../modules/service-pages/dataVisualizationPage"
 
-// const handoversInTab = [
-//   HANDOVER_IDS.cnvhistogram,
-//   HANDOVER_IDS.biosamples,
-//   HANDOVER_IDS.variants,
-//   HANDOVER_IDS.variantsinterpretations
-// ]
+const HANDOVER_IDS = {
+  cnvhistogram: "pgx:handover:cnvhistogram",
+  biosamples: "pgx:handover:biosamples",
+  biosamplestable: 'pgx:handover:biosamplestable',
+  biosamplevariants: "pgx:handover:biosamplevariants",
+  biosamplepgxsegvariants: "pgx:handover:biosamplevariants:pgxseg",
+  phenopackets: "pgx:handover:phenopackets",
+  UCSClink: "pgx:handover:bedfile2ucsc",
+  variants: "pgx:handover:variants"
+}
 
 const TABS = {
   results: "Results",
   samples: "Biosamples",
   samplesMap: "Biosamples Map",
-  variants: "Variants",
-  variantsinterpretations: "Variant Interpretations"
+  variants: "Variants"
 }
 
 export function DatasetResultBox({ data: responseSet, query }) {
@@ -98,8 +99,7 @@ export function DatasetResultBox({ data: responseSet, query }) {
   ) && tabNames.push(TABS.samplesMap)
 
   if (handoverById(HANDOVER_IDS.variants)) tabNames.push(TABS.variants)
-  if (handoverById(HANDOVER_IDS.variantsinterpretations)) tabNames.push(TABS.variantsinterpretations)
-  
+
   const [selectedTab, setSelectedTab] = useState(tabNames[0])
 
   let tabComponent
@@ -329,17 +329,6 @@ function UCSCRegion({ query }) {
 }
 
 function ucscHref(query) {
-
-  // Fixing this ...
-
-  // let ucscgenome = query.assemblyId
-  // if (ucscgenome === "GRCh36") {
-  //   ucscgenome = "hg18"
-  // } else if (ucscgenome === "GRCh37") {
-  //   ucscgenome = "hg19"
-  // } else if (ucscgenome === "GRCh38") {
-  //   ucscgenome = "hg38"
-  // }
 
   let ucscstart = query.start
   let ucscend = query.end

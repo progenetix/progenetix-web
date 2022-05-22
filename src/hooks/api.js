@@ -21,7 +21,6 @@ export const NEWSLINK = `${DOCLINK}/news`
 export const USECASESLINK = `${DOCLINK}/use-cases`
 export const SERVICEINFOLINK = `${DOCLINK}/services`
 export const THISYEAR = new Date().getFullYear()
-
 export const BIOKEYS = ["histologicalDiagnosis", "icdoMorphology", "icdoTopography", "sampledTissue"]
 
 export function useProgenetixApi(...args) {
@@ -522,17 +521,6 @@ export function replaceWithProxy(
   if (!url) return false
   if (!useProxyOpt) return url
   return url.toString().replace(new URL(url).origin + "/", basePathOpt)
-}
-
-export const HANDOVER_IDS = {
-  cnvhistogram: "pgx:handover:cnvhistogram",
-  biosamples: "pgx:handover:biosamples",
-  biosamplestable: 'pgx:handover:biosamplestable',
-  biosamplevariants: "pgx:handover:biosamplevariants",
-  biosamplepgxsegvariants: "pgx:handover:biosamplevariants:pgxseg",
-  phenopackets: "pgx:handover:phenopackets",
-  variants: "pgx:handover:variants",
-  variantsinterpretations: "pgx:handover:variantsinterpretations"
 }
 
 export function epmcId(publicationId) {
