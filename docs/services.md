@@ -263,6 +263,7 @@ The `cytoBands` and `chroBases` parameters can be used for running the script on
     - `./services/cytomapper.py --cytoBands 9p12q21`
     - `./services/cytomapper.py --assemblyId GRCh37 --cytoBands 9p12q21`
     - `./services/cytomapper.py --chroBases=17:800000-2432600`
+    - `./services/cytomapper.py --assemblyId GRCh37 --cytoBands 8q --output json`
 
 #### Response
 
