@@ -234,21 +234,19 @@ Since 2021 you can now directly submit suggestions for matching publications to 
 
 This services parses either:
 
-* a properly formatted cytoband annotation (`assemblyId`, `cytoBands`)
+* a properly formatted cytoband annotation (`cytoBands`)
     - "8", "9p11q21", "8q", "1p12qter"
 * a concatenated `chroBases` parameter
     - `7:23028447-45000000`
     - `X:99202660`
 
-<!--
 While the return object is JSON by default, specifying `text=1`, together with the `cytoBands` or
-`chroBases` parameter will return the text version of the opposite.
--->
+`chroBases` parameter will return the text version.
 
 There is a fallback to *GRCh38* if no assembly is being provided.
 
-The `cytobands` and `chrobases` parameters can be used for running the script on the command line
-(see examples below). Please be aware of the "chrobases" (command line) versus "chroBases" (cgi) use.
+The `cytoBands` and `chroBases` parameters can be used for running the script on the command line
+(see examples below).
 
 #### Examples
 
@@ -261,6 +259,10 @@ The `cytobands` and `chrobases` parameters can be used for running the script on
     - [progenetix.org/services/cytomapper?assemblyId=GRCh37&chroBases=17:800000-24326000](https://progenetix.org/services/cytomapper?assemblyId=GRCh37&chroBases=17:800000-24326000)
 * using `curl` to get the text format mapping of a cytoband range, using the API `services` shortcut:
     - `curl -k https://progenetix.org/services/cytomapper?cytoBands\=8q21q24.1&assemblyId\=hg18&text\=1`
+* running it locally
+    - `./services/cytomapper.py --cytoBands 9p12q21`
+    - `./services/cytomapper.py --assemblyId GRCh37 --cytoBands 9p12q21`
+    - `./services/cytomapper.py --chroBases=17:800000-2432600`
 
 #### Response
 
