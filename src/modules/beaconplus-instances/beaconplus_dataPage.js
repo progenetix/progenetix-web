@@ -25,6 +25,7 @@ export default function BeaconPlusPage({ cytoBands }) {
             cytoBands={cytoBands}
             parametersConfig={parametersConfig}
             requestTypesConfig={requestTypesConfig}
+            collapsed={false}
           />
         </div>
       </div>

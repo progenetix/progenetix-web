@@ -76,10 +76,10 @@ referenceName:
       value: "21"
     - label: "22"
       value: "22"
-    - label: X
-      value: X
-    - label: Y
-      value: Y
+    - label: "X"
+      value: "X"
+    - label: "Y"
+      value: "Y"
 variantType:
   label: "(Structural) Variant Type"
   infoText: |

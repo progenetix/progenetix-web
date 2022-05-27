@@ -32,7 +32,6 @@ export const BiosamplesSearchForm = withUrlQuery(
 export default BiosamplesSearchForm
 
 BiosamplesSearchForm.propTypes = {
-  datasets: PropTypes.array.isRequired,
   cytoBands: PropTypes.object.isRequired,
   isQuerying: PropTypes.bool.isRequired,
   setSearchQuery: PropTypes.func.isRequired,
@@ -71,7 +70,6 @@ function useIsFilterlogicWarningVisible(watch) {
 }
 
 export function Form({
-  datasets,
   cytoBands,
   isQuerying,
   setSearchQuery,
@@ -87,8 +85,8 @@ export function Form({
   const [example, setExample] = useState(null)
   let parameters = useMemo(
     () =>
-      makeParameters(parametersConfig, requestTypeConfig, example, datasets),
-    [datasets, example, parametersConfig, requestTypeConfig]
+      makeParameters(parametersConfig, requestTypeConfig, example),
+    [example, parametersConfig, requestTypeConfig]
   )
 
   const initialValues = transform(parameters, (r, v, k) => {
@@ -482,8 +480,7 @@ function ExampleDescription({ example }) {
 function makeParameters(
   parametersConfig,
   requestTypeConfig,
-  example,
-  datasets
+  example
 ) {
   // merge base parameters config and request config
   const mergedConfigs = merge(
@@ -497,7 +494,6 @@ function makeParameters(
     r[k] = { name: k, ...v }
   })
 
-  parameters = merge({}, parameters, { datasetIds: { options: datasets } })
   return parameters
 }
 

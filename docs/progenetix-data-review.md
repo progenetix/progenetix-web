@@ -3,6 +3,13 @@
 This is a tracker for datasets which should be reviewed / flagged / re-processed or
 added to Progenetix in the first place. Please check & comment when done.
 
+* [ ] **2022-05-27: [PMID:27257180](https://progenetix.org/publication/?id=PMID:27257180)**
+
+This mostly looks like noise?
+
+![](https://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?datasetIds=progenetix&id=PMID:27257180)
+
+--------------------------------------------------------------------------------
 
 * [ ] **2022-04-04 [pgx:icdom-84421](https://progenetix.org/subset/?datasetIds=progenetix&id=pgx:icdom-84421)**
 

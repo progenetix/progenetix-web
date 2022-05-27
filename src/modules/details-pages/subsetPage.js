@@ -10,7 +10,7 @@ import { SubsetHistogram } from "../../components/Histogram"
 import { withUrlQuery } from "../../hooks/url-query"
 
 
-const itemColl = "collations"
+const service = "collations"
 const exampleId = "NCIT:C3262"
 
 const SubsetDetailsPage = withUrlQuery(({ urlQuery }) => {
@@ -49,7 +49,7 @@ export default SubsetDetailsPage
 function SubsetLoader({ id, datasetIds }) {
   const { data, error, isLoading } = useServiceItemDelivery(
     id,
-    entity,
+    service,
     datasetIds
   )
   return (
@@ -124,7 +124,7 @@ function Subset({ subset, datasetIds }) {
         <a
           rel="noreferrer"
           target="_blank"
-          href={getServiceItemUrl(subset.id, itemColl, datasetIds)}
+          href={getServiceItemUrl(subset.id, service, datasetIds)}
         >
           {"{JSON ↗}"}
         </a>
