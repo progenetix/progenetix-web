@@ -200,7 +200,7 @@ function Side({ onClick }) {
           label="Upload & Plot"
         />
         <MenuInternalLinkItem
-          href="/beaconplus-instances/beaconplus"
+          href="/beaconPlus/"
           label={
             <>
               Beacon<sup style={{ color: "red" }}>+</sup>

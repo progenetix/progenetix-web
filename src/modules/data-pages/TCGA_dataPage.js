@@ -35,7 +35,6 @@ export default function TCGA_dataPage({ cytoBands }) {
         <SubsetHistogram datasetIds="progenetix" id="pgx:cohort-TCGAcancers" />
       </Panel>
       <BiosamplesSearchPanel
-        datasets={datasets}
         parametersConfig={parametersConfig}
         requestTypesConfig={requestTypesConfig}
         cytoBands={cytoBands}
@@ -48,5 +47,3 @@ export default function TCGA_dataPage({ cytoBands }) {
     </Layout>
   )
 }
-
-const datasets = [{ label: "Progenetix", value: "progenetix" }]

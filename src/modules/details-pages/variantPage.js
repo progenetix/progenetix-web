@@ -12,7 +12,7 @@ import { Layout } from "../../components/Layout"
 import React from "react"
 // import Link from "next/link"
 
-const itemColl = "variants"
+const entity = "variants"
 const exampleId = "5bab576a727983b2e00b8d32"
 
 const VariantDetailsPage = withUrlQuery(({ urlQuery }) => {
@@ -24,7 +24,7 @@ const VariantDetailsPage = withUrlQuery(({ urlQuery }) => {
   return (
     <Layout title="Variant Details" headline="Variant Details">
       {!hasAllParams ? (
-        NoResultsHelp(exampleId, itemColl)
+        NoResultsHelp(exampleId, entity)
       ) : (
         <VariantLoader id={id} datasetIds={datasetIds} />
       )}
@@ -35,7 +35,7 @@ const VariantDetailsPage = withUrlQuery(({ urlQuery }) => {
 export default VariantDetailsPage
 
 function VariantLoader({ id, datasetIds }) {
-  const apiReply = useDataItemDelivery(id, itemColl, datasetIds)
+  const apiReply = useDataItemDelivery(id, entity, datasetIds)
   return (
     <WithData
       apiReply={apiReply}
@@ -59,7 +59,7 @@ function VariantLoader({ id, datasetIds }) {
 
 function VariantResponse({ response, datasetIds }) {
   if (!response.response.resultSets[0].results) {
-    return NoResultsHelp(exampleId, itemColl)
+    return NoResultsHelp(exampleId, entity)
   }
   return <Variant variant={response.response.resultSets[0].results[0]} datasetIds={datasetIds} />
 }
@@ -81,19 +81,15 @@ function Variant({ variant, datasetIds }) {
         {variant.variantInternalId} ({datasetIds})
       </h3>
 
-      {variant.variantInternalId && (
-        <>
-          <h5>Digest</h5>
-          <p>{variant.variantInternalId}</p>
-        </>
-      )}
+      <h5>Digest</h5>
+      <p>{variant.variantInternalId}</p>
 
       <h5>
         Download Data as{" "}
         <a
           rel="noreferrer"
           target="_blank"
-          href={getDataItemUrl(variant.caseLevelData[0].id, itemColl, datasetIds)}
+          href={getDataItemUrl(variant.variantInternalId, entity, datasetIds)}
         >
           {"{JSON↗}"}
         </a>

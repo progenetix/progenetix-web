@@ -33,7 +33,6 @@ export default function DIPG_dataPage({ cytoBands }) {
         </div>
       </Panel>
       <BiosamplesSearchPanel
-        datasets={datasets}
         parametersConfig={parametersConfig}
         requestTypesConfig={requestTypesConfig}
         cytoBands={cytoBands}
@@ -41,5 +40,3 @@ export default function DIPG_dataPage({ cytoBands }) {
     </Layout>
   )
 }
-
-const datasets = [{ label: "Progenetix", value: "progenetix" }]

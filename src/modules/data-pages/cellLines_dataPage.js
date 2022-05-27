@@ -38,7 +38,6 @@ export default function cellLines_dataPage({ cytoBands }) {
       />
       </Panel>
       <BiosamplesSearchPanel
-        datasets={datasets}
         parametersConfig={parametersConfig}
         requestTypesConfig={requestTypesConfig}
         cytoBands={cytoBands}
@@ -50,5 +49,3 @@ export default function cellLines_dataPage({ cytoBands }) {
     </Layout>
   )
 }
-
-const datasets = [{ label: "Progenetix", value: "progenetix" }]

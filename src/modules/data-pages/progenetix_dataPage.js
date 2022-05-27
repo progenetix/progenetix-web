@@ -8,7 +8,6 @@ export default function progenetixdataPage({ cytoBands }) {
   return (
     <Layout title="Search Samples" headline="">
       <BiosamplesSearchPanel
-        datasets={datasets}
         parametersConfig={parametersConfig}
         requestTypesConfig={requestTypesConfig}
         cytoBands={cytoBands}
@@ -16,5 +15,3 @@ export default function progenetixdataPage({ cytoBands }) {
     </Layout>
   )
 }
-
-const datasets = [{ label: "Progenetix", value: "progenetix" }]

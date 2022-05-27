@@ -20,20 +20,6 @@ export default function BeaconPlusNav({ beaconName }) {
         </Link>
 
         <div className="Nav__links">
-          <ActiveLink label="Beacon+" href="/beaconplus-instances/beaconplus" />
-          <ActiveLink
-            label="Gene Beacon"
-            href="/beaconplus-instances/genesymbols"
-          />
-          <ActiveLink
-            label="1000 Genomes CNVs"
-            href="/beaconplus-instances/1000-genomes-cnv"
-          />
-          <ActiveLink
-            label="Cell Line Beacon"
-            href="/beaconplus-instances/cellosaurus"
-          />
-          <ActiveLink label="About" href="/beaconplus-instances/about" />
           <ActiveLink label="Progenetix" href="/" />
           <a href={DOCLINK} className="navbar-item">
             Help
@@ -56,8 +42,17 @@ function ActiveLink({ href, label }) {
   )
 }
 
-// <Link href="/1000-genomes-cnv/search">
-// <a className="Nav__logo">
-//   1000 Genomes Beacon <sup className="Nav__plus">+</sup>
-// </a>
-// </Link>
+// <ActiveLink label="Beacon+" href="/beaconPlus" />
+// <ActiveLink label="About" href="/beaconplus-instances/about" />
+// <ActiveLink
+//   label="Gene Beacon"
+//   href="/beaconplus-instances/genesymbols"
+// />
+// <ActiveLink
+//   label="1000 Genomes CNVs"
+//   href="/beaconplus-instances/1000-genomes-cnv"
+// />
+// <ActiveLink
+//   label="Cell Line Beacon"
+//   href="/beaconplus-instances/cellosaurus"
+// />

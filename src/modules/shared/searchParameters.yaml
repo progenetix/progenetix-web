@@ -3,7 +3,10 @@ datasetIds:
   label: Dataset
   rules:
     required: true
-  isMulti: true
+  defaultValue: progenetix
+  options:
+    - value: progenetix
+      label: progenetix
 assemblyId:
   label: Genome Assembly
   infoText: |

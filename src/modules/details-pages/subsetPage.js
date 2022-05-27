@@ -49,7 +49,7 @@ export default SubsetDetailsPage
 function SubsetLoader({ id, datasetIds }) {
   const { data, error, isLoading } = useServiceItemDelivery(
     id,
-    itemColl,
+    entity,
     datasetIds
   )
   return (

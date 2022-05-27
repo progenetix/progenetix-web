@@ -32,7 +32,6 @@ export default function carriocordo2021heterogeneity_dataPage({ cytoBands }) {
         />
       </Panel>
       <BiosamplesSearchPanel
-        datasets={datasets}
         parametersConfig={parametersConfig}
         requestTypesConfig={requestTypesConfig}
         cytoBands={cytoBands}
@@ -40,5 +39,3 @@ export default function carriocordo2021heterogeneity_dataPage({ cytoBands }) {
     </Layout>
   )
 }
-
-const datasets = [{ label: "Progenetix", value: "progenetix" }]

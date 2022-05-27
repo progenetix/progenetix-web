@@ -8,14 +8,12 @@ import PropTypes from "prop-types"
 // import cn from "classnames"
 
 BiosamplesSearchPanel.propTypes = {
-  datasets: PropTypes.array.isRequired,
   requestTypesConfig: PropTypes.object.isRequired,
   parametersConfig: PropTypes.object.isRequired,
   collapsed: false
 }
 
 export default function BiosamplesSearchPanel({
-  datasets,
   requestTypesConfig,
   parametersConfig,
   cytoBands,
@@ -72,7 +70,6 @@ export default function BiosamplesSearchPanel({
       >
         <BiosamplesSearchForm
           cytoBands={cytoBands}
-          datasets={datasets}
           requestTypesConfig={requestTypesConfig}
           parametersConfig={parametersConfig}
           isQuerying={isLoading}

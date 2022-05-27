@@ -249,35 +249,35 @@ export function ontologymapsPrefUrl({ prefixes, filters }) {
   return `${ontologymapsBaseUrl}filters=${prefixes},${filters}&filterPrecision=start`
 }
 
-export function useDataItemDelivery(id, collection, datasetIds) {
-  return useProgenetixApi(getDataItemUrl(id, collection, datasetIds))
+export function useDataItemDelivery(id, entity, datasetIds) {
+  return useProgenetixApi(getDataItemUrl(id, entity, datasetIds))
 }
 
-export function getDataItemUrl(id, collection, datasetIds) {
-  return `${basePath}beacon/${collection}/${id}/?datasetIds=${datasetIds}`
+export function getDataItemUrl(id, entity, datasetIds) {
+  return `${basePath}beacon/${entity}/${id}/?datasetIds=${datasetIds}`
 }
 
-export function useServiceItemDelivery(id, collection, datasetIds) {
-  return useProgenetixApi(getServiceItemUrl(id, collection, datasetIds))
+export function useServiceItemDelivery(id, entity, datasetIds) {
+  return useProgenetixApi(getServiceItemUrl(id, entity, datasetIds))
 }
 
 export function getServiceItemUrl(id, collection, datasetIds) {
   return `${basePath}services/${collection}?id=${id}&datasetIds=${datasetIds}`
 }
 
-export function getDataItemPageUrl(id, collection, datasetIds) {
-  return `${basePath}${collection}/?datasetIds=${datasetIds}&${
-    collection == "variants" ? "_id" : "id"
+export function getDataItemPageUrl(id, entity, datasetIds) {
+  return `${basePath}${entity}/?datasetIds=${datasetIds}&${
+    entity == "variants" ? "_id" : "id"
   }=${id}`
 }
 
-export function NoResultsHelp(id, collection) {
-  const url = getDataItemPageUrl(id, collection, "progenetix")
+export function NoResultsHelp(id, entity) {
+  const url = getDataItemPageUrl(id, entity, "progenetix")
   return (
     <div className="notification is-size-5">
       This page will only show content if called with a specific biosample ID
       which already exists in the Progenetix or arrayMap{" "}
-      <strong>{collection}</strong> database, e.g. <a href={url}>{url}</a>.
+      <strong>{entity}</strong> database, e.g. <a href={url}>{url}</a>.
     </div>
   )
 }

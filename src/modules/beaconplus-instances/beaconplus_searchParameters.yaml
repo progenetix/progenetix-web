@@ -8,7 +8,6 @@ beaconplus:
       defaultValue: ["progenetix"]
     cohorts:
       defaultValue: [""]
-      isHidden: true
     assemblyId:
       placeholder: "GRCh38"
     referenceName:
