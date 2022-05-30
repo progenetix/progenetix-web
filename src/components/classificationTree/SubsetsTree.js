@@ -1,10 +1,10 @@
-import { pluralizeWord, sampleSearchPageFiltersLink } from "../hooks/api"
+import { pluralizeWord, sampleSearchPageFiltersLink } from "../../hooks/api"
 import React, { useEffect, useMemo, useState } from "react"
 import cn from "classnames"
 import { FaAngleDown, FaAngleRight } from "react-icons/fa"
 import Tippy from "@tippyjs/react"
 import { FixedSizeTree as VTree } from "react-vtree"
-import useDebounce from "../hooks/debounce"
+import useDebounce from "../../hooks/debounce"
 import { min } from "lodash"
 import { filterNode } from "./tree"
 

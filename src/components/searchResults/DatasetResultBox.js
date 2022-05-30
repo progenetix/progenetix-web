@@ -73,18 +73,20 @@ export function DatasetResultBox({ data: responseSet, query }) {
   let histogramUrl
   let visualizationLink
   if (handoverById(HANDOVER_IDS.cnvhistogram)) {
-    if (paginatedResultsCount <= MAX_HISTO_SAMPLES) {
-      histogramUrl = handoverById(HANDOVER_IDS.cnvhistogram).url
-      let visualizationAccessId = new URLSearchParams(
-        new URL(histogramUrl).search
-      ).get("accessid")
-      let visualizationSkip = new URLSearchParams(
-        new URL(histogramUrl).search
-      ).get("skip")
-      let visualizationLimit = new URLSearchParams(
-        new URL(histogramUrl).search
-      ).get("limit")
-      visualizationLink = getVisualizationLink(visualizationAccessId, visualizationSkip, visualizationLimit, paginatedResultsCount)
+    if (! query.alternateBases) {
+      if (paginatedResultsCount <= MAX_HISTO_SAMPLES) {
+        histogramUrl = handoverById(HANDOVER_IDS.cnvhistogram).url
+        let visualizationAccessId = new URLSearchParams(
+          new URL(histogramUrl).search
+        ).get("accessid")
+        let visualizationSkip = new URLSearchParams(
+          new URL(histogramUrl).search
+        ).get("skip")
+        let visualizationLimit = new URLSearchParams(
+          new URL(histogramUrl).search
+        ).get("limit")
+        visualizationLink = getVisualizationLink(visualizationAccessId, visualizationSkip, visualizationLimit, paginatedResultsCount)
+      }
     }
   }
 

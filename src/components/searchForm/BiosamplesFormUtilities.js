@@ -1,6 +1,6 @@
 import { useAsyncSelect } from "../../hooks/asyncSelect"
 import { useCytomapper } from "../../hooks/api"
-import { useGeneSpanSelect } from "../form/GenespanUtilities.js"
+import { useGeneSpanSelect } from "../formShared/GenespanUtilities.js"
 import CustomSelect from "../Select"
 import React, { useState } from "react"
 import PropTypes from "prop-types"

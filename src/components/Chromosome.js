@@ -2,7 +2,7 @@ import Tippy, { useSingleton } from "@tippyjs/react"
 import cn from "classnames"
 import React, { useState } from "react"
 import { checkIntegerRange, INTEGER_RANGE_REGEX } from "../hooks/api"
-import { Label } from "./form/Label"
+import { Label } from "./formShared/Label"
 
 const outerBandsHeightRatio = 0.65 // pt
 const innerBandsHeightRatio = 0.8 // pt

@@ -1,6 +1,6 @@
 import { useAsyncSelect } from "../../hooks/asyncSelect"
 import { useGeoCity } from "../../hooks/api"
-import SelectField from "../form/SelectField"
+import SelectField from "../formShared/SelectField"
 import React from "react"
 
 export function GeoCitySelector({

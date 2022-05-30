@@ -3,7 +3,7 @@ import { WithData } from "./Loader"
 import React from "react"
 import { keyBy, merge } from "lodash"
 import { SubsetHistogram } from "./Histogram"
-import { buildTree, buildTreeForDetails, TreePanel } from "./TreePanel"
+import { buildTree, buildTreeForDetails, TreePanel } from "./classificationTree/TreePanel"
 
 export default function SubsetsLoader({ collationTypes, datasetIds }) {
   const bioSubsetsHierarchiesReply = useCollationsByType({

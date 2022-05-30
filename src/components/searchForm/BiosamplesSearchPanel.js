@@ -3,7 +3,7 @@ import { useBeaconQuery } from "../../hooks/api"
 import Panel from "../Panel"
 // import { FaSlidersH } from "react-icons/fa"
 import { BiosamplesSearchForm } from "./BiosamplesSearchForm"
-import { BiosamplesResults } from "./BiosamplesResults"
+import { BiosamplesResults } from "../searchResults/BiosamplesResults"
 import PropTypes from "prop-types"
 // import cn from "classnames"
 

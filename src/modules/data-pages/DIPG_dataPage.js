@@ -3,7 +3,7 @@ import { ExternalLink } from "../../hooks/api"
 import { Layout } from "../../components/Layout"
 import parametersConfig from "../shared/searchParameters.yaml"
 import requestTypesConfig from "./DIPG_searchParameters.yaml"
-import BiosamplesSearchPanel from "../../components/biosamples/BiosamplesSearchPanel"
+import BiosamplesSearchPanel from "../../components/searchForm/BiosamplesSearchPanel"
 import Panel from "../../components/Panel"
 // import Link from "next/link"
 
