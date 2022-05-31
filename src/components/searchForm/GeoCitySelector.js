@@ -15,11 +15,13 @@ export function GeoCitySelector({
   const { data, isLoading } = useGeoCity({ city: inputValue })
   let options = []
   if (data) {
-    options = data.response.results.map((g) => ({
-      value: g,
-      data: g,
-      label: `${g.geoLocation.properties.city} (${g.geoLocation.properties.country})`
-    }))
+    if (data.response) {
+      options = data.response.results.map((g) => ({
+        value: g,
+        data: g,
+        label: `${g.geoLocation.properties.city} (${g.geoLocation.properties.country})`
+      }))
+    }
   }
   return (
     <SelectField

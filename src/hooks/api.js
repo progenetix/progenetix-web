@@ -217,12 +217,14 @@ export function usePublication(id) {
 export function usePublicationList({ geoCity, geodistanceKm }) {
   const geoParams = new URLSearchParams({
     ...mkGeoParams(geoCity, geodistanceKm),
-    filters: "PMID,genomes:>0",
+    filters: "PMID",
     method: "details"
   }).toString()
   const url = `${basePath}services/publications?${geoParams}`
   return useProgenetixApi(url)
 }
+
+// ,genomes:>0
 
 export function useProgenetixrefPublicationList({ geoCity, geodistanceKm }) {
   const geoParams = new URLSearchParams({

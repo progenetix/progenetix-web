@@ -1,19 +1,15 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { Layout } from "../../components/Layout"
 import { Infodot } from "../../components/Infodot"
-import { PublicationFewCountTable } from "./PublicationTables"
-import { useGeoCity, useProgenetixrefPublicationList, Link } from "../../hooks/api"
+import { PublicationFewCountTable } from "../../components/publicationComps/PublicationTables"
+import { useProgenetixrefPublicationList, Link } from "../../hooks/api"
 import { WithData } from "../../components/Loader"
-import { useAsyncSelect } from "../../hooks/asyncSelect"
-import CustomSelect from "../../components/Select"
 import dynamic from "next/dynamic"
 import { matchSorter } from "match-sorter"
 import useDebounce from "../../hooks/debounce"
 import Panel from "../../components/Panel"
 
 export default function PublicationsProgenetixuseListPage() {
-  const [geoCity, setGeoCity] = useState(null)
-  const [geodistanceKm, setGeodistanceKm] = useState(100)
   const [searchInput, setSearchInput] = useState(null)
   const debouncedSearchInput = useDebounce(searchInput, 500)
   const imgHere = {
@@ -48,7 +44,7 @@ export default function PublicationsProgenetixuseListPage() {
           <div className="field column py-0 mb-3 is-one-third">
             <label className="label">
               Filter
-              <Infodot infoText={"Filter publications by keyword"} />
+              <Infodot infoText={"Filter publications by keyword, PMID or year (greedy matching...)"} />
             </label>{" "}
             <input
               className="input"
@@ -56,26 +52,6 @@ export default function PublicationsProgenetixuseListPage() {
               onChange={(e) => setSearchInput(e.target.value)}
             />
           </div>
-          <div className="field column py-0 mb-3 is-one-third">
-            <label className="label">
-              City
-              <Infodot
-                infoText={"Filter publications by city or proximity to one"}
-              />
-            </label>
-            <GeoCitySelector geoCity={geoCity} setGeoCity={setGeoCity} />
-          </div>
-          {geoCity && (
-            <div className="field column py-0 mb-3 is-narrow animate__fadeIn animate__animated animate__faster">
-              <label className="label">Range (km)</label>
-              <input
-                className="input"
-                type="number"
-                value={geodistanceKm}
-                onChange={(e) => setGeodistanceKm(e.target.value)}
-              />
-            </div>
-          )}
         </div>
       </Panel>
       
@@ -85,8 +61,6 @@ export default function PublicationsProgenetixuseListPage() {
       */}
 
       <PublicationsLoader
-        geoCity={geoCity}
-        geodistanceKm={geodistanceKm}
         textSearch={debouncedSearchInput?.trim() ?? ""}
       />
       
@@ -96,7 +70,7 @@ export default function PublicationsProgenetixuseListPage() {
 
 function FilteredPublication({ publications, textSearch }) {
   const filteredPublications = matchSorter(publications, textSearch, {
-    keys: ["id", "authors", "title"],
+    keys: ["id", "authors", "title", "pubYear", "pubmedid", "provenance.geoLocation.properties.city"],
     threshold: matchSorter.rankings.CONTAINS
   })
   return (
@@ -109,10 +83,10 @@ function FilteredPublication({ publications, textSearch }) {
   )
 }
 
-function PublicationsLoader({ geoCity, geodistanceKm, textSearch }) {
+function PublicationsLoader({ textSearch }) {
   const publicationsResult = useProgenetixrefPublicationList({
-    geoCity,
-    geodistanceKm
+    // geoCity,
+    // geodistanceKm
   })
 
   return (
@@ -125,31 +99,6 @@ function PublicationsLoader({ geoCity, geodistanceKm, textSearch }) {
           textSearch={textSearch}
         />
       )}
-    />
-  )
-}
-
-function GeoCitySelector({ setGeoCity }) {
-  const { inputValue, value, onChange, onInputChange } = useAsyncSelect()
-  useEffect(() => setGeoCity(value), [setGeoCity, value])
-  const { data, isLoading } = useGeoCity({ city: inputValue })
-  let options = []
-  if (data) {
-    options = data.response.results.map((g) => ({
-      value: g.id,
-      data: g,
-      label: `${g.geoLocation.properties.city} (${g.geoLocation.properties.country})`
-    }))
-  }
-  return (
-    <CustomSelect
-      options={options}
-      isLoading={!!inputValue && isLoading}
-      onInputChange={onInputChange}
-      value={value}
-      onChange={onChange}
-      placeholder="Type to search..."
-      isClearable
     />
   )
 }
@@ -170,6 +119,8 @@ function PublicationsMapContainer({ publications }) {
   )
 }
 
-const PublicationsMap = dynamic(() => import("./PublicationsMap"), {
+
+const PublicationsMap = dynamic(() => import("../../components/publicationComps/PublicationsMap"), {
   ssr: false
 })
+

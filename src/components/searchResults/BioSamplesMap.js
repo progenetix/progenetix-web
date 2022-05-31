@@ -1,7 +1,7 @@
 import React, { useRef } from "react"
 import ReactDOM from "react-dom"
 import L from "leaflet"
-import { centerPopup, createCircle, getLatlngFromGeoJSON, useMap } from "../map"
+import { centerPopup, createCircle, getLatlngFromGeoJSON, useMap } from "../mapComps/map"
 import { groupBy } from "lodash"
 import useDeepCompareEffect from "use-deep-compare-effect"
 import PropTypes from "prop-types"

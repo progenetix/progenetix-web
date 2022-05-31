@@ -70,6 +70,10 @@ export function DatasetResultBox({ data: responseSet, query }) {
     variantsHandover && replaceWithProxy(variantsHandover.url)
   )
 
+  // the histogram is only rendered under some conditions:
+  // * handover is needed, obviously
+  // * not rendered if alternateBases was used since then frequencies are off => may get changed...
+
   let histogramUrl
   let visualizationLink
   if (handoverById(HANDOVER_IDS.cnvhistogram)) {

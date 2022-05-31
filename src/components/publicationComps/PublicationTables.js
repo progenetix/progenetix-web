@@ -186,62 +186,63 @@ export function PublicationFewCountTable({ publications }) {
 
 
 export function PublicationCompactTable({ publications }) {
-const publicationsCount = publications.length
-const sortType = React.useMemo(
-  () => (rowA, rowB, id) => {
-    const idA = getPublicationIdNumber(rowA.original[id])
-    const idB = getPublicationIdNumber(rowB.original[id])
-    return idA > idB ? 1 : idB > idA ? -1 : 0
-  },
-  []
-)
-const columns = React.useMemo(
-  () => [
-    {
-      Header: `Publications (${publicationsCount})`,
-      columns: [
-        {
-          Header: InfodotHeader(
-            "id",
-            "Publication id (PubMed) with link to details page"
-          ),
-          accessor: "id",
-          sortType,
-          Cell: function Cell(cellInfo) {
-            return (
-              <a href={`/publication/?id=${cellInfo.value}`}>
-                {cellInfo.value}
-              </a>
-            )
+  const publicationsCount = publications.length
+  const sortType = React.useMemo(
+    () => (rowA, rowB, id) => {
+      const idA = getPublicationIdNumber(rowA.original[id])
+      const idB = getPublicationIdNumber(rowB.original[id])
+      return idA > idB ? 1 : idB > idA ? -1 : 0
+    },
+    []
+  )
+
+  const columns = React.useMemo(
+    () => [
+      {
+        Header: `Publications (${publicationsCount})`,
+        columns: [
+          {
+            Header: InfodotHeader(
+              "id",
+              "Publication id (PubMed) with link to details page"
+            ),
+            accessor: "id",
+            sortType,
+            Cell: function Cell(cellInfo) {
+              return (
+                <a href={`/publication/?id=${cellInfo.value}`}>
+                  {cellInfo.value}
+                </a>
+              )
+            }
+          },
+          {
+            Header: "Publication",
+            Cell: function Cell({ row: { original } }) {
+              return (
+                <>
+                  <div>
+                    {original.label} {original.journal}{" "}
+                    <EpmcLink publicationId={original.id} />
+                  </div>
+                </>
+              )
+            }
           }
-        },
-        {
-          Header: "Publication",
-          Cell: function Cell({ row: { original } }) {
-            return (
-              <>
-                <div>
-                  {original.label} {original.journal}{" "}
-                  <EpmcLink publicationId={original.id} />
-                </div>
-              </>
-            )
-          }
-        }
-      ]
-    }
-  ],
-  [publicationsCount, sortType]
-)
-return (
-  <Table
-    columns={columns}
-    data={publications}
-    pageSize={4}
-    hiddenColumns={["sortid"]}
-    sortBy={[{ id: "id", desc: true }]}
-  />
-)
+        ]
+      }
+    ],
+    [publicationsCount, sortType]
+  )
+  return (
+    <Table
+      columns={columns}
+      data={publications}
+      pageSize={4}
+      hiddenColumns={["sortid"]}
+      sortBy={[{ id: "id", desc: true }]}
+    />
+  )
 }
 
 function CountCell({ value }) {
