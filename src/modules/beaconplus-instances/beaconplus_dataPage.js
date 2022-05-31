@@ -16,7 +16,7 @@ export default function BeaconPlusPage({ cytoBands }) {
         <div className="BeaconPlus__container">
           <Panel className="content">
             <div>
-                This forward looking Beacon interface implements additional,
+                This forward looking Beacon interface proposes additional,
                 planned features beyond the <a href="http://docs.genomebeacons.org/">current Beacon v2 specifications</a>. The Beacon<sup>+</sup> genome variation service tests experimental features and proposed extensions to the <a href="http://beacon-project.io">Beacon</a> protocol. The
                 service is implemented using the <a href="https://github.com/progenetix/bycon">bycon</a> backend
                 and allows access to the various datasets represented through the <a href="http://progenetix.org">Progenetix</a> cancer genomics resource.
