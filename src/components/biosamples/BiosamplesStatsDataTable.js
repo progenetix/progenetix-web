@@ -22,8 +22,9 @@ export default function BiosamplesStatsDataTable({
           Cell: function Cell({ value, row: { original } }) {
             return (
               <span>
+              
                 <a
-                  href={`/subsets/biosubsets?filters=${original.id}&datasetIds=${datasetId}`}
+                  href={`/subsets/subsetdetails/?id=${original.id}&datasetIds=${datasetId}`}
                 >
                   {value}
                 </a>
@@ -109,7 +110,7 @@ export function makeSubsetsData(biosamplesResults, allSubsetsById) {
   const ids = biosamplesResults
     .flatMap((sample) => BIOKEYS.map(bioc => (sample[bioc])))
     .map(function (a) {
-      return a.id
+      return a.id     
     })
   const subsetCounts = _.countBy(ids)
   const subsets = Object.entries(subsetCounts).map(([k, v]) => ({

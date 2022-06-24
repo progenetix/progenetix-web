@@ -8,7 +8,7 @@ TCGA:
       defaultValue: ["progenetix"]
       isHidden: true
     cohorts:
-      defaultValue: ["pgxcohort-TCGA"]
+      defaultValue: ["pgx:cohort-TCGA"]
       # isHidden: true
     assemblyId:
       isHidden: true
@@ -19,7 +19,7 @@ TCGA:
     end:
       placeholder: "21967753-24000000"
     variantType:
-      placeholder: "DEL"
+      placeholder: "EFO:0030067"
     alternateBases:
       placeholder: ""
       isHidden: true
@@ -47,7 +47,7 @@ TCGA:
         end:
           defaultValue: "21967753-22500000"
         variantType:
-          defaultValue: "DEL"
+          defaultValue: "EFO:0030067"
         bioontology:
           defaultValue: ["NCIT:C3058"]
     - label: "MYC Duplication"
@@ -62,6 +62,6 @@ TCGA:
         end:
           defaultValue: "127740957-130000000"
         variantType:
-          defaultValue: "DUP"
+          defaultValue: "EFO:0030070"
         materialtype:
           defaultValue: "EFO:0009656"

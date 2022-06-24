@@ -68,8 +68,8 @@ function mapToOptions(data) {
   if (!data || data.response.results[0].uniqueTerms == null) return []
   const ut = data.response.results[0].uniqueTerms
   const NCIT = filterTermlistByPrefix("NCIT", ut) ?? []
-  const icdom = filterTermlistByPrefix("icdom", ut) ?? []
-  const icdot = filterTermlistByPrefix("icdot", ut) ?? []
+  const icdom = filterTermlistByPrefix("pgx:icdom", ut) ?? []
+  const icdot = filterTermlistByPrefix("pgx:icdot", ut) ?? []
   const UBERON = filterTermlistByPrefix("UBERON", ut) ?? []
   return [NCIT, icdom, icdot, UBERON].flat().map((c) => ({
     label: c.id + ": " + c.label,

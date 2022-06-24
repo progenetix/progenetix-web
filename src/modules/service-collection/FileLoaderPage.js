@@ -125,7 +125,7 @@ export default function FileLoaderPage() {
             <ul>
               <li>the called type of the segment</li>
               <li>
-                one of <code>DUP</code> or <code>DEL</code>
+                one of <code>EFO:0030067</code> (CN gain) or <code>EFO:0030067</code> (deletion)
               </li>
               <li>
                 this will override a status derived from thresholding the value

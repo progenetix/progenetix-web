@@ -88,7 +88,7 @@ export default function SearchSamplesPage({ cytoBands }) {
       <Panel heading="CNV Frequency Plot">
         <SubsetHistogram
           datasetIds="progenetix"
-          id="pgxcohort-gao2021signatures"
+          id="pgx:cohort-gao2021signatures"
         />
       </Panel>
       <BiosamplesSearchPanel

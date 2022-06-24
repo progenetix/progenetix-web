@@ -36,7 +36,7 @@ export default function SearchSamplesPage({ cytoBands }) {
           </Link>{" "}
           page.
         </div>
-        <SubsetHistogram datasetIds="progenetix" id="pgxcohort-TCGAcancers" />
+        <SubsetHistogram datasetIds="progenetix" id="pgx:cohort-TCGAcancers" />
       </Panel>
       <BiosamplesSearchPanel
         datasets={datasets}

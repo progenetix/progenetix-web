@@ -37,7 +37,7 @@ export default function BiosamplesDataTable({ apiReply, datasetId }) {
             {BIOKEYS.map(bioc => (
               <div key={bioc}>
                 <Link
-                href={`/subsets/biosubsets?filters=${cell.row.original[bioc].id}`}
+                href={`/subsets/subsetdetails/?id=${cell.row.original[bioc].id}&datasetIds=${datasetId}`}
                 >
                   <a>{cell.row.original[bioc].id}</a>
                 </Link>{" "}
@@ -64,14 +64,14 @@ export default function BiosamplesDataTable({ apiReply, datasetId }) {
               ) : (
                 externalReference.id
               )}{" "}
-              {externalReference.label}
+              {externalReference.description}
             </div>
           ))
       },
       {
         Header: TooltipHeader(
           "CNV Fraction",
-          "Fraction of the sample's genome covered by CNV events (DUP or DEL)"
+          "Fraction of the sample's genome covered by CNV events (genomic gain or deletion)"
         ),
         accessor: "info.cnvstatistics.cnvfraction"
       }

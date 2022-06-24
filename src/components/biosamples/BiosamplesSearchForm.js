@@ -2,7 +2,7 @@ import cn from "classnames"
 import {
   checkIntegerRange,
   makeFilters,
-  useCollations,
+  useCollationsByType,
   validateBeaconQuery
 } from "../../hooks/api"
 import React, { useMemo, useState } from "react" //useEffect, 
@@ -411,6 +411,16 @@ parameters = merge({}, parameters, {
                 </span>
               }
             />
+            <SelectField
+              className="column py-0 mb-3"
+              {...parameters.includeDescendantTerms}
+              {...selectProps}
+              label={
+                <span>
+                  <span>{parameters.includeDescendantTerms.label}</span>
+                </span>
+              }
+            />
           </div>
           <InputField {...parameters.accessid} {...fieldProps} />
           {!parameters.geoCity.isHidden && (
@@ -567,30 +577,27 @@ const handleExampleClicked = (reset, setExample, setUrlQuery) => (example) => {
 // Maps FilteringTerms hook to apiReply usable by DataFetchSelect
 function useBioSubsets(watchForm) {
   const datasetIds = watchForm("datasetIds")
-  return useCollations({
+  return useCollationsByType({
     datasetIds,
     method: "counts",
-    filters: "",
-    collationTypes: "NCIT,icdom,icdot,UBERON"
+    collationTypes: "NCIT,pgx:icdom,pgx:icdot,UBERON"
   })
 }
 
 function useReferencesSubsets(watchForm) {
   const datasetIds = watchForm("datasetIds")
-  return useCollations({
+  return useCollationsByType({
     datasetIds,
     method: "counts",
-    filters: "",
-    collationTypes: "PMID,geo,cellosaurus"
+    collationTypes: "PMID,GEOseries,GEOplatform,cellosaurus"
   })
 }
 
 function useClinicalSubsets(watchForm) {
   const datasetIds = watchForm("datasetIds")
-  return useCollations({
+  return useCollationsByType({
     datasetIds,
     method: "counts",
-    filters: "",
     collationTypes: "TNM,NCITgrade,NCITstage,EFOfus"
   })
 }

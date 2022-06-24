@@ -44,8 +44,8 @@ OneKgenomesDRAGEN:
   examples:
     - label: "Range Example"
       note: "Example for any change around TP53 locus"
-      description: |
-        The range reques matches all (DEL) variants somehow overlapping the interval.
+      description: >-
+        The range reques matches all variants somehow overlapping the interval.
       parameters:
         referenceName:
           defaultValue: "17"

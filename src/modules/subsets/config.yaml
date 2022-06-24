@@ -7,7 +7,7 @@ biofilters:
     label: ICD-O Topography
   UBERON:
     label: UBERON Anatomy Ontology
-  TNM:
+  NCITtnm:
     label: NCIT TNM Finding
   NCITgrade:
     label: NCIT Disease Grade
@@ -16,14 +16,16 @@ biofilters:
   EFOfus:
     label: followup status
 cohortfilters:
-  TCGA:
-    label: The Cancer Genome Atlas (projects)
+  # TCGAproject:
+  #   label: The Cancer Genome Atlas (projects)
   cellosaurus:
     label: Cellosaurus Cell Line Resource
-  cBP:
+  cbioportal:
     label: cBioPortal Projects
-  geo:
-    label: Gene Expression Omnibus (Series and Platforms)
+  GEOseries:
+    label: Gene Expression Omnibus (Series)
+  GenomePlatforms:
+    label: Profiling Platforms
   PMID:
     label: Publications
 datasetIds:

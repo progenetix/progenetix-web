@@ -16,10 +16,11 @@ export function useExtendedSWR(url, fetcher = defaultFetcher) {
 
 export const MAX_HISTO_SAMPLES = 4000
 export const PROGENETIXINFO = "https://info.progenetix.org"
+export const PROGENETIXDOCS = "https://docs.progenetix.org"
 export const ABOUTLINK = `${PROGENETIXINFO}/categories/about.html`
-export const USECASESLINK = `${PROGENETIXINFO}/categories/usecases.html`
-export const DOCLINK = `${PROGENETIXINFO}/categories/documentation.html`
-export const NEWSLINK = `${PROGENETIXINFO}/categories/news.html`
+export const DOCLINK = `${PROGENETIXDOCS}`
+export const NEWSLINK = `${PROGENETIXDOCS}/categories/news.html`
+export const USECASESLINK = `${PROGENETIXDOCS}/en/latest/use-cases.html`
 export const THISYEAR = new Date().getFullYear()
 
 export const BIOKEYS = ["histologicalDiagnosis", "icdoMorphology", "icdoTopography", "sampledTissue"]
@@ -256,6 +257,14 @@ export function getDataItemUrl(id, collection, datasetIds) {
   return `${basePath}beacon/${collection}/${id}/?datasetIds=${datasetIds}`
 }
 
+export function useServiceItemDelivery(id, collection, datasetIds) {
+  return useProgenetixApi(getServiceItemUrl(id, collection, datasetIds))
+}
+
+export function getServiceItemUrl(id, collection, datasetIds) {
+  return `${basePath}services/${collection}?id=${id}&datasetIds=${datasetIds}`
+}
+
 export function getDataItemPageUrl(id, collection, datasetIds) {
   return `${basePath}${collection}/?datasetIds=${datasetIds}&${
     collection == "variants" ? "_id" : "id"
@@ -291,12 +300,11 @@ export function useSubsethistogram({ datasetIds, id, filter, size, chr2plot }) {
   return useExtendedSWR(size > 0 && `${svgbaseurl}&${searchQuery}`, svgFetcher)
 }
 
-// method is "counts" for smaller payloads 
+// method is "counts" / "child_terms" for smaller payloads 
 export function useCollationsById({ datasetIds }) {
   const { data, ...other } = useCollations({
     filters: "",
     method: "counts",
-    collationTypes: "",
     datasetIds
   })
 
@@ -313,8 +321,13 @@ export function useCollationsById({ datasetIds }) {
   return { data, ...other }
 }
 
-export function useCollations({ datasetIds, method, filters, collationTypes }) {
-  const url = `${basePath}services/collations/?datasetIds=${datasetIds}&method=${method}&filters=${filters}&collationTypes=${collationTypes}`
+export function useCollations({ datasetIds, method, filters }) {
+  const url = `${basePath}services/collations/?datasetIds=${datasetIds}&method=${method}&filters=${filters}`
+  return useProgenetixApi(url)
+}
+
+export function useCollationsByType({ datasetIds, method, collationTypes }) {
+  const url = `${basePath}services/collations/?datasetIds=${datasetIds}&method=${method}&collationTypes=${collationTypes}`
   return useProgenetixApi(url)
 }
 
@@ -323,7 +336,7 @@ export function sampleSearchPageFiltersLink({
   sampleFilterScope,
   filters
 }) {
-  return `/biosamples/?${sampleFilterScope}=${filters}&datasetIds=${datasetIds}&filterLogic=OR`
+  return `/biosamples/?${sampleFilterScope}=${filters}&datasetIds=${datasetIds}`
 }
 
 export function useGeoCity({ city }) {
@@ -382,15 +395,15 @@ export function referenceLink(externalReference) {
       "https://www.ebi.ac.uk/arrayexpress/experiments/" +
       externalReference.id.replace("arrayexpress:", "")
     )
-  } else if (externalReference.id.includes("cBP")) {
+  } else if (externalReference.id.includes("cbioportal")) {
     return (
       "https://www.cbioportal.org/study/summary?id=" +
-      externalReference.id.replace("cBP-", "").toLowerCase()
+      externalReference.id.replace("cbioportal:", "").toLowerCase()
     )
   } else if (externalReference.id.includes("TCGA-")) {
     return (
       "https://portal.gdc.cancer.gov/projects/" +
-      externalReference.id.replace("tcga:", "")
+      externalReference.id.replace("pgx:", "")
     )
   } else if (externalReference.id.includes("biosample")) {
     return (

@@ -140,7 +140,7 @@ function sampleSearchHref({ id, progenetixSamplesCount }) {
 
   return `/biosamples/?freeFilters=${id}&datasetIds=${datasetsIds.join(
     ","
-  )}&filterPrecision=exact&executeSearch=true`
+  )}&executeSearch=true`
 }
 
 const technologies = ["ccgh", "acgh", "wes", "wgs"]

@@ -1,4 +1,4 @@
-import { useCollations, useCollationsById } from "../../hooks/api"
+import { useCollationsByType, useCollationsById } from "../../hooks/api"
 import { WithData } from "../../components/Loader"
 import React from "react"
 import { withUrlQuery } from "../../hooks/url-query"
@@ -59,17 +59,16 @@ const BioSubsetsContent = withUrlQuery(({ urlQuery, setUrlQuery }) => {
           </div>
         </div>
       </div>
-      <SubsetsLoader filters={selectedFilters} datasetIds={ datasetIds } />
+      <SubsetsLoader collationTypes={selectedFilters} datasetIds={ datasetIds } />
     </>
   )
 })
 
-function SubsetsLoader({ filters, datasetIds }) {
-  const bioSubsetsHierarchiesReply = useCollations({
+function SubsetsLoader({ collationTypes, datasetIds }) {
+  const bioSubsetsHierarchiesReply = useCollationsByType({
     datasetIds,
     method: "paths",
-    filters,
-    collationTypes: ""
+    collationTypes
   })
 
   const allBioSubsetsReply = useCollationsById({

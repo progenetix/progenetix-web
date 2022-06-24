@@ -8,7 +8,7 @@ dipg:
       defaultValue: ["progenetix"]
       isHidden: true
     cohorts:
-      defaultValue: ["pgxcohort-DIPG"]
+      defaultValue: ["pgx:cohort-DIPG"]
       isHidden: true
     assemblyId:
       defaultValue: "GRCh38"
@@ -62,7 +62,7 @@ dipg:
         end:
           defaultValue: "21967753-22500000"
         variantType:
-          defaultValue: "DEL"
+          defaultValue: "EFO:0030067"
         bioontology:
           defaultValue: ["NCIT:C3058"]
     - label: "MYC Duplication"
@@ -77,6 +77,6 @@ dipg:
         end:
           defaultValue: "127740957-130000000"
         variantType:
-          defaultValue: "DUP"
+          defaultValue: "EFO:0030070"
         materialtype:
           defaultValue: "EFO:0009656"

@@ -1,0 +1,29 @@
+body {
+  font: 14px/1.5 "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #727272;
+  font-weight: 400
+}
+
+/* Sidebar header (and topbar for mobile) */
+.wy-side-nav-search, .wy-nav-top {
+  background: #dd6940;
+}
+
+/* Sidebar */
+/**
+.wy-nav-side {
+  background: #ff6f48;
+}
+**/
+
+li.toctree-l1 {
+  font-size: 1.2em;
+}
+
+div.admonition tt.xref, div.admonition code.xref, div.admonition a tt {
+  font-size: 0.9em;
+}
+
+div.admonition {
+  border: 1px solid #dd6940;
+}
