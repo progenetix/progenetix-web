@@ -6,7 +6,7 @@ date: 2021-01-04
 ---
 
 
-The new year brings some refinements to biosamples [search](https://progenetix.org/biosamples/) and display:
+The new year brings some refinements to biosamples [search](http://progenetix.org/biosamples/) and display:
 
 * added example for a pure filter search (HeLa)
 * made UCSC link depending on variants

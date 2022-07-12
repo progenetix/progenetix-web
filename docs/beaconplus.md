@@ -10,7 +10,7 @@ As part of the project, since early 2016 the [Computational Cytogenetics and Onc
 to demonstrate current functionality and future Beacon protocol extensions.
 
 The Beacon<sup><span style="color: #d00;">+</span></sup> implementation is a
-custom front end on top of the [Progenetix](https://progenetix.org)
+custom front end on top of the [Progenetix](http://progenetix.org)
 dataset, with emphasis on structural genome variations from cancer samples.
 
 On 2020-01-20,  Beacon<sup><span style="color: #d00;">+</span></sup> became part
@@ -118,7 +118,7 @@ resource.
 
 The root path provides the standard `BeaconInfoResponse`.
 
-* [/](https://progenetix.org/beacon/)
+* [/](http://progenetix.org/beacon/)
 
 ----
 
@@ -126,13 +126,13 @@ The root path provides the standard `BeaconInfoResponse`.
 
 ##### `/filtering_terms/`
 
-* [/filtering_terms/](https://progenetix.org/beacon/filtering_terms/)
+* [/filtering_terms/](http://progenetix.org/beacon/filtering_terms/)
 
 
 ##### `/filtering_terms/` + query
 
-* [/filtering_terms/?filters=PMID](https://progenetix.org/beacon/filtering_terms/?filters=PMID)
-* [/filtering_terms/?filters=NCIT,icdom](https://progenetix.org/beacon/filtering_terms/?filters=NCIT,icdom)
+* [/filtering_terms/?filters=PMID](http://progenetix.org/beacon/filtering_terms/?filters=PMID)
+* [/filtering_terms/?filters=NCIT,icdom](http://progenetix.org/beacon/filtering_terms/?filters=NCIT,icdom)
 
 ----
 
@@ -140,7 +140,7 @@ The root path provides the standard `BeaconInfoResponse`.
 
 ##### `/biosamples/` + query
 
-* [/biosamples/?filters=cellosaurus:CVCL_0004](https://progenetix.org/beacon/biosamples/?filters=cellosaurus:CVCL_0004)
+* [/biosamples/?filters=cellosaurus:CVCL_0004](http://progenetix.org/beacon/biosamples/?filters=cellosaurus:CVCL_0004)
   - this example retrieves all biosamples having an annotation for the Cellosaurus _CVCL_0004_
   identifier (K562)
 
@@ -166,10 +166,10 @@ The root path provides the standard `BeaconInfoResponse`.
 
 ##### `/individuals/` + query
 
-* [/individuals/?filters=NCIT:C7541](https://progenetix.org/beacon/individuals/?filters=NCIT:C7541)
+* [/individuals/?filters=NCIT:C7541](http://progenetix.org/beacon/individuals/?filters=NCIT:C7541)
   - this example retrieves all individuals having an annotation associated with _NCIT:C7541_ (retinoblastoma)
   - in Progenetix, this particular code will be part of the annotation for the _biosample(s)_ associated with the returned individual
-* [/individuals/?filters=PATO:0020001,NCIT:C9291](https://progenetix.org/beacon/individuals/?filters=PATO:0020001,NCIT:C9291)
+* [/individuals/?filters=PATO:0020001,NCIT:C9291](http://progenetix.org/beacon/individuals/?filters=PATO:0020001,NCIT:C9291)
   - this query returns information about individuals with an anal carcinoma (**NCIT:C9291**) and a known male genotypic sex (**PATO:0020001**)
   - in Progenetix, the information about its sex is associated with the _Individual_ object (and rtherefore in the _individuals_ collection), whereas the information about the cancer type is a property of the _Biosample_ (and therefore stored in the _biosamples_ collection)
 
@@ -222,7 +222,7 @@ CNV statistics or binned genome calls.
 
 ##### `/analyses/` + query
 
-* [/analyses/?filters=cellosaurus:CVCL_0004](https://progenetix.org/beacon/analyses/?filters=cellosaurus:CVCL_0004)
+* [/analyses/?filters=cellosaurus:CVCL_0004](http://progenetix.org/beacon/analyses/?filters=cellosaurus:CVCL_0004)
   - this example retrieves all biosamples having an annotation for the Cellosaurus _CVCL_0004_
   identifier (K562)
 

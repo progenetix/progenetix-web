@@ -19,11 +19,11 @@ for the main data items.
 
 <!--more-->
 
-* biosample: [pgxbs-kftva5zv](https://progenetix.org/services/ids/pgxbs-kftva5zv) => for identifiers.org `pgx:pgxbs-kftva5zv`
-* callset: [pgxcs-kftvlijb](https://progenetix.org/services/ids/pgxcs-kftvlijb) => for identifiers.org `pgx:pgxcs-kftvlijb`
-* individual: [pgxind-kftx266l](https://progenetix.org/services/ids/pgxind-kftx266l) => for identifiers.org `pgx:pgxind-kftx266l`
+* biosample: [pgxbs-kftva5zv](http://progenetix.org/services/ids/pgxbs-kftva5zv) => for identifiers.org `pgx:pgxbs-kftva5zv`
+* callset: [pgxcs-kftvlijb](http://progenetix.org/services/ids/pgxcs-kftvlijb) => for identifiers.org `pgx:pgxcs-kftvlijb`
+* individual: [pgxind-kftx266l](http://progenetix.org/services/ids/pgxind-kftx266l) => for identifiers.org `pgx:pgxind-kftx266l`
 
-The mappings are enabled through the new id resolver endpoint "https://progenetix.org/services/ids/{$id}"
+The mappings are enabled through the new id resolver endpoint "http://progenetix.org/services/ids/{$id}"
 
 #### Additional Links
 

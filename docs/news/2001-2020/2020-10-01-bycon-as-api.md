@@ -11,4 +11,4 @@ project. Contributions welcome!
 
 ### Example
 
-* [progenetix.org/beacon/variants/?referenceBases=G&alternateBases=A&assemblyId=GRCh38&referenceName=17&start=7577120](https://progenetix.org/beacon/variants/?referenceBases=G&alternateBases=A&assemblyId=GRCh38&referenceName=17&start=7577120)
+* [progenetix.org/beacon/variants/?referenceBases=G&alternateBases=A&assemblyId=GRCh38&referenceName=17&start=7577120](http://progenetix.org/beacon/variants/?referenceBases=G&alternateBases=A&assemblyId=GRCh38&referenceName=17&start=7577120)

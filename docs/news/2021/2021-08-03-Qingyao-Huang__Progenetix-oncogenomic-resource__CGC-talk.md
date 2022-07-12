@@ -11,5 +11,5 @@ date: 2021-08-03
 
 #### Additional Links
 
-* [Video Recording of Presentation](https://progenetix.org/storage-ext/recordings/2021-08-03___Qingyao__CGC_recording.mp4)
+* [Video Recording of Presentation](http://progenetix.org/storage-ext/recordings/2021-08-03___Qingyao__CGC_recording.mp4)
 * [Slides PDF](https://info.baudisgroup.org/pdf/2021-08-03___Qingyao-Huang__CGC-progenetix-presentation__slides.pdf)
