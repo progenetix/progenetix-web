@@ -70,6 +70,9 @@ export function DatasetResultBox({ data: responseSet, query }) {
     variantsHandover && replaceWithProxy(variantsHandover.url)
   )
 
+  const UCSCbedHandoverURL = handoverById(HANDOVER_IDS.UCSClink) === undefined ? false : handoverById(HANDOVER_IDS.UCSClink).url
+
+
   // the histogram is only rendered under some conditions:
   // * handover is needed, obviously
   // * not rendered if alternateBases was used since then frequencies are off => may get changed...
@@ -186,10 +189,20 @@ export function DatasetResultBox({ data: responseSet, query }) {
               <UCSCRegion query={query} />
             </div>
           ) : null}
-          <ExternalLink
-            label="JSON Response"
-            onClick={() => openJsonInNewTab(responseSet)}
-          />
+          {info.counts.variantCount > 0 ? (
+            <div>
+              <ExternalLink
+                label="Variants in UCSC"
+                href={UCSCbedHandoverURL}
+              />
+            </div>
+          ) : null}
+          <div>
+            <ExternalLink
+              label="JSON Response"
+              onClick={() => openJsonInNewTab(responseSet)}
+            />
+          </div>
         </div>
         {visualizationLink && (
           <div className="column is-one-third">
