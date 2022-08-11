@@ -11,4 +11,4 @@ Such queries - which would e.g. return all whole-chromosome CNV events covering 
 
 <!--more-->
 
-For testing we have provided a [dedicated search form](https://progenetix.org/beacon-genes/) which allows you to test the search for variants by gene symbol and size thresholding. The options may be expanded, e.g. for categorical overlap definitions or range expansions. Please remember that all these searches can be implemented by standard range requests - and even more fine tuned with "bracketed" searches as in the `CNV Request` example for [Beacon+](https://progenetix.org/beaconPlus/?).
+For testing we have provided a [dedicated search form](http://progenetix.org/beacon-genes/) which allows you to test the search for variants by gene symbol and size thresholding. The options may be expanded, e.g. for categorical overlap definitions or range expansions. Please remember that all these searches can be implemented by standard range requests - and even more fine tuned with "bracketed" searches as in the `CNV Request` example for [Beacon+](http://progenetix.org/beaconPlus/?).

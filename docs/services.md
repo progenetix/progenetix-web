@@ -57,7 +57,7 @@ a variation is now being provided for CNV frequencies.
 For example, this API call retireves the variants for 78 samples from two NCIt
 cancer types (please be aware of the `&filterLogic=OR` pragma!):
 
-* [progenetix.org/beacon/variants/?filters=NCIT:C6393,NCIT:C4504&filterLogic=OR&output=pgxseg](https://progenetix.org/beacon/variants/?filters=NCIT:C6393,NCIT:C4504&filterLogic=OR&output=pgxseg)
+* [progenetix.org/beacon/variants/?filters=NCIT:C6393,NCIT:C4504&filterLogic=OR&output=pgxseg](http://progenetix.org/beacon/variants/?filters=NCIT:C6393,NCIT:C4504&filterLogic=OR&output=pgxseg)
 
 An excerpt of the segment file would look like below:
 
@@ -97,9 +97,9 @@ Future options are under evaluation.
 
 Examples can be derived from the Progenetix "Services" API:
 
-* [/services/intervalFrequencies/pgx:cohort-TCGAcancers/?output=pgxseg](https://progenetix.org/services/intervalFrequencies/pgx:cohort-TCGAcancers/?output=pgxseg)
+* [/services/intervalFrequencies/pgx:cohort-TCGAcancers/?output=pgxseg](http://progenetix.org/services/intervalFrequencies/pgx:cohort-TCGAcancers/?output=pgxseg)
     - single group in REST syntax (here overall CNV frequencies in >11000 cancer samples from the TCGA sample collection)
-* [/services/intervalFrequencies/?filters=icdom-81403,icdom-81443&output=pgxseg](https://progenetix.org/services/intervalFrequencies/?filters=icdom-81403,icdom-81443&output=pgxseg)
+* [/services/intervalFrequencies/?filters=icdom-81403,icdom-81443&output=pgxseg](http://progenetix.org/services/intervalFrequencies/?filters=icdom-81403,icdom-81443&output=pgxseg)
     - 2 sets using the `filters` parameter
 
 ```
@@ -146,7 +146,7 @@ PMID:22824167 6.29  0.0 ... 8.18  4.4 ...
 
 ##### Examples
 
-* <https://progenetix.org/services/intervalFrequencies/?datasetIds=progenetix&output=pgxmatrix&filters=NCIT:C7376,PMID:22824167>
+* <http://progenetix.org/services/intervalFrequencies/?datasetIds=progenetix&output=pgxmatrix&filters=NCIT:C7376,PMID:22824167>
 
 #### CNV Status Matrix
 
@@ -180,7 +180,7 @@ pgxcs-kftwwbry  pgxbs-kftvkzwp  NCIT:C3908  0.5801  0 0.6415  1.0
 
 ##### Examples
 
-* [progenetix.org/beacon/callsets/?output=pgxmatrix&filters=NCIT:C4443](https://progenetix.org/beacon/callsets/?output=pgxmatrix&filters=NCIT:C4443)
+* [progenetix.org/beacon/callsets/?output=pgxmatrix&filters=NCIT:C4443](http://progenetix.org/beacon/callsets/?output=pgxmatrix&filters=NCIT:C4443)
 
 
 ### Image Formats
@@ -207,7 +207,7 @@ There are two possibilities to plot CNV histograms through the Progenetix API w/
 1. direct visualization of pre-computed collations, e.g. publications or diagnosttic entities
     * [progenetix.org/cgi/PGX/cgi/collationPlots.cgi?datasetIds=progenetix&id=NCIT:C4443]()
 2. a Beacon API query with the added option `&output=histoplot`
-    * [progenetix.org/beacon/biosamples/?limit=200&datasetIds=progenetix&referenceName=refseq:NC_000009.12&variantType=EFO:0030067&start=21500000,21975098&end=21967753,22500000&filters=NCIT:C3058&output=histoplot](https://progenetix.org/beacon/biosamples/?limit=200&datasetIds=progenetix&referenceName=refseq:NC_000009.12&variantType=EFO:0030067&start=21500000,21975098&end=21967753,22500000&filters=NCIT:C3058&output=histoplot)
+    * [progenetix.org/beacon/biosamples/?limit=200&datasetIds=progenetix&referenceName=refseq:NC_000009.12&variantType=EFO:0030067&start=21500000,21975098&end=21967753,22500000&filters=NCIT:C3058&output=histoplot](http://progenetix.org/beacon/biosamples/?limit=200&datasetIds=progenetix&referenceName=refseq:NC_000009.12&variantType=EFO:0030067&start=21500000,21975098&end=21967753,22500000&filters=NCIT:C3058&output=histoplot)
 
 Please **use option 1** if accessing complete entities (i.e. only using a single `filters` value) - this option is not limited through large sample numbers.
 
@@ -219,7 +219,7 @@ Please **use option 1** if accessing complete entities (i.e. only using a single
 ### Cancer Genomics Publications `publications`
 
 The `publications` service serves as backend API for the display of genome
-screening publications through the Progenetix [Publications DB](https://progenetix.org/publications/).
+screening publications through the Progenetix [Publications DB](http://progenetix.org/publications/).
 
 It provides articles describing whole genome screening (WGS, WES, aCGH, cCGH) experiments in cancer, including some information about e.g. the numbers of samples analysed with a given technology and if sample profiles are available in Progenetix.
 
@@ -250,14 +250,14 @@ The `cytoBands` and `chroBases` parameters can be used for running the script on
 #### Examples
 
 * retrieve coordinates for some bands on chromosome 8  
-    - [progenetix.org/services/cytomapper?assemblyId=NCBI36.1&cytoBands=8q24.1](https://progenetix.org/services/cytomapper?assemblyId=NCBI36.1&cytoBands=8q24.1)
+    - [progenetix.org/services/cytomapper?assemblyId=NCBI36.1&cytoBands=8q24.1](http://progenetix.org/services/cytomapper?assemblyId=NCBI36.1&cytoBands=8q24.1)
 * as above, just as text:
-    - [progenetix.org/services/cytomapper?assemblyId=NCBI.1&cytoBands=8q&output=text](https://progenetix.org/services/cytomapper?assemblyId=NCBI.1&cytoBands=8q&output=text)
-    - *cytomapper shortcut*: [progenetix.org/services/cytomapper/?assemblyId=NCBI36.1&cytoBands=8q&output=text](https://progenetix.org/services/cytomapper/?assemblyId=NCBI36.1&cytoBands=8q&output=text)
+    - [progenetix.org/services/cytomapper?assemblyId=NCBI.1&cytoBands=8q&output=text](http://progenetix.org/services/cytomapper?assemblyId=NCBI.1&cytoBands=8q&output=text)
+    - *cytomapper shortcut*: [progenetix.org/services/cytomapper/?assemblyId=NCBI36.1&cytoBands=8q&output=text](http://progenetix.org/services/cytomapper/?assemblyId=NCBI36.1&cytoBands=8q&output=text)
 * get the cytobands whith which a base range on chromosome 17 overlaps, in short and long form
-    - [progenetix.org/services/cytomapper?assemblyId=GRCh37&chroBases=17:800000-24326000](https://progenetix.org/services/cytomapper?assemblyId=GRCh37&chroBases=17:800000-24326000)
+    - [progenetix.org/services/cytomapper?assemblyId=GRCh37&chroBases=17:800000-24326000](http://progenetix.org/services/cytomapper?assemblyId=GRCh37&chroBases=17:800000-24326000)
 * using `curl` to get the text format mapping of a cytoband range, using the API `services` shortcut:
-    - `curl -k https://progenetix.org/services/cytomapper?cytoBands\=8q21q24.1&assemblyId\=hg18&text\=1`
+    - `curl -k http://progenetix.org/services/cytomapper?cytoBands\=8q21q24.1&assemblyId\=hg18&text\=1`
 * running it locally
     - `./services/cytomapper.py --cytoBands 9p12q21`
     - `./services/cytomapper.py --assemblyId GRCh37 --cytoBands 9p12q21`
@@ -283,15 +283,15 @@ exact gene symbol match
 
 #### Examples
 
-* [progenetix.org/services/genespans/?geneId=TP53&filterPrecision=exact](https://progenetix.org/services/genespans/?geneId=TP53&filterPrecision=exact)
-* [progenetix.org/services/genespans/CDKN2A](https://progenetix.org/services/genespans/CDKN2A)
+* [progenetix.org/services/genespans/?geneId=TP53&filterPrecision=exact](http://progenetix.org/services/genespans/?geneId=TP53&filterPrecision=exact)
+* [progenetix.org/services/genespans/CDKN2A](http://progenetix.org/services/genespans/CDKN2A)
 
 --------------------------------------------------------------------------------
 
 ### Ontology Cross-Mapping (`ontologymaps`)
 
 The `ontologymaps` service provides equivalency mapping between ICD-O and other
-classification systems, notably NCIt. The mappings are represented in the [ICDOntologies](https://github.com/progenetix/ICDOntologies) project and accessible trough a front-end in the [Progenetix Services area](https://progenetix.org/service-collection/ontologymaps).
+classification systems, notably NCIt. The mappings are represented in the [ICDOntologies](https://github.com/progenetix/ICDOntologies) project and accessible trough a front-end in the [Progenetix Services area](http://progenetix.org/service-collection/ontologymaps).
 
 #### ICD-O Representation
 
@@ -321,24 +321,24 @@ Our resources use an internal representation of ICD-O 3 codes since no official 
 
 ##### NCIt and ICD-O 3
 
-* [progenetix.org/services/ontologymaps/?filters=pgx:icdom-85003](https://progenetix.org/services/ontologymaps/?filters=pgx:icdom-85003)
-* [https://progenetix.org/services/ontologymaps/?filters=NCIT](https://progenetix.org/services/ontologymaps/?filters=NCIT)
-* [progenetix.org/services/ontologymaps/?filters=pgx:icdom-85003,pgx:icdot-C50.9](https://progenetix.org/services/ontologymaps/?filters=pgx:icdom-85003,pgx:icdot-C50.9)
-* [progenetix.org/services/ontologymaps/?filters=icdom-85,icdot-C50&filterPrecision=start](https://progenetix.org/services/ontologymaps/?filters=icdom-85,icdot-C50&filterPrecision=start)
+* [progenetix.org/services/ontologymaps/?filters=pgx:icdom-85003](http://progenetix.org/services/ontologymaps/?filters=pgx:icdom-85003)
+* [http://progenetix.org/services/ontologymaps/?filters=NCIT](http://progenetix.org/services/ontologymaps/?filters=NCIT)
+* [progenetix.org/services/ontologymaps/?filters=pgx:icdom-85003,pgx:icdot-C50.9](http://progenetix.org/services/ontologymaps/?filters=pgx:icdom-85003,pgx:icdot-C50.9)
+* [progenetix.org/services/ontologymaps/?filters=icdom-85,icdot-C50&filterPrecision=start](http://progenetix.org/services/ontologymaps/?filters=icdom-85,icdot-C50&filterPrecision=start)
     - As in the example above, but by stemmming the query parameters and providing the `filterPrecision=start` pragma, the response will now be a list of matched data objects (inputs and equivalents)
 
 ##### UBERON and ICD-O 3 Topography
 
-* [progenetix.org/services/ontologymaps/?filters=UBERON&filterPrecision=start](https://progenetix.org/services/ontologymaps/?filters=UBERON&filterPrecision=start)
+* [progenetix.org/services/ontologymaps/?filters=UBERON&filterPrecision=start](http://progenetix.org/services/ontologymaps/?filters=UBERON&filterPrecision=start)
     - all mappings
-* [progenetix.org/services/ontologymaps/?filters=UBERON,icdot-C0&filterPrecision=start](https://progenetix.org/services/ontologymaps/?filters=UBERON,icdot-C0&filterPrecision=start)
+* [progenetix.org/services/ontologymaps/?filters=UBERON,icdot-C0&filterPrecision=start](http://progenetix.org/services/ontologymaps/?filters=UBERON,icdot-C0&filterPrecision=start)
     - all `C0...` ICD-O T matches
     - limited to `UBERON` mappings since the prefix was given, too (otherwise all the NCIT mappings would also be listed for these ICD-O T code matches)
 
 #### More Information
 
-* [Web Interface for ICD & NCIT](https://progenetix.org/service-collection/ontologymaps)
-* [Interface for ICD & UBERON](https://progenetix.org/service-collection/uberonmaps)
+* [Web Interface for ICD & NCIT](http://progenetix.org/service-collection/ontologymaps)
+* [Interface for ICD & UBERON](http://progenetix.org/service-collection/uberonmaps)
 
 --------------------------------------------------------------------------------
 
@@ -348,11 +348,11 @@ The `ids` service forwards compatible, prefixed ids (see [`config/ids.yaml`](htt
 website endpoints. There is no check if the id exists; this is left to the web
 page handling itself.
 
-* <https://progenetix.org/services/ids/pgxbs-kftva5zv>
-* <https://progenetix.org/services/ids/PMID:28966033>
-* <https://progenetix.org/services/ids/NCIT:C3262>
-* <https://progenetix.org/services/ids/cellosaurus:CVCL_0022>
-* <https://progenetix.org/services/ids/pgx:icdom-81703>
+* <http://progenetix.org/services/ids/pgxbs-kftva5zv>
+* <http://progenetix.org/services/ids/PMID:28966033>
+* <http://progenetix.org/services/ids/NCIT:C3262>
+* <http://progenetix.org/services/ids/cellosaurus:CVCL_0022>
+* <http://progenetix.org/services/ids/pgx:icdom-81703>
 
 The `pgx` prefix has been registered with [identifiers.org](http://identifiers.org)
 and the service can also be used to access identifiers at Progenetix.
@@ -387,9 +387,9 @@ inhabitants (\~22750 cities), through either:
 
 ##### Examples
 
-* [progenetix.org/services/geolocations?city=zurich](https://progenetix.org/services/geolocations?city=zurich)
-* [progenetix.org/services/geolocations?city=New](https://progenetix.org/services/geolocations?city=New)
-* [progenetix.org/services/geolocations?geolongitude=-0.13&geolatitude=51.51&geodistance=100000](https://progenetix.org/services/geolocations?geolongitude=-0.13&geolatitude=51.51&geodistance=100000)
+* [progenetix.org/services/geolocations?city=zurich](http://progenetix.org/services/geolocations?city=zurich)
+* [progenetix.org/services/geolocations?city=New](http://progenetix.org/services/geolocations?city=New)
+* [progenetix.org/services/geolocations?geolongitude=-0.13&geolatitude=51.51&geodistance=100000](http://progenetix.org/services/geolocations?geolongitude=-0.13&geolatitude=51.51&geodistance=100000)
 
 
 [^1]: Before 2022-02-11 there where 3102 (or 6204) intervals. After this, a changed algorithm lead to

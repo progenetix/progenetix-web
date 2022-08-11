@@ -9,7 +9,7 @@ One of the main use cases for the Progenetix resource is the exploration of freq
     - the overall amount of CNVs in the samples
     - the local specificity, i.e. the "focality" of the CNVs
 
-The [Progenetix Search Page](https://progenetix.org/biosamples/) supports the exploration of regional CNVs through
+The [Progenetix Search Page](http://progenetix.org/biosamples/) supports the exploration of regional CNVs through
 
 * support for inserting positions of genes or cytobands into standard Beacon query parameter fields
 * selection support for hierarchical disease annotations
@@ -55,7 +55,7 @@ external project such as TCGA
 
 This data can be accessed through the Progenetix API in data and image format.
 
-![Example CNV histogram with custom parameters](https://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=NCIT:C7376&-size_plotarea_h_px=40&-value_plot_y_max=50&-colorschema=bluered&-chr2plot=1,3,9,17,22)
+![Example CNV histogram with custom parameters](http://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=NCIT:C7376&-size_plotarea_h_px=40&-value_plot_y_max=50&-colorschema=bluered&-chr2plot=1,3,9,17,22)
 
 Interval frequencies are per default stored in a 1Mb binned format. More
 information about the API use can be found [in the IntervalFrequencies API documentation](services.md#pgxseg-segment-cnv-frequencies).
@@ -72,9 +72,9 @@ queries and may lead to a time-out.
 
 #### Examples:
 
-![Example query-based CNV histogram](https://progenetix.org/beacon/biosamples/?referenceName=9&variantType=EFO:0030067&start=21500000&start=21975098&end=21967753&end=22500000&filters=NCIT:C3058&filters=pgx:cohort-celllines&output=histoplot)
+![Example query-based CNV histogram](http://progenetix.org/beacon/biosamples/?referenceName=9&variantType=EFO:0030067&start=21500000&start=21975098&end=21967753&end=22500000&filters=NCIT:C3058&filters=pgx:cohort-celllines&output=histoplot)
 
-* [progenetix.org/beacon/biosamples/?referenceName=9&variantType=EFO:0030067&start=21500000&start=21975098&end=21967753&end=22500000&filters=NCIT:C3058&filters=pgx:cohort-celllines&output=histoplot](https://progenetix.org/beacon/biosamples/?referenceName=9&variantType=EFO:0030067&start=21500000&start=21975098&end=21967753&end=22500000&filters=NCIT:C3058&filters=pgx:cohort-celllines&output=histoplot)
+* [progenetix.org/beacon/biosamples/?referenceName=9&variantType=EFO:0030067&start=21500000&start=21975098&end=21967753&end=22500000&filters=NCIT:C3058&filters=pgx:cohort-celllines&output=histoplot](http://progenetix.org/beacon/biosamples/?referenceName=9&variantType=EFO:0030067&start=21500000&start=21975098&end=21967753&end=22500000&filters=NCIT:C3058&filters=pgx:cohort-celllines&output=histoplot)
     - a search for samples with focal deletion in the _CDKN2A_ locus, limited to glioblastoma cell lines 
 
 
@@ -90,13 +90,13 @@ local, disease-specific CNV frequencies.
 All cancer codes for a given classification system can be retrieved though:
 
 * NCIT
-    - [progenetix.org/services/collations?filters=NCIT&output=text](https://progenetix.org/services/collations?filters=NCIT&output=text)
+    - [progenetix.org/services/collations?filters=NCIT&output=text](http://progenetix.org/services/collations?filters=NCIT&output=text)
 * ICD-O Morphologies
-    - [progenetix.org/services/collations?filters=icdom&method=counts&output=text](https://progenetix.org/services/collations?filters=icdom&method=counts&output=text)
+    - [progenetix.org/services/collations?filters=icdom&method=counts&output=text](http://progenetix.org/services/collations?filters=icdom&method=counts&output=text)
     - please be aware that we have to use transformed ICD-O codes; e.g.
   "ICD-O 8500/3" is represented as `pgx:icdom-85003` (`s/^(\d{4})\/(\d)$/pgx:icdom-$1$2/`)
 * ICD-O Topographies
-    - [progenetix.org/services/collations?filters=icdot&method=counts&output=text](https://progenetix.org/services/collations?filters=icdot&method=counts&output=text)
+    - [progenetix.org/services/collations?filters=icdot&method=counts&output=text](http://progenetix.org/services/collations?filters=icdot&method=counts&output=text)
 
 #### Download the data file
 
@@ -105,8 +105,8 @@ For any of those codes one can create a `.pgxseg` file downloader link for the
 
 ##### Examples
 
-* [progenetix.org/services/intervalFrequencies/?output=pgxseg&filters=NCIT:C105555](https://progenetix.org/services/intervalFrequencies/?output=pgxseg&filters=NCIT:C105555)
-* [progenetix.org/services/intervalFrequencies/?output=pgxseg&filters=icdom-85003](https://progenetix.org/services/intervalFrequencies/?output=pgxseg&filters=icdom-85003)
+* [progenetix.org/services/intervalFrequencies/?output=pgxseg&filters=NCIT:C105555](http://progenetix.org/services/intervalFrequencies/?output=pgxseg&filters=NCIT:C105555)
+* [progenetix.org/services/intervalFrequencies/?output=pgxseg&filters=icdom-85003](http://progenetix.org/services/intervalFrequencies/?output=pgxseg&filters=icdom-85003)
 
 
 ### Example Procedure - Download or embed CNV frequency plot
@@ -124,13 +124,13 @@ syntax. Please be aware of the `-` prefix.
 
 * `-size_plotimage_w_px`
     - modifies the width of the plot image in px (default 800)
-    - <https://progenetix.org/services/collationPlots/?id=PMID:22824167&-size_plotimage_w_px=1084>
+    - <http://progenetix.org/services/collationPlots/?id=PMID:22824167&-size_plotimage_w_px=1084>
 * `-size_plotarea_h_px`
     - height of the plot area (excluding labels etc.) in px (default 100)
-    - [progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=NCIT:C7376&-size_plotarea_h_px=300](https://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=NCIT:C7376&-size_plotarea_h_px=300)
+    - [progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=NCIT:C7376&-size_plotarea_h_px=300](http://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=NCIT:C7376&-size_plotarea_h_px=300)
 * `-value_plot_y_max`
     - modifies the histogram's maximum value in percent (default 100)
-    - [progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=pgx:cohort-TCGAcancers&-value_plot_y_max=50](https://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=pgx:cohort-TCGAcancers&-value_plot_y_max=50)
+    - [progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=pgx:cohort-TCGAcancers&-value_plot_y_max=50](http://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=pgx:cohort-TCGAcancers&-value_plot_y_max=50)
 * `-colorschema`
     - change of colors used for gains and losses
     - options
@@ -145,14 +145,14 @@ syntax. Please be aware of the `-` prefix.
         *  `-chr2plot=1,2,3,44,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X,Y`
         *  `-chr2plot=9`
 
-    - [progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=NCIT:C7376&-size_plotarea_h_px=40&-value_plot_y_max=50&-colorschema=bluered&-chr2plot=1,3,9,17,22](https://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=NCIT:C7376&-size_plotarea_h_px=40&-value_plot_y_max=50&-colorschema=bluered&-chr2plot=1,3,9,17,22)
+    - [progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=NCIT:C7376&-size_plotarea_h_px=40&-value_plot_y_max=50&-colorschema=bluered&-chr2plot=1,3,9,17,22](http://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=NCIT:C7376&-size_plotarea_h_px=40&-value_plot_y_max=50&-colorschema=bluered&-chr2plot=1,3,9,17,22)
         *  see example above (live representation of embedded API call for this example)
 
 
 ##### Examples
 
-* [progenetix.org/services/collationPlots/?id=pgx:icdom-85003](https://progenetix.org/services/collationPlots/?id=pgx:icdom-85003)
-* [progenetix.org/services/collationPlots/?id=PMID:22824167](https://progenetix.org/services/collationPlots/?id=PMID:22824167)
+* [progenetix.org/services/collationPlots/?id=pgx:icdom-85003](http://progenetix.org/services/collationPlots/?id=pgx:icdom-85003)
+* [progenetix.org/services/collationPlots/?id=PMID:22824167](http://progenetix.org/services/collationPlots/?id=PMID:22824167)
 
 --------------------------------------------------------------------------------
 
@@ -200,7 +200,7 @@ cnv.status <- pgxLoader(type="variant", filters = "NCIT:C4443", output="coverage
 
 ### Query and export segment copy number variant data 
 
-You can download the copy number variant data of individual biosamples. The biosample id can be queried by pgxRpi or by Progenetix [website](https://progenetix.org/biosamples/).
+You can download the copy number variant data of individual biosamples. The biosample id can be queried by pgxRpi or by Progenetix [website](http://progenetix.org/biosamples/).
 The variant data exportation supports different output formats, more information see vignettes.
 
 ```
@@ -243,7 +243,7 @@ pgxFreqplot(frequency,filters= c("NCIT:C4038","pgx:icdom-85003"),circos = TRUE)
 
 The Progenetix resource has a limited option to visualize CNV data provided by the users. Data has to be formatted in a standard tab-delimited columnar format, preferably using the [`.pgxseg` file format](services.md#data-file-formats-pgxseg-segments). Additional information can be found on the upload service page:
 
-* [Upload Files for CNV Visualization](https://progenetix.org/service-collection/uploader/)
+* [Upload Files for CNV Visualization](http://progenetix.org/service-collection/uploader/)
 
 The data is only temporary stored on the server with a randomiized access path. At this time we do not provide any long term or login protected data storage and do not store access data.
 
