@@ -82,7 +82,7 @@ referenceName:
       value: "Y"
 variantType:
   label: "(Structural) Variant Type"
-  infoText: |
+  infoText: >-
     The type of a structural variant for e.g. CNV searches.
   defaultValue: ""
   options:
@@ -91,7 +91,7 @@ variantType:
     - value: "EFO:0030070"
       label: "EFO:0030070 (copy number gain)"
     - value: "EFO:0030066"
-      label: "EFO:0030066 (relative copy number variation)"
+      label: "EFO:0030066 (any relative CN variation)"
     - value: ""
       label: ""
 start:
