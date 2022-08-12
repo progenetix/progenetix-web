@@ -27,11 +27,11 @@ expressed as (sub)classes of _EFO:0030066_ (relative copy number variation):
       - EFO:0030072
       - EFO:0030073   
 ```
-...etc.<!--more--> Therefore, a search w/ a `variantType` parameter of `EFO:0030066` or `DUP` will
-now correctly return samples w/ any type of CNV at the indicated location.
+...etc.<!--more--> 
 
 The different `variantState` classe can easily be aliased which e.g. allows vor `DUP`-style
 shorthand.
+
 
 ```yaml
 variant_state_aliases:
@@ -41,3 +41,5 @@ variant_state_aliases:
   EFO:0030070: EFO:0030070
 ```
 
+Therefore, a search w/ a `variantType` parameter of `EFO:0030066` or `DUP` will
+now correctly return samples w/ any type of CNV at the indicated location.
