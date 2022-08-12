@@ -10,7 +10,7 @@ hide:
   # - toc
 ---
 
-![EFO copy number assessment tree](/assets/img/EFO-CNV-tree.png){: style="float: right; width: 250px; margin-top: -15px;"}As part of the hCNV-X work - related to "Workflows and Tools for hCNV Data Exchange
+![EFO copy number assessment tree](/img/EFO-CNV-tree.png){: style="float: right; width: 250px; margin-top: -15px;"}As part of the hCNV-X work - related to "Workflows and Tools for hCNV Data Exchange
 Procedures" and to the intersection with Beacon and GA4GH VRS - we have now a [new
 proposal](https://github.com/hcnv/hCNV-X/blob/main/docs/cnv-ontology-proposal.md)
 for the creation of an ontology for the annotation of (relative) CNV events. The CNV 
