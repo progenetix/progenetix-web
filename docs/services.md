@@ -7,7 +7,7 @@ resources in the _Progenetix_ environment.
 
 ### `services.py` and URL Mapping
 
-The service URL format is `progenetix.org/services/__service-name__/?parameter=value`.
+The service URL format is `progenetix.org/services/{serviceName}/?parameter=value`.
 
 --------------------------------------------------------------------------------
 
