@@ -401,10 +401,57 @@ inhabitants (\~22750 cities), through either:
 
 ### Geographic Maps
 
-The new (2022) service utilizes the _geolocations_ service for
+The new (2022) service utilizes the _geolocations_ service to
 
 * display of matched cities on a map using the `&output=map` option
 * load arbitrary data from a hosted data table (e.g. on Github)
+
+##### Parameters
+
+* `output=map` is required for the map display
+* `help=true` will show map configuration parameters
+* `file=http://........tsv` can be used to load a (tab-delimited) table of data w/ latitude + loniitude
+parameters for displaying it on a map
+
+##### `file` properties
+
+The current setup allows to have multiple items per "group", where a group corresponds to a single
+location (i.e. all items have the same latitude & longitude parameters).
+
+`group_label`
+: Label text, required
+
+`group_lat`
+: Latitude, required
+
+`group_lon`
+: Longitude, required
+
+`item_size`
+: size parameter, e.g. count for this item; will be summed up for all members of the same group
+(e.g. for a marker size corresponding to the group size); defaults to `1`
+
+`item_label`
+: Label for this item
+
+
+`item_link`
+: Link for this item; optional
+
+`markerType`
+: One of `marker` or `circle`; defaults to `marker` if no size is given
+
+
+```
+group_label group_lat   group_lon   item_size   item_label  item_link   markerType
+Swiss   47  8   50  Progenetix  http://progenetix.org
+Swiss   47  8   60  LSZGS 2 http://lifescienceszurich.ch
+Swiss   47  8   100 UZH http://uzh.ch
+Swiss   47  8   97  SIB http://sib.swiss
+German  51  10  217     
+Italian 44  11  75      
+Austrian    48  15  41  
+```
 
 ##### Examples
 

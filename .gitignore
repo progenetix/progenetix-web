@@ -1,13 +1,11 @@
+.DS_Store
 /node_modules
-/.idea
 /.next
 /out
-./
+/site
 
 # Ignore next-mdx-enhanced cache directory
 .mdx-data
-.DS_Store
 .nova/Artwork
 .nova/Configuration.json
-site/
 package-lock.json
