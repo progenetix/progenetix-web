@@ -11,15 +11,16 @@ edit_uri: edit/main/docs/
 
 nav:
   - Documentation Home: index.md
-  - News & Changes: news/index.md
-  - Pages & Forms: ui.md
-  - Services & API: services.md
-  - Use Case Examples: use-cases.md
-  - Classifications, Ontologies & Standards: classifications-and-ontologies.md
-  - Publication Collection: publication-collection.md
-  - Data Review: progenetix-data-review.md
-  - Beacon+ & bycon: beaconplus.md
-  - Technical Notes: technical-notes.md
+  - News & Changes: news
+  - Pages & Forms: ui
+  - Services & API: services
+  - Use Case Examples: use-cases
+  - Classifications, Ontologies & Standards: classifications-and-ontologies
+  - Publication Collection: publication-collection
+  - Data Review: progenetix-data-review
+  - Beacon+ & bycon: beaconplus
+  - Technical Notes: technical-notes
+  - Website Builds: progenetix-website-builds
   - Progenetix Data &#8599;: http://progenetix.org
   - Baudisgroup @ UZH &#8599;: http://info.baudisgroup.org
   # - Documentation PDF: pdf/progenetix-documentation.pdf
@@ -81,7 +82,7 @@ theme:
     - navigation.tracking
     - navigation.sections
     - toc.integrate
-  custom_dir: mkdocs_overrides
+  custom_dir: extra
       
 plugins:
     - search
