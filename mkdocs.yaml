@@ -3,9 +3,7 @@ site_description: 'Documentation for the Progenetix oncogenomics resource'
 site_author: Michael Baudis
 copyright: '&copy; Copyright 2022, Michael Baudis and progenetix.org'
 repo_name: 'progenetix-web'
-
 repo_url: https://github.com/progenetix/progenetix-web
-edit_uri: edit/main/docs/
 
 ###############################################################################
 
@@ -23,7 +21,6 @@ nav:
   - Website Builds: progenetix-website-builds
   - Progenetix Data &#8599;: http://progenetix.org
   - Baudisgroup @ UZH &#8599;: http://info.baudisgroup.org
-  # - Documentation PDF: pdf/progenetix-documentation.pdf
 
 ###############################################################################
 
@@ -86,9 +83,6 @@ theme:
       
 plugins:
     - search
-    # - with-pdf:
-    #     author: Progenetix
-    #     output_path: pdf/progenetix-documentation.pdf
     - macros
     - mermaid2
 
