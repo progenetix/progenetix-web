@@ -213,7 +213,6 @@ Please **use option 1** if accessing complete entities (i.e. only using a single
 
 --------------------------------------------------------------------------------
 
-
 ## Services
 
 ### Cancer Genomics Publications `publications`
@@ -380,16 +379,38 @@ inhabitants (\~22750 cities), through either:
 #### Query Types
 
 * by `city`
-  - start-anchored, case insensitive match `?city=heide`
+    - start-anchored, case insensitive match `?city=heide`
 * by `id`
-  - this uses the `city::country` "id" value, e.g. `lecce::italy`
-* by `geolatitude`, `geolongitude`, `geodistance`
+    - this uses the `city::country` "id" value, e.g. `lecce::italy`
+* by `geolatitude` & `geolongitude` & `geodistance`
+    - `geodistance` is to be given in meters
+
+#### Response options
+
+* `&output=text`
+* `&output=map`
+    - see below...
 
 ##### Examples
 
 * [progenetix.org/services/geolocations?city=zurich](http://progenetix.org/services/geolocations?city=zurich)
 * [progenetix.org/services/geolocations?city=New](http://progenetix.org/services/geolocations?city=New)
 * [progenetix.org/services/geolocations?geolongitude=-0.13&geolatitude=51.51&geodistance=100000](http://progenetix.org/services/geolocations?geolongitude=-0.13&geolatitude=51.51&geodistance=100000)
+
+--------------------------------------------------------------------------------
+
+### Geographic Maps
+
+The new (2022) service utilizes the _geolocations_ service for
+
+* display of matched cities on a map using the `&output=map` option
+* load arbitrary data from a hosted data table (e.g. on Github)
+
+##### Examples
+
+* [progenetix.org/services/geolocations?city=Heidelberg](http://progenetix.org/services/geolocations?city=Heidelberg&output=map)
+* [progenetix.org/services/geolocations?file=https://raw.githubusercontent.com/progenetix/pgxMaps/main/rsrc/locationtest.tsv&debug=&output=map&help=true](http://progenetix.org/services/geolocations?file=https://raw.githubusercontent.com/progenetix/pgxMaps/main/rsrc/locationtest.tsv&debug=&output=map&help=true)
+
 
 
 [^1]: Before 2022-02-11 there where 3102 (or 6204) intervals. After this, a changed algorithm lead to
