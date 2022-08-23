@@ -366,20 +366,29 @@ This service provides geographic location mapping for cities above 25'000
 inhabitants (\~22750 cities), through either:
 
 * matching of the (start-anchored) name
+    - optional use of one of
+        * `ISO3166alpha3`
+        * `ISO3166alpha2`
+        * (start-anchored, partial...) `country`
 * providing GeoJSON compatible parameters:
-    - `geolongitude`
-    - `geolatitude`
-    - `geodistance`
+    - `geoLongitude`
+    - `geoLatitude`
+    - `geoDistance`
         * optional, in meters; a default of 10'000m (10km) is provided
         * can be used for e.g. retrieving all places (or data from places if used
         with publication or sample searches) in an approximate region (e.g. for
         Europe using `2500000` around Heidelberg...)
+        * optional use of a single `ISO3166alpha3` or `ISO3166alpha2` country code;
+        e.g. [`?geoLatitude=42.36&geoLongitude=-71.06&geoDistance=500000&ISO3166alpha3=USA`]()
+        will show cities in the NE U.S. (500km around Boston, MA) w/o matching Canadian ones
+
 
 
 #### Query Types
 
 * by `city`
     - start-anchored, case insensitive match `?city=heide`
+    - optional e.g. `?city=heidelberg&ISO3166alpha2=ZA`
 * by `id`
     - this uses the `city::country` "id" value, e.g. `lecce::italy`
 * by `geolatitude` & `geolongitude` & `geodistance`
