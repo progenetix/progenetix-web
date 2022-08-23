@@ -379,9 +379,8 @@ inhabitants (\~22750 cities), through either:
         with publication or sample searches) in an approximate region (e.g. for
         Europe using `2500000` around Heidelberg...)
         * optional use of a single `ISO3166alpha3` or `ISO3166alpha2` country code;
-        e.g. [`?geoLatitude=42.36&geoLongitude=-71.06&geoDistance=500000&ISO3166alpha3=USA`]()
+        e.g. [`?geoLatitude=42.36&geoLongitude=-71.06&geoDistance=500000&ISO3166alpha3=USA&map_h_px=800`](http://progenetix.org/services/geolocations?geoLatitude=42.36&geoLongitude=-71.06&geoDistance=500000&ISO3166alpha3=USA&output=map&map_h_px=800)
         will show cities in the NE U.S. (500km around Boston, MA) w/o matching Canadian ones
-
 
 
 #### Query Types
