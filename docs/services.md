@@ -455,7 +455,7 @@ Austrian    48  15  41
 
 ##### Examples
 
-* [progenetix.org/services/geolocations?city=Heidelberg](http://progenetix.org/services/geolocations?city=Heidelberg&output=map)
+* [progenetix.org/services/geolocations?city=Heidelberg&markerType=marker](http://progenetix.org/services/geolocations?city=Heidelberg&output=map&markerType=marker)
 * [progenetix.org/services/geolocations?file=https://raw.githubusercontent.com/progenetix/pgxMaps/main/rsrc/locationtest.tsv&debug=&output=map&help=true](http://progenetix.org/services/geolocations?file=https://raw.githubusercontent.com/progenetix/pgxMaps/main/rsrc/locationtest.tsv&debug=&output=map&help=true)
 
 

@@ -18,7 +18,7 @@ nav:
   - Data Review: progenetix-data-review
   - Beacon+ & bycon: beaconplus
   - Technical Notes: technical-notes
-  - Website Builds: progenetix-website-builds
+  - Progenetix Website Builds: progenetix-website-builds
   - Progenetix Data &#8599;: http://progenetix.org
   - Baudisgroup @ UZH &#8599;: http://info.baudisgroup.org
 
@@ -78,7 +78,7 @@ theme:
     - navigation.instant
     - navigation.tracking
     - navigation.sections
-    - toc.integrate
+    # - toc.integrate
   custom_dir: extra
       
 plugins:
