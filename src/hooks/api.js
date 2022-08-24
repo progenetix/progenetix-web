@@ -215,24 +215,34 @@ export function usePublication(id) {
 }
 
 export function usePublicationList({ geoCity, geodistanceKm }) {
-  const geoParams = new URLSearchParams({
+  const qParams = new URLSearchParams({
     ...mkGeoParams(geoCity, geodistanceKm),
     filters: "PMID,genomes:>0",
     method: "details"
   }).toString()
-  const url = `${basePath}services/publications?${geoParams}`
+  const url = `${basePath}services/publications?${qParams}`
+  return useProgenetixApi(url)
+}
+
+export function usePublicationWithDataList({ geoCity, geodistanceKm }) {
+  const qParams = new URLSearchParams({
+    ...mkGeoParams(geoCity, geodistanceKm),
+    filters: "PMID,progenetix:>0",
+    method: "details"
+  }).toString()
+  const url = `${basePath}services/publications?${qParams}`
   return useProgenetixApi(url)
 }
 
 // ,genomes:>0
 
-export function useProgenetixrefPublicationList({ geoCity, geodistanceKm }) {
-  const geoParams = new URLSearchParams({
+export function useProgenetixRefPublicationList({ geoCity, geodistanceKm }) {
+  const qParams = new URLSearchParams({
     ...mkGeoParams(geoCity, geodistanceKm),
     filters: "PMID,pgxuse:yes",
     method: "details"
   }).toString()
-  const url = `${basePath}services/publications?${geoParams}`
+  const url = `${basePath}services/publications?${qParams}`
   return useProgenetixApi(url)
 }
 
