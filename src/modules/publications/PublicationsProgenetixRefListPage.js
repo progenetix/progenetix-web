@@ -2,14 +2,14 @@ import React, { useState } from "react"
 import { Layout } from "../../components/Layout"
 import { Infodot } from "../../components/Infodot"
 import { PublicationFewCountTable } from "../../components/publicationComps/PublicationTables"
-import { useProgenetixrefPublicationList, Link } from "../../hooks/api"
+import { useProgenetixRefPublicationList, Link } from "../../hooks/api"
 import { WithData } from "../../components/Loader"
 import dynamic from "next/dynamic"
 import { matchSorter } from "match-sorter"
 import useDebounce from "../../hooks/debounce"
 import Panel from "../../components/Panel"
 
-export default function PublicationsProgenetixuseListPage() {
+export default function PublicationsProgenetixRefListPage() {
   const [searchInput, setSearchInput] = useState(null)
   const debouncedSearchInput = useDebounce(searchInput, 500)
   const imgHere = {
@@ -84,7 +84,7 @@ function FilteredPublication({ publications, textSearch }) {
 }
 
 function PublicationsLoader({ textSearch }) {
-  const publicationsResult = useProgenetixrefPublicationList({
+  const publicationsResult = useProgenetixRefPublicationList({
     // geoCity,
     // geodistanceKm
   })
@@ -118,7 +118,6 @@ function PublicationsMapContainer({ publications }) {
     </>
   )
 }
-
 
 const PublicationsMap = dynamic(() => import("../../components/publicationComps/PublicationsMap"), {
   ssr: false

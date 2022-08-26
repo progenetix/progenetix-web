@@ -6,10 +6,10 @@ author: 'Michael Baudis'
 date: 2021-10-12
 ---
 
-### [`Progenetixuse`](http://progenetix.org/publicationsProgenetixuse) Page
+### [`Progenetixuse`](http://progenetix.org/publicationsProgenetixRef) Page
 
 We have introduced a new publications listing page which contains links to articles
-that [cite or use Progenetix](http://progenetix.org/publicationsProgenetixuse) and
+that [cite or use Progenetix](http://progenetix.org/publicationsProgenetixRef) and
 resources from this "ecosystem." Please [let us know](mailto:contact@progenetix.org)
 if you are aware of other such cases - frequently the publications do not use
 a proper citation format but just refer to "according tho the Progenetix resource"

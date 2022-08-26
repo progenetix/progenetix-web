@@ -213,7 +213,6 @@ Please **use option 1** if accessing complete entities (i.e. only using a single
 
 --------------------------------------------------------------------------------
 
-
 ## Services
 
 ### Cancer Genomics Publications `publications`
@@ -367,29 +366,106 @@ This service provides geographic location mapping for cities above 25'000
 inhabitants (\~22750 cities), through either:
 
 * matching of the (start-anchored) name
+    - optional use of one of
+        * `ISO3166alpha3`
+        * `ISO3166alpha2`
+        * (start-anchored, partial...) `country`
 * providing GeoJSON compatible parameters:
-    - `geolongitude`
-    - `geolatitude`
-    - `geodistance`
+    - `geoLongitude`
+    - `geoLatitude`
+    - `geoDistance`
         * optional, in meters; a default of 10'000m (10km) is provided
         * can be used for e.g. retrieving all places (or data from places if used
         with publication or sample searches) in an approximate region (e.g. for
         Europe using `2500000` around Heidelberg...)
+        * optional use of a single `ISO3166alpha3` or `ISO3166alpha2` country code;
+        e.g. [`?geoLatitude=42.36&geoLongitude=-71.06&geoDistance=500000&ISO3166alpha3=USA&map_h_px=800`](http://progenetix.org/services/geolocations?geoLatitude=42.36&geoLongitude=-71.06&geoDistance=500000&ISO3166alpha3=USA&output=map&map_h_px=800)
+        will show cities in the NE U.S. (500km around Boston, MA) w/o matching Canadian ones
 
 
 #### Query Types
 
 * by `city`
-  - start-anchored, case insensitive match `?city=heide`
+    - start-anchored, case insensitive match `?city=heide`
+    - optional e.g. `?city=heidelberg&ISO3166alpha2=ZA`
 * by `id`
-  - this uses the `city::country` "id" value, e.g. `lecce::italy`
-* by `geolatitude`, `geolongitude`, `geodistance`
+    - this uses the `city::country` "id" value, e.g. `lecce::italy`
+* by `geolatitude` & `geolongitude` & `geodistance`
+    - `geodistance` is to be given in meters
+
+#### Response options
+
+* `&output=text`
+* `&output=map`
+    - see below...
 
 ##### Examples
 
 * [progenetix.org/services/geolocations?city=zurich](http://progenetix.org/services/geolocations?city=zurich)
 * [progenetix.org/services/geolocations?city=New](http://progenetix.org/services/geolocations?city=New)
 * [progenetix.org/services/geolocations?geolongitude=-0.13&geolatitude=51.51&geodistance=100000](http://progenetix.org/services/geolocations?geolongitude=-0.13&geolatitude=51.51&geodistance=100000)
+
+--------------------------------------------------------------------------------
+
+### Geographic Maps
+
+The new (2022) service utilizes the _geolocations_ service to
+
+* display of matched cities on a map using the `&output=map` option
+* load arbitrary data from a hosted data table (e.g. on Github)
+
+##### Parameters
+
+* `output=map` is required for the map display
+* `help=true` will show map configuration parameters
+* `file=http://........tsv` can be used to load a (tab-delimited) table of data w/ latitude + loniitude
+parameters for displaying it on a map
+
+##### `file` properties
+
+The current setup allows to have multiple items per "group", where a group corresponds to a single
+location (i.e. all items have the same latitude & longitude parameters).
+
+`group_label`
+: Label text, required
+
+`group_lat`
+: Latitude, required
+
+`group_lon`
+: Longitude, required
+
+`item_size`
+: size parameter, e.g. count for this item; will be summed up for all members of the same group
+(e.g. for a marker size corresponding to the group size); defaults to `1`
+
+`item_label`
+: Label for this item
+
+
+`item_link`
+: Link for this item; optional
+
+`markerType`
+: One of `marker` or `circle`; defaults to `marker` if no size is given
+
+
+```
+group_label group_lat   group_lon   item_size   item_label  item_link   markerType
+Swiss   47  8   50  Progenetix  http://progenetix.org
+Swiss   47  8   60  LSZGS 2 http://lifescienceszurich.ch
+Swiss   47  8   100 UZH http://uzh.ch
+Swiss   47  8   97  SIB http://sib.swiss
+German  51  10  217     
+Italian 44  11  75      
+Austrian    48  15  41  
+```
+
+##### Examples
+
+* [progenetix.org/services/geolocations?city=Heidelberg&markerType=marker](http://progenetix.org/services/geolocations?city=Heidelberg&output=map&markerType=marker)
+* [progenetix.org/services/geolocations?file=https://raw.githubusercontent.com/progenetix/pgxMaps/main/rsrc/locationtest.tsv&debug=&output=map&help=true](http://progenetix.org/services/geolocations?file=https://raw.githubusercontent.com/progenetix/pgxMaps/main/rsrc/locationtest.tsv&debug=&output=map&help=true)
+
 
 
 [^1]: Before 2022-02-11 there where 3102 (or 6204) intervals. After this, a changed algorithm lead to

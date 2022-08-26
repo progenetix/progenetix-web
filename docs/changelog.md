@@ -4,7 +4,6 @@ This page lists changes for the [Beacon+](http://beacon.progenetix.org/ui/)
 implementation of the ["Beacon" genomics API](http://beacon-project.io), as well
 as related updates for the [Progenetix](http://progenetix.org) front-end.
 
-
 ## 2022-01-17: Term-specific queries
 
 <img src="/img/2022-01-17-includeDescendantTerms-ui.png" style="float: right; width: 222px; margin-top: -15px;" alt="includeDescendantTerms selector" />So far (and still as standard), any

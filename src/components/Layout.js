@@ -177,7 +177,7 @@ function Side({ onClick }) {
           isSub="isSub"
         />
         <MenuInternalLinkItem
-          href="/publicationsProgenetixuse"
+          href="/publicationsProgenetixRef"
           label="Progenetix Use"
           isSub="isSub"
         />
