@@ -26,6 +26,7 @@ The samples are highly skewed towards deletion...
 ![](http://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?datasetIds=progenetix&id=pgx:icdom-84421)
 
 --------------------------------------------------------------------------------
+<!--
 
 * [X] **2022-02-07 [PMID:16737909](http://progenetix.org/publication/?id=PMID:16737909)**
 * [X] **2022-02-07 [PMID:16790082](http://progenetix.org/publication/?id=PMID:16790082)**
@@ -48,6 +49,7 @@ server corresponding to the **chr 1 only** arrays from GEO
 
 ![](http://progenetix.org/cgi/PGX/cgi/singlePlot.cgi?analysisIds=pgxcs-kftw94yk&datasetIds=progenetix)
 
+-->
 
 --------------------------------------------------------------------------------
 
@@ -76,10 +78,12 @@ server corresponding to the **chr 1 only** arrays from GEO
 
 --------------------------------------------------------------------------------
 
+<!--
 * [X] **2021-12-17 [PMID:19330026](http://progenetix.org/publication/?id=PMID:19330026)**
 
 * SOLVED 2022-02-03: removed
 * only partial genome coverage => should be flagged/removed?
+-->
 
 --------------------------------------------------------------------------------
 
@@ -101,6 +105,7 @@ server corresponding to the **chr 1 only** arrays from GEO
 
 --------------------------------------------------------------------------------
 
+<!--
 * [X] **2021-09-07 [NCIT:C7431](http://progenetix.org/subsets/biosubsets/?filters=NCIT:C7431&datasetIds=progenetix) [FIXED](https://docs.progenetix.org/en/latest/changelog.html#bug-fix-frequency-maps)**
 
 * very strange frequency plot, with just some spikes; looks like either only 2 or such samples with only background are processed (while 3234 are listed), or some value error?
@@ -108,4 +113,4 @@ server corresponding to the **chr 1 only** arrays from GEO
 * `byconeer/frequencymapsCreator.py -d progenetix -p "NCIT:C7431"` doesn't help...
 
 ![](http://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?datasetIds=progenetix&id=NCIT:C7431)
-
+-->
