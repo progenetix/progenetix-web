@@ -3,6 +3,14 @@
 This is a tracker for datasets which should be reviewed / flagged / re-processed or
 added to Progenetix in the first place. Please check & comment when done.
 
+* [ ] **2022-10-03: [PMID:19383354](http://progenetix.org/publication/?id=PMID:19383354)**
+
+Large bias towards deletions. Is (probably) from cDNA arrays (since Pollack/Stanford)? Baseline/threshold correction?
+
+![](http://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?datasetIds=progenetix&id=PMID:19383354)
+
+--------------------------------------------------------------------------------
+
 * [ ] **2022-05-27: [PMID:27257180](http://progenetix.org/publication/?id=PMID:27257180)**
 
 This mostly looks like noise?
