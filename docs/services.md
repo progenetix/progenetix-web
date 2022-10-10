@@ -205,7 +205,7 @@ Plots on Progenetix are generated using the [PGX package](http://github.com/prog
 There are two possibilities to plot CNV histograms through the Progenetix API w/o using the user interface:
 
 1. direct visualization of pre-computed collations, e.g. publications or diagnosttic entities
-    * [progenetix.org/cgi/PGX/cgi/collationPlots.cgi?datasetIds=progenetix&id=NCIT:C4443]()
+    * [progenetix.org/services/collationPlots/?datasetIds=progenetix&id=NCIT:C4443](http://progenetix.org/services/collationPlots/?datasetIds=progenetix&id=NCIT:C4443)
 2. a Beacon API query with the added option `&output=histoplot`
     * [progenetix.org/beacon/biosamples/?limit=200&datasetIds=progenetix&referenceName=refseq:NC_000009.12&variantType=EFO:0030067&start=21500000,21975098&end=21967753,22500000&filters=NCIT:C3058&output=histoplot](http://progenetix.org/beacon/biosamples/?limit=200&datasetIds=progenetix&referenceName=refseq:NC_000009.12&variantType=EFO:0030067&start=21500000,21975098&end=21967753,22500000&filters=NCIT:C3058&output=histoplot)
 
@@ -251,7 +251,7 @@ The `cytoBands` and `chroBases` parameters can be used for running the script on
 * retrieve coordinates for some bands on chromosome 8  
     - [progenetix.org/services/cytomapper?assemblyId=NCBI36.1&cytoBands=8q24.1](http://progenetix.org/services/cytomapper?assemblyId=NCBI36.1&cytoBands=8q24.1)
 * as above, just as text:
-    - [progenetix.org/services/cytomapper?assemblyId=NCBI.1&cytoBands=8q&output=text](http://progenetix.org/services/cytomapper?assemblyId=NCBI.1&cytoBands=8q&output=text)
+    - [progenetix.org/services/cytomapper?assemblyId=NCBI36.1&cytoBands=8q&output=text](http://progenetix.org/services/cytomapper?assemblyId=NCBI36.1&cytoBands=8q&output=text)
     - *cytomapper shortcut*: [progenetix.org/services/cytomapper/?assemblyId=NCBI36.1&cytoBands=8q&output=text](http://progenetix.org/services/cytomapper/?assemblyId=NCBI36.1&cytoBands=8q&output=text)
 * get the cytobands whith which a base range on chromosome 17 overlaps, in short and long form
     - [progenetix.org/services/cytomapper?assemblyId=GRCh37&chroBases=17:800000-24326000](http://progenetix.org/services/cytomapper?assemblyId=GRCh37&chroBases=17:800000-24326000)

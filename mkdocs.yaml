@@ -11,12 +11,12 @@ nav:
   - Documentation Home: index.md
   - News & Changes: news
   - Pages & Forms: ui
-  - Services & API: services
+  - Services API: services
+  - Beacon+ API & bycon: beaconplus
   - Use Case Examples: use-cases
   - Classifications, Ontologies & Standards: classifications-and-ontologies
   - Publication Collection: publication-collection
   - Data Review: progenetix-data-review
-  - Beacon+ & bycon: beaconplus
   - Technical Notes: technical-notes
   - Progenetix Website Builds: progenetix-website-builds
   - Progenetix Data &#8599;: http://progenetix.org

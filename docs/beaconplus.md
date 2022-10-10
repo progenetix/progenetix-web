@@ -46,6 +46,24 @@ In the Progenetix backend we mirror the GA4GH data model in the storage system, 
 
 collections of MongoDB databases. These collections are addressed by scoped queries.
 
+!!! note "BeaconPlus Extensions of the Beacon API"
+
+    While the Progenetix Beacon API implements the Beacon framewiork and in general
+    follows the [Beacon v2 default model](http://docs.genomebeacons.org/models/) it also
+    adds some extended functionality - e.g.
+
+    * limited support for Boolean filter use (i.e. ability to force an override of the general
+    `AND` with a general `&filterLogic=OR` option)
+    * experimental support of a `/phenopackets` entity type & `&requestedSchema=phenopacket`
+    output option
+    * overriding the Beacon JSON response format w/ a datatable export `&output=table`
+    e.g. for biosamples or individuals
+        - [progenetix.org/beacon/individuals/?filters=pgx:icdom-85003,EFO:0030041&output=table](http://progenetix.org/beacon/individuals/?filters=pgx:icdom-85003,EFO:0030041&output=table) ... delivers a
+        table with breast cancer individuals and "alive" status on last followup
+    * geoqueries using [`$geoNear`](https://www.mongodb.com/docs/upcoming/reference/operator/aggregation/geoNear/)
+    parameters or `city` matches
+
+
 ### `filters` Filters / Filtering Terms
 
 Filters represent a way to allow the resource provider to direct "self-scoped" query values to the corresponding attributes in their backend resource. In the Progenetix implementation, a lookup table followed by scope assignment is used to map prefixed filter values to the correct  attributes and collections. Most of the filter options are
@@ -53,9 +71,14 @@ based on ontology terms or identifiers in CURIE format (e.g. `NCIT:C4033`, `cell
 look below; documentation of available ontologies and how to find out about available
 terms can be found on the [Classifications and Ontologies](classifications-and-ontologies.md) page.
 
-In Beacon v2, the new `FilteringTerms` schema adds options to specify different types of filters (`OntologyFilter`, `AlphanumericFilter`, `CustomFilter`) which can
+In Beacon v2, the new `FilteringTerms` schema adds options to specify different
+types of filters (`OntologyFilter`, `AlphanumericFilter`, `CustomFilter`) which can
 contain a number of parameters to define e.g. scope or matching behaviour. These
-more complex terms are only available through `PUT` requests.
+more complex terms are only available through `PUT` requests. Also, not all filtering
+option may be implemented (e.g. fuzzy matches).
+
+Please see Beacon's [`Filters`](http://docs.genomebeacons.org/filters/) documentation
+for more information.
 
 ##### Example
 
