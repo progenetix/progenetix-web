@@ -3,6 +3,10 @@
 The _bycon_ environment provides a number of data services which make use of
 resources in the _Progenetix_ environment.
 
+!!! note "Progenetix Beacon API"
+
+    For the main `Beacon` powered data API please see the [separate documentation page](/beaconplus).
+
 ## Formats
 
 ### `services.py` and URL Mapping
