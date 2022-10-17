@@ -7,7 +7,7 @@ React project with
     - code in [`src/`](src/)
     - static files in [`public/`](public/)
 
-* the Progenetix documentation [docs.progenetix.org](http://doc.sprogenetix.org),
+* the Progenetix documentation [docs.progenetix.org](http://docs.progenetix.org),
 as a Mkdocs project with
     - files in [`docs/`](docs/)
     - configuration in [`mkdocs.yaml`](./mkdocs.yaml)
