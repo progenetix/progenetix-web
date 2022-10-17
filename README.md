@@ -13,4 +13,4 @@ as a Mkdocs project with
     - configuration in [`mkdocs.yaml`](./mkdocs.yaml)
     - additional configuration files in [`extra/`](extra/)
 
-More information can be found in the [Progenetix documentation](http://doc.sprogenetix.org/progenetix-website-builds)
+More information can be found in the [Progenetix documentation](http://docs.progenetix.org/progenetix-website-builds)
