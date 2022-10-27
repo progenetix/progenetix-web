@@ -491,11 +491,9 @@ export function pluralizeWord(word, count) {
 
 export async function uploadFile(formData) {
   // Default options are marked with *
-  const response = await fetch(`${basePath}cgi/PGX/cgi/uploader.cgi`, {
+  const response = await fetch(`${basePath}services/uploader/`, {
     method: "POST",
-    headers: {
-      "Content-Type": "multipart/form-data"
-    },
+    headers: {},
     body: formData
   })
   return response.json()
