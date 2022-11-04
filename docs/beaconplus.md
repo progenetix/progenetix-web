@@ -172,10 +172,9 @@ The root path provides the standard `BeaconInfoResponse`.
 * [/biosamples/pgxbs-kftva5c9/](http://progenetix.org/beacon/biosamples/pgxbs-kftva5c9/)
   - retrieval of a single biosample
 
-##### `/biosamples/{id}/variants/` & `/biosamples/{id}/variants_in_sample/`
+##### `/biosamples/{id}/variants/`
 
 * [/biosamples/pgxbs-kftva5c9/variants/](http://progenetix.org/beacon/biosamples/pgxbs-kftva5c9/variants/)
-* [/biosamples/pgxbs-kftva5c9/variants_in_sample/](http://progenetix.org/beacon/biosamples/pgxbs-kftva5c9/variants_in_sample/)
   - retrieval of all variants from a single biosample
   - currently - and especially since for a mostly CNV containing resource - `variants` means "variant instances" (or as in the early v2 draft `variantsInSample`)
 
@@ -201,10 +200,9 @@ The root path provides the standard `BeaconInfoResponse`.
 * [/biosamples/pgxind-kftx25hb/](http://progenetix.org/beacon/biosamples/pgxind-kftx25hb/)
   - retrieval of a single individual
 
-##### `/individuals/{id}/variants/` & `/individuals/{id}/variants_in_sample/`
+##### `/individuals/{id}/variants/`
 
 * [/individuals/pgxind-kftx25hb/variants/](http://progenetix.org/beacon/individuals/pgxind-kftx25hb/variants/)
-* [/individuals/pgxind-kftx25hb/variants_in_sample/](http://progenetix.org/beacon/individuals/pgxind-kftx25hb/variants_in_sample/)
   - retrieval of all variants from a single individual
   - currently - and especially since for a mostly CNV containing resource - `variants` means "variant instances" (or as in the early v2 draft `variantsInSample`)
 
@@ -224,15 +222,13 @@ If using `g_variants` or `variants_in_sample`, those will be treated as aliases.
 * [/variants/?assemblyId=GRCh38&referenceName=17&variantType=DEL&filterLogic=AND&start=7500000&start=7676592&end=7669607&end=7800000](http://progenetix.org/beacon/variants/?assemblyId=GRCh38&referenceName=17&variantType=DEL&filterLogic=AND&start=7500000&start=7676592&end=7669607&end=7800000)
   - This is an example for a Beacon "Bracket Query" which will return focal deletions in the TP53 locus (by position).
 
-##### `/variants/{id}/` or `/variants_in_sample/{id}` or `/g_variants/{id}/`
+##### `/variants/{id}/` or `/g_variants/{id}/`
 
 * [/variants/5f5a35586b8c1d6d377b77f6/](http://progenetix.org/beacon/variants/5f5a35586b8c1d6d377b77f6/)
-* [/variants_in_sample/5f5a35586b8c1d6d377b77f6/](http://progenetix.org/beacon/variants_in_sample/5f5a35586b8c1d6d377b77f6/)
 
-##### `/variants/{id}/biosamples/` & `variants_in_sample/{id}/biosamples/`
+##### `/variants/{id}/biosamples/`
 
 * [/variants/5f5a35586b8c1d6d377b77f6/biosamples/](http://progenetix.org/beacon/variants/5f5a35586b8c1d6d377b77f6/biosamples/)
-* [/variants_in_sample/5f5a35586b8c1d6d377b77f6/biosamples/](http://progenetix.org/beacon/variants_in_sample/5f5a35586b8c1d6d377b77f6/biosamples/)
 
 ----
 
