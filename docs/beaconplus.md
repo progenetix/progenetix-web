@@ -245,7 +245,6 @@ CNV statistics or binned genome calls.
   - this example retrieves all biosamples having an annotation for the Cellosaurus _CVCL_0004_
   identifier (K562)
 
-
 -------------------------------------------------------------------------------
 
 ## `bycon` Beacon Server

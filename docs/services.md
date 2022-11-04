@@ -23,7 +23,7 @@ format where the main data is usually contained in the `response.results` list.
 
 --------------------------------------------------------------------------------
 
-### Data File Formats - `.pgxseg` Segments
+### Data File Formats - `.pgxseg` Segments & `.pgxfreq` CNV Frequencies
 
 Progenetix uses a variation of a standard tab-separated columnar text file such
 as produced by array or sequencing CNV software, with an optional metadata header
@@ -88,22 +88,29 @@ pgxbs-kftvhhmm  3 4662952 4857477 0.9273 DUP  .
 ...
 ```
 
-#### `.pgxseg` Segment CNV Frequencies
+#### `.pgxfreq` Segment CNV Frequencies
 
-In the frequency file
+!!! info "New suffix `pgxfreq`"
+
+    With the November 2022 update we changed the file suffix to `pgxfreq` to
+    keep a clean separation between the (usually binned) CNV frequency files and
+    the (usually raw) representation of sample-specific CNVs (and other variants).
+
+
+In the frequency file (compared to the `.pgxseg` format):
 
 * `group_id` values replace the `biosample_id`
     - multiple groups can be concatenated in the file
 * `chro`, `start` and `end` are the same as in the sample files
-* `gain_frequency` and `loss_frequency` indicate the *percent* values for gains and losses overlapping the segment, respectively
-
-Future options are under evaluation.
+* `gain_frequency` and `loss_frequency` indicate the *percent* values for gains
+and losses overlapping the segment, respectively
+* additional CNV types are under evaluation
 
 Examples can be derived from the Progenetix "Services" API:
 
-* [/services/intervalFrequencies/pgx:cohort-TCGAcancers/?output=pgxseg](http://progenetix.org/services/intervalFrequencies/pgx:cohort-TCGAcancers/?output=pgxseg)
+* [/services/intervalFrequencies/pgx:cohort-TCGAcancers/?output=pgxfreq](http://progenetix.org/services/intervalFrequencies/pgx:cohort-TCGAcancers/?output=pgxfreq)
     - single group in REST syntax (here overall CNV frequencies in >11000 cancer samples from the TCGA sample collection)
-* [/services/intervalFrequencies/?filters=icdom-81403,icdom-81443&output=pgxseg](http://progenetix.org/services/intervalFrequencies/?filters=icdom-81403,icdom-81443&output=pgxseg)
+* [/services/intervalFrequencies/?filters=icdom-81403,icdom-81443&output=pgxfreq](http://progenetix.org/services/intervalFrequencies/?filters=icdom-81403,icdom-81443&output=pgxfreq)
     - 2 sets using the `filters` parameter
 
 ```
