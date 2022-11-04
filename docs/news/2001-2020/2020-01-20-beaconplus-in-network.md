@@ -1,6 +1,6 @@
 ---
 title: "BeaconPlus in ELIXIR Beacon Network"
-template: blog_post.html
+template: post.html
 date: 2020-01-20
 author: '@mbaudis'
 www_links_formatted:

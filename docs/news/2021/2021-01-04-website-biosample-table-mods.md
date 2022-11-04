@@ -1,6 +1,6 @@
 ---
+template: post.html
 title: "Website updates"
-template: blog_post.html
 author: '@mbaudis'
 date: 2021-01-04
 ---

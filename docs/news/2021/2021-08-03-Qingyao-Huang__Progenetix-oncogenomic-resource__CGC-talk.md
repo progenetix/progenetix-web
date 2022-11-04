@@ -1,6 +1,6 @@
 ---
 title: "Progenetix - An open reference resource for copy number vatiation data in cancer"
-template: blog_post.html
+template: post.html
 date: 2021-08-03
 ---
 

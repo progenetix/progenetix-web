@@ -1,6 +1,6 @@
 ---
+template: post.html
 title: "arrayMap is Back"
-template: blog_post.html
 author: '@mbaudis'
 date: 2021-02-06
 ---

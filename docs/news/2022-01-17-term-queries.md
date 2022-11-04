@@ -1,5 +1,5 @@
 ---
-template: blog_post.html
+template: post.html
 title: Term-specific queries
 description: Allowing the de-selection of descendant terms in ontology filters
 date: 2022-01-17

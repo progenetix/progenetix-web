@@ -1,5 +1,5 @@
 ---
-template: blog_post.html
+template: post.html
 title: Publications - Updated publication listings
 description: Progenetix citations page and better map
 author: 'Michael Baudis'

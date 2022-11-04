@@ -1,7 +1,7 @@
 ---
 title: "Progenetix: 12 years..."
 date: 2014-01-01
-template: blog_post.html
+template: post.html
 pdf_file_name: 24225322.pdf
 pdf_file_type: article
 excerpt_link: https://info.baudisgroup.org/publications/2008-2015/2014-01-01-Progenetix-12-years/

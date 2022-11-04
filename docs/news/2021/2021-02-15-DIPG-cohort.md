@@ -1,6 +1,6 @@
 ---
+template: post.html
 title: "Diffuse Intrinsic Pontine Glioma (DIPG) cohort"
-template: blog_post.html
 author: '@qingyao'
 date: 2021-02-15
 ---

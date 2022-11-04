@@ -1,5 +1,5 @@
 ---
-template: blog_post.html
+template: post.html
 title: Geographic Maps
 description: Displaying geolocations query results or user-provided data on a map
 links:

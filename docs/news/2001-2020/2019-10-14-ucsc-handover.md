@@ -1,7 +1,7 @@
 ---
 title: "Beacon Variants in UCSC Browser"
 date: 2019-10-14
-template: blog_post.html
+template: post.html
 author: '@mbaudis'
 category:
   - news

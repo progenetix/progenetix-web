@@ -1,6 +1,6 @@
 ---
+template: post.html
 title: "Beacon+ and Progenetix Queries by Gene Symbol"
-template: blog_post.html
 author: '@mbaudis'
 date: 2021-02-22
 ---

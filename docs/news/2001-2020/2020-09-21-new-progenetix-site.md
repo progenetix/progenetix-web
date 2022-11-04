@@ -1,6 +1,6 @@
 ---
 title: "New Progenetix Website"
-template: blog_post.html
+template: post.html
 date: 2020-09-21
 author: '@mbaudis'
 www_links_formatted:

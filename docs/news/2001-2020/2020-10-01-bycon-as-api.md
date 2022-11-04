@@ -1,5 +1,5 @@
 ---
-template: blog_post.html
+template: post.html
 title: bycon powered BeaconPlus
 description: Moving to a new, Python-based API
 date: 2020-10-01

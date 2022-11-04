@@ -87,13 +87,8 @@ plugins:
     - mermaid2
 
 extra:
-  blog:
-    dir: news
-    author: Baudisgroup
-#    author_image: img/site-logo-topright.png
-    list_length: 50
-    extended_preview: true
-    excerpt_separator: <!--more-->
+  excerpt_separator: <!--more-->
+  blog_list_length: 100
   social:
     - icon: fontawesome/brands/twitter 
       link: https://twitter.com/progenetix

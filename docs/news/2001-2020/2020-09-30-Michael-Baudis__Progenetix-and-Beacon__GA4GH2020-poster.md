@@ -1,6 +1,6 @@
 ---
 title: "Progenetix at GA4GH 2020 Plenary"
-template: blog_post.html
+template: post.html
 date: 2020-09-30
 authors:
   - '@mbaudis'

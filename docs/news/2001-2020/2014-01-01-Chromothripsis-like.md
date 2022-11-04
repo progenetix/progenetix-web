@@ -1,7 +1,7 @@
 ---
 title: "Chromothripsis-like..."
 date: 2014-01-01
-template: blog_post.html
+template: post.html
 pdf_file_name: 24476156.pdf
 pdf_file_type: article
 excerpt_link: https://info.baudisgroup.org/publications/2008-2015/2014-01-01-Chromothripsis-like/

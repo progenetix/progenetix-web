@@ -1,5 +1,5 @@
 ---
-template: blog_post.html
+template: post.html
 title: Histogram Improvements
 description: Excluding reference samples from default plots
 date: 2022-02-18

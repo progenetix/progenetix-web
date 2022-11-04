@@ -1,7 +1,7 @@
 ---
 title: 'Progenetix &amp; arrayMap Changes (2012-06-01 - 2013-05-22)'
 date: 2013-05-22
-template: blog_post.html
+template: post.html
 category:
   - news
   - about

@@ -1,7 +1,7 @@
 ---
+template: post.html
 title: "Signatures of Discriminative CNA in 31 Cancer Subtypes"
 date: 2021-04-15
-template: blog_post.html
 ---
 
 #### Bo Gao and Michael Baudis (2021)

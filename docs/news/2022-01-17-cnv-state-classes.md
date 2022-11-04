@@ -1,5 +1,5 @@
 ---
-template: blog_post.html
+template: post.html
 title: Introducing variant_state classes for CNVs
 description: More granular annotation of CNV types
 date: 2022-01-17

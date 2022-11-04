@@ -1,6 +1,6 @@
 ---
+template: post.html
 title: "TCGA CNV Data"
-template: blog_post.html
 author: '@mbaudis'
 date: 2021-02-06
 ---

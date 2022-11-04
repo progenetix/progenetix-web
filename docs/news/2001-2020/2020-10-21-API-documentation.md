@@ -1,6 +1,6 @@
 ---
 title: "API and Services Documentation"
-template: blog_post.html
+template: post.html
 date: 2020-10-21
 authors:
   - '@mbaudis'

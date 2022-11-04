@@ -1,6 +1,6 @@
 ---
 title:  "New info.progenetix.org site"
-template: blog_post.html
+template: post.html
 date:   2018-04-03
 category:
   - news

@@ -1,7 +1,7 @@
 ---
 title: "Genomic imbalances in 5918 malignant tumors"
 date: 2007-01-01
-template: blog_post.html
+template: post.html
 pdf_file_name: 18088415.pdf
 pdf_file_type: article
 permalink: /publications/18088415.html

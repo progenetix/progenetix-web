@@ -1,5 +1,5 @@
 ---
-template: blog_post.html
+template: post.html
 title: Variant Types Update
 description: Correcting Hierarchical Queries for Variant Type
 date: 2022-08-12

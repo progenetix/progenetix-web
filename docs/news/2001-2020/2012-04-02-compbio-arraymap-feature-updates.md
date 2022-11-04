@@ -1,7 +1,7 @@
 ---
 title: 'arrayMap feature update(s)'
 date: 2012-04-02
-template: blog_post.html
+template: post.html
 category:
   - news
 tags: 

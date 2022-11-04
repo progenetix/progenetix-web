@@ -1,6 +1,6 @@
 ---
 title: "pgx namespace and persistant identifiers"
-template: blog_post.html
+template: post.html
 date: 2020-10-09
 authors:
   - '@mbaudis'

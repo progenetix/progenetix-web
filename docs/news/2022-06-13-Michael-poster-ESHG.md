@@ -1,5 +1,5 @@
 ---
-template: blog_post.html
+template: post.html
 title: "Implementation of the GA4GH Beacon protocol for discovery and sharing of genomic copy number variation data"
 description: Poster Abstract | ESHG Vienna 2022 
 date: 2022-06-13

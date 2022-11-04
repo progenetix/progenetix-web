@@ -4,10 +4,7 @@ description: EFO Ontology contains now terms for (relative) CNV levels
 date: 2022-01-21
 authors:
   - "@mbaudis"
-template: blog_post.html
-hide:
-  # - navigation
-  # - toc
+template: post.html
 ---
 
 ![EFO copy number assessment tree](/img/EFO-CNV-tree.png){: style="float: right; width: 250px; margin-top: -15px;"}As part of the hCNV-X work - related to "Workflows and Tools for hCNV Data Exchange

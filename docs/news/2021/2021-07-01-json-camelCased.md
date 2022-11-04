@@ -1,6 +1,6 @@
 ---
 title: "API: JSON Exports now camelCased"
-template: blog_post.html
+template: post.html
 author: '@mbaudis'
 date: 2021-07-01
 ---

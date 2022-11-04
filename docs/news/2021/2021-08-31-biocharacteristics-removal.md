@@ -1,5 +1,5 @@
 ---
-template: blog_post.html
+template: post.html
 title: "API: Biosample Schema Update"
 description: Conversion of `biocharacteristics` array to separate parameters
 author: 'Michael Baudis'

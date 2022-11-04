@@ -1,5 +1,5 @@
 ---
-template: blog_post.html
+template: post.html
 title: Query-based histograms
 description: Direct generation of histogram plots from Beacon queries
 date: 2022-02-18

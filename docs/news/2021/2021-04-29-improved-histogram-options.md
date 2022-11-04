@@ -1,6 +1,6 @@
 ---
 title: "Improved Data Access through Histograms"
-template: blog_post.html
+template: post.html
 author: '@mbaudis'
 date: 2021-04-29
 ---

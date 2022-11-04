@@ -1,5 +1,5 @@
 ---
-template: blog_post.html
+template: post.html
 title: BUG FIX Frequency Maps
 description: Fix "only direct code matches" frequencies
 date: 2022-01-10

@@ -1,7 +1,7 @@
 ---
 title: "Progenetix.net: an..."
 date: 2001-12-01
-template: blog_post.html
+template: post.html
 pdf_file_name: 11751233.pdf
 pdf_file_type: article
 permalink: /publications/11751233.html

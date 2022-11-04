@@ -1,5 +1,5 @@
 ---
-template: blog_post.html
+template: post.html
 title: VRSified Variants
 description: Variant Response in GA4GH Variant Representation Standard (VRS) Format
 date: 2022-03-30

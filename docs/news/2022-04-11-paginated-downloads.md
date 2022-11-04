@@ -1,5 +1,5 @@
 ---
-template: blog_post.html
+template: post.html
 title: Paginated Downloads
 description: Chunk-wise downloads of search results
 date: 2022-04-11

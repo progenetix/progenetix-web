@@ -1,7 +1,7 @@
 ---
 title: "Genomic Copy Number Signatures..."
 date: 2020-12-18
-template: blog_post.html
+template: post.html
 authors:
  - '@mbaudis'
  - '@KyleGao'

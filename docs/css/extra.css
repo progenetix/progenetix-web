@@ -1,7 +1,6 @@
-body {
-  font: 14px/1.5 "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #727272;
-  font-weight: 400
+:root {
+  --md-accent-fg-color: #727272;
+  --md-accent-font-color: #727272;
 }
 
 @media only screen and (min-width: 76.25em) {
@@ -19,97 +18,138 @@ body {
   }
 }
 
-.md-grid {
-  max-width: 1024px; 
+/*.md-header__button {
+    padding:  0px; 
 }
-
-
-/* Sidebar header (and topbar for mobile) */
-.wy-side-nav-search, .wy-nav-top {
-  background: #dd6940;
-}
-
-/* Sidebar */
-/**
-.wy-nav-side {
-  background: #ff6f48;
-}
-**/
-
-li.toctree-l1 {
-  font-size: 1.2em;
-}
-
-.admonition .details .example {
-  font-size: 0.9em;
-}
-
-.md-typeset {
-    line-height:1.4
-}
-
-.md-typeset ul {
-    margin-bottom: 0.8em;
-    margin-top:0.2em
-}
-
-.md-typeset ul li {
-    margin-bottom:.1em
-}
-
-.md-typeset ul ul { list-style-type: circle; }
-
-.md-typeset pre { font-size: 0.8em; }
+*/
+.md-header__source {
+ }
 
 .md-typeset h1 {
-    font-size: 1.9em;
-    margin:0 0 0.8em
+    line-height:  1;
+    margin: 0px;
 }
 
-
-.md-typeset h2 {
-    font-size: 1.5em;
-    line-height: 1.3;
-    margin:1.4em 0 0.6em
+h2 {
+    color:  var(--md-accent-font-color);
+    border-top:  var(--md-accent-font-color) thin solid;
+    border-bottom:  var(--md-accent-font-color) thin solid;
 }
 
-.md-typeset h3 {
-    font-size: 1.25em;
-    font-weight: 400;
-    letter-spacing: -.01em;
-    line-height: 1.3;
-    margin: 1em 0 0.4em
+.blog-post-preview {
+    border-left:  var(--md-accent-font-color) thin solid;
+    padding-left:  10px;
+    margin-top:  10px;
+    margin-bottom: 24px;
+    font-size: 0.9em;
 }
 
-.md-typeset h4 {
-    line-height: 1.3;
-    letter-spacing: -.01em;
-    margin: 0.8em 0 0.2em
+aside.blog-post-aside {
+    /*border-top:  var(--md-accent-font-color) thin solid;*/
+    /*margin-top:  24px;*/
+    /*padding-top:  12px;*/
 }
 
-/* Blog Styles */
-.mdx-author {
-  display: flex;
-  font-size: 13.6px;
-}
-.mdx-author img {
-  height: 40px;
-  border-radius: 100%;
-}
-.mdx-author p:first-child {
-  flex-shrink: 0;
-  margin-right: 16px;
-}
-.mdx-author p > span {
-  display: block;
+div.contact_spacer {
+    display:  block;
+    height:  20px;
 }
 
-.blog-post-aside {
-  margin-top: -5px;
-  font-size: 0.9em;
+h3.title_news {
+    margin-top:  10px;
+    margin-bottom:  0px;
+}
+
+div.tabbed-set {
+    background-color:  #fafafa;
+}
+
+.tabbed-content {
+    padding:  5px;
+}
+
+li li {
+    list-style-type: circle;
+}
+
+li li li {
+    list-style-type: "–";
+    font-size: 0.9em;
 }
 
 .mermaid {
   display: flex;
   justify-content: center;
+}
+
+/* Width manipulations etc. */
+
+.md-grid {
+  max-width: 1024px; 
+}
+
+@media (max-width: 891.98px) {
+    .navbar-collapse.show { /* csslint allow: adjoining-classes */
+        overflow-y: auto;
+        max-height: calc(100vh - 3.5rem);
+    }
+}
+
+.dropdown-item.open { /* csslint allow: adjoining-classes */
+    color: #fff;
+    background-color: #2FA4E7;
+}
+
+.dropdown-submenu > .dropdown-menu {
+    margin: 0 0 0 1.5rem;
+    padding: 0;
+    border-width: 0;
+}
+
+.dropdown-submenu > a::after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover > a::after {
+    border-left-color: #fff;
+}
+
+@media (min-width: 892px) {
+    .dropdown-menu {
+        overflow-y: auto;
+        max-height: calc(100vh - 3.5rem);
+    }
+
+    .dropdown-submenu {
+        position: relative;
+    }
+
+    .dropdown-submenu > .dropdown-menu {
+        /* csslint ignore:start */
+        position: fixed !important;
+        /* csslint ignore:end */
+        margin-top: -9px;
+        margin-left: -2px;
+        border-width: 1px;
+        padding: 0.5rem 0;
+    }
+
+    .dropdown-submenu.pull-left { /* csslint allow: adjoining-classes */
+        float: none;
+    }
+
+    .dropdown-submenu.pull-left > .dropdown-menu { /* csslint allow: adjoining-classes */
+        left: -100%;
+        margin-left: 10px;
+    }
 }

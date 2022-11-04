@@ -1,5 +1,5 @@
 ---
-template: blog_post.html
+template: post.html
 title: Genomic Interval Changes
 description: New positions for the 1Mb interval maps
 date: 2022-02-11

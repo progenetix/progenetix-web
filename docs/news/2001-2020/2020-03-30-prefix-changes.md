@@ -1,6 +1,6 @@
 ---
 title: "CURIE Prefix Remapping - NCIT & PMID"
-template: blog_post.html
+template: post.html
 date: 2020-03-30
 author: '@mbaudis'
 www_links_formatted:
