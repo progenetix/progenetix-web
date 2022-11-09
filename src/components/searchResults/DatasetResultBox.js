@@ -25,6 +25,7 @@ const HANDOVER_IDS = {
   biosamples: "pgx:handover:biosamples",
   biosamplestable: 'pgx:handover:biosamplestable',
   biosamplevariants: "pgx:handover:biosamplevariants",
+  annotatedvariants: "pgx:handover:annotatedvariants",
   biosamplepgxsegvariants: "pgx:handover:biosamplevariants:pgxseg",
   phenopackets: "pgx:handover:phenopackets",
   UCSClink: "pgx:handover:bedfile2ucsc",
@@ -35,7 +36,8 @@ const TABS = {
   results: "Results",
   samples: "Biosamples",
   samplesMap: "Biosamples Map",
-  variants: "Variants"
+  variants: "Variants",
+  annotatedvariants: "Annotated Variants"
 }
 
 export function DatasetResultBox({ data: responseSet, query }) {
@@ -62,16 +64,19 @@ export function DatasetResultBox({ data: responseSet, query }) {
   const paginatedBiosTableHandovers = handoverById(HANDOVER_IDS.biosamplestable).pages
   const paginatedBiosVarsHandovers = handoverById(HANDOVER_IDS.biosamplevariants).pages
   const paginatedBiosVarsPgxsegHandovers = handoverById(HANDOVER_IDS.biosamplepgxsegvariants).pages
-
   const paginatedPhenopacketsHandovers = handoverById(HANDOVER_IDS.phenopackets).pages
-  
+
   const variantsHandover = handoverById(HANDOVER_IDS.variants)
   const variantsReply = useProgenetixApi(
     variantsHandover && replaceWithProxy(variantsHandover.url)
   )
 
-  const UCSCbedHandoverURL = handoverById(HANDOVER_IDS.UCSClink) === undefined ? false : handoverById(HANDOVER_IDS.UCSClink).url
+  const annotatedvariantsHandover = handoverById(HANDOVER_IDS.annotatedvariants)
+  const annotatedvariantsReply = useProgenetixApi(
+    annotatedvariantsHandover && replaceWithProxy(annotatedvariantsHandover.url)
+  )
 
+  const UCSCbedHandoverURL = handoverById(HANDOVER_IDS.UCSClink) === undefined ? false : handoverById(HANDOVER_IDS.UCSClink).url
 
   // the histogram is only rendered under some conditions:
   // * handover is needed, obviously
@@ -108,6 +113,7 @@ export function DatasetResultBox({ data: responseSet, query }) {
   ) && tabNames.push(TABS.samplesMap)
 
   if (handoverById(HANDOVER_IDS.variants)) tabNames.push(TABS.variants)
+  if (handoverById(HANDOVER_IDS.annotatedvariants)) tabNames.push(TABS.annotatedvariants)
 
   const [selectedTab, setSelectedTab] = useState(tabNames[0])
 
@@ -148,6 +154,10 @@ export function DatasetResultBox({ data: responseSet, query }) {
   } else if (selectedTab === TABS.variants) {
     tabComponent = (
       <VariantsDataTable apiReply={variantsReply} datasetId={id} />
+    )
+  } else if (selectedTab === TABS.annotatedvariants) {
+    tabComponent = (
+      <VariantsDataTable apiReply={annotatedvariantsReply} datasetId={id} />
     )
   }
 
@@ -199,7 +209,7 @@ export function DatasetResultBox({ data: responseSet, query }) {
           ) : null}
           <div>
             <ExternalLink
-              label="JSON Response"
+              label="Dataset Responsen (JSON)"
               onClick={() => openJsonInNewTab(responseSet)}
             />
           </div>
