@@ -11,7 +11,7 @@ export default function VariantsDataTable({ apiReply, datasetId }) {
     () => [
       {
         Header: "Digest",
-        accessor: "variation.variantInternalId"
+        accessor: "variantInternalId"
       },
       {
         Header: TooltipHeader(
