@@ -192,7 +192,7 @@ export function DatasetResultBox({ data: responseSet, query }) {
             <GenericHandover key={i} handover={handover} />
           ))}
         </div>
-*/}        
+*/}
         <div className="column is-one-third">
           {info.counts.variantCount > 0 ? (
             <div>
@@ -209,7 +209,7 @@ export function DatasetResultBox({ data: responseSet, query }) {
           ) : null}
           <div>
             <ExternalLink
-              label="Dataset Responsen (JSON)"
+              label="Dataset Responses (JSON)"
               onClick={() => openJsonInNewTab(responseSet)}
             />
           </div>
