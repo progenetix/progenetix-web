@@ -85,6 +85,15 @@ export function useBeaconQuery(queryData) {
   )
 }
 
+export function useAggregatorQuery(queryData) {
+  return useProgenetixApi(
+    queryData
+      ? `${basePath}beacon/aggregator/?requestedGranularity=boolean&${buildQueryParameters(queryData)}`
+      : null
+  )
+}
+
+
 export function validateBeaconQuery(queryData) {
   try {
     buildQueryParameters(queryData)

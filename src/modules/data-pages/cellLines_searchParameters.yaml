@@ -78,7 +78,7 @@ celllines:
         This example shows the query for CNV deletion variants overlapping the CDKN2A gene's coding region with at least a single base, but limited to "highly focal" hits (here i.e. <= ~1Mbp in size). The query can be modified e.g. through changing the position parameters or diagnosis.
       parameters:
         referenceName:
-          defaultValue: "9"
+          defaultValue: "refseq:NC_000009.12"
         start:
           defaultValue: "21500001-21975098"
         end:
@@ -95,7 +95,7 @@ celllines:
         (i.e. ICD-O 3 8046/3, Non-small cell carcinoma).
       parameters:
         referenceName:
-          defaultValue: "8"
+          defaultValue: "refseq:NC_000008.11"
         start:
           defaultValue: "124000000-127736593"
         end:
@@ -111,7 +111,7 @@ celllines:
         search will be limited to cell lines (EFO:0030035).
       parameters:
         referenceName:
-          defaultValue: "17"
+          defaultValue: "refseq:NC_000017.11"
         start:
           defaultValue: "5000000-7676592"
         end:
