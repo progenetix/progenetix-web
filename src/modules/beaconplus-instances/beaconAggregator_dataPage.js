@@ -43,11 +43,12 @@ function BeaconPlusNav({ beaconName }) {
       >
         <Link href={router}>
           <a className="Nav__logo">
-            {beaconName} Beacon<sup className="Nav__plus">+</sup>
+            { beaconName } Beacon<sup className="Nav__plus">+</sup>Aggregator
           </a>
         </Link>
 
         <div className="Nav__links">
+          <ActiveLink label="BeaconPlus" href="/beaconPlus/" />
           <ActiveLink label="Progenetix" href="/" />
           <a href={DOCLINK} className="navbar-item">
             Help
