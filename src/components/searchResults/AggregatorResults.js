@@ -1,5 +1,5 @@
 import { Loader } from "../Loader"
-import { DatasetResultBox } from "./DatasetResultBox"
+// import { DatasetResultBox } from "./DatasetResultBox"
 import React from "react"
 import { makeFilters } from "../../hooks/api"
 
@@ -12,8 +12,8 @@ export function AggregatorResults({ response, isLoading, error, query }) {
       <Loader isLoading={isLoading} hasError={error} colored background>
         {() => (
           <>
-            <AlleleResponses
-              biosampleResponseSets={response.response.resultSets}
+            <AggregatorResponses
+              aggregatorResponseSets={response.response.responseSets}
               query={query}
             />
           </>
@@ -23,18 +23,50 @@ export function AggregatorResults({ response, isLoading, error, query }) {
   )
 }
 
-function AlleleResponses({ biosampleResponseSets, query }) {
-  if (biosampleResponseSets?.[0].resultsCount < 1) {
-    return (
-      <div className="notification">
-        No results could be found for this query.
-      </div>
-    )
-  }
-  return biosampleResponseSets.map((r, i) => (
-    <DatasetResultBox key={i} data={r} query={query} />
+function AggregatorResponses({ aggregatorResponseSets }) {
+  return aggregatorResponseSets.map((r, i) => (
+    <AggregatorResultBox key={i} data={r} />
   ))
 }
+
+function AggregatorResultBox({data: responseSet}) {
+  const {
+    id,
+    apiVersion,
+    exists,
+    error,
+    info
+  } = responseSet
+
+  return (
+    <div className="box">
+      <h2 className="subtitle has-text-dark">{id}</h2>
+        <div>
+          <b>API Version: </b>
+            {apiVersion}
+        </div>
+        <div>
+          <b>Variant: </b>
+            {exists.toString()}
+        </div>
+        <div>
+          <b>Info: </b>
+            {info.queryUrl}
+        </div>
+        {error && (
+        <div>
+          <b>Error: </b>
+            {error}
+        </div>
+        )}
+    </div>
+  )
+
+
+}
+
+
+
 
 function QuerySummary({ query }) {
   const filters = makeFilters(query)
