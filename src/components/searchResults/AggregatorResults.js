@@ -1,19 +1,22 @@
 import { Loader } from "../Loader"
-import { DatasetResultBox } from "./DatasetResultBox"
+import { ExternalLink } from "../../hooks/api"
+// import { QuerySummary } from "../QuerySummary"
+// import { DatasetResultBox } from "./DatasetResultBox"
 import React from "react"
-import { makeFilters } from "../../hooks/api"
 
 export function AggregatorResults({ response, isLoading, error, query }) {
   return (
     <>
-      <div className="subtitle ">
+
+{/*      <div className="subtitle ">
         <QuerySummary query={query} />
       </div>
+*/}
       <Loader isLoading={isLoading} hasError={error} colored background>
         {() => (
           <>
-            <AlleleResponses
-              biosampleResponseSets={response.response.resultSets}
+            <AggregatorResponses
+              aggregatorResponseSets={response.response.responseSets}
               query={query}
             />
           </>
@@ -23,95 +26,77 @@ export function AggregatorResults({ response, isLoading, error, query }) {
   )
 }
 
-function AlleleResponses({ biosampleResponseSets, query }) {
-  if (biosampleResponseSets?.[0].resultsCount < 1) {
-    return (
-      <div className="notification">
-        No results could be found for this query.
-      </div>
-    )
-  }
-  return biosampleResponseSets.map((r, i) => (
-    <DatasetResultBox key={i} data={r} query={query} />
+function AggregatorResponses({ aggregatorResponseSets }) {
+  return aggregatorResponseSets.map((r, i) => (
+    <AggregatorResultBox key={i} data={r} />
   ))
 }
 
-function QuerySummary({ query }) {
-  const filters = makeFilters(query)
+function AggregatorResultBox({data: responseSet}) {
+  const {
+    id,
+    apiVersion,
+    exists,
+    error,
+    info
+  } = responseSet
+
+  const logoStyle = {
+    float: "right",
+    maxWidth: "120px",
+    border: "0px",
+    margin: "-50px 0px 0px 0px"
+  }
+
   return (
-    <ul className="BeaconPlus__query-summary">
-      {query.assemblyId && (
-        <li>
-          <small>Assembly: </small>
-          {query.assemblyId}
-        </li>
+    <div className="box">
+      <h2 className="subtitle has-text-dark">{id}</h2>
+      {info.logoUrl &&
+        <img
+          src={info.logoUrl}
+          style={logoStyle}
+        />
+      }
+      <div>
+        <b>API Version: </b>
+          {apiVersion}
+      </div>
+      <div>
+        <b>Variant: </b>
+          <span style={exists ? {"font-weight": "bold", color: "green"} : {color: "red"}}>
+            {exists.toString()}
+          </span>
+      </div>
+      <div>
+        <b>Query: </b>
+          <ExternalLink
+            label={info.queryUrl.replace(/https?:\/\//, "")}
+            href={info.queryUrl}
+          />
+      </div>
+      {info.responseTime &&
+        <div>
+          <b>Response Time: </b>
+          {info.responseTime}
+        </div>
+      }
+      {info.welcomeUrl &&
+        <div>
+          <b>Info: </b>
+          <ExternalLink
+            label="web page"
+            href={info.welcomeUrl}
+          />
+        </div>
+      }
+      {error && (
+        <div>
+          <b>Error: </b>
+            {error}
+        </div>
       )}
-      {query.geneId && (
-        <li>
-          <small>Gene: </small>
-          {query.geneId.value}
-        </li>
-      )}
-      {query.referenceName && (
-        <li>
-          <small>Chro: </small>
-          {query.referenceName}
-        </li>
-      )}
-      {query.start && (
-        <li>
-          <small>Start: </small>
-          {query.start}
-        </li>
-      )}
-      {query.end && (
-        <li>
-          <small>End: </small>
-          {query.end}
-        </li>
-      )}
-      {query.variantType && (
-        <li>
-          <small>Type: </small>
-          {query.variantType}
-        </li>
-      )}
-      {query.variantMinLength && (
-        <li>
-          <small>Min. Length: </small>
-          {query.variantMinLength}
-        </li>
-      )}
-      {query.variantMaxLength && (
-        <li>
-          <small>Max. Length: </small>
-          {query.variantMaxLength}
-        </li>
-      )}
-      {query.referenceBases && (
-        <li>
-          <small>Ref. Base(s): </small>
-          {query.referenceBases}
-        </li>
-      )}
-      {query.alternateBases && (
-        <li>
-          <small>Alt. Base(s): </small>
-          {query.alternateBases}
-        </li>
-      )}
-      {filters.length > 0 && (
-        <li>
-          <small>Filters: </small>
-          {filters.join(", ")}
-        </li>
-      )}
-      {filters.length > 1 && (
-        <li>
-          <small>Filter Logic: </small>
-          {query.filterLogic}
-        </li>
-      )}
-    </ul>
+    </div>
   )
+
 }
+
