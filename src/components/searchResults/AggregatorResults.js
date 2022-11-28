@@ -1,14 +1,17 @@
 import { Loader } from "../Loader"
+import { ExternalLink } from "../../hooks/api"
+// import { QuerySummary } from "../QuerySummary"
 // import { DatasetResultBox } from "./DatasetResultBox"
 import React from "react"
-import { makeFilters } from "../../hooks/api"
 
 export function AggregatorResults({ response, isLoading, error, query }) {
   return (
     <>
-      <div className="subtitle ">
+
+{/*      <div className="subtitle ">
         <QuerySummary query={query} />
       </div>
+*/}
       <Loader isLoading={isLoading} hasError={error} colored background>
         {() => (
           <>
@@ -38,112 +41,56 @@ function AggregatorResultBox({data: responseSet}) {
     info
   } = responseSet
 
+  const logoStyle = {
+    float: "right",
+    maxWidth: "120px",
+    border: "0px",
+    margin: "-50px 0px 0px 0px"
+  }
+
   return (
     <div className="box">
       <h2 className="subtitle has-text-dark">{id}</h2>
-        <div>
-          <b>API Version: </b>
-            {apiVersion}
-        </div>
-        <div>
-          <b>Variant: </b>
+      {info.logoUrl &&
+        <img
+          src={info.logoUrl}
+          style={logoStyle}
+        />
+      }
+      <div>
+        <b>API Version: </b>
+          {apiVersion}
+      </div>
+      <div>
+        <b>Variant: </b>
+          <span style={exists ? {"font-weight": "bold", color: "green"} : {color: "red"}}>
             {exists.toString()}
-        </div>
-        <div>
+          </span>
+      </div>
+      <div>
+        <b>Query: </b>
+          <ExternalLink
+            label={info.queryUrl.replace(/https?:\/\//, "")}
+            href={info.queryUrl}
+          />
+      </div>
+      {info.welcomeUrl &&
+        <>
           <b>Info: </b>
-            {info.queryUrl}
-        </div>
-        {error && (
-        <div>
-          <b>Error: </b>
-            {error}
-        </div>
-        )}
+          <ExternalLink
+            label="web page"
+            href={info.welcomeUrl}
+          />
+        </>
+      }
+      {error && (
+      <div>
+        <b>Error: </b>
+          {error}
+      </div>
+      )}
     </div>
   )
 
-
 }
 
-
-
-
-function QuerySummary({ query }) {
-  const filters = makeFilters(query)
-  return (
-    <ul className="BeaconPlus__query-summary">
-      {query.assemblyId && (
-        <li>
-          <small>Assembly: </small>
-          {query.assemblyId}
-        </li>
-      )}
-      {query.geneId && (
-        <li>
-          <small>Gene: </small>
-          {query.geneId.value}
-        </li>
-      )}
-      {query.referenceName && (
-        <li>
-          <small>Chro: </small>
-          {query.referenceName}
-        </li>
-      )}
-      {query.start && (
-        <li>
-          <small>Start: </small>
-          {query.start}
-        </li>
-      )}
-      {query.end && (
-        <li>
-          <small>End: </small>
-          {query.end}
-        </li>
-      )}
-      {query.variantType && (
-        <li>
-          <small>Type: </small>
-          {query.variantType}
-        </li>
-      )}
-      {query.variantMinLength && (
-        <li>
-          <small>Min. Length: </small>
-          {query.variantMinLength}
-        </li>
-      )}
-      {query.variantMaxLength && (
-        <li>
-          <small>Max. Length: </small>
-          {query.variantMaxLength}
-        </li>
-      )}
-      {query.referenceBases && (
-        <li>
-          <small>Ref. Base(s): </small>
-          {query.referenceBases}
-        </li>
-      )}
-      {query.alternateBases && (
-        <li>
-          <small>Alt. Base(s): </small>
-          {query.alternateBases}
-        </li>
-      )}
-      {filters.length > 0 && (
-        <li>
-          <small>Filters: </small>
-          {filters.join(", ")}
-        </li>
-      )}
-      {filters.length > 1 && (
-        <li>
-          <small>Filter Logic: </small>
-          {query.filterLogic}
-        </li>
-      )}
-    </ul>
-  )
-}
