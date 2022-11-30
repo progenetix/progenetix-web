@@ -125,7 +125,7 @@ export function makeFilters({
 
   return [
     ...(bioontology ?? []),
-    ...(clinicalClasses ?? []), 
+    ...(clinicalClasses ?? []),
     ...(referenceid ?? []),
     ...(cohorts ? [cohorts] : []),
     ...(sex ? [sex] : []),
@@ -312,7 +312,7 @@ export function useSubsethistogram({ datasetIds, id, filter, size, chr2plot }) {
   return useExtendedSWR(size > 0 && `${svgbaseurl}&${searchQuery}`, svgFetcher)
 }
 
-// method is "counts" / "child_terms" for smaller payloads 
+// method is "counts" / "child_terms" for smaller payloads
 export function useCollationsById({ datasetIds }) {
   const { data, ...other } = useCollations({
     filters: "",
@@ -447,7 +447,7 @@ export function referenceLink(externalReference) {
       "https://www.ncbi.nlm.nih.gov/mesh/?term=" +
       externalReference.id.replace("MeSH:", "").toLowerCase()
     )
-  } else if (externalReference.id.includes("Human Phenotype Ontology")) {
+  } else if (externalReference.id.includes("HP")) {
     return (
       "https://hpo.jax.org/app/browse/term/" +
       externalReference.id.replace("Human Phenotype Ontology:", "").toLowerCase()

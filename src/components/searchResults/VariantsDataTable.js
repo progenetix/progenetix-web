@@ -2,6 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { WithData } from "../Loader"
 import Table, { TooltipHeader } from "../Table"
+
 // import { useProgenetixApi } from "../../hooks/api"
 // import DownloadButton from "../DownloadButton"
 // import Link from "next/link"
@@ -32,6 +33,7 @@ export default function VariantsDataTable({ apiReply, datasetId }) {
           </div>
         ))
       }
+
       // {
       //   Header: "Type",
       //   accessor: "variantType"

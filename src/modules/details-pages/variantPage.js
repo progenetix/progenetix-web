@@ -4,13 +4,13 @@ import {
   // replaceWithProxy,
   // useProgenetixApi,
   NoResultsHelp,
-  // referenceLink
+  referenceLink
 } from "../../hooks/api"
 import { WithData } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
 import React from "react"
-// import Link from "next/link"
+import Link from "next/link"
 
 const entity = "variants"
 const exampleId = "5bab576a727983b2e00b8d32"
@@ -64,15 +64,6 @@ function VariantResponse({ response, datasetIds }) {
   return <Variant variant={response.response.resultSets[0].results[0]} datasetIds={datasetIds} />
 }
 
-// function VariantsInterpretationResponse({ response, datasetIds }) {
-// 
-//   const handoverById = (givenId) => response.response.resultSets[0].resultsHandovers.find(({ handoverType: { id } }) => id === givenId)
-//   const variantsAnnotationsReply= useProgenetixApi(
-//     variantsAnnotationsHandover && replaceWithProxy(variantsAnnotationsHandover.url)
-//   )
-//   return <VariantInterpretation ho={variantsAnnotationsHandover} apiReply={variantsAnnotationsReply} datasetIds={datasetIds} />
-// 
-// }
 
 function Variant({ variant, datasetIds }) {
   return (
@@ -83,6 +74,101 @@ function Variant({ variant, datasetIds }) {
 
       <h5>Digest</h5>
       <p>{variant.variantInternalId}</p>
+
+      {variant.variation.molecularAttributes && (
+            <>
+        <h5>Molecular Attributes</h5>
+        <p>Gene: <b>{variant.variation.molecularAttributes.geneIds[0]}</b></p>
+      </>
+      )}
+      {variant.variation.molecularAttributes && variant.variation.molecularAttributes.molecularEffects && (
+            <>
+        <p>Molecular effect: {variant.variation.molecularAttributes.molecularEffects[0].label}</p>
+        </>
+        )}
+
+      {variant.variation.molecularAttributes && variant.variation.molecularAttributes.aminoacidChanges && (
+            <>
+        <p>Aminoacid changes: </p>
+         <ul>
+          {variant.variation.molecularAttributes.aminoacidChanges.map((aa) =>
+            <li key={aa}>
+              {aa}
+            </li>
+          )}
+        </ul>
+        </>
+      )}
+
+     {variant.variation.identifiers && variant.variation.identifiers.proteinHGVSIds && (
+           <>
+       <p>Protein HGVSids:</p>
+         <ul>
+          {variant.variation.identifiers.proteinHGVSIds.map((ph) =>
+            <li key={ph}>
+              {ph}
+            </li>
+          )}
+        </ul>
+        </>
+       )}
+
+     {variant.variation.identifiers && variant.variation.identifiers.clinvarIds && (
+           <>
+       <p>ClinVar IDs:</p>
+         <ul>
+            <li>
+              <Link href={"https://www.ncbi.nlm.nih.gov/clinvar/variation/" + variant.variation.identifiers.clinvarIds[0][0]}>
+                <a>{variant.variation.identifiers.clinvarIds[0][0]}</a>
+              </Link>
+            </li>
+            <li>
+                {variant.variation.identifiers.clinvarIds[0][1]}
+            </li>
+        </ul>
+        </>
+        )}
+
+      {variant.variation.variantLevelData && variant.variation.variantLevelData.clinicalInterpretations.length > 0 && (
+                <>
+      <h5>Clinical Interpretations</h5>
+      <p>Clinical Relevance: <b>{variant.variation.variantLevelData.clinicalInterpretations[0].clinicalRelevance}</b></p>
+      <table>
+      <tr>
+        <th>ID</th>
+        <th>Description</th>
+      </tr>
+      {variant.variation.variantLevelData.clinicalInterpretations?.map((clinicalInterpretations, key) => {
+        return (
+          <tr key={key}>
+            <td>
+            {referenceLink(clinicalInterpretations.effect) ? (
+              <Link href={referenceLink(clinicalInterpretations.effect)}>
+                <a>{clinicalInterpretations.effect.id}</a>
+              </Link>
+            ) : (
+              clinicalInterpretations.effect.id
+            )}
+            </td>
+            <td>{clinicalInterpretations.effect.label}</td>
+          </tr>
+        )
+        })}
+      </table>
+      </>
+      )}
+
+      {variant.variation.molecularAttributes && variant.variation.molecularAttributes.molecularEffects && (
+            <>
+        <p>Source: CCLE mutations</p>
+        </>
+        )}
+
+        {variant.variation.identifiers && variant.variation.identifiers.clinvarIds && (
+              <>
+        <p>Source: ClinVar</p>
+        </>
+        )}
 
       <h5>
         Download Data as{" "}
@@ -97,84 +183,3 @@ function Variant({ variant, datasetIds }) {
     </section>
   )
 }
-
-// replace this with a table
-// DEPRECATED; just kept for ref ...
-
-// function VariantInterpretation({ ho, apiReply, datasetIds }) {
-// 
-//   return (
-//     <WithData
-//       apiReply={apiReply}
-//       datasetIds={datasetIds}
-//       render={ (response) => (
-//         <section className="content">
-//           {console.log(response)}
-//           <hr/>
-//           <h3>
-//             {response.resultSets[0].results[0].id}
-//           </h3>
-//           <ul>
-//             <li>Gene ID: {response.resultSets[0].results[0].geneId}</li>
-//             <li>Cytoband: {response.resultSets[0].results[0].cytoband}</li>
-//             <li>Aminoacid changes: {response.resultSets[0].results[0].aminoacidChanges}</li>
-//           </ul>
-//           )}
-//           {response.response.resultSets[0].results[0].clinicalRelevances[0].clinicalEffect ? (
-//             <div>
-//               <h5>Clinical Effect </h5>
-//               <ul>
-//                 <li>{response.response.resultSets[0].results[0].clinicalRelevances[0].clinicalEffect.label} (FATHMM score: {response.response.resultSets[0].results[0].clinicalRelevances[0].clinicalEffect.score} )</li>
-//               </ul>
-//             </div>
-//           ) : ""}
-//           {response.response.resultSets[0].results[0].clinicalRelevances[1]?.diseaseId ? (
-//             <div>
-//               <h5>Disease ontologies </h5>
-//               {response.response.resultSets[0].results[0].clinicalRelevances[1]?.diseaseId?.map((disease, i) => (
-//                 <div key={i}>
-//                   {referenceLink(disease) ? (
-//                     <Link href={referenceLink(disease)}>
-//                       <a>{disease.id}</a>
-//                     </Link>
-//                   ) : (
-//                     disease.id
-//                   )}{" : "}
-//                   {disease.label}
-//                 </div>
-//               ))}
-//             </div>
-//           ) : ""}
-//           {response.response.resultSets[0].results[0].alternativeIds ? (
-//             <div>
-//               <h5>Alternative IDs</h5>
-//               {response.response.resultSets[0].results[0].alternativeIds?.map((externalReference, i) => (
-//                 <div key={i}>
-//                   {referenceLink(externalReference) ? (
-//                     <Link href={referenceLink(externalReference)}>
-//                       <a>{externalReference.id}</a>
-//                     </Link>
-//                   ) : (
-//                     externalReference.id
-//                   )}{" : "}
-//                   {externalReference.label}
-//                 </div>
-//               ))}
-//             </div>
-//           ) : ""}
-// 
-//           <h5>
-//             Download Data as{" "}
-//             <a
-//               rel="noreferrer"
-//               target="_blank"
-//               href={ho.url}
-//             >
-//               {"{JSON↗}"}
-//             </a>
-//           </h5>
-//         </section>
-//       }
-//     />
-//   )
-// }
