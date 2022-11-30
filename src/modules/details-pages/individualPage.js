@@ -1,7 +1,9 @@
 import {
   getDataItemUrl,
   useDataItemDelivery,
-  NoResultsHelp
+  NoResultsHelp,
+  referenceLink,
+  Link
 } from "../../hooks/api"
 import { WithData } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
@@ -74,7 +76,67 @@ function Individual({ individual, datasetIds }) {
           <p>{individual.sex.label}</p>
         </>
       )}
-
+      {individual.genomeAncestry && individual.genomeAncestry?.length > 0 &&
+                <>
+          <h5>Genome Ancestry</h5>
+          <table style={{ width: "120px" }}>
+              <tr>
+                <th>ID</th>
+                <th>Description</th>
+                <th>Percentage</th>
+              </tr>
+              {individual.genomeAncestry?.map((genomeAncestry, key) => {
+                return (
+                  <tr key={key}>
+                    <td>{genomeAncestry.id}</td>
+                    <td>{genomeAncestry.label}</td>
+                    <td>{genomeAncestry.percentage}</td>
+                  </tr>
+                )
+              })}
+            </table>
+            </>
+         }
+         {individual.onset &&
+                   <>
+            <p>
+              Age at Collection: {individual.onset?.age}
+            </p>
+            </>
+         }
+         {individual.diseaseCode &&
+                   <>
+            <h5>Diagnosis</h5>
+            <p>{individual.diseaseCode?.label}</p>
+            </>
+         }
+         {individual.cellLines &&
+                   <>
+            <h5>Cell Lines</h5>
+            {individual.cellLines?.map((cl, i) => (
+              <li key={i}>
+                {cl?.description}{" "}
+                {referenceLink(cl) ? (
+                  <Link
+                    href={referenceLink(cl)}
+                    label={`: ${cl.id}`}
+                  />
+                ) : (
+                  cl.id
+                )}
+              </li>
+            ))}
+            </>
+         }
+            <h5>Biosamples</h5>
+            {individual.biosamples?.map((bs, i) => (
+              <li key={i}>
+              <Link
+                href={`/biosample/?id=${bs}&datasetIds=${ datasetIds }`}
+                label={bs}
+              />
+              </li>
+            ))}
       <h5>
         Download Data as{" "}
         <a
