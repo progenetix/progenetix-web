@@ -2,9 +2,6 @@ import React from "react"
 import PropTypes from "prop-types"
 import { WithData } from "../Loader"
 import Table, { TooltipHeader } from "../Table"
-// import { useProgenetixApi } from "../../hooks/api"
-// import DownloadButton from "../DownloadButton"
-// import Link from "next/link"
 
 export default function VariantsDataTable({ apiReply, datasetId }) {
   const columns = React.useMemo(
@@ -32,10 +29,6 @@ export default function VariantsDataTable({ apiReply, datasetId }) {
           </div>
         ))
       }
-      // {
-      //   Header: "Type",
-      //   accessor: "variantType"
-      // }
     ]
   )
 
@@ -44,15 +37,6 @@ export default function VariantsDataTable({ apiReply, datasetId }) {
       apiReply={apiReply}
       render={(response) => (
         <div>
-{/*
-          <div className="mb-4">
-            <DownloadButton
-              label="Download Variants"
-              json={response.response.resultSets[0].results}
-              fileName="variants"
-            />
-          </div>
-*/}
           <Table columns={columns} data={response.response.resultSets[0].results} />
         </div>
       )}
