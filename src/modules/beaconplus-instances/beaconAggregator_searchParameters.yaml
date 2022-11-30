@@ -34,6 +34,129 @@ beaconplus:
       isHidden: true
 
   examples:
+    - label: "SNV Ensembl"
+      note: "Example for specific variant (from Ensembl)"
+      description: |
+        This example shows a core Beacon query, against a specific
+        variant as shown in Ensembl.
+      parameters:
+        assemblyId:
+          defaultValue: "GRCh38"
+        referenceName:
+          defaultValue: "refseq:NC_000009.12"
+        start:
+          defaultValue: 22125504
+        end:
+          defaultValue: ""
+          isHidden: true
+        variantType:
+          defaultValue: ""
+          isHidden: true
+        alternateBases:
+          defaultValue: C
+        referenceBases:
+          defaultValue: G
+        geneId:
+          isHidden: true
+        skip:
+          isHidden: true
+        limit:
+          isHidden: true
+        freeFilters:
+          defaultValue: ""
+          isHidden: true
+        variantMinLength:
+          isHidden: true
+        variantMaxLength:
+          isHidden: true
+        bioontology:
+          isHidden: true
+        referenceid:
+          isHidden: true
+        clinicalClasses:
+          isHidden: true
+        materialtype:
+          isHidden: true
+        filterLogic:
+          isHidden: true
+        includeDescendantTerms:
+          isHidden: true
+        sex:
+          isHidden: true
+    - label: "SNV ALDH2"
+      note: "Example for specific ALDH2 variant (from NBDC examples)"
+      description: |
+        This example shows a core Beacon query, against a specific
+        variant of the ALDH2 gene as shown in the NBDC Beacon.
+      parameters:
+        assemblyId:
+          defaultValue: "GRCh38"
+        referenceName:
+          defaultValue: "refseq:NC_000012.12"
+        start:
+          defaultValue: 111803962
+        end:
+          defaultValue: ""
+          isHidden: true
+        variantType:
+          defaultValue: ""
+          isHidden: true
+        alternateBases:
+          defaultValue: "A"
+          isHidden: false
+        referenceBases:
+          isHidden: true
+        geneId:
+          isHidden: true
+        skip:
+          isHidden: true
+        limit:
+          isHidden: true
+        freeFilters:
+          defaultValue: ""
+          isHidden: true
+        variantMinLength:
+          isHidden: true
+        variantMaxLength:
+          isHidden: true
+        bioontology:
+          isHidden: true
+        referenceid:
+          isHidden: true
+        clinicalClasses:
+          isHidden: true
+        materialtype:
+          isHidden: true
+        filterLogic:
+          isHidden: true
+        includeDescendantTerms:
+          isHidden: true
+        sex:
+          isHidden: true
+    - label: "SNV EIF4A1"
+      note: "Example for specific EIF4A1 mutation"
+      description: |
+        This example shows a core Beacon query, against a specific
+        mutation in the EIF4A1 gene, in the DIPG childhood brain tumor dataset.
+      parameters:
+        assemblyId:
+          defaultValue: "GRCh38"
+        referenceName:
+          defaultValue: "refseq:NC_000017.11"
+        start:
+          defaultValue: 7577121
+        end:
+          defaultValue: ""
+        variantType:
+          defaultValue: ""
+        alternateBases:
+          defaultValue: "A"
+          isHidden: false
+        referenceBases:
+          defaultValue: "G"
+          isHidden: false
+        freeFilters:
+          defaultValue: ""
     - label: "CNV Example"
       note: "Example for focal CDKN2A deletion matches."
       description: |
@@ -63,30 +186,6 @@ beaconplus:
           defaultValue: [NCIT:C3058]
         freeFilters:
           isHidden: false
-    - label: "SNV Example"
-      note: "Example for specific EIF4A1 mutation"
-      description: |
-        This example shows a core Beacon query, against a specific
-        mutation in the EIF4A1 gene, in the DIPG childhood brain tumor dataset.
-      parameters:
-        assemblyId:
-          defaultValue: "GRCh38"
-        referenceName:
-          defaultValue: "refseq:NC_000017.11"
-        start:
-          defaultValue: 7577121
-        end:
-          defaultValue: ""
-        variantType:
-          defaultValue: ""
-        alternateBases:
-          defaultValue: "A"
-          isHidden: false
-        referenceBases:
-          defaultValue: "G"
-          isHidden: false
-        freeFilters:
-          defaultValue: ""
     - label: "SNV Range Example"
       note: "Example for EIF4A1 transcript region matches (precise variants)"
       description: |
