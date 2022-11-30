@@ -2,13 +2,13 @@ import React from "react"
 import cn from "classnames"
 import { useRouter } from "next/router"
 import parametersConfig from "../shared/searchParameters.yaml"
-import requestTypesConfig from "./beaconplus_searchParameters.yaml"
-import BiosamplesSearchPanel from "../../components/searchForm/BiosamplesSearchPanel"
+import requestTypesConfig from "./beaconAggregator_searchParameters.yaml"
+import AggregatorSearchPanel from "../../components/searchForm/AggregatorSearchPanel"
 import Panel from "../../components/Panel"
 import Link from "next/link"
 import { DOCLINK } from "../../hooks/api"
 
-export default function BeaconPlusPage({ cytoBands }) {
+export default function BeaconAggregatorPage({ cytoBands }) {
   return (
     <>
       <BeaconPlusNav beaconName="" />
@@ -16,15 +16,11 @@ export default function BeaconPlusPage({ cytoBands }) {
         <div className="BeaconPlus__container">
           <Panel className="content">
             <div>
-                This forward looking Beacon interface proposes additional,
-                planned features beyond the <a href="http://docs.genomebeacons.org/">current Beacon v2 specifications</a>. The Beacon<sup>+</sup> genome variation service tests experimental features and proposed extensions to the <a href="http://beacon-project.io">Beacon</a> protocol. The
-                service is implemented using the <a href="https://github.com/progenetix/bycon">bycon</a> backend
-                and allows access to the various datasets represented through the <a href="http://progenetix.org">Progenetix</a> cancer genomics resource.
-                Further information about the Beacon project can be found through
-                the <a href="http://beacon-project.io/">ELIXIR Beacon website</a>.
+                This page provides an entry point to prototype a Beacon
+                aggregator - <b>strictly for development purposes</b>.
             </div>
           </Panel>  
-          <BiosamplesSearchPanel
+          <AggregatorSearchPanel
             cytoBands={cytoBands}
             parametersConfig={parametersConfig}
             requestTypesConfig={requestTypesConfig}
@@ -47,12 +43,12 @@ function BeaconPlusNav({ beaconName }) {
       >
         <Link href={router}>
           <a className="Nav__logo">
-            {beaconName} Beacon<sup className="Nav__plus">+</sup>
+            { beaconName } Beacon<sup className="Nav__plus">+</sup>Aggregator
           </a>
-        </Link>        
+        </Link>
 
         <div className="Nav__links">
-          <ActiveLink label="Aggregator" href="/beaconAggregator/" />
+          <ActiveLink label="BeaconPlus" href="/beaconPlus/" />
           <ActiveLink label="Progenetix" href="/" />
           <a href={DOCLINK} className="navbar-item">
             Help

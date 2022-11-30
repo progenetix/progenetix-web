@@ -41,7 +41,7 @@ gao2021:
         to "highly focal" hits (here i.e. <= ~1Mbp in size) in Glioblastoma samples. The query can be modified e.g. through changing the position parameters or diagnosis.
       parameters:
         referenceName:
-          defaultValue: "9"
+          defaultValue: "refseq:NC_000009.12"
         start:
           defaultValue: "21500001-21975098"
         end:
@@ -56,7 +56,7 @@ gao2021:
         The example parameters will select samples with a continuous, focal duplication of the complete MYC coding region. The serarch will be limited to  neoplastic samples (EFO:0009656).
       parameters:
         referenceName:
-          defaultValue: "8"
+          defaultValue: "refseq:NC_000008.11"
         start:
           defaultValue: "124000000-127736593"
         end:

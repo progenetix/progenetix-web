@@ -6,12 +6,12 @@ beaconplus:
   parameters:
     datasetIds:
       defaultValue: ["progenetix"]
+      isHidden: true
     cohorts:
       defaultValue: [""]
-    assemblyId:
-      placeholder: "GRCh38"
-    referenceName:
-      placeholder: "9"
+      isHidden: true
+    # referenceName:
+    #   placeholder: "9"
     start:
       placeholder: "19000001-21975098"
     end:
@@ -22,10 +22,17 @@ beaconplus:
       placeholder: "A"
     referenceBases:
       placeholder: "N"
+    referenceid:
+      isHidden: true
     freeFilters:
       placeholder: ""
+    filterLogic:
+      isHidden: true
     accessid:
       isHidden: true
+    geoCity:
+      isHidden: true
+
   examples:
     - label: "CNV Example"
       note: "Example for focal CDKN2A deletion matches."
@@ -62,8 +69,6 @@ beaconplus:
         This example shows a core Beacon query, against a specific
         mutation in the EIF4A1 gene, in the DIPG childhood brain tumor dataset.
       parameters:
-        datasetIds:
-          defaultValue: ["progenetix"]
         assemblyId:
           defaultValue: "GRCh38"
         referenceName:
@@ -94,8 +99,6 @@ beaconplus:
         The exact variants which were being found can be retrieved through the variant
         handover [H—>O] link.
       parameters:
-        datasetIds:
-          defaultValue: ["progenetix"]
         assemblyId:
           defaultValue: "GRCh38"
         referenceName:

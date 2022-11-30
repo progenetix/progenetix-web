@@ -48,7 +48,7 @@ OneKgenomesDRAGEN:
         The range reques matches all deletion CNVs somehow overlapping the interval.
       parameters:
         referenceName:
-          defaultValue: "17"
+          defaultValue: "refseq:NC_000017.11"
         start:
           defaultValue: 7000000
         end:
