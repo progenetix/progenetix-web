@@ -207,6 +207,14 @@ function Side({ onClick }) {
             </>
           }
         />
+        <MenuInternalLinkItem
+          href="/cellLine/"
+          label={
+            <>
+              Cell Lines<sup style={{ color: "red" }}>o</sup>
+            </>
+          }
+        />
         <MenuInternalLinkItem href={DOCLINK} label="Documentation" />
         <MenuInternalLinkItem
           href={NEWSLINK}
