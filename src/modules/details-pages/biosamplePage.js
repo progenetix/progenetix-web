@@ -170,7 +170,7 @@ function Biosample({ biosample, datasetIds }) {
       )}
 
       <h5>
-        Download Data as{" "}
+        Download Data as Beacon v2{" "}
         <a
           rel="noreferrer"
           target="_blank"
