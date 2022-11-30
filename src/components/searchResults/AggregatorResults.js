@@ -36,6 +36,7 @@ function AggregatorResultBox({data: responseSet}) {
   const {
     id,
     apiVersion,
+    datasetId,
     exists,
     error,
     info
@@ -50,7 +51,7 @@ function AggregatorResultBox({data: responseSet}) {
 
   return (
     <div className="box">
-      <h2 className="subtitle has-text-dark">{id}</h2>
+      <h2 className="subtitle has-text-dark">{id}{datasetId && <span> {"("}{datasetId}{")"}</span>}</h2>
       {info.logoUrl &&
         <img
           src={info.logoUrl}
@@ -74,20 +75,26 @@ function AggregatorResultBox({data: responseSet}) {
             href={info.queryUrl}
           />
       </div>
+      {info.responseTime &&
+        <div>
+          <b>Response Time: </b>
+          {info.responseTime}
+        </div>
+      }
       {info.welcomeUrl &&
-        <>
+        <div>
           <b>Info: </b>
           <ExternalLink
             label="web page"
             href={info.welcomeUrl}
           />
-        </>
+        </div>
       }
       {error && (
-      <div>
-        <b>Error: </b>
-          {error}
-      </div>
+        <div>
+          <b>Error: </b>
+            {error}
+        </div>
       )}
     </div>
   )
