@@ -13,7 +13,7 @@ import { withUrlQuery } from "../../hooks/url-query"
 
 
 const service = "collations"
-const exampleId = "NCIT:C3262"
+const exampleId = "cellosaurus:CVCL_0023"
 
 const SubsetDetailsPage = withUrlQuery(({ urlQuery }) => {
   var { id, datasetIds } = urlQuery

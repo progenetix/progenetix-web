@@ -232,7 +232,7 @@ export function usePublicationList({ geoCity, geodistanceKm }) {
   return useProgenetixApi(url)
 }
 
-//ZHAW fetch
+// ZHAW fetch
 
 export function useLiteratureSearchResults(t1s,t2s)
 {
@@ -243,6 +243,8 @@ export function useLiteratureCellLineMatches()
 {
   return useProgenetixApi(`${basePath}cgi-bin/zhaw_test/zhaw_test.py?func=celllines`);
 }
+
+// \ ZHAW
 
 export function usePublicationWithDataList({ geoCity, geodistanceKm }) {
   const qParams = new URLSearchParams({
@@ -265,7 +267,6 @@ export function useProgenetixRefPublicationList({ geoCity, geodistanceKm }) {
   const url = `${basePath}services/publications?${qParams}`
   return useProgenetixApi(url)
 }
-
 
 export const ontologymapsBaseUrl = `${basePath}services/ontologymaps?`
 
@@ -308,7 +309,7 @@ export function NoResultsHelp(id, entity) {
   return (
     <div className="notification is-size-5">
       This page will only show content if called with a specific biosample ID
-      which already exists in the Progenetix or arrayMap{" "}
+      which already exists in Progenetix {" "}
       <strong>{entity}</strong> database, e.g. <a href={url}>{url}</a>.
     </div>
   )
