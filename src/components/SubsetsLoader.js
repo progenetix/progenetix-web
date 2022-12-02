@@ -66,7 +66,6 @@ function SubsetsResponse({ bioSubsetsHierarchies, allBioSubsets, datasetIds }) {
         tree={tree}
         size={size}
         sampleFilterScope="bioontology"
-        subsetScope="biosubsets"
       />
     </>
   )

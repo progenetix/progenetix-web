@@ -13,7 +13,7 @@ import { withUrlQuery } from "../../hooks/url-query"
 
 
 const service = "collations"
-const exampleId = "NCIT:C3262"
+const exampleId = "cellosaurus:CVCL_0023"
 
 const SubsetDetailsPage = withUrlQuery(({ urlQuery }) => {
   var { id, datasetIds } = urlQuery
@@ -22,7 +22,7 @@ const SubsetDetailsPage = withUrlQuery(({ urlQuery }) => {
   }
   const hasAllParams = id && datasetIds
   return (
-    <Layout title="Subset Details" headline="Subset Details">
+    <Layout title="Cellline Details" headline="Cellline Details">
       {!hasAllParams ? (
         NoResultsHelp(exampleId, "subsetdetails")
       ) : (
@@ -61,6 +61,7 @@ function LiteratureSearch({ id, datasetIds })
           </Loader>);
 }
 
+// TODO: Implement as tabbed component as in the `DatasetResultBox`
 function LiteratureSearchResults({label})
 {
   const {data,error,isLoading} = useLiteratureCellLineMatches();
