@@ -25,7 +25,6 @@ export const BIOKEYS = ["histologicalDiagnosis", "icdoMorphology", "icdoTopograp
 
 export function useProgenetixApi(...args) {
   const { data, error, ...other } = useExtendedSWR(...args)
-
   if (data) {
     const errorMessage = findErrorMessage(data)
     // Compatible with the simple responses.
@@ -233,6 +232,18 @@ export function usePublicationList({ geoCity, geodistanceKm }) {
   return useProgenetixApi(url)
 }
 
+//ZHAW fetch
+
+export function useLiteratureSearchResults(t1s,t2s)
+{
+  return useProgenetixApi(`${basePath}cgi-bin/zhaw_test/zhaw_test.py?func=search&t1s=${t1s.join(",")}&t2s=${t2s.join(",")}`);
+}
+
+export function useLiteratureCellLineMatches()
+{
+  return useProgenetixApi(`${basePath}cgi-bin/zhaw_test/zhaw_test.py?func=celllines`);
+}
+
 export function usePublicationWithDataList({ geoCity, geodistanceKm }) {
   const qParams = new URLSearchParams({
     ...mkGeoParams(geoCity, geodistanceKm),
@@ -311,10 +322,11 @@ export function useCytomapper(querytext) {
   return useProgenetixApi(url)
 }
 
-export function useSubsethistogram({ datasetIds, id, filter, size, chr2plot }) {
+export function useSubsethistogram({ datasetIds, id, filter, labelstring, size, chr2plot }) {
   const svgbaseurl = subsetSVGlink(id, datasetIds)
   const params = []
   filter && params.push(["filter", filter])
+  labelstring && params.push(["-labels", labelstring])
   size && params.push(["-size_plotimage_w_px", size])
   chr2plot && params.push(["chr2plot", chr2plot])
   const searchQuery = new URLSearchParams(params).toString()

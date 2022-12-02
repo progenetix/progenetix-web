@@ -22,7 +22,7 @@ export default function Histogram({ apiReply }) {
   )
 }
 
-export function SubsetHistogram({ id, filter, datasetIds, size: givenSize }) {
+export function SubsetHistogram({ id, filter, datasetIds, labelstring, size: givenSize }) {
   const componentRef = useRef()
   const { width } = useContainerDimensions(componentRef)
   const size = givenSize || width
@@ -33,6 +33,7 @@ export function SubsetHistogram({ id, filter, datasetIds, size: givenSize }) {
           datasetIds,
           id,
           filter,
+          labelstring,
           size
         })}
       />

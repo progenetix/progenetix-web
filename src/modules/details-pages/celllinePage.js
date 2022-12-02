@@ -2,7 +2,9 @@ import {
   getServiceItemUrl,
   useServiceItemDelivery,
   sampleSearchPageFiltersLink,
-  NoResultsHelp
+  NoResultsHelp,
+  useLiteratureSearchResults,
+  useLiteratureCellLineMatches
 } from "../../hooks/api"
 import { Loader } from "../../components/Loader"
 import { Layout } from "../../components/Layout"
@@ -38,14 +40,74 @@ const SubsetDetailsPage = withUrlQuery(({ urlQuery }) => {
           }}
         />
       </div>
+      <LiteratureSearch id={id} datasetIds={datasetIds} />
       </>
-
       )}
     </Layout>
   )
 })
 
 export default SubsetDetailsPage
+
+function LiteratureSearch({ id, datasetIds })
+{
+  const { data, error, isLoading } = useServiceItemDelivery(
+    id,
+    service,
+    datasetIds
+  )
+  return (<Loader isLoading={isLoading} hasError={error} background>
+            {data && (<LiteratureSearchResults label={data.response.results[0].label} />)}
+          </Loader>);
+}
+
+function LiteratureSearchResults({label})
+{
+  const {data,error,isLoading} = useLiteratureCellLineMatches();
+  return (<Loader isLoading={isLoading} hasError={error} background>
+            {data && label in data.celllines && (<div>
+              <section className="content"><h1>Literature Results</h1></section>
+              {data.celllines[label].CytogeneticBand.length > 0 ? 
+                <ResultComponent cellline={label} entities={data.celllines[label].CytogeneticBand} name={"Cytobands"} /> : ""}
+              {data.celllines[label].NeoplasticProcess.length > 0 ?  
+              <ResultComponent cellline={label} entities={data.celllines[label].NeoplasticProcess} name={"Cancer Types"} /> : ""}
+              {data.celllines[label].Gene.length > 0 ? 
+              <ResultComponent cellline={label} entities={data.celllines[label].Gene} name={"Genes"} /> : ""}
+            </div>)}
+          </Loader>)
+}
+
+function ResultComponent({name,cellline,entities})
+{
+  return (<section className="content">
+            <h3>{name}</h3>
+            <table>
+              {entities.map((ent,i)=>(<ResultSet key={`${i}`} entity={ent.entity} cellline={cellline} />))}
+            </table>
+          </section>);
+}
+
+function ResultSet({cellline,entity})
+{
+  const {data,error,isLoading} = useLiteratureSearchResults([cellline],[entity]);
+  return (<Loader isLoading={isLoading} hasError={error} background>
+            {data && data.pairs.length > 0 ? <tr><td>
+              <b>{entity}</b>
+            </td><td>{data.pairs.map((pair,i)=>(<ResultRow key={`${i}`} pair={pair} />))}</td></tr> : ""}
+          </Loader>)
+}
+
+function ResultRow({pair})
+{
+  return (<tr>
+            <td>
+              <div dangerouslySetInnerHTML={{ __html:pair.text}}/>
+            </td>
+            <td>
+              <a target="_blank" rel="noreferrer" href={"https://pubmed.ncbi.nlm.nih.gov/"+pair.pmid}>{pair.title}</a>
+            </td>
+          </tr>);
+}
 
 function SubsetLoader({ id, datasetIds }) {
   const { data, error, isLoading } = useServiceItemDelivery(
@@ -74,7 +136,7 @@ function Subset({ subset, datasetIds }) {
   
   const filters = subset.id
   const sampleFilterScope = "freeFilters"
-  
+
   const pgxRegex = new RegExp('^.*progenetix.*/services/.*?$')
     
   return (
