@@ -49,6 +49,8 @@ const SubsetDetailsPage = withUrlQuery(({ urlQuery }) => {
 
 export default SubsetDetailsPage
 
+//
+
 function LiteratureSearch({ id, datasetIds })
 {
   const { data, error, isLoading } = useServiceItemDelivery(
@@ -65,49 +67,57 @@ function LiteratureSearch({ id, datasetIds })
 function LiteratureSearchResults({label})
 {
   const {data,error,isLoading} = useLiteratureCellLineMatches();
-  return (<Loader isLoading={isLoading} hasError={error} background>
-            {data && label in data.celllines && (<div>
-              <section className="content"><h1>Literature Results</h1></section>
-              {data.celllines[label].CytogeneticBand.length > 0 ? 
-                <ResultComponent cellline={label} entities={data.celllines[label].CytogeneticBand} name={"Cytobands"} /> : ""}
-              {data.celllines[label].NeoplasticProcess.length > 0 ?  
-              <ResultComponent cellline={label} entities={data.celllines[label].NeoplasticProcess} name={"Cancer Types"} /> : ""}
-              {data.celllines[label].Gene.length > 0 ? 
-              <ResultComponent cellline={label} entities={data.celllines[label].Gene} name={"Genes"} /> : ""}
-            </div>)}
-          </Loader>)
+  return (
+    <Loader isLoading={isLoading} hasError={error} background>
+      {data && label in data.celllines && (<div>
+        <section className="content"><h1>Literature Results</h1></section>
+        {data.celllines[label].CytogeneticBand.length > 0 ? 
+          <ResultComponent cellline={label} entities={data.celllines[label].CytogeneticBand} name={"Cytoband Matches"} /> : ""}
+        {data.celllines[label].NeoplasticProcess.length > 0 ?  
+        <ResultComponent cellline={label} entities={data.celllines[label].NeoplasticProcess} name={"Disease Annotations"} /> : ""}
+        {data.celllines[label].Gene.length > 0 ? 
+        <ResultComponent cellline={label} entities={data.celllines[label].Gene} name={"Gene Matches"} /> : ""}
+      </div>)}
+    </Loader>
+  )
 }
 
 function ResultComponent({name,cellline,entities})
 {
-  return (<section className="content">
-            <h3>{name}</h3>
-            <table>
-              {entities.map((ent,i)=>(<ResultSet key={`${i}`} entity={ent.entity} cellline={cellline} />))}
-            </table>
-          </section>);
+  return (
+    <section className="content">
+      <h3>{name}</h3>
+      <table>
+        {entities.map((ent,i)=>(<ResultSet key={`${i}`} entity={ent.entity} cellline={cellline} />))}
+      </table>
+    </section>
+  );
 }
 
 function ResultSet({cellline,entity})
 {
   const {data,error,isLoading} = useLiteratureSearchResults([cellline],[entity]);
-  return (<Loader isLoading={isLoading} hasError={error} background>
-            {data && data.pairs.length > 0 ? <tr><td>
-              <b>{entity}</b>
-            </td><td>{data.pairs.map((pair,i)=>(<ResultRow key={`${i}`} pair={pair} />))}</td></tr> : ""}
-          </Loader>)
+  return (
+    <Loader isLoading={isLoading} hasError={error} background>
+      {data && data.pairs.length > 0 ? <tr><td>
+        <b>{entity}</b>
+      </td><td>{data.pairs.map((pair,i)=>(<ResultRow key={`${i}`} pair={pair} />))}</td></tr> : ""}
+    </Loader>
+  )
 }
 
 function ResultRow({pair})
 {
-  return (<tr>
-            <td>
-              <div dangerouslySetInnerHTML={{ __html:pair.text}}/>
-            </td>
-            <td>
-              <a target="_blank" rel="noreferrer" href={"https://pubmed.ncbi.nlm.nih.gov/"+pair.pmid}>{pair.title}</a>
-            </td>
-          </tr>);
+  return (
+    <tr>
+      <td>
+        <div dangerouslySetInnerHTML={{ __html:pair.text}}/>
+      </td>
+      <td>
+        <a target="_blank" rel="noreferrer" href={"https://pubmed.ncbi.nlm.nih.gov/"+pair.pmid}>{pair.title}</a>
+      </td>
+    </tr>
+  );
 }
 
 function SubsetLoader({ id, datasetIds }) {
