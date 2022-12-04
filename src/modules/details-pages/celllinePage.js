@@ -1,3 +1,4 @@
+import React, { useState } from "react"
 import {
   getServiceItemUrl,
   useServiceItemDelivery,
@@ -6,6 +7,7 @@ import {
   useLiteratureSearchResults,
   useLiteratureCellLineMatches
 } from "../../hooks/api"
+import cn from "classnames"
 import { Loader } from "../../components/Loader"
 import { Layout } from "../../components/Layout"
 import { SubsetHistogram } from "../../components/Histogram"
@@ -27,8 +29,7 @@ const SubsetDetailsPage = withUrlQuery(({ urlQuery }) => {
         NoResultsHelp(exampleId, "subsetdetails")
       ) : (
       <>
-      <SubsetLoader id={id} datasetIds={datasetIds} />
-      
+      <SubsetLoader id={id} datasetIds={datasetIds} />   
       <div className="mb-3">
         <SubsetHistogram
           id={id}
@@ -58,35 +59,90 @@ function LiteratureSearch({ id, datasetIds })
     service,
     datasetIds
   )
-  return (<Loader isLoading={isLoading} hasError={error} background>
-            {data && (<LiteratureSearchResults label={data.response.results[0].label} />)}
-          </Loader>);
-}
-
-// TODO: Implement as tabbed component as in the `DatasetResultBox`
-function LiteratureSearchResults({label})
-{
-  const {data,error,isLoading} = useLiteratureCellLineMatches();
   return (
     <Loader isLoading={isLoading} hasError={error} background>
-      {data && label in data.celllines && (<div>
-        <section className="content"><h1>Literature Results</h1></section>
-        {data.celllines[label].CytogeneticBand.length > 0 ? 
-          <ResultComponent cellline={label} entities={data.celllines[label].CytogeneticBand} name={"Cytoband Matches"} /> : ""}
-        {data.celllines[label].NeoplasticProcess.length > 0 ?  
-        <ResultComponent cellline={label} entities={data.celllines[label].NeoplasticProcess} name={"Disease Annotations"} /> : ""}
-        {data.celllines[label].Gene.length > 0 ? 
-        <ResultComponent cellline={label} entities={data.celllines[label].Gene} name={"Gene Matches"} /> : ""}
-      </div>)}
+      {data && (
+        <LiteratureSearchResultsTabbed label={data.response.results[0].label} />
+      )}
+    </Loader>
+  );
+}
+
+function LiteratureSearchResultsTabbed({label}) {
+
+  const {data,error,isLoading} = useLiteratureCellLineMatches();
+
+  const TABS = {
+    cytobands: "Cytoband Matches",
+    process: "Disease Annotations",
+    genes: "Gene Matches"
+  }
+
+  const tabNames = [TABS.process, TABS.cytobands, TABS.genes]
+  const [selectedTab, setSelectedTab] = useState(tabNames[0])
+
+  return (
+    <Loader isLoading={isLoading} hasError={error} background>
+
+    {data && label in data.celllines && (
+      <div className="box">
+        {tabNames?.length > 0 ? (
+          <div className="tabs is-boxed ">
+            <ul>
+              {tabNames.map((tabName, i) => (
+                <li
+                  className={cn({
+                    "is-active": selectedTab === tabName
+                  })}
+                  key={i}
+                  onClick={() => setSelectedTab(tabName)}
+                >
+                  <a>{tabName}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+        {data.celllines[label].NeoplasticProcess.length > 0 && selectedTab === TABS.process &&
+          <ResultComponent cellline={label} entities={data.celllines[label].NeoplasticProcess} /> 
+        }
+        {data.celllines[label].Gene.length > 0 && selectedTab === TABS.genes &&
+          <ResultComponent cellline={label} entities={data.celllines[label].Gene} />
+        }
+        {data.celllines[label].CytogeneticBand.length > 0 && selectedTab === TABS.cytobands &&
+          <ResultComponent cellline={label} entities={data.celllines[label].CytogeneticBand} />
+        }
+      </div>
+    )}
     </Loader>
   )
 }
 
-function ResultComponent({name,cellline,entities})
+        // {tabComponent ? <div>{tabComponent}</div> : null}
+
+// TODO: Implement as tabbed component as in the `DatasetResultBox`
+// function LiteratureSearchResults({label})
+// {
+//   const {data,error,isLoading} = useLiteratureCellLineMatches();
+//   return (
+//     <Loader isLoading={isLoading} hasError={error} background>
+//       {data && label in data.celllines && (<div>
+//         <section className="content"><h1>Literature Results</h1></section>
+//         {data.celllines[label].CytogeneticBand.length > 0 ? 
+//           <ResultComponent cellline={label} entities={data.celllines[label].CytogeneticBand} /> : ""}
+//         {data.celllines[label].NeoplasticProcess.length > 0 ?  
+//         <ResultComponent cellline={label} entities={data.celllines[label].NeoplasticProcess} /> : ""}
+//         {data.celllines[label].Gene.length > 0 ? 
+//         <ResultComponent cellline={label} entities={data.celllines[label].Gene} /> : ""}
+//       </div>)}
+//     </Loader>
+//   )
+// }
+
+function ResultComponent({cellline, entities})
 {
   return (
     <section className="content">
-      <h3>{name}</h3>
       <table>
         {entities.map((ent,i)=>(<ResultSet key={`${i}`} entity={ent.entity} cellline={cellline} />))}
       </table>
