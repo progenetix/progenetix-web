@@ -1,4 +1,4 @@
-import Page from "../../modules/data-pages/cellLines_dataPage"
+import Page from "../../modules/celllines/dataPage"
 import { getCytoBands } from "../../utils/genome"
 export default Page
 

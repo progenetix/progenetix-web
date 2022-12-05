@@ -9,7 +9,7 @@ import {
 } from "../../hooks/api"
 import cn from "classnames"
 import { Loader } from "../../components/Loader"
-import { Layout } from "../../components/Layout"
+import { Layout } from "../../components/LayoutCellLines"
 import { SubsetHistogram } from "../../components/Histogram"
 import { withUrlQuery } from "../../hooks/url-query"
 

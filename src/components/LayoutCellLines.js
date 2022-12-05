@@ -17,7 +17,7 @@ export function Layout({ title, headline, children }) {
   const [sideOpen, setSideOpen] = useState(false)
   return (
     <div className="Layout__app">
-      <img src="/img/pgx-logo.png" className="Layout__logo_topright icon" />
+      <img src="/img/progenetix_cellosaurus.png" className="Layout__logo_topright icon" />
       <Head>
         <title>{title || ""}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -111,31 +111,11 @@ function Side({ onClick }) {
       <a href="/">
         <img
           className="Layout__side-logo"
-          src="/img/progenetix-logo-black.png"
-          alt="progenetix"
+          src="/img/progenetix_cellosaurus.png"
+          alt="progenetix celllines"
         />
       </a>
       <ul className="Layout__side__items">
-        <MenuInternalLinkItem
-          href="/subsets/NCIT-subsets"
-          label="Cancer CNV Profiles"
-        />
-        <MenuInternalLinkItem
-          href="/subsets/icdom-subsets"
-          label="ICD-O Morphologies"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem
-          href="/subsets/icdot-subsets"
-          label="ICD-O Organ Sites"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem
-          href="/subsets/NCITclinical-subsets"
-          label="Clinical Categories"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem href="/search/" label="Search Samples" />
         <MenuInternalLinkItem
           href="/celllines/"
           label={
@@ -144,40 +124,7 @@ function Side({ onClick }) {
             </>
           }
         />
-        <MenuInternalLinkItem
-          href="/progenetix-cohorts/arraymap"
-          label="Data Cohorts"
-        />
-        <MenuInternalLinkItem
-          href="/progenetix-cohorts/arraymap"
-          label="arrayMap"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem
-          href="/progenetix-cohorts/TCGA"
-          label="TCGA Samples"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem
-          href="/progenetix-cohorts/oneKgenomes"
-          label="1000 Genomes Reference Samples"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem
-          href="/progenetix-cohorts/DIPG"
-          label="DIPG Samples"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem
-          href="/subsets/cbioportal-subsets"
-          label="cBioPortal Studies"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem
-          href="/progenetix-cohorts/gao-2021-signatures"
-          label="Gao & Baudis, 2021"
-          isSub="isSub"
-        />
+        <MenuInternalLinkItem href="/" label="Progenetix" />
         <MenuInternalLinkItem href="/publications" label="Publication DB" />
         <MenuInternalLinkItem
           href="/publications"
@@ -190,30 +137,8 @@ function Side({ onClick }) {
           isSub="isSub"
         />
         <MenuInternalLinkItem
-          href="/service-collection/ontologymaps"
-          label="Services"
-        />
-        <MenuInternalLinkItem
-          href="/service-collection/ontologymaps"
-          label="NCIt Mappings"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem
-          href="/service-collection/uberonmaps"
-          label="UBERON Mappings"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem
           href="/service-collection/uploader"
           label="Upload & Plot"
-        />
-        <MenuInternalLinkItem
-          href="/beaconPlus/"
-          label={
-            <>
-              Beacon<sup style={{ color: "red" }}>+</sup>
-            </>
-          }
         />
         <MenuInternalLinkItem href={DOCLINK} label="Documentation" />
         <MenuInternalLinkItem
