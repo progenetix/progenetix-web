@@ -162,6 +162,8 @@ function ResultSet({cellline,entity})
   )
 }
 
+
+// TODO: Standard reack memp(?) component for table
 function ResultRow({pair})
 {
   return (
@@ -212,42 +214,33 @@ function Subset({ subset, datasetIds }) {
         {subset.label} ({subset.id}, {datasetIds})
       </h2>
 
-      {subset.type && (
-        <>
-          <h5>Subset Type:{" "}{subset.type}{" "}
-            
-            {
-              ! pgxRegex.test(subset.reference) && (
-                <>
-                    <a
-                      rel="noreferrer"
-                      target="_blank"
-                      href={ subset.reference }
-                    >
-                    {"{"}{ subset.id }{" ↗}"}
-                    </a>
-                </>
-              )   
-              
-            } 
-            
-          </h5>
-        </>
-      )}      
+      <h5>Subset Type:{" "}Cellline{" "}         
+      {
+        ! pgxRegex.test(subset.reference) && (
+          <>
+              <a
+                rel="noreferrer"
+                target="_blank"
+                href={ subset.reference }
+              >
+              {"{"}{ subset.id }{" ↗}"}
+              </a>
+          </>
+        )              
+      }       
+      </h5>
 
       <h5>Sample Count: {subset.count} ({subset.codeMatches} direct {'"'}{subset.id}{'"'} code  matches)</h5>
 
       <h5>
-        Select Samples in the 
+        Select {subset.id} samples in the 
         <a
           rel="noreferrer"
           target="_blank"
           href={ sampleSearchPageFiltersLink({datasetIds, sampleFilterScope, filters}) }
         >{" "}Search Form
         </a>
-      </h5>
-      
-      
+      </h5> 
       
       <h5>
         Download Data as Beacon v2{" "}
@@ -256,7 +249,7 @@ function Subset({ subset, datasetIds }) {
           target="_blank"
           href={getServiceItemUrl(subset.id, service, datasetIds)}
         >
-          {"{JSON ↗}"}
+          {"{Beacon JSON ↗}"}
         </a>
       </h5>
     </section>
