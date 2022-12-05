@@ -19,9 +19,12 @@ $side-width: 14rem;
 }
 
 .Layout__header__celllines {
-  
-  background-color: #6F2;
-
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid $border;
+  background-color: $visual-identity-color-celllines;
+  min-height: 25px;
+  display: flex;
 }
 
 .Layout__logo_topright {

@@ -19,7 +19,6 @@ export function Layout({ title, headline, children }) {
       <Head>
         <title>{title || ""}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <link rel="stylesheet" href="/rsrc/celllines.css" />
       </Head>
       <div className="Layout__header__celllines">
         {!sideOpen ? (
@@ -90,7 +89,7 @@ export function Layout({ title, headline, children }) {
 function Side({ onClick }) {
   return (
     <div onClick={onClick}>
-      <a href="/">
+      <a href="/celllines/">
         <img
           className="Layout__side-logo"
           src="/img/progenetix_cellosaurus.png"
