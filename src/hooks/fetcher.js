@@ -1,4 +1,4 @@
-export default async (url) => {
+const fetcher = async (url) => {
   const res = await fetch(url)
   // If the status code is not in the range 200-299,
   // we still try to parse and throw it.
@@ -17,4 +17,7 @@ export default async (url) => {
   return res.json()
 }
 
-export const svgFetcher = (...args) => fetch(...args).then((r) => r.text())
+export default fetcher
+
+const svgFetcher = (...args) => fetch(...args).then((r) => r.text())
+export { svgFetcher }

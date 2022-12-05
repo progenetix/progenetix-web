@@ -1,9 +1,9 @@
 import React from "react"
-import cn from "classnames"
 import { useRouter } from "next/router"
 import parametersConfig from "../shared/searchParameters.yaml"
 import requestTypesConfig from "./beaconplus_searchParameters.yaml"
 import BiosamplesSearchPanel from "../../components/searchForm/BiosamplesSearchPanel"
+import ActiveLink from "../../components/ActiveLink"
 import Panel from "../../components/Panel"
 import Link from "next/link"
 import { DOCLINK } from "../../hooks/api"
@@ -60,17 +60,5 @@ function BeaconPlusNav({ beaconName }) {
         </div>
       </nav>
     </header>
-  )
-}
-
-function ActiveLink({ href, label }) {
-  const router = useRouter()
-  const isActive = router.asPath === href
-  return (
-    <Link href={href}>
-      <a className={cn("navbar-item", { "Nav__Link--active": isActive })}>
-        {label}
-      </a>
-    </Link>
   )
 }

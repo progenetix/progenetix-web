@@ -18,7 +18,6 @@ class MyDocument extends Document {
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${TRACKING_ID}`}
           />
-
           <script
             dangerouslySetInnerHTML={{
               __html: `

@@ -14,8 +14,10 @@ export function useExtendedSWR(url, fetcher = defaultFetcher) {
   return { data, error, ...other, isLoading: !data && !error }
 }
 
+export const TRACKING_ID = "UA-572981-2"
 export const MAX_HISTO_SAMPLES = 4000
 export const PROGENETIXINFO = "https://info.progenetix.org"
+export const GROUPSITELINK = "https://info.baudisgroup.org/"
 export const DOCLINK = "https://docs.progenetix.org"
 export const NEWSLINK = `${DOCLINK}/news`
 export const USECASESLINK = `${DOCLINK}/use-cases`

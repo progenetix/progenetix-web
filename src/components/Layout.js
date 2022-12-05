@@ -1,13 +1,14 @@
 import React, { useState } from "react"
 import cn from "classnames"
 import { FaBars, FaTimes } from "react-icons/fa"
-import { useRouter } from "next/router"
 import { ErrorBoundary } from "react-error-boundary"
 import Head from "next/head"
-import Link from "next/link"
+import {ErrorFallback, MenuInternalLinkItem} from "./MenuHelpers"
 import {
   SERVICEINFOLINK,
   DOCLINK,
+  GROUPSITELINK,
+  PROGENETIXINFO,
   USECASESLINK,
   NEWSLINK,
   THISYEAR
@@ -17,7 +18,6 @@ export function Layout({ title, headline, children }) {
   const [sideOpen, setSideOpen] = useState(false)
   return (
     <div className="Layout__app">
-      <img src="/img/pgx-logo.png" className="Layout__logo_topright icon" />
       <Head>
         <title>{title || ""}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -62,7 +62,7 @@ export function Layout({ title, headline, children }) {
         <div className="content container has-text-centered">
           © 2000 - {THISYEAR} Progenetix Cancer Genomics Information Resource by
           the{" "}
-          <a href="https://info.baudisgroup.org">
+          <a href={PROGENETIXINFO}>
             Computational Oncogenomics Group
           </a>{" "}
           at the{" "}
@@ -84,23 +84,6 @@ export function Layout({ title, headline, children }) {
           nor the results achieved with the Progenetix tools.
         </div>
       </footer>
-    </div>
-  )
-}
-
-function ErrorFallback({ error }) {
-  return (
-    <div>
-      <article className="message is-danger">
-        <div className="message-header">
-          <p>Something went wrong</p>
-        </div>
-        <div className="message-body">{error.message}</div>
-      </article>
-
-      <button className="button" onClick={() => location.reload()}>
-        Reload
-      </button>
     </div>
   )
 }
@@ -234,51 +217,10 @@ function Side({ onClick }) {
         />
 
         <MenuInternalLinkItem
-          href="https://info.baudisgroup.org/"
+          href={GROUPSITELINK}
           label="Baudisgroup @ UZH"
         />
       </ul>
     </div>
   )
-}
-
-function MenuInternalLinkItem({ href, label, isSub }) {
-  const router = useRouter()
-  const isActive = removeQuery(href) === removeQuery(router.asPath)
-  return (
-    <li>
-      <MenuLink isSub={isSub} isActive={isActive} href={href}>
-        {label}
-      </MenuLink>
-    </li>
-  )
-}
-
-// `onClick`, `href`, and `ref` need to be passed to the DOM element
-// for proper handling
-const MenuLink = React.forwardRef(function MenuLink(
-  { onClick, href, isActive, children, isSub },
-  ref
-) {
-  const className = isSub ? "Layout__side__sub" : "Layout__side__category"
-  return (
-    <Link href={href}>
-      <a
-        onClick={onClick}
-        ref={ref}
-        className={cn(
-          { "is-active": isActive },
-          "Layout__side__item",
-          className
-        )}
-      >
-        {children}
-      </a>
-    </Link>
-  )
-})
-
-function removeQuery(href) {
-  if (href.indexOf("?") > 0) return href.slice(0, href.indexOf("?"))
-  else return href
 }
