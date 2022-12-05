@@ -8,7 +8,6 @@ export function TreePanel({
   size,
   subsetById,
   datasetIds,
-  subsetScope,
   sampleFilterScope,
   isFlat
 }) {
@@ -33,7 +32,6 @@ export function TreePanel({
           datasetIds={datasetIds}
           checkedSubsets={checkedSubsets}
           checkboxClicked={checkboxClicked}
-          subsetScope={subsetScope}
           sampleFilterScope={sampleFilterScope}
           isFlat={isFlat}
         />

@@ -387,6 +387,7 @@ export function subsetSVGlink(id, datasetIds) {
   return `${basePath}services/collationPlots/?datasetIds=${datasetIds}&id=${id}`
 }
 
+// the targets are resolved by `bycon` (bycon/services/ids.py)
 export function subsetIdLink(id) {
   return `${basePath}services/ids/${id}`
 }

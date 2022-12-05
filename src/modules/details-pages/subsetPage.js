@@ -109,7 +109,7 @@ function Subset({ subset, datasetIds }) {
       <h5>Sample Count: {subset.count} ({subset.codeMatches} direct {'"'}{subset.id}{'"'} code  matches)</h5>
 
       <h5>
-        Select Samples in the 
+        Select {subset.id} samples in the 
         <a
           rel="noreferrer"
           target="_blank"
@@ -118,8 +118,6 @@ function Subset({ subset, datasetIds }) {
         </a>
       </h5>
       
-      
-      
       <h5>
         Download Data as Beacon v2{" "}
         <a
@@ -127,7 +125,7 @@ function Subset({ subset, datasetIds }) {
           target="_blank"
           href={getServiceItemUrl(subset.id, service, datasetIds)}
         >
-          {"{JSON ↗}"}
+          {"{Beacon JSON ↗}"}
         </a>
       </h5>
     </section>

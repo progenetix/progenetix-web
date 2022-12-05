@@ -17,7 +17,6 @@ export function SubsetsTree({
   datasetIds,
   checkedSubsets,
   checkboxClicked,
-  subsetScope,
   sampleFilterScope
 }) {
   const {
@@ -97,7 +96,6 @@ export function SubsetsTree({
           datasetIds={datasetIds}
           checkboxClicked={checkboxClicked}
           sampleFilterScope={sampleFilterScope}
-          subsetScope={subsetScope}
           isFlat={isFlat}
           search={debouncedSearchInput}
           tree={filteredTree}
@@ -115,7 +113,6 @@ function Tree({
   datasetIds,
   checkboxClicked,
   sampleFilterScope,
-  subsetScope,
   isFlat,
   tree,
   search
@@ -156,7 +153,6 @@ function Tree({
         datasetIds,
         checkboxClicked,
         sampleFilterScope,
-        subsetScope,
         isFlat
       }}
     >
@@ -168,7 +164,6 @@ function Tree({
 // Node component receives all the data we created in the `treeWalker` +
 // internal openness state (`isOpen`), function to change internal openness
 // state (`toggle`) and `style` parameter that should be added to the root div.
-//    subsetScope,
 
 function Node({
   data: { isLeaf, subsetId, subset, nestingLevel },
@@ -185,6 +180,7 @@ function Node({
 }) {
   const isSearchPossible = subset && canSearch(subset)
   const even = index % 2 === 0
+  const detailsPage = subsetId.match("cellosaurus") ? "celllineSubset" : "subset"
   return (
     <div
       style={{
@@ -225,7 +221,7 @@ function Node({
           )}
           <Tippy content={`Show data for subset ${subsetId}`}>
             <a
-              href={`/subset/?id=${subsetId}&datasetIds=${datasetIds}`}
+              href={`/${detailsPage}/?id=${subsetId}&datasetIds=${datasetIds}`}
             >
               <span>{subsetId}</span>
             </a>

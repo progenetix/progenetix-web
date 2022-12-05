@@ -1,3 +1,4 @@
+import React, { useState } from "react"
 import {
   getServiceItemUrl,
   useServiceItemDelivery,
@@ -6,6 +7,7 @@ import {
   useLiteratureSearchResults,
   useLiteratureCellLineMatches
 } from "../../hooks/api"
+import cn from "classnames"
 import { Loader } from "../../components/Loader"
 import { Layout } from "../../components/Layout"
 import { SubsetHistogram } from "../../components/Histogram"
@@ -22,13 +24,12 @@ const SubsetDetailsPage = withUrlQuery(({ urlQuery }) => {
   }
   const hasAllParams = id && datasetIds
   return (
-    <Layout title="Subset Details" headline="Subset Details">
+    <Layout title="Cellline Details" headline="Cellline Details">
       {!hasAllParams ? (
         NoResultsHelp(exampleId, "subsetdetails")
       ) : (
       <>
-      <SubsetLoader id={id} datasetIds={datasetIds} />
-      
+      <SubsetLoader id={id} datasetIds={datasetIds} />   
       <div className="mb-3">
         <SubsetHistogram
           id={id}
@@ -49,6 +50,8 @@ const SubsetDetailsPage = withUrlQuery(({ urlQuery }) => {
 
 export default SubsetDetailsPage
 
+//
+
 function LiteratureSearch({ id, datasetIds })
 {
   const { data, error, isLoading } = useServiceItemDelivery(
@@ -56,57 +59,123 @@ function LiteratureSearch({ id, datasetIds })
     service,
     datasetIds
   )
-  return (<Loader isLoading={isLoading} hasError={error} background>
-            {data && (<LiteratureSearchResults label={data.response.results[0].label} />)}
-          </Loader>);
+  return (
+    <Loader isLoading={isLoading} hasError={error} background>
+      {data && (
+        <LiteratureSearchResultsTabbed label={data.response.results[0].label} />
+      )}
+    </Loader>
+  );
 }
 
-function LiteratureSearchResults({label})
-{
+function LiteratureSearchResultsTabbed({label}) {
+
   const {data,error,isLoading} = useLiteratureCellLineMatches();
-  return (<Loader isLoading={isLoading} hasError={error} background>
-            {data && label in data.celllines && (<div>
-              <section className="content"><h1>Literature Results</h1></section>
-              {data.celllines[label].CytogeneticBand.length > 0 ? 
-                <ResultComponent cellline={label} entities={data.celllines[label].CytogeneticBand} name={"Cytobands"} /> : ""}
-              {data.celllines[label].NeoplasticProcess.length > 0 ?  
-              <ResultComponent cellline={label} entities={data.celllines[label].NeoplasticProcess} name={"Cancer Types"} /> : ""}
-              {data.celllines[label].Gene.length > 0 ? 
-              <ResultComponent cellline={label} entities={data.celllines[label].Gene} name={"Genes"} /> : ""}
-            </div>)}
-          </Loader>)
+
+  const TABS = {
+    cytobands: "Cytoband Matches",
+    process: "Disease Annotations",
+    genes: "Gene Matches"
+  }
+
+  const tabNames = [TABS.process, TABS.cytobands, TABS.genes]
+  const [selectedTab, setSelectedTab] = useState(tabNames[0])
+
+  return (
+    <Loader isLoading={isLoading} hasError={error} background>
+
+    {data && label in data.celllines && (
+      <div className="box">
+        {tabNames?.length > 0 ? (
+          <div className="tabs is-boxed ">
+            <ul>
+              {tabNames.map((tabName, i) => (
+                <li
+                  className={cn({
+                    "is-active": selectedTab === tabName
+                  })}
+                  key={i}
+                  onClick={() => setSelectedTab(tabName)}
+                >
+                  <a>{tabName}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+        {data.celllines[label].NeoplasticProcess.length > 0 && selectedTab === TABS.process &&
+          <ResultComponent cellline={label} entities={data.celllines[label].NeoplasticProcess} /> 
+        }
+        {data.celllines[label].Gene.length > 0 && selectedTab === TABS.genes &&
+          <ResultComponent cellline={label} entities={data.celllines[label].Gene} />
+        }
+        {data.celllines[label].CytogeneticBand.length > 0 && selectedTab === TABS.cytobands &&
+          <ResultComponent cellline={label} entities={data.celllines[label].CytogeneticBand} />
+        }
+      </div>
+    )}
+    </Loader>
+  )
 }
 
-function ResultComponent({name,cellline,entities})
+        // {tabComponent ? <div>{tabComponent}</div> : null}
+
+// TODO: Implement as tabbed component as in the `DatasetResultBox`
+// function LiteratureSearchResults({label})
+// {
+//   const {data,error,isLoading} = useLiteratureCellLineMatches();
+//   return (
+//     <Loader isLoading={isLoading} hasError={error} background>
+//       {data && label in data.celllines && (<div>
+//         <section className="content"><h1>Literature Results</h1></section>
+//         {data.celllines[label].CytogeneticBand.length > 0 ? 
+//           <ResultComponent cellline={label} entities={data.celllines[label].CytogeneticBand} /> : ""}
+//         {data.celllines[label].NeoplasticProcess.length > 0 ?  
+//         <ResultComponent cellline={label} entities={data.celllines[label].NeoplasticProcess} /> : ""}
+//         {data.celllines[label].Gene.length > 0 ? 
+//         <ResultComponent cellline={label} entities={data.celllines[label].Gene} /> : ""}
+//       </div>)}
+//     </Loader>
+//   )
+// }
+
+function ResultComponent({cellline, entities})
 {
-  return (<section className="content">
-            <h3>{name}</h3>
-            <table>
-              {entities.map((ent,i)=>(<ResultSet key={`${i}`} entity={ent.entity} cellline={cellline} />))}
-            </table>
-          </section>);
+  return (
+    <section className="content">
+      <table>
+        {entities.map((ent,i)=>(<ResultSet key={`${i}`} entity={ent.entity} cellline={cellline} />))}
+      </table>
+    </section>
+  );
 }
 
 function ResultSet({cellline,entity})
 {
   const {data,error,isLoading} = useLiteratureSearchResults([cellline],[entity]);
-  return (<Loader isLoading={isLoading} hasError={error} background>
-            {data && data.pairs.length > 0 ? <tr><td>
-              <b>{entity}</b>
-            </td><td>{data.pairs.map((pair,i)=>(<ResultRow key={`${i}`} pair={pair} />))}</td></tr> : ""}
-          </Loader>)
+  return (
+    <Loader isLoading={isLoading} hasError={error} background>
+      {data && data.pairs.length > 0 ? <tr><td>
+        <b>{entity}</b>
+      </td><td>{data.pairs.map((pair,i)=>(<ResultRow key={`${i}`} pair={pair} />))}</td></tr> : ""}
+    </Loader>
+  )
 }
 
+
+// TODO: Standard reack memp(?) component for table
 function ResultRow({pair})
 {
-  return (<tr>
-            <td>
-              <div dangerouslySetInnerHTML={{ __html:pair.text}}/>
-            </td>
-            <td>
-              <a target="_blank" rel="noreferrer" href={"https://pubmed.ncbi.nlm.nih.gov/"+pair.pmid}>{pair.title}</a>
-            </td>
-          </tr>);
+  return (
+    <tr>
+      <td>
+        <div dangerouslySetInnerHTML={{ __html:pair.text}}/>
+      </td>
+      <td>
+        <a target="_blank" rel="noreferrer" href={"https://pubmed.ncbi.nlm.nih.gov/"+pair.pmid}>{pair.title}</a>
+      </td>
+    </tr>
+  );
 }
 
 function SubsetLoader({ id, datasetIds }) {
@@ -145,42 +214,33 @@ function Subset({ subset, datasetIds }) {
         {subset.label} ({subset.id}, {datasetIds})
       </h2>
 
-      {subset.type && (
-        <>
-          <h5>Subset Type:{" "}{subset.type}{" "}
-            
-            {
-              ! pgxRegex.test(subset.reference) && (
-                <>
-                    <a
-                      rel="noreferrer"
-                      target="_blank"
-                      href={ subset.reference }
-                    >
-                    {"{"}{ subset.id }{" ↗}"}
-                    </a>
-                </>
-              )   
-              
-            } 
-            
-          </h5>
-        </>
-      )}      
+      <h5>Subset Type:{" "}Cellline{" "}         
+      {
+        ! pgxRegex.test(subset.reference) && (
+          <>
+              <a
+                rel="noreferrer"
+                target="_blank"
+                href={ subset.reference }
+              >
+              {"{"}{ subset.id }{" ↗}"}
+              </a>
+          </>
+        )              
+      }       
+      </h5>
 
       <h5>Sample Count: {subset.count} ({subset.codeMatches} direct {'"'}{subset.id}{'"'} code  matches)</h5>
 
       <h5>
-        Select Samples in the 
+        Select {subset.id} samples in the 
         <a
           rel="noreferrer"
           target="_blank"
           href={ sampleSearchPageFiltersLink({datasetIds, sampleFilterScope, filters}) }
         >{" "}Search Form
         </a>
-      </h5>
-      
-      
+      </h5> 
       
       <h5>
         Download Data as Beacon v2{" "}
@@ -189,7 +249,7 @@ function Subset({ subset, datasetIds }) {
           target="_blank"
           href={getServiceItemUrl(subset.id, service, datasetIds)}
         >
-          {"{JSON ↗}"}
+          {"{Beacon JSON ↗}"}
         </a>
       </h5>
     </section>
