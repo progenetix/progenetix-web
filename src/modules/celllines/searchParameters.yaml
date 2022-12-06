@@ -29,6 +29,15 @@ celllines:
       isHidden: true
     filterPrecision:
       isHidden: true
+  materialtype:
+    label: Biosample Type
+    infoText: >-
+      Special filter type, to e.g. limit responses to neoplastic or reference
+      samples, respectively, when not using specific cancer classification codes.
+    defaultValue: "EFO:0030035"
+    options:
+      - value: EFO:0030035
+        label: cancer cell line sample
   examples:
     - label: "K-562 Cell Line"
       note: "Instances of K-562 and daughter cell lines, searched by Cellosaurus id"
