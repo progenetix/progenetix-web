@@ -32,7 +32,7 @@ celllines:
     materialtype:
       label: Biosample Type
       infoText: >-
-        Restricted here to cell line type
+        Restricted here to the "cancer cell line" type
       defaultValue: EFO:0030035
       options:
         - value: EFO:0030035
