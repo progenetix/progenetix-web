@@ -29,11 +29,21 @@ celllines:
       isHidden: true
     filterPrecision:
       isHidden: true
+    materialtype:
+      label: Biosample Type
+      infoText: >-
+        Restricted here to cell line type
+      defaultValue: EFO:0030035
+      options:
+        - value: EFO:0030035
+          label: cancer cell line sample
   examples:
     - label: "K-562 Cell Line"
       note: "Instances of K-562 and daughter cell lines, searched by Cellosaurus id"
-      description: |
-        The query retrieves all instances of K-562 and derived cell lines using the "cellosaurus:CVCL_0004" identifier. This is an example for a pure "non-variant" query.
+      description: >-
+        The query retrieves all instances of K-562 and derived cell lines using
+        the "cellosaurus:CVCL_0004" identifier. This is an example for a pure
+        "non-variant" filter query.
       parameters:
         variantType:
           defaultValue: ""
@@ -58,15 +68,17 @@ celllines:
           isHidden: true
         bioontology:
           isHidden: true
+        cohorts:
+          isHidden: true
         sex:
           isHidden: true
         materialtype:
           isHidden: true
         freeFilters:
           isHidden: true
-        accessid:
-          isHidden: true
         filterLogic:
+          isHidden: true
+        accessid:
           isHidden: true
         geoCity:
           isHidden: true
@@ -85,8 +97,16 @@ celllines:
           defaultValue: "21967753-22500000"
         variantType:
           defaultValue: "EFO:0030067"
+        variantMinLength:
+          isHidden: true
+        variantMaxLength:
+          isHidden: true
         bioontology:
           defaultValue: ["NCIT:C3058"]
+        accessid:
+          isHidden: true
+        geoCity:
+          isHidden: true
     - label: "MYC Duplication in CL"
       note: "Example for focal MYC Duplications."
       description: |
@@ -102,11 +122,19 @@ celllines:
           defaultValue: "127740957-130000000"
         variantType:
           defaultValue: "EFO:0030070"
+        variantMinLength:
+          isHidden: true
+        variantMaxLength:
+          isHidden: true
         bioontology:
           defaultValue: ["icdom-80463"]
+        accessid:
+          isHidden: true
+        geoCity:
+          isHidden: true
     - label: "TP53 Del. in Cell Lines"
       note: "Example for TP53 deletion"
-      description: |
+      description: >-
         Query example for an "any overlap", focal deletion in TP53 where the
         search will be limited to cell lines (EFO:0030035).
       parameters:
@@ -118,6 +146,10 @@ celllines:
           defaultValue: "7669608-10000000"
         variantType:
           defaultValue: "EFO:0030067"
+        accessid:
+          isHidden: true
+        geoCity:
+          isHidden: true
 
       
       
