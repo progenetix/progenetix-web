@@ -1,11 +1,12 @@
 {
   "scripts": {
     "dev": "next",
-    "build": "npm run lint && npm run test && next build",
+    "build": "npm run lint && npm run test && next build && next export",
+    "update": "npm run lint && npm run test && next build && next export",
+    "local": "env-cmd -f .env.local npm run-script build",
     "start": "next start",
     "export": "next export",
     "test": "jest",
-    "test:watch": "jest  --watch",
     "lint": "eslint src"
   },
   "dependencies": {
@@ -13,6 +14,7 @@
     "animate": "^1.0.0",
     "animate.css": "^4.1.1",
     "classnames": "^2.2.6",
+    "env-cmd": "^10.1.0",
     "file-saver": "^2.0.5",
     "fs": "0.0.1-security",
     "json2csv": "^5.0.6",

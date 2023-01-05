@@ -107,13 +107,13 @@ export default function Index({
 
 export const getStaticProps = async () => {
   const dbstatsReply = await tryFetch(
-    `${PROGENETIX}/services/dbstats/?datasetIds=progenetix`
+    `${PROGENETIX}services/dbstats/?datasetIds=progenetix`
   )
   const ncitCountReply = await tryFetch(
-    `${PROGENETIX}/services/collations/?datasetIds=progenetix&method=codematches&collationTypes=NCIT`
+    `${PROGENETIX}services/collations/?datasetIds=progenetix&method=codematches&collationTypes=NCIT`
   )
   const subsetsReply = await tryFetch(
-    `${PROGENETIX}/services/collations/?datasetIds=progenetix&method=counts&collationTypes=icdom,NCIT,PMID,icdot,UBERON,NCITgrade,NCITstage`
+    `${PROGENETIX}services/collations/?datasetIds=progenetix&method=counts&collationTypes=icdom,NCIT,PMID,icdot,UBERON,NCITgrade,NCITstage`
   )
 
   return {

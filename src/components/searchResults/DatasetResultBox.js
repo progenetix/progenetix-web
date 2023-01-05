@@ -4,6 +4,7 @@ import {
   replaceWithProxy,
   ExternalLink,
   useProgenetixApi,
+  GROUPSITELINK,
   useExtendedSWR
 } from "../../hooks/api"
 import cn from "classnames"
@@ -143,7 +144,7 @@ export function DatasetResultBox({ data: responseSet, query }) {
           corresponding author&apos;s institution. Additional information can be
           found in the{" "}
           <ExternalLink
-            href="https://info.progenetix.org/geolocations.html"
+            href={`${GROUPSITELINK}/geolocations.html`}
             label="Geographic Coordinates documentation"
           />
           {"."}

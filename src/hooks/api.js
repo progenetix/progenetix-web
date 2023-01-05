@@ -4,8 +4,8 @@ import { keyBy } from "lodash"
 import { FaExternalLinkAlt, FaLink } from "react-icons/fa"
 
 // eslint-disable-next-line no-undef
-export const basePath = process.env.NEXT_PUBLIC_API_PATH
-// eslint-disable-next-line no-undef
+// export const basePath = process.env.NEXT_PUBLIC_API_PATH
+export const basePath = process.env.NEXT_PUBLIC_PROGENETIX_URL
 export const useProxy = process.env.NEXT_PUBLIC_USE_PROXY === "true"
 export const PROGENETIX = process.env.NEXT_PUBLIC_PROGENETIX_URL
 
@@ -381,7 +381,7 @@ export function useGeoCity({ city }) {
 }
 
 export function useGeneSymbol({ geneId }) {
-  const url = geneId ? `${basePath}services/genespans/?geneId=${geneId}&filterPrecision=start&method=genespan` :null
+  const url = geneId ? `${basePath}services/genespans/?geneId=${geneId}&filterPrecision=start&method=genespan` : null
   return useProgenetixApi(url)
 }
 
