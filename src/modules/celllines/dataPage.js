@@ -31,6 +31,12 @@ export default function cellLines_dataPage({ cytoBands }) {
           {" "} - a knowledge resource on cell lines.
         </div>
       </Panel>
+
+      <div className="notification is-warning">
+        The <i>Cell Lines</i> sub-site is a development project for the upcoming
+        {" "}<b>cancercellines.org</b>.
+      </div>    
+
       <Panel heading="CNV Frequency Plot">
       <SubsetHistogram
         datasetIds="progenetix"
