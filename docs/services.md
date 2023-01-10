@@ -293,8 +293,12 @@ exact gene symbol match
 
 #### Examples
 
+* [progenetix.org/services/genespans/?geneId=TP53](http://progenetix.org/services/genespans/?geneId=TP53)
+    - this will return all genes that start with `TP53`
 * [progenetix.org/services/genespans/?geneId=TP53&filterPrecision=exact](http://progenetix.org/services/genespans/?geneId=TP53&filterPrecision=exact)
+    - only TP53 info will be returned due to `filterPrecision=exact`
 * [progenetix.org/services/genespans/CDKN2A](http://progenetix.org/services/genespans/CDKN2A)
+    - when using the REST syntax also only the exact match will be returned
 
 --------------------------------------------------------------------------------
 

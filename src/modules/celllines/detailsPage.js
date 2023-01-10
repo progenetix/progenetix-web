@@ -118,27 +118,6 @@ function LiteratureSearchResultsTabbed({label}) {
   )
 }
 
-        // {tabComponent ? <div>{tabComponent}</div> : null}
-
-// TODO: Implement as tabbed component as in the `DatasetResultBox`
-// function LiteratureSearchResults({label})
-// {
-//   const {data,error,isLoading} = useLiteratureCellLineMatches();
-//   return (
-//     <Loader isLoading={isLoading} hasError={error} background>
-//       {data && label in data.celllines && (<div>
-//         <section className="content"><h1>Literature Results</h1></section>
-//         {data.celllines[label].CytogeneticBand.length > 0 ? 
-//           <ResultComponent cellline={label} entities={data.celllines[label].CytogeneticBand} /> : ""}
-//         {data.celllines[label].NeoplasticProcess.length > 0 ?  
-//         <ResultComponent cellline={label} entities={data.celllines[label].NeoplasticProcess} /> : ""}
-//         {data.celllines[label].Gene.length > 0 ? 
-//         <ResultComponent cellline={label} entities={data.celllines[label].Gene} /> : ""}
-//       </div>)}
-//     </Loader>
-//   )
-// }
-
 function ResultComponent({cellline, entities})
 {
   return (
