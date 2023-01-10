@@ -24,11 +24,17 @@ const SubsetDetailsPage = withUrlQuery(({ urlQuery }) => {
   }
   const hasAllParams = id && datasetIds
   return (
-    <Layout title="Cellline Details" headline="Cellline Details">
+    <Layout title="Cell Line Details" headline="Cell Line Details">
       {!hasAllParams ? (
         NoResultsHelp(exampleId, "subsetdetails")
       ) : (
       <>
+
+      <div className="notification is-warning">
+        The <i>Cell Lines</i> sub-site is a development project for the upcoming
+        {" "}<b>cancercellines.org</b>.
+      </div>    
+
       <SubsetLoader id={id} datasetIds={datasetIds} />   
       <div className="mb-3">
         <SubsetHistogram
@@ -193,7 +199,7 @@ function Subset({ subset, datasetIds }) {
         {subset.label} ({subset.id}, {datasetIds})
       </h2>
 
-      <h5>Subset Type:{" "}Cellline{" "}         
+      <h5>Subset Type:{" "}Cell line{" "}         
       {
         ! pgxRegex.test(subset.reference) && (
           <>

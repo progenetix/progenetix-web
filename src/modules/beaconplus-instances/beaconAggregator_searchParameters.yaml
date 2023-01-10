@@ -108,9 +108,54 @@ beaconplus:
           isHidden: true
         geneId:
           isHidden: true
+        freeFilters:
+          defaultValue: ""
+          isHidden: true
+        variantMinLength:
+          isHidden: true
+        variantMaxLength:
+          isHidden: true
+        bioontology:
+          isHidden: true
+        referenceid:
+          isHidden: true
+        clinicalClasses:
+          isHidden: true
+        materialtype:
+          isHidden: true
+        filterLogic:
+          isHidden: true
+        includeDescendantTerms:
+          isHidden: true
+        sex:
+          isHidden: true
         skip:
           isHidden: true
         limit:
+          isHidden: true
+    - label: "SNV EIF4A1"
+      note: "Example for specific EIF4A1 mutation"
+      description: >-
+        This example shows a core Beacon query, against a specific
+        mutation in the EIF4A1 gene, in the DIPG childhood brain tumor dataset.
+      parameters:
+        assemblyId:
+          defaultValue: "GRCh38"
+        referenceName:
+          defaultValue: "refseq:NC_000017.11"
+        start:
+          defaultValue: 7577121
+        end:
+          defaultValue: ""
+        variantType:
+          defaultValue: ""
+        alternateBases:
+          defaultValue: "A"
+          isHidden: false
+        referenceBases:
+          defaultValue: "G"
+          isHidden: false
+        geneId:
           isHidden: true
         freeFilters:
           defaultValue: ""
@@ -133,38 +178,14 @@ beaconplus:
           isHidden: true
         sex:
           isHidden: true
-    - label: "SNV EIF4A1"
-      note: "Example for specific EIF4A1 mutation"
-      description: |
-        This example shows a core Beacon query, against a specific
-        mutation in the EIF4A1 gene, in the DIPG childhood brain tumor dataset.
-      parameters:
-        assemblyId:
-          defaultValue: "GRCh38"
-        referenceName:
-          defaultValue: "refseq:NC_000017.11"
-        start:
-          defaultValue: 7577121
-        end:
-          defaultValue: ""
-        variantType:
-          defaultValue: ""
-        alternateBases:
-          defaultValue: "A"
-          isHidden: false
-        referenceBases:
-          defaultValue: "G"
-          isHidden: false
-        freeFilters:
-          defaultValue: ""
-    - label: "CNV Example"
-      note: "Example for focal CDKN2A deletion matches."
-      description: |
+    - label: "Bracket Query - any DEL"
+      note: "Example for CDKN2A deletion matches."
+      description: >-
         This example shows the query for CNV deletion variants overlapping the
         CDKN2A gene's coding region with at least a single base, but limited
         to "focal" hits (here i.e. <= ~2Mbp in size). The query is against the
         progenetix collection and can be modified e.g. through changing the position
-        parameters or data source.
+        parameters.
       parameters:
         referenceName:
           defaultValue: "refseq:NC_000009.12"
@@ -174,29 +195,64 @@ beaconplus:
           defaultValue: "21967753-23000000"
         variantType:
           defaultValue: "EFO:0030067"
+        geneId:
+          isHidden: true
         alternateBases:
-          defaultValue: ""
-          placeholder: ""
-          isHidden: false
+          isHidden: true
         referenceBases:
-          defaultValue: ""
-          isHidden: false
-          placeholder: ""
+          isHidden: true
+        variantMinLength:
+          isHidden: true
+        variantMaxLength:
+          isHidden: true
         bioontology:
           defaultValue: [NCIT:C3058]
         freeFilters:
-          isHidden: false
-    - label: "SNV Range Example"
-      note: "Example for EIF4A1 transcript region matches (precise variants)"
-      description: |
+          defaultValue: ""
+        filterLogic:
+          isHidden: true
+        includeDescendantTerms:
+          isHidden: true
+    - label: "Bracket Query - complete DUP"
+      note: "Example for CDKN2A deletion matches."
+      description: >-
+        This example shows the query for CNV gain variants completely covering
+        the MYC coding region, but limited to "focal" hits (here i.e. <= ~2Mbp
+        in size) through restricting the size of the start and end brackets.
+      parameters:
+        referenceName:
+          defaultValue: "refseq:NC_000008.11"
+        start:
+          defaultValue: "126000000-127735434"
+        end:
+          defaultValue: "127742952-129000000"
+        geneId:
+          isHidden: true
+        variantType:
+          defaultValue: "EFO:0030070"
+        alternateBases:
+          isHidden: true
+        referenceBases:
+          isHidden: true
+        variantMinLength:
+          isHidden: true
+        variantMaxLength:
+          isHidden: true
+        bioontology:
+          defaultValue: [NCIT:C3058]
+        freeFilters:
+          defaultValue: ""
+        filterLogic:
+          isHidden: true
+        includeDescendantTerms:
+          isHidden: true
+    - label: "Range Query"
+      note: "Example for EIF4A1 transcript region matches"
+      description: >-
         As in the standard SNV query, this example shows a Beacon query against
-        mutations in the EIF4A1 gene in the DIPG childhood brain tumor dataset.
-        However, this range + wildcard query will return any variant with
-        alternate bases (indicated through "N").
-        Since parameters will be interpreted using an "AND" paradigm, either <i>Alternate
-        Bases</i> OR <i>Variant Type</i> should be specified.
-        The exact variants which were being found can be retrieved through the variant
-        handover [H—>O] link.
+        mutations in the EIF4A1 gene. However, this range + wildcard query will 
+        return any variant with overlap of the gene's CDR.
+        The query can be modified by e.g. adding a variant type or alternate bases.
       parameters:
         assemblyId:
           defaultValue: "GRCh38"
@@ -209,8 +265,76 @@ beaconplus:
         variantType:
           defaultValue: ""
         alternateBases:
-          defaultValue: "N"
+          defaultValue: ""
         referenceBases:
-          defaultValue: "N"
+          defaultValue: ""
+        geneId:
+          isHidden: true
         freeFilters:
           defaultValue: ""
+          isHidden: true
+        variantMinLength:
+          isHidden: true
+        variantMaxLength:
+          isHidden: true
+        bioontology:
+          isHidden: true
+        referenceid:
+          isHidden: true
+        clinicalClasses:
+          isHidden: true
+        materialtype:
+          isHidden: true
+        filterLogic:
+          isHidden: true
+        includeDescendantTerms:
+          isHidden: true
+        sex:
+          isHidden: true    
+    - label: "Gene ID Query"
+      note: "Example for EIF4A1 transcript matches by gene symbol"
+      description: >-
+        As in the standard SNV query, this example shows a Beacon query against
+        mutations in the EIF4A1 gene by sending a `geneId` request.
+      parameters:
+        assemblyId:
+          defaultValue: ""
+          isHidden: true
+        referenceName:
+          defaultValue: ""
+          isHidden: true
+        start:
+          defaultValue: ""
+          isHidden: true
+        end:
+          defaultValue: ""
+          isHidden: true
+        variantType:
+          defaultValue: ""
+        alternateBases:
+          defaultValue: ""
+        referenceBases:
+          defaultValue: ""
+        geneId:
+          defaultValue: "EIF4A1"
+        freeFilters:
+          defaultValue: ""
+          isHidden: true
+        variantMinLength:
+          isHidden: true
+        variantMaxLength:
+          isHidden: true
+        bioontology:
+          isHidden: true
+        referenceid:
+          isHidden: true
+        clinicalClasses:
+          isHidden: true
+        materialtype:
+          isHidden: true
+        filterLogic:
+          isHidden: true
+        includeDescendantTerms:
+          isHidden: true
+        sex:
+          isHidden: true

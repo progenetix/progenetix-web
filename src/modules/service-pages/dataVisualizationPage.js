@@ -317,7 +317,7 @@ const groupByOptions = [
   { value: "geo:GPL", label: "GEO Platform ID" },
   {
     value: "cellosaurus",
-    label: "Cellosaurus Cellline ID"
+    label: "Cellosaurus Cell line ID"
   }
 ]
 
