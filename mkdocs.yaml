@@ -1,24 +1,15 @@
-site_name: Progenetix Documentation
-site_description: 'Documentation for the Progenetix oncogenomics resource'
+site_name: Cancercelllines Documentation
+site_description: 'Documentation for the Cancercelllines genomics resource'
 site_author: Michael Baudis
-copyright: '&copy; Copyright 2022, Michael Baudis and progenetix.org'
-repo_name: 'progenetix-web'
-repo_url: https://github.com/progenetix/progenetix-web
+copyright: '&copy; Copyright 2022, Michael Baudis, Rahel Paloots and progenetix.org'
+repo_name: 'cancercelllines-web'
+repo_url: https://github.com/progenetix/cancercelllines-web
 
 ###############################################################################
 
 nav:
   - Documentation Home: index.md
   - News & Changes: news
-  - Pages & Forms: ui
-  - Services API: services
-  - Beacon+ API & bycon: beaconplus
-  - Use Case Examples: use-cases
-  - Classifications, Ontologies & Standards: classifications-and-ontologies
-  - Publication Collection: publication-collection
-  - Data Review: progenetix-data-review
-  - Technical Notes: technical-notes
-  - Progenetix Website Builds: progenetix-website-builds
   - Progenetix Data &#8599;: http://progenetix.org
   - Baudisgroup @ UZH &#8599;: http://info.baudisgroup.org
 

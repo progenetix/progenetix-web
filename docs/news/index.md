@@ -1,7 +1,7 @@
 ---
 template: post_list.html
-title: Latest Progenetix News
-description: Progenetix news and updates.
+title: Latest Cancercelllines News
+description: Cancercelllines news and updates.
 ---
 
-# Progenetix News
+# Cancercelllines News

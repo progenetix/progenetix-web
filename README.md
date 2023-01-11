@@ -1,13 +1,13 @@
-# Progenetix Websites Code
+# Cancercelllines Websites Code
 
-The Progenetix sites are build from this project using 2 different toolchains:
+The Cancercelllines sites are build from this project using 2 different toolchains:
 
-* the Progenetix resource website [progenetix.org](http://progenetix.org), as a
+* the Cancercelllines resource website [cancercelllines.org](http://cancercelllines.org), as a
 React project with
     - code in [`src/`](src/)
     - static files in [`public/`](public/)
 
-* the Progenetix documentation [docs.progenetix.org](http://docs.progenetix.org),
+* the Cancercelllines documentation [docs.cancercelllines.org](http://docs.cancercelllines.org),
 as a Mkdocs project with
     - files in [`docs/`](docs/)
     - configuration in [`mkdocs.yaml`](./mkdocs.yaml)
