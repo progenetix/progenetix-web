@@ -57,19 +57,19 @@ function VariantLoader({ id, datasetIds }) {
   )
 }
 
-function VariantResponse({ response, datasetIds }) {
+function VariantResponse({ response, id, datasetIds }) {
   if (!response.response.resultSets[0].results) {
     return NoResultsHelp(exampleId, entity)
   }
-  return <Variant variant={response.response.resultSets[0].results[0]} datasetIds={datasetIds} />
+  return <Variant variant={response.response.resultSets[0].results[0]} id={id} datasetIds={datasetIds} />
 }
 
 
-function Variant({ variant, datasetIds }) {
+function Variant({ variant, id, datasetIds }) {
   return (
     <section className="content">
       <h3>
-        {variant.variantInternalId} ({datasetIds})
+        {id} ({datasetIds})
       </h3>
 
       <h5>Digest</h5>
@@ -175,7 +175,7 @@ function Variant({ variant, datasetIds }) {
         <a
           rel="noreferrer"
           target="_blank"
-          href={getDataItemUrl(variant.variantInternalId, entity, datasetIds)}
+          href={getDataItemUrl(id, entity, datasetIds)}
         >
           {"{JSON↗}"}
         </a>

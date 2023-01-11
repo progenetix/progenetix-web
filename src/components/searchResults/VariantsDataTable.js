@@ -29,7 +29,8 @@ export default function VariantsDataTable({ apiReply, datasetId }) {
           </div>
         ))
       }
-    ]
+    ],
+    [datasetId]
   )
 
   return (

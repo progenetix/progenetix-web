@@ -47,7 +47,6 @@ export default function BiosamplesDataTable({ apiReply, datasetId }) {
           </div>
         )
       },
-
       {
         Header: TooltipHeader(
           "Identifiers",
