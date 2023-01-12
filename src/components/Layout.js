@@ -120,14 +120,6 @@ function Side({ onClick }) {
         />
         <MenuInternalLinkItem href="/search/" label="Search Samples" />
         <MenuInternalLinkItem
-          href="/celllines/"
-          label={
-            <>
-              Cell Lines<sup style={{ color: "red" }}>o</sup>
-            </>
-          }
-        />
-        <MenuInternalLinkItem
           href="/progenetix-cohorts/arraymap"
           label="Data Cohorts"
         />
@@ -160,6 +152,14 @@ function Side({ onClick }) {
           href="/progenetix-cohorts/gao-2021-signatures"
           label="Gao & Baudis, 2021"
           isSub="isSub"
+        />
+        <MenuInternalLinkItem
+          href="http://cancercelllines.org"
+          label={
+            <>
+              Cances Cell Lines<sup style={{ color: "red" }}>o</sup>
+            </>
+          }
         />
         <MenuInternalLinkItem href="/publications" label="Publication DB" />
         <MenuInternalLinkItem
