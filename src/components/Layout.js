@@ -6,9 +6,8 @@ import Head from "next/head"
 import {ErrorFallback, MenuInternalLinkItem} from "./MenuHelpers"
 import {
   PROGENETIX,
-  SERVICEINFOLINK,
+  PROGENETIXDOCLINK,
   DOCLINK,
-  USECASESLINK,
   NEWSLINK,
   THISYEAR
 } from "../hooks/api"
@@ -106,26 +105,28 @@ function Side({ onClick }) {
             </>
           }
         />
-        <MenuInternalLinkItem href={PROGENETIX} label="Progenetix" />
-        <MenuInternalLinkItem href={`${PROGENETIX}/publications`} label="Publication DB" />
         <MenuInternalLinkItem href={DOCLINK} label="Documentation" />
         <MenuInternalLinkItem
           href={NEWSLINK}
           label="News"
           isSub="isSub"
         />
+        <MenuInternalLinkItem href={PROGENETIX} label="Progenetix" />
         <MenuInternalLinkItem
-          href={USECASESLINK}
-          label="Downloads & Use Cases"
+          href={PROGENETIX}
+          label="Progenetix Data"
           isSub="isSub"
         />
-
         <MenuInternalLinkItem
-          href={SERVICEINFOLINK}
-          label="Sevices & API"
+          href={`${PROGENETIXDOCLINK}`}
+          label="Progenetix Documentation"
           isSub="isSub"
         />
-
+        <MenuInternalLinkItem
+          href={`${PROGENETIX}/publications`}
+          label="Publication DB"
+          isSub="isSub"
+        />
         <MenuInternalLinkItem
           href="https://info.baudisgroup.org/"
           label="Baudisgroup @ UZH"

@@ -31,8 +31,7 @@ const SubsetDetailsPage = withUrlQuery(({ urlQuery }) => {
       <>
 
       <div className="notification is-warning">
-        The <i>Cell Lines</i> sub-site is a development project for the upcoming
-        {" "}<b>cancercellines.org</b>.
+        The <i>Cancer Cell Lines</i> site is under development. <b>Stay tuned!</b>
       </div>    
 
       <SubsetLoader id={id} datasetIds={datasetIds} />   

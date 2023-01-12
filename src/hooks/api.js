@@ -17,12 +17,10 @@ export function useExtendedSWR(url, fetcher = defaultFetcher) {
 export const TRACKING_ID = "UA-572981-2"
 export const MAX_HISTO_SAMPLES = 4000
 export const PROGENETIX = "https://progenetix.org"
-export const PROGENETIXINFO = "https://info.progenetix.org"
-export const GROUPSITELINK = "https://info.baudisgroup.org/"
+export const PROGENETIXDOCLINK = "https://docs.progenetix.org"
+export const GROUPSITELINK = "https://docs.baudisgroup.org/"
 export const DOCLINK = "https://docs.cancercelllines.org"
 export const NEWSLINK = `${DOCLINK}/news`
-export const USECASESLINK = `${DOCLINK}/use-cases`
-export const SERVICEINFOLINK = `${DOCLINK}/services`
 export const THISYEAR = new Date().getFullYear()
 export const BIOKEYS = ["histologicalDiagnosis", "icdoMorphology", "icdoTopography", "sampledTissue"]
 
