@@ -1,9 +1,13 @@
-# Progenetix Cancer Genomics Resource Documentation
+# Cancercelllines Resource Documentation
 
-The Progenetix database and cancer genomic information resource  contains genome profiles of more than 100’000 individual cancer genome screening experiments. The genomic profiling data was derived from genomic arrays and chromosomal [Comparative Genomic Hybridization (CGH)](https://en.wikipedia.org/wiki/Comparative_genomic_hybridization) as well as Whole Genome or Whole Exome Sequencing (WGS, WES) studies. Genomic profiles are either processed from various raw data formats or are extracted from published experimental results.
+The Cancercelllines genomic information resource contains genome profiling data,
+somatic mutation information and associated metadata for thousands of human cancer
+cell lines. Originally spun out of the [Progenetix](http://progenetix.org) oncogenomic
+resource with its collection of more than 100’000 individual genomic copy number
+screening datasets, _cancercelllines.org_ provides an entry point for genomic variants in
+cell lines as well as for the exploration of related publications.
 
-
-!!! example "Citation"
+!!! example "Citation (Progenetix)"
 
     Huang Q, Carrio-Cordo P, Gao B, Paloots R, Baudis M. (2021) **The Progenetix oncogenomic resource in 2021.** _Database (Oxford)._ 2021 Jul 17    
     progenetix.org: **Progenetix oncogenomic online resource** (2022)   
@@ -19,7 +23,7 @@ The Progenetix database and cancer genomic information resource  contains genome
 
 ??? info "Registration & Licenses"
 
-    As of March 2012, no specific registration is required for using the Progenetix and and arrayMap resources. While the data is licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0) we suggest that you contact [Michael Baudis](https://info.baudisgroup.org/group/Michael_Baudis/) if you plan any commercial use of the database or are interested to incorporate the data into your research projects.
+    As of March 2012, no specific registration is required for using the Progenetix and related resources. While the data is licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0) we suggest that you contact [Michael Baudis](https://info.baudisgroup.org/group/Michael_Baudis/) if you plan any commercial use of the database or are interested to incorporate the data into your research projects.
     
 The __Progenetix__ database and cancer genomic information resource was publicly launched in 2001, abnnounced through an article in [_Bioinformatics_](https://academic.oup.com/bioinformatics/article/17/12/1228/225653). The database & software are developed by the [group of Michael Baudis](https://info.baudisgroup.org) at the [University of Zurich](https://www.mls.uzh.ch/en/research/baudis/) and the Swiss Institute of Bioinformatics [(SIB)](http://sib.swiss/baudis-michael/).
 
@@ -41,6 +45,12 @@ With exception of some utility scripts and external dependencies (e.g. [MongoDB]
 
 - website for Progenetix and its Beacon<span style="vertical-align: super; color: red; font-weight: 800;">+</span> implementations
 - provides Beacon interfaces for the `bycon` server, as well as other Progenetix sevices (e.g. the [publications](http://progenetix.org/publications/) repository)
+- implemented as [React](https://reactjs.org) / [Next.js](https://nextjs.org) project
+- contains this documentation tree here as `mkdocs` project, with files in the `docs` directory
+
+### [`cancercelllines-web`](https://github.com/progenetix/cancercelllines-web)
+
+- website for _cancercelllines.org_
 - implemented as [React](https://reactjs.org) / [Next.js](https://nextjs.org) project
 - contains this documentation tree here as `mkdocs` project, with files in the `docs` directory
 

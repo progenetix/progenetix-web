@@ -53,10 +53,9 @@ markdown_extensions:
 ###############################################################################
 
 theme:
-  # name: readthedocs
   name: material
-  palette:
-    primary: deep orange
+  # palette:
+  #   primary: deep orange
   favicon: img/site-logo-topright.png
   logo: img/site-logo-topright.png
   icon:
@@ -87,7 +86,7 @@ extra:
     - icon: fontawesome/brands/github 
       link: https://github.com/progenetix
 extra_css:
-  - css/extra.css
+  - stylesheets/extra.css
 extra_javascript:
   # - https://unpkg.com/mermaid/dist/mermaid.min.js
   - https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js
