@@ -5,10 +5,9 @@ import { ErrorBoundary } from "react-error-boundary"
 import Head from "next/head"
 import {ErrorFallback, MenuInternalLinkItem} from "./MenuHelpers"
 import {
+  PROGENETIX,
   SERVICEINFOLINK,
   DOCLINK,
-  GROUPSITELINK,
-  PROGENETIXINFO,
   USECASESLINK,
   NEWSLINK,
   THISYEAR
@@ -22,7 +21,7 @@ export function Layout({ title, headline, children }) {
         <title>{title || ""}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <div className="Layout__header">
+      <div className="Layout__header__celllines">
         {!sideOpen ? (
           <span
             className="Layout__burger icon"
@@ -62,7 +61,7 @@ export function Layout({ title, headline, children }) {
         <div className="content container has-text-centered">
           © 2000 - {THISYEAR} Progenetix Cancer Genomics Information Resource by
           the{" "}
-          <a href={PROGENETIXINFO}>
+          <a href="https://info.baudisgroup.org">
             Computational Oncogenomics Group
           </a>{" "}
           at the{" "}
@@ -94,110 +93,21 @@ function Side({ onClick }) {
       <a href="/">
         <img
           className="Layout__side-logo"
-          src="/img/progenetix-logo-black.png"
-          alt="progenetix"
+          src="/img/progenetix_cellosaurus.png"
+          alt="progenetix celllines"
         />
       </a>
       <ul className="Layout__side__items">
         <MenuInternalLinkItem
-          href="/subsets/NCIT-subsets"
-          label="Cancer CNV Profiles"
-        />
-        <MenuInternalLinkItem
-          href="/subsets/icdom-subsets"
-          label="ICD-O Morphologies"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem
-          href="/subsets/icdot-subsets"
-          label="ICD-O Organ Sites"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem
-          href="/subsets/NCITclinical-subsets"
-          label="Clinical Categories"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem href="/search/" label="Search Samples" />
-        <MenuInternalLinkItem
-          href="/celllines/"
+          href="//"
           label={
             <>
               Cell Lines<sup style={{ color: "red" }}>o</sup>
             </>
           }
         />
-        <MenuInternalLinkItem
-          href="/progenetix-cohorts/arraymap"
-          label="Data Cohorts"
-        />
-        <MenuInternalLinkItem
-          href="/progenetix-cohorts/arraymap"
-          label="arrayMap"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem
-          href="/progenetix-cohorts/TCGA"
-          label="TCGA Samples"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem
-          href="/progenetix-cohorts/oneKgenomes"
-          label="1000 Genomes Reference Samples"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem
-          href="/progenetix-cohorts/DIPG"
-          label="DIPG Samples"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem
-          href="/subsets/cbioportal-subsets"
-          label="cBioPortal Studies"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem
-          href="/progenetix-cohorts/gao-2021-signatures"
-          label="Gao & Baudis, 2021"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem href="/publications" label="Publication DB" />
-        <MenuInternalLinkItem
-          href="/publications"
-          label="Genome Profiling"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem
-          href="/publicationsProgenetixRef"
-          label="Progenetix Use"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem
-          href="/service-collection/ontologymaps"
-          label="Services"
-        />
-        <MenuInternalLinkItem
-          href="/service-collection/ontologymaps"
-          label="NCIt Mappings"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem
-          href="/service-collection/uberonmaps"
-          label="UBERON Mappings"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem
-          href="/service-collection/uploader"
-          label="Upload & Plot"
-        />
-        <MenuInternalLinkItem
-          href="/beaconPlus/"
-          label={
-            <>
-              Beacon<sup style={{ color: "red" }}>+</sup>
-            </>
-          }
-        />
+        <MenuInternalLinkItem href={PROGENETIX} label="Progenetix" />
+        <MenuInternalLinkItem href={`${PROGENETIX}/publications`} label="Publication DB" />
         <MenuInternalLinkItem href={DOCLINK} label="Documentation" />
         <MenuInternalLinkItem
           href={NEWSLINK}
@@ -217,10 +127,11 @@ function Side({ onClick }) {
         />
 
         <MenuInternalLinkItem
-          href={GROUPSITELINK}
+          href="https://info.baudisgroup.org/"
           label="Baudisgroup @ UZH"
         />
       </ul>
     </div>
   )
 }
+

@@ -5,9 +5,9 @@ import { FaExternalLinkAlt, FaLink } from "react-icons/fa"
 
 // eslint-disable-next-line no-undef
 // export const basePath = process.env.NEXT_PUBLIC_API_PATH
-export const basePath = process.env.NEXT_PUBLIC_PROGENETIX_URL
+export const basePath = process.env.NEXT_PUBLIC_SITE_URL
 export const useProxy = process.env.NEXT_PUBLIC_USE_PROXY === "true"
-export const PROGENETIX = process.env.NEXT_PUBLIC_PROGENETIX_URL
+export const SITE = process.env.NEXT_PUBLIC_SITE_URL
 
 export function useExtendedSWR(url, fetcher = defaultFetcher) {
   const { data, error, ...other } = swr(url, fetcher)
@@ -16,6 +16,7 @@ export function useExtendedSWR(url, fetcher = defaultFetcher) {
 
 export const TRACKING_ID = "UA-572981-2"
 export const MAX_HISTO_SAMPLES = 4000
+export const PROGENETIX = "https://progenetix.org"
 export const PROGENETIXINFO = "https://info.progenetix.org"
 export const GROUPSITELINK = "https://info.baudisgroup.org/"
 export const DOCLINK = "https://docs.progenetix.org"

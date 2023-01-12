@@ -1,7 +1,7 @@
 import { createProxyMiddleware } from "http-proxy-middleware"
 
 export default createProxyMiddleware({
-  target: process.env.NEXT_PUBLIC_PROGENETIX_URL,
+  target: process.env.NEXT_PUBLIC_SITE_URL,
   pathRewrite: { "^/api/": "/" },
   changeOrigin: true,
   followRedirects: true
