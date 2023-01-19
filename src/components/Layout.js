@@ -98,12 +98,16 @@ function Side({ onClick }) {
       </a>
       <ul className="Layout__side__items">
         <MenuInternalLinkItem
-          href="//"
+          href="/"
           label={
             <>
-              Cancer Cell Lines<sup style={{ color: "red" }}>o</sup>
+              Cancer Cell Lines<sup style={{ color: "red" }}>o</sup> Home
             </>
           }
+        />
+        <MenuInternalLinkItem
+          href="/search"
+          label="Search Samples"
         />
         <MenuInternalLinkItem href={DOCLINK} label="Documentation" />
         <MenuInternalLinkItem
