@@ -26,7 +26,7 @@ export default function Index({
   return (
     <Layout title="Progenetix" headline="Cancer genome data @ progenetix.org">
       <Panel className="content">
-        <div className="content">
+        <div>
           The Progenetix database provides an overview of mutation data in
           cancer, with a focus on copy number abnormalities (CNV / CNA), for all
           types of human malignancies. The data is based on{" "}
