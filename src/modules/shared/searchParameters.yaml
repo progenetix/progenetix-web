@@ -129,6 +129,7 @@ cohorts:
   rules:
     required: false
   defaultValue: ""
+  isHidden: True
   # options:
   #   - value: ""
   #     label: "(no selection)"
@@ -169,6 +170,7 @@ materialtype:
     Special filter type, to e.g. limit responses to neoplastic or reference
     samples, respectively, when not using specific cancer classification codes.
   defaultValue: ""
+  isHidden: True
   options:
     - value: ""
       label: "(no selection)"

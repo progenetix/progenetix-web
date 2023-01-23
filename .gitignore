@@ -9,3 +9,6 @@
 .nova/Artwork
 .nova/Configuration.json
 package-lock.json
+.idea/inspectionProfiles/Project_Default.xml
+.idea/vcs.xml
+.idea/workspace.xml
