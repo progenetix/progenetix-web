@@ -4,8 +4,7 @@ import { keyBy } from "lodash"
 import { FaExternalLinkAlt, FaLink } from "react-icons/fa"
 
 // eslint-disable-next-line no-undef
-// export const basePath = process.env.NEXT_PUBLIC_API_PATH
-export const basePath = process.env.NEXT_PUBLIC_PROGENETIX_URL
+export const basePath = process.env.NEXT_PUBLIC_API_PATH
 export const useProxy = process.env.NEXT_PUBLIC_USE_PROXY === "true"
 export const PROGENETIX = process.env.NEXT_PUBLIC_PROGENETIX_URL
 
@@ -93,7 +92,6 @@ export function useAggregatorQuery(queryData) {
       : null
   )
 }
-
 
 export function validateBeaconQuery(queryData) {
   try {
