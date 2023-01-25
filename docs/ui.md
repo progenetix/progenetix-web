@@ -35,7 +35,12 @@ samples **201-300**.
 
 ## Data Visualization
 
-==TBD==
+The [Data Visualization] button opens a new page where samples matched by the
+query can be visualized for their aggregated and individual CNV profiles. This
+includes creation & clustering of subsets (e.g. by shared PMID, NCIT code ...)
+as well as the visualization of clustered CNV sample plots. Optios include the
+selection of individual chromosomes and the addition of labels (e.g. for selected
+genes or custom markers).
 
 ## Ontology Services
 

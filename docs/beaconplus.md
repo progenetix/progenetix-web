@@ -253,6 +253,8 @@ The [`bycon`](https://github.com/progenetix/bycon) project provides a combinatio
 
 `bycon` has been developed to support Beacon protocol development following earlier implementations of Beacon+ ("beaconPlus") with now deprected Perl libraries. The work tightly integrates with the [ELIXIR Beacon](http://beacon-project.io) project.
 
+`bycon` has its own documentation at [bycon.progenetix.org](http://bycon.progenetix.org).
+
 
 
 
