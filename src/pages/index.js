@@ -27,6 +27,20 @@ export default function Index() {
           />
           {" "} - a knowledge resource on cell lines.
         </div>
+        <div className="admonition">
+          <p className="admonition-title">Citation</p>
+          <ul>
+            <li>Huang Q, Carrio-Cordo P, Gao B, Paloots R, Baudis M. (2021):{" "} 
+              <strong>The Progenetix oncogenomic resource in 2021.</strong>{" "}
+              <em>Database (Oxford).</em> 2021 Jul 17
+            </li>
+            <li>
+              progenetix.org: <strong>Progenetix oncogenomic online resource</strong> (2022)
+            </li>
+
+          </ul>
+        </div>
+
       </Panel>
       <Panel heading="CNV Frequency Plot">
       <SubsetHistogram
