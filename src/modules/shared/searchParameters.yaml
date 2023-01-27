@@ -3,10 +3,10 @@ datasetIds:
   label: Dataset
   rules:
     required: true
-  defaultValue: progenetix
+  defaultValue: cellz
   options:
-    - value: progenetix
-      label: progenetix
+    - value: cellz
+      label: cellz
 assemblyId:
   label: Genome Assembly
   infoText: |
@@ -164,22 +164,22 @@ clinicalClasses:
   options:
     - value: ""
       label: "(no selection)"
-materialtype:
-  label: Biosample Type
-  infoText: |
-    Special filter type, to e.g. limit responses to neoplastic or reference
-    samples, respectively, when not using specific cancer classification codes.
-  defaultValue: ""
-  isHidden: True
-  options:
-    - value: ""
-      label: "(no selection)"
-    - value: EFO:0009656
-      label: neoplastic sample
-    - value: EFO:0030035
-      label: cancer cell line sample
-    - value: EFO:0009654
-      label: reference sample
+# materialtype:
+#   label: Biosample Type
+#   infoText: |
+#     Special filter type, to e.g. limit responses to neoplastic or reference
+#     samples, respectively, when not using specific cancer classification codes.
+#   defaultValue: ""
+#   isHidden: True
+#   options:
+#     - value: ""
+#       label: "(no selection)"
+#     - value: EFO:0009656
+#       label: neoplastic sample
+#     - value: EFO:0030035
+#       label: cancer cell line sample
+#     - value: EFO:0009654
+#       label: reference sample
 sex:
   label: Genotypic Sex
   infoText: |

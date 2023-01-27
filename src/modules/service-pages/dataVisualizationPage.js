@@ -13,11 +13,11 @@ import { useAsyncSelect } from "../../hooks/asyncSelect"
 
 const sampleMaxNo = 1000
 
-export const getVisualizationLink = (accessId, skip, limit, count) =>
-  `/service-collection/dataVisualization?accessid=${accessId}&sampleCount=${count}&skip=${skip}&limit=${limit}`
+export const getVisualizationLink = (datasetIds, accessId, skip, limit, count) =>
+  `/service-collection/dataVisualization?datasetIds=${datasetIds}&accessid=${accessId}&sampleCount=${count}&skip=${skip}&limit=${limit}`
 
 const DataVisualizationPage = withUrlQuery(({ urlQuery }) => {
-  const { accessid, skip, limit, sampleCount } = urlQuery
+  const { datasetIds, accessid, skip, limit, sampleCount } = urlQuery
   const componentRef = useRef()
   const { width } = useContainerDimensions(componentRef)
   return (
@@ -36,6 +36,7 @@ const DataVisualizationPage = withUrlQuery(({ urlQuery }) => {
           )}
           {width > 0 && (
             <DataVisualizationPanel
+              datasetIds={datasetIds}
               accessid={accessid}
               skip={skip}
               limit={limit}
@@ -63,7 +64,7 @@ function NoResultsHelp() {
   )
 }
 
-function DataVisualizationPanel({ accessid, skip, limit, sampleCount, width }) {
+function DataVisualizationPanel({ datasetIds, accessid, skip, limit, sampleCount, width }) {
   const [formValues, setFormValues] = useState({})
 
   var randNo = null
@@ -72,6 +73,7 @@ function DataVisualizationPanel({ accessid, skip, limit, sampleCount, width }) {
   }
 
   const dataResult = useDataVisualization({
+    datasetIds,
     accessid,
     skip,
     limit,

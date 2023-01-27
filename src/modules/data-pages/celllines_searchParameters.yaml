@@ -7,8 +7,6 @@ celllines:
     datasetIds:
       defaultValue: ["cellz"]
       isHidden: true
-    cohorts:
-      defaultValue: ["pgx:cohort-celllines"]
     assemblyId:
       isHidden: true
     referenceName:
@@ -30,13 +28,15 @@ celllines:
     filterPrecision:
       isHidden: true
     materialtype:
-      label: Biosample Type
-      infoText: >-
-        Restricted here to the "cancer cell line" type
-      defaultValue: EFO:0030035
-      options:
-        - value: EFO:0030035
-          label: cancer cell line sample
+      isHidden: true
+    # materialtype:
+    #   label: Biosample Type
+    #   infoText: >-
+    #     Restricted here to the "cancer cell line" type
+    #   defaultValue: EFO:0030035
+    #   options:
+    #     - value: EFO:0030035
+    #       label: cancer cell line sample
   examples:
     - label: "K-562 Cell Line"
       note: "Instances of K-562 and daughter cell lines, searched by Cellosaurus id"

@@ -98,7 +98,7 @@ export function DatasetResultBox({ data: responseSet, query }) {
         let visualizationLimit = new URLSearchParams(
           new URL(histogramUrl).search
         ).get("limit")
-        visualizationLink = getVisualizationLink(visualizationAccessId, visualizationSkip, visualizationLimit, paginatedResultsCount)
+        visualizationLink = getVisualizationLink(id, visualizationAccessId, visualizationSkip, visualizationLimit, paginatedResultsCount)
       }
     }
   }
