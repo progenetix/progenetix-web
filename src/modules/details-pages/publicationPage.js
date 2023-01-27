@@ -127,7 +127,7 @@ function PublicationDetails({ publication, id }) {
 
       {progenetixBiosamplesCount > 0 && (
         <div className="mb-5">
-          <SubsetHistogram id={id} filter={id} datasetIds="progenetix" />
+          <SubsetHistogram id={id} filter={id} datasetIds="cellz" />
         </div>
       )}
     </section>
@@ -136,7 +136,7 @@ function PublicationDetails({ publication, id }) {
 
 function sampleSearchHref({ id, progenetixSamplesCount }) {
   const datasetsIds = []
-  if (progenetixSamplesCount > 0) datasetsIds.push("progenetix")
+  if (progenetixSamplesCount > 0) datasetsIds.push("cellz")
 
   return `/biosamples/?freeFilters=${id}&datasetIds=${datasetsIds.join(
     ","

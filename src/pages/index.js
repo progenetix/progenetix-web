@@ -44,7 +44,7 @@ export default function Index() {
       </Panel>
       <Panel heading="CNV Frequency Plot">
       <SubsetHistogram
-        datasetIds="progenetix"
+        datasetIds="cellz"
         id="pgx:cohort-celllines"
       />
       </Panel>

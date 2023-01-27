@@ -305,7 +305,7 @@ export function getDataItemPageUrl(id, entity, datasetIds) {
 }
 
 export function NoResultsHelp(id, entity) {
-  const url = getDataItemPageUrl(id, entity, "progenetix")
+  const url = getDataItemPageUrl(id, entity, "cellz")
   return (
     <div className="notification is-size-5">
       This page will only show content if called with a specific biosample ID

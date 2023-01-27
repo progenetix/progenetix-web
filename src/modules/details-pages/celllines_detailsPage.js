@@ -20,7 +20,7 @@ const exampleId = "cellosaurus:CVCL_0023"
 const SubsetDetailsPage = withUrlQuery(({ urlQuery }) => {
   var { id, datasetIds } = urlQuery
   if (! datasetIds) {
-    datasetIds = "progenetix"
+    datasetIds = "cellz"
   }
   const hasAllParams = id && datasetIds
   return (

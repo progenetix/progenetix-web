@@ -19,7 +19,7 @@ export default function NCIT_SubsetsPage() {
           response.
         </p>
       </div>
-      <SubsetsLoader collationTypes="NCIT" datasetIds="progenetix" />
+      <SubsetsLoader collationTypes="NCIT" datasetIds="cellz" />
     </Layout>
   )
 }

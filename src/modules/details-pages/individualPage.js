@@ -16,7 +16,7 @@ const exampleId = "pgxind-kftx266l"
 const IndividualDetailsPage = withUrlQuery(({ urlQuery }) => {
   var { id, datasetIds } = urlQuery
   if (! datasetIds) {
-    datasetIds = "progenetix"
+    datasetIds = "cellz"
   }
   const hasAllParams = id && datasetIds
   return (

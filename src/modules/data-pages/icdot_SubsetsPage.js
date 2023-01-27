@@ -12,7 +12,7 @@ export default function icdom_SubsetsPage() {
           their ICD-O 3 topography codes (rewritten to an internal prefix system).
         </p>
       </div>
-      <SubsetsLoader collationTypes="icdot" datasetIds="progenetix" />
+      <SubsetsLoader collationTypes="icdot" datasetIds="cellz" />
     </Layout>
   )
 }

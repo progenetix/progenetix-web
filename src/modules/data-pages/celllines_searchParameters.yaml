@@ -5,7 +5,7 @@ celllines:
   description: ""
   parameters:
     datasetIds:
-      defaultValue: ["progenetix"]
+      defaultValue: ["cellz"]
       isHidden: true
     cohorts:
       defaultValue: ["pgx:cohort-celllines"]

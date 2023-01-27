@@ -12,7 +12,7 @@ export default function icdom_SubsetsPage() {
           their ICD-O 3 histology codes (rewritten to an internal prefix system).
         </p>
       </div>
-      <SubsetsLoader collationTypes="icdom" datasetIds="progenetix" />
+      <SubsetsLoader collationTypes="icdom" datasetIds="cellz" />
     </Layout>
   )
 }

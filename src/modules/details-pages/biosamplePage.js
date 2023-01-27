@@ -22,7 +22,7 @@ const exampleId = "pgxbs-kftvir6m"
 const SampleDetailsPage = withUrlQuery(({ urlQuery }) => {
   var { id, datasetIds } = urlQuery
   if (! datasetIds) {
-    datasetIds = "progenetix"
+    datasetIds = "cellz"
   }
   const hasAllParams = id && datasetIds
   return (

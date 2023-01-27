@@ -14,7 +14,7 @@ const exampleId = "pgxcs-kftvlijb"
 const CallsetDetailsPage = withUrlQuery(({ urlQuery }) => {
   var { id, datasetIds } = urlQuery
   if (! datasetIds) {
-    datasetIds = "progenetix"
+    datasetIds = "cellz"
   }
   const hasAllParams = id && datasetIds
   return (

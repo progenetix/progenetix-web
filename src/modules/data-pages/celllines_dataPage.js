@@ -22,7 +22,7 @@ export default function cellLines_dataPage({ cytoBands }) {
         collapsed={false}
       />
       <Panel heading="Cell Lines (with parental/derived hierarchies)" className="content">
-        <SubsetsLoader collationTypes="cellosaurus" datasetIds="progenetix" />
+        <SubsetsLoader collationTypes="cellosaurus" datasetIds="cellz" />
       </Panel>
     </Layout>
   )
