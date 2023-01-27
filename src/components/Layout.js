@@ -101,7 +101,7 @@ function Side({ onClick }) {
       <ul className="Layout__side__items">
         <MenuInternalLinkItem
           href="/subsets/NCIT-subsets"
-          label="Cancer CNV Profiles"
+          label="CNV Profiles by Cancer Type"
         />
         <MenuInternalLinkItem
           href="/subsets/icdom-subsets"
