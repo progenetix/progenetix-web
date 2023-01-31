@@ -13,6 +13,10 @@ export function useExtendedSWR(url, fetcher = defaultFetcher) {
   return { data, error, ...other, isLoading: !data && !error }
 }
 
+export const SITE_DEFAULTS = {
+  DATASETID: "progenetix",
+  DATASETLABEL: "Progenetix",
+}
 export const TRACKING_ID = "UA-572981-2"
 export const MAX_HISTO_SAMPLES = 4000
 export const PROGENETIXINFO = "https://info.progenetix.org"

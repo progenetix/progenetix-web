@@ -6,7 +6,7 @@ progenetix:
   parameters:
     datasetIds:
       defaultValue: ["progenetix"]
-      isHidden: true
+      isMulti: true
     cohorts: # TODO
       placeholder: ""
       isHidden: false

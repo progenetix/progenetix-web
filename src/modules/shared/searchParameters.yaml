@@ -6,7 +6,9 @@ datasetIds:
   defaultValue: progenetix
   options:
     - value: progenetix
-      label: progenetix
+      label: Progenetix
+    - value: cellz
+      label: Cancer Cell Lines Collection
 assemblyId:
   label: Genome Assembly
   infoText: |

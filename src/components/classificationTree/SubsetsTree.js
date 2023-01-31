@@ -180,7 +180,7 @@ function Node({
 }) {
   const isSearchPossible = subset && canSearch(subset)
   const even = index % 2 === 0
-  const detailsPage = subsetId.match("cellosaurus") ? "celllines/cellline" : "subset"
+  // const detailsPage = subsetId.match("cellosaurus") ? "celllines/cellline" : "subset"
   return (
     <div
       style={{
@@ -221,7 +221,7 @@ function Node({
           )}
           <Tippy content={`Show data for subset ${subsetId}`}>
             <a
-              href={`/${detailsPage}/?id=${subsetId}&datasetIds=${datasetIds}`}
+              href={`/subset/?id=${subsetId}&datasetIds=${datasetIds}`}
             >
               <span>{subsetId}</span>
             </a>
