@@ -5,10 +5,7 @@ import { ErrorBoundary } from "react-error-boundary"
 import Head from "next/head"
 import {ErrorFallback, MenuInternalLinkItem} from "./MenuHelpers"
 import {
-  PROGENETIX,
-  PROGENETIXDOCLINK,
-  DOCLINK,
-  NEWSLINK,
+  SITE_DEFAULTS,
   THISYEAR
 } from "../hooks/api"
 
@@ -58,7 +55,7 @@ export function Layout({ title, headline, children }) {
       </main>
       <footer className="footer">
         <div className="content container has-text-centered">
-          © 2000 - {THISYEAR} Progenetix Cancer Genomics Information Resource by
+          © 2023 - {THISYEAR} Progenetix Cancer Genomics Information Resource by
           the{" "}
           <a href="https://info.baudisgroup.org">
             Computational Oncogenomics Group
@@ -107,27 +104,35 @@ function Side({ onClick }) {
         />
         <MenuInternalLinkItem
           href="/search"
-          label="Search Samples"
+          label="Search Cell Lines"
         />
-        <MenuInternalLinkItem href={DOCLINK} label="Documentation" />
         <MenuInternalLinkItem
-          href={NEWSLINK}
+          href="/subsets/cellosaurus-subsets"
+          label="Cell Line Listing"
+        />
+        <MenuInternalLinkItem
+          href="/subsets/NCIT-subsets"
+          label="CNV Profiles by Cancer Type"
+        />
+        <MenuInternalLinkItem href={SITE_DEFAULTS.PROJECTDOCLINK} label="Documentation" />
+        <MenuInternalLinkItem
+          href={SITE_DEFAULTS.NEWSLINK}
           label="News"
           isSub="isSub"
         />
-        <MenuInternalLinkItem href={PROGENETIX} label="Progenetix" />
+        <MenuInternalLinkItem href={SITE_DEFAULTS.MASTERROOTLINK} label="Progenetix" />
         <MenuInternalLinkItem
-          href={PROGENETIX}
+          href={SITE_DEFAULTS.MASTERROOTLINK}
           label="Progenetix Data"
           isSub="isSub"
         />
         <MenuInternalLinkItem
-          href={`${PROGENETIXDOCLINK}`}
+          href={`${SITE_DEFAULTS.MASTERDOCLINK}`}
           label="Progenetix Documentation"
           isSub="isSub"
         />
         <MenuInternalLinkItem
-          href={`${PROGENETIX}/publications`}
+          href={`${SITE_DEFAULTS.MASTERROOTLINK}/publications`}
           label="Publication DB"
           isSub="isSub"
         />

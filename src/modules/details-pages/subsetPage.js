@@ -1,4 +1,5 @@
 import {
+  SITE_DEFAULTS,
   getServiceItemUrl,
   useServiceItemDelivery,
   sampleSearchPageFiltersLink,
@@ -9,15 +10,12 @@ import { Layout } from "../../components/Layout"
 import { SubsetHistogram } from "../../components/Histogram"
 import { withUrlQuery } from "../../hooks/url-query"
 
-
 const service = "collations"
 const exampleId = "NCIT:C3262"
 
 const SubsetDetailsPage = withUrlQuery(({ urlQuery }) => {
-  var { id, datasetIds } = urlQuery
-  if (! datasetIds) {
-    datasetIds = "cellz"
-  }
+  var { id } = urlQuery
+  var datasetIds = SITE_DEFAULTS.DATASETID
   const hasAllParams = id && datasetIds
   return (
     <Layout title="Subset Details" headline="Subset Details">
@@ -75,12 +73,12 @@ function Subset({ subset, datasetIds }) {
   const filters = subset.id
   const sampleFilterScope = "freeFilters"
   
-  const pgxRegex = new RegExp('^.*progenetix.*/services/.*?$')
+  const pgxRegex = new RegExp('^.*cancercelllines.*/services/.*?$')
     
   return (
     <section className="content">
       <h2>
-        {subset.label} ({subset.id}, {datasetIds})
+        {subset.label} ({subset.id}, {SITE_DEFAULTS.DATASETLABEL})
       </h2>
 
       {subset.type && (

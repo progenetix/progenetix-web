@@ -1,4 +1,5 @@
 import {
+  SITE_DEFAULTS,
   BIOKEYS,
   basePath,
   getDataItemUrl,
@@ -20,10 +21,8 @@ const itemColl = "biosamples"
 const exampleId = "pgxbs-kftvir6m"
 
 const SampleDetailsPage = withUrlQuery(({ urlQuery }) => {
-  var { id, datasetIds } = urlQuery
-  if (! datasetIds) {
-    datasetIds = "cellz"
-  }
+  var { id } = urlQuery
+  var datasetIds = SITE_DEFAULTS.DATASETID
   const hasAllParams = id && datasetIds
   return (
     <Layout title="Sample Details" headline="Sample Details">
@@ -68,7 +67,7 @@ function Biosample({ biosample, datasetIds }) {
     <section className="content">
     
       <h3 className="mb-6">
-        {biosample.id} ({datasetIds})
+        {biosample.id} ({SITE_DEFAULTS.DATASETLABEL})
       </h3>
 
       {biosample.description && (

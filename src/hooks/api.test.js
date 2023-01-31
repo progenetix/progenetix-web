@@ -1,11 +1,11 @@
-import { replaceWithProxy } from "./api"
+import { SITE_DEFAULTS, replaceWithProxy } from "./api"
 
 const { buildQueryParameters } = require("./api")
 
 test("build a complete query", () => {
   expect(
     buildQueryParameters({
-      datasetIds: ["cellz"],
+      datasetIds: [SITE_DEFAULTS.DATASETID],
       assemblyId: "GRCh38",
       referenceName: "9",
       variantType: "EFO:0030067",

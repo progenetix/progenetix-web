@@ -1,4 +1,5 @@
 import {
+  SITE_DEFAULTS,
   getDataItemUrl,
   useDataItemDelivery,
   // replaceWithProxy,
@@ -16,10 +17,8 @@ const entity = "variants"
 const exampleId = "5bab576a727983b2e00b8d32"
 
 const VariantDetailsPage = withUrlQuery(({ urlQuery }) => {
-  var { id, datasetIds } = urlQuery
-  if (! datasetIds) {
-    datasetIds = "cellz"
-  }
+  var { id } = urlQuery
+  var datasetIds = SITE_DEFAULTS.DATASETID
   const hasAllParams = id && datasetIds
   return (
     <Layout title="Variant Details" headline="Variant Details">
@@ -69,7 +68,7 @@ function Variant({ variant, id, datasetIds }) {
   return (
     <section className="content">
       <h3>
-        {id} ({datasetIds})
+        {id} ({SITE_DEFAULTS.DATASETLABEL})
       </h3>
 
       <h5>Digest</h5>

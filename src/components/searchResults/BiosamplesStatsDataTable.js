@@ -2,8 +2,10 @@ import React from "react"
 import PropTypes from "prop-types"
 import Table, { InfodotHeader } from "../Table"
 import _ from "lodash"
-import { BIOKEYS, useCollationsById } from "../../hooks/api"
+import { SITE_DEFAULTS, useCollationsById } from "../../hooks/api"
 import { WithData } from "../Loader"
+
+const STATSKEYS = ["celllineInfo", "histologicalDiagnosis"]
 
 export default function BiosamplesStatsDataTable({
   biosamplesResponse,
@@ -24,7 +26,7 @@ export default function BiosamplesStatsDataTable({
               <span>
               
                 <a
-                  href={`/subset/?id=${original.id}&datasetIds=${datasetId}`}
+                  href={`/${ original.id.match("cellosaurus") ? "cellline" : "subset" }/?id=${original.id}&datasetIds=${datasetId}`}
                 >
                   {value}
                 </a>
@@ -46,7 +48,8 @@ export default function BiosamplesStatsDataTable({
           ),
           accessor: "count"
         },
-        variantCount > 0 && datasetId === "cellz"
+        variantCount > 0 && datasetId === SITE_DEFAULTS.DATASETID
+
           ? [
               {
                 Header: InfodotHeader(
@@ -84,7 +87,10 @@ export default function BiosamplesStatsDataTable({
     [variantCount, datasetId]
   )
 
+  // const allSubsetsReply = useCollationsByType({ datasetIds: datasetId, method: "counts", collationTypes: "NCIT" })
   const allSubsetsReply = useCollationsById({ datasetIds: datasetId })
+  // const cellosaurusSubsetsReply = useCollationsByType({ datasetIds: datasetId, method: "counts", collationTypes: "cellosaurus" })
+
   return (
     <WithData
       apiReply={allSubsetsReply}
@@ -108,9 +114,10 @@ function getFrequency(v, allSubsetsById, k) {
 
 export function makeSubsetsData(biosamplesResults, allSubsetsById) {
   const ids = biosamplesResults
-    .flatMap((sample) => BIOKEYS.map(bioc => (sample[bioc])))
+    .flatMap((sample) => STATSKEYS.map(bioc => (sample[bioc])))
     .map(function (a) {
-      return a.id     
+      // console.log(a.id)
+      return a.id
     })
   const subsetCounts = _.countBy(ids)
   const subsets = Object.entries(subsetCounts).map(([k, v]) => ({

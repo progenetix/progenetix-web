@@ -45,7 +45,7 @@ export default function Index() {
       <Panel heading="CNV Frequency Plot">
       <SubsetHistogram
         datasetIds="cellz"
-        id="pgx:cohort-celllines"
+        id="NCIT:C3262"
       />
       </Panel>
       <div className="notification is-warning">

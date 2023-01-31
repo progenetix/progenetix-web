@@ -13,13 +13,18 @@ export function useExtendedSWR(url, fetcher = defaultFetcher) {
   return { data, error, ...other, isLoading: !data && !error }
 }
 
-export const TRACKING_ID = "UA-572981-2"
+export const SITE_DEFAULTS = {
+  DATASETID: "cellz",
+  DATASETLABEL: "cancer cell lines",
+  PROJECTROOTLINK: "http://cancercelllines.org",
+  PROJECTDOCLINK: "https://docs.cancercelllines.org",
+  MASTERROOTLINK: "https://progenetix.org",
+  MASTERDOCLINK: "https://docs.progenetix.org",
+  NEWSLINK: "https://docs.progenetix.org/news",
+  ORGSITELINK: "https://info.baudisgroup.org",
+  TRACKING_ID: "UA-572981-2"
+}
 export const MAX_HISTO_SAMPLES = 4000
-export const PROGENETIX = "https://progenetix.org"
-export const PROGENETIXDOCLINK = "https://docs.progenetix.org"
-export const GROUPSITELINK = "https://docs.baudisgroup.org/"
-export const DOCLINK = "https://docs.cancercelllines.org"
-export const NEWSLINK = `${DOCLINK}/news`
 export const THISYEAR = new Date().getFullYear()
 export const BIOKEYS = ["histologicalDiagnosis", "icdoMorphology", "icdoTopography", "sampledTissue"]
 
@@ -305,7 +310,7 @@ export function getDataItemPageUrl(id, entity, datasetIds) {
 }
 
 export function NoResultsHelp(id, entity) {
-  const url = getDataItemPageUrl(id, entity, "cellz")
+  const url = getDataItemPageUrl(id, entity, SITE_DEFAULTS.DATASETID)
   return (
     <div className="notification is-size-5">
       This page will only show content if called with a specific biosample ID

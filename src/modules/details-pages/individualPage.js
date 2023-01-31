@@ -1,4 +1,5 @@
 import {
+  SITE_DEFAULTS,
   getDataItemUrl,
   useDataItemDelivery,
   NoResultsHelp,
@@ -14,10 +15,8 @@ const itemColl = "individuals"
 const exampleId = "pgxind-kftx266l"
 
 const IndividualDetailsPage = withUrlQuery(({ urlQuery }) => {
-  var { id, datasetIds } = urlQuery
-  if (! datasetIds) {
-    datasetIds = "cellz"
-  }
+  var { id } = urlQuery
+  var datasetIds = SITE_DEFAULTS.DATASETID
   const hasAllParams = id && datasetIds
   return (
     <Layout title="Individual Details" headline="Individual Details">
@@ -60,7 +59,7 @@ function Individual({ individual, datasetIds }) {
   return (
     <section className="content">
       <h3 className="mb-6">
-        {individual.id} ({datasetIds})
+        {individual.id} ({SITE_DEFAULTS.DATASETLABEL})
       </h3>
 
       {individual.description && (

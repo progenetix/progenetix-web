@@ -1,4 +1,5 @@
 import {
+  SITE_DEFAULTS,
   getDataItemUrl,
   useDataItemDelivery,
   NoResultsHelp,
@@ -12,10 +13,8 @@ const itemColl = "callsets"
 const exampleId = "pgxcs-kftvlijb"
 
 const CallsetDetailsPage = withUrlQuery(({ urlQuery }) => {
-  var { id, datasetIds } = urlQuery
-  if (! datasetIds) {
-    datasetIds = "cellz"
-  }
+  var { id } = urlQuery
+  var datasetIds = SITE_DEFAULTS.DATASETID
   const hasAllParams = id && datasetIds
   return (
     <Layout title="Callset Details" headline="Callset Details">
@@ -64,7 +63,7 @@ function Callset({ callset, datasetIds }) {
   return (
     <section className="content">
       <h3 className="mb-6">
-        {callset.id} ({datasetIds})
+        {callset.id} ({SITE_DEFAULTS.DATASETLABEL})
       </h3>
 
       {callset.description && (

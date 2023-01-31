@@ -1,2 +1,2 @@
-import Page from "../modules/details-pages/celllines_detailsPage"
+import Page from "../modules/details-pages/celllinePage"
 export default Page

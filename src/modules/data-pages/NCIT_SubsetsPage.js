@@ -1,5 +1,6 @@
 import React from "react"
 import { Layout } from "../../components/Layout"
+import { SITE_DEFAULTS } from "../../hooks/api"
 import SubsetsLoader from  "../../components/SubsetsLoader"
 
 export default function NCIT_SubsetsPage() {
@@ -19,7 +20,7 @@ export default function NCIT_SubsetsPage() {
           response.
         </p>
       </div>
-      <SubsetsLoader collationTypes="NCIT" datasetIds="cellz" />
+      <SubsetsLoader collationTypes="NCIT" datasetIds={ SITE_DEFAULTS.DATASETID } />
     </Layout>
   )
 }
