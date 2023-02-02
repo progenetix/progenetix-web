@@ -212,7 +212,9 @@ function Subset({ subset, datasetIds }) {
       }       
       </h5>
 
-      <h5>Sample Count: {subset.count} ({subset.codeMatches} direct {'"'}{subset.id}{'"'} code  matches)</h5>
+      <h5>Sample Count: {subset.count} ({subset.codeMatches} direct{" "}
+        {'"'}{subset.id}{'"'} code  matches, {subset.cnvAnalyses} CNV analyses)
+      </h5>
 
       <h5>
         Select {subset.id} samples in the 
