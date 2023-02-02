@@ -169,6 +169,21 @@ function Variant({ variant, id, datasetIds }) {
         </>
         )}
 
+        {variant.variation.variantAlternativeIds && (
+            <>
+                <p>Alternative Variant IDs: </p>
+                <ul>
+                    {variant.variation.variantAlternativeIds.map((aa) =>
+                        <li key={aa}>
+                            {aa.id}
+                            :
+                            {aa.label}
+                        </li>
+                    )}
+                </ul>
+            </>
+        )}
+
       <h5>
         Download Data as Beacon v2{" "}
         <a
