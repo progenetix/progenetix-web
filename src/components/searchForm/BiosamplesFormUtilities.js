@@ -77,7 +77,7 @@ export function GeneSpansUtility({ onClose, setFormValue }) {
   const onApply = (optionValue) => {
     setFormValue("start", optionValue.start)
     setFormValue("end", optionValue.end)
-    setFormValue("referenceName", optionValue.referenceName)
+    setFormValue("referenceName", optionValue.accessionVersion)
     onClose()
   }
   const renderValue = (optionValue) => (
@@ -150,7 +150,7 @@ export function CytoBandsUtility({ onClose, setFormValue }) {
   const onApply = (data) => {
     setFormValue("start", data.response.results[0].genomic_location.interval.start.value)
     setFormValue("end", data.response.results[0].genomic_location.interval.end.value)
-    setFormValue("referenceName", data.response.results[0].info.referenceName)
+    setFormValue("referenceName", data.response.results[0].info.accessionVersion)
     onClose()
   }
   const onSubmit = (e) => {
