@@ -6,7 +6,7 @@ import AggregatorSearchPanel from "../../components/searchForm/AggregatorSearchP
 import ActiveLink from "../../components/ActiveLink"
 import Panel from "../../components/Panel"
 import Link from "next/link"
-import { DOCLINK } from "../../hooks/api"
+import { SITE_DEFAULTS } from "../../hooks/api"
 
 export default function BeaconAggregatorPage({ cytoBands }) {
   return (
@@ -50,7 +50,7 @@ function BeaconPlusNav({ beaconName }) {
         <div className="Nav__links">
           <ActiveLink label="BeaconPlus" href="/beaconPlus/" />
           <ActiveLink label="Progenetix" href="/" />
-          <a href={DOCLINK} className="navbar-item">
+          <a href={SITE_DEFAULTS.MASTERDOCLINK} className="navbar-item">
             Help
           </a>
         </div>

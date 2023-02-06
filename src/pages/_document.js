@@ -1,7 +1,6 @@
 import React from "react"
 import Document, { Html, Head, Main, NextScript } from "next/document"
-
-const TRACKING_ID = "UA-572981-2"
+import {SITE_DEFAULTS} from "../hooks/api"
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -16,7 +15,7 @@ class MyDocument extends Document {
           <link rel="icon" type="image/png" href="/img/pgx-logo.png" />
           <script
             async
-            src={`https://www.googletagmanager.com/gtag/js?id=${TRACKING_ID}`}
+            src={`https://www.googletagmanager.com/gtag/js?id=${SITE_DEFAULTS.TRACKING_ID}`}
           />
           <script
             dangerouslySetInnerHTML={{
@@ -24,7 +23,7 @@ class MyDocument extends Document {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${TRACKING_ID}');
+            gtag('config', '${SITE_DEFAULTS.TRACKING_ID}');
         `
             }}
           />

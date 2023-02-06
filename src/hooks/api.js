@@ -6,7 +6,7 @@ import { FaExternalLinkAlt, FaLink } from "react-icons/fa"
 // eslint-disable-next-line no-undef
 export const basePath = process.env.NEXT_PUBLIC_API_PATH
 export const useProxy = process.env.NEXT_PUBLIC_USE_PROXY === "true"
-export const PROGENETIX = process.env.NEXT_PUBLIC_PROGENETIX_URL
+export const SITE = process.env.NEXT_PUBLIC_SITE_URL
 
 export function useExtendedSWR(url, fetcher = defaultFetcher) {
   const { data, error, ...other } = swr(url, fetcher)
@@ -16,15 +16,15 @@ export function useExtendedSWR(url, fetcher = defaultFetcher) {
 export const SITE_DEFAULTS = {
   DATASETID: "progenetix",
   DATASETLABEL: "Progenetix",
+  PROJECTROOTLINK: "http://progenetix.org",
+  PROJECTDOCLINK: "https://docs.progenetix.org",
+  MASTERROOTLINK: "https://progenetix.org",
+  MASTERDOCLINK: "https://docs.progenetix.org",
+  NEWSLINK: "https://docs.progenetix.org/news",
+  ORGSITELINK: "https://info.baudisgroup.org",
+  TRACKING_ID: "UA-572981-2"
 }
-export const TRACKING_ID = "UA-572981-2"
 export const MAX_HISTO_SAMPLES = 4000
-export const PROGENETIXINFO = "https://info.progenetix.org"
-export const GROUPSITELINK = "https://info.baudisgroup.org/"
-export const DOCLINK = "https://docs.progenetix.org"
-export const NEWSLINK = `${DOCLINK}/news`
-export const USECASESLINK = `${DOCLINK}/use-cases`
-export const SERVICEINFOLINK = `${DOCLINK}/services`
 export const THISYEAR = new Date().getFullYear()
 export const BIOKEYS = ["histologicalDiagnosis", "icdoMorphology", "icdoTopography", "sampledTissue"]
 

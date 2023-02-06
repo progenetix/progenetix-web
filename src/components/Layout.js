@@ -4,15 +4,7 @@ import { FaBars, FaTimes } from "react-icons/fa"
 import { ErrorBoundary } from "react-error-boundary"
 import Head from "next/head"
 import {ErrorFallback, MenuInternalLinkItem} from "./MenuHelpers"
-import {
-  SERVICEINFOLINK,
-  DOCLINK,
-  GROUPSITELINK,
-  PROGENETIXINFO,
-  USECASESLINK,
-  NEWSLINK,
-  THISYEAR
-} from "../hooks/api"
+import { SITE_DEFAULTS, THISYEAR } from "../hooks/api"
 
 export function Layout({ title, headline, children }) {
   const [sideOpen, setSideOpen] = useState(false)
@@ -62,7 +54,7 @@ export function Layout({ title, headline, children }) {
         <div className="content container has-text-centered">
           © 2000 - {THISYEAR} Progenetix Cancer Genomics Information Resource by
           the{" "}
-          <a href={PROGENETIXINFO}>
+          <a href={SITE_DEFAULTS.ORGSITELINK}>
             Computational Oncogenomics Group
           </a>{" "}
           at the{" "}
@@ -198,26 +190,26 @@ function Side({ onClick }) {
             </>
           }
         />
-        <MenuInternalLinkItem href={DOCLINK} label="Documentation" />
+        <MenuInternalLinkItem href={SITE_DEFAULTS.MASTERDOCLINK} label="Documentation" />
         <MenuInternalLinkItem
-          href={NEWSLINK}
+          href={SITE_DEFAULTS.NEWSLINK}
           label="News"
           isSub="isSub"
         />
         <MenuInternalLinkItem
-          href={USECASESLINK}
+          href={`${SITE_DEFAULTS.MASTERDOCLINK}/use-cases`}
           label="Downloads & Use Cases"
           isSub="isSub"
         />
 
         <MenuInternalLinkItem
-          href={SERVICEINFOLINK}
+          href={`${SITE_DEFAULTS.MASTERDOCLINK}/services`}
           label="Sevices & API"
           isSub="isSub"
         />
 
         <MenuInternalLinkItem
-          href={GROUPSITELINK}
+          href={SITE_DEFAULTS.ORGSITELINK}
           label="Baudisgroup @ UZH"
         />
       </ul>

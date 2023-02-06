@@ -1,4 +1,5 @@
 import {
+  SITE_DEFAULTS,
   BIOKEYS,
   basePath,
   getDataItemUrl,
@@ -22,7 +23,7 @@ const exampleId = "pgxbs-kftvir6m"
 const SampleDetailsPage = withUrlQuery(({ urlQuery }) => {
   var { id, datasetIds } = urlQuery
   if (! datasetIds) {
-    datasetIds = "progenetix"
+    datasetIds = [SITE_DEFAULTS.DATASETID]
   }
   const hasAllParams = id && datasetIds
   return (

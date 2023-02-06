@@ -4,7 +4,7 @@ import { Layout } from "../../components/Layout"
 import {
   ontologymapsBaseUrl,
   ontologymapsPrefUrl,
-  PROGENETIXINFO
+  SITE_DEFAULTS
 } from "../../hooks/api"
 import CustomSelect from "../../components/Select"
 import { Loader } from "../../components/Loader"
@@ -16,7 +16,6 @@ import {
 } from "./ontomapsComponents"
 
 const filterPrecision = "start"
-const docurl = `${PROGENETIXINFO}/doc/services/ontologymaps.html`
 const prefixes = "UBERON,pgx:icdot"
 const apiAllMapsURL = `${ontologymapsBaseUrl}filters=${prefixes}`
 
@@ -37,7 +36,7 @@ export default function UBERONmapsPage() {
         <h4>UBERON and ICD-O 3</h4>
         <p>
           More documentation with focus on the API functionality can be found on
-          the <a href={docurl}>documentation pages</a>.
+          the <a href={SITE_DEFAULTS.MASTERDOCLINK}>documentation pages</a>.
         </p>
         <p>
           The data of all mappings can be retrieved trough this API call:{" "}

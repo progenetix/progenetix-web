@@ -6,7 +6,7 @@ import BiosamplesSearchPanel from "../../components/searchForm/BiosamplesSearchP
 import ActiveLink from "../../components/ActiveLink"
 import Panel from "../../components/Panel"
 import Link from "next/link"
-import { DOCLINK } from "../../hooks/api"
+import { SITE_DEFAULTS } from "../../hooks/api"
 
 export default function BeaconPlusPage({ cytoBands }) {
   return (
@@ -54,7 +54,7 @@ function BeaconPlusNav({ beaconName }) {
         <div className="Nav__links">
           <ActiveLink label="Aggregator" href="/beaconAggregator/" />
           <ActiveLink label="Progenetix" href="/" />
-          <a href={DOCLINK} className="navbar-item">
+          <a href={SITE_DEFAULTS.MASTERDOCLINK} className="navbar-item">
             Help
           </a>
         </div>

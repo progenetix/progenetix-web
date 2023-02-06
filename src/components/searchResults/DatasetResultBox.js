@@ -1,10 +1,10 @@
 import React, { useRef, useState } from "react"
 import {
   MAX_HISTO_SAMPLES,
+  SITE_DEFAULTS,
   replaceWithProxy,
   ExternalLink,
   useProgenetixApi,
-  GROUPSITELINK,
   useExtendedSWR
 } from "../../hooks/api"
 import cn from "classnames"
@@ -144,8 +144,8 @@ export function DatasetResultBox({ data: responseSet, query }) {
           corresponding author&apos;s institution. Additional information can be
           found in the{" "}
           <ExternalLink
-            href={`${GROUPSITELINK}/geolocations.html`}
-            label="Geographic Coordinates documentation"
+            href={SITE_DEFAULTS.MASTERDOCLINK}
+            label="API documentation"
           />
           {"."}
         </p>

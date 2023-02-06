@@ -1,9 +1,10 @@
 ---
 datasetIds:
   label: Dataset
+  isMulti: true
   rules:
     required: true
-  defaultValue: progenetix
+  defaultValue: ["progenetix"]
   options:
     - value: progenetix
       label: Progenetix

@@ -4,7 +4,7 @@ import { Layout } from "../../components/Layout"
 import {
   ontologymapsBaseUrl,
   ontologymapsPrefUrl,
-  PROGENETIXINFO
+  SITE_DEFAULTS
 } from "../../hooks/api"
 import CustomSelect from "../../components/Select"
 import { Loader } from "../../components/Loader"
@@ -17,7 +17,6 @@ import {
 
 const filterPrecision = "start"
 const prefixes = "NCIT,pgx:icdom,pgx:icdot"
-const docurl = `${PROGENETIXINFO}/doc/services/ontologymaps.html`
 const apiAllMapsURL = `${ontologymapsBaseUrl}filters=${prefixes}`
 
 export default function OntologymapsPage() {
@@ -51,7 +50,7 @@ export default function OntologymapsPage() {
         </p>
         <p>
           More documentation with focus on the API functionality can be found on
-          the <a href={docurl}>documentation pages</a>.
+          the <a href={SITE_DEFAULTS.MASTERDOCLINK}>documentation pages</a>.
         </p>
         <p>
           The data of all mappings can be retrieved trough this API call:{" "}
