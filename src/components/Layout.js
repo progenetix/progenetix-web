@@ -4,10 +4,7 @@ import { FaBars, FaTimes } from "react-icons/fa"
 import { ErrorBoundary } from "react-error-boundary"
 import Head from "next/head"
 import {ErrorFallback, MenuInternalLinkItem} from "./MenuHelpers"
-import {
-  SITE_DEFAULTS,
-  THISYEAR
-} from "../hooks/api"
+import { SITE_DEFAULTS, THISYEAR } from "../hooks/api"
 
 export function Layout({ title, headline, children }) {
   const [sideOpen, setSideOpen] = useState(false)
