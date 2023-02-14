@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import {
   SITE_DEFAULTS,
+  basePath,
   getServiceItemUrl,
   useServiceItemDelivery,
   sampleSearchPageFiltersLink,
@@ -17,7 +18,6 @@ import Button from '@mui/material/Button';
 const service = "collations"
 const exampleId = "cellosaurus:CVCL_0023"
 import Tooltip from '@mui/material/Tooltip';
-
 
 const SubsetDetailsPage = withUrlQuery(({ urlQuery }) => {
   var { id } = urlQuery
@@ -132,7 +132,7 @@ function GeneComponent({cellline, genes, labels, setLabels})
   return (
     <section className="content">
       <table>
-        {labels.length >= 1 ? <tr><td colspan="9" align="center"><Button contained color="secondary" onClick={() => window.location.reload(true)}>Clear Annotations</Button></td></tr> : ""}
+        {labels.length >= 1 ? <tr><td colSpan="9" align="center"><Button contained color="secondary" onClick={() => window.location.reload(true)}>Clear Annotations</Button></td></tr> : ""}
         {genes.map((gene,i)=>(<GeneResultSet key={`${i}`} gene={gene} cellline={cellline} labels={labels} setLabels={setLabels}/>))}
       </table>
     </section>
@@ -152,9 +152,9 @@ function ResultComponent({cellline, entities})
 
 async function addLabel(gene, labels, setLabels, setLabelButton)
 {
-  await fetch("https://progenetix.org/services/genespans/"+gene).then(res => {
+  await fetch(basePath+"services/genespans/"+gene).then(res => {
     if (res.status >= 400 && res.status < 600) {
-      throw new Error("Bad response from progenetix.org/services/genespans")
+      throw new Error("Bad response from "+basePath+"/services/genespans")
     }
     return res
   }).then(res => res.json()).then(data=>{
@@ -218,7 +218,9 @@ function ResultSet({cellline,entity})
   )
 }
 
-function GeneResultRow({pair, expand, setExpand})
+// function GeneResultRow({pair, expand, setExpand})
+
+function GeneResultRow({pair})
 {
   const [showAbstract, setShowAbstract] = useState(false);
   return (
@@ -228,14 +230,14 @@ function GeneResultRow({pair, expand, setExpand})
         <td>
           <div dangerouslySetInnerHTML={{ __html:pair.matches[0]}}/>
         </td>
-        <td colspan="3">
+        <td colSpan="3">
           <a target="_blank" rel="noreferrer" href={"https://pubmed.ncbi.nlm.nih.gov/"+pair.pmid}>{pair.title} ({pair.pmid})</a>
         </td>
         <td><Button onClick={() => {setShowAbstract(!showAbstract)}}>{!showAbstract ? <p>Abstract</p> : <p>Close Abstract</p>}</Button></td>
       </tr>
       {showAbstract ?
         <tr>
-          <td colspan="9" dangerouslySetInnerHTML={{ __html:pair.abstract}}></td>
+          <td colSpan="9" dangerouslySetInnerHTML={{ __html:pair.abstract}}></td>
         </tr>
       : ""}
       </table>
@@ -262,7 +264,7 @@ function ResultRow({pair})
         </tr>
         {showAbstract ?
         <tr>
-          <td colspan="9" dangerouslySetInnerHTML={{ __html:pair.abstract}}></td>
+          <td colSpan="9" dangerouslySetInnerHTML={{ __html:pair.abstract}}></td>
         </tr>
       : ""}
       </table>
