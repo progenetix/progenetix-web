@@ -10,6 +10,14 @@ export default function VariantsDataTable({ apiReply, datasetId }) {
         Header: "Digest",
         accessor: "variantInternalId"
       },
+        {
+        Header: "Gene",
+        accessor: "variation.molecularAttributes.geneIds[0]"
+        },
+        // {
+        // Header: "Source",
+        // accessor: "variation.info.provenance"
+        // },
       {
         Header: TooltipHeader(
           "Variant Instances",
