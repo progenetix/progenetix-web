@@ -13,14 +13,17 @@ import { Loader } from "../../components/Loader"
 import { Layout } from "../../components/Layout"
 import { SubsetHistogram } from "../../components/Histogram"
 import { withUrlQuery } from "../../hooks/url-query"
-
+import Button from '@mui/material/Button';
 const service = "collations"
 const exampleId = "cellosaurus:CVCL_0023"
+import Tooltip from '@mui/material/Tooltip';
+
 
 const SubsetDetailsPage = withUrlQuery(({ urlQuery }) => {
   var { id } = urlQuery
   var datasetIds = SITE_DEFAULTS.DATASETID
   const hasAllParams = id && datasetIds
+  const [labels, setLabels] = useState("");
   return (
     <Layout title="Cell Line Details" headline="Cell Line Details">
       {!hasAllParams ? (
@@ -37,14 +40,14 @@ const SubsetDetailsPage = withUrlQuery(({ urlQuery }) => {
         <SubsetHistogram
           id={id}
           datasetIds={datasetIds}
-          // labelstring="17:10000000-3000000:TEST"
+          labelstring={labels}
           loaderProps={{
             background: true,
             colored: true
           }}
         />
       </div>
-      <LiteratureSearch id={id} datasetIds={datasetIds} />
+      <LiteratureSearch id={id} datasetIds={datasetIds} labels={labels} setLabels={setLabels}/>
       </>
       )}
     </Layout>
@@ -55,7 +58,7 @@ export default SubsetDetailsPage
 
 //
 
-function LiteratureSearch({ id, datasetIds })
+function LiteratureSearch({ id, datasetIds, labels, setLabels})
 {
   const { data, error, isLoading } = useServiceItemDelivery(
     id,
@@ -65,29 +68,29 @@ function LiteratureSearch({ id, datasetIds })
   return (
     <Loader isLoading={isLoading} hasError={error} background>
       {data && (
-        <LiteratureSearchResultsTabbed label={data.response.results[0].label} />
+        <LiteratureSearchResultsTabbed label={data.response.results[0].label} labels={labels} setLabels={setLabels}/>
       )}
     </Loader>
   );
 }
 
-function LiteratureSearchResultsTabbed({label}) {
+function LiteratureSearchResultsTabbed({label, labels, setLabels}) {
 
-  const {data,error,isLoading} = useLiteratureCellLineMatches();
-
+  const {data,error,isLoading} = useLiteratureCellLineMatches(label);
   const TABS = {
     cytobands: "Cytoband Matches",
     process: "Disease Annotations",
-    genes: "Gene Matches"
+    genes: "Gene Matches",
+    variants: "Variants"
   }
 
-  const tabNames = [TABS.process, TABS.cytobands, TABS.genes]
+  const tabNames = [TABS.process, TABS.cytobands, TABS.genes, TABS.variants]
   const [selectedTab, setSelectedTab] = useState(tabNames[0])
 
   return (
     <Loader isLoading={isLoading} hasError={error} background>
 
-    {data && label in data.celllines && (
+    {data && (
       <div className="box">
         {tabNames?.length > 0 ? (
           <div className="tabs is-boxed ">
@@ -106,14 +109,17 @@ function LiteratureSearchResultsTabbed({label}) {
             </ul>
           </div>
         ) : null}
-        {data.celllines[label].NeoplasticProcess.length > 0 && selectedTab === TABS.process &&
-          <ResultComponent cellline={label} entities={data.celllines[label].NeoplasticProcess} /> 
+        {data?.Cancer?.length > 0 && selectedTab === TABS.process &&
+          <ResultComponent cellline={label} entities={data.Cancer} /> 
         }
-        {data.celllines[label].Gene.length > 0 && selectedTab === TABS.genes &&
-          <ResultComponent cellline={label} entities={data.celllines[label].Gene} />
+        {data?.Gene?.length > 0 && selectedTab === TABS.genes &&
+          <GeneComponent cellline={label} genes={data.Gene} labels={labels} setLabels={setLabels}/>
         }
-        {data.celllines[label].CytogeneticBand.length > 0 && selectedTab === TABS.cytobands &&
-          <ResultComponent cellline={label} entities={data.celllines[label].CytogeneticBand} />
+        {data?.Band?.length > 0 && selectedTab === TABS.cytobands &&
+          <ResultComponent cellline={label} entities={data.Band} />
+        }
+        {data?.Variant?.length > 0 && selectedTab === TABS.variants &&
+          <ResultComponent cellline={label} entities={data.Variant} />
         }
       </div>
     )}
@@ -121,15 +127,83 @@ function LiteratureSearchResultsTabbed({label}) {
   )
 }
 
+function GeneComponent({cellline, genes, labels, setLabels})
+{
+  return (
+    <section className="content">
+      <table>
+        {labels.length >= 1 ? <tr><td colspan="9" align="center"><Button contained color="secondary" onClick={() => window.location.reload(true)}>Clear Annotations</Button></td></tr> : ""}
+        {genes.map((gene,i)=>(<GeneResultSet key={`${i}`} gene={gene} cellline={cellline} labels={labels} setLabels={setLabels}/>))}
+      </table>
+    </section>
+  );
+}
+
 function ResultComponent({cellline, entities})
 {
   return (
     <section className="content">
       <table>
-        {entities.map((ent,i)=>(<ResultSet key={`${i}`} entity={ent.entity} cellline={cellline} />))}
+        {entities.map((ent,i)=>(<ResultSet key={`${i}`} entity={ent} cellline={cellline} />))}
       </table>
     </section>
   );
+}
+
+async function addLabel(gene, labels, setLabels, setLabelButton)
+{
+  await fetch("https://progenetix.org/services/genespans/"+gene).then(res => {
+    if (res.status >= 400 && res.status < 600) {
+      throw new Error("Bad response from progenetix.org/services/genespans")
+    }
+    return res
+  }).then(res => res.json()).then(data=>{
+      var l = labels;
+      setLabelButton(true)
+      if (l === "") {
+        l += data['response']['results'][0]['referenceName'] + ":" + data['response']['results'][0]['start']
+        +  "-" + data['response']['results'][0]['end'] + ":" + gene;
+      } else {
+        l += "," + data['response']['results'][0]['referenceName'] + ":" + data['response']['results'][0]['start']
+        +  "-" + data['response']['results'][0]['end'] + ":" + gene;
+      }
+      window.scrollTo(0, 0);
+      setLabels(l);
+  }).catch((error) => {
+      console.log(error)
+    })
+  
+}
+
+function GeneResultSet({cellline, gene, labels, setLabels})
+{
+  const {data, error, isLoading} = useLiteratureSearchResults([cellline],[gene]);
+  const [expand, setExpand] = useState(false);
+  const [labelButton, setLabelButton] = useState(false);
+  
+  console.log('data:', data)
+  return (
+    <Loader isLoading={isLoading} hasError={error} background>
+      {data && data.pairs.length > 0 ? <tr><td>
+        {labelButton && labels.length > 1 ? <Button disabled variant="contained">{gene}</Button> :
+          <Tooltip title={`add gene ${gene} to the plot!`}>
+            <Button onClick={()=>addLabel(gene, labels, setLabels, setLabelButton)}>{gene}</Button>
+          </Tooltip>}
+      </td>
+        {expand ?
+          <td>{data.pairs.map((pair,i)=>(<GeneResultRow key={`${i}`} pair={pair}/>))}</td>
+        :
+          <td><GeneResultRow key={0} pair={data.pairs[0]} expand={expand} setExpand={setExpand}/></td>
+        }
+
+        {data.pairs.length < 2 ? 
+          ""
+        :
+          <td><Button color="secondary" onClick={() => {setExpand(!expand)}}>{expand ? <b>Close</b> : <b>Expand</b>}</Button></td>
+        }
+      </tr> : ""}
+    </Loader>
+  )
 }
 
 function ResultSet({cellline,entity})
@@ -144,18 +218,54 @@ function ResultSet({cellline,entity})
   )
 }
 
+function GeneResultRow({pair, expand, setExpand})
+{
+  const [showAbstract, setShowAbstract] = useState(false);
+  return (
+    <tr>
+      <table>
+      <tr>
+        <td>
+          <div dangerouslySetInnerHTML={{ __html:pair.matches[0]}}/>
+        </td>
+        <td colspan="3">
+          <a target="_blank" rel="noreferrer" href={"https://pubmed.ncbi.nlm.nih.gov/"+pair.pmid}>{pair.title} ({pair.pmid})</a>
+        </td>
+        <td><Button onClick={() => {setShowAbstract(!showAbstract)}}>{!showAbstract ? <p>Abstract</p> : <p>Close Abstract</p>}</Button></td>
+      </tr>
+      {showAbstract ?
+        <tr>
+          <td colspan="9" dangerouslySetInnerHTML={{ __html:pair.abstract}}></td>
+        </tr>
+      : ""}
+      </table>
+    </tr>
+  );
+}
+
 
 // TODO: Standard reack memp(?) component for table
 function ResultRow({pair})
 {
+  const [showAbstract, setShowAbstract] = useState(false);
   return (
     <tr>
-      <td>
-        <div dangerouslySetInnerHTML={{ __html:pair.text}}/>
-      </td>
-      <td>
-        <a target="_blank" rel="noreferrer" href={"https://pubmed.ncbi.nlm.nih.gov/"+pair.pmid}>{pair.title}</a>
-      </td>
+      <table>
+        <tr>
+        <td>
+          <div dangerouslySetInnerHTML={{ __html:pair.text}}/>
+        </td>
+        <td>
+          <a target="_blank" rel="noreferrer" href={"https://pubmed.ncbi.nlm.nih.gov/"+pair.pmid}>{pair.title}</a>
+        </td>
+        <td><Button onClick={() => {setShowAbstract(!showAbstract)}}>{!showAbstract ? <p>Abstract</p> : <p>Close Abstract</p>}</Button></td>
+        </tr>
+        {showAbstract ?
+        <tr>
+          <td colspan="9" dangerouslySetInnerHTML={{ __html:pair.abstract}}></td>
+        </tr>
+      : ""}
+      </table>
     </tr>
   );
 }

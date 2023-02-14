@@ -4,7 +4,8 @@ import { keyBy } from "lodash"
 import { FaExternalLinkAlt, FaLink } from "react-icons/fa"
 
 // eslint-disable-next-line no-undef
-export const basePath = process.env.NEXT_PUBLIC_API_PATH
+//export const basePath = process.env.NEXT_PUBLIC_API_PATH
+export const basePath = 'http://cancercelllines.test/'
 export const useProxy = process.env.NEXT_PUBLIC_USE_PROXY === "true"
 export const SITE = process.env.NEXT_PUBLIC_SITE_URL
 
@@ -241,12 +242,12 @@ export function usePublicationList({ geoCity, geodistanceKm }) {
 
 export function useLiteratureSearchResults(t1s,t2s)
 {
-  return useProgenetixApi(`${basePath}cgi-bin/zhaw_test/zhaw_test.py?func=search&t1s=${t1s.join(",")}&t2s=${t2s.join(",")}`);
+  return useProgenetixApi(`${basePath}cgi-bin/literatureSearch/search.py?func=search&mode=exact&t1s=${t1s.join(",")}&t2s=${t2s.join(",")}`);
 }
 
-export function useLiteratureCellLineMatches()
+export function useLiteratureCellLineMatches(cln)
 {
-  return useProgenetixApi(`${basePath}cgi-bin/zhaw_test/zhaw_test.py?func=celllines`);
+  return useProgenetixApi(`${basePath}cgi-bin/literatureSearch/search.py?func=relations&t1=${cln}`);
 }
 
 // \ ZHAW

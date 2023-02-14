@@ -10,6 +10,9 @@
     "lint": "eslint src"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.11.8",
     "@tippyjs/react": "^4.2.0",
     "animate": "^1.0.0",
     "animate.css": "^4.1.1",
