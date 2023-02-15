@@ -8,7 +8,8 @@ template: post.html
 ---
 
 Fore some months [our group](http://info.baudisgroup.org) has worked with members
-of Kurt Stockinger's team from the ZHAW on a cancer cell lines use case for the 
+of [Kurt Stockinger's team](https://www.zhaw.ch/en/about-us/person/stog/) from
+the ZHAW on a cancer cell lines use case for the 
 [INODE](https://www.inode-project.eu/inode) project. In the last 2 days we had a
 site visit for a first implementation of the use case specific system on 
 [cancercelllines.org](http://cancercelllines.org). More information to follow - and

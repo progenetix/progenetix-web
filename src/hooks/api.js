@@ -21,7 +21,7 @@ export const SITE_DEFAULTS = {
   PROJECTDOCLINK: "https://docs.cancercelllines.org",
   MASTERROOTLINK: "https://progenetix.org",
   MASTERDOCLINK: "https://docs.progenetix.org",
-  NEWSLINK: "https://docs.progenetix.org/news",
+  NEWSLINK: "https://docs.cancercelllines.org/news",
   ORGSITELINK: "https://info.baudisgroup.org",
   TRACKING_ID: "UA-572981-2"
 }
