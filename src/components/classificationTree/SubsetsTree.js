@@ -242,13 +242,13 @@ function Node({
                 })}
               >
                 <span>
-                  &nbsp;({subset.count} {pluralizeWord("sample", subset.count)})
+                  &nbsp;({subset.count} {pluralizeWord("sample", subset.count)}, {subset.cnvAnalyses} {pluralizeWord("CNV profile", subset.cnvAnalyses)})
                 </span>
               </a>
             </Tippy>
           ) : subset ? (
             <span>
-              &nbsp;({subset.count} {pluralizeWord("sample", subset.count)})
+              &nbsp;({subset.count} {pluralizeWord("sample", subset.count)}, {subset.cnvAnalyses} {pluralizeWord("CNV profile", subset.cnvAnalyses)})
             </span>
           ) : null}
         </span>
