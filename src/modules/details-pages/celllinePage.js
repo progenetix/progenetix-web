@@ -150,7 +150,7 @@ function ResultComponent({cellline, entities})
   );
 }
 
-async function addLabel(gene, labels, setLabels, setLabelButton)
+async function addGeneLabel(gene, labels, setLabels, setLabelButton)
 {
   await fetch(basePath+"services/genespans/"+gene).then(res => {
     if (res.status >= 400 && res.status < 600) {
@@ -172,7 +172,6 @@ async function addLabel(gene, labels, setLabels, setLabelButton)
   }).catch((error) => {
       console.log(error)
     })
-  
 }
 
 function GeneResultSet({cellline, gene, labels, setLabels})
@@ -187,7 +186,7 @@ function GeneResultSet({cellline, gene, labels, setLabels})
       {data && data.pairs.length > 0 ? <tr><td>
         {labelButton && labels.length > 1 ? <Button disabled variant="contained">{gene}</Button> :
           <Tooltip title={`add gene ${gene} to the plot!`}>
-            <Button onClick={()=>addLabel(gene, labels, setLabels, setLabelButton)}>{gene}</Button>
+            <Button onClick={()=>addGeneLabel(gene, labels, setLabels, setLabelButton)}>{gene}</Button>
           </Tooltip>}
       </td>
         {expand ?
