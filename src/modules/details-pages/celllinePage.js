@@ -78,13 +78,14 @@ function LiteratureSearchResultsTabbed({label, labels, setLabels}) {
 
   const {data,error,isLoading} = useLiteratureCellLineMatches(label);
   const TABS = {
-    cytobands: "Cytoband Matches",
-    process: "Disease Annotations",
     genes: "Gene Matches",
+    cytobands: "Cytoband Matches",
     variants: "Variants"
   }
+  // process: "Disease Annotations",
+  // TABS.process, 
 
-  const tabNames = [TABS.process, TABS.cytobands, TABS.genes, TABS.variants]
+  const tabNames = [TABS.genes, TABS.cytobands, TABS.variants]
   const [selectedTab, setSelectedTab] = useState(tabNames[0])
 
   return (
@@ -113,7 +114,7 @@ function LiteratureSearchResultsTabbed({label, labels, setLabels}) {
           <ResultComponent cellline={label} entities={data.Cancer} /> 
         }
         {data?.Gene?.length > 0 && selectedTab === TABS.genes &&
-          <GeneComponent cellline={label} genes={data.Gene} labels={labels} setLabels={setLabels}/>
+          <GeneComponent cellline={label} genes={data.Gene.sort()} labels={labels} setLabels={setLabels}/>
         }
         {data?.Band?.length > 0 && selectedTab === TABS.cytobands &&
           <ResultComponent cellline={label} entities={data.Band} />
@@ -196,9 +197,11 @@ function GeneResultSet({cellline, gene, labels, setLabels})
         }
 
         {data.pairs.length < 2 ? 
-          ""
+          <td>&nbsp;</td>
         :
-          <td><Button color="secondary" onClick={() => {setExpand(!expand)}}>{expand ? <b>Close</b> : <b>Expand</b>}</Button></td>
+          <td>
+            <Button color="secondary" onClick={() => {setExpand(!expand)}}>{expand ? <b>Close</b> : <b>Expand</b>}</Button>
+          </td>
         }
       </tr> : ""}
     </Loader>
@@ -226,17 +229,17 @@ function GeneResultRow({pair})
     <tr>
       <table>
       <tr>
-        <td>
+        <td style={{border: '0px'}}>
           <div dangerouslySetInnerHTML={{ __html:pair.matches[0]}}/>
         </td>
-        <td colSpan="3">
+        <td colSpan="3"  style={{border: '0px'}}>
           <a target="_blank" rel="noreferrer" href={"https://pubmed.ncbi.nlm.nih.gov/"+pair.pmid}>{pair.title} ({pair.pmid})</a>
         </td>
-        <td><Button onClick={() => {setShowAbstract(!showAbstract)}}>{!showAbstract ? <p>Abstract</p> : <p>Close Abstract</p>}</Button></td>
+        <td style={{border: '0px'}}><Button onClick={() => {setShowAbstract(!showAbstract)}}>{!showAbstract ? <p>Abstract</p> : <p>Close Abstract</p>}</Button></td>
       </tr>
       {showAbstract ?
         <tr>
-          <td colSpan="9" dangerouslySetInnerHTML={{ __html:pair.abstract}}></td>
+          <td colSpan="9" dangerouslySetInnerHTML={{ __html:pair.abstract}} style={{border: '0px'}}></td>
         </tr>
       : ""}
       </table>
@@ -245,7 +248,7 @@ function GeneResultRow({pair})
 }
 
 
-// TODO: Standard reack memp(?) component for table
+// TODO: Standard react memo(?) component for table
 function ResultRow({pair})
 {
   const [showAbstract, setShowAbstract] = useState(false);
@@ -253,17 +256,17 @@ function ResultRow({pair})
     <tr>
       <table>
         <tr>
-        <td>
+        <td style={{border: '0px'}}>
           <div dangerouslySetInnerHTML={{ __html:pair.text}}/>
         </td>
-        <td>
+        <td style={{border: '0px'}}>
           <a target="_blank" rel="noreferrer" href={"https://pubmed.ncbi.nlm.nih.gov/"+pair.pmid}>{pair.title}</a>
         </td>
-        <td><Button onClick={() => {setShowAbstract(!showAbstract)}}>{!showAbstract ? <p>Abstract</p> : <p>Close Abstract</p>}</Button></td>
+        <td style={{border: '0px'}}><Button onClick={() => {setShowAbstract(!showAbstract)}}>{!showAbstract ? <p>Abstract</p> : <p>Close Abstract</p>}</Button></td>
         </tr>
         {showAbstract ?
         <tr>
-          <td colSpan="9" dangerouslySetInnerHTML={{ __html:pair.abstract}}></td>
+          <td colSpan="9" dangerouslySetInnerHTML={{ __html:pair.abstract}} style={{border: '0px'}}></td>
         </tr>
       : ""}
       </table>
