@@ -95,7 +95,7 @@ function Side({ onClick }) {
           href="/"
           label={
             <>
-              Cancer Cell Lines<sup style={{ color: "red" }}>o</sup> Home
+              Cancer Cell Lines<sup style={{ color: "red" }}>o</sup>
             </>
           }
         />

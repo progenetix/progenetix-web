@@ -1,4 +1,6 @@
-# Cancercelllines Resource Documentation
+---
+title: Cancercelllines Resource Documentation
+---
 
 The Cancercelllines genomic information resource contains genome profiling data,
 somatic mutation information and associated metadata for thousands of human cancer
