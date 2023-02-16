@@ -242,19 +242,24 @@ function Node({
                 })}
               >
                 <span>
-                  &nbsp;({subset.count} {pluralizeWord("sample", subset.count)}, {subset.cnvAnalyses} {pluralizeWord("CNV profile", subset.cnvAnalyses)})
+                  &nbsp;{subsetCountLabel(subset)}
                 </span>
               </a>
             </Tippy>
           ) : subset ? (
             <span>
-              &nbsp;({subset.count} {pluralizeWord("sample", subset.count)}, {subset.cnvAnalyses} {pluralizeWord("CNV profile", subset.cnvAnalyses)})
+              &nbsp;{subsetCountLabel(subset)}
             </span>
           ) : null}
         </span>
       </span>
     </div>
   )
+}
+
+function subsetCountLabel(subset) {
+  const cnvCountLabel = subset.cnvAnalyses ? `, ${subset.cnvAnalyses} ${pluralizeWord("CNV profile", subset.cnvAnalyses)}` : ""
+  return `(${subset.count} ${pluralizeWord("sample", subset.count)}${cnvCountLabel})`
 }
 
 function Expander({ isOpen, setOpen }) {

@@ -512,7 +512,7 @@ export function referenceLink(externalReference) {
 }
 
 export function pluralizeWord(word, count) {
-  if (count > 1) {
+  if (count != 1) {
     word = word + "s"
   }
   return word
