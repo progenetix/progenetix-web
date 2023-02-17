@@ -35,7 +35,7 @@ export default function Index({
             {progenetixStats.response.results[0].counts.biosamples}
           </span>{" "}
           samples.
-          <SubsetHistogram datasetIds="progenetix" id={randomSubset.id} />
+          <SubsetHistogram datasetIds={SITE_DEFAULTS.DATASETID} id={randomSubset.id} />
           <div className="has-text-centered">
             <small>
               Example for aggregated CNV data in {randomSubset.count} samples in{" "}
@@ -119,7 +119,7 @@ export const getStaticProps = async () => {
   return {
     props: {
       progenetixStats: dbstatsReply,
-      ncitCountResponse: ncitCountReply.responseSummary.numTotalResults,
+      ncitCountResponse: ncitCountReply.response.results.length,
       subsetsResponse: subsetsReply
     }
   }
