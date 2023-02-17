@@ -82,7 +82,7 @@ referenceName:
     - label: "NC_000024.10 (Y)"
       value: "refseq:NC_000024.10"
 variantType:
-  label: "(Structural) Variant Type"
+  label: "Variant Type"
   infoText: >-
     The type of a structural variant for e.g. CNV searches.
   defaultValue: ""
@@ -93,6 +93,8 @@ variantType:
       label: "EFO:0030070 (copy number gain)"
     - value: "EFO:0030066"
       label: "EFO:0030066 (any relative CN variation)"
+    - value: "SNV"
+      label: "SNV (here used for any non-CNV)"
     - value: ""
       label: ""
 start:
