@@ -3,7 +3,7 @@ import Panel from "../components/Panel"
 import { SubsetHistogram } from "../components/Histogram"
 import React from "react"
 import { sample } from "lodash"
-import { SITE, tryFetch, Link } from "../hooks/api"
+import { SITE, SITE_DEFAULTS, tryFetch, Link } from "../hooks/api"
 
 // const searchLink = 'Use case: Local CNV Frequencies <a href="/biosamples/">{↗}</a>'+
 
@@ -107,13 +107,13 @@ export default function Index({
 
 export const getStaticProps = async () => {
   const dbstatsReply = await tryFetch(
-    `${SITE}services/dbstats/?datasetIds=progenetix`
+    `${SITE}services/dbstats/?datasetIds=${SITE_DEFAULTS.DATASETID}`
   )
   const ncitCountReply = await tryFetch(
-    `${SITE}services/collations/?datasetIds=progenetix&method=codematches&collationTypes=NCIT`
+    `${SITE}services/collations/?datasetIds=${SITE_DEFAULTS.DATASETID}&method=codematches&collationTypes=NCIT`
   )
   const subsetsReply = await tryFetch(
-    `${SITE}services/collations/?datasetIds=progenetix&method=counts&collationTypes=icdom,NCIT,PMID,icdot,UBERON,NCITgrade,NCITstage`
+    `${SITE}services/collations/?datasetIds=${SITE_DEFAULTS.DATASETID}&method=counts&collationTypes=icdom,NCIT,PMID,icdot,UBERON,NCITgrade,NCITstage`
   )
 
   return {
