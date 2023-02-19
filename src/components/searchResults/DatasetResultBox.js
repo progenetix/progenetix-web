@@ -2,11 +2,11 @@ import React, { useRef, useState } from "react"
 import {
   MAX_HISTO_SAMPLES,
   replaceWithProxy,
-  ExternalLink,
   useProgenetixApi,
   SITE_DEFAULTS,
   useExtendedSWR
 } from "../../hooks/api"
+import { ExternalLink } from "../helpersShared/linkHelpers"
 import cn from "classnames"
 import BiosamplesDataTable from "./BiosamplesDataTable"
 import VariantsDataTable from "./VariantsDataTable"

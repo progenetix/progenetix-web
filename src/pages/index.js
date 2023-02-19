@@ -3,7 +3,8 @@ import Panel from "../components/Panel"
 import { SubsetHistogram } from "../components/Histogram"
 import React from "react"
 import { sample } from "lodash"
-import { ExternalLink, SITE, SITE_DEFAULTS, tryFetch } from "../hooks/api"
+import { SITE, SITE_DEFAULTS, tryFetch } from "../hooks/api"
+import { ExternalLink } from "../components/helpersShared/linkHelpers"
 
 // const searchLink = 'Use case: Local CNV Frequencies <a href="/biosamples/">{↗}</a>'+
 

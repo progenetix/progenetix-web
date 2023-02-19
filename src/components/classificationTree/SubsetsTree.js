@@ -1,4 +1,5 @@
-import { pluralizeWord, sampleSearchPageFiltersLink } from "../../hooks/api"
+import { sampleSearchPageFiltersLink } from "../../hooks/api"
+import { subsetCountLabel } from "../helpersShared/labelHelpers"
 import React, { useEffect, useMemo, useState } from "react"
 import cn from "classnames"
 import { FaAngleDown, FaAngleRight } from "react-icons/fa"
@@ -255,11 +256,6 @@ function Node({
       </span>
     </div>
   )
-}
-
-function subsetCountLabel(subset) {
-  const cnvCountLabel = subset.cnvAnalyses ? `, ${subset.cnvAnalyses} ${pluralizeWord("CNV profile", subset.cnvAnalyses)}` : ""
-  return `(${subset.count} ${pluralizeWord("sample", subset.count)}${cnvCountLabel})`
 }
 
 function Expander({ isOpen, setOpen }) {

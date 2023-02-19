@@ -1,5 +1,4 @@
 import React from "react"
-import { EpmcLink } from "../../hooks/api"
 import Table, { TooltipHeader, InfodotHeader } from "../../components/Table"
 import cn from "classnames"
 
@@ -255,6 +254,18 @@ function getPublicationIdNumber(publicationId) {
   return +publicationId.substring(
     publicationId.indexOf(":") + 1,
     publicationId.length
+  )
+}
+
+function epmcUrl(publicationId) {
+  return `http://www.europepmc.org/abstract/MED/${ publicationId.split(":")[1] }`
+}
+
+function EpmcLink({ publicationId }) {
+  return (
+    <a href={epmcUrl(publicationId)} rel="noreferrer" target="_BLANK">
+      <img src="/img/icon_EPMC_16.gif" />
+    </a>
   )
 }
 

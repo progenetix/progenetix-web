@@ -3,12 +3,12 @@ import {
   BIOKEYS,
   basePath,
   getDataItemUrl,
-  referenceLink,
   useDataItemDelivery,
   NoResultsHelp,
   useExtendedSWR,
   Link
 } from "../../hooks/api"
+import { referenceLink } from "../../components/helpersShared/linkHelpers"
 import { WithData } from "../../components/Loader"
 import React, { useRef } from "react"
 import { withUrlQuery } from "../../hooks/url-query"

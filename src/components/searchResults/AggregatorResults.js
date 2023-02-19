@@ -1,5 +1,5 @@
 import { Loader } from "../Loader"
-import { ExternalLink } from "../../hooks/api"
+import { ExternalLink } from "../helpersShared/linkHelpers"
 // import { QuerySummary } from "../QuerySummary"
 // import { DatasetResultBox } from "./DatasetResultBox"
 import React from "react"
