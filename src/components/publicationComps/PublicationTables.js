@@ -1,5 +1,6 @@
 import React from "react"
 import Table, { TooltipHeader, InfodotHeader } from "../../components/Table"
+import { EpmcLink} from "../../components/helpersShared/linkHelpers"
 import cn from "classnames"
 
 export function PublicationTable({ publications }) {
@@ -256,17 +257,4 @@ function getPublicationIdNumber(publicationId) {
     publicationId.length
   )
 }
-
-function epmcUrl(publicationId) {
-  return `http://www.europepmc.org/abstract/MED/${ publicationId.split(":")[1] }`
-}
-
-function EpmcLink({ publicationId }) {
-  return (
-    <a href={epmcUrl(publicationId)} rel="noreferrer" target="_BLANK">
-      <img src="/img/icon_EPMC_16.gif" />
-    </a>
-  )
-}
-
 
