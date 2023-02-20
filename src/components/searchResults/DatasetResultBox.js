@@ -313,6 +313,7 @@ function ResultsTab({
       {histogramUrl && shouldShowHistogram(alternateBases) && (
         <div className="mb-4">
           <CnvHistogramPreview url={histogramUrl} />
+          <ExternalLink href={histogramUrl} label="Reload histogram in new window" />
         </div>
       )}
       <WithData
