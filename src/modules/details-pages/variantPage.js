@@ -9,6 +9,7 @@ import {
 import { WithData } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
+import { ShowJSON } from "../../components/RawData"
 import React from "react"
 import Link from "next/link"
 
@@ -170,6 +171,8 @@ function Variant({ variant, id, datasetIds }) {
         </>
         )}
 
+      <ShowJSON data={variant} />
+
       <h5>
         Download Data as Beacon v2{" "}
         <a
@@ -180,6 +183,7 @@ function Variant({ variant, id, datasetIds }) {
           {"{JSON↗}"}
         </a>
       </h5>
+
     </section>
   )
 }

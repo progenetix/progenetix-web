@@ -13,6 +13,7 @@ import { WithData } from "../../components/Loader"
 import React, { useRef } from "react"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
+import { ShowJSON } from "../../components/RawData"
 import { useContainerDimensions } from "../../hooks/containerDimensions"
 import { svgFetcher } from "../../hooks/fetcher"
 import Histogram from "../../components/Histogram"
@@ -169,6 +170,8 @@ function Biosample({ biosample, datasetIds }) {
           ))}
         </>
       )}
+
+      <ShowJSON data={biosample} />
 
       <h5>
         Download Data as Beacon v2{" "}

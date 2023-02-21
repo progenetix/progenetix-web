@@ -8,6 +8,7 @@ import {
 import { WithData } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
+import { ShowJSON } from "../../components/RawData"
 // import Link from "next/link"
 
 const itemColl = "individuals"
@@ -128,15 +129,17 @@ function Individual({ individual, datasetIds }) {
             ))}
             </>
          }
-            <h5>Biosamples</h5>
-            {individual.biosamples?.map((bs, i) => (
-              <li key={i}>
-              <Link
-                href={`/biosample/?id=${bs}&datasetIds=${ datasetIds }`}
-                label={bs}
-              />
-              </li>
-            ))}
+      <h5>Biosamples</h5>
+      {individual.biosamples?.map((bs, i) => (
+        <li key={i}>
+        <Link
+          href={`/biosample/?id=${bs}&datasetIds=${ datasetIds }`}
+          label={bs}
+        />
+        </li>
+      ))}
+      
+      <ShowJSON data={individual} />
       <h5>
         Download Data as Beacon v2{" "}
         <a

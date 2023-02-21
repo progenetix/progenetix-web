@@ -32,6 +32,7 @@
     "react-icons": "^4.2.0",
     "react-leaflet": "^3.1.0",
     "react-leaflet-markercluster": "^3.0.0-rc1",
+    "react-markdown": "^8.0.5",
     "react-public-ip": "^1.0.0",
     "react-select": "^4.1.0",
     "react-table": "^7.6.3",

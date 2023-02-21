@@ -46,14 +46,18 @@ beaconplus:
           defaultValue: "EFO:0030067"
         alternateBases:
           defaultValue: ""
-          placeholder: ""
-          isHidden: false
+          isHidden: true
         referenceBases:
           defaultValue: ""
-          isHidden: false
-          placeholder: ""
+          isHidden: true
         bioontology:
           defaultValue: [NCIT:C3058]
+        includeDescendantTerms:
+          isHidden: true
+        geoCity:
+          isHidden: true
+        geodistanceKm:
+          isHidden: true
         freeFilters:
           isHidden: false
     - label: "SNV Example"
@@ -80,8 +84,25 @@ beaconplus:
         referenceBases:
           defaultValue: "G"
           isHidden: false
+        clinicalClasses:
+          isHidden: true
+        accessid:
+          isHidden: true
+        filterLogic:
+          isHidden: true
+        includeDescendantTerms:
+          isHidden: true
+        geoCity:
+          isHidden: true
+        geodistanceKm:
+          isHidden: true
+        skip:
+          defaultValue: 0
+        limit:
+          defaultValue: 100
         freeFilters:
           defaultValue: ""
+          isHidden: true
     - label: "SNV Range Example"
       note: "Example for EIF4A1 transcript region matches (precise variants)"
       description: |
@@ -98,8 +119,11 @@ beaconplus:
           defaultValue: ["progenetix"]
         assemblyId:
           defaultValue: "GRCh38"
+          isHidden: true
         referenceName:
           defaultValue: "refseq:NC_000017.11"
+        geneId:
+          isHidden: true
         start:
           defaultValue: 7572826
         end:
@@ -107,8 +131,32 @@ beaconplus:
         variantType:
           defaultValue: ""
         alternateBases:
-          defaultValue: "N"
-        referenceBases:
-          defaultValue: "N"
-        freeFilters:
           defaultValue: ""
+        referenceBases:
+          defaultValue: ""
+        clinicalClasses:
+          isHidden: true
+        accessid:
+          isHidden: true
+        filterLogic:
+          isHidden: true
+        includeDescendantTerms:
+          isHidden: true
+        geoCity:
+          isHidden: true
+        geodistanceKm:
+          isHidden: true
+        skip:
+          defaultValue: 0
+        limit:
+          defaultValue: 100
+        freeFilters:
+          isHidden: true
+        sex:
+          isHidden: true
+        materialtype:
+          isHidden: true
+        referenceid:
+          isHidden: true
+        cohorts:
+          isHidden: true
