@@ -1,22 +1,18 @@
 import {
   SITE_DEFAULTS,
   BIOKEYS,
-  basePath,
   getDataItemUrl,
   useDataItemDelivery,
-  NoResultsHelp,
-  useExtendedSWR,
-  Link
+  NoResultsHelp
 } from "../../hooks/api"
-import { referenceLink } from "../../components/helpersShared/linkHelpers"
+import { Link, referenceLink } from "../../components/helpersShared/linkHelpers"
 import { WithData } from "../../components/Loader"
-import React, { useRef } from "react"
+import React from "react"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
 import { ShowJSON } from "../../components/RawData"
-import { useContainerDimensions } from "../../hooks/containerDimensions"
-import { svgFetcher } from "../../hooks/fetcher"
-import Histogram from "../../components/Histogram"
+import { CnvHistogramPreview } from "../../components/Histogram"
+import { pluralizeWord }  from "../../components/helpersShared/labelHelpers"
 
 const itemColl = "biosamples"
 const exampleId = "pgxbs-kftvir6m"
@@ -64,11 +60,12 @@ function BiosampleResponse({ response, datasetIds }) {
 }
 
 function Biosample({ biosample, datasetIds }) {
+  const biosId = biosample.id
   return (
     <section className="content">
     
       <h3 className="mb-6">
-        {biosample.id} ({SITE_DEFAULTS.DATASETLABEL})
+        {biosId} ({SITE_DEFAULTS.DATASETLABEL})
       </h3>
 
       {biosample.description && (
@@ -91,6 +88,7 @@ function Biosample({ biosample, datasetIds }) {
       ))}      
       </ul>
 
+      <>
       <h5>Clinical Data</h5>
       <ul>
         {biosample.individualAgeAtCollection?.age && (
@@ -108,7 +106,9 @@ function Biosample({ biosample, datasetIds }) {
           </li>
         )}
       </ul>
+      </>
 
+      <>
       <h5>Provenance</h5>
       <ul>
         {biosample.provenance?.material?.label && (
@@ -116,7 +116,7 @@ function Biosample({ biosample, datasetIds }) {
             <li>Material: {biosample.biosampleStatus.label}</li>
           </>
         )}
-        {biosample.provenance?.geoLocation?.properties.label && (
+        {biosample.provenance?.geoLocation?.properties?.label && (
           <>
             <li>
               Origin: {biosample.provenance.geoLocation.properties.label}
@@ -132,38 +132,47 @@ function Biosample({ biosample, datasetIds }) {
           </>
         )}
       </ul>
-      
-      <h5>Individual</h5>
-      <ul>
-        <li>Progenetix entry:{" "}
-          <Link
-            href={`/individual/?id=${biosample.individualId}&datasetIds=${ datasetIds }`}
-            label={biosample.individualId}
-          />
-        </li>
-      </ul>
+      </>
 
-      <h5>External References</h5>
-      <ul>
-        {biosample.externalReferences.map((externalReference, i) => (
-          <li key={i}>
-            {externalReference?.description}{" "}
-            {referenceLink(externalReference) ? (
-              <Link
-                href={referenceLink(externalReference)}
-                label={`: ${externalReference.id}`}
-              />
-            ) : (
-              externalReference.id
-            )}
-          </li>
-        ))}
-      </ul>
-
-      {biosample.info?.callsetIds?.length > 0 && (
+      {biosample.individualId && (
         <>
-          <h5>CNV Profile(s)</h5>
-          {biosample.info?.callsetIds?.map((csid, i) => (
+          <h5>Individual</h5>
+          <ul>
+            <li>Progenetix entry:{" "}
+              <Link
+                href={`/individual/?id=${biosample.individualId}&datasetIds=${ datasetIds }`}
+                label={biosample.individualId}
+              />
+            </li>
+          </ul>
+        </>
+      )}
+
+      {biosample.externalReferences && (
+        <>
+        <h5>External References</h5>
+        <ul>
+          {biosample.externalReferences.map((externalReference, i) => (
+            <li key={i}>
+              {externalReference?.description}{" "}
+              {referenceLink(externalReference) ? (
+                <Link
+                  href={referenceLink(externalReference)}
+                  label={`: ${externalReference.id}`}
+                />
+              ) : (
+                externalReference.id
+              )}
+            </li>
+          ))}
+        </ul>
+        </>
+      )}
+
+      { biosample.info && biosample.info.callsetIds?.length > 0 && (
+        <>
+          <h5>CNV {pluralizeWord("Plot", biosample.info.callsetIds.length)}</h5>
+          {biosample.info?.callsetIds.map((csid, i) => (
             <CnvHistogramPreview key={i} csid={csid} datasetIds={datasetIds} />
           ))}
         </>
@@ -184,19 +193,9 @@ function Biosample({ biosample, datasetIds }) {
           {"{JSON↗}"}
         </a>
       </h5>
+
     </section>
   )
 }
 
-function CnvHistogramPreview({ csid, datasetIds }) {
-  const componentRef = useRef()
-  const { width } = useContainerDimensions(componentRef)
-  const url = `${basePath}cgi/PGX/cgi/singlePlot.cgi?analysisIds=${csid}&datasetIds=${datasetIds}&-size_plotimage_w_px=${width}`
-  // width > 0 to make sure the component is mounted and avoid double fetch
-  const dataEffect = useExtendedSWR(width > 0 && url, svgFetcher)
-  return (
-    <div ref={componentRef} className="mb-4">
-      <Histogram apiReply={dataEffect} />
-    </div>
-  )
-}
+

@@ -1,16 +1,19 @@
 import { Loader } from "./Loader"
 import React, { useRef } from "react"
 import {
+  basePath,
   useSubsethistogram,
   subsetSVGlink,
   subsetIdLink,
-  subsetPgxsegLink
+  subsetPgxsegLink,
+  useExtendedSWR
 } from "../hooks/api"
+import { svgFetcher } from "../hooks/fetcher"
 import { useContainerDimensions } from "../hooks/containerDimensions"
 import PropTypes from "prop-types"
 import Link from "next/link"
 
-export default function Histogram({ apiReply }) {
+export function Histogram({ apiReply }) {
   const { data, error, isLoading } = apiReply
   return (
     <Loader isLoading={isLoading} hasError={error} background>
@@ -50,6 +53,19 @@ export function SubsetHistogram({ id, filter, datasetIds, labelstring, size: giv
           <a>Download CNV Frequencies</a>
         </Link>
       </div>
+    </div>
+  )
+}
+
+export function CnvHistogramPreview({ csid, datasetIds }) {
+  const componentRef = useRef()
+  const { width } = useContainerDimensions(componentRef)
+  const url = `${basePath}cgi/PGX/cgi/singlePlot.cgi?analysisIds=${csid}&datasetIds=${datasetIds}&-size_plotimage_w_px=${width}`
+  // width > 0 to make sure the component is mounted and avoid double fetch
+  const dataEffect = useExtendedSWR(width > 0 && url, svgFetcher)
+  return (
+    <div ref={componentRef} className="mb-4">
+      <Histogram apiReply={dataEffect} />
     </div>
   )
 }

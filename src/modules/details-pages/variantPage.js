@@ -6,13 +6,12 @@ import {
   // useProgenetixApi,
   NoResultsHelp
 } from "../../hooks/api"
-import { referenceLink } from "../../components/helpersShared/linkHelpers"
+import { ExternalLink, referenceLink } from "../../components/helpersShared/linkHelpers"
 import { WithData } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
 import { ShowJSON } from "../../components/RawData"
 import React from "react"
-import Link from "next/link"
 
 const entity = "variants"
 const exampleId = "5bab576a727983b2e00b8d32"
@@ -118,9 +117,10 @@ function Variant({ variant, id, datasetIds }) {
        <p>ClinVar IDs:</p>
          <ul>
             <li>
-              <Link href={"https://www.ncbi.nlm.nih.gov/clinvar/variation/" + variant.variation.identifiers.clinvarIds[0][0]}>
-                <a>{variant.variation.identifiers.clinvarIds[0][0]}</a>
-              </Link>
+              <ExternalLink
+                href={`www.ncbi.nlm.nih.gov/clinvar/variation/${variant.variation.identifiers.clinvarIds[0][0]}`}
+                label={variant.variation.identifiers.clinvarIds[0][0]}
+              />
             </li>
             <li>
                 {variant.variation.identifiers.clinvarIds[0][1]}
@@ -143,9 +143,10 @@ function Variant({ variant, id, datasetIds }) {
           <tr key={key}>
             <td>
             {referenceLink(clinicalInterpretations.effect) ? (
-              <Link href={referenceLink(clinicalInterpretations.effect)}>
-                <a>{clinicalInterpretations.effect.id}</a>
-              </Link>
+              <ExternalLink
+                href={referenceLink(clinicalInterpretations.effect)}
+                label={clinicalInterpretations.effect.id}
+              />
             ) : (
               clinicalInterpretations.effect.id
             )}
