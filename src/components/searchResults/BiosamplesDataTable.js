@@ -1,4 +1,5 @@
-import { BIOKEYS, referenceLink } from "../../hooks/api"
+import { BIOKEYS } from "../../hooks/api"
+import { referenceLink } from "../helpersShared/linkHelpers"
 import React from "react"
 import PropTypes from "prop-types"
 import { WithData } from "../Loader"

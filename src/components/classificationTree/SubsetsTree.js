@@ -1,4 +1,5 @@
-import { pluralizeWord, sampleSearchPageFiltersLink } from "../../hooks/api"
+import { sampleSearchPageFiltersLink } from "../../hooks/api"
+import { subsetCountLabel } from "../helpersShared/labelHelpers"
 import React, { useEffect, useMemo, useState } from "react"
 import cn from "classnames"
 import { FaAngleDown, FaAngleRight } from "react-icons/fa"
@@ -242,13 +243,13 @@ function Node({
                 })}
               >
                 <span>
-                  &nbsp;({subset.count} {pluralizeWord("sample", subset.count)})
+                  &nbsp;{subsetCountLabel(subset)}
                 </span>
               </a>
             </Tippy>
           ) : subset ? (
             <span>
-              &nbsp;({subset.count} {pluralizeWord("sample", subset.count)})
+              &nbsp;{subsetCountLabel(subset)}
             </span>
           ) : null}
         </span>

@@ -3,7 +3,6 @@ import {
   MAX_HISTO_SAMPLES,
   SITE_DEFAULTS,
   replaceWithProxy,
-  ExternalLink,
   useProgenetixApi,
   useExtendedSWR
 } from "../../hooks/api"
@@ -14,6 +13,7 @@ import { useContainerDimensions } from "../../hooks/containerDimensions"
 import Histogram from "../Histogram"
 // import Link from "next/link"
 // import { Infodot } from "../Infodot"
+import { ExternalLink } from "../helpersShared/linkHelpers"
 import { svgFetcher } from "../../hooks/fetcher"
 import BiosamplesStatsDataTable from "./BiosamplesStatsDataTable"
 import { WithData } from "../Loader"

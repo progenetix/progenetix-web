@@ -1,10 +1,9 @@
 import {
   getDataItemUrl,
   useDataItemDelivery,
-  NoResultsHelp,
-  referenceLink,
-  Link
+  NoResultsHelp
 } from "../../hooks/api"
+import { Link, referenceLink } from "../../components/helpersShared/linkHelpers"
 import { WithData } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"

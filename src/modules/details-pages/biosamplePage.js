@@ -1,22 +1,18 @@
 import {
   SITE_DEFAULTS,
   BIOKEYS,
-  basePath,
   getDataItemUrl,
-  referenceLink,
   useDataItemDelivery,
-  NoResultsHelp,
-  useExtendedSWR,
-  Link
+  NoResultsHelp
 } from "../../hooks/api"
+import { Link, referenceLink } from "../../components/helpersShared/linkHelpers"
 import { WithData } from "../../components/Loader"
-import React, { useRef } from "react"
+import React from "react"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
 import { ShowJSON } from "../../components/RawData"
-import { useContainerDimensions } from "../../hooks/containerDimensions"
-import { svgFetcher } from "../../hooks/fetcher"
-import Histogram from "../../components/Histogram"
+import { CnvHistogramPreview } from "../../components/Histogram"
+import { pluralizeWord }  from "../../components/helpersShared/labelHelpers"
 
 const itemColl = "biosamples"
 const exampleId = "pgxbs-kftvir6m"
@@ -162,10 +158,10 @@ function Biosample({ biosample, datasetIds }) {
         ))}
       </ul>
 
-      {biosample.info?.callsetIds?.length > 0 && (
+      { biosample.info && biosample.info.callsetIds?.length > 0 && (
         <>
-          <h5>CNV Profile(s)</h5>
-          {biosample.info?.callsetIds?.map((csid, i) => (
+          <h5>CNV {pluralizeWord("Plot", biosample.info.callsetIds.length)}</h5>
+          {biosample.info?.callsetIds.map((csid, i) => (
             <CnvHistogramPreview key={i} csid={csid} datasetIds={datasetIds} />
           ))}
         </>
@@ -187,18 +183,5 @@ function Biosample({ biosample, datasetIds }) {
         </a>
       </h5>
     </section>
-  )
-}
-
-function CnvHistogramPreview({ csid, datasetIds }) {
-  const componentRef = useRef()
-  const { width } = useContainerDimensions(componentRef)
-  const url = `${basePath}cgi/PGX/cgi/singlePlot.cgi?analysisIds=${csid}&datasetIds=${datasetIds}&-size_plotimage_w_px=${width}`
-  // width > 0 to make sure the component is mounted and avoid double fetch
-  const dataEffect = useExtendedSWR(width > 0 && url, svgFetcher)
-  return (
-    <div ref={componentRef} className="mb-4">
-      <Histogram apiReply={dataEffect} />
-    </div>
   )
 }
