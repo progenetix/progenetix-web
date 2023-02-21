@@ -90,8 +90,8 @@ extra:
   excerpt_separator: <!--more-->
   blog_list_length: 100
   social:
-    - icon: fontawesome/brands/twitter 
-      link: https://twitter.com/progenetix
+    - icon: fontawesome/brands/mastodon 
+      link: https://genomic.social/@progenetix
     - icon: fontawesome/brands/github 
       link: https://github.com/progenetix
 extra_css:
