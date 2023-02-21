@@ -392,6 +392,7 @@ export function subsetSVGlink(id, datasetIds) {
 }
 
 // the targets are resolved by `bycon` (bycon/services/ids.py)
+// TODO: make this a function here - UI links resolved in UI, API links in bycon
 export function subsetIdLink(id) {
   return `${basePath}services/ids/${id}`
 }

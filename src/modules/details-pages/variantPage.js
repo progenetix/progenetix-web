@@ -10,6 +10,7 @@ import { referenceLink } from "../../components/helpersShared/linkHelpers"
 import { WithData } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
+import { ShowJSON } from "../../components/RawData"
 import React from "react"
 import Link from "next/link"
 
@@ -183,6 +184,8 @@ function Variant({ variant, id, datasetIds }) {
                 </ul>
             </>
         )}
+
+      <ShowJSON data={variant} />
 
       <h5>
         Download Data as Beacon v2{" "}

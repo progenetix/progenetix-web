@@ -7,6 +7,7 @@ import {
 } from "../../hooks/api"
 import { Loader } from "../../components/Loader"
 import { Layout } from "../../components/Layout"
+import { ShowJSON } from "../../components/RawData"
 import { SubsetHistogram } from "../../components/Histogram"
 import { withUrlQuery } from "../../hooks/url-query"
 
@@ -115,6 +116,8 @@ function Subset({ subset, datasetIds }) {
         >{" "}Search Form
         </a>
       </h5>
+
+      <ShowJSON data={subset} />
       
       <h5>
         Download Data as Beacon v2{" "}
