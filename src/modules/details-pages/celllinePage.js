@@ -92,7 +92,7 @@ function LiteratureSearchResultsTabbed({label, labels, setLabels}) {
   return (
     <Loader isLoading={isLoading} hasError={error} background>
 
-    {data && (
+    {data && Object.keys(data).length > 0 && (
       <div className="box">
         {tabNames?.length > 0 ? (
           <div className="tabs is-boxed ">

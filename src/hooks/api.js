@@ -240,12 +240,12 @@ export function usePublicationList({ geoCity, geodistanceKm }) {
 
 export function useLiteratureSearchResults(t1s,t2s)
 {
-  return useProgenetixApi(`${basePath}cgi-bin/literatureSearch/search.py?func=search&mode=exact&t1s=${t1s.join(",")}&t2s=${t2s.join(",")}`);
+  return useProgenetixApi(`${basePath}cgi-bin/literatureSearch/literatureSearch.py?func=search&mode=exact&t1s=${t1s.join(",")}&t2s=${t2s.join(",")}`);
 }
 
 export function useLiteratureCellLineMatches(cln)
 {
-  return useProgenetixApi(`${basePath}cgi-bin/literatureSearch/search.py?func=relations&t1=${cln}`);
+  return useProgenetixApi(`${basePath}cgi-bin/literatureSearch/literatureSearch.py?func=relations&t1=${cln}`);
 }
 
 // \ ZHAW
