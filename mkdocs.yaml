@@ -8,8 +8,9 @@ repo_url: https://github.com/progenetix/cancercelllines-web
 ###############################################################################
 
 nav:
-  - Documentation Home: index.md
+  - Documentation Home: index
   - News & Changes: news
+  - Literature data: literature-data
   - Cancercelllines Data &#8599;: http://cancercelllines.org
   - Progenetix Data &#8599;: http://progenetix.org
   - Baudisgroup @ UZH &#8599;: http://info.baudisgroup.org
