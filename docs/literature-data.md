@@ -4,7 +4,7 @@ title: Cell Line Literature Mining
 
 ## Background
 
-As an extension of the standard "data resource" model of Progenetix, together in
+![ZHAW Icon](/img/zhaw_logo.jpg){ align=right width=36px}As an extension of the standard "data resource" model of Progenetix, together in
 a collaboration with a group from [the ZHAW](https://www.zhaw.ch/en/about-us/person/stog/)
 we have implemented "knowledge exploration" entry points for cell line genomics.
 Based on work from the [INODE](https://www.inode-project.eu/inode) project the
@@ -14,7 +14,7 @@ the contextual association of genes or genomic regions.
 
 ## Implementation
 
-Based on a list of CCL-related publications (e.g. from the studies containing CNV
+![Inode Icon](/img/inode-logo-blue.svg){ align=left width=120px}Based on a list of CCL-related publications (e.g. from the studies containing CNV
 data in progenetix or those referenced in the cellosaurus entries) we utilize  subject-predicate-object triple extraction from text, and entity-ontology linking
 via a graph database. Relationships extracted in a context that references a given
 cell line arer then represented for some selected categories. Here, following the
