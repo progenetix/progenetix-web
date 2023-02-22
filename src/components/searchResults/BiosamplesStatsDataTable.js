@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import Table, { InfodotHeader } from "../Table"
 import _ from "lodash"
-import { SITE_DEFAULTS, useCollationsById } from "../../hooks/api"
+import { useCollationsById } from "../../hooks/api"
 import { WithData } from "../Loader"
 
 const STATSKEYS = ["celllineInfo", "histologicalDiagnosis"]
@@ -48,7 +48,7 @@ export default function BiosamplesStatsDataTable({
           ),
           accessor: "count"
         },
-        variantCount > 0 && datasetId === SITE_DEFAULTS.DATASETID
+        variantCount > 0
 
           ? [
               {

@@ -33,6 +33,7 @@ export default function BiosamplesSearchPanel({
     setQuery(null)
     mutateQuery(null)
   }
+  
   const isLoading = isQueryLoading && !!query
   const onValidFormQuery = (formValues) => {
     setSearchCollapsed(true)

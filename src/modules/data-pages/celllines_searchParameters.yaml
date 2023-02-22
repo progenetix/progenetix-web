@@ -6,7 +6,7 @@ celllines:
   parameters:
     datasetIds:
       defaultValue: ["cellz"]
-      isHidden: true
+      # isHidden: true
     assemblyId:
       isHidden: true
     referenceName:

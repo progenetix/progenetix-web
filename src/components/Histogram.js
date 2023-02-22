@@ -1,7 +1,7 @@
 import { Loader } from "./Loader"
 import React, { useRef } from "react"
 import {
-  basePath,
+ basePath,
   useSubsethistogram,
   subsetSVGlink,
   subsetIdLink,
@@ -13,7 +13,7 @@ import { useContainerDimensions } from "../hooks/containerDimensions"
 import PropTypes from "prop-types"
 import Link from "next/link"
 
-export function Histogram({ apiReply }) {
+export default function Histogram({ apiReply }) {
   const { data, error, isLoading } = apiReply
   return (
     <Loader isLoading={isLoading} hasError={error} background>
@@ -69,6 +69,7 @@ export function CnvHistogramPreview({ csid, datasetIds }) {
     </div>
   )
 }
+
 
 SubsetHistogram.propTypes = {
   id: PropTypes.string.isRequired,

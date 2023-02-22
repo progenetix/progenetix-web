@@ -3,8 +3,8 @@ import defaultFetcher, { svgFetcher } from "./fetcher"
 import { keyBy } from "lodash"
 
 // eslint-disable-next-line no-undef
-//export const basePath = process.env.NEXT_PUBLIC_API_PATH
-export const basePath = process.env.NEXT_PUBLIC_API_PATH
+export const basePath = "http://cancercelllines.test/"
+// export const basePath = process.env.NEXT_PUBLIC_API_PATH
 export const useProxy = process.env.NEXT_PUBLIC_USE_PROXY === "true"
 export const SITE = process.env.NEXT_PUBLIC_SITE_URL
 

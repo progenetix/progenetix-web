@@ -1,12 +1,11 @@
 import React, { useRef, useState } from "react"
 import {
   MAX_HISTO_SAMPLES,
+  SITE_DEFAULTS,
   replaceWithProxy,
   useProgenetixApi,
-  SITE_DEFAULTS,
   useExtendedSWR
 } from "../../hooks/api"
-import { ExternalLink } from "../helpersShared/linkHelpers"
 import cn from "classnames"
 import BiosamplesDataTable from "./BiosamplesDataTable"
 import VariantsDataTable from "./VariantsDataTable"
@@ -14,6 +13,7 @@ import { useContainerDimensions } from "../../hooks/containerDimensions"
 import Histogram from "../Histogram"
 // import Link from "next/link"
 // import { Infodot } from "../Infodot"
+import { ExternalLink } from "../helpersShared/linkHelpers"
 import { svgFetcher } from "../../hooks/fetcher"
 import BiosamplesStatsDataTable from "./BiosamplesStatsDataTable"
 import { WithData } from "../Loader"
