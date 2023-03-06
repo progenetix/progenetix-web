@@ -190,7 +190,7 @@ The current version of the JSON Schema data schema for the geolocation object ca
 [^2]: Human phenotype ontology [HPO](https://hpo.jax.org)
 [^3]: Supported identifiers include platforms(GPL), series(GSE) and samples(GSM).[GEO Overview](https://www.ncbi.nlm.nih.gov/geo/info/overview.html)
 [^4]: Supports ArrayExpress Accession ID. [ArrayExpress browse](https://www.ebi.ac.uk/arrayexpress/browse.html)
-[^5]: [Cellosaurus](https://web.expasy.org/cellosaurus/) accession ID.
+[^5]: [Cellosaurus](https://www.cellosaurus.org/) accession ID.
 [^6]: [Uberon](http://uberon.github.io/about.html) ID
 [^7]:International Classification of Diseases for Oncology, 3rd Edition [ICD-O-3](https://www.who.int/standards/classifications/other-classifications/international-classification-of-diseases-for-oncology)
 [^8]: Supports [TCGA](https://portal.gdc.cancer.gov) Sample UUID.

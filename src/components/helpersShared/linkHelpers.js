@@ -20,7 +20,7 @@ export function ExternalLink({ href, label, onClick }) {
 export function referenceLink(externalReference) {
   if (externalReference.id.includes("cellosaurus:")) {
     return (
-      "https://web.expasy.org/cellosaurus/" +
+      "https://www.cellosaurus.org/" +
       externalReference.id.replace("cellosaurus:", "")
     )
   } else if (externalReference.id.includes("PMID:")) {

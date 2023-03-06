@@ -46,7 +46,7 @@ export default function BiosamplesStatsDataTable({
           ),
           accessor: "count"
         },
-        variantCount > 0 && datasetId === "progenetix"
+        variantCount > 0
           ? [
               {
                 Header: InfodotHeader(
