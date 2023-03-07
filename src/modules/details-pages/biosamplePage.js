@@ -178,6 +178,22 @@ function Biosample({ biosample, datasetIds }) {
         </>
       )}
 
+      <h5>Download</h5>
+      <ul>
+        <li>Variants as{" "}
+          <Link
+            href={`/beacon/biosamples/${biosample.id}/variants/`}
+            label="Beacon JSON"
+          />
+        </li>
+        <li>Variants as{" "}
+          <Link
+            href={`/beacon/biosamples/${biosample.id}/variants/?output=pgxseg`}
+            label="Progenetix .pgxseg file"
+          />
+        </li>
+      </ul>
+
       <ShowJSON data={biosample} />
 
       <h5>
