@@ -95,7 +95,7 @@ function Biosample({ biosample, datasetIds }) {
         <li>
           Instance of {" "}
           <Link
-            href={`cellline/?id=${biosample.celllineInfo.id}&datasetIds=${ datasetIds }`}
+            href={`/cellline/?id=${biosample.celllineInfo.id}&datasetIds=${ datasetIds }`}
             label={biosample.celllineInfo.id}
           />
         </li>
