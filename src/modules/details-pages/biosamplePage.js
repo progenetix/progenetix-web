@@ -171,11 +171,20 @@ function Biosample({ biosample, datasetIds }) {
         <ul>
           {biosample.externalReferences.map((externalReference, i) => (
             <li key={i}>
-              {externalReference?.description}{" "}
+              <>
+              {externalReference.description && (
+                `${externalReference.description}: `
+              )}
+              </>
+              <>
+              {externalReference.label && (
+                `${externalReference.label}: `
+              )}
+              </>
               {referenceLink(externalReference) ? (
                 <Link
                   href={referenceLink(externalReference)}
-                  label={`: ${externalReference.id}`}
+                  label={`${externalReference.id}`}
                 />
               ) : (
                 externalReference.id
