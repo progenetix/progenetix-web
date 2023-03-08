@@ -57,7 +57,7 @@ export function SubsetHistogram({ id, filter, datasetIds, labelstring, size: giv
   )
 }
 
-export function CnvHistogramPreview({ csid, datasetIds }) {
+export function CallsetHistogram({ csid, datasetIds }) {
   const componentRef = useRef()
   const { width } = useContainerDimensions(componentRef)
   const url = `${basePath}cgi/PGX/cgi/singlePlot.cgi?analysisIds=${csid}&datasetIds=${datasetIds}&-size_plotimage_w_px=${width}`
@@ -69,7 +69,6 @@ export function CnvHistogramPreview({ csid, datasetIds }) {
     </div>
   )
 }
-
 
 SubsetHistogram.propTypes = {
   id: PropTypes.string.isRequired,

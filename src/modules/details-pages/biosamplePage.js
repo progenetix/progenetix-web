@@ -1,7 +1,6 @@
 import {
   SITE_DEFAULTS,
   BIOKEYS,
-  getDataItemUrl,
   useDataItemDelivery,
   NoResultsHelp
 } from "../../hooks/api"
@@ -11,7 +10,7 @@ import React from "react"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
 import { ShowJSON } from "../../components/RawData"
-import { CnvHistogramPreview } from "../../components/Histogram"
+import { CallsetHistogram } from "../../components/Histogram"
 import { pluralizeWord }  from "../../components/helpersShared/labelHelpers"
 
 const itemColl = "biosamples"
@@ -141,34 +140,55 @@ function Biosample({ biosample, datasetIds }) {
         </li>
       </ul>
 
-      <h5>External References</h5>
-      <ul>
-        {biosample.externalReferences.map((externalReference, i) => (
-          <li key={i}>
-            {externalReference?.description}{" "}
-            {referenceLink(externalReference) ? (
-              <Link
-                href={referenceLink(externalReference)}
-                label={`: ${externalReference.id}`}
-              />
-            ) : (
-              externalReference.id
-            )}
-          </li>
-        ))}
-      </ul>
+      {biosample.externalReferences && (
+        <>
+        <h5>External References</h5>
+        <ul>
+          {biosample.externalReferences.map((externalReference, i) => (
+            <li key={i}>
+              {externalReference.description && (
+                `${externalReference.description}: `
+              )}
+              {externalReference.label && (
+                `${externalReference.label}: `
+              )}
+              {referenceLink(externalReference) ? (
+                <Link
+                  href={referenceLink(externalReference)}
+                  label={`${externalReference.id}`}
+                />
+              ) : (
+                externalReference.id
+              )}
+            </li>
+          ))}
+        </ul>
+        </>
+      )}
 
       { biosample.info && biosample.info.callsetIds?.length > 0 && (
         <>
           <h5>CNV {pluralizeWord("Plot", biosample.info.callsetIds.length)}</h5>
           {biosample.info?.callsetIds.map((csid, i) => (
-            <CnvHistogramPreview key={i} csid={csid} datasetIds={datasetIds} />
+            <CallsetHistogram key={i} csid={csid} datasetIds={datasetIds} />
           ))}
         </>
       )}
 
       <h5>Download</h5>
       <ul>
+        <li>Sample data as{" "}
+          <Link
+            href={`/beacon/biosamples/${biosample.id}/`}
+            label="Beacon JSON"
+          />
+        </li>
+        <li>Sample data as{" "}
+          <Link
+            href={`/beacon/biosamples/${biosample.id}/phenopackets/`}
+            label="Beacon Phenopacket JSON"
+          />
+        </li>
         <li>Variants as{" "}
           <Link
             href={`/beacon/biosamples/${biosample.id}/variants/`}
@@ -185,19 +205,6 @@ function Biosample({ biosample, datasetIds }) {
 
       <ShowJSON data={biosample} />
 
-      <h5>
-        Download Data as Beacon v2{" "}
-        <a
-          rel="noreferrer"
-          target="_blank"
-          href={
-            getDataItemUrl(biosample.id, itemColl, datasetIds) +
-            "&responseFormat=simple"
-          }
-        >
-          {"{JSON↗}"}
-        </a>
-      </h5>
     </section>
   )
 }
