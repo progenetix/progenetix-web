@@ -10,7 +10,7 @@ import React from "react"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
 import { ShowJSON } from "../../components/RawData"
-import { CnvHistogramPreview } from "../../components/Histogram"
+import { CallsetHistogram } from "../../components/Histogram"
 import { pluralizeWord }  from "../../components/helpersShared/labelHelpers"
 
 const itemColl = "biosamples"
@@ -171,16 +171,12 @@ function Biosample({ biosample, datasetIds }) {
         <ul>
           {biosample.externalReferences.map((externalReference, i) => (
             <li key={i}>
-              <>
               {externalReference.description && (
                 `${externalReference.description}: `
               )}
-              </>
-              <>
               {externalReference.label && (
                 `${externalReference.label}: `
               )}
-              </>
               {referenceLink(externalReference) ? (
                 <Link
                   href={referenceLink(externalReference)}
@@ -199,7 +195,7 @@ function Biosample({ biosample, datasetIds }) {
         <>
           <h5>CNV {pluralizeWord("Plot", biosample.info.callsetIds.length)}</h5>
           {biosample.info?.callsetIds.map((csid, i) => (
-            <CnvHistogramPreview key={i} csid={csid} datasetIds={datasetIds} />
+            <CallsetHistogram key={i} csid={csid} datasetIds={datasetIds} />
           ))}
         </>
       )}
