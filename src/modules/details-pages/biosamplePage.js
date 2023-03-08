@@ -87,7 +87,25 @@ function Biosample({ biosample, datasetIds }) {
       ))}      
       </ul>
 
+      {biosample.celllineInfo && (
       <>
+      <h5>Cell Line Info</h5>
+      <ul>
+      {biosample.celllineInfo.id && (
+        <li>
+          Instance of {" "}
+          <Link
+            href={`cellline/?id=${biosample.celllineInfo.id}&datasetIds=${ datasetIds }`}
+            label={biosample.celllineInfo.id}
+          />
+        </li>
+      )}
+
+      </ul>
+      </>
+      )}
+
+{/*      <>
       <h5>Clinical Data</h5>
       <ul>
         {biosample.individualAgeAtCollection?.age && (
@@ -106,7 +124,7 @@ function Biosample({ biosample, datasetIds }) {
         )}
       </ul>
       </>
-
+*/}
       <>
       <h5>Provenance</h5>
       <ul>
