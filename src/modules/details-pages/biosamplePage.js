@@ -105,26 +105,6 @@ function Biosample({ biosample, datasetIds }) {
       </>
       )}
 
-{/*      <>
-      <h5>Clinical Data</h5>
-      <ul>
-        {biosample.individualAgeAtCollection?.age && (
-          <li>
-            Age at Collection: {biosample.individualAgeAtCollection.age}
-          </li>
-        )}
-        {biosample.info?.tnm && (
-          <li>TNM: {biosample.info.tnm}</li>
-        )}
-        {biosample.info?.death && (
-          <li>
-            Death: {biosample.info.death} (at {biosample.info.followup_months}{" "}
-            months)
-          </li>
-        )}
-      </ul>
-      </>
-*/}
       <>
       <h5>Provenance</h5>
       <ul>
