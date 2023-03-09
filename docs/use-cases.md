@@ -55,7 +55,7 @@ external project such as TCGA
 
 This data can be accessed through the Progenetix API in data and image format.
 
-![Example CNV histogram with custom parameters](http://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=NCIT:C7376&-size_plotarea_h_px=40&-value_plot_y_max=50&-colorschema=bluered&-chr2plot=1,3,9,17,22)
+![Example CNV histogram with custom parameters](http://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=NCIT:C7376&-size_plotarea_h_px=40&-value_plot_y_max=50&-colorschema=bluered&chr2plot=1,3,9,17,22)
 
 Interval frequencies are per default stored in a 1Mb binned format. More
 information about the API use can be found [in the IntervalFrequencies API documentation](services.md#pgxseg-segment-cnv-frequencies).
@@ -122,9 +122,9 @@ added (single) collation code.
 Plot parameters can be added to the request using a standard `&-__parameter__=__value__`
 syntax. Please be aware of the `-` prefix.
 
-* `-size_plotimage_w_px`
+* `size_plotimage_w_px`
     - modifies the width of the plot image in px (default 800)
-    - <http://progenetix.org/services/collationPlots/?id=PMID:22824167&-size_plotimage_w_px=1084>
+    - <http://progenetix.org/services/collationPlots/?id=PMID:22824167&size_plotimage_w_px=1084>
 * `-size_plotarea_h_px`
     - height of the plot area (excluding labels etc.) in px (default 100)
     - [progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=NCIT:C7376&-size_plotarea_h_px=300](http://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=NCIT:C7376&-size_plotarea_h_px=300)
@@ -138,14 +138,14 @@ syntax. Please be aware of the `-` prefix.
         *  `redgreen`
         *  `greenred`
         *  `bluered`
-* `-chr2plot`
+* `chr2plot`
     - comma-concatenated list of chromosomes to plot
     - default is 1 -> 22 since X & Y are not always correctly normalized for CNV
   frequencies
-        *  `-chr2plot=1,2,3,44,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X,Y`
-        *  `-chr2plot=9`
+        *  `chr2plot=1,2,3,44,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X,Y`
+        *  `chr2plot=9`
 
-    - [progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=NCIT:C7376&-size_plotarea_h_px=40&-value_plot_y_max=50&-colorschema=bluered&-chr2plot=1,3,9,17,22](http://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=NCIT:C7376&-size_plotarea_h_px=40&-value_plot_y_max=50&-colorschema=bluered&-chr2plot=1,3,9,17,22)
+    - [progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=NCIT:C7376&-size_plotarea_h_px=40&-value_plot_y_max=50&-colorschema=bluered&chr2plot=1,3,9,17,22](http://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=NCIT:C7376&-size_plotarea_h_px=40&-value_plot_y_max=50&-colorschema=bluered&chr2plot=1,3,9,17,22)
         *  see example above (live representation of embedded API call for this example)
 
 

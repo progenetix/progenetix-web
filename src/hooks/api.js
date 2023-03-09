@@ -331,8 +331,8 @@ export function useSubsethistogram({ datasetIds, id, filter, labelstring, size, 
   const svgbaseurl = subsetSVGlink(id, datasetIds)
   const params = []
   filter && params.push(["filter", filter])
-  labelstring && params.push(["-labels", labelstring])
-  size && params.push(["-size_plotimage_w_px", size])
+  labelstring && params.push(["labels", labelstring])
+  size && params.push(["size_plotimage_w_px", size])
   chr2plot && params.push(["chr2plot", chr2plot])
   const searchQuery = new URLSearchParams(params).toString()
   return useExtendedSWR(size > 0 && `${svgbaseurl}&${searchQuery}`, svgFetcher)
