@@ -117,38 +117,6 @@ can be generated for download or embedding through a canonical service URL with
 added (single) collation code.
 
 
-#### Additional plot parameters
-
-Plot parameters can be added to the request using a standard `&-__parameter__=__value__`
-syntax. Please be aware of the `-` prefix.
-
-* `size_plotimage_w_px`
-    - modifies the width of the plot image in px (default 800)
-    - <http://progenetix.org/services/collationPlots/?id=PMID:22824167&size_plotimage_w_px=1084>
-* `-size_plotarea_h_px`
-    - height of the plot area (excluding labels etc.) in px (default 100)
-    - [progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=NCIT:C7376&-size_plotarea_h_px=300](http://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=NCIT:C7376&-size_plotarea_h_px=300)
-* `-value_plot_y_max`
-    - modifies the histogram's maximum value in percent (default 100)
-    - [progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=pgx:cohort-TCGAcancers&-value_plot_y_max=50](http://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=pgx:cohort-TCGAcancers&-value_plot_y_max=50)
-* `-colorschema`
-    - change of colors used for gains and losses
-    - options
-        *  `orangeblue` (default)
-        *  `redgreen`
-        *  `greenred`
-        *  `bluered`
-* `chr2plot`
-    - comma-concatenated list of chromosomes to plot
-    - default is 1 -> 22 since X & Y are not always correctly normalized for CNV
-  frequencies
-        *  `chr2plot=1,2,3,44,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X,Y`
-        *  `chr2plot=9`
-
-    - [progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=NCIT:C7376&-size_plotarea_h_px=40&-value_plot_y_max=50&-colorschema=bluered&chr2plot=1,3,9,17,22](http://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=NCIT:C7376&-size_plotarea_h_px=40&-value_plot_y_max=50&-colorschema=bluered&chr2plot=1,3,9,17,22)
-        *  see example above (live representation of embedded API call for this example)
-
-
 ##### Examples
 
 * [progenetix.org/services/collationPlots/?id=pgx:icdom-85003](http://progenetix.org/services/collationPlots/?id=pgx:icdom-85003)
