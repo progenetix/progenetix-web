@@ -12,10 +12,11 @@ import { LiteratureSearch } from "../../components/LiteratureSearch"
 import { ShowJSON } from "../../components/RawData"
 import { SubsetHistogram } from "../../components/Histogram"
 import { withUrlQuery } from "../../hooks/url-query"
+
 const service = "collations"
 const exampleId = "cellosaurus:CVCL_0023"
 
-const SubsetDetailsPage = withUrlQuery(({ urlQuery }) => {
+const CellLineDetailsPage = withUrlQuery(({ urlQuery }) => {
   var { id } = urlQuery
   var datasetIds = SITE_DEFAULTS.DATASETID
   const hasAllParams = id && datasetIds
@@ -31,7 +32,8 @@ const SubsetDetailsPage = withUrlQuery(({ urlQuery }) => {
         The <i>Cancer Cell Lines</i> site is under development. <b>Stay tuned!</b>
       </div>    
 
-      <SubsetLoader id={id} datasetIds={datasetIds} />   
+      <SubsetLoader id={id} datasetIds={datasetIds} />
+
       <div className="mb-3">
         <SubsetHistogram
           id={id}
@@ -43,15 +45,20 @@ const SubsetDetailsPage = withUrlQuery(({ urlQuery }) => {
           }}
         />
       </div>
+
       <LiteratureSearch id={id} datasetIds={datasetIds} labels={labels} setLabels={setLabels}/>
+
       </>
       )}
     </Layout>
   )
 })
 
-export default SubsetDetailsPage
+export default CellLineDetailsPage
 
+/*============================================================================*/
+/*============================================================================*/
+/*============================================================================*/
 
 function SubsetLoader({ id, datasetIds }) {
   const { data, error, isLoading } = useServiceItemDelivery(

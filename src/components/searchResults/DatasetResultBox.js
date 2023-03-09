@@ -343,7 +343,7 @@ function CnvHistogramPreview({ url: urlString }) {
   const { width } = useContainerDimensions(componentRef)
   url.search = new URLSearchParams([
     ...url.searchParams.entries(),
-    ["-size_plotimage_w_px", width]
+    ["size_plotimage_w_px", width]
   ]).toString()
   let withoutOrigin = replaceWithProxy(url)
   // width > 0 to make sure the component is mounted and avoid double fetch

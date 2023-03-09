@@ -77,8 +77,8 @@ function DataVisualizationPanel({ datasetIds, accessid, skip, limit, sampleCount
     accessid,
     skip,
     limit,
-    "-randno": randNo,
-    "-size_plotimage_w_px": width,
+    "randno": randNo,
+    "size_plotimage_w_px": width,
     ...formValues
   })
   const onSubmit = (values) => {
@@ -112,9 +112,9 @@ function DataVisualizationForm({ isQuerying, sampleCount, onSubmit }) {
   }
 
   const defaultValues = {
-    "-group_by": "NCIT",
-    "-markers": null,
-    "-randno": randNo
+    "group_by": "NCIT",
+    "markers": null,
+    "randno": randNo
   }
   const { register, handleSubmit, errors, control } = useForm({ defaultValues })
   return (
@@ -122,7 +122,7 @@ function DataVisualizationForm({ isQuerying, sampleCount, onSubmit }) {
       <div className="columns">
         <div className="column">
           <InputField
-            name="-chr2plot"
+            name="chr2plot"
             label="Chromosomes"
             infoText="The chromosomes to be included in the plot, in the order they should appear. The values should just be the comma-separated chromosome numbers (e.g. '1,3,19,X' - unquoted, no spaces). The default is chr 1-22."
             errors={errors}
@@ -131,7 +131,7 @@ function DataVisualizationForm({ isQuerying, sampleCount, onSubmit }) {
         </div>
         <div className="column">
           <InputField
-            name="-randno"
+            name="randno"
             label="Random Samples (no.)"
             errors={errors}
             infoText="Use this to pull a random selection, e.g. if the number of samples is very high (>1000)."
@@ -142,7 +142,7 @@ function DataVisualizationForm({ isQuerying, sampleCount, onSubmit }) {
       <div className="columns">
         <div className="column">
           <SelectField
-            name="-group_by"
+            name="group_by"
             register={register}
             label="Plot Grouping"
             options={groupByOptions}
@@ -153,7 +153,7 @@ function DataVisualizationForm({ isQuerying, sampleCount, onSubmit }) {
         </div>
         <div className="column">
           <InputField
-            name="-min_group_no"
+            name="min_group_no"
             label="Min. Samples per Group"
             errors={errors}
             register={register}
@@ -163,7 +163,7 @@ function DataVisualizationForm({ isQuerying, sampleCount, onSubmit }) {
         </div>
         <div className="column">
           <InputField
-            name="-bin_match_min"
+            name="bin_match_min"
             label="Min. Interval Fraction"
             errors={errors}
             register={register}
@@ -175,7 +175,7 @@ function DataVisualizationForm({ isQuerying, sampleCount, onSubmit }) {
       <div className="columns">
         <div className="column">
           <InputField
-            name="-size_title_left_w_px"
+            name="size_title_left_w_px"
             label="Left Labels Width (px)"
             errors={errors}
             register={register}
@@ -184,7 +184,7 @@ function DataVisualizationForm({ isQuerying, sampleCount, onSubmit }) {
         </div>
         <div className="column">
           <InputField
-            name="-size_strip_h_px"
+            name="size_strip_h_px"
             label="Sample Line Height (px)"
             errors={errors}
             register={register}
@@ -193,7 +193,7 @@ function DataVisualizationForm({ isQuerying, sampleCount, onSubmit }) {
         </div>
         <div className="column">
           <InputField
-            name="-size_text_title_left_px"
+            name="size_text_title_left_px"
             label="Sample Label (px)"
             errors={errors}
             register={register}
@@ -204,7 +204,7 @@ function DataVisualizationForm({ isQuerying, sampleCount, onSubmit }) {
       <div className="columns">
         <div className="column">
           <InputField
-            name="-size_plotarea_h_px"
+            name="size_plotarea_h_px"
             label="Histogram Height (px)"
             errors={errors}
             register={register}
@@ -214,7 +214,7 @@ function DataVisualizationForm({ isQuerying, sampleCount, onSubmit }) {
         </div>
         <div className="column">
           <InputField
-            name="-value_plot_y_max"
+            name="value_plot_y_max"
             label="Histogram Max. Scale (%)"
             errors={errors}
             register={register}
@@ -224,7 +224,7 @@ function DataVisualizationForm({ isQuerying, sampleCount, onSubmit }) {
         </div>
         <div className="column">
           <InputField
-            name="-size_clustertree_w_px"
+            name="size_clustertree_w_px"
             label="Cluster Tree Width (px)"
             errors={errors}
             register={register}
@@ -244,7 +244,7 @@ function DataVisualizationForm({ isQuerying, sampleCount, onSubmit }) {
         </div>
         <div className="column">
           <InputField
-            name="-labels"
+            name="labels"
             label="Free Labels"
             errors={errors}
             register={register}
@@ -328,7 +328,7 @@ function GeneSpanSelector({ control, errors, register }) {
   const { options, isLoading } = LabeledGeneSpanOptions(inputValue)
   return (
     <SelectField
-      name="-markers"
+      name="markers"
       label="Select Gene Label"
       isLoading={isLoading && !!inputValue}
       options={options}
