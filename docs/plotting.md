@@ -44,6 +44,12 @@ Please **use option 1** if accessing complete entities (i.e. only using a single
 Plot parameters can be added to the request using a standard `&__parameter__=__value__`
 syntax.
 
+* `chr2plot`
+    - comma-concatenated list of chromosomes to plot
+    - default is 1 -> 22 since X & Y are not always correctly normalized for CNV
+  frequencies
+        *  `chr2plot=1,2,3,44,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X,Y`
+        *  `chr2plot=9`
 * `size_plotimage_w_px`
     - modifies the width of the plot image in px (default 800)
     - <http://progenetix.org/services/collationPlots/?id=PMID:22824167&size_plotimage_w_px=1084>
@@ -55,6 +61,14 @@ syntax.
 * `value_plot_y_max`
     - modifies the histogram's maximum value in percent (default 100)
     - <http://progenetix.org/services/collationPlots/?id=pgx:cohort-TCGAcancers&value_plot_y_max=50>
+* `labels`
+    - arbitrary labels (e.g. for genes or other regions of interest)
+    - format is `chro` `:` `start` `-` `end` `:` `some text`
+    - multiple labels can be concatenated by `,`
+    - <http://progenetix.org/services/collationPlots/?id=pgx:icdom-80123&value_plot_y_max=80&chr2plot=5,8&labels=5:0-48000000:Frequent+5p+gain,8:127735434-127742951:MYC>
+    ![](http://progenetix.org/services/collationPlots/?id=pgx:icdom-80123&value_plot_y_max=80&chr2plot=5,8&labels=5:0-48000000:Frequent+5p+gain,8:127735434-127742951:MYC)
+
+    
 * `colorschema`
     - change of colors used for gains and losses
     - options
@@ -62,12 +76,6 @@ syntax.
         *  `redgreen`
         *  `greenred`
         *  `bluered`
-* `chr2plot`
-    - comma-concatenated list of chromosomes to plot
-    - default is 1 -> 22 since X & Y are not always correctly normalized for CNV
-  frequencies
-        *  `chr2plot=1,2,3,44,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X,Y`
-        *  `chr2plot=9`
 
     - <http://progenetix.org/services/collationPlots/?id=NCIT:C7376&size_plotarea_h_px=40&value_plot_y_max=50&colorschema=bluered&chr2plot=1,3,9,17,22>
 ![](http://progenetix.org/services/collationPlots/?id=NCIT:C7376&size_plotarea_h_px=40&value_plot_y_max=50&colorschema=bluered&chr2plot=1,3,9,17,22)
