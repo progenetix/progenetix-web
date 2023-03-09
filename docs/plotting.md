@@ -57,7 +57,8 @@ syntax.
     - height of the plot area (excluding labels etc.) in px (default 100)
     - <http://progenetix.org/services/collationPlots/?id=NCIT:C7376&size_plotarea_h_px=300>
 ![](http://progenetix.org/services/collationPlots/?id=NCIT:C7376&size_plotarea_h_px=300)
-
+* `size_text_title_px`
+    - size in px of the title text (default 14)
 * `value_plot_y_max`
     - modifies the histogram's maximum value in percent (default 100)
     - <http://progenetix.org/services/collationPlots/?id=pgx:cohort-TCGAcancers&value_plot_y_max=50>
@@ -65,8 +66,13 @@ syntax.
     - arbitrary labels (e.g. for genes or other regions of interest)
     - format is `chro` `:` `start` `-` `end` `:` `some text`
     - multiple labels can be concatenated by `,`
-    - <http://progenetix.org/services/collationPlots/?id=pgx:icdom-80123&value_plot_y_max=80&chr2plot=5,8&labels=5:0-48000000:Frequent+5p+gain,8:127735434-127742951:MYC>
-    ![](http://progenetix.org/services/collationPlots/?id=pgx:icdom-80123&value_plot_y_max=80&chr2plot=5,8&labels=5:0-48000000:Frequent+5p+gain,8:127735434-127742951:MYC)
+    - colors are randomized from a "decent" palette
+    - <http://progenetix.org/services/collationPlots/?id=pgx:icdom-80123&value_plot_y_max=80&chr2plot=5,8&labels=5:0-48000000:Frequent+5p+gain,8:127735434-127742951:MYC&marker_text_px=12>
+    ![](http://progenetix.org/services/collationPlots/?id=pgx:icdom-80123&value_plot_y_max=80&chr2plot=5,8&labels=5:0-48000000:Frequent+5p+gain,8:127735434-127742951:MYC&marker_text_px=12)
+* `marker_text_px`
+    - text size for the labels (default 10)
+* `marker_opacity`
+    - opacity of the region overlay on the plot (default 0.2)
 
     
 * `colorschema`
