@@ -34,9 +34,7 @@ Congratulations for the very nice paper, connecting genetics and cancer genomics
 
 	J Clin Oncol [PMID:35394817](http://www.europepmc.org/abstract/MED/35394817) | [JCO](https://ascopubs.org/doi/abs/10.1200/JCO.21.02260)
 
-<figure markdown>
-  ![Beacon v2 Cartoon](../img/2020-04-13-figure-3-aukema-NIPT.png){ width="750" }
-  <figcaption>Figure 3 from the paper showing cfDNA detected CNVs in patients with a confirmed malignancy.</figcaption>
-</figure>
+![Beacon v2 Cartoon](../img/2020-04-13-figure-3-aukema-NIPT.png){ width="750" }
+###### Figure 3 from the paper showing cfDNA detected CNVs in patients with a confirmed malignancy.
 
 
