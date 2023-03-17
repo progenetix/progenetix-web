@@ -201,6 +201,12 @@ function Biosample({ biosample, datasetIds }) {
             label="Progenetix .pgxseg file"
           />
         </li>
+        <li>Variants as{" "}
+          <Link
+            href={`/beacon/biosamples/${biosample.id}/variants/?output=vcf`}
+            label="(experimental) VCF 4.4 file"
+          />
+        </li>
       </ul>
 
       <ShowJSON data={biosample} />
