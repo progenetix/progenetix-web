@@ -18,7 +18,8 @@ export function SubsetsTree({
   datasetIds,
   checkedSubsets,
   checkboxClicked,
-  sampleFilterScope
+  sampleFilterScope,
+  defaultTreeDepth
 }) {
   const {
     searchInput,
@@ -26,7 +27,7 @@ export function SubsetsTree({
     filteredTree,
     debouncedSearchInput
   } = useFilterTree(tree)
-  const [levelSelector, setLevelSelector] = useState(2)
+  const [levelSelector, setLevelSelector] = useState(defaultTreeDepth)
 
   // console.log(filteredTree)
 

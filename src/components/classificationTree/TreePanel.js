@@ -9,6 +9,7 @@ export function TreePanel({
   subsetById,
   datasetIds,
   sampleFilterScope,
+  defaultTreeDepth,
   isFlat
 }) {
   const [checkedIds, setCheckedIds] = useState({})
@@ -33,6 +34,7 @@ export function TreePanel({
           checkedSubsets={checkedSubsets}
           checkboxClicked={checkboxClicked}
           sampleFilterScope={sampleFilterScope}
+          defaultTreeDepth={defaultTreeDepth}
           isFlat={isFlat}
         />
       </div>

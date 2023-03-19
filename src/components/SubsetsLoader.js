@@ -5,7 +5,7 @@ import { keyBy, merge } from "lodash"
 import { SubsetHistogram } from "./Histogram"
 import { buildTree, buildTreeForDetails, TreePanel } from "./classificationTree/TreePanel"
 
-export default function SubsetsLoader({ collationTypes, datasetIds }) {
+export default function SubsetsLoader({ collationTypes, datasetIds, defaultTreeDepth }) {
   const bioSubsetsHierarchiesReply = useCollationsByType({
     datasetIds,
     method: "paths",
@@ -29,6 +29,7 @@ export default function SubsetsLoader({ collationTypes, datasetIds }) {
               bioSubsetsHierarchies={bioSubsetsHierarchiesResponse.response.results}
               allBioSubsets={allBioSubsetsResponse.response.results}
               datasetIds={datasetIds}
+              defaultTreeDepth={defaultTreeDepth}
             />
           )}
         />
@@ -37,7 +38,7 @@ export default function SubsetsLoader({ collationTypes, datasetIds }) {
   )
 }
 
-function SubsetsResponse({ bioSubsetsHierarchies, allBioSubsets, datasetIds }) {
+function SubsetsResponse({ bioSubsetsHierarchies, allBioSubsets, datasetIds, defaultTreeDepth }) {
   const isDetailPage = bioSubsetsHierarchies.length === 1
   // We merge both subsets from hierarchies and subsets from allSubsets.
   // This is because some children in the bioSubsetsHierarchies don't have labels or sample count information.
@@ -65,6 +66,7 @@ function SubsetsResponse({ bioSubsetsHierarchies, allBioSubsets, datasetIds }) {
         subsetById={subsetById}
         tree={tree}
         size={size}
+        defaultTreeDepth={defaultTreeDepth}
         sampleFilterScope="referenceid"
       />
     </>

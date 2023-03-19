@@ -4,6 +4,8 @@ import { SITE_DEFAULTS } from "../../hooks/api"
 import SubsetsLoader from  "../../components/SubsetsLoader"
 import Panel from "../../components/Panel"
 
+const INITIAL_TREE_LEVEL = 0
+
 export default function cellosaurus_SubsetsPage() {
   return (
     <Layout title="Subsets" headline="Cancer Cell Lines by Cellosaurus ID">
@@ -20,7 +22,7 @@ export default function cellosaurus_SubsetsPage() {
         </p>
       </div>
       <Panel heading="Cell Lines (with parental/derived hierarchies)" className="content">
-        <SubsetsLoader collationTypes="cellosaurus" datasetIds={SITE_DEFAULTS.DATASETID} />
+        <SubsetsLoader collationTypes="cellosaurus" datasetIds={SITE_DEFAULTS.DATASETID} defaultTreeDepth={INITIAL_TREE_LEVEL} />
       </Panel>
     </Layout>
   )

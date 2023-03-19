@@ -3,6 +3,8 @@ import { Layout } from "../../components/Layout"
 import { SITE_DEFAULTS } from "../../hooks/api"
 import SubsetsLoader from  "../../components/SubsetsLoader"
 
+const INITIAL_TREE_LEVEL = 2
+
 export default function NCIT_SubsetsPage() {
   return (
     <Layout title="Subsets" headline="Cancer Types by National Cancer Institute NCIt Code">
@@ -20,7 +22,7 @@ export default function NCIT_SubsetsPage() {
           response.
         </p>
       </div>
-      <SubsetsLoader collationTypes="NCIT" datasetIds={ SITE_DEFAULTS.DATASETID } />
+      <SubsetsLoader collationTypes="NCIT" datasetIds={ SITE_DEFAULTS.DATASETID } defaultTreeDepth={INITIAL_TREE_LEVEL} />
     </Layout>
   )
 }
