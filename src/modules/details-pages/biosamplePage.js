@@ -105,7 +105,9 @@ function Biosample({ biosample, datasetIds }) {
       </>
       )}
 
+        {biosample.provenance && (
       <>
+
       <h5>Provenance</h5>
       <ul>
         {biosample.provenance?.material?.label && (
@@ -130,6 +132,7 @@ function Biosample({ biosample, datasetIds }) {
         )}
       </ul>
       </>
+        )}
 
       {biosample.individualId && (
         <>
