@@ -21,7 +21,7 @@ const SampleDetailsPage = withUrlQuery(({ urlQuery }) => {
   var datasetIds = SITE_DEFAULTS.DATASETID
   const hasAllParams = id && datasetIds
   return (
-    <Layout title="Sample Details" headline="Sample Details">
+    <Layout title="Sample Details">
       {!hasAllParams ? (
         NoResultsHelp(exampleId, itemColl)
       ) : (
@@ -58,14 +58,16 @@ function BiosampleResponse({ response, datasetIds }) {
   return <Biosample biosample={response.response.resultSets[0].results[0]} datasetIds={datasetIds} />
 }
 
+//  ({SITE_DEFAULTS.DATASETLABEL})
+
 function Biosample({ biosample, datasetIds }) {
   const biosId = biosample.id
   return (
     <section className="content">
     
-      <h3 className="mb-6">
-        {biosId} ({SITE_DEFAULTS.DATASETLABEL})
-      </h3>
+      <h2 className="mb-6">
+        Sample Details for <i>{biosId}</i>
+      </h2>
 
       {biosample.description && (
         <>

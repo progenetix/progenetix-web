@@ -20,7 +20,7 @@ const IndividualDetailsPage = withUrlQuery(({ urlQuery }) => {
   var datasetIds = SITE_DEFAULTS.DATASETID
   const hasAllParams = id && datasetIds
   return (
-    <Layout title="Individual Details" headline="Individual Details">
+    <Layout title="Individual Details">
       {!hasAllParams ? (
         NoResultsHelp(exampleId, itemColl)
       ) : (
@@ -59,9 +59,9 @@ function IndividualResponse({ response, datasetIds }) {
 function Individual({ individual, datasetIds }) {
   return (
     <section className="content">
-      <h3 className="mb-6">
-        {individual.id} ({SITE_DEFAULTS.DATASETLABEL})
-      </h3>
+      <h2 className="mb-6">
+        Individual Details <i>{individual.id}</i>
+      </h2>
 
       {individual.description && (
         <>

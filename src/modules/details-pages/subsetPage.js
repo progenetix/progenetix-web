@@ -19,7 +19,7 @@ const SubsetDetailsPage = withUrlQuery(({ urlQuery }) => {
   var datasetIds = SITE_DEFAULTS.DATASETID
   const hasAllParams = id && datasetIds
   return (
-    <Layout title="Subset Details" headline="Subset Details">
+    <Layout title="Subset Details">
       {!hasAllParams ? (
         NoResultsHelp(exampleId, "subsetdetails")
       ) : (
@@ -79,7 +79,7 @@ function Subset({ subset, datasetIds }) {
   return (
     <section className="content">
       <h2>
-        {subset.label} ({subset.id}, {SITE_DEFAULTS.DATASETLABEL})
+        Subset Details {subset.label} ({subset.id})
       </h2>
 
       {subset.type && (

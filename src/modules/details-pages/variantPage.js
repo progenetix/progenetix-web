@@ -21,7 +21,7 @@ const VariantDetailsPage = withUrlQuery(({ urlQuery }) => {
   var datasetIds = SITE_DEFAULTS.DATASETID
   const hasAllParams = id && datasetIds
   return (
-    <Layout title="Variant Details" headline="Variant Details">
+    <Layout title="Variant Details">
       {!hasAllParams ? (
         NoResultsHelp(exampleId, entity)
       ) : (
@@ -40,17 +40,11 @@ function VariantLoader({ id, datasetIds }) {
       apiReply={apiReply}
       background
       render={(response) => (
-        // <>
-          <VariantResponse
-            response={response}
-            id={id}
-            datasetIds={datasetIds}
-          />
-          // <VariantsInterpretationResponse
-          //   response={response}
-          //   datasetIds={datasetIds}
-          // />
-        // </>
+        <VariantResponse
+          response={response}
+          id={id}
+          datasetIds={datasetIds}
+        />
       )}
     />
   )
@@ -67,9 +61,9 @@ function VariantResponse({ response, id, datasetIds }) {
 function Variant({ variant, id, datasetIds }) {
   return (
     <section className="content">
-      <h3>
-        {id} ({SITE_DEFAULTS.DATASETLABEL})
-      </h3>
+      <h2>
+        Variant Details for <i>{id}</i>
+      </h2>
 
       <h5>Digest</h5>
       <p>{variant.variantInternalId}</p>
