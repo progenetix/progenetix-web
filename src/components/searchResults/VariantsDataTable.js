@@ -14,10 +14,14 @@ export default function VariantsDataTable({ apiReply, datasetId }) {
         Header: "Gene",
         accessor: "variation.molecularAttributes.geneIds[0]"
         },
-        // {
-        // Header: "Source",
-        // accessor: "variation.info.provenance"
-        // },
+        {
+        Header: "Pathogenicity",
+        accessor: "variation.variantLevelData.clinicalInterpretations[0].clinicalRelevance"
+        },
+        {
+        Header: "Variant type",
+        accessor: "variation.molecularAttributes.molecularEffects[0].label"
+        },
       {
         Header: TooltipHeader(
           "Variant Instances",
