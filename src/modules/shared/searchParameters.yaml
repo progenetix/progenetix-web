@@ -141,7 +141,7 @@ bioontology:
     - value: ""
       label: "(no selection)"
 referenceid:
-  label: Reference ID(s)
+  label: ID(s)
   infoText: |
     Special filter type for external reference codes such as PMIDs or cellosaurus
     id values.
