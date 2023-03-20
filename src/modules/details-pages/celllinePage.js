@@ -93,7 +93,7 @@ function Subset({ subset, datasetIds }) {
   return (
     <section className="content">
       <h2>
-        {subset.label} ({subset.id}, {SITE_DEFAULTS.DATASETLABEL})
+        {subset.label} ({subset.id})
       </h2>
 
       <h5>Subset Type:{" "}Cell line{" "}         

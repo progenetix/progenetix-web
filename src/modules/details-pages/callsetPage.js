@@ -59,11 +59,13 @@ function CallsetResponse({ response, datasetIds }) {
   return <Callset callset={response.response.resultSets[0].results[0]} datasetIds={datasetIds} />
 }
 
+//  ({SITE_DEFAULTS.DATASETLABEL})
+
 function Callset({ callset, datasetIds }) {
   return (
     <section className="content">
       <h3 className="mb-6">
-        {callset.id} ({SITE_DEFAULTS.DATASETLABEL})
+        {callset.id}
       </h3>
 
       {callset.description && (
