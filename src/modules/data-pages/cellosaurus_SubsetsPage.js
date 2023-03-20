@@ -22,7 +22,7 @@ export default function cellosaurus_SubsetsPage() {
           matching the child terms of a selected class are included in the
           response. This means that one can retrieve all instances and daughter
           cell lines of a given cell line in a id-based search (<i>i.e.</i> searching for
-          HeLa will also return the daughter lines by default - but optional).
+          HeLa will also return the daughter lines by default - but optionally).
         </p>
       </div>
       <Panel heading="Cell Lines (with parental/derived hierarchies)" className="content">
