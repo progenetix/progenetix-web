@@ -1,7 +1,7 @@
 import { FaExternalLinkAlt, FaLink } from "react-icons/fa"
 
 
-export function Link({ href, label, onClick }) {
+export function InternalLink({ href, label, onClick }) {
   return (
     <a href={href} onClick={onClick}>
       {label} <FaLink className="icon has-text-grey-light is-small" />

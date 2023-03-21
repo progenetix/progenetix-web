@@ -2,9 +2,10 @@ import {
   SITE_DEFAULTS,
   getDataItemUrl,
   useDataItemDelivery,
-  NoResultsHelp,
-  Link
+  NoResultsHelp
 } from "../../hooks/api"
+import { InternalLink } from "../../components/helpersShared/linkHelpers"
+
 import { Loader } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
@@ -48,13 +49,6 @@ function CallsetResponse({ response, datasetIds }) {
   if (!response.response.resultSets[0].results) {
     return NoResultsHelp(exampleId, itemColl)
   }
-  // if (response.meta.errors.length > 0) {
-  //   return (
-  //     <div className="notification is-size-5">
-  //       <div className="message-body">ERROR: {response.meta.errors[0]}</div>
-  //     </div>
-  //   )
-  // }
 
   return <Callset callset={response.response.resultSets[0].results[0]} datasetIds={datasetIds} />
 }
@@ -79,7 +73,7 @@ function Callset({ callset, datasetIds }) {
         <>
           <h5>Biosample</h5>
           <p>
-            <Link
+            <InternalLink
               href={`/biosample?id=${callset.biosampleId}&datasetIds=${datasetIds}`}
               label={callset.biosampleId}
             />

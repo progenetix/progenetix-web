@@ -4,7 +4,7 @@ import {
   useDataItemDelivery,
   NoResultsHelp
 } from "../../hooks/api"
-import { Link, referenceLink } from "../../components/helpersShared/linkHelpers"
+import { InternalLink, referenceLink } from "../../components/helpersShared/linkHelpers"
 import { WithData } from "../../components/Loader"
 import React from "react"
 import { withUrlQuery } from "../../hooks/url-query"
@@ -81,7 +81,7 @@ function Biosample({ biosample, datasetIds }) {
       {BIOKEYS.map(bioc => (
         <li key={bioc}>
           {biosample[bioc].label}{": "}
-          <Link
+          <InternalLink
             href={`/subsets/biosubsets?filters=${biosample[bioc].id}&datasetIds=${ datasetIds }`}
             label={biosample[bioc].id}
           />
@@ -96,7 +96,7 @@ function Biosample({ biosample, datasetIds }) {
       {biosample.celllineInfo.id && (
         <li>
           Instance of {" "}
-          <Link
+          <InternalLink
             href={`/cellline/?id=${biosample.celllineInfo.id}&datasetIds=${ datasetIds }`}
             label={biosample.celllineInfo.id}
           />
@@ -141,7 +141,7 @@ function Biosample({ biosample, datasetIds }) {
           <h5>Individual</h5>
           <ul>
             <li>Progenetix entry:{" "}
-              <Link
+              <InternalLink
                 href={`/individual/?id=${biosample.individualId}&datasetIds=${ datasetIds }`}
                 label={biosample.individualId}
               />
@@ -163,7 +163,7 @@ function Biosample({ biosample, datasetIds }) {
                 `${externalReference.label}: `
               )}
               {referenceLink(externalReference) ? (
-                <Link
+                <InternalLink
                   href={referenceLink(externalReference)}
                   label={`${externalReference.id}`}
                 />
@@ -188,31 +188,31 @@ function Biosample({ biosample, datasetIds }) {
       <h5>Download</h5>
       <ul>
         <li>Sample data as{" "}
-          <Link
+          <InternalLink
             href={`/beacon/biosamples/${biosample.id}/`}
             label="Beacon JSON"
           />
         </li>
         <li>Sample data as{" "}
-          <Link
+          <InternalLink
             href={`/beacon/biosamples/${biosample.id}/phenopackets/`}
             label="Beacon Phenopacket JSON"
           />
         </li>
         <li>Variants as{" "}
-          <Link
+          <InternalLink
             href={`/beacon/biosamples/${biosample.id}/variants/`}
             label="Beacon JSON"
           />
         </li>
         <li>Variants as{" "}
-          <Link
+          <InternalLink
             href={`/beacon/biosamples/${biosample.id}/variants/?output=pgxseg`}
             label="Progenetix .pgxseg file"
           />
         </li>
         <li>Variants as{" "}
-          <Link
+          <InternalLink
             href={`/beacon/biosamples/${biosample.id}/variants/?output=vcf`}
             label="(experimental) VCF 4.4 file"
           />
