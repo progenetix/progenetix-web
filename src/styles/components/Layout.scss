@@ -62,7 +62,7 @@ $side-width: 14rem;
 
 .Layout__side-logo {
   cursor: pointer;
-  height: 48px;
+  width: 100%;
   margin-top: -7px;
   margin-bottom: 11px;
   @include until($desktop) {

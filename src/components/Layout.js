@@ -86,8 +86,8 @@ function Side({ onClick }) {
       <a href="/">
         <img
           className="Layout__side-logo"
-          src="/img/progenetix_cellosaurus.png"
-          alt="progenetix celllines"
+          src="/img/cancercelllines-icon-400x300.png"
+          alt="cancer cell lines by Progenetix"
         />
       </a>
       <ul className="Layout__side__items">
