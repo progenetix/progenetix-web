@@ -4,7 +4,7 @@ import {
   useDataItemDelivery,
   NoResultsHelp
 } from "../../hooks/api"
-import { InternalLink, referenceLink } from "../../components/helpersShared/linkHelpers"
+import { InternalLink, ReferenceLink } from "../../components/helpersShared/linkHelpers"
 import { WithData } from "../../components/Loader"
 import React from "react"
 import { withUrlQuery } from "../../hooks/url-query"
@@ -162,9 +162,9 @@ function Biosample({ biosample, datasetIds }) {
               {externalReference.label && (
                 `${externalReference.label}: `
               )}
-              {referenceLink(externalReference) ? (
+              {ReferenceLink(externalReference) ? (
                 <InternalLink
-                  href={referenceLink(externalReference)}
+                  href={ReferenceLink(externalReference)}
                   label={`${externalReference.id}`}
                 />
               ) : (

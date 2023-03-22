@@ -1,12 +1,9 @@
 import {
   SITE_DEFAULTS,
-  getDataItemUrl,
   useDataItemDelivery,
-  // replaceWithProxy,
-  // useProgenetixApi,
   NoResultsHelp
 } from "../../hooks/api"
-import { ExternalLink, referenceLink } from "../../components/helpersShared/linkHelpers"
+import { BeaconRESTLink, ExternalLink, ReferenceLink } from "../../components/helpersShared/linkHelpers"
 import { WithData } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
@@ -60,56 +57,62 @@ function VariantResponse({ response, id, datasetIds }) {
 
 function Variant({ variant, id, datasetIds }) {
   return (
-    <section className="content">
-      <h2>
-        Variant Details for <i>{id}</i>
-      </h2>
+<section className="content">
+  <h2>
+    Variant Details for <i>{id}</i>
+  </h2>
 
-      <h5>Digest</h5>
-      <p>{variant.variantInternalId}</p>
+  <h5>Digest</h5>
+  <ul>
+    <li>{variant.variantInternalId}</li>
+  </ul>
 
-      {variant.variation.molecularAttributes && (
-            <>
-        <h5>Molecular Attributes</h5>
-        <p>Gene: <b>{variant.variation.molecularAttributes.geneIds[0]}</b></p>
-      </>
+  {variant.variation.molecularAttributes && (
+    <>
+      <h5>Molecular Attributes</h5>
+      <ul>
+        <li>Gene: <b>{variant.variation.molecularAttributes.geneIds[0]}</b></li>
+
+      {variant.variation.molecularAttributes.molecularEffects && (
+        <li>Molecular effect: {variant.variation.molecularAttributes.molecularEffects[0].label}</li>
       )}
-      {variant.variation.molecularAttributes && variant.variation.molecularAttributes.molecularEffects && (
-            <>
-        <p>Molecular effect: {variant.variation.molecularAttributes.molecularEffects[0].label}</p>
-        </>
-        )}
 
-      {variant.variation.molecularAttributes && variant.variation.molecularAttributes.aminoacidChanges && (
-            <>
-        <p>Aminoacid changes: </p>
-         <ul>
+      {variant.variation.molecularAttributes.aminoacidChanges && (
+        <li>Aminoacid changes: 
+          <ul>
           {variant.variation.molecularAttributes.aminoacidChanges.map((aa) =>
             <li key={aa}>
               {aa}
             </li>
           )}
-        </ul>
-        </>
+          </ul>
+        </li>
       )}
+      </ul>
+    </>
+  )}
 
-     {variant.variation.identifiers && variant.variation.identifiers.proteinHGVSIds && (
-           <>
-       <p>Protein HGVSids:</p>
-         <ul>
-          {variant.variation.identifiers.proteinHGVSIds.map((ph) =>
-            <li key={ph}>
-              {ph}
-            </li>
-          )}
+  {variant.variation.identifiers && (
+
+    <>
+    <h5>Variant Identifiers</h5>
+    <ul>
+
+    {variant.variation.identifiers.proteinHGVSIds && (
+       <li>Protein HGVSids:
+        <ul>
+        {variant.variation.identifiers.proteinHGVSIds.map((ph) =>
+          <li key={ph}>
+            {ph}
+          </li>
+        )}
         </ul>
-        </>
-       )}
+        </li>
+    )}
 
-     {variant.variation.identifiers && variant.variation.identifiers.clinvarIds && (
-           <>
-       <p>ClinVar IDs:</p>
-         <ul>
+    {variant.variation.identifiers.clinvarIds && (
+        <li>ClinVar IDs:
+          <ul>
             <li>
               <ExternalLink
                 href={`www.ncbi.nlm.nih.gov/clinvar/variation/${variant.variation.identifiers.clinvarIds[0][0]}`}
@@ -119,15 +122,20 @@ function Variant({ variant, id, datasetIds }) {
             <li>
                 {variant.variation.identifiers.clinvarIds[0][1]}
             </li>
-        </ul>
-        </>
-        )}
+          </ul>
+        </li>
+    )}
 
-      {variant.variation.variantLevelData && variant.variation.variantLevelData.clinicalInterpretations.length > 0 && (
-                <>
-      <h5>Clinical Interpretations</h5>
-      <p>Clinical Relevance: <b>{variant.variation.variantLevelData.clinicalInterpretations[0].clinicalRelevance}</b></p>
-      <table>
+    </ul>
+    </>
+
+  )}
+
+  {variant.variation.variantLevelData && variant.variation.variantLevelData.clinicalInterpretations.length > 0 && (
+    <>
+    <h5>Clinical Interpretations</h5>
+    <p>Clinical Relevance: <b>{variant.variation.variantLevelData.clinicalInterpretations[0].clinicalRelevance}</b></p>
+    <table>
       <tr>
         <th>ID</th>
         <th>Description</th>
@@ -136,9 +144,9 @@ function Variant({ variant, id, datasetIds }) {
         return (
           <tr key={key}>
             <td>
-            {referenceLink(clinicalInterpretations.effect) ? (
+            {ReferenceLink(clinicalInterpretations.effect) ? (
               <ExternalLink
-                href={referenceLink(clinicalInterpretations.effect)}
+                href={ReferenceLink(clinicalInterpretations.effect)}
                 label={clinicalInterpretations.effect.id}
               />
             ) : (
@@ -149,49 +157,65 @@ function Variant({ variant, id, datasetIds }) {
           </tr>
         )
         })}
-      </table>
-      </>
-      )}
+    </table>
+    </>
+  )}
 
-      {variant.variation.molecularAttributes && variant.variation.molecularAttributes.molecularEffects && (
-            <>
-        <p>Source: CCLE mutations</p>
-        </>
+  {variant.variation.molecularAttributes && variant.variation.molecularAttributes.molecularEffects && (
+    <p>Source: CCLE mutations</p>
+  )}
+
+  {variant.variation.identifiers && variant.variation.identifiers.clinvarIds && (
+    <p>Source: ClinVar</p>
+  )}
+
+  {variant.variation.variantAlternativeIds && (
+    <>
+    <h5>Alternative Variant IDs</h5>
+    <ul>
+        {variant.variation.variantAlternativeIds.map((aa) =>
+            <li key={aa}>
+                {aa.id}
+                :
+                {aa.label}
+            </li>
         )}
+    </ul>
+    </>
+  )}
 
-        {variant.variation.identifiers && variant.variation.identifiers.clinvarIds && (
-              <>
-        <p>Source: ClinVar</p>
-        </>
-        )}
+  <h5>Download</h5>
+  <ul>
+    <li>Variant as{" "}
+      <BeaconRESTLink
+        entryType="variants"
+        idValue={id}
+        datasetIds={datasetIds}
+        label="Beacon JSON"
+      />
+    </li>
+    <li>Variant as{" "}
+      <BeaconRESTLink
+        entryType="variants"
+        idValue={id}
+        datasetIds={datasetIds}
+        output="pgxseg"
+        label="Progenetix .pgxseg file"
+      />
+    </li>
+    <li>Variant as{" "}
+      <BeaconRESTLink
+        entryType="variants"
+        idValue={id}
+        datasetIds={datasetIds}
+        output="vcf"
+        label="(experimental) VCF 4.4 file"
+      />
+    </li>
+  </ul>
 
-        {variant.variation.variantAlternativeIds && (
-            <>
-                <p>Alternative Variant IDs: </p>
-                <ul>
-                    {variant.variation.variantAlternativeIds.map((aa) =>
-                        <li key={aa}>
-                            {aa.id}
-                            :
-                            {aa.label}
-                        </li>
-                    )}
-                </ul>
-            </>
-        )}
+  <ShowJSON data={variant} />
 
-      <ShowJSON data={variant} />
-
-      <h5>
-        Download Data as Beacon v2{" "}
-        <a
-          rel="noreferrer"
-          target="_blank"
-          href={getDataItemUrl(id, entity, datasetIds)}
-        >
-          {"{JSON↗}"}
-        </a>
-      </h5>
-    </section>
+</section>
   )
 }

@@ -17,7 +17,18 @@ export function ExternalLink({ href, label, onClick }) {
   )
 }
 
-export function referenceLink(externalReference) {
+export function BeaconRESTLink({ entryType, idValue, responseType, datasetIds, label, output }) {
+
+  const responseTypeOpt = responseType ? `/${responseType}` : ""
+  const outputOpt = output ? `&output=${output}` : ""
+
+  return <InternalLink
+      href={`/beacon/${entryType}/${idValue}${responseTypeOpt}/?datasetIds=${datasetIds}${outputOpt}`}
+      label={label}
+    />
+}
+
+export function ReferenceLink(externalReference) {
   if (externalReference.id.includes("cellosaurus:")) {
     return (
       "https://www.cellosaurus.org/" +
