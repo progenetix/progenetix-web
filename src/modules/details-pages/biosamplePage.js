@@ -80,7 +80,7 @@ function Biosample({ biosample, biosId, datasetIds }) {
     <li key={bioc}>
       {biosample[bioc].label}{": "}
       <InternalLink
-        href={`/subsets/biosubsets?filters=${biosample[bioc].id}&datasetIds=${ datasetIds }`}
+        href={`/subset/?id=${biosample[bioc].id}&datasetIds=${ datasetIds }`}
         label={biosample[bioc].id}
       />
     </li>
