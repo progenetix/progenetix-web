@@ -72,7 +72,7 @@ function Variant({ variant, id, datasetIds }) {
       <h5>Sample Information</h5>
       <ul>
       {variant.caseLevelData[0].biosampleId && (    
-        <li>Sample: 
+        <li>Sample:{" "}
         <InternalLink
           href={`/biosample/?id=${variant.caseLevelData[0].biosampleId}&datasetIds=${ datasetIds }`}
           label={variant.caseLevelData[0].biosampleId}
@@ -80,7 +80,7 @@ function Variant({ variant, id, datasetIds }) {
         </li>
       )}
       {variant.caseLevelData[0].callsetId && (
-        <li>Analysis: 
+        <li>Analysis:{" "}
         <InternalLink
           href={`/callset/?id=${variant.caseLevelData[0].callsetId}&datasetIds=${ datasetIds }`}
           label={variant.caseLevelData[0].callsetId}
@@ -88,7 +88,7 @@ function Variant({ variant, id, datasetIds }) {
         </li>
       )}
       {variant.caseLevelData[0].analysisId && (
-        <li>Analysis: 
+        <li>Analysis:{" "}
         <InternalLink
           href={`/callset/?id=${variant.caseLevelData[0].analysisId}&datasetIds=${ datasetIds }`}
           label={variant.caseLevelData[0].analysisId}
@@ -96,7 +96,7 @@ function Variant({ variant, id, datasetIds }) {
         </li>
       )}
       {variant.caseLevelData[0].individualId && (
-        <li>Sample: 
+        <li>Subject:{" "}
         <InternalLink
           href={`/individual/?id=${variant.caseLevelData[0].individualId}&datasetIds=${ datasetIds }`}
           label={variant.caseLevelData[0].individualId}
