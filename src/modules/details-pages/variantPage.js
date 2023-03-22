@@ -199,7 +199,6 @@ function Variant({ variant, id, datasetIds }) {
   )}
   </ul>
 
-
   <h5>Download</h5>
   <ul>
     <li>Variant as{" "}
@@ -232,6 +231,6 @@ function Variant({ variant, id, datasetIds }) {
 
   <ShowJSON data={variant} />
 
-</section>
-  )
+</section>)
+
 }
