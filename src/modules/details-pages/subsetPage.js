@@ -1,6 +1,5 @@
 import {
   SITE_DEFAULTS,
-  getServiceItemUrl,
   useServiceItemDelivery,
   sampleSearchPageFiltersLink,
   NoResultsHelp
@@ -9,6 +8,7 @@ import { Loader } from "../../components/Loader"
 import { Layout } from "../../components/Layout"
 import { ShowJSON } from "../../components/RawData"
 import { SubsetHistogram } from "../../components/Histogram"
+import { ExternalLink } from "../../components/helpersShared/linkHelpers"
 import { withUrlQuery } from "../../hooks/url-query"
 
 const service = "collations"
@@ -30,7 +30,6 @@ const SubsetDetailsPage = withUrlQuery(({ urlQuery }) => {
         <SubsetHistogram
           id={id}
           datasetIds={datasetIds}
-          // labelstring="17:10000000-3000000:TEST"
           loaderProps={{
             background: true,
             colored: true
@@ -73,62 +72,48 @@ function Subset({ subset, datasetIds }) {
   
   const filters = subset.id
   const sampleFilterScope = "freeFilters"
-  
-  const pgxRegex = new RegExp('^.*cancercelllines.*/services/.*?$')
-    
-  return (
-    <section className="content">
-      <h2>
-        Subset Details {subset.label} ({subset.id})
-      </h2>
-
-      {subset.type && (
-        <>
-          <h5>Subset Type:{" "}{subset.type}{" "}
-            
-            {
-              ! pgxRegex.test(subset.reference) && (
-                <>
-                    <a
-                      rel="noreferrer"
-                      target="_blank"
-                      href={ subset.reference }
-                    >
-                    {"{"}{ subset.id }{" ↗}"}
-                    </a>
-                </>
-              )   
-              
-            } 
-            
-          </h5>
-        </>
-      )}      
-
-      <h5>Sample Count: {subset.count} ({subset.codeMatches} direct {'"'}{subset.id}{'"'} code  matches)</h5>
-
-      <h5>
-        Select {subset.id} samples in the 
-        <a
-          rel="noreferrer"
-          target="_blank"
-          href={ sampleSearchPageFiltersLink({datasetIds, sampleFilterScope, filters}) }
-        >{" "}Search Form
-        </a>
-      </h5>
-
-      <ShowJSON data={subset} />
       
-      <h5>
-        Download Data as Beacon v2{" "}
-        <a
-          rel="noreferrer"
-          target="_blank"
-          href={getServiceItemUrl(subset.id, service, datasetIds)}
-        >
-          {"{Beacon JSON ↗}"}
-        </a>
-      </h5>
-    </section>
+  return (
+<section className="content">
+  <h2>
+    {subset.label} ({subset.id})
+  </h2>
+
+  {subset.type && (
+    <>
+      <h5>Subset Type</h5>
+      <ul>
+        <li>
+          {subset.type}{" "}
+          <ExternalLink
+            href={subset.reference}
+            label={subset.id}
+          />
+        </li>
+      </ul>
+
+    </>
+  )} 
+
+  <h5>Sample Counts</h5>
+  <ul>
+    <li>{subset.count} samples</li>
+    <li>{subset.codeMatches} direct <i>{subset.id}</i> code  matches</li>
+    <li>{subset.cnvAnalyses} CNV analyses</li>
+  </ul>
+
+  <h5>Search Samples</h5>
+  <p>Select <i>{subset.id}</i> samples in the{" "}
+    <a
+      rel="noreferrer"
+      target="_blank"
+      href={ sampleSearchPageFiltersLink({datasetIds, sampleFilterScope, filters}) }
+    >{" "}Search Form
+    </a>
+  </p> 
+
+  <ShowJSON data={subset} />
+  
+</section>
   )
 }
