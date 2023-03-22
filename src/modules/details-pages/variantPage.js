@@ -87,6 +87,14 @@ function Variant({ variant, id, datasetIds }) {
         />
         </li>
       )}
+      {variant.caseLevelData[0].analysisId && (
+        <li>Analysis: 
+        <InternalLink
+          href={`/callset/?id=${variant.caseLevelData[0].analysisId}&datasetIds=${ datasetIds }`}
+          label={variant.caseLevelData[0].analysisId}
+        />
+        </li>
+      )}
       {variant.caseLevelData[0].individualId && (
         <li>Sample: 
         <InternalLink
