@@ -67,33 +67,37 @@ function Variant({ variant, id, datasetIds }) {
     <li>{variant.variantInternalId}</li>
   </ul>
 
-  <h5>Sample Information</h5>
-  <ul>
-  {variant.biosampleId && (
-    <li>Sample: 
-    <InternalLink
-      href={`/biosample/?id=${variant.biosampleId}&datasetIds=${ datasetIds }`}
-      label={variant.biosampleId}
-    />
-    </li>
+  {variant.caseLevelData && (
+    <>
+      <h5>Sample Information</h5>
+      <ul>
+      {variant.caseLevelData[0].biosampleId && (    
+        <li>Sample: 
+        <InternalLink
+          href={`/biosample/?id=${variant.caseLevelData[0].biosampleId}&datasetIds=${ datasetIds }`}
+          label={variant.caseLevelData[0].biosampleId}
+        />
+        </li>
+      )}
+      {variant.caseLevelData[0].callsetId && (
+        <li>Analysis: 
+        <InternalLink
+          href={`/callset/?id=${variant.caseLevelData[0].callsetId}&datasetIds=${ datasetIds }`}
+          label={variant.caseLevelData[0].callsetId}
+        />
+        </li>
+      )}
+      {variant.caseLevelData[0].individualId && (
+        <li>Sample: 
+        <InternalLink
+          href={`/individual/?id=${variant.caseLevelData[0].individualId}&datasetIds=${ datasetIds }`}
+          label={variant.caseLevelData[0].individualId}
+        />
+        </li>
+      )}
+      </ul>
+    </>
   )}
-  {variant.callsetId && (
-    <li>Analysis: 
-    <InternalLink
-      href={`/callset/?id=${variant.callsetId}&datasetIds=${ datasetIds }`}
-      label={variant.callsetId}
-    />
-    </li>
-  )}
-  {variant.individualId && (
-    <li>Sample: 
-    <InternalLink
-      href={`/individual/?id=${variant.individualId}&datasetIds=${ datasetIds }`}
-      label={variant.individualId}
-    />
-    </li>
-  )}
-  </ul>
 
   {variant.variation.molecularAttributes && (
     <>
