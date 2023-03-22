@@ -1,5 +1,5 @@
 import { BIOKEYS } from "../../hooks/api"
-import { referenceLink } from "../helpersShared/linkHelpers"
+import { ReferenceLink } from "../helpersShared/linkHelpers"
 import React from "react"
 import PropTypes from "prop-types"
 import { WithData } from "../Loader"
@@ -57,8 +57,8 @@ export default function BiosamplesDataTable({ apiReply, datasetId }) {
         Cell: ({ value: externalReferences }) =>
           externalReferences.map((externalReference, i) => (
             <div key={i}>
-              {referenceLink(externalReference) ? (
-                <Link href={referenceLink(externalReference)}>
+              {ReferenceLink(externalReference) ? (
+                <Link href={ReferenceLink(externalReference)}>
                   <a>{externalReference.id}</a>
                 </Link>
               ) : (

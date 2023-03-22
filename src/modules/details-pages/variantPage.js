@@ -5,7 +5,7 @@ import {
   // useProgenetixApi,
   NoResultsHelp
 } from "../../hooks/api"
-import { ExternalLink, referenceLink } from "../../components/helpersShared/linkHelpers"
+import { ExternalLink, ReferenceLink } from "../../components/helpersShared/linkHelpers"
 import { WithData } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
@@ -143,9 +143,9 @@ function Variant({ variant, id, datasetIds }) {
         return (
           <tr key={key}>
             <td>
-            {referenceLink(clinicalInterpretations.effect) ? (
+            {ReferenceLink(clinicalInterpretations.effect) ? (
               <ExternalLink
-                href={referenceLink(clinicalInterpretations.effect)}
+                href={ReferenceLink(clinicalInterpretations.effect)}
                 label={clinicalInterpretations.effect.id}
               />
             ) : (

@@ -1,7 +1,7 @@
 import { FaExternalLinkAlt, FaLink } from "react-icons/fa"
 
 
-export function Link({ href, label, onClick }) {
+export function InternalLink({ href, label, onClick }) {
   return (
     <a href={href} onClick={onClick}>
       {label} <FaLink className="icon has-text-grey-light is-small" />
@@ -17,7 +17,18 @@ export function ExternalLink({ href, label, onClick }) {
   )
 }
 
-export function referenceLink(externalReference) {
+export function BeaconRESTLink({ entryType, idValue, responseType, datasetIds, label, output }) {
+
+  const responseTypeOpt = responseType ? `/${responseType}` : ""
+  const outputOpt = output ? `&output=${output}` : ""
+
+  return <InternalLink
+      href={`/beacon/${entryType}/${idValue}${responseTypeOpt}/?datasetIds=${datasetIds}${outputOpt}`}
+      label={label}
+    />
+}
+
+export function ReferenceLink(externalReference) {
   if (externalReference.id.includes("cellosaurus:")) {
     return (
       "https://www.cellosaurus.org/" +
