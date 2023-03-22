@@ -127,15 +127,19 @@ function Individual({ individual, datasetIds }) {
         </>
       }
 
-      <h5>Biosamples</h5>
-      {individual.biosamples?.map((bs, i) => (
-        <li key={i}>
-        <InternalLink
-          href={`/biosample/?id=${bs}&datasetIds=${ datasetIds }`}
-          label={bs}
-        />
-        </li>
-      ))}
+      {individual.biosamples && individual.biosamples.length > 0 &&
+        <>
+        <h5>Biosamples</h5>
+        {individual.biosamples.map((bs, i) => (
+          <li key={i}>
+          <InternalLink
+            href={`/biosample/?id=${bs}&datasetIds=${ datasetIds }`}
+            label={bs}
+          />
+          </li>
+        ))}
+        </>
+      }
 
       <ShowJSON data={individual} />
       
