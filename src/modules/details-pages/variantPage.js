@@ -3,7 +3,7 @@ import {
   useDataItemDelivery,
   NoResultsHelp
 } from "../../hooks/api"
-import { BeaconRESTLink, ExternalLink, ReferenceLink } from "../../components/helpersShared/linkHelpers"
+import { BeaconRESTLink, ExternalLink, InternalLink, ReferenceLink } from "../../components/helpersShared/linkHelpers"
 import { WithData } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
@@ -65,6 +65,34 @@ function Variant({ variant, id, datasetIds }) {
   <h5>Digest</h5>
   <ul>
     <li>{variant.variantInternalId}</li>
+  </ul>
+
+  <h5>Sample Information</h5>
+  <ul>
+  {variant.biosampleId && (
+    <li>Sample: 
+    <InternalLink
+      href={`/biosample/?id=${variant.biosampleId}&datasetIds=${ datasetIds }`}
+      label={variant.biosampleId}
+    />
+    </li>
+  )}
+  {variant.callsetId && (
+    <li>Analysis: 
+    <InternalLink
+      href={`/callset/?id=${variant.callsetId}&datasetIds=${ datasetIds }`}
+      label={variant.callsetId}
+    />
+    </li>
+  )}
+  {variant.individualId && (
+    <li>Sample: 
+    <InternalLink
+      href={`/individual/?id=${variant.individualId}&datasetIds=${ datasetIds }`}
+      label={variant.individualId}
+    />
+    </li>
+  )}
   </ul>
 
   {variant.variation.molecularAttributes && (
