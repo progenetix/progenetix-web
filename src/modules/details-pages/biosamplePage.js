@@ -87,7 +87,7 @@ function Biosample({ biosample, biosId, datasetIds }) {
   ))}      
   </ul>
 
-  {biosample.celllineInfo && (
+{/*  {biosample.celllineInfo && (
     <>
     <h5>Cell Line Info</h5>
     <ul>
@@ -104,7 +104,8 @@ function Biosample({ biosample, biosId, datasetIds }) {
     </ul>
     </>
   )}
-
+*/}
+  
   {biosample.provenance && (
     <>
 
