@@ -8,7 +8,11 @@ import { ExternalLink } from "../components/helpersShared/linkHelpers"
 
 // const searchLink = 'Use case: Local CNV Frequencies <a href="/biosamples/">{↗}</a>'+
 
-export default function Index({subsetsResponse}) {
+export default function Index({
+  subsetsResponse,
+  ncitCount,
+  cellosaurusCount
+}) {
   const imgHere = {
     float: "right",
     width: "250px",
@@ -24,7 +28,7 @@ export default function Index({subsetsResponse}) {
     <Layout title="Cancer Cell Lines" headline="Cancer Cell Lines">
       <Panel heading="Cancer cell line variants" className="content">
         <img src={"/img/progenetix_cellosaurus.png"} style={imgHere} />
-        <div>
+        <p>
           This search page uses Progenetix cell line copy number variation data.
           These data include cancer cell lines that have been mapped to{" "}
           <ExternalLink
@@ -32,7 +36,12 @@ export default function Index({subsetsResponse}) {
             label="Cellosaurus"
           />
           {" "} - a knowledge resource on cell lines.
-        </div>
+        </p>
+        <p>The <i>cancercelllines</i> resource contains data of{" "}
+          <span className="span-red">{cellosaurusCount}</span>{" "}individual cancer cell lines from{" "}
+          <span className="span-red">{ncitCount}</span>{" "}different cancer
+          types (NCIt neoplasm classification).
+        </p>
 
       </Panel>
       <Panel heading="Cell Line Data CNV Frequency Plot" className="content">
@@ -62,10 +71,18 @@ export default function Index({subsetsResponse}) {
 
 export const getStaticProps = async () => {
   const subsetsReply = await tryFetch(
-    `${SITE}services/collations/?datasetIds=${SITE_DEFAULTS.DATASETID}&method=counts&collationTypes=cellosaurus,NCIT`
+    `${SITE}services/collations/?datasetIds=${SITE_DEFAULTS.DATASETID}&method=counts&collationTypes=cellosaurus,NCIT,icdom,PMID,icdot`
+  )
+  const cellosaurusCountReply = await tryFetch(
+    `${SITE}services/collations/?datasetIds=${SITE_DEFAULTS.DATASETID}&method=codematches&collationTypes=cellosaurus&requestedGranularity=count`
+  )
+  const ncitCountReply = await tryFetch(
+    `${SITE}services/collations/?datasetIds=${SITE_DEFAULTS.DATASETID}&method=codematches&collationTypes=NCIT&requestedGranularity=count`
   )
   return {
     props: {
+      ncitCount: ncitCountReply.responseSummary.numTotalResults,
+      cellosaurusCount: cellosaurusCountReply.responseSummary.numTotalResults,
       subsetsResponse: subsetsReply
     }
   }
