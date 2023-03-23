@@ -115,7 +115,12 @@ export function DatasetResultBox({ data: responseSet, query }) {
   ) && tabNames.push(TABS.samplesMap)
 
   if (handoverById(HANDOVER_IDS.variants)) tabNames.push(TABS.variants)
-  if (handoverById(HANDOVER_IDS.annotatedvariants)) tabNames.push(TABS.annotatedvariants)
+
+  if (! query.start) {
+    if (handoverById(HANDOVER_IDS.annotatedvariants)) {
+      tabNames.push(TABS.annotatedvariants)
+    }
+  }
 
   const [selectedTab, setSelectedTab] = useState(tabNames[0])
 
