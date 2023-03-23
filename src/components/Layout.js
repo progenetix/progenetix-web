@@ -99,17 +99,28 @@ function Side({ onClick }) {
             </>
           }
         />
-        <MenuInternalLinkItem
-          href="/search"
-          label="Search Cell Lines"
-        />
+
         <MenuInternalLinkItem
           href="/subsets/cellosaurus-subsets"
           label="Cell Line Listing"
         />
         <MenuInternalLinkItem
+          href="/search"
+          label="Search Cell Lines"
+        />
+        <MenuInternalLinkItem
           href="/subsets/NCIT-subsets"
           label="CNV Profiles by Cancer Type"
+        />
+        <MenuInternalLinkItem
+          href="/subsets/NCIT-subsets"
+          label="NCIT Codes"
+          isSub="isSub"
+        />
+        <MenuInternalLinkItem
+          href="/subsets/icdom-subsets"
+          label="ICD-O 3 Morphologies"
+          isSub="isSub"
         />
         <MenuInternalLinkItem href={SITE_DEFAULTS.PROJECTDOCLINK} label="Documentation" />
         <MenuInternalLinkItem

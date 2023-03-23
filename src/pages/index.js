@@ -61,10 +61,10 @@ export default function Index({
 
           </ul>
         </div>
-        <div className="notification is-warning">
+{/*        <div className="notification is-warning">
           The <i>Cancer Cell Lines</i> site is under development. <b>Stay tuned!</b>
         </div>    
-      </Panel>
+*/}      </Panel>
     </Layout>
   )
 }
