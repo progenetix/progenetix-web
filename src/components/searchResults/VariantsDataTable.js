@@ -19,7 +19,7 @@ export default function VariantsDataTable({ apiReply, datasetId }) {
         accessor: "variation.variantLevelData.clinicalInterpretations[0].clinicalRelevance"
         },
         {
-        Header: "Variant type",
+        Header: "Variant Effect",
         accessor: "variation.molecularAttributes.molecularEffects[0].label"
         },
       {
