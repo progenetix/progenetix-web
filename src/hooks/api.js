@@ -24,7 +24,7 @@ export const SITE_DEFAULTS = {
   ORGSITELINK: "https://info.baudisgroup.org",
   TRACKING_ID: "UA-572981-2"
 }
-export const MAX_HISTO_SAMPLES = 4000
+export const MAX_HISTO_SAMPLES = 2000
 export const THISYEAR = new Date().getFullYear()
 export const BIOKEYS = ["histologicalDiagnosis", "icdoMorphology", "icdoTopography", "sampledTissue"]
 

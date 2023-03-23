@@ -70,7 +70,6 @@ export function CallsetHistogram({ csid, datasetIds }) {
   )
 }
 
-
 SubsetHistogram.propTypes = {
   id: PropTypes.string.isRequired,
   filter: PropTypes.string,

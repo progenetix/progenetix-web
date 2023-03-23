@@ -82,6 +82,7 @@ export function DatasetResultBox({ data: responseSet, query }) {
   // the histogram is only rendered under some conditions:
   // * handover is needed, obviously
   // * not rendered if alternateBases was used since then frequencies are off => may get changed...
+  // TODO: bycon defined limitation of histogram return
 
   let histogramUrl
   let visualizationLink

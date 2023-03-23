@@ -71,13 +71,16 @@ function SubsetLoader({ id, datasetIds }) {
   )
 }
 
+/*============================================================================*/
+
 function SubsetResponse({ response, datasetIds }) {
   if (!response.response.results[0]) {
     return NoResultsHelp(exampleId, "subsetdetails")
   }
-
   return <Subset subset={response.response.results[0]} datasetIds={datasetIds} />
 }
+
+/*============================================================================*/
 
 function Subset({ subset, datasetIds }) {
   
@@ -87,9 +90,8 @@ function Subset({ subset, datasetIds }) {
   return (
 
 <section className="content">
-  <h2>
-    {subset.label} ({subset.id})
-  </h2>
+
+  <h2>{subset.label} ({subset.id})</h2>
 
   {subset.type && (
     <>
@@ -97,10 +99,7 @@ function Subset({ subset, datasetIds }) {
       <ul>
         <li>
           {subset.type}{" "}
-          <ExternalLink
-            href={subset.reference}
-            label={subset.id}
-          />
+          <ExternalLink href={subset.reference} label={subset.id} />
         </li>
       </ul>
 
