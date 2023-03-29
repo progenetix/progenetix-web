@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import {
-  basePath,
+  SITE_DEFAULTS,
   useServiceItemDelivery,
   useLiteratureSearchResults,
   useLiteratureCellLineMatches
@@ -107,9 +107,9 @@ function ResultComponent({cellline, entities})
 
 async function addGeneLabel(gene, labels, setLabels, setLabelButton)
 {
-  await fetch(basePath+"services/genespans/"+gene).then(res => {
+  await fetch(SITE_DEFAULTS.API_PATH+"services/genespans/"+gene).then(res => {
     if (res.status >= 400 && res.status < 600) {
-      throw new Error("Bad response from "+basePath+"/services/genespans")
+      throw new Error("Bad response from "+SITE_DEFAULTS.API_PATH+"/services/genespans")
     }
     return res
   }).then(res => res.json()).then(data=>{

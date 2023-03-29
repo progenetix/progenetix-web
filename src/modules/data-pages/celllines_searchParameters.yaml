@@ -30,8 +30,53 @@ celllines:
       isHidden: true
     clinicalClasses:
       isHidden: true
-
   examples:
+    - label: "HLF Cell Line"
+      note: "Instances of HLF and daughter cell lines, searched by Cellosaurus id"
+      description: >-
+        The query retrieves all instances of HLF and derived cell lines using
+        the "cellosaurus:CVCL_2947" identifier. HLF has a set of annotated
+        variants including a Li-Fraumeni TP53 mutation.
+      parameters:
+        variantType:
+          defaultValue: ""
+          isHidden: true
+        referenceName:
+          isHidden: true
+        geneId:
+          isHidden: true
+        variantMinLength:
+          isHidden: true
+        variantMaxLength:
+          isHidden: true
+        clinicalClasses:
+          isHidden: true
+        start:
+          isHidden: true
+        end:
+          isHidden: true
+        alternateBases:
+          isHidden: true
+        referenceBases:
+          isHidden: true
+        bioontology:
+          isHidden: true
+        cohorts:
+          isHidden: true
+        sex:
+          isHidden: true
+        materialtype:
+          isHidden: true
+        freeFilters:
+          isHidden: true
+        filterLogic:
+          isHidden: true
+        accessid:
+          isHidden: true
+        geoCity:
+          isHidden: true
+        referenceid:
+          defaultValue: ["cellosaurus:CVCL_2947"]
     - label: "K-562 Cell Line"
       note: "Instances of K-562 and daughter cell lines, searched by Cellosaurus id"
       description: >-

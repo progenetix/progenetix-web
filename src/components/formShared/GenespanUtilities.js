@@ -1,4 +1,4 @@
-import { useProgenetixApi, basePath } from "../../hooks/api"
+import { useProgenetixApi, SITE_DEFAULTS } from "../../hooks/api"
 import { useEffect, useState } from "react"
 import { keyBy } from "lodash"
 
@@ -71,5 +71,5 @@ function geneLabel(gene) {
 }
 
 function geneSearchUrl(querytext) {
-  return `${basePath}services/genespans/?geneId=${querytext}&filterPrecision=start&method=genespan`
+  return `${SITE_DEFAULTS.API_PATH}services/genespans/?geneId=${querytext}&filterPrecision=start&method=genespan`
 }

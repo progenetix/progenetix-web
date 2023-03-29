@@ -167,28 +167,24 @@ function Variant({ variant, id, datasetIds }) {
           <ul>
             <li>
               <ExternalLink
-                href={`www.ncbi.nlm.nih.gov/clinvar/variation/${variant.variation.identifiers.clinvarIds[0][0]}`}
-                label={variant.variation.identifiers.clinvarIds[0][0]}
+                href={`http://www.ncbi.nlm.nih.gov/clinvar/variation/${variant.variation.identifiers.clinvarIds[0]}`}
+                label={variant.variation.identifiers.clinvarIds[1]}
               />
-            </li>
-            <li>
-                {variant.variation.identifiers.clinvarIds[0][1]}
             </li>
           </ul>
         </li>
     )}
 
+{/* <li>
+  {variant.variation.identifiers.clinvarIds[1]}
+</li>
+*/}
+
     {variant.variation.variantAlternativeIds && (
       <>
         {variant.variation.variantAlternativeIds.map((aa) =>
           <li key={aa}>
-            {aa.id}
-            {aa.label && (
-              <>
-                : {aa.label}
-              </>
-            )}
-
+            {aa}
           </li>
         )}
       </>

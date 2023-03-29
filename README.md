@@ -14,3 +14,14 @@ as a Mkdocs project with
     - additional configuration files in [`extra/`](extra/)
 
 More information can be found in the [Progenetix documentation](http://docs.progenetix.org/progenetix-website-builds)
+
+## Local built commands
+
+* `npm run local`
+    - runs the website generation usingt the `.test` server for API calls (e.g.
+    for testing API mofdifications/calls or when offline)
+    - requires a working local `bycon` setup, databases and all
+* `npm run built`
+    - uses the `....org` site for API calls during built phase
+    - site will _still_ use local data, only not for the built phase (and therefore
+    fail if no internet connection etc.)

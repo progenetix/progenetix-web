@@ -3,7 +3,7 @@ import Panel from "../components/Panel"
 import { SubsetHistogram } from "../components/Histogram"
 import React from "react"
 import { sample } from "lodash"
-import { SITE, SITE_DEFAULTS, tryFetch } from "../hooks/api"
+import { SITE_DEFAULTS, tryFetch } from "../hooks/api"
 import { ExternalLink } from "../components/helpersShared/linkHelpers"
 
 // const searchLink = 'Use case: Local CNV Frequencies <a href="/biosamples/">{↗}</a>'+
@@ -29,13 +29,20 @@ export default function Index({
       <Panel heading="Cancer cell line variants" className="content">
         <img src={"/img/progenetix_cellosaurus.png"} style={imgHere} />
         <p>
-          This search page uses Progenetix cell line copy number variation data.
-          These data include cancer cell lines that have been mapped to{" "}
+          The cancer cell line genome variation data in <i>cncercelllines</i> consists
+          of a mix of whole-genome copy number variation (CNV) profiles - as has
+          been established for the parent  <a href="http://progenetix.org">Progenetix</a>
+          resource - as well as annotated genome variation data, mapped to genome
+          coordinats and queryable using the Beacon v2 API.
+        </p>
+        <p>
+          A large amount of the cancer cell line data has been collected based on
+          annotations and pointers from{" "}
           <ExternalLink
             href="https://web.expasy.org/cellosaurus/"
             label="Cellosaurus"
           />
-          {" "} - a knowledge resource on cell lines.
+          {" "}, a reference knowledge resource on cell lines.
         </p>
         <p>The <i>cancercelllines</i> resource contains data of{" "}
           <span className="span-red">{cellosaurusCount}</span>{" "}individual cancer cell lines from{" "}
@@ -43,9 +50,14 @@ export default function Index({
           types (NCIt neoplasm classification).
         </p>
 
-      </Panel>
-      <Panel heading="Cell Line Data CNV Frequency Plot" className="content">
         <SubsetHistogram datasetIds={SITE_DEFAULTS.DATASETID} id={randomSubset.id} />
+        <p>
+          <b>Cell Line Data CNV Frequency Plot</b> The CNV histogram above
+          represents CNV data from a randomly selected set of samples
+          - either instances of a common cell line or with a shared diagnosis. In this example
+          the frequencies of regional gains and losses in {randomSubset.cnvAnalyses}{" "}
+          samples from {randomSubset.id} ({randomSubset.label}) are on display.
+        </p>
       </Panel>
       <Panel className="content">
         <div className="admonition">
@@ -61,23 +73,20 @@ export default function Index({
 
           </ul>
         </div>
-{/*        <div className="notification is-warning">
-          The <i>Cancer Cell Lines</i> site is under development. <b>Stay tuned!</b>
-        </div>    
-*/}      </Panel>
+      </Panel>
     </Layout>
   )
 }
 
 export const getStaticProps = async () => {
   const subsetsReply = await tryFetch(
-    `${SITE}services/collations/?datasetIds=${SITE_DEFAULTS.DATASETID}&method=counts&collationTypes=cellosaurus,NCIT,icdom,PMID,icdot`
+    `${SITE_DEFAULTS.API_PATH}services/collations/?datasetIds=${SITE_DEFAULTS.DATASETID}&method=counts&collationTypes=cellosaurus,NCIT,icdom,PMID,icdot`
   )
   const cellosaurusCountReply = await tryFetch(
-    `${SITE}services/collations/?datasetIds=${SITE_DEFAULTS.DATASETID}&method=codematches&collationTypes=cellosaurus&requestedGranularity=count`
+    `${SITE_DEFAULTS.API_PATH}services/collations/?datasetIds=${SITE_DEFAULTS.DATASETID}&method=codematches&collationTypes=cellosaurus&requestedGranularity=count`
   )
   const ncitCountReply = await tryFetch(
-    `${SITE}services/collations/?datasetIds=${SITE_DEFAULTS.DATASETID}&method=codematches&collationTypes=NCIT&requestedGranularity=count`
+    `${SITE_DEFAULTS.API_PATH}services/collations/?datasetIds=${SITE_DEFAULTS.DATASETID}&method=codematches&collationTypes=NCIT&requestedGranularity=count`
   )
   return {
     props: {
