@@ -12,7 +12,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel="icon" type="image/png" href="/img/pgx-logo.png" />
+          <link rel="icon" type="image/png" href="/img/cancercelllines-icon-100.png" />
           <script
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${SITE_DEFAULTS.TRACKING_ID}`}
