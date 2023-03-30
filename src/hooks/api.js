@@ -80,6 +80,7 @@ export async function tryFetch(url, fallBack = "N/A") {
 
 // This Beacon query only retrieves the counts & handovers using a custom `output=handoversonly`
 // parameter, to avoid "double-loading" of the results.
+// TODO: refactor using requestedGranularity ...
 export function useBeaconQuery(queryData) {
   return useProgenetixApi(
     queryData

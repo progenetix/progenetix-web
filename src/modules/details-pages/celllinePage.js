@@ -65,7 +65,7 @@ function SubsetLoader({ id, datasetIds }) {
   return (
     <Loader isLoading={isLoading} hasError={error} background>
       {data && (
-        <SubsetResponse response={data} id={id} datasetIds={datasetIds} />
+        <SubsetResponse id={id} response={data} datasetIds={datasetIds} />
       )}
     </Loader>
   )
@@ -73,18 +73,18 @@ function SubsetLoader({ id, datasetIds }) {
 
 /*============================================================================*/
 
-function SubsetResponse({ response, datasetIds }) {
+function SubsetResponse({ id, response, datasetIds }) {
   if (!response.response.results[0]) {
     return NoResultsHelp(exampleId, "subsetdetails")
   }
-  return <Subset subset={response.response.results[0]} datasetIds={datasetIds} />
+  return <Subset id={id} subset={response.response.results[0]} datasetIds={datasetIds} />
 }
 
 /*============================================================================*/
 
-function Subset({ subset, datasetIds }) {
+function Subset({ id, subset, datasetIds }) {
   
-  const filters = subset.id
+  const filters = id
   const sampleFilterScope = "freeFilters"
     
   return (

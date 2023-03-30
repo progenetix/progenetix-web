@@ -58,8 +58,7 @@ export default function Index({
           the frequencies of regional gains and losses in {randomSubset.cnvAnalyses}{" "}
           samples from {randomSubset.id} ({randomSubset.label}) are on display.
         </p>
-      </Panel>
-      <Panel className="content">
+
         <div className="admonition">
           <p className="admonition-title">Citation</p>
           <ul>
