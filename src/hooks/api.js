@@ -13,6 +13,7 @@ export function useExtendedSWR(url, fetcher = defaultFetcher) {
 export const SITE_DEFAULTS = {
   SITE: process.env.NEXT_PUBLIC_SITE_URL,
   API_PATH: process.env.NEXT_PUBLIC_API_PATH,
+  PREFETCH_PATH: process.env.NEXT_PUBLIC_PREFETCH_API_PATH,
   DATASETID: "cellz",
   DATASETLABEL: "cancer cell lines",
   PROJECTROOTLINK: "http://cancercelllines.org",
