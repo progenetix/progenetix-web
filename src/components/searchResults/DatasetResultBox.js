@@ -53,10 +53,6 @@ export function DatasetResultBox({ data: responseSet, query }) {
   const handoverById = (givenId) =>
     resultsHandovers.find(({ handoverType: { id } }) => id === givenId)
 
-  // const genericHandovers = resultsHandovers.filter(
-  //   ({ handoverType: { id } }) => !handoversInTab.includes(id)
-  // )
-
   const biosamplesHandover = handoverById(HANDOVER_IDS.biosamples)
   const biosamplesReply = useProgenetixApi(
     biosamplesHandover && replaceWithProxy(biosamplesHandover.url)

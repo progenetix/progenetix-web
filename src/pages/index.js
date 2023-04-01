@@ -17,8 +17,7 @@ export default function Index({
     float: "right",
     width: "250px",
     border: "0px",
-    margin: "-65px 0px 0px 0px",
-    "z-index":-1
+    margin: "-65px 0px 0px 0px"
   }
 
   const randomSubset = sample(
