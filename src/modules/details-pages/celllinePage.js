@@ -134,7 +134,7 @@ function Subset({ id, subset, individual, datasetIds }) {
                 href={`/cellline/?id=${pt}&datasetIds=${ datasetIds }`}
                 key={pt}
                 label={pt}
-              />).reduce((prev, curr) => [prev, ', ', curr])}
+              />).reduce((prev, curr) => [prev, ' ⇒ ', curr])}
         </ul>
       </>
   )}
@@ -173,7 +173,7 @@ function Subset({ id, subset, individual, datasetIds }) {
       </>
   )}
 */}
-  
+
   {subset.type && (
     <>
       <h5>Subset Type</h5>
