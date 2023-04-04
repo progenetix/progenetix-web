@@ -11,7 +11,8 @@ export default function cellLines_dataPage({ cytoBands }) {
 {/*      <div className="notification is-warning">
         The <i>Cancer Cell Lines</i> site is under development. <b>Stay tuned!</b>
       </div>
-*/}      <BiosamplesSearchPanel
+*/}   
+      <BiosamplesSearchPanel
         parametersConfig={parametersConfig}
         requestTypesConfig={requestTypesConfig}
         cytoBands={cytoBands}

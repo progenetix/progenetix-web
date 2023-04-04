@@ -35,6 +35,7 @@ export default SampleDetailsPage
 
 function BiosampleLoader({ biosId, datasetIds }) {
   const apiReply = useDataItemDelivery(biosId, itemColl, datasetIds)
+
   return (
     <WithData
       apiReply={apiReply}
@@ -100,14 +101,12 @@ function Biosample({ biosample, biosId, datasetIds }) {
         />
       </li>
     )}
-
     </ul>
     </>
   )}
 
   {biosample.provenance && (
     <>
-
     <h5>Provenance</h5>
     <ul>
       {biosample.provenance?.material?.label && (
