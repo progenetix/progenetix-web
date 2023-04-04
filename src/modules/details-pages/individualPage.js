@@ -67,7 +67,7 @@ function Individual({ individual, datasetIds }) {
         </>
       )}
 
-       {individual.sex && (
+      {individual.sex && (
         <>
           <h5>Genotypic Sex</h5>
           <ul>

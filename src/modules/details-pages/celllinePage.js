@@ -111,18 +111,18 @@ function Subset({ id, subset, individual, datasetIds }) {
 
   <h2>{subset.label} ({subset.id})</h2>
 
-  {individual.indexDisease?.diseaseCode && (
+  {subset.type && (
     <>
-      <h5>Diagnosis</h5>
+      <h5>Subset Type</h5>
       <ul>
         <li>
-          {individual.indexDisease.diseaseCode.id}{": "}
-          {individual.indexDisease.diseaseCode?.label}{" "}
+          {subset.type}{" "}
+          <ExternalLink href={subset.reference} label={subset.id} />
         </li>
       </ul>
-    </>
-  )}
 
+    </>
+  )} 
 
   {subset?.parentTerms?.length > 1 && (
      <>
@@ -154,6 +154,37 @@ function Subset({ id, subset, individual, datasetIds }) {
       </>
   )}
 
+  <h3>Donor Details</h3>
+
+  {individual.indexDisease?.diseaseCode && (
+    <>
+      <h5>Diagnosis</h5>
+      <ul>
+        <li>
+          {individual.indexDisease.diseaseCode.id}{": "}
+          {individual.indexDisease.diseaseCode?.label}{" "}
+        </li>
+      </ul>
+    </>
+  )}
+
+  {individual.description && (
+    <>
+      <h5>Description</h5>
+      <p>{individual.description}</p>
+    </>
+  )}
+
+  {individual.sex && (
+    <>
+      <h5>Genotypic Sex</h5>
+      <ul>
+        <li>{individual.sex?.label} ({individual.sex.id})</li>
+      </ul>
+    </>
+  )}
+
+
 {/*  
   {subset.childTerms?.length > 1 && (
      <>
@@ -174,18 +205,7 @@ function Subset({ id, subset, individual, datasetIds }) {
   )}
 */}
 
-  {subset.type && (
-    <>
-      <h5>Subset Type</h5>
-      <ul>
-        <li>
-          {subset.type}{" "}
-          <ExternalLink href={subset.reference} label={subset.id} />
-        </li>
-      </ul>
-
-    </>
-  )} 
+  <h3>Samples</h3>
 
   <h5>Sample Counts</h5>
   <ul>
