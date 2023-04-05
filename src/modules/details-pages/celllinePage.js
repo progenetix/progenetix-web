@@ -111,19 +111,6 @@ function Subset({ id, subset, individual, datasetIds }) {
 
   <h2>{subset.label} ({subset.id})</h2>
 
-  {subset.type && (
-    <>
-      <h5>Subset Type</h5>
-      <ul>
-        <li>
-          {subset.type}{" "}
-          <ExternalLink href={subset.reference} label={subset.id} />
-        </li>
-      </ul>
-
-    </>
-  )} 
-
   {subset?.parentTerms?.length > 1 && (
      <>
         <h5>Parental Cell Lines</h5>
@@ -204,11 +191,12 @@ function Subset({ id, subset, individual, datasetIds }) {
 */}
 
   <h5>Samples</h5>
-
   <ul>
-    <li>{subset.count} samples</li>
-    <li>{subset.codeMatches} direct <i>{subset.id}</i> code  matches</li>
-    <li>{subset.cnvAnalyses} CNV analyses</li>
+    <li>
+      {subset.count} samples (
+      {subset.codeMatches} direct <i>{subset.id}</i> matches;{" "}
+      {subset.cnvAnalyses} CNV analyses)
+    </li>
     <li>Select <i>{subset.id}</i> samples in the{" "}
       <a
         rel="noreferrer"
@@ -216,6 +204,13 @@ function Subset({ id, subset, individual, datasetIds }) {
         href={ sampleSearchPageFiltersLink({datasetIds, sampleFilterScope, filters}) }
       >{" "}Search Form
       </a>
+    </li>
+  </ul>
+
+  <h5>More Information</h5>
+  <ul>
+    <li>
+      Cellosaurus{": "}<ExternalLink href={subset.reference} label={subset.id} />
     </li>
   </ul>
 
