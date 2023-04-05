@@ -154,36 +154,34 @@ function Subset({ id, subset, individual, datasetIds }) {
       </>
   )}
 
-  <h3>Donor Details</h3>
+  <h5>Donor Details</h5>
+
+  <ul>
 
   {individual.indexDisease?.diseaseCode && (
-    <>
-      <h5>Diagnosis</h5>
-      <ul>
-        <li>
-          {individual.indexDisease.diseaseCode.id}{": "}
-          {individual.indexDisease.diseaseCode?.label}{" "}
-        </li>
-      </ul>
-    </>
+    <li>
+      <b>Diagnosis</b>{": "}
+      {individual.indexDisease.diseaseCode.id}{" ("}
+      {individual.indexDisease.diseaseCode?.label}{")"}
+    </li>
+      
   )}
 
   {individual.description && (
-    <>
-      <h5>Description</h5>
-      <p>{individual.description}</p>
-    </>
+    <li>
+      <b>Description</b>{": "}
+      {individual.description}
+    </li>
   )}
 
   {individual.sex && (
-    <>
-      <h5>Genotypic Sex</h5>
-      <ul>
-        <li>{individual.sex?.label} ({individual.sex.id})</li>
-      </ul>
-    </>
+    <li>
+      <b>Genotypic Sex</b>{": "}
+      {individual.sex?.label} ({individual.sex.id})
+    </li>
   )}
 
+  </ul>
 
 {/*  
   {subset.childTerms?.length > 1 && (
@@ -205,24 +203,21 @@ function Subset({ id, subset, individual, datasetIds }) {
   )}
 */}
 
-  <h3>Samples</h3>
+  <h5>Samples</h5>
 
-  <h5>Sample Counts</h5>
   <ul>
     <li>{subset.count} samples</li>
     <li>{subset.codeMatches} direct <i>{subset.id}</i> code  matches</li>
     <li>{subset.cnvAnalyses} CNV analyses</li>
+    <li>Select <i>{subset.id}</i> samples in the{" "}
+      <a
+        rel="noreferrer"
+        target="_blank"
+        href={ sampleSearchPageFiltersLink({datasetIds, sampleFilterScope, filters}) }
+      >{" "}Search Form
+      </a>
+    </li>
   </ul>
-
-  <h5>Search Samples</h5>
-  <p>Select <i>{subset.id}</i> samples in the{" "}
-    <a
-      rel="noreferrer"
-      target="_blank"
-      href={ sampleSearchPageFiltersLink({datasetIds, sampleFilterScope, filters}) }
-    >{" "}Search Form
-    </a>
-  </p> 
 
   <ShowJSON data={subset} />
   
