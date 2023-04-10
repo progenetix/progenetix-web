@@ -69,12 +69,6 @@ const CellLineDetailsPage = withUrlQuery(({ urlQuery }) => {
         <Panel heading={`Annotated Variants for ${id}`} className="content">
           <VariantsDataTable apiReply={variantsReply} datasetId={datasetIds} />
         </Panel>
-{/*
-        <AnnotatedVariantsLoaer
-          datasetIds={datasetIds}
-          id={id}
-        />
-*/}
 
         <Panel heading={`Literature Derived Contextual Information`} className="content">
           <LiteratureSearch
