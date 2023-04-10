@@ -11,7 +11,6 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 const service = "collations"
 
-
 export function LiteratureSearch({ id, datasetIds, labels, setLabels})
 {
   const { data, error, isLoading } = useServiceItemDelivery(
@@ -32,23 +31,22 @@ function LiteratureSearchResultsTabbed({label, labels, setLabels}) {
 
   const {data,error,isLoading} = useLiteratureCellLineMatches(label);
   const TABS = {
-    genes: "Gene Matches",
-    cytobands: "Cytoband Matches",
-    variants: "Variants"
+    genes: { id: "genes", label: "Gene Matches", info: "Genes that have been matched in publications related to the cell line. The connection between gene and cell line may be indirect (e.g. as part of a process affected in the CL) or circumstantial (e.g. involving another CL or sample discussed in the context)."},
+    cytobands: { id: "cytobands", label: "Cytoband Matches", info: "Genomic regions by cytoband annotation (8q24, 17p ...) named in a CL context"},
+    variants: { id: "variants", label: "Variants", info: "Genomic variation types or processes mentioned in the context of the CL, in the corresponding publication (not necessarily applying to the CL itself)"}
   }
   // process: "Disease Annotations",
   // TABS.process, 
 
-  const tabNames = [TABS.genes, TABS.cytobands, TABS.variants]
+  const tabNames = [TABS.genes.label, TABS.cytobands.label, TABS.variants.label]
   const [selectedTab, setSelectedTab] = useState(tabNames[0])
 
   return (
     <Loader isLoading={isLoading} hasError={error} background>
-
-    {data && Object.keys(data).length > 0 && (
+    {data && Object.keys(data).length > 0 ?
       <div className="box">
-        {tabNames?.length > 0 ? (
-          <div className="tabs is-boxed ">
+        {tabNames?.length > 0 ?
+          <div className="tabs is-boxed">
             <ul>
               {tabNames.map((tabName, i) => (
                 <li
@@ -63,24 +61,25 @@ function LiteratureSearchResultsTabbed({label, labels, setLabels}) {
               ))}
             </ul>
           </div>
-        ) : null}
-        {data?.Cancer?.length > 0 && selectedTab === TABS.process &&
-          <ResultComponent cellline={label} entities={data.Cancer} /> 
-        }
-        {data?.Gene?.length > 0 && selectedTab === TABS.genes &&
+        : null}
+        {data?.Gene?.length > 0 && selectedTab === TABS.genes.label &&
           <GeneComponent cellline={label} genes={data.Gene.sort()} labels={labels} setLabels={setLabels}/>
         }
-        {data?.Band?.length > 0 && selectedTab === TABS.cytobands &&
+        {data?.Band?.length > 0 && selectedTab === TABS.cytobands.label &&
           <ResultComponent cellline={label} entities={data.Band} />
         }
-        {data?.Variant?.length > 0 && selectedTab === TABS.variants &&
+        {data?.Variant?.length > 0 && selectedTab === TABS.variants.label &&
           <ResultComponent cellline={label} entities={data.Variant} />
         }
-      </div>
-    )}
+      </div> : "Nothing to see here..."
+    }
     </Loader>
   )
 }
+
+/*==============================================================================
+================================================================================
+==============================================================================*/
 
 function GeneComponent({cellline, genes, labels, setLabels})
 {

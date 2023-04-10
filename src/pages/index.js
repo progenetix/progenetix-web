@@ -1,7 +1,8 @@
+import React from "react"
 import { Layout } from "../components/Layout"
 import Panel from "../components/Panel"
 import { SubsetHistogram } from "../components/Histogram"
-import React from "react"
+import { Admonition } from "../components/Admonitions"
 import { sample } from "lodash"
 import { SITE_DEFAULTS, tryFetch } from "../hooks/api"
 import { ExternalLink, InternalLink } from "../components/helpersShared/linkHelpers"
@@ -57,28 +58,31 @@ export default function Index({
           {" "}, a reference knowledge resource on cell lines.
         </p>
 
-        <SubsetHistogram datasetIds={SITE_DEFAULTS.DATASETID} id={randomSubset.id} />
-        <p className="img-legend">
-          <b>Cell Line Data CNV Frequency Plot</b> The CNV histogram above
-          represents CNV data from a randomly selected set of samples
-          - either instances of a common cell line or with a shared diagnosis. In this example
-          the frequencies of regional gains and losses in {randomSubset.cnvAnalyses}{" "}
-          samples from {randomSubset.id} ({randomSubset.label}) are on display.
-        </p>
+        <SubsetHistogram
+          datasetIds={SITE_DEFAULTS.DATASETID}
+          id={randomSubset.id}
+          title="Cell Line Data CNV Frequency Plot"
+          description={`The CNV histogram above represents CNV data from a
+          randomly selected set of samples - either instances of a common cell 
+          line or with a shared diagnosis. In this example the frequencies of 
+          regional gains and losses in ${randomSubset.cnvAnalyses}${" "}
+          samples from ${randomSubset.id} (${randomSubset.label}) are on display.`}
+        />
 
-        <div className="admonition">
-          <p className="admonition-title">Citation</p>
+        <Admonition
+          title="Citation"
+          content='
           <ul>
             <li>
               cancercelllines.org: <strong>Cancer cell line oncogenomic online resource</strong> (2023)
             </li>
-            <li>Huang Q, Carrio-Cordo P, Gao B, Paloots R, Baudis M. (2021):{" "} 
-              <strong>The Progenetix oncogenomic resource in 2021.</strong>{" "}
+            <li>Huang Q, Carrio-Cordo P, Gao B, Paloots R, Baudis M. (2021): 
+              <strong>The Progenetix oncogenomic resource in 2021.</strong> 
               <em>Database (Oxford).</em> 2021 Jul 17
             </li>
+          </ul>'
+        />
 
-          </ul>
-        </div>
       </Panel>
     </Layout>
   )

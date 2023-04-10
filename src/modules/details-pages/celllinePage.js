@@ -7,11 +7,13 @@ import {
 } from "../../hooks/api"
 import { Loader } from "../../components/Loader"
 import { Layout } from "../../components/Layout"
+import Panel from "../../components/Panel"
 import { LiteratureSearch } from "../../components/LiteratureSearch"
 import { ShowJSON } from "../../components/RawData"
 import { SubsetHistogram } from "../../components/Histogram"
 import { ExternalLink, InternalLink } from "../../components/helpersShared/linkHelpers"
 import { withUrlQuery } from "../../hooks/url-query"
+import VariantsDataTable from "../../components/searchResults/VariantsDataTable"
 
 const service = "collations"
 const exampleId = "cellosaurus:CVCL_0023"
@@ -21,6 +23,9 @@ const CellLineDetailsPage = withUrlQuery(({ urlQuery }) => {
   var { id } = urlQuery
   const hasAllParams = id && datasetIds
   const [labels, setLabels] = useState("");
+
+  const aURL = `${SITE_DEFAULTS.API_PATH}beacon/genomicVariations/?filters=${id}&requestEntityId=genomicVariations&datasetIds=${datasetIds}&annotatedOnly=True&paginateResults=false`
+  const variantsReply = useProgenetixApi( aURL )
 
   const iURL = `${SITE_DEFAULTS.API_PATH}beacon/individuals/?filters=${id}&datasetIds=${datasetIds}&limit=1`
   var [individual, setIndividual] = useState([]);
@@ -37,27 +42,48 @@ const CellLineDetailsPage = withUrlQuery(({ urlQuery }) => {
    }, [setIndividual]);
 
   return (
-    <Layout title="Cell Line Details" headline="Cell Line Details">
+    <Layout title="Cell Line Details" headline="">
       {!hasAllParams ? (
         NoResultsHelp(exampleId, "subsetdetails")
       ) : (
       <>
 
-      <SubsetLoader id={id} individual={individual} datasetIds={datasetIds} />
+        <Panel heading="" className="content">
 
-      <div className="mb-3">
-        <SubsetHistogram
-          id={id}
+          <SubsetLoader id={id} individual={individual} datasetIds={datasetIds} />
+
+          <div className="mb-3">
+            <SubsetHistogram
+              id={id}
+              datasetIds={datasetIds}
+              labelstring={labels}
+              loaderProps={{
+                background: true,
+                colored: true
+              }}
+            />
+          </div>
+
+        </Panel>
+
+        <Panel heading={`Annotated Variants for ${id}`} className="content">
+          <VariantsDataTable apiReply={variantsReply} datasetId={datasetIds} />
+        </Panel>
+{/*
+        <AnnotatedVariantsLoaer
           datasetIds={datasetIds}
-          labelstring={labels}
-          loaderProps={{
-            background: true,
-            colored: true
-          }}
+          id={id}
         />
-      </div>
+*/}
 
-      <LiteratureSearch id={id} datasetIds={datasetIds} labels={labels} setLabels={setLabels}/>
+        <Panel heading={`Literature Derived Contextual Information`} className="content">
+          <LiteratureSearch
+            id={id}
+            datasetIds={datasetIds}
+            labels={labels}
+            setLabels={setLabels}
+          />
+        </Panel>
 
       </>
       )}
@@ -170,26 +196,6 @@ function Subset({ id, subset, individual, datasetIds }) {
 
   </ul>
 
-{/*  
-  {subset.childTerms?.length > 1 && (
-     <>
-        <h5>Derived Cell Lines</h5>
-        <ul>
-          {subset.childTerms.map((pt) => (
-            pt != id ? (
-            <li key={pt}>
-              <InternalLink
-                href={`/cellline/?id=${pt}&datasetIds=${ datasetIds }`}
-                label={pt}
-              />
-            </li>
-            ) : null
-          ))}
-        </ul>
-      </>
-  )}
-*/}
-
   <h5>Samples</h5>
   <ul>
     <li>
@@ -219,4 +225,7 @@ function Subset({ id, subset, individual, datasetIds }) {
 </section>
   )
 }
+
+/*============================================================================*/
+
 

@@ -25,7 +25,7 @@ export default function Histogram({ apiReply }) {
   )
 }
 
-export function SubsetHistogram({ id, filter, datasetIds, labelstring, size: givenSize }) {
+export function SubsetHistogram({ id, filter, datasetIds, labelstring, title, description, size: givenSize }) {
   const componentRef = useRef()
   const { width } = useContainerDimensions(componentRef)
   const size = givenSize || width
@@ -40,6 +40,18 @@ export function SubsetHistogram({ id, filter, datasetIds, labelstring, size: giv
           size
         })}
       />
+      <div className="img-legend">
+      {title && (
+        <>      
+          <b>{title}</b>
+        </>
+      )}
+      {description && (
+        <>      
+          {" "}{description}
+        </>
+      )}
+      </div>
       <div className="svg-histolinks">
         <Link href={subsetSVGlink(id, datasetIds)}>
           <a>Download SVG</a>
