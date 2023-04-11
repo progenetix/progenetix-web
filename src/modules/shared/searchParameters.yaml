@@ -10,6 +10,8 @@ datasetIds:
       label: Progenetix
     - value: cellz
       label: Cancer Cell Lines Collection
+    - value: examplez
+      label: Test Database - examplez
 assemblyId:
   label: Genome Assembly
   infoText: |
