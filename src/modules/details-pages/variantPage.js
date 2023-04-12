@@ -62,10 +62,14 @@ function Variant({ variant, id, datasetIds }) {
     Variant Details for <i>{id}</i>
   </h2>
 
-  <h5>Digest</h5>
-  <ul>
-    <li>{variant.variantInternalId}</li>
-  </ul>
+  {variant.variantInternalId && (
+    <>
+    <h5>Variant Shorthand Expression</h5>
+      <ul>
+        <li>{variant.variantInternalId}</li>
+      </ul>
+    </>
+  )}
 
   {variant.caseLevelData && (
     <>
