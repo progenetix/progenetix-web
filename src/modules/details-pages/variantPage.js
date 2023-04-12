@@ -4,6 +4,7 @@ import {
   NoResultsHelp
 } from "../../hooks/api"
 import { BeaconRESTLink, ExternalLink, InternalLink, ReferenceLink } from "../../components/helpersShared/linkHelpers"
+// import {InternalLink } from "../../components/helpersShared/linkHelpers"
 import { WithData } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
@@ -59,7 +60,7 @@ function Variant({ variant, id, datasetIds }) {
   return (
 <section className="content">
   <h2>
-    Variant Details for <i>{id}</i>
+    Variant Details for <i>{id}</i> ({datasetIds})
   </h2>
 
   {variant.variantInternalId && (
@@ -70,6 +71,7 @@ function Variant({ variant, id, datasetIds }) {
       </ul>
     </>
   )}
+
 
   {variant.caseLevelData && (
     <>
@@ -114,8 +116,11 @@ function Variant({ variant, id, datasetIds }) {
   {variant.variation.molecularAttributes && (
     <>
       <h5>Molecular Attributes</h5>
+
       <ul>
+      {variant.variation.molecularAttributes.geneIds && (
         <li>Gene: <b>{variant.variation.molecularAttributes.geneIds[0]}</b></li>
+      )}
 
       {variant.variation.molecularAttributes.molecularEffects && (
         <li>Molecular effect: {variant.variation.molecularAttributes.molecularEffects[0].label}</li>
@@ -178,12 +183,7 @@ function Variant({ variant, id, datasetIds }) {
           </ul>
         </li>
     )}
-
-{/* <li>
-  {variant.variation.identifiers.clinvarIds[1]}
-</li>
-*/}
-
+{/*
     {variant.variation.variantAlternativeIds && (
       <>
         {variant.variation.variantAlternativeIds.map((aa) =>
@@ -193,6 +193,8 @@ function Variant({ variant, id, datasetIds }) {
         )}
       </>
     )}
+
+*/}
 
     </ul>
     </>
