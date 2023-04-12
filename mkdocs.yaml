@@ -87,7 +87,7 @@ extra:
     - icon: fontawesome/brands/github 
       link: https://github.com/progenetix
 extra_css:
-  - stylesheets/extra.css
+  - css/theme_overrides.css
 extra_javascript:
   # - https://unpkg.com/mermaid/dist/mermaid.min.js
   - https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js
