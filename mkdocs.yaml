@@ -57,8 +57,8 @@ theme:
   name: material
   # palette:
   #   primary: deep orange
-  favicon: img/cancercelllines-white-back-128.png.png
-  logo: img/cancercelllines-white-back-128.png.png
+  favicon: img/cancercelllines-no-text-160.png
+  logo: img/cancercelllines-no-text-160.png
   icon:
     repo: fontawesome/brands/github-alt
     admonition:
