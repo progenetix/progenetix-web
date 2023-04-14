@@ -8,7 +8,7 @@ repo_url: https://github.com/progenetix/cancercelllines-web
 ###############################################################################
 
 nav:
-  - Documentation Home: index
+  - Documentation Home: /
   - News & Changes: news
   - Literature data: literature-data
   - Cancercelllines Data &#8599;: http://cancercelllines.org
@@ -67,9 +67,14 @@ theme:
     - content.tabs.link
     - search.highlight
     - search.share
-    - navigation.instant
-    - navigation.tracking
-    - navigation.sections
+    - navigation.indexes
+    - navigation.tabs
+    - navigation.tabs.sticky
+    # - navigation.instant
+    # - navigation.tracking
+    # - navigation.sections
+    - navigation.expand
+    # - navigation.tabs
     # - toc.integrate
   custom_dir: extra
       
