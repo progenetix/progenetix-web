@@ -329,7 +329,7 @@ export function useCytomapper(querytext) {
 }
 
 export function useSubsethistogram({ datasetIds, id, filter, labelstring, size, chr2plot }) {
-  const svgbaseurl = subsetSVGlink(id, datasetIds)
+  const svgbaseurl = subsetHistoLink(id, datasetIds)
   const params = []
   filter && params.push(["filter", filter])
   labelstring && params.push(["labels", labelstring])
@@ -388,14 +388,14 @@ export function useGeneSymbol({ geneId }) {
   return useProgenetixApi(url)
 }
 
-export function subsetSVGlink(id, datasetIds) {
-  return `${SITE_DEFAULTS.API_PATH}services/collationPlots/?datasetIds=${datasetIds}&id=${id}`
-}
+// export function subsetSVGlink(id, datasetIds) {
+//   return `${SITE_DEFAULTS.API_PATH}services/collationPlots/?datasetIds=${datasetIds}&id=${id}`
+// }
 
 // TODO: The new method still lacks the label drawing ...
-// export function subsetHistoLink(id, datasetIds) {
-//   return `${SITE_DEFAULTS.API_PATH}services/intervalFrequencies/?datasetIds=${datasetIds}&id=${id}&output=histoplot`
-// }
+export function subsetHistoLink(id, datasetIds) {
+  return `${SITE_DEFAULTS.API_PATH}services/intervalFrequencies/?datasetIds=${datasetIds}&id=${id}&output=histoplot`
+}
 
 // the targets are resolved by `bycon` (bycon/services/ids.py)
 // TODO: make this a function here - UI links resolved in UI, API links in bycon

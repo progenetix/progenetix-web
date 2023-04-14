@@ -3,7 +3,7 @@ import React, { useRef } from "react"
 import {
   SITE_DEFAULTS,
   useSubsethistogram,
-  subsetSVGlink,
+  subsetHistoLink,
   subsetIdLink,
   subsetPgxsegLink,
   useExtendedSWR
@@ -53,7 +53,7 @@ export function SubsetHistogram({ id, filter, datasetIds, labelstring, title, de
       )}
       </div>
       <div className="svg-histolinks">
-        <Link href={subsetSVGlink(id, datasetIds)}>
+        <Link href={subsetHistoLink(id, datasetIds)}>
           <a>Download SVG</a>
         </Link>
         {" | "}
