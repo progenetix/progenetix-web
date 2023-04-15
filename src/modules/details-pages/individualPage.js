@@ -8,6 +8,7 @@ import { WithData } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
 import { ShowJSON } from "../../components/RawData"
+import { VictoryPie, VictoryLabel } from "victory";
 
 const itemColl = "individuals"
 const exampleId = "pgxind-kftx266l"
@@ -75,27 +76,62 @@ function Individual({ individual, datasetIds }) {
           </ul>
         </>
       )}
+
       {individual.genomeAncestry && individual.genomeAncestry?.length > 0 &&
-        <>
-          <h5>Genome Ancestry</h5>
-          <table style={{ width: "120px" }}>
-            <tr>
-              <th>ID</th>
-              <th>Description</th>
-              <th>Percentage</th>
-            </tr>
-            {individual.genomeAncestry?.map((genomeAncestry, key) => {
-              return (
-                <tr key={key}>
-                  <td>{genomeAncestry.id}</td>
-                  <td>{genomeAncestry.label}</td>
-                  <td>{genomeAncestry.percentage}</td>
-                </tr>
-              )
-            })}
-          </table>
-        </>
+          <div style={{ display: "flex", flexDirection: "row", alignItems: "flex-start", width: "100%" }}>
+            <div style={{ flex: "1 1 50%", paddingRight: "0px" }}>
+              <h5>Genome Ancestry</h5>
+              <div style={{ width: "70%" }}>
+                <table style={{ width: "100%" }}>
+                  <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Description</th>
+                    <th>%</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {individual.genomeAncestry
+                      .sort((a, b) => a.label.localeCompare(b.label)) // Sort alphabetically
+                      .map((genomeAncestry, key) => {
+                        return (
+                            <tr key={key}>
+                              <td>{genomeAncestry.id}</td>
+                              <td>{genomeAncestry.label}</td>
+                              <td>{genomeAncestry.percentage}</td>
+                            </tr>
+                        )
+                      })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div style={{ flex: "1 1 50%", display: "flex", justifyContent: "center" }}>
+              <div style={{ width: "500px", height: "500px", alignSelf: "center", marginTop: '-50px', marginLeft: '-350px' }}>
+                <VictoryPie
+                    data={individual.genomeAncestry
+                        .sort((a, b) => a.label.localeCompare(b.label)) // Sort alphabetically
+                        .filter((datum) => parseFloat(datum.percentage) > 0) // Filter out data points with percentage of 0
+                    }
+                    x="label"
+                    y={(datum) => parseFloat(datum.percentage)}
+                    padAngle={2}
+                    radius={80}
+                    colorScale={['#E0BBE4', '#957DAD', '#D291BC', '#FEC8D8', '#FFDFD3', '#FEE1E8', '#D3C2CE']}
+                    labelRadius={({ radius }) => radius + 20}
+                    labelComponent={
+                      <VictoryLabel
+                          style={{ fontSize: 12 }}
+                          text={({ datum }) => datum.label} // Only show label text if percentage is greater than 0
+                      />
+                    }
+                />
+              </div>
+            </div>
+          </div>
       }
+
+
 
       {individual.onset &&
         <p>
