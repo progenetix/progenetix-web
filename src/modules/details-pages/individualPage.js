@@ -9,6 +9,7 @@ import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
 import { ShowJSON } from "../../components/RawData"
 import { VictoryPie, VictoryLabel } from "victory";
+import React from "react";
 
 const itemColl = "individuals"
 const exampleId = "pgxind-kftx266l"
@@ -131,20 +132,21 @@ function Individual({ individual, datasetIds }) {
           </div>
       }
 
+      {individual.indexDisease?.onset && (
+          <p style={{ marginTop: "-100px"}}>
+            <h5>Age at Collection</h5>
+            {individual.indexDisease.onset.age}
+          </p>
+      )}
 
+        {individual.indexDisease?.diseaseCode && (
+            <p>
+                <h5>Diagnosis</h5>
+                {individual.indexDisease.diseaseCode.id}{" ("}
+                {individual.indexDisease.diseaseCode?.label}{")"}
+            </p>
 
-      {individual.onset &&
-        <p>
-          Age at Collection: {individual.onset?.age}
-        </p>
-      }
-
-      {individual.diseaseCode &&
-        <>
-          <h5>Diagnosis</h5>
-          <p>{individual.diseaseCode?.label}</p>
-        </>
-      }
+        )}
 
       {individual.cellLines &&
         <>
@@ -176,7 +178,7 @@ function Individual({ individual, datasetIds }) {
         ))}
         </>
       }
-      
+
       <h5>Download</h5>
       <ul>
         <li>Subject data as{" "}

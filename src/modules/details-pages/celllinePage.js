@@ -14,6 +14,7 @@ import { SubsetHistogram } from "../../components/Histogram"
 import { ExternalLink, InternalLink } from "../../components/helpersShared/linkHelpers"
 import { withUrlQuery } from "../../hooks/url-query"
 import VariantsDataTable from "../../components/searchResults/VariantsDataTable"
+import {VictoryLabel, VictoryPie} from "victory";
 
 const service = "collations"
 const exampleId = "cellosaurus:CVCL_0023"
@@ -188,6 +189,69 @@ function Subset({ id, subset, individual, datasetIds }) {
     </li>
   )}
 
+  {individual.indexDisease?.onset && (
+      <li>
+        <b>Age at Collection</b>{": "}
+        {individual.indexDisease.onset.age}
+      </li>
+  )}
+
+    {individual.genomeAncestry && individual.genomeAncestry?.length > 0 && (
+        <li>
+        <div style={{ display: "flex", flexDirection: "row", alignItems: "flex-start", width: "100%", marginBottom: "-120px" }}>
+          <div style={{ flex: "1 1 50%", paddingRight: "0px"}}>
+            <b>Genome Ancestry</b>
+            <div style={{ width: "70%"}}>
+              <table style={{ width: "100%" }}>
+                <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Description</th>
+                  <th>%</th>
+                </tr>
+                </thead>
+                <tbody>
+                {individual.genomeAncestry
+                    .sort((a, b) => a.label.localeCompare(b.label)) // Sort alphabetically
+                    .map((genomeAncestry, key) => {
+                      return (
+                          <tr key={key}>
+                            <td>{genomeAncestry.id}</td>
+                            <td>{genomeAncestry.label}</td>
+                            <td>{genomeAncestry.percentage}</td>
+                          </tr>
+                      )
+                    })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div style={{ flex: "1 1 50%", display: "flex", justifyContent: "center" }}>
+            <div style={{ width: "500px", height: "500px", alignSelf: "center", marginTop: '-70px', marginLeft: '-270px' }}>
+              <VictoryPie
+                  data={individual.genomeAncestry
+                      .sort((a, b) => a.label.localeCompare(b.label)) // Sort alphabetically
+                      .filter((datum) => parseFloat(datum.percentage) > 0) // Filter out data points with percentage of 0
+                  }
+                  x="label"
+                  y={(datum) => parseFloat(datum.percentage)}
+                  padAngle={2}
+                  radius={80}
+                  colorScale={['#E0BBE4', '#957DAD', '#D291BC', '#FEC8D8', '#FFDFD3', '#FEE1E8', '#D3C2CE']}
+                  labelRadius={({ radius }) => radius + 20}
+                  labelComponent={
+                    <VictoryLabel
+                        style={{ fontSize: 12 }}
+                        text={({ datum }) => datum.label} // Only show label text if percentage is greater than 0
+                    />
+                  }
+              />
+            </div>
+          </div>
+        </div>
+          </li>
+    )
+    }
   </ul>
 
   <h5>Samples</h5>
