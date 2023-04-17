@@ -14,7 +14,7 @@ import { SubsetHistogram } from "../../components/Histogram"
 import { ExternalLink, InternalLink } from "../../components/helpersShared/linkHelpers"
 import { withUrlQuery } from "../../hooks/url-query"
 import VariantsDataTable from "../../components/searchResults/VariantsDataTable"
-import {VictoryLabel, VictoryPie} from "victory";
+import {VictoryContainer, VictoryLabel, VictoryPie} from "victory";
 
 const service = "collations"
 const exampleId = "cellosaurus:CVCL_0023"
@@ -157,7 +157,7 @@ function Subset({ id, subset, individual, datasetIds }) {
                 href={`/cellline/?id=${pt}&datasetIds=${ datasetIds }`}
                 key={pt}
                 label={pt}
-              />).reduce((prev, curr) => [prev, ', ', curr])}
+              />).reduce((prev, curr) => [prev, ' ⇒ ', curr])}
         </ul>
       </>
   )}
@@ -195,12 +195,12 @@ function Subset({ id, subset, individual, datasetIds }) {
         {individual.indexDisease.onset.age}
       </li>
   )}
-  </ul>
 
+  </ul>
 
   {individual.genomeAncestry && individual.genomeAncestry?.length > 0 && (
     <div style={{ display: "flex", flexDirection: "row", alignItems: "flex-start", width: "100%", marginBottom: "0px" }}>
-      <div style={{ width: "50%", paddingRight: "0px"}}>
+      <div style={{ width: "50%" }}>
         <b>Genome Ancestry</b>
           <table style={{ width: "80%", fontSize: "0.9em" }}>
             <thead>
@@ -224,8 +224,8 @@ function Subset({ id, subset, individual, datasetIds }) {
                 })}
             </tbody>
           </table>
-      </div>
-      <div style={{ width: "40%", marginBottom: "-50px"}}>
+        </div>
+        <div style={{ width: "40%", marginTop: "-70px", marginBottom: "-40px"}}>
           <VictoryPie
               data={individual.genomeAncestry
                   .sort((a, b) => a.label.localeCompare(b.label)) // Sort alphabetically
@@ -243,6 +243,7 @@ function Subset({ id, subset, individual, datasetIds }) {
                     text={({ datum }) => datum.label} // Only show label text if percentage is greater than 0
                 />
               }
+              containerComponent={<VictoryContainer responsive={false}/>}
           />
       </div>
     </div>
