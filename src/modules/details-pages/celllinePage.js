@@ -122,11 +122,12 @@ function Subset({ id, subset, individual, datasetIds }) {
   
   const filters = id
   const sampleFilterScope = "freeFilters"
-
+  const [showAll, setShowAll] = useState(false);
   console.log(individual);
   console.log(Object.keys(individual));
   
   return (
+
 
 <section className="content">
 
@@ -147,20 +148,41 @@ function Subset({ id, subset, individual, datasetIds }) {
       </>
   )}
 
+
   {subset?.childTerms?.length > 1 && (
-     <>
+      <>
         <h5>Derived Cell Lines</h5>
         <ul>
-          {subset.childTerms
-            .map(pt => 
+          {subset.childTerms.slice(0, showAll ? subset.childTerms.length : 5).map(pt =>
               <InternalLink
-                href={`/cellline/?id=${pt}&datasetIds=${ datasetIds }`}
-                key={pt}
-                label={pt}
-              />).reduce((prev, curr) => [prev, ' ⇒ ', curr])}
+                  href={`/cellline/?id=${pt}&datasetIds=${datasetIds}`}
+                  key={pt}
+                  label={pt}
+              />
+          )}
         </ul>
+        {subset.childTerms.length > 5 && (
+            <button
+                onClick={() => setShowAll(!showAll)}
+                style={{
+                  backgroundColor: 'lightgrey',
+                  color: 'white',
+                  padding: '10px',
+                  borderRadius: '5px',
+                  border: 'none',
+                  cursor: 'pointer',
+                  outline: 'none',
+                  marginBottom: '10px',
+                }}
+            >
+              {showAll ? 'Show Less' : 'Show More'}
+            </button>
+
+
+        )}
       </>
   )}
+
 
   <h5>Donor Details</h5>
 
