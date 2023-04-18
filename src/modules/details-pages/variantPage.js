@@ -188,18 +188,18 @@ function Variant({ variant, id, datasetIds }) {
     </>
 
   )}
-
+{/*
   {variant.variation.variantAlternativeIds && (
-      <ul>
-        {variant.variation.variantAlternativeIds.map((aa) =>
-          <li key={aa}>
-            {aa}
-          </li>
-        )}
-      </ul>
-    )}
+    <ul>
+      {variant.variation.variantAlternativeIds.map((aa) =>
+        <li key={aa}>
+          {aa}
+        </li>
+      )}
+    </ul>
+  )}
 
-{/*}*/}
+}*/}
   {variant.variation.variantLevelData && variant.variation.variantLevelData.clinicalInterpretations.length > 0 && (
     <>
     <h5>Clinical Interpretations</h5>
