@@ -10,9 +10,80 @@ import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
 import { ShowJSON } from "../../components/RawData"
 import React from "react"
-
+// import { v4 as uuidv4 } from 'uuid';
 const entity = "variants"
 const exampleId = "5bab576a727983b2e00b8d32"
+
+// import '@fontsource/roboto'
+// import {
+//     createViewState,
+//     JBrowseLinearGenomeView,
+// } from '@jbrowse/react-linear-genome-view'
+//
+// const defaultSession = {
+//     name: 'My session',
+//     view: {
+//         id: 'linearGenomeView',
+//         type: 'LinearGenomeView',
+//         tracks: [
+//             {
+//                 type: 'ReferenceSequenceTrack',
+//                 configuration: 'GRCh38-ReferenceSequenceTrack',
+//                 displays: [
+//                     {
+//                         type: 'LinearReferenceSequenceDisplay',
+//                         configuration:
+//                             'GRCh38-ReferenceSequenceTrack-LinearReferenceSequenceDisplay',
+//                     },
+//                 ],
+//             },
+//         ],
+//     },
+// }
+//
+// const assembly = {
+//     name: 'GRCh38',
+//     sequence: {
+//         type: 'ReferenceSequenceTrack',
+//         trackId: 'GRCh38-ReferenceSequenceTrack',
+//         adapter: {
+//             type: 'BgzipFastaAdapter',
+//             fastaLocation: {
+//                 uri: 'https://s3.amazonaws.com/jbrowse.org/genomes/GRCh38/fasta/GRCh38.fa.gz',
+//                 locationType: 'UriLocation',
+//             },
+//             faiLocation: {
+//                 uri: 'https://s3.amazonaws.com/jbrowse.org/genomes/GRCh38/fasta/GRCh38.fa.gz.fai',
+//                 locationType: 'UriLocation',
+//             },
+//             gziLocation: {
+//                 uri: 'https://s3.amazonaws.com/jbrowse.org/genomes/GRCh38/fasta/GRCh38.fa.gz.gzi',
+//                 locationType: 'UriLocation',
+//             },
+//         },
+//     },
+//     aliases: ['hg38'],
+//     refNameAliases: {
+//         adapter: {
+//             type: 'RefNameAliasAdapter',
+//             location: {
+//                 uri: 'https://s3.amazonaws.com/jbrowse.org/genomes/GRCh38/hg38_aliases.txt',
+//                 locationType: 'UriLocation',
+//             },
+//         },
+//     },
+// }
+// function View() {
+//     const state = createViewState({
+//         assembly,
+        // tracks,
+        // location: '10:29,838,737..29,838,819',
+    //     location: '1:11,127,738-11,127,739',
+    //     defaultSession,
+    // })
+
+//     return <JBrowseLinearGenomeView viewState={state} />;
+// }
 
 const VariantDetailsPage = withUrlQuery(({ urlQuery }) => {
   var { id } = urlQuery
@@ -68,6 +139,7 @@ function Variant({ variant, id, datasetIds }) {
     <h5>Variant Shorthand Expression</h5>
       <ul>
         <li>{variant.variantInternalId}</li>
+        {/*<View />*/}
       </ul>
     </>
   )}

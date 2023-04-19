@@ -1,0 +1,28 @@
+{
+  "assemblies": [
+    {
+      "name": "GRCh38",
+      "sequence": {
+        "type": "ReferenceSequenceTrack",
+        "trackId": "GRCh38-ReferenceSequenceTrack",
+        "adapter": {
+          "type": "IndexedFastaAdapter",
+          "fastaLocation": {
+            "uri": "GRCh38.fa",
+            "locationType": "UriLocation"
+          },
+          "faiLocation": {
+            "uri": "GRCh38.fa.fai",
+            "locationType": "UriLocation"
+          }
+        }
+      }
+    }
+  ],
+  "configuration": {},
+  "connections": [],
+  "defaultSession": {
+    "name": "New Session"
+  },
+  "tracks": []
+}
