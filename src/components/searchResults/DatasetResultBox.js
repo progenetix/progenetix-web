@@ -10,7 +10,7 @@ import cn from "classnames"
 import BiosamplesDataTable from "./BiosamplesDataTable"
 import VariantsDataTable from "./VariantsDataTable"
 import { useContainerDimensions } from "../../hooks/containerDimensions"
-import Histogram from "../Histogram"
+import SVGloader from "../SVGloaders"
 // import Link from "next/link"
 // import { Infodot } from "../Infodot"
 import { ExternalLink } from "../helpersShared/linkHelpers"
@@ -22,7 +22,7 @@ import dynamic from "next/dynamic"
 import { getVisualizationLink } from "../../modules/service-pages/dataVisualizationPage"
 
 const HANDOVER_IDS = {
-  cnvhistogram: "pgx:handover:cnvhistogram",
+  histoplot: "pgx:handover:histoplot",
   biosamples: "pgx:handover:biosamples",
   biosamplestable: 'pgx:handover:biosamplestable',
   biosamplevariants: "pgx:handover:biosamplevariants",
@@ -80,20 +80,20 @@ export function DatasetResultBox({ data: responseSet, query }) {
   // * not rendered if alternateBases was used since then frequencies are off => may get changed...
   // TODO: bycon defined limitation of histogram return
 
-  let histogramUrl
+  let histoplotUrl
   let visualizationLink
-  if (handoverById(HANDOVER_IDS.cnvhistogram)) {
+  if (handoverById(HANDOVER_IDS.histoplot)) {
     if (! query.alternateBases) {
       if (paginatedResultsCount <= MAX_HISTO_SAMPLES) {
-        histogramUrl = handoverById(HANDOVER_IDS.cnvhistogram).url
+        histoplotUrl = handoverById(HANDOVER_IDS.histoplot).url
         let visualizationAccessId = new URLSearchParams(
-          new URL(histogramUrl).search
+          new URL(histoplotUrl).search
         ).get("accessid")
         let visualizationSkip = new URLSearchParams(
-          new URL(histogramUrl).search
+          new URL(histoplotUrl).search
         ).get("skip")
         let visualizationLimit = new URLSearchParams(
-          new URL(histogramUrl).search
+          new URL(histoplotUrl).search
         ).get("limit")
         visualizationLink = getVisualizationLink(id, visualizationAccessId, visualizationSkip, visualizationLimit, paginatedResultsCount)
       }
@@ -125,7 +125,7 @@ export function DatasetResultBox({ data: responseSet, query }) {
     tabComponent = (
       <ResultsTab
         variantType={query.alternateBases}
-        histogramUrl={histogramUrl}
+        histoplotUrl={histoplotUrl}
         biosamplesReply={biosamplesReply}
         variantCount={info.counts.variantCount}
         datasetId={id}
@@ -304,7 +304,7 @@ export function DatasetResultBox({ data: responseSet, query }) {
 }
 
 function ResultsTab({
-  histogramUrl,
+  histoplotUrl,
   biosamplesReply,
   alternateBases,
   variantCount,
@@ -312,10 +312,10 @@ function ResultsTab({
 }) {
   return (
     <div>
-      {histogramUrl && shouldShowHistogram(alternateBases) && (
+      {histoplotUrl && shouldShowHistogram(alternateBases) && (
         <div className="mb-4">
-          <CnvHistogramPreview url={histogramUrl} />
-          <ExternalLink href={histogramUrl} label="Reload histogram in new window" />
+          <CnvHistogramPreview url={histoplotUrl} />
+          <ExternalLink href={histoplotUrl} label="Reload histogram in new window" />
         </div>
       )}
       <WithData
@@ -345,14 +345,14 @@ function CnvHistogramPreview({ url: urlString }) {
   const { width } = useContainerDimensions(componentRef)
   url.search = new URLSearchParams([
     ...url.searchParams.entries(),
-    ["size_plotimage_w_px", width]
+    ["plot_width", width]
   ]).toString()
   let withoutOrigin = replaceWithProxy(url)
   // width > 0 to make sure the component is mounted and avoid double fetch
   const dataEffect = useExtendedSWR(width > 0 && withoutOrigin, svgFetcher)
   return (
     <div ref={componentRef}>
-      <Histogram apiReply={dataEffect} />
+      <SVGloader apiReply={dataEffect} />
     </div>
   )
 }
@@ -397,7 +397,6 @@ function PagedLink({ handover }) {
     </li>
   )
 }
-
 
 const BiosamplesMap = dynamic(() => import("./BioSamplesMap"), {
   ssr: false

@@ -2,7 +2,7 @@ import { useCollationsByType, useCollationsById } from "../hooks/api"
 import { WithData } from "./Loader"
 import React from "react"
 import { keyBy, merge } from "lodash"
-import { SubsetHistogram } from "./Histogram"
+import { SubsetHistogram } from "./SVGloaders"
 import { buildTree, buildTreeForDetails, TreePanel } from "./classificationTree/TreePanel"
 
 export default function SubsetsLoader({ collationTypes, datasetIds, defaultTreeDepth }) {

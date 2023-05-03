@@ -206,7 +206,7 @@ export function buildQueryParameters(queryData) {
 export function useDataVisualization(queryData) {
   return useProgenetixApi(
     queryData
-      ? `${SITE_DEFAULTS.API_PATH}cgi/PGX/cgi/samplePlots.cgi?${buildDataVisualizationParameters(
+      ? `${SITE_DEFAULTS.API_PATH}beacon/biosamples/?${buildDataVisualizationParameters(
           queryData
         )}`
       : null
@@ -329,7 +329,7 @@ export function useCytomapper(querytext) {
 }
 
 export function useSubsethistogram({ datasetIds, id, filter, labelstring, size, chr2plot }) {
-  const svgbaseurl = subsetHistoLink(id, datasetIds)
+  const svgbaseurl = subsetHistoBaseLink(id, datasetIds)
   const params = []
   filter && params.push(["filter", filter])
   labelstring && params.push(["labels", labelstring])
@@ -393,7 +393,7 @@ export function useGeneSymbol({ geneId }) {
 // }
 
 // TODO: The new method still lacks the label drawing ...
-export function subsetHistoLink(id, datasetIds) {
+export function subsetHistoBaseLink(id, datasetIds) {
   return `${SITE_DEFAULTS.API_PATH}services/intervalFrequencies/?datasetIds=${datasetIds}&id=${id}&output=histoplot`
 }
 

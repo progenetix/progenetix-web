@@ -1,17 +1,25 @@
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
 import React, { useRef, useState } from "react"
-import { LabeledGeneSpanOptions } from "../../components/formShared/GenespanUtilities"
+import { GeneLabelOptions } from "../../components/formShared/GenespanUtilities"
 import { useForm } from "react-hook-form"
 import SelectField from "../../components/formShared/SelectField"
 import InputField from "../../components/formShared/InputField"
 import cn from "classnames"
-import { replaceWithProxy, useDataVisualization } from "../../hooks/api"
+import { useDataVisualization, useExtendedSWR } from "../../hooks/api"
 import { WithData } from "../../components/Loader"
 import { useContainerDimensions } from "../../hooks/containerDimensions"
 import { useAsyncSelect } from "../../hooks/asyncSelect"
 
+import SVGloader from "../../components/SVGloaders"
+import { svgFetcher } from "../../hooks/fetcher"
+
 const sampleMaxNo = 1000
+
+const HANDOVER_IDS = {
+  histoplot: "pgx:handover:histoplot",
+  samplesplot: "pgx:handover:samplesplot"
+}
 
 export const getVisualizationLink = (datasetIds, accessId, skip, limit, count) =>
   `/service-collection/dataVisualization?datasetIds=${datasetIds}&accessid=${accessId}&sampleCount=${count}&skip=${skip}&limit=${limit}`
@@ -78,7 +86,9 @@ function DataVisualizationPanel({ datasetIds, accessid, skip, limit, sampleCount
     skip,
     limit,
     "randno": randNo,
-    "size_plotimage_w_px": width,
+    "plotWidth": width,
+    "includeHandovers": "true",
+    "handoversOnly": "true",
     ...formValues
   })
   const onSubmit = (values) => {
@@ -129,6 +139,7 @@ function DataVisualizationForm({ isQuerying, sampleCount, onSubmit }) {
             register={register}
           />
         </div>
+{/*
         <div className="column">
           <InputField
             name="randno"
@@ -138,8 +149,10 @@ function DataVisualizationForm({ isQuerying, sampleCount, onSubmit }) {
             register={register}
           />
         </div>
+
       </div>
       <div className="columns">
+*/}   
         <div className="column">
           <SelectField
             name="group_by"
@@ -151,6 +164,7 @@ function DataVisualizationForm({ isQuerying, sampleCount, onSubmit }) {
             errors={errors}
           />
         </div>
+{/*
         <div className="column">
           <InputField
             name="min_group_no"
@@ -161,6 +175,8 @@ function DataVisualizationForm({ isQuerying, sampleCount, onSubmit }) {
             defaultValue="2"
           />
         </div>
+*/}
+{/*
         <div className="column">
           <InputField
             name="bin_match_min"
@@ -171,64 +187,54 @@ function DataVisualizationForm({ isQuerying, sampleCount, onSubmit }) {
             defaultValue="0.00001"
           />
         </div>
+*/}        
       </div>
       <div className="columns">
         <div className="column">
           <InputField
-            name="size_title_left_w_px"
+            name="plotLabelcolWidth"
             label="Left Labels Width (px)"
             errors={errors}
             register={register}
-            defaultValue="200"
           />
         </div>
         <div className="column">
           <InputField
-            name="size_strip_h_px"
+            name="plotSamplestripHeight"
             label="Sample Line Height (px)"
             errors={errors}
             register={register}
-            defaultValue="10"
+            defaultValue="12"
           />
         </div>
-        <div className="column">
-          <InputField
-            name="size_text_title_left_px"
-            label="Sample Label (px)"
-            errors={errors}
-            register={register}
-            defaultValue="8"
-          />
-        </div>
+{/*
       </div>
       <div className="columns">
+*/}      
         <div className="column">
           <InputField
-            name="size_plotarea_h_px"
+            name="plotAreaHeight"
             label="Histogram Height (px)"
             errors={errors}
             register={register}
-            defaultValue="100"
             infoText="Height of the histogram plot area, in pixels."
           />
         </div>
         <div className="column">
           <InputField
-            name="value_plot_y_max"
+            name="plot_axis_y_max"
             label="Histogram Max. Scale (%)"
             errors={errors}
             register={register}
-            defaultValue="100"
             infoText="Maximum CNV frequency percentage in the histogram."
           />
         </div>
         <div className="column">
           <InputField
-            name="size_clustertree_w_px"
+            name="plotDendrogramWidth"
             label="Cluster Tree Width (px)"
             errors={errors}
             register={register}
-            defaultValue="50"
             infoText="Width of the tree for sample and group clustering, in pixels."
           />
         </div>
@@ -244,7 +250,7 @@ function DataVisualizationForm({ isQuerying, sampleCount, onSubmit }) {
         </div>
         <div className="column">
           <InputField
-            name="labels"
+            name="plotRegionLabels"
             label="Free Labels"
             errors={errors}
             register={register}
@@ -270,18 +276,29 @@ function DataVisualizationForm({ isQuerying, sampleCount, onSubmit }) {
 }
 
 function ResultPanel({ response }) {
-  const histogramUrl = response.data?.plots?.histogram?.svg_link_tmp
-  const multistripUrl = response.data?.plots?.multistrip?.svg_link_tmp
-  const multihistoUrl = response.data?.plots?.multihistogram?.svg_link_tmp
-  const samplematrixUrl = response.data?.samplematrix_link_tmp
+
+  const resultsHandovers = response.response.resultSets[0].resultsHandovers
+  const handoverById = (givenId) =>
+    resultsHandovers.find(({ handoverType: { id } }) => id === givenId)
+
+  // const histoplotUrl = `${SITE_DEFAULTS.API_PATH}beacon/biosamples?datasetIds=${datasetIds}&output=histoplot&accessid=${accessId}&plotWidth=${width}`
+  // const multistripUrl = `${SITE_DEFAULTS.API_PATH}beacon/biosamples?datasetIds=${datasetIds}&output=samplesplot&accessid=${accessId}&plotWidth=${width}`
+
+  const histoplotUrl = handoverById(HANDOVER_IDS.histoplot).url
+  const samplesplotUrl = handoverById(HANDOVER_IDS.samplesplot).url
+  // const multihistoUrl = response.response?.resultSets[0].multihistogram?.svg_link_tmp
+  // const samplematrixUrl = response.data?.samplematrix_link_tmp
   return (
     <div>
       <div>
-        <img src={replaceWithProxy(histogramUrl)} />
-        <a href={histogramUrl} target="_blank" rel="noreferrer">
+
+        <SVGloader apiReply={ useExtendedSWR(histoplotUrl, svgFetcher) } />
+        {/*<img src={replaceWithProxy(histoplotUrl)} />*/}
+        <a href={histoplotUrl} target="_blank" rel="noreferrer">
           Open Histogram
         </a>
       </div>
+{/*
       {replaceWithProxy(multihistoUrl) && (        
         <div>
           <img src={replaceWithProxy(multihistoUrl)} />
@@ -290,33 +307,40 @@ function ResultPanel({ response }) {
           </a>
         </div>
       )}
+
+*/}   
       <div>
-        <img src={replaceWithProxy(multistripUrl)} />
-        <a href={multistripUrl} target="_blank" rel="noreferrer">
+        <SVGloader apiReply={ useExtendedSWR(samplesplotUrl, svgFetcher) } />
+
+        {/*<img src={replaceWithProxy(samplesplotUrl)} />*/}
+        <a href={samplesplotUrl} target="_blank" rel="noreferrer">
           Open Sample Plot
         </a>
       </div>
+{/*
       <div>
         <a href={samplematrixUrl} target="_blank" rel="noreferrer">
           Download Sample Status Matrix
         </a>
       </div>
+*/}      
     </div>
   )
 }
 
 const groupByOptions = [
+  { value: "", label: "No Grouping" },
   { value: "NCIT", label: "NCIT Neoplasm Code" },
-  { value: "pgx:icdom", label: "ICD-O Morphology Code" },
-  { value: "pgx:icdot", label: "ICD Topography Code" },
+  { value: "icdom", label: "ICD-O Morphology Code" },
+  { value: "icdot", label: "ICD Topography Code" },
   { value: "UBERON", label: "UBERON Anatomy Concepts" },
   { value: "TNM", label: "NCIT TNM Finding" },
   // { value: "NCITgrade", label: "NCIT Disease Grade" },
   // { value: "NCITstage", label: "NCIT Disease Stage" },
   // { value: "EFOfus", label: "followup status" },
   { value: "PMID", label: "Publication (PubMed ID)" },
-  { value: "geo:GSE", label: "GEO Series ID" },
-  { value: "geo:GPL", label: "GEO Platform ID" },
+  // { value: "geo:GSE", label: "GEO Series ID" },
+  // { value: "geo:GPL", label: "GEO Platform ID" },
   {
     value: "cellosaurus",
     label: "Cellosaurus Cell line ID"
@@ -325,10 +349,10 @@ const groupByOptions = [
 
 function GeneSpanSelector({ control, errors, register }) {
   const { inputValue, onInputChange } = useAsyncSelect()
-  const { options, isLoading } = LabeledGeneSpanOptions(inputValue)
+  const { options, isLoading } = GeneLabelOptions(inputValue)
   return (
     <SelectField
-      name="markers"
+      name="plotGeneSymbols"
       label="Select Gene Label"
       isLoading={isLoading && !!inputValue}
       options={options}

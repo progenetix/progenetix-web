@@ -1,7 +1,7 @@
 import React from "react"
 import { Layout } from "../components/Layout"
 import Panel from "../components/Panel"
-import { SubsetHistogram } from "../components/Histogram"
+import { SubsetHistogram } from "../components/SVGloaders"
 import { Admonition } from "../components/Admonitions"
 import { sample } from "lodash"
 import { SITE_DEFAULTS, tryFetch } from "../hooks/api"
