@@ -88,7 +88,7 @@ function DataVisualizationPanel({ datasetIds, accessid, skip, limit, sampleCount
     "randno": randNo,
     "plotWidth": width,
     "includeHandovers": "true",
-    "handoversOnly": "true",
+    "onlyHandovers": "true",
     ...formValues
   })
   const onSubmit = (values) => {
@@ -298,17 +298,6 @@ function ResultPanel({ response }) {
           Open Histogram
         </a>
       </div>
-{/*
-      {replaceWithProxy(multihistoUrl) && (        
-        <div>
-          <img src={replaceWithProxy(multihistoUrl)} />
-          <a href={multihistoUrl} target="_blank" rel="noreferrer">
-            Open Group Histogram Plot
-          </a>
-        </div>
-      )}
-
-*/}   
       <div>
         <SVGloader apiReply={ useExtendedSWR(samplesplotUrl, svgFetcher) } />
 

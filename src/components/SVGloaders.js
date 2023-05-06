@@ -25,7 +25,7 @@ export default function SVGloader({ apiReply }) {
   )
 }
 
-export function SubsetHistogram({ id, filter, datasetIds, labelstring, title, description, size: givenSize }) {
+export function SubsetHistogram({ id, filter, datasetIds, plotRegionLabels, plotGeneSymbols, title, description, size: givenSize }) {
   const componentRef = useRef()
   const { width } = useContainerDimensions(componentRef)
   const size = givenSize || width
@@ -36,7 +36,8 @@ export function SubsetHistogram({ id, filter, datasetIds, labelstring, title, de
           datasetIds,
           id,
           filter,
-          labelstring,
+          plotRegionLabels,
+          plotGeneSymbols,
           size
         })}
       />

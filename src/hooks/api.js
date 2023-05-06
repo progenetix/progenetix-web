@@ -85,7 +85,7 @@ export async function tryFetch(url, fallBack = "N/A") {
 export function useBeaconQuery(queryData) {
   return useProgenetixApi(
     queryData
-      ? `${SITE_DEFAULTS.API_PATH}beacon/biosamples/?includeHandovers=true&requestedGranularity=record&output=handoversonly&${buildQueryParameters(queryData)}`
+      ? `${SITE_DEFAULTS.API_PATH}beacon/biosamples/?includeHandovers=true&requestedGranularity=record&onlyHandovers=tru&${buildQueryParameters(queryData)}`
       : null
   )
 }
@@ -328,12 +328,13 @@ export function useCytomapper(querytext) {
   return useProgenetixApi(url)
 }
 
-export function useSubsethistogram({ datasetIds, id, filter, labelstring, size, chr2plot }) {
+export function useSubsethistogram({ datasetIds, id, filter, plotRegionLabels, plotGeneSymbols, size, chr2plot }) {
   const svgbaseurl = subsetHistoBaseLink(id, datasetIds)
   const params = []
   filter && params.push(["filter", filter])
-  labelstring && params.push(["labels", labelstring])
-  size && params.push(["size_plotimage_w_px", size])
+  plotRegionLabels && params.push(["plotRegionLabels", plotRegionLabels])
+  plotGeneSymbols && params.push(["plotGeneSymbols", plotGeneSymbols])
+  size && params.push(["plotWidth", size])
   chr2plot && params.push(["chr2plot", chr2plot])
   const searchQuery = new URLSearchParams(params).toString()
   return useExtendedSWR(size > 0 && `${svgbaseurl}&${searchQuery}`, svgFetcher)
