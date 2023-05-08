@@ -122,8 +122,9 @@ function DataVisualizationForm({ isQuerying, sampleCount, onSubmit }) {
   }
 
   const defaultValues = {
-    "group_by": "NCIT",
-    "markers": null,
+    "group_by": "",
+    "plotRegionLabels": null,
+    "plotGeneSymbols": null,
     "randno": randNo
   }
   const { register, handleSubmit, errors, control } = useForm({ defaultValues })

@@ -75,28 +75,22 @@ export function DatasetResultBox({ data: responseSet, query }) {
 
   const UCSCbedHandoverURL = handoverById(HANDOVER_IDS.UCSClink) === undefined ? false : handoverById(HANDOVER_IDS.UCSClink).url
 
-  // the histogram is only rendered under some conditions:
-  // * handover is needed, obviously
-  // * not rendered if alternateBases was used since then frequencies are off => may get changed...
-  // TODO: bycon defined limitation of histogram return
-
+  // the histogram is only rendered but correct handover is needed, obviously
   let histoplotUrl
   let visualizationLink
   if (handoverById(HANDOVER_IDS.histoplot)) {
-    if (! query.alternateBases) {
-      if (paginatedResultsCount <= MAX_HISTO_SAMPLES) {
-        histoplotUrl = handoverById(HANDOVER_IDS.histoplot).url
-        let visualizationAccessId = new URLSearchParams(
-          new URL(histoplotUrl).search
-        ).get("accessid")
-        let visualizationSkip = new URLSearchParams(
-          new URL(histoplotUrl).search
-        ).get("skip")
-        let visualizationLimit = new URLSearchParams(
-          new URL(histoplotUrl).search
-        ).get("limit")
-        visualizationLink = getVisualizationLink(id, visualizationAccessId, visualizationSkip, visualizationLimit, paginatedResultsCount)
-      }
+    if (paginatedResultsCount <= MAX_HISTO_SAMPLES) {
+      histoplotUrl = handoverById(HANDOVER_IDS.histoplot).url
+      let visualizationAccessId = new URLSearchParams(
+        new URL(histoplotUrl).search
+      ).get("accessid")
+      let visualizationSkip = new URLSearchParams(
+        new URL(histoplotUrl).search
+      ).get("skip")
+      let visualizationLimit = new URLSearchParams(
+        new URL(histoplotUrl).search
+      ).get("limit")
+      visualizationLink = getVisualizationLink(id, visualizationAccessId, visualizationSkip, visualizationLimit, paginatedResultsCount)
     }
   }
 
@@ -306,13 +300,12 @@ export function DatasetResultBox({ data: responseSet, query }) {
 function ResultsTab({
   histoplotUrl,
   biosamplesReply,
-  alternateBases,
   variantCount,
   datasetId
 }) {
   return (
     <div>
-      {histoplotUrl && shouldShowHistogram(alternateBases) && (
+      {histoplotUrl && (
         <div className="mb-4">
           <CnvHistogramPreview url={histoplotUrl} />
           <ExternalLink href={histoplotUrl} label="Reload histogram in new window" />
@@ -330,12 +323,6 @@ function ResultsTab({
         )}
       />
     </div>
-  )
-}
-
-function shouldShowHistogram(alternateBases) {
-  return (
-    alternateBases == null || alternateBases === "N" || alternateBases === ""
   )
 }
 
