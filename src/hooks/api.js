@@ -84,7 +84,7 @@ export async function tryFetch(url, fallBack = "N/A") {
 export function useBeaconQuery(queryData) {
   return useProgenetixApi(
     queryData
-      ? `${basePath}beacon/biosamples/?includeHandovers=true&requestedGranularity=record&output=handoversonly&${buildQueryParameters(queryData)}`
+      ? `${basePath}beacon/biosamples/?includeHandovers=true&requestedGranularity=record&handoversOnly=true&${buildQueryParameters(queryData)}`
       : null
   )
 }
