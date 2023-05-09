@@ -10,14 +10,17 @@ The standard format for (plot-)images generated on Progenetix is Scalable Vector
 
 On most pages where plots are being displayed there is a download option for the images - (please alert us where those are missing). Browsers also have the option to export SVGs themselves e.g. as PDF.
 
-## The PGX plotting library
 
-Plots on Progenetix are generated using the [PGX package](http://github.com/progenetix/PGX/), a set of Perl libraries for processing and graphical representation of CNV data. The package contains tools to
+## The `bycon` plotting library
 
-* read and write e.g. [Progentix segment files](/doc/fileformats.html)
-* generate binned status maps
-* render plots of sample-specific and aggregate CNV data, such as histograms and CNV frequency heatmaps
+* read and write e.g. [Progentix `.pgxseg` segment files](/doc/fileformats.html)
+* render plots of sample-specific and aggregate CNV data, such as histograms clustered
+  CNV sample strips
 
+#### Links
+
+* [`bycon` plot documentation](http://bycon.progenetix.org/plotting/) with all 
+  plot parameters
 
 ## Plot Types
 
@@ -85,3 +88,13 @@ syntax.
 
     - <http://progenetix.org/services/collationPlots/?id=NCIT:C7376&size_plotarea_h_px=40&value_plot_y_max=50&colorschema=bluered&chr2plot=1,3,9,17,22>
 ![](http://progenetix.org/services/collationPlots/?id=NCIT:C7376&size_plotarea_h_px=40&value_plot_y_max=50&colorschema=bluered&chr2plot=1,3,9,17,22)
+
+
+
+## ~~The PGX plotting library~~
+
+~~Plots on Progenetix are generated using the [PGX package](http://github.com/progenetix/PGX/), a set of Perl libraries for processing and graphical representation of CNV data. The package contains tools to~~
+
+* ~~read and write e.g. [Progentix segment files](/doc/fileformats.html)
+* ~~generate binned status maps~~
+* ~~render plots of sample-specific and aggregate CNV data, such as histograms and CNV frequency heatmaps~~
