@@ -84,13 +84,16 @@ export function DatasetResultBox({ data: responseSet, query }) {
       let visualizationAccessId = new URLSearchParams(
         new URL(histoplotUrl).search
       ).get("accessid")
+      let visualizationFileId = new URLSearchParams(
+        new URL(histoplotUrl).search
+      ).get("fileId")
       let visualizationSkip = new URLSearchParams(
         new URL(histoplotUrl).search
       ).get("skip")
       let visualizationLimit = new URLSearchParams(
         new URL(histoplotUrl).search
       ).get("limit")
-      visualizationLink = getVisualizationLink(id, visualizationAccessId, visualizationSkip, visualizationLimit, paginatedResultsCount)
+      visualizationLink = getVisualizationLink(id, visualizationAccessId, visualizationFileId, visualizationSkip, visualizationLimit, paginatedResultsCount)
     }
   }
 

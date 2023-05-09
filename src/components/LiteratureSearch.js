@@ -92,6 +92,18 @@ function GeneComponent({cellline, genes, plotGeneSymbols, setGeneSymbols})
   );
 }
 
+// function CytobandComponent({cellline, genes, plotGeneSymbols, setGeneSymbols})
+// {
+//   return (
+//     <section className="content">
+//       <table>
+//         {plotGeneSymbols.length >= 1 ? <tr><td colSpan="9" align="center"><Button contained color="secondary" onClick={() => window.location.reload(true)}>Clear Annotations</Button></td></tr> : ""}
+//         {genes.map((gene,i)=>(<GeneResultSet key={`${i}`} gene={gene} cellline={cellline} plotGeneSymbols={plotGeneSymbols} setGeneSymbols={setGeneSymbols}/>))}
+//       </table>
+//     </section>
+//   );
+// }
+
 function ResultComponent({cellline, entities})
 {
   return (

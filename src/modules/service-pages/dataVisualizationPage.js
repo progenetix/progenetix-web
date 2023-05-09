@@ -21,11 +21,11 @@ const HANDOVER_IDS = {
   samplesplot: "pgx:handover:samplesplot"
 }
 
-export const getVisualizationLink = (datasetIds, accessId, skip, limit, count) =>
-  `/service-collection/dataVisualization?datasetIds=${datasetIds}&accessid=${accessId}&sampleCount=${count}&skip=${skip}&limit=${limit}`
+export const getVisualizationLink = (datasetIds, accessId, fileId, skip, limit, count) =>
+  `/service-collection/dataVisualization?datasetIds=${datasetIds}&accessid=${accessId}&fileId=${fileId}&sampleCount=${count}&skip=${skip}&limit=${limit}`
 
 const DataVisualizationPage = withUrlQuery(({ urlQuery }) => {
-  const { datasetIds, accessid, skip, limit, sampleCount } = urlQuery
+  const { datasetIds, accessid, fileId, skip, limit, sampleCount } = urlQuery
   const componentRef = useRef()
   const { width } = useContainerDimensions(componentRef)
   return (
@@ -33,7 +33,7 @@ const DataVisualizationPage = withUrlQuery(({ urlQuery }) => {
       title="Data visualization"
       headline={`Data visualization (${sampleCount} samples)`}
     >
-      {!accessid ? (
+      {!accessid && !fileId ? (
         <NoResultsHelp />
       ) : (
         <div ref={componentRef}>
@@ -46,6 +46,7 @@ const DataVisualizationPage = withUrlQuery(({ urlQuery }) => {
             <DataVisualizationPanel
               datasetIds={datasetIds}
               accessid={accessid}
+              fileId={fileId}
               skip={skip}
               limit={limit}
               sampleCount={sampleCount}
@@ -64,7 +65,7 @@ function NoResultsHelp() {
   return (
     <div className="notification is-size-5 content">
       This page will only show content if called with a specific <i>accessid</i>
-      .
+      or <i>fileId</i> .
       <br />
       Please start over from the Search Samples page or{" "}
       <a href="/service-collection/uploader">upload a file</a>.
@@ -72,7 +73,7 @@ function NoResultsHelp() {
   )
 }
 
-function DataVisualizationPanel({ datasetIds, accessid, skip, limit, sampleCount, width }) {
+function DataVisualizationPanel({ datasetIds, accessid, fileId, skip, limit, sampleCount, width }) {
   const [formValues, setFormValues] = useState({})
 
   var randNo = null
@@ -81,10 +82,11 @@ function DataVisualizationPanel({ datasetIds, accessid, skip, limit, sampleCount
   }
 
   const dataResult = useDataVisualization({
-    datasetIds,
-    accessid,
-    skip,
-    limit,
+    "datasetIds": datasetIds,
+    "accessid": accessid,
+    "fileId": fileId,
+    "skip": skip,
+    "limit": limit,
     "randno": randNo,
     "plotWidth": width,
     "includeHandovers": "true",
@@ -282,13 +284,9 @@ function ResultPanel({ response }) {
   const handoverById = (givenId) =>
     resultsHandovers.find(({ handoverType: { id } }) => id === givenId)
 
-  // const histoplotUrl = `${SITE_DEFAULTS.API_PATH}beacon/biosamples?datasetIds=${datasetIds}&output=histoplot&accessid=${accessId}&plotWidth=${width}`
-  // const multistripUrl = `${SITE_DEFAULTS.API_PATH}beacon/biosamples?datasetIds=${datasetIds}&output=samplesplot&accessid=${accessId}&plotWidth=${width}`
-
   const histoplotUrl = handoverById(HANDOVER_IDS.histoplot).url
   const samplesplotUrl = handoverById(HANDOVER_IDS.samplesplot).url
-  // const multihistoUrl = response.response?.resultSets[0].multihistogram?.svg_link_tmp
-  // const samplematrixUrl = response.data?.samplematrix_link_tmp
+
   return (
     <div>
       <div>
