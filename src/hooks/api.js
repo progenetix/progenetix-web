@@ -209,7 +209,7 @@ export function useDataVisualization(queryData) {
 
   var q_path = "beacon/biosamples"
 
-  if (queryData.fileId) {
+  if (queryData.fileId && queryData.fileId != "null") {
     q_path = "services/samplesPlotter"
   }
 
