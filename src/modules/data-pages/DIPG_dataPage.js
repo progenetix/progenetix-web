@@ -1,5 +1,5 @@
 import React from "react"
-import { ExternalLink } from "../../hooks/api"
+import { ExternalLink } from "../../components/helpersShared/linkHelpers"
 import { Layout } from "../../components/Layout"
 import parametersConfig from "../shared/searchParameters.yaml"
 import requestTypesConfig from "./DIPG_searchParameters.yaml"

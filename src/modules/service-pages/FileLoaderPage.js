@@ -26,7 +26,16 @@ export default function FileLoaderPage() {
           >
             Github
           </a>{" "}
-          repository.
+          repository. <b>NEW in 2023</b>: We transition to new plotting
+          methods, provided through the `bycon` package and with demonstration
+          applications in{" "}
+          <a
+            href="https://github.com/progenetix/byconaut"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <i>byconaut</i>
+          </a>.
         </p>
       </Panel>
 
@@ -42,7 +51,7 @@ export default function FileLoaderPage() {
           <code>.pgxseg</code> file format allows the addition of e.g. group
           label information. The file format is described on our{" "}
           <a
-            href="https://info.progenetix.org/doc/fileformats.html"
+            href="https://docs.progenetix.org/services/#data-file-formats-pgxseg-segments-pgxfreq-cnv-frequencies"
             target="_blank"
             rel="noreferrer"
           >
@@ -177,8 +186,8 @@ function Dropzone({ setResult }) {
 }
 
 function Results({ results, onCancelClicked }) {
-  const accessId = results.accessid
-  const visualizationLink = getVisualizationLink(accessId)
+  const fileId = results.fileId
+  const visualizationLink = getVisualizationLink("", "", fileId, "", "")
 
   return (
     <>

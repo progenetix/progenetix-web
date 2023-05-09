@@ -64,8 +64,6 @@ progenetix:
           defaultValue: "127740957-130000000"
         variantType:
           defaultValue: "EFO:0030070"
-        bioontology:
-          defaultValue: ["icdom-80463"]
     - label: "TP53 Del. in Cell Lines"
       note: "Example for TP53 deletion"
       description: |

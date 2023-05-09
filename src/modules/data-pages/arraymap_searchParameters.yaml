@@ -54,7 +54,7 @@ arraymap:
       note: "Example for focal MYC Duplications."
       description: |
         The example parameters will select samples with a continuous, focal duplication
-        of the complete MYC coding region. The serarch will be limited to "icdom-80463"
+        of the complete MYC coding region. The serarch will be limited to "pgx:icdom-80463"
         (i.e. ICD-O 3 8046/3, Non-small cell carcinoma).
       parameters:
         referenceName:
@@ -66,7 +66,7 @@ arraymap:
         variantType:
           defaultValue: "EFO:0030070"
         bioontology:
-          defaultValue: ["icdom-80463"]
+          defaultValue: ["pgx:icdom-80463"]
     - label: "TP53 Del. in Cell Lines"
       note: "Example for TP53 deletion"
       description: >-

@@ -2,9 +2,9 @@ import React, { useState } from "react"
 // import React, { useEffect, useState } from "react"
 import { Layout } from "../../components/Layout"
 import { Infodot } from "../../components/Infodot"
+import { ExternalLink, InternalLink }  from "../../components/helpersShared/linkHelpers"
 import { PublicationTable } from "../../components/publicationComps/PublicationTables"
-import { usePublicationList, Link } from "../../hooks/api"
-// import { useGeoCity, usePublicationList, Link } from "../../hooks/api"
+import { usePublicationList } from "../../hooks/api"
 import { WithData } from "../../components/Loader"
 // import { useAsyncSelect } from "../../hooks/asyncSelect"
 // import CustomSelect from "../../components/Select"
@@ -32,14 +32,14 @@ export default function PublicationsListPage() {
           Please <a href="mailto:contact@progenetix.org">contact us</a> to alert
           us about additional articles you are aware of. The
           inclusion criteria are described{" "}
-          <Link
-            href="https://info.progenetix.org/doc/publication-collection.html"
+          <InternalLink
+            href="https://docs.progenetix.org/publication-collection/"
             label="in the documentation"
           />.
           <br/>
           <b>New Oct 2021</b> You can now directly submit suggestions for matching
           publications to the{" "}
-          <Link
+          <ExternalLink
             href="https://github.com/progenetix/oncopubs"
             label="oncopubs repository on Github"
           />.

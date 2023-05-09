@@ -1,9 +1,9 @@
 import { Loader } from "./Loader"
 import React, { useRef } from "react"
 import {
- basePath,
+  SITE_DEFAULTS,
   useSubsethistogram,
-  subsetSVGlink,
+  subsetHistoBaseLink,
   subsetIdLink,
   subsetPgxsegLink,
   useExtendedSWR
@@ -13,7 +13,7 @@ import { useContainerDimensions } from "../hooks/containerDimensions"
 import PropTypes from "prop-types"
 import Link from "next/link"
 
-export default function Histogram({ apiReply }) {
+export default function SVGloader({ apiReply }) {
   const { data, error, isLoading } = apiReply
   return (
     <Loader isLoading={isLoading} hasError={error} background>
@@ -25,23 +25,37 @@ export default function Histogram({ apiReply }) {
   )
 }
 
-export function SubsetHistogram({ id, filter, datasetIds, labelstring, size: givenSize }) {
+export function SubsetHistogram({ id, filter, datasetIds, plotRegionLabels, plotGeneSymbols, plotCytoregionLabels, title, description, size: givenSize }) {
   const componentRef = useRef()
   const { width } = useContainerDimensions(componentRef)
   const size = givenSize || width
   return (
     <div ref={componentRef}>
-      <Histogram
+      <SVGloader
         apiReply={useSubsethistogram({
           datasetIds,
           id,
           filter,
-          labelstring,
+          plotRegionLabels,
+          plotGeneSymbols,
+          plotCytoregionLabels,
           size
         })}
       />
+      <div className="img-legend">
+      {title && (
+        <>      
+          <b>{title}</b>
+        </>
+      )}
+      {description && (
+        <>      
+          {" "}{description}
+        </>
+      )}
+      </div>
       <div className="svg-histolinks">
-        <Link href={subsetSVGlink(id, datasetIds)}>
+        <Link href={subsetHistoBaseLink(id, datasetIds)}>
           <a>Download SVG</a>
         </Link>
         {" | "}
@@ -60,12 +74,12 @@ export function SubsetHistogram({ id, filter, datasetIds, labelstring, size: giv
 export function CallsetHistogram({ csid, datasetIds }) {
   const componentRef = useRef()
   const { width } = useContainerDimensions(componentRef)
-  const url = `${basePath}cgi/PGX/cgi/singlePlot.cgi?analysisIds=${csid}&datasetIds=${datasetIds}&size_plotimage_w_px=${width}`
+  const url = `${SITE_DEFAULTS.API_PATH}cgi/PGX/cgi/singlePlot.cgi?analysisIds=${csid}&datasetIds=${datasetIds}&size_plotimage_w_px=${width}`
   // width > 0 to make sure the component is mounted and avoid double fetch
   const dataEffect = useExtendedSWR(width > 0 && url, svgFetcher)
   return (
     <div ref={componentRef} className="mb-4">
-      <Histogram apiReply={dataEffect} />
+      <SVGloader apiReply={dataEffect} />
     </div>
   )
 }

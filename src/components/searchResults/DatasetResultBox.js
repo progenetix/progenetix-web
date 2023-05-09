@@ -10,7 +10,7 @@ import cn from "classnames"
 import BiosamplesDataTable from "./BiosamplesDataTable"
 import VariantsDataTable from "./VariantsDataTable"
 import { useContainerDimensions } from "../../hooks/containerDimensions"
-import Histogram from "../Histogram"
+import SVGloader from "../SVGloaders"
 // import Link from "next/link"
 // import { Infodot } from "../Infodot"
 import { ExternalLink } from "../helpersShared/linkHelpers"
@@ -22,7 +22,7 @@ import dynamic from "next/dynamic"
 import { getVisualizationLink } from "../../modules/service-pages/dataVisualizationPage"
 
 const HANDOVER_IDS = {
-  cnvhistogram: "pgx:handover:cnvhistogram",
+  histoplot: "pgx:handover:histoplot",
   biosamples: "pgx:handover:biosamples",
   biosamplestable: 'pgx:handover:biosamplestable',
   biosamplevariants: "pgx:handover:biosamplevariants",
@@ -53,10 +53,6 @@ export function DatasetResultBox({ data: responseSet, query }) {
   const handoverById = (givenId) =>
     resultsHandovers.find(({ handoverType: { id } }) => id === givenId)
 
-  // const genericHandovers = resultsHandovers.filter(
-  //   ({ handoverType: { id } }) => !handoversInTab.includes(id)
-  // )
-
   const biosamplesHandover = handoverById(HANDOVER_IDS.biosamples)
   const biosamplesReply = useProgenetixApi(
     biosamplesHandover && replaceWithProxy(biosamplesHandover.url)
@@ -79,27 +75,25 @@ export function DatasetResultBox({ data: responseSet, query }) {
 
   const UCSCbedHandoverURL = handoverById(HANDOVER_IDS.UCSClink) === undefined ? false : handoverById(HANDOVER_IDS.UCSClink).url
 
-  // the histogram is only rendered under some conditions:
-  // * handover is needed, obviously
-  // * not rendered if alternateBases was used since then frequencies are off => may get changed...
-
-  let histogramUrl
+  // the histogram is only rendered but correct handover is needed, obviously
+  let histoplotUrl
   let visualizationLink
-  if (handoverById(HANDOVER_IDS.cnvhistogram)) {
-    if (! query.alternateBases) {
-      if (paginatedResultsCount <= MAX_HISTO_SAMPLES) {
-        histogramUrl = handoverById(HANDOVER_IDS.cnvhistogram).url
-        let visualizationAccessId = new URLSearchParams(
-          new URL(histogramUrl).search
-        ).get("accessid")
-        let visualizationSkip = new URLSearchParams(
-          new URL(histogramUrl).search
-        ).get("skip")
-        let visualizationLimit = new URLSearchParams(
-          new URL(histogramUrl).search
-        ).get("limit")
-        visualizationLink = getVisualizationLink(visualizationAccessId, visualizationSkip, visualizationLimit, paginatedResultsCount)
-      }
+  if (handoverById(HANDOVER_IDS.histoplot)) {
+    if (paginatedResultsCount <= MAX_HISTO_SAMPLES) {
+      histoplotUrl = handoverById(HANDOVER_IDS.histoplot).url
+      let visualizationAccessId = new URLSearchParams(
+        new URL(histoplotUrl).search
+      ).get("accessid")
+      let visualizationFileId = new URLSearchParams(
+        new URL(histoplotUrl).search
+      ).get("fileId")
+      let visualizationSkip = new URLSearchParams(
+        new URL(histoplotUrl).search
+      ).get("skip")
+      let visualizationLimit = new URLSearchParams(
+        new URL(histoplotUrl).search
+      ).get("limit")
+      visualizationLink = getVisualizationLink(id, visualizationAccessId, visualizationFileId, visualizationSkip, visualizationLimit, paginatedResultsCount)
     }
   }
 
@@ -114,7 +108,12 @@ export function DatasetResultBox({ data: responseSet, query }) {
   ) && tabNames.push(TABS.samplesMap)
 
   if (handoverById(HANDOVER_IDS.variants)) tabNames.push(TABS.variants)
-  if (handoverById(HANDOVER_IDS.annotatedvariants)) tabNames.push(TABS.annotatedvariants)
+
+  if (! query.start) {
+    if (handoverById(HANDOVER_IDS.annotatedvariants)) {
+      tabNames.push(TABS.annotatedvariants)
+    }
+  }
 
   const [selectedTab, setSelectedTab] = useState(tabNames[0])
 
@@ -123,7 +122,7 @@ export function DatasetResultBox({ data: responseSet, query }) {
     tabComponent = (
       <ResultsTab
         variantType={query.alternateBases}
-        histogramUrl={histogramUrl}
+        histoplotUrl={histoplotUrl}
         biosamplesReply={biosamplesReply}
         variantCount={info.counts.variantCount}
         datasetId={id}
@@ -144,8 +143,8 @@ export function DatasetResultBox({ data: responseSet, query }) {
           corresponding author&apos;s institution. Additional information can be
           found in the{" "}
           <ExternalLink
-            href={SITE_DEFAULTS.MASTERDOCLINK}
-            label="API documentation"
+            href={`${SITE_DEFAULTS.MASTERDOCLINK}/geolocations.html`}
+            label="Geographic Coordinates documentation"
           />
           {"."}
         </p>
@@ -302,18 +301,17 @@ export function DatasetResultBox({ data: responseSet, query }) {
 }
 
 function ResultsTab({
-  histogramUrl,
+  histoplotUrl,
   biosamplesReply,
-  alternateBases,
   variantCount,
   datasetId
 }) {
   return (
     <div>
-      {histogramUrl && shouldShowHistogram(alternateBases) && (
+      {histoplotUrl && (
         <div className="mb-4">
-          <CnvHistogramPreview url={histogramUrl} />
-          <ExternalLink href={histogramUrl} label="Reload histogram in new window" />
+          <CnvHistogramPreview url={histoplotUrl} />
+          <ExternalLink href={histoplotUrl} label="Reload histogram in new window" />
         </div>
       )}
       <WithData
@@ -331,26 +329,20 @@ function ResultsTab({
   )
 }
 
-function shouldShowHistogram(alternateBases) {
-  return (
-    alternateBases == null || alternateBases === "N" || alternateBases === ""
-  )
-}
-
 function CnvHistogramPreview({ url: urlString }) {
   const url = new URL(urlString)
   const componentRef = useRef()
   const { width } = useContainerDimensions(componentRef)
   url.search = new URLSearchParams([
     ...url.searchParams.entries(),
-    ["size_plotimage_w_px", width]
+    ["plot_width", width]
   ]).toString()
   let withoutOrigin = replaceWithProxy(url)
   // width > 0 to make sure the component is mounted and avoid double fetch
   const dataEffect = useExtendedSWR(width > 0 && withoutOrigin, svgFetcher)
   return (
     <div ref={componentRef}>
-      <Histogram apiReply={dataEffect} />
+      <SVGloader apiReply={dataEffect} />
     </div>
   )
 }
@@ -395,7 +387,6 @@ function PagedLink({ handover }) {
     </li>
   )
 }
-
 
 const BiosamplesMap = dynamic(() => import("./BioSamplesMap"), {
   ssr: false

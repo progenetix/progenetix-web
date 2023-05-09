@@ -2,7 +2,8 @@ import React, { useState } from "react"
 import { Layout } from "../../components/Layout"
 import { Infodot } from "../../components/Infodot"
 import { PublicationFewCountTable } from "../../components/publicationComps/PublicationTables"
-import { useProgenetixRefPublicationList, Link } from "../../hooks/api"
+import { ExternalLink }  from "../../components/helpersShared/linkHelpers"
+import { useProgenetixRefPublicationList } from "../../hooks/api"
 import { WithData } from "../../components/Loader"
 import dynamic from "next/dynamic"
 import { matchSorter } from "match-sorter"
@@ -33,7 +34,7 @@ export default function PublicationsProgenetixRefListPage() {
           <br/>
           <b>New Oct 2021</b> You can now directly submit suggestions for matching
           publications to the{" "}
-          <Link
+          <ExternalLink
             href="https://github.com/progenetix/oncopubs"
             label="oncopubs repository on Github"
           />.

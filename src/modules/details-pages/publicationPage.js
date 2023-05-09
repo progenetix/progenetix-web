@@ -1,8 +1,9 @@
 import React from "react"
-import { usePublication, Link, epmcUrl, EpmcLink } from "../../hooks/api"
+import { usePublication } from "../../hooks/api"
+import { epmcUrl, EpmcLink, ExternalLink } from "../../components/helpersShared/linkHelpers"
 import { WithData } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
-import { SubsetHistogram } from "../../components/Histogram"
+import { SubsetHistogram } from "../../components/SVGloaders"
 import { Layout } from "../../components/Layout"
 
 const PublicationDetailsPage = withUrlQuery(({ urlQuery }) => {
@@ -57,7 +58,7 @@ function PublicationDetails({ publication, id }) {
   return (
     <section className="content">
       <h2 className="tile">
-        <Link
+        <ExternalLink
           href={epmcUrl(publication.id)}
           label={publication.id}
         />

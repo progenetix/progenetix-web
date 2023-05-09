@@ -2,7 +2,7 @@ import { useProgenetixApi, basePath } from "../../hooks/api"
 import { useEffect, useState } from "react"
 import { keyBy } from "lodash"
 
-export function LabeledGeneSpanOptions(inputValue) {
+export function GeneLabelOptions(inputValue) {
   const { data, isLoading } = useGeneSpans(inputValue)
   const [cachedGenes, setCachedGenes] = useState({})
   useEffect(() => {
@@ -14,7 +14,7 @@ export function LabeledGeneSpanOptions(inputValue) {
   }, [data])
   const options = Object.entries(cachedGenes).map(([, gene]) => {
     return {
-      value: labeledGeneSpan(gene),
+      value: gene.symbol,
       label: geneLabel(gene)
     }
   })

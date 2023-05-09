@@ -1,9 +1,10 @@
 import { Layout } from "../components/Layout"
 import Panel from "../components/Panel"
-import { SubsetHistogram } from "../components/Histogram"
+import { SubsetHistogram } from "../components/SVGloaders"
+import { InternalLink }  from "../components/helpersShared/linkHelpers"
 import React from "react"
 import { sample } from "lodash"
-import { SITE, SITE_DEFAULTS, tryFetch, Link } from "../hooks/api"
+import { SITE, SITE_DEFAULTS, tryFetch } from "../hooks/api"
 
 // const searchLink = 'Use case: Local CNV Frequencies <a href="/biosamples/">{↗}</a>'+
 
@@ -53,7 +54,7 @@ export default function Index({
 
   <Panel heading="Progenetix Use Cases" className="content">
     <h4>
-      <Link href="/biosamples/" label="Local CNV Frequencies" />
+      <InternalLink href="/biosamples/" label="Local CNV Frequencies" />
     </h4>
 
     <p>
@@ -66,7 +67,7 @@ export default function Index({
     </p>
 
     <h4>
-      <Link
+      <InternalLink
         href="/subsets/biosubsets"
         label="Cancer CNV Profiles"
       />
@@ -84,7 +85,7 @@ export default function Index({
     </p>
 
     <h4>
-      <Link
+      <InternalLink
         href="/publications"
         label="Cancer Genomics Publications"
       />

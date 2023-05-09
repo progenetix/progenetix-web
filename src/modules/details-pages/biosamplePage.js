@@ -10,7 +10,7 @@ import React from "react"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
 import { ShowJSON } from "../../components/RawData"
-import { CallsetHistogram } from "../../components/Histogram"
+import { CallsetHistogram } from "../../components/SVGloaders"
 import { pluralizeWord }  from "../../components/helpersShared/labelHelpers"
 
 const itemColl = "biosamples"
