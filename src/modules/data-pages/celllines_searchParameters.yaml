@@ -150,8 +150,8 @@ celllines:
       note: "Example for focal MYC Duplications."
       description: |
         The example parameters will select samples with a continuous, focal duplication
-        of the complete MYC coding region. The serarch will be limited to "icdom-80463"
-        (i.e. ICD-O 3 8046/3, Non-small cell carcinoma).
+        of the complete MYC coding region. The serarch will be limited to "NCIT:C35813"
+        (i.e. Hematopoietic and Lymphoid System Neoplasm).
       parameters:
         referenceName:
           defaultValue: "refseq:NC_000008.11"
@@ -166,7 +166,7 @@ celllines:
         variantMaxLength:
           isHidden: true
         bioontology:
-          defaultValue: ["icdom-80463"]
+          defaultValue: ["NCIT:C35813"]
         accessid:
           isHidden: true
         geoCity:
