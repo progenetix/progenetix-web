@@ -10,7 +10,6 @@ import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
 import { ShowJSON } from "../../components/RawData"
 import React from "react"
-// import { v4 as uuidv4 } from 'uuid';
 const entity = "variants"
 const exampleId = "5bab576a727983b2e00b8d32"
 
@@ -76,14 +75,15 @@ const exampleId = "5bab576a727983b2e00b8d32"
 // function View() {
 //     const state = createViewState({
 //         assembly,
-        // tracks,
-        // location: '10:29,838,737..29,838,819',
-    //     location: '1:11,127,738-11,127,739',
-    //     defaultSession,
-    // })
-
+//         // tracks,
+//         location: '10:29,838,737..29,838,819',
+//         // location: '1:11,127,738-11,127,739',
+//         defaultSession,
+//     })
+//
 //     return <JBrowseLinearGenomeView viewState={state} />;
 // }
+
 
 const VariantDetailsPage = withUrlQuery(({ urlQuery }) => {
   var { id } = urlQuery

@@ -66,7 +66,7 @@ function LiteratureSearchResultsTabbed({label, labels, setLabels}) {
           <GeneComponent cellline={label} genes={data.Gene.sort()} labels={labels} setLabels={setLabels}/>
         }
         {data?.Band?.length > 0 && selectedTab === TABS.cytobands.label &&
-          <ResultComponent cellline={label} entities={data.Band} />
+          <CytobandComponent cellline={label} entities={data.Band.sort()} />
         }
         {data?.Variant?.length > 0 && selectedTab === TABS.variants.label &&
           <ResultComponent cellline={label} entities={data.Variant} />
@@ -93,6 +93,17 @@ function GeneComponent({cellline, genes, labels, setLabels})
   );
 }
 
+function CytobandComponent({cellline, cytobands, labels, setLabels})
+{
+    return (
+        <section className="content">
+            <table>
+                {labels.length >= 1 ? <tr><td colSpan="9" align="center"><Button contained color="secondary" onClick={() => window.location.reload(true)}>Clear Annotations</Button></td></tr> : ""}
+                {cytobands.map((cytoband,i)=>(<CytobandResultSet key={`${i}`} cytoband={cytoband} cellline={cellline} labels={labels} setLabels={setLabels}/>))}
+            </table>
+        </section>
+    );
+}
 function ResultComponent({cellline, entities})
 {
   return (
@@ -128,6 +139,29 @@ async function addGeneLabel(gene, labels, setLabels, setLabelButton)
     })
 }
 
+async function addCytobandLabel(cytoband, labels, setLabels, setLabelButton)
+{
+    await fetch(SITE_DEFAULTS.API_PATH+"services/cytobands/"+cytoband).then(res => {
+        if (res.status >= 400 && res.status < 600) {
+            throw new Error("Bad response from "+SITE_DEFAULTS.API_PATH+"/services/cytobands")
+        }
+        return res
+    }).then(res => res.json()).then(data=>{
+        var l = labels;
+        setLabelButton(true)
+        if (l === "") {
+            l += data['response']['results'][0]['referenceName'] + ":" + data['response']['results'][0]['start']
+                +  "-" + data['response']['results'][0]['end'] + ":" + cytoband;
+        } else {
+            l += "," + data['response']['results'][0]['referenceName'] + ":" + data['response']['results'][0]['start']
+                +  "-" + data['response']['results'][0]['end'] + ":" + cytoband;
+        }
+        window.scrollTo(0, 0);
+        setLabels(l);
+    }).catch((error) => {
+        console.log(error)
+    })
+}
 function GeneResultSet({cellline, gene, labels, setLabels})
 {
   const {data, error, isLoading} = useLiteratureSearchResults([cellline],[gene]);
@@ -143,13 +177,14 @@ function GeneResultSet({cellline, gene, labels, setLabels})
             <Button onClick={()=>addGeneLabel(gene, labels, setLabels, setLabelButton)}>{gene}</Button>
           </Tooltip>}
       </td>
+
         {expand ?
           <td>{data.pairs.map((pair,i)=>(<GeneResultRow key={`${i}`} pair={pair}/>))}</td>
         :
           <td><GeneResultRow key={0} pair={data.pairs[0]} expand={expand} setExpand={setExpand}/></td>
         }
 
-        {data.pairs.length < 2 ? 
+        {data.pairs.length < 2 ?
           <td>&nbsp;</td>
         :
           <td>
@@ -159,8 +194,41 @@ function GeneResultSet({cellline, gene, labels, setLabels})
       </tr> : ""}
     </Loader>
   )
-}
+      }
 
+function CytobandResultSet({cellline, cytoband, labels, setLabels})
+{
+    const {data, error, isLoading} = useLiteratureSearchResults([cellline],[cytoband]);
+    const [expand, setExpand] = useState(false);
+    const [labelButton, setLabelButton] = useState(false);
+
+    console.log('data:', data)
+    return (
+        <Loader isLoading={isLoading} hasError={error} background>
+            {data && data.pairs.length > 0 ? <tr><td>
+                {labelButton && labels.length > 1 ? <Button disabled variant="contained">{cytoband}</Button> :
+                    <Tooltip title={`add cytoband ${cytoband} to the plot!`}>
+                        <Button onClick={()=>addCytobandLabel(cytoband, labels, setLabels, setLabelButton)}>{cytoband}</Button>
+                    </Tooltip>}
+            </td>
+
+                {expand ?
+                    <td>{data.pairs.map((pair,i)=>(<GeneResultRow key={`${i}`} pair={pair}/>))}</td>
+                    :
+                    <td><GeneResultRow key={0} pair={data.pairs[0]} expand={expand} setExpand={setExpand}/></td>
+                }
+
+                {data.pairs.length < 2 ?
+                    <td>&nbsp;</td>
+                    :
+                    <td>
+                        <Button color="secondary" onClick={() => {setExpand(!expand)}}>{expand ? <b>Close</b> : <b>Expand</b>}</Button>
+                    </td>
+                }
+            </tr> : ""}
+        </Loader>
+    )
+}
 function ResultSet({cellline,entity})
 {
   const {data,error,isLoading} = useLiteratureSearchResults([cellline],[entity]);
