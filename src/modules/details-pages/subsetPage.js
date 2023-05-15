@@ -7,7 +7,7 @@ import {
 import { Loader } from "../../components/Loader"
 import { Layout } from "../../components/Layout"
 import { ShowJSON } from "../../components/RawData"
-import { SubsetHistogram } from "../../components/Histogram"
+import { SubsetHistogram } from "../../components/SVGloaders"
 import { ExternalLink } from "../../components/helpersShared/linkHelpers"
 import { withUrlQuery } from "../../hooks/url-query"
 

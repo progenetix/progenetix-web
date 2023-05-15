@@ -3,7 +3,7 @@ import React, { useRef } from "react"
 import {
   SITE_DEFAULTS,
   useSubsethistogram,
-  subsetHistoLink,
+  subsetHistoBaseLink,
   subsetIdLink,
   subsetPgxsegLink,
   useExtendedSWR
@@ -13,7 +13,7 @@ import { useContainerDimensions } from "../hooks/containerDimensions"
 import PropTypes from "prop-types"
 import Link from "next/link"
 
-export default function Histogram({ apiReply }) {
+export default function SVGloader({ apiReply }) {
   const { data, error, isLoading } = apiReply
   return (
     <Loader isLoading={isLoading} hasError={error} background>
@@ -25,18 +25,20 @@ export default function Histogram({ apiReply }) {
   )
 }
 
-export function SubsetHistogram({ id, filter, datasetIds, labelstring, title, description, size: givenSize }) {
+export function SubsetHistogram({ id, filter, datasetIds, plotRegionLabels, plotGeneSymbols, plotCytoregionLabels, title, description, size: givenSize }) {
   const componentRef = useRef()
   const { width } = useContainerDimensions(componentRef)
   const size = givenSize || width
   return (
     <div ref={componentRef}>
-      <Histogram
+      <SVGloader
         apiReply={useSubsethistogram({
           datasetIds,
           id,
           filter,
-          labelstring,
+          plotRegionLabels,
+          plotGeneSymbols,
+          plotCytoregionLabels,
           size
         })}
       />
@@ -53,7 +55,7 @@ export function SubsetHistogram({ id, filter, datasetIds, labelstring, title, de
       )}
       </div>
       <div className="svg-histolinks">
-        <Link href={subsetHistoLink(id, datasetIds)}>
+        <Link href={subsetHistoBaseLink(id, datasetIds)}>
           <a>Download SVG</a>
         </Link>
         {" | "}
@@ -77,7 +79,7 @@ export function CallsetHistogram({ csid, datasetIds }) {
   const dataEffect = useExtendedSWR(width > 0 && url, svgFetcher)
   return (
     <div ref={componentRef} className="mb-4">
-      <Histogram apiReply={dataEffect} />
+      <SVGloader apiReply={dataEffect} />
     </div>
   )
 }

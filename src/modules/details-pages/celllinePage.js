@@ -10,7 +10,7 @@ import { Layout } from "../../components/Layout"
 import Panel from "../../components/Panel"
 import { LiteratureSearch } from "../../components/LiteratureSearch"
 import { ShowJSON } from "../../components/RawData"
-import { SubsetHistogram } from "../../components/Histogram"
+import { SubsetHistogram } from "../../components/SVGloaders"
 import { ExternalLink, InternalLink } from "../../components/helpersShared/linkHelpers"
 import { withUrlQuery } from "../../hooks/url-query"
 import VariantsDataTable from "../../components/searchResults/VariantsDataTable"
@@ -23,7 +23,7 @@ const datasetIds = SITE_DEFAULTS.DATASETID
 const CellLineDetailsPage = withUrlQuery(({ urlQuery }) => {
   var { id } = urlQuery
   const hasAllParams = id && datasetIds
-  const [labels, setLabels] = useState("");
+  const [plotGeneSymbols, setGeneSymbols] = useState("");
 
   const aURL = `${SITE_DEFAULTS.API_PATH}beacon/genomicVariations/?filters=${id}&requestEntityId=genomicVariations&datasetIds=${datasetIds}&annotatedOnly=True&paginateResults=false`
   const variantsReply = useProgenetixApi( aURL )
@@ -50,33 +50,33 @@ const CellLineDetailsPage = withUrlQuery(({ urlQuery }) => {
       <>
 
         <Panel heading="" className="content">
-
           <SubsetLoader id={id} individual={individual} datasetIds={datasetIds} />
-
-          <div className="mb-3">
-            <SubsetHistogram
-              id={id}
-              datasetIds={datasetIds}
-              labelstring={labels}
-              loaderProps={{
-                background: true,
-                colored: true
-              }}
-            />
-          </div>
-
         </Panel>
 
         <Panel heading={`Annotated Variants for ${id}`} className="content">
           <VariantsDataTable apiReply={variantsReply} datasetId={datasetIds} />
         </Panel>
 
+        <Panel heading="Subset CNV Frequencies" className="content">
+          <div className="mb-3">
+            <SubsetHistogram
+              id={id}
+              datasetIds={datasetIds}
+              plotGeneSymbols={plotGeneSymbols}
+              loaderProps={{
+                background: true,
+                colored: true
+              }}
+            />
+          </div>     
+        </Panel>
+
         <Panel heading={`Literature Derived Contextual Information`} className="content">
           <LiteratureSearch
             id={id}
             datasetIds={datasetIds}
-            labels={labels}
-            setLabels={setLabels}
+            plotGeneSymbols={plotGeneSymbols}
+            setGeneSymbols={setGeneSymbols}
           />
         </Panel>
 
@@ -123,8 +123,8 @@ function Subset({ id, subset, individual, datasetIds }) {
   const filters = id
   const sampleFilterScope = "freeFilters"
   const [showAll, setShowAll] = useState(false);
-  console.log(individual);
-  console.log(Object.keys(individual));
+  // console.log(individual);
+  // console.log(Object.keys(individual));
   
   return (
 
@@ -188,7 +188,7 @@ function Subset({ id, subset, individual, datasetIds }) {
 
   <ul>
 
-  {individual.indexDisease?.diseaseCode && (
+  {individual?.indexDisease?.diseaseCode && (
     <li>
       <b>Diagnosis</b>{": "}
       {individual.indexDisease.diseaseCode.id}{" ("}
@@ -197,21 +197,21 @@ function Subset({ id, subset, individual, datasetIds }) {
       
   )}
 
-  {individual.description && (
+  {individual?.description && (
     <li>
       <b>Description</b>{": "}
       {individual.description}
     </li>
   )}
 
-  {individual.sex && (
+  {individual?.sex && (
     <li>
       <b>Genotypic Sex</b>{": "}
-      {individual.sex?.label} ({individual.sex.id})
+      {individual?.sex?.label} ({individual.sex.id})
     </li>
   )}
 
-  {individual.indexDisease?.onset && (
+  {individual?.indexDisease?.onset && (
       <li>
         <b>Age at Collection</b>{": "}
         {individual.indexDisease.onset.age}
@@ -220,7 +220,7 @@ function Subset({ id, subset, individual, datasetIds }) {
 
   </ul>
 
-  {individual.genomeAncestry && individual.genomeAncestry?.length > 0 && (
+  {individual?.genomeAncestry && individual?.genomeAncestry?.length > 0 && (
     <div style={{ display: "flex", flexDirection: "row", alignItems: "flex-start", width: "100%", marginBottom: "0px" }}>
       <div style={{ width: "50%" }}>
         <b>Genome Ancestry</b>
