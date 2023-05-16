@@ -25,7 +25,7 @@ const CellLineDetailsPage = withUrlQuery(({ urlQuery }) => {
   var { id } = urlQuery
   const hasAllParams = id && datasetIds
   const [plotGeneSymbols, setGeneSymbols] = useState("");
-  const [plotCytobandSymbols, setCytobandSymbols] = useState("");
+  const [plotCytoregionLabels, setCytoregionSymbols] = useState("");
 
   const aURL = `${SITE_DEFAULTS.API_PATH}beacon/genomicVariations/?filters=${id}&requestEntityId=genomicVariations&datasetIds=${datasetIds}&annotatedOnly=True&paginateResults=false`
   const variantsReply = useProgenetixApi( aURL )
@@ -65,7 +65,7 @@ const CellLineDetailsPage = withUrlQuery(({ urlQuery }) => {
               id={id}
               datasetIds={datasetIds}
               plotGeneSymbols={plotGeneSymbols}
-              plotCytobandSymbols={plotCytobandSymbols}
+              plotCytoregionLabels={plotCytoregionLabels}
               loaderProps={{
                 background: true,
                 colored: true
@@ -80,8 +80,8 @@ const CellLineDetailsPage = withUrlQuery(({ urlQuery }) => {
             datasetIds={datasetIds}
             plotGeneSymbols={plotGeneSymbols}
             setGeneSymbols={setGeneSymbols}
-            plotCytobandSymbols={plotCytobandSymbols}
-            setCytobandSymbols={setCytobandSymbols}
+            plotCytoregionLabels={plotCytoregionLabels}
+            setCytoregionSymbols={setCytoregionSymbols}
           />
         </Panel>
 

@@ -10,9 +10,9 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 const service = "collations"
 
-export function LiteratureSearch({ id, datasetIds, plotGeneSymbols, setGeneSymbols, plotCytobandSymbols, setCytobandSymbols})
+export function LiteratureSearch({ id, datasetIds, plotGeneSymbols, setGeneSymbols, plotCytoregionLabels, setCytoregionSymbols})
 {
-    console.log(setGeneSymbols, setCytobandSymbols)
+    console.log(setGeneSymbols, setCytoregionSymbols)
 
     const { data, error, isLoading } = useServiceItemDelivery(
         id,
@@ -22,13 +22,13 @@ export function LiteratureSearch({ id, datasetIds, plotGeneSymbols, setGeneSymbo
     return (
         <Loader isLoading={isLoading} hasError={error} background>
             {data && (
-                <LiteratureSearchResultsTabbed label={data.response.results[0].label} plotGeneSymbols={plotGeneSymbols} setGeneSymbols={setGeneSymbols} plotCytobandSymbols={plotCytobandSymbols} setCytobandSymbols={setCytobandSymbols}/>
+                <LiteratureSearchResultsTabbed label={data.response.results[0].label} plotGeneSymbols={plotGeneSymbols} setGeneSymbols={setGeneSymbols} plotCytoregionLabels={plotCytoregionLabels} setCytoregionSymbols={setCytoregionSymbols}/>
             )}
         </Loader>
     );
 }
 
-function LiteratureSearchResultsTabbed({label, plotGeneSymbols, setGeneSymbols, plotCytobandSymbols, setCytobandSymbols}) {
+function LiteratureSearchResultsTabbed({label, plotGeneSymbols, setGeneSymbols, plotCytoregionLabels, setCytoregionSymbols}) {
 
     const {data,error,isLoading} = useLiteratureCellLineMatches(label);
     const TABS = {
@@ -67,7 +67,7 @@ function LiteratureSearchResultsTabbed({label, plotGeneSymbols, setGeneSymbols, 
                         <GeneComponent cellline={label} genes={data.Gene.sort()} plotGeneSymbols={plotGeneSymbols} setGeneSymbols={setGeneSymbols}/>
                     }
                     {data?.Band?.length > 0 && selectedTab === TABS.cytobands.label &&
-                        <CytobandComponent cellline={label} cytobands={data.Band.sort()} plotCytobandSymbols={plotCytobandSymbols} setCytobandSymbols={setCytobandSymbols}/>
+                        <CytobandComponent cellline={label} cytobands={data.Band.sort()} plotCytoregionLabels={plotCytoregionLabels} setCytoregionSymbols={setCytoregionSymbols}/>
                     }
                     {data?.Variant?.length > 0 && selectedTab === TABS.variants.label &&
                         <ResultComponent cellline={label} entities={data.Variant} />
@@ -95,13 +95,13 @@ function GeneComponent({cellline, genes, plotGeneSymbols, setGeneSymbols})
     );
 }
 
-function CytobandComponent({cellline, cytobands, plotCytobandSymbols, setCytobandSymbols})
+function CytobandComponent({cellline, cytobands, plotCytoregionLabels, setCytoregionSymbols})
 {
   return (
     <section className="content">
       <table>
-        {plotCytobandSymbols.length >= 1 ? <tr><td colSpan="9" align="center"><Button contained color="secondary" onClick={() => window.location.reload(true)}>Clear Annotations</Button></td></tr> : ""}
-        {cytobands.map((cytoband,i)=>(<CytobandResultSet key={`${i}`} cytoband={cytoband} cellline={cellline} plotCytobandSymbols={plotCytobandSymbols} setCytobandSymbols={setCytobandSymbols}/>))}
+        {plotCytoregionLabels.length >= 1 ? <tr><td colSpan="9" align="center"><Button contained color="secondary" onClick={() => window.location.reload(true)}>Clear Annotations</Button></td></tr> : ""}
+        {cytobands.map((cytoband,i)=>(<CytobandResultSet key={`${i}`} cytoband={cytoband} cellline={cellline} plotCytoregionLabels={plotCytoregionLabels} setCytoregionSymbols={setCytoregionSymbols}/>))}
       </table>
     </section>
   );
@@ -134,8 +134,8 @@ function addGeneLabel(gene, plotGeneSymbols, setGeneSymbols, setLabelButton) {
 
 /*============================ cytoband labeling =============================*/
 
-function addCytobandLabel(cytoband, plotCytobandSymbols, setCytobandSymbols, setCytobandLabelButton) {
-    var c = plotCytobandSymbols;
+function addCytobandLabel(cytoband, plotCytoregionLabels, setCytoregionSymbols, setCytobandLabelButton) {
+    var c = plotCytoregionLabels;
     setCytobandLabelButton(true)
     if (c === "") {
         c += cytoband;
@@ -143,7 +143,7 @@ function addCytobandLabel(cytoband, plotCytobandSymbols, setCytobandSymbols, set
         c += "," + cytoband;
     }
     window.scrollTo(0, 0);
-    setCytobandSymbols(c);
+    setCytoregionSymbols(c);
 }
 
 function GeneResultSet({cellline, gene, plotGeneSymbols, setGeneSymbols})
@@ -179,7 +179,7 @@ function GeneResultSet({cellline, gene, plotGeneSymbols, setGeneSymbols})
     )
 }
 
-function CytobandResultSet({cellline, cytoband, plotCytobandSymbols, setCytobandSymbols})
+function CytobandResultSet({cellline, cytoband, plotCytoregionLabels, setCytoregionSymbols})
 {
     const {data, error, isLoading} = useLiteratureSearchResults([cellline],[cytoband]);
     const [expand, setExpand] = useState(false);
@@ -189,9 +189,9 @@ function CytobandResultSet({cellline, cytoband, plotCytobandSymbols, setCytoband
     return (
         <Loader isLoading={isLoading} hasError={error} background>
             {data && data.pairs.length > 0 ? <tr><td>
-                {cytobandLabelButton && plotCytobandSymbols?.length > 1 ? <Button disabled variant="contained">{cytoband}</Button> :
+                {cytobandLabelButton && plotCytoregionLabels?.length > 1 ? <Button disabled variant="contained">{cytoband}</Button> :
                     <Tooltip title={`add cytoband ${cytoband} to the plot!`}>
-                        <Button onClick={()=>addCytobandLabel(cytoband, plotCytobandSymbols, setCytobandSymbols, setCytobandLabelButton)}>{cytoband}</Button>
+                        <Button onClick={()=>addCytobandLabel(cytoband, plotCytoregionLabels, setCytoregionSymbols, setCytobandLabelButton)}>{cytoband}</Button>
                     </Tooltip>}
             </td>
                 {expand ?
