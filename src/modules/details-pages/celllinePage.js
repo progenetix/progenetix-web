@@ -21,9 +21,11 @@ const exampleId = "cellosaurus:CVCL_0023"
 const datasetIds = SITE_DEFAULTS.DATASETID
 
 const CellLineDetailsPage = withUrlQuery(({ urlQuery }) => {
+
   var { id } = urlQuery
   const hasAllParams = id && datasetIds
   const [plotGeneSymbols, setGeneSymbols] = useState("");
+  const [plotCytobandSymbols, setCytobandSymbols] = useState("");
 
   const aURL = `${SITE_DEFAULTS.API_PATH}beacon/genomicVariations/?filters=${id}&requestEntityId=genomicVariations&datasetIds=${datasetIds}&annotatedOnly=True&paginateResults=false`
   const variantsReply = useProgenetixApi( aURL )
@@ -63,6 +65,7 @@ const CellLineDetailsPage = withUrlQuery(({ urlQuery }) => {
               id={id}
               datasetIds={datasetIds}
               plotGeneSymbols={plotGeneSymbols}
+              plotCytobandSymbols={plotCytobandSymbols}
               loaderProps={{
                 background: true,
                 colored: true
@@ -77,6 +80,8 @@ const CellLineDetailsPage = withUrlQuery(({ urlQuery }) => {
             datasetIds={datasetIds}
             plotGeneSymbols={plotGeneSymbols}
             setGeneSymbols={setGeneSymbols}
+            plotCytobandSymbols={plotCytobandSymbols}
+            setCytobandSymbols={setCytobandSymbols}
           />
         </Panel>
 

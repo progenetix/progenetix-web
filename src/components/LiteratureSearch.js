@@ -12,6 +12,8 @@ const service = "collations"
 
 export function LiteratureSearch({ id, datasetIds, plotGeneSymbols, setGeneSymbols, plotCytobandSymbols, setCytobandSymbols})
 {
+    console.log(setGeneSymbols, setCytobandSymbols)
+
     const { data, error, isLoading } = useServiceItemDelivery(
         id,
         service,
@@ -58,16 +60,14 @@ function LiteratureSearchResultsTabbed({label, plotGeneSymbols, setGeneSymbols, 
                                         <a>{tabName}</a>
                                     </li>
                                 ))}
-                            </ul>
+                            </ul> 
                         </div>
                         : null}
                     {data?.Gene?.length > 0 && selectedTab === TABS.genes.label &&
                         <GeneComponent cellline={label} genes={data.Gene.sort()} plotGeneSymbols={plotGeneSymbols} setGeneSymbols={setGeneSymbols}/>
                     }
                     {data?.Band?.length > 0 && selectedTab === TABS.cytobands.label &&
-                        // <CytobandComponent cellline={label} entities={data.Band.sort()}  plotCytobandSymbols={plotCytobandSymbols} setCytobandSymbols={setCytobandSymbols}/>
-                        <ResultComponent cellline={label} entities={data.Band.sort()}  plotCytobandSymbols={plotCytobandSymbols} setCytobandSymbols={setCytobandSymbols}/>
-
+                        <CytobandComponent cellline={label} cytobands={data.Band.sort()} plotCytobandSymbols={plotCytobandSymbols} setCytobandSymbols={setCytobandSymbols}/>
                     }
                     {data?.Variant?.length > 0 && selectedTab === TABS.variants.label &&
                         <ResultComponent cellline={label} entities={data.Variant} />
@@ -84,6 +84,7 @@ function LiteratureSearchResultsTabbed({label, plotGeneSymbols, setGeneSymbols, 
 
 function GeneComponent({cellline, genes, plotGeneSymbols, setGeneSymbols})
 {
+ console.log(plotGeneSymbols)
     return (
         <section className="content">
             <table>
@@ -94,17 +95,17 @@ function GeneComponent({cellline, genes, plotGeneSymbols, setGeneSymbols})
     );
 }
 
-// function CytobandComponent({cellline, cytobands, plotCytobandSymbols, setCytobandSymbols})
-// {
-//   return (
-//     <section className="content">
-//       <table>
-//         {plotCytobandSymbols.length >= 1 ? <tr><td colSpan="9" align="center"><Button contained color="secondary" onClick={() => window.location.reload(true)}>Clear Annotations</Button></td></tr> : ""}
-//         {cytobands.map((cytoband,i)=>(<CytobandResultSet key={`${i}`} cytoband={cytoband} cellline={cellline} plotCytobandSymbols={plotCytobandSymbols} setCytobandSymbols={setCytobandSymbols}/>))}
-//       </table>
-//     </section>
-//   );
-// }
+function CytobandComponent({cellline, cytobands, plotCytobandSymbols, setCytobandSymbols})
+{
+  return (
+    <section className="content">
+      <table>
+        {plotCytobandSymbols.length >= 1 ? <tr><td colSpan="9" align="center"><Button contained color="secondary" onClick={() => window.location.reload(true)}>Clear Annotations</Button></td></tr> : ""}
+        {cytobands.map((cytoband,i)=>(<CytobandResultSet key={`${i}`} cytoband={cytoband} cellline={cellline} plotCytobandSymbols={plotCytobandSymbols} setCytobandSymbols={setCytobandSymbols}/>))}
+      </table>
+    </section>
+  );
+}
 
 function ResultComponent({cellline, entities})
 {
@@ -116,6 +117,8 @@ function ResultComponent({cellline, entities})
         </section>
     );
 }
+
+/*============================== gene labeling ===============================*/
 
 function addGeneLabel(gene, plotGeneSymbols, setGeneSymbols, setLabelButton) {
     var l = plotGeneSymbols;
@@ -129,40 +132,19 @@ function addGeneLabel(gene, plotGeneSymbols, setGeneSymbols, setLabelButton) {
     setGeneSymbols(l);
 }
 
-// function addCytobandLabel(cytoband, plotCytobandSymbols, setCytobandSymbols, setLabelButton) {
-//     var l = plotCytobandSymbols;
-//     setLabelButton(true)
-//     if (l === "") {
-//         l += cytoband;
-//     } else {
-//         l += "," + cytoband;
-//     }
-//     window.scrollTo(0, 0);
-//     setCytobandSymbols(l);
-// }
-// async function addGeneLabel(gene, labels, setLabels, setLabelButton)
-// {
-//   await fetch(SITE_DEFAULTS.API_PATH+"services/genespans/"+gene).then(res => {
-//     if (res.status >= 400 && res.status < 600) {
-//       throw new Error("Bad response from "+SITE_DEFAULTS.API_PATH+"/services/genespans")
-//     }
-//     return res
-//   }).then(res => res.json()).then(data=>{
-//       var l = labels;
-//       setLabelButton(true)
-//       if (l === "") {
-//         l += data['response']['results'][0]['referenceName'] + ":" + data['response']['results'][0]['start']
-//         +  "-" + data['response']['results'][0]['end'] + ":" + gene;
-//       } else {
-//         l += "," + data['response']['results'][0]['referenceName'] + ":" + data['response']['results'][0]['start']
-//         +  "-" + data['response']['results'][0]['end'] + ":" + gene;
-//       }
-//       window.scrollTo(0, 0);
-//       setLabels(l);
-//   }).catch((error) => {
-//       console.log(error)
-//     })
-// }
+/*============================ cytoband labeling =============================*/
+
+function addCytobandLabel(cytoband, plotCytobandSymbols, setCytobandSymbols, setCytobandLabelButton) {
+    var c = plotCytobandSymbols;
+    setCytobandLabelButton(true)
+    if (c === "") {
+        c += cytoband;
+    } else {
+        c += "," + cytoband;
+    }
+    window.scrollTo(0, 0);
+    setCytobandSymbols(c);
+}
 
 function GeneResultSet({cellline, gene, plotGeneSymbols, setGeneSymbols})
 {
@@ -180,9 +162,9 @@ function GeneResultSet({cellline, gene, plotGeneSymbols, setGeneSymbols})
                     </Tooltip>}
             </td>
                 {expand ?
-                    <td>{data.pairs.map((pair,i)=>(<GeneResultRow key={`${i}`} pair={pair}/>))}</td>
+                    <td>{data.pairs.map((pair,i)=>(<ResultRow key={`${i}`} pair={pair}/>))}</td>
                     :
-                    <td><GeneResultRow key={0} pair={data.pairs[0]} expand={expand} setExpand={setExpand}/></td>
+                    <td><ResultRow key={0} pair={data.pairs[0]} expand={expand} setExpand={setExpand}/></td>
                 }
 
                 {data.pairs.length < 2 ?
@@ -197,38 +179,39 @@ function GeneResultSet({cellline, gene, plotGeneSymbols, setGeneSymbols})
     )
 }
 
-// function CytobandResultSet({cellline, cytoband, plotCytobandSymbols, setCytobandSymbols})
-// {
-//     const {data, error, isLoading} = useLiteratureSearchResults([cellline],[cytoband]);
-//     const [expand, setExpand] = useState(false);
-//     const [labelButton, setLabelButton] = useState(false);
-//
-//     console.log(cytoband)
-//     return (
-//         <Loader isLoading={isLoading} hasError={error} background>
-//             {data && data.pairs.length > 0 ? <tr><td>
-//                 {labelButton && plotCytobandSymbols.length > 1 ? <Button disabled variant="contained">{cytoband}</Button> :
-//                     <Tooltip title={`add cytoband ${cytoband} to the plot!`}>
-//                         <Button onClick={()=>addCytobandLabel(cytoband, plotCytobandSymbols, setCytobandSymbols, setLabelButton)}>{cytoband}</Button>
-//                     </Tooltip>}
-//             </td>
-//                 {expand ?
-//                     <td>{data.pairs.map((pair,i)=>(<GeneResultRow key={`${i}`} pair={pair}/>))}</td>
-//                     :
-//                     <td><GeneResultRow key={0} pair={data.pairs[0]} expand={expand} setExpand={setExpand}/></td>
-//                 }
-//
-//                 {data.pairs.length < 2 ?
-//                     <td>&nbsp;</td>
-//                     :
-//                     <td>
-//                         <Button color="secondary" onClick={() => {setExpand(!expand)}}>{expand ? <b>Close</b> : <b>Expand</b>}</Button>
-//                     </td>
-//                 }
-//             </tr> : ""}
-//         </Loader>
-//     )
-// }
+function CytobandResultSet({cellline, cytoband, plotCytobandSymbols, setCytobandSymbols})
+{
+    const {data, error, isLoading} = useLiteratureSearchResults([cellline],[cytoband]);
+    const [expand, setExpand] = useState(false);
+    const [cytobandLabelButton, setCytobandLabelButton] = useState(false);
+
+    console.log(cytoband)
+    return (
+        <Loader isLoading={isLoading} hasError={error} background>
+            {data && data.pairs.length > 0 ? <tr><td>
+                {cytobandLabelButton && plotCytobandSymbols?.length > 1 ? <Button disabled variant="contained">{cytoband}</Button> :
+                    <Tooltip title={`add cytoband ${cytoband} to the plot!`}>
+                        <Button onClick={()=>addCytobandLabel(cytoband, plotCytobandSymbols, setCytobandSymbols, setCytobandLabelButton)}>{cytoband}</Button>
+                    </Tooltip>}
+            </td>
+                {expand ?
+                    <td>{data.pairs.map((pair,i)=>(<ResultRow key={`${i}`} pair={pair}/>))}</td>
+                    :
+                    <td><ResultRow key={0} pair={data.pairs[0]} expand={expand} setExpand={setExpand}/></td>
+                }
+
+                {data.pairs.length < 2 ?
+                    <td>&nbsp;</td>
+                    :
+                    <td>
+                        <Button color="secondary" onClick={() => {setExpand(!expand)}}>{expand ? <b>Close</b> : <b>Expand</b>}</Button>
+                    </td>
+                }
+            </tr> : ""}
+        </Loader>
+    )
+}
+
 function ResultSet({cellline,entity})
 {
     const {data,error,isLoading} = useLiteratureSearchResults([cellline],[entity]);
@@ -241,32 +224,30 @@ function ResultSet({cellline,entity})
     )
 }
 
-// function GeneResultRow({pair, expand, setExpand})
-
-function GeneResultRow({pair})
-{
-    const [showAbstract, setShowAbstract] = useState(false);
-    return (
-        <tr>
-            <table>
-                <tr>
-                    <td style={{border: '0px'}}>
-                        <div dangerouslySetInnerHTML={{ __html:pair.matches[0]}}/>
-                    </td>
-                    <td colSpan="3"  style={{border: '0px'}}>
-                        <a target="_blank" rel="noreferrer" href={"https://pubmed.ncbi.nlm.nih.gov/"+pair.pmid}>{pair.title} ({pair.pmid})</a>
-                    </td>
-                    <td style={{border: '0px'}}><Button onClick={() => {setShowAbstract(!showAbstract)}}>{!showAbstract ? <p>Abstract</p> : <p>Close Abstract</p>}</Button></td>
-                </tr>
-                {showAbstract ?
-                    <tr>
-                        <td colSpan="9" dangerouslySetInnerHTML={{ __html:pair.abstract}} style={{border: '0px'}}></td>
-                    </tr>
-                    : ""}
-            </table>
-        </tr>
-    );
-}
+// function GeneResultRow({pair})
+// {
+//     const [showAbstract, setShowAbstract] = useState(false);
+//     return (
+//         <tr>
+//             <table>
+//                 <tr>
+//                     <td style={{border: '0px'}}>
+//                         <div dangerouslySetInnerHTML={{ __html:pair.text}}/>
+//                     </td>
+//                     <td colSpan="3"  style={{border: '0px'}}>
+//                         <a target="_blank" rel="noreferrer" href={"https://pubmed.ncbi.nlm.nih.gov/"+pair.pmid}>{pair.title} ({pair.pmid})</a>
+//                     </td>
+//                     <td style={{border: '0px'}}><Button onClick={() => {setShowAbstract(!showAbstract)}}>{!showAbstract ? <p>Abstract</p> : <p>Close Abstract</p>}</Button></td>
+//                 </tr>
+//                 {showAbstract ?
+//                     <tr>
+//                         <td colSpan="9" dangerouslySetInnerHTML={{ __html:pair.abstract}} style={{border: '0px'}}></td>
+//                     </tr>
+//                     : ""}
+//             </table>
+//         </tr>
+//     );
+// }
 
 // TODO: Standard react memo(?) component for table
 function ResultRow({pair})
