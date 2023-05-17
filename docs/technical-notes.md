@@ -59,9 +59,8 @@ fraction of each 1Mb bin covered by a gain (resp. loss) in this sample
 
 On the website sample and/or collation clustering is involved automatically on the
 "Data Visualization" page which can be accessed from the search results. Clustering as
-well as CNV visualization are performed through the [**PGX**](http://github.com/progenetix/PGX/)
-Perl library, utilizing the `Algorithm::Cluster` interface to the C cluster library with
-default parameters:
+well as CNV visualization are performed through the [**bycon**](http://github.com/progenetix/bycon/)
+library[^1] with default parameters:
 
 * `m`: pairwise complete-linkage clustering
 * `e`: Euclidean distance
@@ -150,3 +149,6 @@ flowchart
     B --> |yes| C[/ query biosamples /]
     C --> D[ store biosample `_id` values ]
 ```
+
+[^1]: Before April 2023 clustering and CNV visualization were performed using the
+[**PGX**](http://github.com/progenetix/PGX/) Perl libraries.

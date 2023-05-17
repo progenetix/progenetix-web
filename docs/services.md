@@ -5,7 +5,7 @@ resources in the _Progenetix_ environment.
 
 !!! note "Progenetix Beacon API"
 
-    For the main `Beacon` powered data API please see the [separate documentation page](/beaconplus).
+    For the main `Beacon` data API please see the [separate documentation page](/beaconplus).
 
 ## Formats
 

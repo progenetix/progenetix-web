@@ -5,16 +5,18 @@ developed by members of the Global Alliance for Genomics & Health. Since 2016,
 the Beacon protocols is being developed through the
 <a href="https://beacon-project.io">ELIXIR Beacon project</a> as a GA4GH driver project.</p>
 
-As part of the project, since early 2016 the [Computational Cytogenetics and Oncogenomics Group](http://info.baudisgroup.org) at the University of Zurich develops the
+As part of the project, since early 2016 the [Theoretical Cytogenetics and Oncogenomics Group](http://info.baudisgroup.org) at the University of Zurich develops the
 [Beacon<sup><span style="color: #d00;">+</span></sup> demonstrator](https://beacon.progenetix.org/ui/),
-to demonstrate current functionality and future Beacon protocol extensions.
+to show current functionality and test future Beacon protocol extensions.
 
 The Beacon<sup><span style="color: #d00;">+</span></sup> implementation is a
 custom front end on top of the [Progenetix](http://progenetix.org)
 dataset, with emphasis on structural genome variations from cancer samples.
 
+<!--
 On 2020-01-20,  Beacon<sup><span style="color: #d00;">+</span></sup> became part
 of the [ELIXIR Beacon Network](https://beacon-network.elixir-europe.org).
+-->
 
 ## BeaconPlus Data / Query Model
 
@@ -109,7 +111,6 @@ Examples for codes with hierarchical treatment within the filter space are:
 
 ## Beacon API
 
-
 ### Beacon-style JSON responses
 
 The Progenetix resource's API utilizes the `bycon` framework for data query and
@@ -125,7 +126,6 @@ Example responses can be genrated through the [path examples](#beacon-v2-path-ex
 below. 
 
 Please be aware that Beacon responses use `camelCased` parameter names.
-
 
 ### Beacon v2: Path Examples in Progenetix
 
