@@ -22,15 +22,15 @@ import dynamic from "next/dynamic"
 import { getVisualizationLink } from "../../modules/service-pages/dataVisualizationPage"
 
 const HANDOVER_IDS = {
-  histoplot: "pgx:HO_histoplot",
-  biosamples: "pgx:HO_biosamples",
-  biosamplestable: 'pgx:HO_biosamplestable',
-  biosamplevariants: "pgx:HO_biosamplevariants",
-  annotatedvariants: "pgx:HO_annotatedvariants",
-  biosamplepgxsegvariants: "pgx:HO_biosamples-pgxseg",
-  phenopackets: "pgx:HO_phenopackets",
-  UCSClink: "pgx:HO_bedfile2ucsc",
-  variants: "pgx:HO_variants"
+  histoplot: "pgx:HO.histoplot",
+  biosamples: "pgx:HO.biosamples",
+  biosamplestable: 'pgx:HO.biosamplestable',
+  biosamplevariants: "pgx:HO.biosamplevariants",
+  annotatedvariants: "pgx:HO.annotatedvariants",
+  biosamplepgxsegvariants: "pgx:HO.biosamples-pgxseg",
+  phenopackets: "pgx:HO.phenopackets",
+  UCSClink: "pgx:HO.bedfile2ucsc",
+  variants: "pgx:HO.variants"
 }
 
 const TABS = {
