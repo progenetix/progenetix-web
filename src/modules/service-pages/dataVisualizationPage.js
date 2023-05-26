@@ -17,8 +17,8 @@ import { svgFetcher } from "../../hooks/fetcher"
 const sampleMaxNo = 1000
 
 const HANDOVER_IDS = {
-  histoplot: "pgx:handover:histoplot",
-  samplesplot: "pgx:handover:samplesplot"
+  histoplot: "pgx:HO_histoplot",
+  samplesplot: "pgx:HO_samplesplot"
 }
 
 export const getVisualizationLink = (datasetIds, accessId, fileId, skip, limit, count) =>
