@@ -77,19 +77,21 @@ referenceName:
     - label: "NC_000024.10 (Y)"
       value: "refseq:NC_000024.10"
 variantType:
-  label: "(Structural) Variant Type"
+  label: "Variant Type"
   infoText: >-
     The type of a structural variant for e.g. CNV searches.
   defaultValue: ""
   options:
+    - value: ""
+      label: ""
     - value: "EFO:0030067"
       label: "EFO:0030067 (copy number deletion)"
     - value: "EFO:0030070"
       label: "EFO:0030070 (copy number gain)"
     - value: "EFO:0030066"
       label: "EFO:0030066 (any relative CN variation)"
-    - value: ""
-      label: ""
+    - value: "SO:0001059"
+      label: "SO:0001059 (any sequence alteration - SNV, INDEL...)"
 start:
   label: Start or Position
   infoText: |
