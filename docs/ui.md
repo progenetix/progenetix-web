@@ -12,6 +12,20 @@
 
 ### Biological and Metadata
 
+
+#### Age (at diagnosis)
+
+![age query image](/img/age-query.png){ width="280" style="float: right; margin: 0px 0px 10px 20px;" }
+Here one (or two, for a range - see image) age values can be specified using
+an ISO8601 period expression (e.g. `P3Y6M` or `P365D` - not including time elements)
+prefixed by the `age` indicator, a `:` separator and one of the comparators
+(`=`, `<=`, `>=`, `<`, `>`).
+
+##### Examples
+
+* `age:>=P18Y,age:<=P65Y`
+* `age:<P1Y6M`
+
 ==TBD==
 
 ### Technical Fields

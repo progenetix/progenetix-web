@@ -8,11 +8,21 @@ links:
   - '[Beacon filters](http://docs.genomebeacons.org/filters/#filter-types)'
 ---
 
-![age query image](/img/age-query.png){ width="280" style="float: right; margin: 0px 0px 10px 20px;" }While the Beacon v2 API has _in principle_ support for an `alphanumeric` [filter
+![age query image](/img/age-query.png){ width="280" style="float: right; margin: 0px 0px 10px 20px;" }
+While the Beacon v2 API has _in principle_ support for an `alphanumeric` [filter
 type](http://docs.genomebeacons.org/filters/#filter-types) so far in [`bycon`](http://bycon.progenetix.org/)
 there had been no dedicated support. With yesterday's `v1.0.49` update the library
 now supports such queries, implemented & tested specifically for age (...at diagnosis)
-valuse. 
+values. 
 
 <!--more-->
 
+Here one (or two, for a range - see image) age values can be specified using
+an ISO8601 period expression (e.g. `P3Y6M` or `P365D` - not including time elements)
+prefixed by the `age` indicator, a `:` separator and one of the comparators
+(`=`, `<=`, `>=`, `<`, `>`).
+
+#### Examples
+
+* `age:>=P18Y,age:<=P65Y`
+* `age:<P1Y6M`
