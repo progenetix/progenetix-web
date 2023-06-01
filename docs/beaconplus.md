@@ -13,6 +13,15 @@ The Beacon<sup><span style="color: #d00;">+</span></sup> implementation is a
 custom front end on top of the [Progenetix](http://progenetix.org)
 dataset, with emphasis on structural genome variations from cancer samples.
 
+!!! note "Technical Documentation"
+
+    An increasing amount of documentation relevant to the Progenetix API can be
+    found in those locations:
+
+    * [`bycon` package documentation](http://bycon.progenetix.org)
+    * Beacon v2 [documentation site](http://docs.genomebeacons.org)
+
+
 <!--
 On 2020-01-20,  Beacon<sup><span style="color: #d00;">+</span></sup> became part
 of the [ELIXIR Beacon Network](https://beacon-network.elixir-europe.org).
