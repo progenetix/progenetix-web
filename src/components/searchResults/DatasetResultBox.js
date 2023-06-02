@@ -11,8 +11,6 @@ import BiosamplesDataTable from "./BiosamplesDataTable"
 import VariantsDataTable from "./VariantsDataTable"
 import { useContainerDimensions } from "../../hooks/containerDimensions"
 import SVGloader from "../SVGloaders"
-// import Link from "next/link"
-// import { Infodot } from "../Infodot"
 import { ExternalLink } from "../helpersShared/linkHelpers"
 import { svgFetcher } from "../../hooks/fetcher"
 import BiosamplesStatsDataTable from "./BiosamplesStatsDataTable"
@@ -375,19 +373,6 @@ function ucscHref(query) {
 
   return `http://www.genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr${query.referenceName}%3A${ucscstart}%2D${ucscend}`
 }
-
-// function GenericHandover({ handover }) {
-//   return (
-//     <div>
-//       <ExternalLink
-//         href={handover.url}
-//         label={handover.handoverType.label}
-//         download
-//       />
-//       <Infodot infoText={handover.description} />
-//     </div>
-//   )
-// }
 
 function PagedLink({ handover }) {
   return (
