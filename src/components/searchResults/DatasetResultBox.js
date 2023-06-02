@@ -11,8 +11,6 @@ import BiosamplesDataTable from "./BiosamplesDataTable"
 import VariantsDataTable from "./VariantsDataTable"
 import { useContainerDimensions } from "../../hooks/containerDimensions"
 import SVGloader from "../SVGloaders"
-// import Link from "next/link"
-// import { Infodot } from "../Infodot"
 import { ExternalLink } from "../helpersShared/linkHelpers"
 import { svgFetcher } from "../../hooks/fetcher"
 import BiosamplesStatsDataTable from "./BiosamplesStatsDataTable"
@@ -28,6 +26,7 @@ const HANDOVER_IDS = {
   biosamplevariants: "pgx:HO.biosamplevariants",
   annotatedvariants: "pgx:HO.annotatedvariants",
   biosamplepgxsegvariants: "pgx:HO.biosamples-pgxseg",
+  biosamplevcfvariants: "pgx:HO.biosamples-vcf",
   phenopackets: "pgx:HO.phenopackets",
   UCSClink: "pgx:HO.bedfile2ucsc",
   variants: "pgx:HO.variants"
@@ -61,6 +60,7 @@ export function DatasetResultBox({ data: responseSet, query }) {
   const paginatedBiosTableHandovers = handoverById(HANDOVER_IDS.biosamplestable).pages
   const paginatedBiosVarsHandovers = handoverById(HANDOVER_IDS.biosamplevariants).pages
   const paginatedBiosVarsPgxsegHandovers = handoverById(HANDOVER_IDS.biosamplepgxsegvariants).pages
+  const paginatedBiosVarsVCFhandovers = handoverById(HANDOVER_IDS.biosamplevcfvariants).pages
   const paginatedPhenopacketsHandovers = handoverById(HANDOVER_IDS.phenopackets).pages
 
   const variantsHandover = handoverById(HANDOVER_IDS.variants)
@@ -285,6 +285,17 @@ export function DatasetResultBox({ data: responseSet, query }) {
           </ul>
         </div>
       </div>
+      <div className="tabs ">
+        <div>
+          <b>Download Sample Variants (VCF)</b>
+          <br/>
+          <ul>
+            {paginatedBiosVarsVCFhandovers.map((handover, i) => (
+              <PagedLink key={i} handover={handover} />
+            ))}
+          </ul>
+        </div>
+      </div>
       <div className="tabs">
         <div>
           <b>Download Phenopackets (JSON)</b>
@@ -362,19 +373,6 @@ function ucscHref(query) {
 
   return `http://www.genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr${query.referenceName}%3A${ucscstart}%2D${ucscend}`
 }
-
-// function GenericHandover({ handover }) {
-//   return (
-//     <div>
-//       <ExternalLink
-//         href={handover.url}
-//         label={handover.handoverType.label}
-//         download
-//       />
-//       <Infodot infoText={handover.description} />
-//     </div>
-//   )
-// }
 
 function PagedLink({ handover }) {
   return (

@@ -80,16 +80,16 @@ variantType:
     The type of a structural variant for e.g. CNV searches.
   defaultValue: ""
   options:
+    - value: ""
+      label: ""
     - value: "EFO:0030067"
       label: "EFO:0030067 (copy number deletion)"
     - value: "EFO:0030070"
       label: "EFO:0030070 (copy number gain)"
     - value: "EFO:0030066"
       label: "EFO:0030066 (any relative CN variation)"
-    - value: "SNV"
-      label: "SNV (here used for any non-CNV)"
-    - value: ""
-      label: ""
+    - value: "SO:0001059"
+      label: "SO:0001059 (any sequence alteration - SNV, INDEL...)"
 start:
   label: Start or Position
   infoText: |
