@@ -28,6 +28,7 @@ const HANDOVER_IDS = {
   biosamplevariants: "pgx:HO.biosamplevariants",
   annotatedvariants: "pgx:HO.annotatedvariants",
   biosamplepgxsegvariants: "pgx:HO.biosamples-pgxseg",
+  biosamplevcfvariants: "pgx:HO.biosamples-vcf",
   phenopackets: "pgx:HO.phenopackets",
   UCSClink: "pgx:HO.bedfile2ucsc",
   variants: "pgx:HO.variants"
@@ -61,6 +62,7 @@ export function DatasetResultBox({ data: responseSet, query }) {
   const paginatedBiosTableHandovers = handoverById(HANDOVER_IDS.biosamplestable).pages
   const paginatedBiosVarsHandovers = handoverById(HANDOVER_IDS.biosamplevariants).pages
   const paginatedBiosVarsPgxsegHandovers = handoverById(HANDOVER_IDS.biosamplepgxsegvariants).pages
+  const paginatedBiosVarsVCFhandovers = handoverById(HANDOVER_IDS.biosamplevcfvariants).pages
   const paginatedPhenopacketsHandovers = handoverById(HANDOVER_IDS.phenopackets).pages
 
   const variantsHandover = handoverById(HANDOVER_IDS.variants)
@@ -280,6 +282,17 @@ export function DatasetResultBox({ data: responseSet, query }) {
           <br/>
           <ul>
             {paginatedBiosVarsPgxsegHandovers.map((handover, i) => (
+              <PagedLink key={i} handover={handover} />
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className="tabs ">
+        <div>
+          <b>Download Sample Variants (VCF)</b>
+          <br/>
+          <ul>
+            {paginatedBiosVarsVCFhandovers.map((handover, i) => (
               <PagedLink key={i} handover={handover} />
             ))}
           </ul>
