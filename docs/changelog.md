@@ -4,6 +4,17 @@ This page lists changes for the [Beacon+](http://beacon.progenetix.org/ui/)
 implementation of the ["Beacon" genomics API](http://beacon-project.io), as well
 as related updates for the [Progenetix](http://progenetix.org) front-end.
 
+## 2023-06-12: Some schema changes...
+
+**Schema changes are now extensively tracked in [bycon.progenetix.org](http://bycon.progenetix.org)**
+
+The latest changes of the database schemas involve e.g.:
+
+* several field changes in biosamples, to align w/ main Beacon v2 default schema:
+  - `sampledTissue` => `sampleOriginDetail`
+  - `description` => `notes`
+  - `timeOfCollection.age` => `collectionMoment`
+
 
 ## 2022-12-22: Various API fixes & extensions
 

@@ -95,10 +95,10 @@ function Biosample({ biosId, biosample, individual, datasetIds }) {
     Sample Details for <i>{biosId}</i>
   </h2>
 
-  {biosample.description && (
+  {biosample.notes && (
     <>
       <h5>Description</h5>
-      <p>{biosample.description}</p>
+      <p>{biosample.notes}</p>
     </>
   )}
 
