@@ -4,6 +4,7 @@ import {
   NoResultsHelp
 } from "../../hooks/api"
 import { ReferenceLink, BeaconRESTLink, InternalLink, ExternalLink } from "../../components/helpersShared/linkHelpers"
+import { AncestryData } from "../../components/AncestryData"
 import { WithData } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
@@ -75,27 +76,6 @@ function Individual({ individual, datasetIds }) {
           </ul>
         </>
       )}
-      {individual.genomeAncestry && individual.genomeAncestry?.length > 0 &&
-        <>
-          <h5>Genome Ancestry</h5>
-          <table style={{ width: "120px" }}>
-            <tr>
-              <th>ID</th>
-              <th>Description</th>
-              <th>Percentage</th>
-            </tr>
-            {individual.genomeAncestry?.map((genomeAncestry, key) => {
-              return (
-                <tr key={key}>
-                  <td>{genomeAncestry.id}</td>
-                  <td>{genomeAncestry.label}</td>
-                  <td>{genomeAncestry.percentage}</td>
-                </tr>
-              )
-            })}
-          </table>
-        </>
-      }
 
       {individual.onset &&
         <p>
@@ -126,6 +106,13 @@ function Individual({ individual, datasetIds }) {
         </ul>
         </>
       }
+
+      {individual?.genomeAncestry && individual?.genomeAncestry?.length > 0 && (
+        <>
+          <h5>Genomic Ancestry</h5>
+          <AncestryData individual={individual} />
+        </>
+      )}
 
       {individual.biosamples && individual.biosamples.length > 0 &&
         <>

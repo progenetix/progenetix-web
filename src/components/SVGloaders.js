@@ -74,7 +74,7 @@ export function SubsetHistogram({ id, filter, datasetIds, plotRegionLabels, plot
 export function CallsetHistogram({ csid, datasetIds }) {
   const componentRef = useRef()
   const { width } = useContainerDimensions(componentRef)
-  const url = `${SITE_DEFAULTS.API_PATH}cgi/PGX/cgi/singlePlot.cgi?analysisIds=${csid}&datasetIds=${datasetIds}&size_plotimage_w_px=${width}`
+  const url = `${SITE_DEFAULTS.API_PATH}beacon/biosamples/?analysisIds=${csid}&datasetIds=${datasetIds}&output=samplesplot&plot_width=${width}`
   // width > 0 to make sure the component is mounted and avoid double fetch
   const dataEffect = useExtendedSWR(width > 0 && url, svgFetcher)
   return (

@@ -20,16 +20,16 @@ import dynamic from "next/dynamic"
 import { getVisualizationLink } from "../../modules/service-pages/dataVisualizationPage"
 
 const HANDOVER_IDS = {
-  histoplot: "pgx:HO.histoplot",
-  biosamples: "pgx:HO.biosamples",
-  biosamplestable: 'pgx:HO.biosamplestable',
-  biosamplevariants: "pgx:HO.biosamplevariants",
-  annotatedvariants: "pgx:HO.annotatedvariants",
-  biosamplepgxsegvariants: "pgx:HO.biosamples-pgxseg",
-  biosamplevcfvariants: "pgx:HO.biosamples-vcf",
-  phenopackets: "pgx:HO.phenopackets",
-  UCSClink: "pgx:HO.bedfile2ucsc",
-  variants: "pgx:HO.variants"
+  histoplot: "histoplot", //  "pgx:HO.histoplot",
+  biosamples: "biosamples", //  "pgx:HO.biosamples",
+  biosamplestable: "biosamplestable", //  "pgx:HO.biosamplestable",
+  biosamplevariants: "biosamplevariants", //  "pgx:HO.biosamplevariants",
+  annotatedvariants: "annotatedvariants", //  "pgx:HO.annotatedvariants",
+  biosamplepgxsegvariants: "biosamplepgxsegvariants", //  "pgx:HO.biosamples-pgxseg",
+  biosamplevcfvariants: "biosamplevcfvariants", //  "pgx:HO.biosamples-vcf",
+  phenopackets: "phenopackets", //  "pgx:HO.phenopackets",
+  UCSClink: "UCSClink", //  "pgx:HO.bedfile2ucsc",
+  variants: "variants" //  "EDAM:3016"
 }
 
 const TABS = {
@@ -50,7 +50,7 @@ export function DatasetResultBox({ data: responseSet, query }) {
   } = responseSet
 
   const handoverById = (givenId) =>
-    resultsHandovers.find(({ handoverType: { id } }) => id === givenId)
+    resultsHandovers.find(({ info: { contentId } }) => contentId === givenId)
 
   const biosamplesHandover = handoverById(HANDOVER_IDS.biosamples)
   const biosamplesReply = useProgenetixApi(
@@ -187,12 +187,6 @@ export function DatasetResultBox({ data: responseSet, query }) {
             </div>
           ) : null}
         </div>
-{/*        <div className="column is-one-fourth">
-          {genericHandovers.map((handover, i) => (
-            <GenericHandover key={i} handover={handover} />
-          ))}
-        </div>
-*/}
         <div className="column is-one-third">
           {info.counts.variantCount > 0 ? (
             <div>
