@@ -157,30 +157,6 @@ function Variant({ variant, id, datasetIds }) {
         />
         </li>
       )}
-      {variant.caseLevelData[0].callsetId && (
-        <li>Analysis:{" "}
-        <InternalLink
-          href={`/callset/?id=${variant.caseLevelData[0].callsetId}&datasetIds=${ datasetIds }`}
-          label={variant.caseLevelData[0].callsetId}
-        />
-        </li>
-      )}
-      {variant.caseLevelData[0].analysisId && (
-        <li>Analysis:{" "}
-        <InternalLink
-          href={`/callset/?id=${variant.caseLevelData[0].analysisId}&datasetIds=${ datasetIds }`}
-          label={variant.caseLevelData[0].analysisId}
-        />
-        </li>
-      )}
-      {variant.caseLevelData[0].individualId && (
-        <li>Subject:{" "}
-        <InternalLink
-          href={`/individual/?id=${variant.caseLevelData[0].individualId}&datasetIds=${ datasetIds }`}
-          label={variant.caseLevelData[0].individualId}
-        />
-        </li>
-      )}
       </ul>
     </>
   )}

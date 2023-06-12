@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react"
 import {
   SITE_DEFAULTS,
   BIOKEYS,
@@ -6,8 +7,8 @@ import {
 } from "../../hooks/api"
 import { BeaconRESTLink, InternalLink, ReferenceLink } from "../../components/helpersShared/linkHelpers"
 import { WithData } from "../../components/Loader"
-import React from "react"
 import { withUrlQuery } from "../../hooks/url-query"
+import { AncestryData } from "../../components/AncestryData"
 import { Layout } from "../../components/Layout"
 import { ShowJSON } from "../../components/RawData"
 import { CallsetHistogram } from "../../components/SVGloaders"
@@ -15,17 +16,32 @@ import { pluralizeWord }  from "../../components/helpersShared/labelHelpers"
 
 const itemColl = "biosamples"
 const exampleId = "pgxbs-kftvir6m"
+const datasetIds = SITE_DEFAULTS.DATASETID
 
 const SampleDetailsPage = withUrlQuery(({ urlQuery }) => {
   var { id } = urlQuery
-  var datasetIds = SITE_DEFAULTS.DATASETID
   const hasAllParams = id && datasetIds
+
+  const iURL = `${SITE_DEFAULTS.API_PATH}beacon/individuals/?biosampleIds=${id}&datasetIds=${datasetIds}&limit=1`
+  var [individual, setIndividual] = useState([]);
+  useEffect(() => {
+    fetch( iURL )
+       .then((response) => response.json())
+       .then((data) => {
+          console.log(data.response.resultSets[0].results[0]);
+          setIndividual(data.response.resultSets[0].results[0])
+       })
+       .catch((err) => {
+          console.log(err.message);
+       });
+   }, [setIndividual]);
+
   return (
     <Layout title="Sample Details">
       {!hasAllParams ? (
         NoResultsHelp(exampleId, itemColl)
       ) : (
-        <BiosampleLoader biosId={id} datasetIds={datasetIds} />
+        <BiosampleLoader biosId={id} individual={individual} datasetIds={datasetIds} />
       )}
     </Layout>
   )
@@ -33,7 +49,11 @@ const SampleDetailsPage = withUrlQuery(({ urlQuery }) => {
 
 export default SampleDetailsPage
 
-function BiosampleLoader({ biosId, datasetIds }) {
+/*============================================================================*/
+/*============================================================================*/
+/*============================================================================*/
+
+function BiosampleLoader({ biosId, individual, datasetIds }) {
   const apiReply = useDataItemDelivery(biosId, itemColl, datasetIds)
 
   return (
@@ -42,8 +62,9 @@ function BiosampleLoader({ biosId, datasetIds }) {
       background
       render={(response) => (
         <BiosampleResponse
-          response={response}
           biosId={biosId}
+          response={response}
+          individual={individual} 
           datasetIds={datasetIds}
         />
       )}
@@ -51,14 +72,20 @@ function BiosampleLoader({ biosId, datasetIds }) {
   )
 }
 
-function BiosampleResponse({ response, biosId, datasetIds }) {
+/*============================================================================*/
+
+function BiosampleResponse({ biosId, response, individual, datasetIds }) {
   if (!response.response.resultSets[0].results) {
     return NoResultsHelp(exampleId, itemColl)
   }
-  return <Biosample biosample={response.response.resultSets[0].results[0]} biosId={biosId} datasetIds={datasetIds} />
+  return <Biosample biosId={biosId} biosample={response.response.resultSets[0].results[0]} individual={individual} datasetIds={datasetIds} />
 }
 
-function Biosample({ biosample, biosId, datasetIds }) {
+/*============================================================================*/
+
+function Biosample({ biosId, biosample, individual, datasetIds }) {
+
+  // console.log(individual);
 
   return (
 
@@ -105,6 +132,60 @@ function Biosample({ biosample, biosId, datasetIds }) {
     </>
   )}
 
+  {/*------------------------------------------------------------------------*/}
+
+  <h5>Donor Details</h5>
+
+  <ul>
+
+ {individual.description && (
+    <li>
+      <b>Description</b>{": "}
+      {individual.description}
+    </li>
+  )}
+
+  {individual?.indexDisease?.diseaseCode && (
+    <li>
+      <b>Diagnosis</b>{": "}
+      {individual.indexDisease.diseaseCode.id}{" ("}
+      {individual.indexDisease.diseaseCode?.label}{")"}
+    </li>
+      
+  )}
+
+  {individual?.description && (
+    <li>
+      <b>Description</b>{": "}
+      {individual.description}
+    </li>
+  )}
+
+  {individual?.sex && (
+    <li>
+      <b>Genotypic Sex</b>{": "}
+      {individual?.sex?.label} ({individual.sex.id})
+    </li>
+  )}
+
+  {individual?.indexDisease?.onset && (
+      <li>
+        <b>Age at Collection</b>{": "}
+        {individual.indexDisease.onset.age}
+      </li>
+  )}
+
+  </ul>
+
+  {individual?.genomeAncestry && individual?.genomeAncestry?.length > 0 && (
+    <>
+      <h5>Genomic Ancestry</h5>
+      <AncestryData individual={individual} />
+    </>
+  )}
+
+  {/*------------------------------------------------------------------------*/}
+
   {biosample.provenance && (
     <>
     <h5>Provenance</h5>
@@ -133,6 +214,8 @@ function Biosample({ biosample, biosId, datasetIds }) {
     </>
   )}
 
+  {/*
+
   {biosample.individualId && (
     <>
       <h5>Individual</h5>
@@ -146,6 +229,8 @@ function Biosample({ biosample, biosId, datasetIds }) {
       </ul>
     </>
   )}
+
+  */}
 
   {biosample.externalReferences && (
     <>

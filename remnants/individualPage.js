@@ -1,3 +1,4 @@
+import React from "react";
 import {
   SITE_DEFAULTS,
   useDataItemDelivery,
@@ -5,11 +6,10 @@ import {
 } from "../../hooks/api"
 import { ReferenceLink, BeaconRESTLink, InternalLink, ExternalLink } from "../../components/helpersShared/linkHelpers"
 import { WithData } from "../../components/Loader"
+import { AncestryData } from "../../components/AncestryData"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
 import { ShowJSON } from "../../components/RawData"
-import { VictoryPie, VictoryLabel } from "victory";
-import React from "react";
 
 const itemColl = "individuals"
 const exampleId = "pgxind-kftx266l"
@@ -78,75 +78,31 @@ function Individual({ individual, datasetIds }) {
         </>
       )}
 
-      {individual.genomeAncestry && individual.genomeAncestry?.length > 0 &&
-          <div style={{ display: "flex", flexDirection: "row", alignItems: "flex-start", width: "100%" }}>
-            <div style={{ flex: "1 1 50%", paddingRight: "0px" }}>
-              <h5>Genome Ancestry</h5>
-              <div style={{ width: "70%" }}>
-                <table style={{ width: "100%" }}>
-                  <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Description</th>
-                    <th>%</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  {individual.genomeAncestry
-                      .sort((a, b) => a.label.localeCompare(b.label)) // Sort alphabetically
-                      .map((genomeAncestry, key) => {
-                        return (
-                            <tr key={key}>
-                              <td>{genomeAncestry.id}</td>
-                              <td>{genomeAncestry.label}</td>
-                              <td>{genomeAncestry.percentage}</td>
-                            </tr>
-                        )
-                      })}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <div style={{ flex: "1 1 50%", display: "flex", justifyContent: "center" }}>
-              <div style={{ width: "500px", height: "500px", alignSelf: "center", marginTop: '-50px', marginLeft: '-350px' }}>
-                <VictoryPie
-                    data={individual.genomeAncestry
-                        .sort((a, b) => a.label.localeCompare(b.label)) // Sort alphabetically
-                        .filter((datum) => parseFloat(datum.percentage) > 0) // Filter out data points with percentage of 0
-                    }
-                    x="label"
-                    y={(datum) => parseFloat(datum.percentage)}
-                    padAngle={2}
-                    radius={80}
-                    colorScale={['#E0BBE4', '#957DAD', '#D291BC', '#FEC8D8', '#FFDFD3', '#FEE1E8', '#D3C2CE']}
-                    labelRadius={({ radius }) => radius + 20}
-                    labelComponent={
-                      <VictoryLabel
-                          style={{ fontSize: 12 }}
-                          text={({ datum }) => datum.label} // Only show label text if percentage is greater than 0
-                      />
-                    }
-                />
-              </div>
-            </div>
-          </div>
-      }
-
-      {individual.indexDisease?.onset && (
-          <p style={{ marginTop: "-100px"}}>
-            <h5>Age at Collection</h5>
-            {individual.indexDisease.onset.age}
-          </p>
+      {individual?.genomeAncestry && individual?.genomeAncestry?.length > 0 && (
+        <>
+          <h5>Genomic Ancestry</h5>
+          <AncestryData individual={individual} />
+        </>
       )}
 
-        {individual.indexDisease?.diseaseCode && (
-            <p>
-                <h5>Diagnosis</h5>
-                {individual.indexDisease.diseaseCode.id}{" ("}
-                {individual.indexDisease.diseaseCode?.label}{")"}
-            </p>
+      {individual.indexDisease?.onset && (
+        <>
+          <h5>Age at Collection</h5>
+          <ul>
+             <li>{individual.indexDisease.onset.age}</li>
+          </ul>
+        </>
+      )}
 
-        )}
+      {individual.indexDisease?.diseaseCode && (
+        <>
+          <h5>Diagnosis</h5>
+          <ul>
+            <li>{individual.indexDisease.diseaseCode.id}{" ("}
+          {individual.indexDisease.diseaseCode?.label}{")"} </li>
+          </ul>
+        </>
+      )}
 
       {individual.cellLines &&
         <>
@@ -164,21 +120,24 @@ function Individual({ individual, datasetIds }) {
         </ul>
         </>
       }
-
-      {individual.biosamples && individual.biosamples.length > 0 &&
-        <>
-        <h5>Biosamples</h5>
-        {individual.biosamples.map((bs, i) => (
-          <li key={i}>
-          <InternalLink
-            href={`/biosample/?id=${bs}&datasetIds=${ datasetIds }`}
-            label={bs}
-          />
-          </li>
-        ))}
-        </>
-      }
-
+{/*  
+  {individual.biosamples && individual.biosamples.length > 0 &&
+    <>
+    <h6>Biosamples</h6>
+        <ul>
+    {individual.biosamples.map((bs, i) => (
+      <li key={i}>
+      <InternalLink
+        href={`/biosample/?id=${bs}&datasetIds=${ datasetIds }`}
+        label={bs}
+      />
+      </li>
+    ))}
+    </ul>
+    </>
+  }
+*/}
+  
       <h5>Download</h5>
       <ul>
         <li>Subject data as{" "}
@@ -234,4 +193,3 @@ function Individual({ individual, datasetIds }) {
     </section>
   )
 }
-
