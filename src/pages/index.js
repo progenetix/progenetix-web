@@ -84,6 +84,20 @@ export default function Index({
         />
 
       </Panel>
+        <Panel>
+            <p>
+                <h1 style={{ fontWeight: 'bold',marginBottom: '20px'  }}>Information extraction of genes in cancer cell lines</h1>
+
+                We have collaborated with the Zurich University of Applied Sciences (ZHAW) natural language processing
+                group (Kurt Stockinger group) to find out additional information about cancer cell line genes. We have searched abstracts of publications
+                related to cancer cell lines and genes. Results for cell line of interest can be queried
+                <InternalLink
+                    href="https://cancercelllines.org/subsets/cellosaurus-subsets/"
+                    label=" here"
+                />{" "}.
+            </p>
+
+        </Panel>
     </Layout>
   )
 }
