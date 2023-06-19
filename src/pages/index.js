@@ -31,7 +31,7 @@ export default function Index({
         <Panel heading="" className="content">
         
         <p>
-          The cancer cell line genome variation data in <i>cncercelllines</i> consists
+          The cancer cell line genome variation data in <i>cancercelllines</i> consists
           of a mix of whole-genome copy number variation (CNV) profiles - as has
           been established for the parent{" "}
           <InternalLink
