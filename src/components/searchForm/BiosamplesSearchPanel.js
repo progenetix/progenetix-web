@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { useBeaconQuery } from "../../hooks/api"
 import Panel from "../Panel"
+import cn from "classnames"
 // import { FaSlidersH } from "react-icons/fa"
 import { BiosamplesSearchForm } from "./BiosamplesSearchForm"
 import { BiosamplesResults } from "../searchResults/BiosamplesResults"
@@ -17,7 +18,8 @@ export default function BiosamplesSearchPanel({
   requestTypesConfig,
   parametersConfig,
   cytoBands,
-  collapsed
+  collapsed,
+  useUtilitiesButtons = true
 }) {
   const [query, setQuery] = useState(null) // actual valid query
   const [searchCollapsed, setSearchCollapsed] = useState(collapsed)
@@ -51,9 +53,10 @@ export default function BiosamplesSearchPanel({
         heading={
             <div className="columns">
               {(searchCollapsed && (
+                <>
                 <div className="column">
                   <button
-                    className="button is-info mb-5"
+                    className={cn("button", "is-primary")}
                     onClick={() => {
                       clearQuery()
                       setSearchCollapsed(false)
@@ -62,9 +65,10 @@ export default function BiosamplesSearchPanel({
                     Edit Query
                   </button>
                 </div>
+                </>
               ))
-               ||
-              <div className="column">Search Samples</div>
+              ||
+              null
             }
             </div>
         }
@@ -75,6 +79,7 @@ export default function BiosamplesSearchPanel({
           parametersConfig={parametersConfig}
           isQuerying={isLoading}
           setSearchQuery={onValidFormQuery}
+          useUtilitiesButtons={useUtilitiesButtons}
         />
       </Panel>
       {query && (

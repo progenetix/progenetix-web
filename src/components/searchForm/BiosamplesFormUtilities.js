@@ -89,7 +89,7 @@ export function GeneSpansUtility({ onClose, setFormValue }) {
         End: <b>{optionValue.end}</b>
       </div>
       <div>
-        Reference: <b>{optionValue.referenceName}</b>
+        Reference: <b>{optionValue.accessionVersion}</b>
       </div>
     </div>
   )

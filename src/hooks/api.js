@@ -374,10 +374,11 @@ export function useCollationsByType({ datasetIds, method, collationTypes }) {
 
 export function sampleSearchPageFiltersLink({
   datasetIds,
+  searchPage,
   sampleFilterScope,
   filters
 }) {
-  return `/filterSearch/?${sampleFilterScope}=${filters}&datasetIds=${datasetIds}`
+  return `/${searchPage}/?${sampleFilterScope}=${filters}&datasetIds=${datasetIds}`
 }
 
 export function useGeoCity({ city }) {

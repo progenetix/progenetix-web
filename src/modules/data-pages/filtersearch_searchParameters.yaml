@@ -28,6 +28,8 @@ dipg:
       isHidden: true
     alternateBases:
       isHidden: true
+    sex:
+      isHidden: true
     clinicalClasses:
       isHidden: true
     materialtype:
@@ -41,3 +43,7 @@ dipg:
     geodistanceKm:
       isHidden: true
     examples: []
+    skip:
+      isHidden: true
+    limit:
+      isHidden: true

@@ -72,6 +72,7 @@ function Subset({ subset, datasetIds }) {
   
   const filters = subset.id
   const sampleFilterScope = "freeFilters"
+  const searchPage = "search"
       
   return (
 <section className="content">
@@ -107,7 +108,7 @@ function Subset({ subset, datasetIds }) {
     <a
       rel="noreferrer"
       target="_blank"
-      href={ sampleSearchPageFiltersLink({datasetIds, sampleFilterScope, filters}) }
+      href={ sampleSearchPageFiltersLink({datasetIds, searchPage, sampleFilterScope, filters}) }
     >{" "}Search Form
     </a>
   </p> 

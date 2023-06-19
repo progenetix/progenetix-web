@@ -13,6 +13,9 @@ export default function filtersearch_page({cytoBands}) {
         parametersConfig={parametersConfig}
         requestTypesConfig={requestTypesConfig}
         cytoBands={cytoBands}
+        collapsed={false}
+        useUtilitiesButtons={false}
+        useExamplesButtons={false}
       />
     </Layout>
   )

@@ -183,6 +183,7 @@ function Node({
   const isSearchPossible = subset && canSearch(subset)
   const even = index % 2 === 0
   const detailsPage = subsetId.match("cellosaurus") ? "cellline" : "subset"
+  const searchPage = subsetId.match("cellosaurus") ? "filterSearch" : "search"
   return (
     <div
       style={{
@@ -240,6 +241,7 @@ function Node({
                 href={sampleSelectUrl({
                   subsets: [subset],
                   datasetIds,
+                  searchPage,
                   sampleFilterScope
                 })}
               >
@@ -347,10 +349,10 @@ function useFilterTree(tree) {
   return { searchInput, debouncedSearchInput, setSearchInput, filteredTree }
 }
 
-function sampleSelectUrl({ subsets, datasetIds, sampleFilterScope }) {
+function sampleSelectUrl({ subsets, datasetIds, searchPage, sampleFilterScope }) {
   const filters = subsets.map(({ id }) => id).join(",")
   // here the `bioontology` parameter has to be used instead of `filters` for transfer to the search form
-  return sampleSearchPageFiltersLink({ datasetIds, sampleFilterScope, filters })
+  return sampleSearchPageFiltersLink({ datasetIds, searchPage, sampleFilterScope, filters })
 }
 
 function canSearch(subset) {

@@ -1,3 +1,5 @@
+import React, { useMemo, useState } from "react" //useEffect, 
+// import React, { useEffect, useMemo, useRef, useState } from "react" //useEffect, 
 import cn from "classnames"
 import {
   checkIntegerRange,
@@ -5,7 +7,6 @@ import {
   useCollationsByType,
   validateBeaconQuery
 } from "../../hooks/api"
-import React, { useMemo, useState } from "react" //useEffect, 
 import { markdownToReact } from "../../utils/md"
 import { useForm } from "react-hook-form"
 import {
@@ -76,9 +77,16 @@ export function Form({
   requestTypesConfig,
   parametersConfig,
   urlQuery,
-  setUrlQuery
+  setUrlQuery,
+  useUtilitiesButtons = true,
+  useExamplesButtons = true
 }) {
   // const autoExecuteSearch = urlQuery.executeSearch === "true"
+
+  // const formRef = useRef(null);
+  // useEffect(() => {
+  //   formRef.current.submit();
+  // }, []);
 
   const requestTypeId = Object.entries(requestTypesConfig)[0][0]
   const requestTypeConfig = requestTypesConfig[requestTypeId]
@@ -141,19 +149,19 @@ export function Form({
     referenceid: { options: refsubsetsOptions }
   })
   
-// clinical lookup
-const { data: clinicalResponse, isLoading: isClinicalDataLoading } = useClinicalSubsets(
-  watch
-)
+  // clinical lookup
+  const { data: clinicalResponse, isLoading: isClinicalDataLoading } = useClinicalSubsets(
+    watch
+  )
 
-const clinicalOptions = clinicalResponse?.response.results.map((value) => ({
-  value: value.id,
-  label: `${value.id}: ${value.label} (${value.count})`
-}))
-  
-parameters = merge({}, parameters, {
-  clinicalClasses: { options: clinicalOptions }
-})
+  const clinicalOptions = clinicalResponse?.response.results.map((value) => ({
+    value: value.id,
+    label: `${value.id}: ${value.label} (${value.count})`
+  }))
+    
+  parameters = merge({}, parameters, {
+    clinicalClasses: { options: clinicalOptions }
+  })
 
   const {
     cytoBandPanelOpen,
@@ -185,20 +193,24 @@ parameters = merge({}, parameters, {
     <>
       <div>
         <div className="buttons">
-          <ExamplesButtons
-            onExampleClicked={handleExampleClicked(
-              reset,
-              setExample,
-              setUrlQuery
-            )}
-            requestTypeConfig={requestTypeConfig}
-          />
-          <FormUtilitiesButtons
-            onCytoBandClick={onCytoBandClick}
-            cytoBandPanelOpen={cytoBandPanelOpen}
-            onGeneSpansClick={onGeneSpansClick}
-            geneSpansPanelOpen={geneSpansPanelOpen}
-          />
+          { useExamplesButtons && (
+            <ExamplesButtons
+              onExampleClicked={handleExampleClicked(
+                reset,
+                setExample,
+                setUrlQuery
+              )}
+              requestTypeConfig={requestTypeConfig}
+            />
+          )}
+          { useUtilitiesButtons && (
+            <FormUtilitiesButtons
+              onCytoBandClick={onCytoBandClick}
+              cytoBandPanelOpen={cytoBandPanelOpen}
+              onGeneSpansClick={onGeneSpansClick}
+              geneSpansPanelOpen={geneSpansPanelOpen}
+            />
+          )}
         </div>
         <ExampleDescription example={example} />
         {cytoBandPanelOpen && (

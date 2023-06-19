@@ -19,6 +19,7 @@ import VariantsDataTable from "../../components/searchResults/VariantsDataTable"
 const service = "collations"
 const exampleId = "cellosaurus:CVCL_0023"
 const datasetIds = SITE_DEFAULTS.DATASETID
+const searchPage = "filterSearch"
 
 const CellLineDetailsPage = withUrlQuery(({ urlQuery }) => {
 
@@ -126,7 +127,7 @@ function SubsetResponse({ id, response, individual, datasetIds }) {
 function Subset({ id, subset, individual, datasetIds }) {
   
   const filters = id
-  const sampleFilterScope = "freeFilters"
+  const sampleFilterScope = "referenceid"
   const [showAll, setShowAll] = useState(false);
   // console.log(individual);
   // console.log(Object.keys(individual));
@@ -262,7 +263,7 @@ function Subset({ id, subset, individual, datasetIds }) {
       <a
         rel="noreferrer"
         target="_blank"
-        href={ sampleSearchPageFiltersLink({datasetIds, sampleFilterScope, filters}) }
+        href={ sampleSearchPageFiltersLink({datasetIds, searchPage, sampleFilterScope, filters}) }
       >{" "}Search Form
       </a>
     </li>

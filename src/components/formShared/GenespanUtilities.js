@@ -27,7 +27,7 @@ export function useGeneSpanSelect(inputValue) {
   if (data) {
     options = data.response.results.map((gene) => ({
       value: gene,
-      label: labeledGeneSpan(gene)
+      label: geneLabel(gene)
     }))
   }
   return { isLoading, error, options }
@@ -45,17 +45,17 @@ function useGeneSpans(querytext) {
   )
 }
 
-function labeledGeneSpan(gene) {
-  return (
-    gene.referenceName +
-    ":" +
-    gene.start +
-    "-" +
-    gene.end +
-    ":" +
-    gene.symbol
-  )
-}
+// function labeledGeneSpan(gene) {
+//   return (
+//     gene.referenceName +
+//     ":" +
+//     gene.start +
+//     "-" +
+//     gene.end +
+//     ":" +
+//     gene.symbol
+//   )
+// }
 
 function geneLabel(gene) {
   return (
