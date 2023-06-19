@@ -398,7 +398,8 @@ export function subsetHistoBaseLink(id, datasetIds) {
 // the targets are resolved by `bycon` (bycon/services/ids.py)
 // TODO: make this a function here - UI links resolved in UI, API links in bycon
 export function subsetIdLink(id) {
-  return `${SITE_DEFAULTS.API_PATH}services/ids/${id}`
+  const subsetRoot = id.match("cellosaurus") ? "filterSearch" : "search"
+  return `${SITE_DEFAULTS.SITE}/${subsetRoot}/?id=${id}`
 }
 
 export function subsetPgxsegLink(id) {
