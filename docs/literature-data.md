@@ -27,3 +27,13 @@ we focus on _objects_ with genomic "mappability", especially genes and cytobands
     identification of the gene id in the referencing publication. However, such an
     association may be circumstantial (e.g. the gene being identified as target in
     a list of analyzed cell line samples).
+
+### User Guide
+
+* Navigate to [`Cell Line Listings`](https://cancercelllines.org/subsets/cellosaurus-subsets/)
+* Use search bar to find the cell line of interest
+* You will be redirected to cell line page where cell line metadata and
+  variant information is displayed.
+* By scrolling down, you can find the section **Literature Derived Contextual Information**.
+* There, all gene results are listed. Gene of interest can be visualised on the CNV
+  frequency plot by clicking on the gene.

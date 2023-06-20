@@ -64,20 +64,6 @@ With exception of some utility scripts and external dependencies (e.g. [MongoDB]
 
 ### Additional Projects
 
-#### Information extraction for cancer cell line genes
-
-Recently we performed data enrichment for cancer cell line genes in collaboration
-with Zurich University of Applied Sciences. By using natural
-language processing tool we were able to identify gene information associated
-with cancer cell lines. The results can be found:
-* Navigate to [`Cell Line Listings`](https://cancercelllines.org/subsets/cellosaurus-subsets/) 
-* Use search bar to find the cell line of interest
-* You will be redirected to cell line page where cell line metadata and
-variant information is displayed.
-* By scrolling down, you can find the section **Literature Derived Contextual Information**.
-* There, all gene results are listed. Gene of interest can be visualised on the CNV
-frequency plot by clicking on the gene.
-
 #### [`icdot2uberon`](https://github.com/progenetix/icdot2uberon)
 
 * mappings between ICD-O 3 topographies and UBERON anatomical sites
