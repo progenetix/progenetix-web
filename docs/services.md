@@ -1,7 +1,10 @@
-# Progenetix API & Services
+# Progenetix API Services `/services/`
 
 The _bycon_ environment provides a number of data services which make use of
 resources in the _Progenetix_ environment.
+
+Services are not part of the standard bycon distribution but installed from the
+[`byconaut`](https://guthub.com/progenetix/byconaut) package.
 
 !!! note "Progenetix Beacon API"
 
@@ -13,216 +16,11 @@ resources in the _Progenetix_ environment.
 
 The service URL format is `progenetix.org/services/{serviceName}/?parameter=value`.
 
---------------------------------------------------------------------------------
-
 ### API Response formats
 
 Standard responses are provided as `Content-Type: application/json`. The wrapper
 format for JSON encoded data follows the standard Beacon response
 format where the main data is usually contained in the `response.results` list.
-
---------------------------------------------------------------------------------
-
-### Data File Formats - `.pgxseg` Segments & `.pgxfreq` CNV Frequencies
-
-Progenetix uses a variation of a standard tab-separated columnar text file such
-as produced by array or sequencing CNV software, with an optional metadata header
-for e.g. plot or grouping instructions.
-
-Wile the first edition only was geared towards sample-linked segment annotations,
-a variation is now being provided for CNV frequencies.
-
-#### `.pgxseg` Sample Segment Files
-
-* a standard tab-delimited Progenetix segments file
-    - an additional header may exist
-    - only first 5 columns are necessary
-    - column 5 (mean) can be empty or dot, if column 6 exists and contains status value
-    - undefined fields in existing columns are replaced with the "." character
-* header (optional)
-    - header lines start with the `#` character
-    - Plot parameters:
-        * lines start with `#plotpars=>`
-        * parameters are added in `parameter_name=value;other_parameter=itsValue` format - see below
-        * basically any [plot parameter from PGX](https://github.com/progenetix/PGX/blob/master/config/plotdefaults.yaml) can be used
-    - Sample / grouping parameters
-        * the `biosample_id` parameter is required to assign values (e.g. group labels) to samples
-        * `biosample_id` has to correspond to the identifiers used in column 1 of the following segments data
-        * `parameter=value` pairs are semicolon-separated
-        * values may be wrapped in double quotation marks (`group_label="Ductal Breast Carcinoma"`)
-        * `group_id` __should__ be used for grouping
-      - this is a convention for the Progenetix plotting engine
-      - `group_label` is optional for grouping / labeling of the groups
-    - Metadata
-        * lines start with `#meta=>`
-        * additional information about the file
-        * (so far) only informative
-
-For example, this API call retireves the variants for 78 samples from two NCIt
-cancer types (please be aware of the `&filterLogic=OR` pragma!):
-
-* [progenetix.org/beacon/variants/?filters=NCIT:C6393,NCIT:C4504&filterLogic=OR&output=pgxseg](http://progenetix.org/beacon/variants/?filters=NCIT:C6393,NCIT:C4504&filterLogic=OR&output=pgxseg)
-
-An excerpt of the segment file would look like below:
-
-```
-#meta=>biosample_count=78
-#plotpars=>title="Testing Custom Plot Parameters"
-#plotpars=>subtitle="Some Chromosomes, Colors etc."
-#plotpars=>chr2plot="3,5,7,8,11,13,16"
-#plotpars=>color_var_dup_hex=#EE4500;color_var_del_hex=#09F911
-#plotpars=>size_title_left_px=300
-#plotpars=>size_text_title_left_px=10
-#sample=>biosample_id=pgxbs-kftvhhmm;group_id=NCIT:C6393;group_label="Invasive Ductal and Invasive Lobular Breast Carcinoma"
-#sample=>biosample_id=GSM252886;group_id=NCIT:C4504;group_label="Malignant Breast Phyllodes Tumor"
-biosample_id  chro  start stop  mean  variant_type  probes
-pgxbs-kftvhhmm  1 911484  11993973  -0.4486 DEL .
-pgxbs-kftvhhmm  1 12158755  22246766  0.2859 DUP  .
-pgxbs-kftvhhmm  1 22346353  24149880  -0.5713 DEL .
-pgxbs-kftvhhmm  1 24160170  33603123  0.0812  . .
-pgxbs-kftvhhmm  1 33683474  37248987  -0.6478 DEL .
-pgxbs-kftvhhmm  1 37391587  248655165 0.0342  . .
-pgxbs-kftvhhmm  2 110819  240942225 -0.0007 . .
-pgxbs-kftvhhmm  3 119131  4655519 -0.0122 . .
-pgxbs-kftvhhmm  3 4662952 4857477 0.9273 DUP  .
-...
-```
-
-#### `.pgxfreq` Segment CNV Frequencies
-
-!!! info "New suffix `pgxfreq`"
-
-    With the November 2022 update we changed the file suffix to `pgxfreq` to
-    keep a clean separation between the (usually binned) CNV frequency files and
-    the (usually raw) representation of sample-specific CNVs (and other variants).
-
-
-In the frequency file (compared to the `.pgxseg` format):
-
-* `group_id` values replace the `biosample_id`
-    - multiple groups can be concatenated in the file
-* `chro`, `start` and `end` are the same as in the sample files
-* `gain_frequency` and `loss_frequency` indicate the *percent* values for gains
-and losses overlapping the segment, respectively
-* additional CNV types are under evaluation
-
-Examples can be derived from the Progenetix "Services" API:
-
-* [/services/intervalFrequencies/pgx:cohort-TCGAcancers/?output=pgxfreq](http://progenetix.org/services/intervalFrequencies/pgx:cohort-TCGAcancers/?output=pgxfreq)
-    - single group in REST syntax (here overall CNV frequencies in >11000 cancer samples from the TCGA sample collection)
-* [/services/intervalFrequencies/?filters=icdom-81403,icdom-81443&output=pgxfreq](http://progenetix.org/services/intervalFrequencies/?filters=icdom-81403,icdom-81443&output=pgxfreq)
-    - 2 sets using the `filters` parameter
-
-```
-#meta=>genome_binning=1Mb;interval_number=3106
-#group=>group_id=icdom-81403;label=Adenocarcinoma, NOS;dataset_id=progenetix;sample_count=18559
-group_id  chro  start end gain_frequency  loss_frequency  index
-icdom-81403 1 0 1000000 8.8 9.12  0
-icdom-81403 1 1000000 2000000 8.49  8.68  1
-icdom-81403 1 2000000 3000000 9.81  13.19 2
-icdom-81403 1 3000000 4000000 10.02 15.84 3
-icdom-81403 1 4000000 5000000 7.94  15.91 4
-...
-icdom-81403 2 228000000 229000000 7.37  6.62  477
-icdom-81403 2 229000000 230000000 7.39  6.89  478
-icdom-81403 2 230000000 231000000 8.3 7.0 479
-icdom-81403 2 231000000 232000000 8.24  6.86  480
-icdom-81403 2 232000000 233000000 9.1 7.89  481
-...
-```
-
---------------------------------------------------------------------------------
-
-
-### Data Matrix Files
-
-#### CNV Frequency Matrix
-
-The CNV frequency matrix contains interval CNV frequencies for genomic bins, separate for gain and loss frquencies:
-
-* header similar to segment frequency files
-* first column with group identifier
-* standard genome binning on GRCh38 results in 2 x 3106[^1] value columns
-* header line indicates genomic ranges for the bins
-* first all gain frequencies (in %), then all losses
-
-```
-#meta=>genome_binning=1Mb;interval_number=3106
-#group=>group_id=NCIT:C7376;label=Pleural Malignant Mesothelioma;dataset_id=progenetix;sample_count=240
-#group=>group_id=PMID:22824167;label=Beleut M et al. (2012)...;dataset_id=progenetix;sample_count=159
-group_id  1:0-1000000:gainF 1:1000000-2000000:gainF ...  1:0-1000000:lossF  1:1000000-2000000:lossF ...
-NCIT:C7376  9.58  7.92  ...  1.89 1.89  ...
-PMID:22824167 6.29  0.0 ... 8.18  4.4 ...
-```
-
-##### Examples
-
-* <http://progenetix.org/services/intervalFrequencies/?datasetIds=progenetix&output=pgxmatrix&filters=NCIT:C7376,PMID:22824167>
-
-#### CNV Status Matrix
-
-For endpoints with per biosample or callset / analysis delvery, the Progenetix
-API offers the delivery of a binned status matrix. This matrix can e.g. directly
-be used for clustering CNV patterns.
-
-* id columns, followed by
-    - all "gain status" columns (e.g. 3106[^1], see above), followed by
-    - all "loss status" columns
-* the status is indicated by a coverage value, i.e. the fraction of how much the
-binned interval overlaps with one or more CNVs of the given type.
-
-The header will contain sample specific information.
-
-```
-#meta=>id=progenetix
-#meta=>assemblyId=GRCh38
-#meta=>filters=NCIT:C4443
-#meta=>genome_binning=1Mb;interval_number=3106
-#meta=>no_info_columns=3;no_interval_columns=6212
-#sample=>biosample_id=pgxbs-kftvktaz;analysis_ids=pgxcs-kftwu9ca;group_id=NCIT:C6650;group_label=Ampulla of Vater adenocarcinoma;NCIT::id=NCIT:C6650;NCIT::label=Ampulla of Vater adenocarcinoma
-#sample=>biosample_id=pgxbs-kftvkyeq;analysis_ids=pgxcs-kftwvv3p;group_id=NCIT:C3908;group_label=Ampulla of Vater Carcinoma;NCIT::id=NCIT:C3908;NCIT::label=Ampulla of Vater Carcinoma
-...
-#meta=>biosampleCount=26;analysisCount=26
-analysis_id biosample_id  group_id  1:0-1000000:DUP 1:1000000-2000000:DUP 1:2000000-3000000:DUP 1:3000000-4000000:DUP  ...
-pgxcs-kftwu9ca  pgxbs-kftvktaz  NCIT:C6650  0 0.3434  1.0 1.0
-pgxcs-kftwwbry  pgxbs-kftvkzwp  NCIT:C3908  0.5801  0 0.6415  1.0
-...
-```
-
-##### Examples
-
-* [progenetix.org/beacon/callsets/?output=pgxmatrix&filters=NCIT:C4443](http://progenetix.org/beacon/callsets/?output=pgxmatrix&filters=NCIT:C4443)
-
-
-### Image Formats
-
-The standard format for (plot-)images generated on Progenetix is Scalable Vector Graphics ([SVG](https://en.wikipedia.org/wiki/Scalable_Vector_Graphics)). As the name implies, SVG is _scalable_, i.e. images can be scaled up without loosing quality or expanding in storage size. However, some of teh generated images use also embedded rastered components which will deteriorate during scaling - this is e.g. the case for array probe plots.
-
-!!! note [Wikipedia](https://en.wikipedia.org/wiki/Scalable_Vector_Graphics)
-    All major modern web browsers—including Mozilla Firefox, Internet Explorer, Google Chrome, Opera, Safari, and Microsoft Edge—have SVG rendering support.
-
-On most pages where plots are being displayed there is a download option for the images - (please alert us where those are missing). Browsers also have the option to export SVGs themselves e.g. as PDF.
-
-#### The PGX plotting library
-
-Plots on Progenetix are generated using the [PGX package](http://github.com/progenetix/PGX/), a set of Perl libraries for processing and graphical representation of CNV data. The package contains tools to
-
-* read and write e.g. [Progentix segment files](/doc/fileformats.html)
-* generate binned status maps
-* render plots of sample-specific and aggregate CNV data, such as histograms and CNV frequency heatmaps     
-
-#### CNV Histogram Plots
-
-There are two possibilities to plot CNV histograms through the Progenetix API w/o using the user interface:
-
-1. direct visualization of pre-computed collations, e.g. publications or diagnosttic entities
-    * [progenetix.org/services/collationPlots/?datasetIds=progenetix&id=NCIT:C4443](http://progenetix.org/services/collationPlots/?datasetIds=progenetix&id=NCIT:C4443)
-2. a Beacon API query with the added option `&output=histoplot`
-    * [progenetix.org/beacon/biosamples/?limit=200&datasetIds=progenetix&referenceName=refseq:NC_000009.12&variantType=EFO:0030067&start=21500000,21975098&end=21967753,22500000&filters=NCIT:C3058&output=histoplot](http://progenetix.org/beacon/biosamples/?limit=200&datasetIds=progenetix&referenceName=refseq:NC_000009.12&variantType=EFO:0030067&start=21500000,21975098&end=21967753,22500000&filters=NCIT:C3058&output=histoplot)
-
-Please **use option 1** if accessing complete entities (i.e. only using a single `filters` value) - this option is not limited through large sample numbers.
-
---------------------------------------------------------------------------------
 
 ## Services
 
@@ -237,7 +35,6 @@ Please contact us to alert us about additional articles you are aware of. The in
 
 Since 2021 you can now directly submit suggestions for matching publications to the [oncopubs repository on Github](https://github.com/progenetix/oncopubs).
 
---------------------------------------------------------------------------------
 
 ### Cytoband Mapping `cytomapper`
 
@@ -279,9 +76,9 @@ The `cytoBands` and `chroBases` parameters can be used for running the script on
 As in other **bycon** `services`, API responses are in JSON format with the main
 content being contained in the `response.results` field.
 
---------------------------------------------------------------------------------
 
 ### Gene Coordinates `genespans`
+
 
 * genomic mappings of gene coordinats
 * initially limited to _GRCh38_ and overall CDS extension
@@ -300,7 +97,6 @@ exact gene symbol match
 * [progenetix.org/services/genespans/CDKN2A](http://progenetix.org/services/genespans/CDKN2A)
     - when using the REST syntax also only the exact match will be returned
 
---------------------------------------------------------------------------------
 
 ### Ontology Cross-Mapping (`ontologymaps`)
 
@@ -354,7 +150,6 @@ Our resources use an internal representation of ICD-O 3 codes since no official 
 * [Web Interface for ICD & NCIT](http://progenetix.org/service-collection/ontologymaps)
 * [Interface for ICD & UBERON](http://progenetix.org/service-collection/uberonmaps)
 
---------------------------------------------------------------------------------
 
 ### Public and Local Identifiers `ids`
 
@@ -373,7 +168,6 @@ and the service can also be used to access identifiers at Progenetix.
 
 * <https://identifiers.org/pgx:pgxbs-kftva5zv>
 
---------------------------------------------------------------------------------
 
 ### Geographic Locations / Cities _geolocations_
 
@@ -397,7 +191,6 @@ inhabitants (\~22750 cities), through either:
         e.g. [`?geoLatitude=42.36&geoLongitude=-71.06&geoDistance=500000&ISO3166alpha3=USA&map_h_px=800`](http://progenetix.org/services/geolocations?geoLatitude=42.36&geoLongitude=-71.06&geoDistance=500000&ISO3166alpha3=USA&output=map&map_h_px=800)
         will show cities in the NE U.S. (500km around Boston, MA) w/o matching Canadian ones
 
-
 #### Query Types
 
 * by `city`
@@ -420,7 +213,6 @@ inhabitants (\~22750 cities), through either:
 * [progenetix.org/services/geolocations?city=New](http://progenetix.org/services/geolocations?city=New)
 * [progenetix.org/services/geolocations?geolongitude=-0.13&geolatitude=51.51&geodistance=100000](http://progenetix.org/services/geolocations?geolongitude=-0.13&geolatitude=51.51&geodistance=100000)
 
---------------------------------------------------------------------------------
 
 ### Geographic Maps
 
@@ -429,12 +221,25 @@ The new (2022) service utilizes the _geolocations_ service to
 * display of matched cities on a map using the `&output=map` option
 * load arbitrary data from a hosted data table (e.g. on Github)
 
+#### Map Projections of Query results
+
+The option `output=map` activates a Leaflet-based map projection of 
+the geomapping data (either from search results or provided as an
+external, web hosted file).
+
+* [/services/geolocations?city=Heidelberg&output=map&marker_type=marker](http://progenetix.org/services/geolocations?city=Heidelberg&output=map&marker_type=marker)
+
 ##### Parameters
 
 * `output=map` is required for the map display
 * `help=true` will show map configuration parameters
 * `file=http://........tsv` can be used to load a (tab-delimited) table of data w/ latitude + loniitude
 parameters for displaying it on a map
+
+
+#### Map with markers from a hosted file
+
+* [progenetix.org/services/geolocations?map_w_px=600&map_h_px=480&marker_type=marker&file=https://raw.githubusercontent.com/compbiozurich/compbiozurich.github.io/main/collab/people.tab&output=map&help=true](http://progenetix.org/services/geolocations?map_w_px=600&map_h_px=480&marker_type=marker&file=https://raw.githubusercontent.com/compbiozurich/compbiozurich.github.io/main/collab/people.tab&output=map&help=true)
 
 ##### `file` properties
 
@@ -480,6 +285,7 @@ Austrian    48  15  41
 
 * [progenetix.org/services/geolocations?city=Heidelberg&markerType=marker](http://progenetix.org/services/geolocations?city=Heidelberg&output=map&markerType=marker)
 * [progenetix.org/services/geolocations?file=https://raw.githubusercontent.com/progenetix/pgxMaps/main/rsrc/locationtest.tsv&debug=&output=map&help=true](http://progenetix.org/services/geolocations?file=https://raw.githubusercontent.com/progenetix/pgxMaps/main/rsrc/locationtest.tsv&debug=&output=map&help=true)
+
 
 
 
