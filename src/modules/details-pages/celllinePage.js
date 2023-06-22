@@ -10,7 +10,7 @@ import { Layout } from "../../components/Layout"
 import Panel from "../../components/Panel"
 import { AncestryData } from "../../components/AncestryData"
 import { LiteratureSearch } from "../../components/LiteratureSearch"
-import { ShowJSON } from "../../components/RawData"
+// import { ShowJSON } from "../../components/RawData"
 import { SubsetHistogram } from "../../components/SVGloaders"
 import { ExternalLink, InternalLink } from "../../components/helpersShared/linkHelpers"
 import { withUrlQuery } from "../../hooks/url-query"
@@ -276,7 +276,7 @@ function Subset({ id, subset, individual, datasetIds }) {
     </li>
   </ul>
 
-  <ShowJSON data={subset} />
+  {/*<ShowJSON data={subset} />*/}
   
 </section>
   )
