@@ -171,7 +171,7 @@ function GeneResultSet({cellline, gene, plotGeneSymbols, setGeneSymbols})
                     <td>&nbsp;</td>
                     :
                     <td>
-                        <Button color="secondary" onClick={() => {setExpand(!expand)}}>{expand ? <b>Close</b> : <b>Expand</b>}</Button>
+                        <Button color="secondary" onClick={() => {setExpand(!expand)}}>{expand ? <b>Close</b> : <b>More Abstracts</b>}</Button>
                     </td>
                 }
             </tr> : ""}
