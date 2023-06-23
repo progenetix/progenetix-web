@@ -202,35 +202,9 @@ function Biosample({ biosId, biosample, individual, datasetIds }) {
           </li>
         </>
       )}
-      {biosample.dataUseConditions?.id && (
-        <>
-          <li>
-            Data Use Conditions: {biosample.dataUseConditions.id} (
-            {biosample.dataUseConditions?.label})
-          </li>
-        </>
-      )}
     </ul>
     </>
   )}
-
-  {/*
-
-  {biosample.individualId && (
-    <>
-      <h5>Individual</h5>
-      <ul>
-        <li>Progenetix entry:{" "}
-          <InternalLink
-            href={`/individual/?id=${biosample.individualId}&datasetIds=${ datasetIds }`}
-            label={biosample.individualId}
-          />
-        </li>
-      </ul>
-    </>
-  )}
-
-  */}
 
   {biosample.externalReferences && (
     <>
