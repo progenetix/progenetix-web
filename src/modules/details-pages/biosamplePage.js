@@ -202,14 +202,6 @@ function Biosample({ biosId, biosample, individual, datasetIds }) {
           </li>
         </>
       )}
-      {biosample.dataUseConditions?.id && (
-        <>
-          <li>
-            Data Use Conditions: {biosample.dataUseConditions.id} (
-            {biosample.dataUseConditions?.label})
-          </li>
-        </>
-      )}
     </ul>
     </>
   )}
