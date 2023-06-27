@@ -95,7 +95,7 @@ export function useBeaconQuery(queryData) {
 export function useAggregatorQuery(queryData) {
   return useProgenetixApi(
     queryData
-      ? `${SITE_DEFAULTS.API_PATH}beacon/aggregator/?requestedGranularity=boolean&${buildQueryParameters(queryData)}`
+      ? `${SITE_DEFAULTS.API_PATH}services/aggregator/?requestedGranularity=boolean&${buildQueryParameters(queryData)}`
       : null
   )
 }
