@@ -31,19 +31,41 @@ export default function Index({
         <Panel heading="" className="content">
         
         <p>
-          The cancer cell line genome variation data in <i>cancercelllines</i> consists
-          of a mix of whole-genome copy number variation (CNV) profiles - as has
-          been established for the parent{" "}
+          The <i>cancercelllines.org</i> genomic information resource contains genome
+          profiling data, somatic mutation information and associated metadata for
+          thousands of human cancer cell lines. It has its origins in genomic copy
+          number variation (CNV) profiling data of cell lines originally collected
+          as part of the more than 100’000 individual datasets in the{" "}
           <InternalLink
             href="http://progenetix.org"
             label="Progenetix"
           />{" "}
-          resource - as well as annotated genome variation data, mapped to genome
-          coordinats and queryable using the{" "}
+          oncogenomic resource. However, by providing genome mapped, annotated 
+          data for many types of genomic mutations, together with CNV profiles for a subset
+          of the overall more than 16&lsquo;000 cell lines, <i>cancercelllines.org</i> provides
+          a unique entry point for the comparative analysis of genomic variants in
+          cell lines as well as for the exploration of related publications.
+        </p>
+
+        <SubsetHistogram
+          datasetIds={SITE_DEFAULTS.DATASETID}
+          id={randomSubset.id}
+          title="Cell Line Data CNV Frequency Plot"
+          description={`The CNV histogram above represents CNV data from a
+          randomly selected set of samples - either instances of a common cell 
+          line or with a shared diagnosis. In this example the frequencies of 
+          regional gains and losses in ${randomSubset.cnvAnalyses}${" "}
+          samples from ${randomSubset.id} (${randomSubset.label}) are on display.`}
+        />
+
+        <p>
+          In <i>cancercelllines.org</i> genomic variation data collected from a
+          variaty of external resources and from original data (re-) analyses has
+          been mapped to GRCh38 genome coordinates and is queryable using the{" "}
           <ExternalLink
             href="http://docs.genomebeacons.org"
             label="Beacon v2 API"
-          />. The <i>cancercelllines</i> resource contains data of{" "}
+          />. The resource contains data of{" "}
           <span className="span-red">{cellosaurusCount}</span>{" "}individual cancer cell lines from{" "}
           <span className="span-red">{ncitCount}</span>{" "}different cancer
           types (NCIt neoplasm classification).
@@ -57,17 +79,6 @@ export default function Index({
           />
           {" "}, a reference knowledge resource on cell lines.
         </p>
-
-        <SubsetHistogram
-          datasetIds={SITE_DEFAULTS.DATASETID}
-          id={randomSubset.id}
-          title="Cell Line Data CNV Frequency Plot"
-          description={`The CNV histogram above represents CNV data from a
-          randomly selected set of samples - either instances of a common cell 
-          line or with a shared diagnosis. In this example the frequencies of 
-          regional gains and losses in ${randomSubset.cnvAnalyses}${" "}
-          samples from ${randomSubset.id} (${randomSubset.label}) are on display.`}
-        />
 
         <Admonition
           title="Citation"

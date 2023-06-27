@@ -123,11 +123,13 @@ function Side({ onClick }) {
           isSub="isSub"
         />
         <MenuInternalLinkItem href={SITE_DEFAULTS.PROJECTDOCLINK} label="Documentation" />
+{/*
         <MenuInternalLinkItem
           href={SITE_DEFAULTS.NEWSLINK}
           label="News"
           isSub="isSub"
         />
+*/}        
         <MenuInternalLinkItem href={SITE_DEFAULTS.MASTERROOTLINK} label="Progenetix" />
         <MenuInternalLinkItem
           href={SITE_DEFAULTS.MASTERROOTLINK}
@@ -139,11 +141,13 @@ function Side({ onClick }) {
           label="Progenetix Documentation"
           isSub="isSub"
         />
+{/*
         <MenuInternalLinkItem
           href={`${SITE_DEFAULTS.MASTERROOTLINK}/publications`}
           label="Publication DB"
           isSub="isSub"
         />
+*/}        
         <MenuInternalLinkItem
           href="https://info.baudisgroup.org/"
           label="Baudisgroup @ UZH"

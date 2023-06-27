@@ -4,10 +4,10 @@ The _cancercelllines.org_ genomic information resource contains genome profiling
 somatic mutation information and associated metadata for thousands of human cancer
 cell lines. It has its origins in genomic copy number variation (CNV) profiling data
 of cell lines originally collected as part of the  more than 100’000 individual 
-datasets collected for the [Progenetix](http://progenetix.org) oncogenomic
-resource. However, by providing annotated mutation data with for all types
-of genomic variations, together with CNV profiles for a subset of the more than
-16'000 cell lines, _cancercelllines.org_ goes beyond the original scope of Progenetix
+datasets in the [Progenetix](http://progenetix.org) oncogenomic
+resource. However, by providing genome mapped, annotated 
+data for many types of genomic mutations, together with CNV profiles for a subset
+of the overall more than 16'000 cell lines, _cancercelllines.org_ goes beyond the original scope of Progenetix
 and provides an entry point for the comparative analysis of genomic variants in
 cell lines as well as for the exploration of related publications.
 
@@ -66,15 +66,8 @@ behind Progenetix and Beacon<span style="vertical-align: super; color: red; font
 ### [`bycon`](https://github.com/progenetix/bycon)
 
 - Python based service based on the [GA4GH Beacon protocol](http://beacon-project.io)
-- software powering the Progenetix resource
+- software powering the _cancercelllines.org_ and _Progenetix_ resources
 - [Beacon<span style="vertical-align: super; color: red; font-weight: 800;">+</span>](http://beacon.progenetix.org/ui/) implementation(s) use the same code base
-
-### [`progenetix-web`](https://github.com/progenetix/progenetix-web)
-
-- website for Progenetix and its Beacon<span style="vertical-align: super; color: red; font-weight: 800;">+</span> implementations
-- provides Beacon interfaces for the `bycon` server, as well as other Progenetix sevices (e.g. the [publications](http://progenetix.org/publications/) repository)
-- implemented as [React](https://reactjs.org) / [Next.js](https://nextjs.org) project
-- contains this documentation tree here as `mkdocs` project, with files in the `docs` directory
 
 ### [`cancercelllines-web`](https://github.com/progenetix/cancercelllines-web)
 
@@ -82,11 +75,16 @@ behind Progenetix and Beacon<span style="vertical-align: super; color: red; font
 - implemented as [React](https://reactjs.org) / [Next.js](https://nextjs.org) project
 - contains this documentation tree here as `mkdocs` project, with files in the `docs` directory
 
-### [`PGX`](https://github.com/progenetix/PGX)
+### [`byconaut`](https://github.com/progenetix/byconaut)
 
-- a Perl ibrary providing utility functions for Progenetix CNV data
-- used for data transformation, e.g. binning of segmental CNV data
-- main purpose now in providing the various plots (CNV histograms, clusterd CNV profiles, array plots)
+- extensions (server services...) and management tools for bycon-based installations
+
+### [`progenetix-web`](https://github.com/progenetix/progenetix-web)
+
+- website for Progenetix and its Beacon<span style="vertical-align: super; color: red; font-weight: 800;">+</span> implementations
+- provides Beacon interfaces for the `bycon` server, as well as other Progenetix sevices (e.g. the [publications](http://progenetix.org/publications/) repository)
+- implemented as [React](https://reactjs.org) / [Next.js](https://nextjs.org) project
+- contains this documentation tree here as `mkdocs` project, with files in the `docs` directory
 
 ### Additional Projects
 
