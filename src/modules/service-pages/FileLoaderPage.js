@@ -78,7 +78,7 @@ export default function FileLoaderPage() {
         </p>
         <ol>
           <li>
-            <code>sample</code>
+            <code>biosample_id</code>
             <ul>
               <li>please use only word characters, underscores, dashes</li>
               <li>
@@ -88,7 +88,7 @@ export default function FileLoaderPage() {
             </ul>
           </li>
           <li>
-            <code>referenceName</code>
+            <code>reference_name</code>
             <ul>
               <li>the reference chromosome</li>
               <li>1-22, X, Y (23 =&gt; X; 24 =&gt; Y)</li>
@@ -107,10 +107,10 @@ export default function FileLoaderPage() {
             </ul>
           </li>
           <li>
-            <code>mean</code>
+            <code>value</code>
             <ul>
               <li>the value of the segment</li>
-              <li>0-centered</li>
+              <li>should be 0-centered log2</li>
               <li>
                 segments not passing the calling thresholds (fallback{" "}
                 <code>0.15</code>, <code>-0.15</code>) are being filtered out
@@ -119,14 +119,6 @@ export default function FileLoaderPage() {
                 one can use dummy values (e.g. <code>1</code> for gains,{" "}
                 <code>-1</code> for losses)
               </li>
-            </ul>
-          </li>
-          <li>
-            <code>probes</code> (optional)
-            <ul>
-              <li>the number of array probes, call bins in the segment</li>
-              <li>fallback filter removes</li>
-              <li>optional (no filter on empty values)</li>
             </ul>
           </li>
           <li>

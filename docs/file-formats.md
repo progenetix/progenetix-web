@@ -14,8 +14,12 @@ a variation is now being provided for CNV frequencies.
 * a standard tab-delimited Progenetix segments file
     - an additional header may exist
     - only first 5 columns are necessary
-    - column 5 (mean) can be empty or dot, if column 6 exists and contains status value
+    - columns **have to use these column headers**:
+    - column 5 (log2) can be empty or dot, if column 6 exists and contains status value
     - undefined fields in existing columns are replaced with the "." character
+```
+biosample_id    reference_name  start   end value    variant_type    reference_bases alternate_bases
+```
 * header (optional)
     - header lines start with the `#` character
     - Plot parameters:
