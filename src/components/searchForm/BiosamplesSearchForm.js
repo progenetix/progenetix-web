@@ -604,3 +604,23 @@ function FilterLogicWarning({ isVisible }) {
   )
 }
 
+// function ShowMoreParameters() {
+
+//   const [isOpened, setIsOpened] = useState(false);
+
+//   function toggle() {
+//     setIsOpened(wasOpened => !wasOpened);
+//   }
+
+//   return (
+//     <>
+//       <h5><span onClick={toggle}>More Parameters (click to show/hide)</span></h5>
+//         {isOpened && (
+//           <div>
+//             <pre className="prettyprint">{ JSON.stringify(data, null, 2) }</pre>
+//           </div>
+//         )}
+//     </>
+//   )
+// }
+
