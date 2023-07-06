@@ -21,10 +21,10 @@ export const SITE_DEFAULTS = {
   MASTERROOTLINK: "https://progenetix.org",
   MASTERDOCLINK: "https://docs.progenetix.org",
   NEWSLINK: "https://docs.cancercelllines.org/news",
-  ORGSITELINK: "https://info.baudisgroup.org",
-  TRACKING_ID: "UA-572981-2"
+  ORGSITELINK: "https://info.baudisgroup.org"
 }
-export const MAX_HISTO_SAMPLES = 2000
+
+export const MAX_HISTO_SAMPLES = 1000
 export const THISYEAR = new Date().getFullYear()
 export const BIOKEYS = ["histologicalDiagnosis", "icdoMorphology", "icdoTopography", "sampleOriginDetail"]
 
