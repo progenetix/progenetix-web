@@ -174,17 +174,18 @@ function Variant({ variant, id, datasetIds }) {
         <li>Molecular effect: {variant.variation.molecularAttributes.molecularEffects[0].label}</li>
       )}
 
-      {variant.variation.molecularAttributes.aminoacidChanges && (
-        <li>Aminoacid changes: 
-          <ul>
-          {variant.variation.molecularAttributes.aminoacidChanges.map((aa) =>
-            <li key={aa}>
-              {aa}
+        {variant.variation.molecularAttributes.aminoacidChanges && variant.variation.molecularAttributes.aminoacidChanges.length > 0 && variant.variation.molecularAttributes.aminoacidChanges[0] !== null && (
+            <li>Aminoacid changes:
+              <ul>
+                {variant.variation.molecularAttributes.aminoacidChanges.map((aa) => (
+                    <li key={aa}>
+                      {aa}
+                    </li>
+                ))}
+              </ul>
             </li>
-          )}
-          </ul>
-        </li>
-      )}
+        )}
+
       </ul>
     </>
   )}
@@ -236,18 +237,22 @@ function Variant({ variant, id, datasetIds }) {
     </>
 
   )}
-{/*
+
   {variant.variation.variantAlternativeIds && (
-    <ul>
-      {variant.variation.variantAlternativeIds.map((aa) =>
-        <li key={aa}>
-          {aa}
-        </li>
-      )}
-    </ul>
+      <div>
+        <h5>Variant Alternative IDs</h5>
+        <ul>
+          {variant.variation.variantAlternativeIds.map((altid, key) => (
+              <li key={key}>
+                {altid.id} - {altid.label}
+              </li>
+          ))}
+        </ul>
+      </div>
   )}
 
-}*/}
+
+
   {variant.variation.variantLevelData && variant.variation.variantLevelData.clinicalInterpretations.length > 0 && (
     <>
     <h5>Clinical Interpretations</h5>
