@@ -24,7 +24,6 @@ const HANDOVER_IDS = {
   biosamples: "biosamples", //  "pgx:HO.biosamples",
   biosamplestable: "biosamplestable", //  "pgx:HO.biosamplestable",
   biosamplevariants: "biosamplevariants", //  "pgx:HO.biosamplevariants",
-  annotatedvariants: "annotatedvariants", //  "pgx:HO.annotatedvariants",
   biosamplepgxsegvariants: "biosamplepgxsegvariants", //  "pgx:HO.biosamples-pgxseg",
   biosamplevcfvariants: "biosamplevcfvariants", //  "pgx:HO.biosamples-vcf",
   phenopackets: "phenopackets", //  "pgx:HO.phenopackets",
@@ -36,8 +35,7 @@ const TABS = {
   results: "Results",
   samples: "Biosamples",
   samplesMap: "Biosamples Map",
-  variants: "Variants",
-  annotatedvariants: "Annotated Variants"
+  variants: "Variants"
 }
 
 export function DatasetResultBox({ data: responseSet, query }) {
@@ -66,11 +64,6 @@ export function DatasetResultBox({ data: responseSet, query }) {
   const variantsHandover = handoverById(HANDOVER_IDS.variants)
   const variantsReply = useProgenetixApi(
     variantsHandover && replaceWithProxy(variantsHandover.url)
-  )
-
-  const annotatedvariantsHandover = handoverById(HANDOVER_IDS.annotatedvariants)
-  const annotatedvariantsReply = useProgenetixApi(
-    annotatedvariantsHandover && replaceWithProxy(annotatedvariantsHandover.url)
   )
 
   const UCSCbedHandoverURL = handoverById(HANDOVER_IDS.UCSClink) === undefined ? false : handoverById(HANDOVER_IDS.UCSClink).url
@@ -108,12 +101,6 @@ export function DatasetResultBox({ data: responseSet, query }) {
   ) && tabNames.push(TABS.samplesMap)
 
   if (handoverById(HANDOVER_IDS.variants)) tabNames.push(TABS.variants)
-
-  if (! query.start) {
-    if (handoverById(HANDOVER_IDS.annotatedvariants)) {
-      tabNames.push(TABS.annotatedvariants)
-    }
-  }
 
   const [selectedTab, setSelectedTab] = useState(tabNames[0])
 
@@ -154,10 +141,6 @@ export function DatasetResultBox({ data: responseSet, query }) {
   } else if (selectedTab === TABS.variants) {
     tabComponent = (
       <VariantsDataTable apiReply={variantsReply} datasetId={id} />
-    )
-  } else if (selectedTab === TABS.annotatedvariants) {
-    tabComponent = (
-      <VariantsDataTable apiReply={annotatedvariantsReply} datasetId={id} />
     )
   }
 

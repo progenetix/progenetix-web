@@ -25,7 +25,7 @@ export const SITE_DEFAULTS = {
   NEWSLINK: "https://docs.progenetix.org/news",
   ORGSITELINK: "https://info.baudisgroup.org"
 }
-export const MAX_HISTO_SAMPLES = 2000
+export const MAX_HISTO_SAMPLES = 1000
 export const THISYEAR = new Date().getFullYear()
 export const BIOKEYS = ["histologicalDiagnosis", "icdoMorphology", "icdoTopography", "sampleOriginDetail"]
 

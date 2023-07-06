@@ -96,6 +96,11 @@ function Side({ onClick }) {
           label="CNV Profiles by Cancer Type"
         />
         <MenuInternalLinkItem
+          href="/subsets/NCIT-subsets"
+          label="NCIT Neoplasia Codes"
+          isSub="isSub"
+        />
+        <MenuInternalLinkItem
           href="/subsets/icdom-subsets"
           label="ICD-O Morphologies"
           isSub="isSub"
