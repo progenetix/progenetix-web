@@ -79,7 +79,7 @@ function Variant({ variant, id, datasetIds }) {
           <li>Gene: <b>{variant.variation.molecularAttributes.geneIds[0]}</b></li>
         )}
 
-        {variant.variation.molecularAttributes.molecularEffects && (
+        {variant.variation.molecularAttributes?.molecularEffects && (
           <li>Molecular effect: {variant.variation.molecularAttributes.molecularEffects[0].label}</li>
         )}
 
@@ -117,7 +117,7 @@ function Variant({ variant, id, datasetIds }) {
         </li>
       )}
 
-      {variant.variation.identifiers.genomicHGVSIds && (
+      {variant.variation.identifiers?.genomicHGVSIds && (
         <li>Genomic HGVSids:
           <ul>
           {variant.variation.identifiers.genomicHGVSIds.map((gh) =>
@@ -129,7 +129,7 @@ function Variant({ variant, id, datasetIds }) {
         </li>
       )}
 
-      {variant.variation.identifiers.clinvarIds && (
+      {variant.variation.identifiers?.clinvarIds && (
           <li>ClinVar IDs:
             <ul>
               <li>
@@ -160,7 +160,7 @@ function Variant({ variant, id, datasetIds }) {
         </div>
     )}
 
-    { variant.variation.variantLevelData.clinicalInterpretations && (
+    { variant.variation.variantLevelData?.clinicalInterpretations && (
       <>
       {variant.variation.variantLevelData && variant.variation.variantLevelData.clinicalInterpretations.length > 0 && (
         <>

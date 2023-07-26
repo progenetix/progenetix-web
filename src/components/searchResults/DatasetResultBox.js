@@ -23,12 +23,14 @@ const HANDOVER_IDS = {
   histoplot: "histoplot", //  "pgx:HO.histoplot",
   biosamples: "biosamples", //  "pgx:HO.biosamples",
   biosamplestable: "biosamplestable", //  "pgx:HO.biosamplestable",
-  biosamplevariants: "biosamplevariants", //  "pgx:HO.biosamplevariants",
-  biosamplepgxsegvariants: "biosamplepgxsegvariants", //  "pgx:HO.biosamples-pgxseg",
-  biosamplevcfvariants: "biosamplevcfvariants", //  "pgx:HO.biosamples-vcf",
+  // biosamplevariants: "biosamplevariants", //  "pgx:HO.biosamplevariants",
+  // biosamplepgxsegvariants: "biosamplepgxsegvariants", //  "pgx:HO.biosamples-pgxseg",
+  // biosamplevcfvariants: "biosamplevcfvariants", //  "pgx:HO.biosamples-vcf",
   phenopackets: "phenopackets", //  "pgx:HO.phenopackets",
-  UCSClink: "UCSClink", //  "pgx:HO.bedfile2ucsc",
-  variants: "variants" //  "EDAM:3016"
+  UCSClink: "UCSClink", //  "pgx:HO.bedfile2ucsc"
+  variants: "variants",
+  pgxseg: "pgxseg",
+  vcf: "vcf" //  "EDAM:3016"
 }
 
 const TABS = {
@@ -51,22 +53,19 @@ export function DatasetResultBox({ data: responseSet, query }) {
     resultsHandovers.find(({ info: { contentId } }) => contentId === givenId)
 
   const biosamplesHandover = handoverById(HANDOVER_IDS.biosamples)
+  const biosamplesTableHandover = handoverById(HANDOVER_IDS.biosamplestable)
+  const phenopacketsHandover = handoverById(HANDOVER_IDS.phenopackets)
+  const variantsHandover = handoverById(HANDOVER_IDS.variants)
+  const vcfHandover = handoverById(HANDOVER_IDS.vcf)
+  const pgxsegHandover = handoverById(HANDOVER_IDS.pgxseg)
+  const UCSCbedHandoverURL = handoverById(HANDOVER_IDS.UCSClink) === undefined ? false : handoverById(HANDOVER_IDS.UCSClink).url
+
   const biosamplesReply = useProgenetixApi(
     biosamplesHandover && replaceWithProxy(biosamplesHandover.url)
   )
-  const paginatedHandovers = biosamplesHandover.pages
-  const paginatedBiosTableHandovers = handoverById(HANDOVER_IDS.biosamplestable).pages
-  const paginatedBiosVarsHandovers = handoverById(HANDOVER_IDS.biosamplevariants).pages
-  const paginatedBiosVarsPgxsegHandovers = handoverById(HANDOVER_IDS.biosamplepgxsegvariants).pages
-  const paginatedBiosVarsVCFhandovers = handoverById(HANDOVER_IDS.biosamplevcfvariants).pages
-  const paginatedPhenopacketsHandovers = handoverById(HANDOVER_IDS.phenopackets).pages
-
-  const variantsHandover = handoverById(HANDOVER_IDS.variants)
   const variantsReply = useProgenetixApi(
     variantsHandover && replaceWithProxy(variantsHandover.url)
   )
-
-  const UCSCbedHandoverURL = handoverById(HANDOVER_IDS.UCSClink) === undefined ? false : handoverById(HANDOVER_IDS.UCSClink).url
 
   // the histogram is only rendered but correct handover is needed, obviously
   let histoplotUrl
@@ -95,7 +94,6 @@ export function DatasetResultBox({ data: responseSet, query }) {
   tabNames.push(TABS.results)
 
   biosamplesHandover && tabNames.push(TABS.samples)
-
   biosamplesReply?.data?.response?.resultSets[0].results?.some(
     (biosample) => !!biosample.provenance?.geoLocation
   ) && tabNames.push(TABS.samplesMap)
@@ -218,72 +216,85 @@ export function DatasetResultBox({ data: responseSet, query }) {
       ) : null}
       {tabComponent ? <div>{tabComponent}</div> : null}
       <hr/>
-      <div className="tabs">
-        <div>
-          <b>Download Sample Data (TSV)</b>
-          <br/>
-          <ul>
-            {paginatedBiosTableHandovers.map((handover, i) => (
-              <PagedLink key={i} handover={handover} />
-            ))}
-          </ul>
+
+      {biosamplesTableHandover?.pages && (
+        <div className="tabs">
+          <div>
+            <b>Download Sample Data (TSV)</b>
+            <br/>
+            <ul>
+              {biosamplesTableHandover.pages.map((handover, i) => (
+                <PagedLink key={i} handover={handover} />
+              ))}
+            </ul>
+          </div>
         </div>
-      </div>
-      <div className="tabs">
-        <div>
-          <b>Download Sample Data (JSON)</b>
-          <br/>
-          <ul>
-            {paginatedHandovers.map((handover, i) => (
-              <PagedLink key={i} handover={handover} />
-            ))}
-          </ul>
+      )}
+      {biosamplesHandover?.pages && (
+        <div className="tabs">
+          <div>
+            <b>Download Sample Data (JSON)</b>
+            <br/>
+            <ul>
+              {biosamplesHandover.pages.map((handover, i) => (
+                <PagedLink key={i} handover={handover} />
+              ))}
+            </ul>
+          </div>
         </div>
-      </div>
-      <div className="tabs">
-        <div>
-          <b>Download Sample Variants (JSON)</b>
-          <br/>
-          <ul>
-            {paginatedBiosVarsHandovers.map((handover, i) => (
-              <PagedLink key={i} handover={handover} />
-            ))}
-          </ul>
+      )}
+      {variantsHandover?.pages && (
+        <div className="tabs ">
+          <div>
+            <b>Download Variants (Beacon VRS)</b>
+            <br/>
+            <ul>
+              {variantsHandover?.pages.map((handover, i) => (
+                <PagedLink key={i} handover={handover} />
+              ))}
+            </ul>
+          </div>
         </div>
-      </div>
-      <div className="tabs ">
-        <div>
-          <b>Download Sample Variants (pgxseg)</b>
-          <br/>
-          <ul>
-            {paginatedBiosVarsPgxsegHandovers.map((handover, i) => (
-              <PagedLink key={i} handover={handover} />
-            ))}
-          </ul>
+      )}
+      {vcfHandover?.pages && (
+        <div className="tabs ">
+          <div>
+            <b>Download Variants (VCF)</b>
+            <br/>
+            <ul>
+              {vcfHandover?.pages.map((handover, i) => (
+                <PagedLink key={i} handover={handover} />
+              ))}
+            </ul>
+          </div>
         </div>
-      </div>
-      <div className="tabs ">
-        <div>
-          <b>Download Sample Variants (VCF)</b>
-          <br/>
-          <ul>
-            {paginatedBiosVarsVCFhandovers.map((handover, i) => (
-              <PagedLink key={i} handover={handover} />
-            ))}
-          </ul>
+      )}
+      {pgxsegHandover?.pages && (
+        <div className="tabs ">
+          <div>
+            <b>Download Variants (.pgxseg)</b>
+            <br/>
+            <ul>
+              {pgxsegHandover?.pages.map((handover, i) => (
+                <PagedLink key={i} handover={handover} />
+              ))}
+            </ul>
+          </div>
         </div>
-      </div>
-      <div className="tabs">
-        <div>
-          <b>Download Phenopackets (JSON)</b>
-          <br/>
-          <ul>
-            {paginatedPhenopacketsHandovers.map((handover, i) => (
-              <PagedLink key={i} handover={handover} />
-            ))}
-          </ul>
+      )}
+      {phenopacketsHandover?.pages && (
+        <div className="tabs">
+          <div>
+            <b>Download Phenopackets (JSON)</b>
+            <br/>
+            <ul>
+              {phenopacketsHandover.pages.map((handover, i) => (
+                <PagedLink key={i} handover={handover} />
+              ))}
+            </ul>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }
