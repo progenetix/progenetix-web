@@ -84,6 +84,19 @@ export function CallsetHistogram({ csid, datasetIds }) {
   )
 }
 
+export function BiosamplePlot({ biosid, datasetIds, plotRegionLabels, plotChros}) {
+  const componentRef = useRef()
+  const { width } = useContainerDimensions(componentRef)
+  const url = `${SITE_DEFAULTS.API_PATH}beacon/biosamples/${biosid}/?datasetIds=${datasetIds}&output=samplesplot&plot_width=${width}&plotRegionLabels=${plotRegionLabels}&plotChros=${plotChros}&forceEmptyPlot=true`
+  // width > 0 to make sure the component is mounted and avoid double fetch
+  const dataEffect = useExtendedSWR(width > 0 && url, svgFetcher)
+  return (
+    <div ref={componentRef} className="mb-4">
+      <SVGloader apiReply={dataEffect} />
+    </div>
+  )
+}
+
 SubsetHistogram.propTypes = {
   id: PropTypes.string.isRequired,
   filter: PropTypes.string,

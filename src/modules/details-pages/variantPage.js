@@ -10,6 +10,7 @@ import { WithData } from "../../components/Loader"
 import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
 import { ShowJSON } from "../../components/RawData"
+import { BiosamplePlot } from "../../components/SVGloaders"
 import React from "react"
 
 const entity = "variants"
@@ -61,6 +62,12 @@ function VariantResponse({ response, id, datasetIds }) {
 
 
 function Variant({ variant, id, datasetIds }) {
+
+  var marker = variant.variantInternalId
+  var mParts = marker.split(':')
+  const chro = mParts[0]
+  marker = marker + " (" + mParts[1] + ")"
+
   return (
     <section className="content">
       <h3>
@@ -194,8 +201,6 @@ function Variant({ variant, id, datasetIds }) {
       </>
     )}
 
-      <ShowJSON data={variant} />
-
       <h5>
         Download Data as Beacon v2{" "}
         <a
@@ -206,6 +211,15 @@ function Variant({ variant, id, datasetIds }) {
           {"{JSON↗}"}
         </a>
       </h5>
+
+      <ShowJSON data={variant} />
+
+  { variant.caseLevelData[0]?.biosampleId && marker && chro && (
+    <>
+      <h5>Plot</h5>
+      <BiosamplePlot biosid={variant.caseLevelData[0].biosampleId} datasetIds={datasetIds} plotRegionLabels={marker} plotChros={chro} />
+    </>
+  )}
 
     </section>
   )
