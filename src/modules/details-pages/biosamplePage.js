@@ -206,24 +206,6 @@ function Biosample({ biosId, biosample, individual, datasetIds }) {
     </>
   )}
 
-  {/*
-
-  {biosample.individualId && (
-    <>
-      <h5>Individual</h5>
-      <ul>
-        <li>Progenetix entry:{" "}
-          <InternalLink
-            href={`/individual/?id=${biosample.individualId}&datasetIds=${ datasetIds }`}
-            label={biosample.individualId}
-          />
-        </li>
-      </ul>
-    </>
-  )}
-
-  */}
-
   {biosample.externalReferences && (
     <>
     <h5>External References</h5>
@@ -250,7 +232,7 @@ function Biosample({ biosId, biosample, individual, datasetIds }) {
     </>
   )}
 
-  { biosample.info && biosample.info.callsetIds?.length > 0 && (
+  { biosample.info && biosample.info?.callsetIds?.length > 0 && (
     <>
       <h5>CNV {pluralizeWord("Plot", biosample.info.callsetIds.length)}</h5>
       {biosample.info?.callsetIds.map((csid, i) => (
