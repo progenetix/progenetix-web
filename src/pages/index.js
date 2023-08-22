@@ -68,7 +68,7 @@ export default function Index({
 
     <h4>
       <InternalLink
-        href="/subsets/biosubsets"
+        href="/subsets/NCIT-subsets"
         label="Cancer CNV Profiles"
       />
     </h4>
