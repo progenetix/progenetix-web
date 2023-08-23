@@ -1,6 +1,6 @@
 # Progenetix File Formats
 
-## Data File Formats - `pgxseg` Variants & `pgxfreq` Segmental CNV Frequencies
+## Data File Formats - `.pgxseg` Variants & `.pgxfreq` Segmental CNV Frequencies
 
 Progenetix uses a variation of a standard tab-separated columnar text file such
 as produced by array or sequencing CNV software, with an optional metadata header
@@ -9,7 +9,7 @@ for e.g. plot or grouping instructions.
 Wile the first edition only was geared towards sample-linked segment annotations,
 a variation is now being provided for CNV frequencies.
 
-### `.pgxseg` Sample Variant Files
+### `pgxseg` Sample Variant Files
 
 * a standard tab-delimited Progenetix segments file
     - an additional header may exist
@@ -69,7 +69,7 @@ pgxbs-kftvhhmm  3 4662952 4857477 0.9273 DUP  .
 ...
 ```
 
-### `.pgxfreq` Segment CNV Frequencies
+### `pgxfreq` Segment CNV Frequencies
 
 !!! info "New suffix `pgxfreq`"
 
