@@ -7,7 +7,7 @@ date: 2022-04-11
 
 <img src="/img/biosamples-result-paging.png" style="float: right; width: 250px; margin: -120px 0px 5px 20px;"/>Throught its [Search Samples](http://progenetix.org/biosamples/) page Progenetix has
 always offered options to download search results (biosamples, variants) in different formats (JSON,
-tab-delimited tables, _pgxseg_ files ...). However, especially for large results with 
+tab-delimited tables, [_pgxseg_](https://docs.progenetix.org/file-formats/#pgxseg-sample-variant-files) files ...). However, especially for large results with 
 thousands of samples and potentially millions of variants this led to inconsistent behaviour
 e.g. time-outs or dropped connections.
 
