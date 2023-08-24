@@ -188,7 +188,7 @@ function Side({ onClick }) {
           label="Upload & Plot"
         />
         <MenuInternalLinkItem
-          href="/beaconPlus/"
+          href="https://beaconplus.progenetix.org/"
           label={
             <>
               Beacon<sup style={{ color: "red" }}>+</sup>
