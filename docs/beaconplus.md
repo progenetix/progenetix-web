@@ -181,15 +181,15 @@ The root path provides the standard `BeaconInfoResponse`.
 * [/biosamples/pgxbs-kftva5c9/](http://progenetix.org/beacon/biosamples/pgxbs-kftva5c9/)
   - retrieval of a single biosample
 
-##### `/biosamples/{id}/variants/`
+##### `/biosamples/{id}/genomicVariations/`
 
-* [/biosamples/pgxbs-kftva5c9/variants/](http://progenetix.org/beacon/biosamples/pgxbs-kftva5c9/variants/)
+* [/biosamples/pgxbs-kftva5c9/genomicVariations/](http://progenetix.org/beacon/biosamples/pgxbs-kftva5c9/genomicVariations/)
   - retrieval of all variants from a single biosample
   - currently - and especially since for a mostly CNV containing resource - `variants` means "variant instances" (or as in the early v2 draft `variantsInSample`)
 
 ##### `/biosamples/{id}/analyses/`
 
-* [/biosamples/pgxbs-kftva5c9/analyses/](http://progenetix.org/beacon/biosamples/pgxbs-kftva5c9/variants/)
+* [/biosamples/pgxbs-kftva5c9/analyses/](http://progenetix.org/beacon/biosamples/pgxbs-kftva5c9/genomicVariations/)
 
 ----
 
@@ -209,15 +209,15 @@ The root path provides the standard `BeaconInfoResponse`.
 * [/biosamples/pgxind-kftx25hb/](http://progenetix.org/beacon/biosamples/pgxind-kftx25hb/)
   - retrieval of a single individual
 
-##### `/individuals/{id}/variants/`
+##### `/individuals/{id}/genomicVariations/`
 
-* [/individuals/pgxind-kftx25hb/variants/](http://progenetix.org/beacon/individuals/pgxind-kftx25hb/variants/)
+* [/individuals/pgxind-kftx25hb/genomicVariations/](http://progenetix.org/beacon/individuals/pgxind-kftx25hb/genomicVariations/)
   - retrieval of all variants from a single individual
   - currently - and especially since for a mostly CNV containing resource - `variants` means "variant instances" (or as in the early v2 draft `variantsInSample`)
 
 ----
 
-#### Base `/variants`
+#### Base `/genomicVariations`
 
 There is currently (April 2021) still some discussion about the implementation and naming
 of the different types of genomic variant endpoints. Since the Progenetix collections
@@ -226,18 +226,18 @@ the local `variants` collection.
 
 If using `g_variants` or `variants_in_sample`, those will be treated as aliases.
 
-##### `/variants/` + query
+##### `/genomicVariations/` + query
 
-* [/variants/?assemblyId=GRCh38&referenceName=17&variantType=DEL&filterLogic=AND&start=7500000&start=7676592&end=7669607&end=7800000](http://progenetix.org/beacon/variants/?assemblyId=GRCh38&referenceName=17&variantType=DEL&filterLogic=AND&start=7500000&start=7676592&end=7669607&end=7800000)
+* [/genomicVariations/?assemblyId=GRCh38&referenceName=17&variantType=DEL&filterLogic=AND&start=7500000&start=7676592&end=7669607&end=7800000](http://progenetix.org/beacon/genomicVariations/?assemblyId=GRCh38&referenceName=17&variantType=DEL&filterLogic=AND&start=7500000&start=7676592&end=7669607&end=7800000)
   - This is an example for a Beacon "Bracket Query" which will return focal deletions in the TP53 locus (by position).
 
-##### `/variants/{id}/` or `/g_variants/{id}/`
+##### `/genomicVariations/{id}/` or `/g_variants/{id}/`
 
-* [/variants/5f5a35586b8c1d6d377b77f6/](http://progenetix.org/beacon/variants/5f5a35586b8c1d6d377b77f6/)
+* [/genomicVariations/5f5a35586b8c1d6d377b77f6/](http://progenetix.org/beacon/genomicVariations/5f5a35586b8c1d6d377b77f6/)
 
-##### `/variants/{id}/biosamples/`
+##### `/genomicVariations/{id}/biosamples/`
 
-* [/variants/5f5a35586b8c1d6d377b77f6/biosamples/](http://progenetix.org/beacon/variants/5f5a35586b8c1d6d377b77f6/biosamples/)
+* [/genomicVariations/5f5a35586b8c1d6d377b77f6/biosamples/](http://progenetix.org/beacon/genomicVariations/5f5a35586b8c1d6d377b77f6/biosamples/)
 
 ----
 

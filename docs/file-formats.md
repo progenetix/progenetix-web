@@ -42,7 +42,7 @@ biosample_id    reference_name  start   end value    variant_type    reference_b
 For example, this API call retireves the variants for 78 samples from two NCIt
 cancer types (please be aware of the `&filterLogic=OR` pragma!):
 
-* [progenetix.org/beacon/variants/?filters=NCIT:C6393,NCIT:C4504&filterLogic=OR&output=pgxseg](http://progenetix.org/beacon/variants/?filters=NCIT:C6393,NCIT:C4504&filterLogic=OR&output=pgxseg)
+* [progenetix.org/beacon/genomicVariations/?filters=NCIT:C6393,NCIT:C4504&filterLogic=OR&output=pgxseg](http://progenetix.org/beacon/genomicVariations/?filters=NCIT:C6393,NCIT:C4504&filterLogic=OR&output=pgxseg)
 
 An excerpt of the segment file would look like below:
 

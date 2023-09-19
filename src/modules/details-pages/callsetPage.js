@@ -101,7 +101,7 @@ function Callset({ callset, csId, datasetIds }) {
       <BeaconRESTLink
         entryType="analyses"
         idValue={csId}
-        responseType="variants"
+        responseType="genomicVariations"
         datasetIds={datasetIds}
         label="Beacon JSON"
       />
@@ -110,7 +110,7 @@ function Callset({ callset, csId, datasetIds }) {
       <BeaconRESTLink
         entryType="analyses"
         idValue={csId}
-        responseType="variants"
+        responseType="genomicVariations"
         datasetIds={datasetIds}
         output="pgxseg"
         label="Progenetix .pgxseg file"
@@ -120,7 +120,7 @@ function Callset({ callset, csId, datasetIds }) {
       <BeaconRESTLink
         entryType="analyses"
         idValue={csId}
-        responseType="variants"
+        responseType="genomicVariations"
         datasetIds={datasetIds}
         output="vcf"
         label="(experimental) VCF 4.4 file"

@@ -11,6 +11,8 @@
     "lint": "eslint src"
   },
   "dependencies": {
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.10",
     "@tippyjs/react": "^4.2.0",
     "animate": "^1.0.0",
     "animate.css": "^4.1.1",
@@ -22,6 +24,7 @@
     "leaflet": "^1.7.1",
     "lodash": "^4.17.21",
     "match-sorter": "^6.2.0",
+    "material": "^0.5.3",
     "next": "^12.1.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
