@@ -19,10 +19,13 @@ values.
 
 Here one (or two, for a range - see image) age values can be specified using
 an ISO8601 period expression (e.g. `P3Y6M` or `P365D` - not including time elements)
-prefixed by the `age` indicator, a `:` separator and one of the comparators
+prefixed by the `ageAtDiagnosis`[^1] indicator, a `:` separator and one of the comparators
 (`=`, `<=`, `>=`, `<`, `>`).
 
 #### Examples
 
-* `age:>=P18Y,age:<=P65Y`
-* `age:<P1Y6M`
+* `ageAtDiagnosis:>=P18Y,ageAtDiagnosis:<=P65Y`
+* `ageAtDiagnosis:<P1Y6M`
+
+
+[^1]: Changed 2023-09-20 from "age" to "ageAtDiagnosis"
