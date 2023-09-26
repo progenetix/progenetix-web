@@ -71,22 +71,20 @@ export function DatasetResultBox({ data: responseSet, query }) {
   let histoplotUrl
   let visualizationLink
   if (handoverById(HANDOVER_IDS.histoplot)) {
-    if (paginatedResultsCount <= MAX_HISTO_SAMPLES) {
-      histoplotUrl = handoverById(HANDOVER_IDS.histoplot).url
-      let visualizationAccessId = new URLSearchParams(
-        new URL(histoplotUrl).search
-      ).get("accessid")
-      let visualizationFileId = new URLSearchParams(
-        new URL(histoplotUrl).search
-      ).get("fileId")
-      let visualizationSkip = new URLSearchParams(
-        new URL(histoplotUrl).search
-      ).get("skip")
-      let visualizationLimit = new URLSearchParams(
-        new URL(histoplotUrl).search
-      ).get("limit")
-      visualizationLink = getVisualizationLink(id, visualizationAccessId, visualizationFileId, visualizationSkip, visualizationLimit, paginatedResultsCount)
-    }
+    histoplotUrl = handoverById(HANDOVER_IDS.histoplot).url
+    let visualizationAccessId = new URLSearchParams(
+      new URL(histoplotUrl).search
+    ).get("accessid")
+    let visualizationFileId = new URLSearchParams(
+      new URL(histoplotUrl).search
+    ).get("fileId")
+    let visualizationSkip = new URLSearchParams(
+      new URL(histoplotUrl).search
+    ).get("skip")
+    let visualizationLimit = new URLSearchParams(
+      new URL(histoplotUrl).search
+    ).get("limit")
+    visualizationLink = getVisualizationLink(id, visualizationAccessId, visualizationFileId, visualizationSkip, visualizationLimit, paginatedResultsCount)
   }
 
   // main / samples / variants
@@ -109,7 +107,7 @@ export function DatasetResultBox({ data: responseSet, query }) {
         variantType={query.alternateBases}
         histoplotUrl={histoplotUrl}
         biosamplesReply={biosamplesReply}
-        variantCount={info.counts.variantCount}
+        variantCount={info.counts.variants}
         datasetId={id}
       />
     )
@@ -155,26 +153,26 @@ export function DatasetResultBox({ data: responseSet, query }) {
             <b>Retrieved Samples: </b>
             {paginatedResultsCount}
           </div>
-          {info.counts.variantCount > 0 ? (
+          {info.counts.variants > 0 ? (
             <div>
               <div>
                 <b>Variants: </b>
-                {info.counts.variantCount}
+                {info.counts.variants}
               </div>
               <div>
                 <b>Calls: </b>
-                {info.counts.callCount}
+                {info.counts.callsets}
               </div>
             </div>
           ) : null}
         </div>
         <div className="column is-one-third">
-          {info.counts.variantCount > 0 ? (
+          {info.counts.variants > 0 ? (
             <div>
               <UCSCRegion query={query} />
             </div>
           ) : null}
-          {info.counts.variantCount > 0 ? (
+          {info.counts.variants > 0 ? (
             <div>
               <ExternalLink
                 label="Variants in UCSC"
