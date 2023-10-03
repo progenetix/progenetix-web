@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react"
 import {
-  MAX_HISTO_SAMPLES,
+  // MAX_HISTO_SAMPLES,
   SITE_DEFAULTS,
   replaceWithProxy,
   useProgenetixApi,

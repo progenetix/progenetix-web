@@ -27,7 +27,9 @@ export const SITE_DEFAULTS = {
 }
 export const MAX_HISTO_SAMPLES = 1000
 export const THISYEAR = new Date().getFullYear()
-export const BIOKEYS = ["histologicalDiagnosis", "icdoMorphology", "icdoTopography", "sampleOriginDetail"]
+export const BIOKEYS = ["icdoMorphology", "icdoTopography", "histologicalDiagnosis"]
+
+// "sampleOriginDetail"
 
 export function useProgenetixApi(...args) {
   const { data, error, ...other } = useExtendedSWR(...args)
