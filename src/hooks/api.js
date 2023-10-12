@@ -113,9 +113,9 @@ export function validateBeaconQuery(queryData) {
 export function mkGeoParams(geoCity, geodistanceKm) {
   if (!geoCity) return null
   const coordinates = geoCity.data.geoLocation.geometry.coordinates ?? []
-  const [geolongitude, geolatitude] = coordinates
-  const geodistance = geodistanceKm ? geodistanceKm * 1000 : 100 * 1000
-  return { geolongitude, geolatitude, geodistance }
+  const [geoLongitude, geoLatitude] = coordinates
+  const geoDistance = geodistanceKm ? geodistanceKm * 1000 : 100 * 1000
+  return { geoLongitude, geoLatitude, geoDistance }
 }
 
 export function mkGeneParams(gene) {

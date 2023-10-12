@@ -198,8 +198,8 @@ inhabitants (\~22750 cities), through either:
     - optional e.g. `?city=heidelberg&ISO3166alpha2=ZA`
 * by `id`
     - this uses the `city::country` "id" value, e.g. `lecce::italy`
-* by `geolatitude` & `geolongitude` & `geodistance`
-    - `geodistance` is to be given in meters
+* by `geoLatitude` & `geoLongitude` & `geoDistance`
+    - `geoDistance` is to be given in meters
 
 #### Response options
 
