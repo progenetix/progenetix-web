@@ -1,0 +1,44 @@
+---
+note: ""
+label: ""
+description: ""
+parameters:
+  datasetIds:
+    defaultValue: ["progenetix"]
+    isHidden: true
+  cohorts:
+    isHidden: true
+  assemblyId:
+    defaultValue: "GRCh38"
+    isHidden: true
+  referenceName:
+    isHidden: true
+  geneId:
+    isHidden: true
+  variantType:
+    isHidden: true
+  variantMinLength:
+    isHidden: true
+  variantMaxLength:
+    isHidden: true
+  start:
+    isHidden: true
+  end:
+    isHidden: true
+  referenceBases:
+    isHidden: true
+  alternateBases:
+    isHidden: true
+  clinicalClasses:
+    isHidden: true
+  materialtype:
+    isHidden: true
+  accessid:
+    isHidden: true
+  filterLogic:
+    isHidden: true
+  geoCity:
+    isHidden: true
+  geodistanceKm:
+    isHidden: true
+  examples: []

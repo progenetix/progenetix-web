@@ -1,0 +1,18 @@
+---
+note: ""
+label: ""
+description: ""
+parameters:
+  datasetIds:
+    defaultValue: ["progenetix"]
+    isHidden: true
+  cohorts:
+    defaultValue: ["pgx:cohort-DIPG"]
+    isHidden: true
+  assemblyId:
+    defaultValue: "GRCh38"
+    isHidden: true
+  end:
+    isHidden: true
+  variantType:
+    isHidden: true

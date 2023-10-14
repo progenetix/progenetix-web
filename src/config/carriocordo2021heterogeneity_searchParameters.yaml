@@ -1,0 +1,33 @@
+---
+note: ""
+label: ""
+description: ""
+parameters:
+  datasetIds:
+    defaultValue: ["progenetix"]
+    isHidden: true
+  cohorts:
+    defaultValue: ["pgx:cohort-carriocordo2021heterogeneity"]
+    isHidden: true
+  assemblyId:
+    isHidden: true
+  referenceName:
+    placeholder: "9"
+  start:
+    placeholder: "19000001-21975098"
+  end:
+    placeholder: "21967753-24000000"
+  variantType:
+    placeholder: "EFO:0030067"
+  alternateBases:
+    placeholder: ""
+    isHidden: true
+  referenceBases:
+    placeholder: ""
+    isHidden: true
+  accessid:
+    isHidden: true
+  sex:
+    placeholder: ""
+  materialtype:
+    placeholder: "EFO:0009656" #"EFO:0009656"

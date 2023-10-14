@@ -1,0 +1,42 @@
+---
+note: ""
+label: ""
+description: ""
+parameters:
+  datasetIds:
+    defaultValue: ["progenetix"]
+    isHidden: true
+  cohorts:
+    defaultValue: ["pgx:cohort-oneKgenomes"]
+    isHidden: true
+  assemblyId:
+    defaultValue: "GRCh38"
+    isHidden: true
+  referenceName:
+    placeholder: "17"
+  start:
+    placeholder: 7000000
+  end:
+    placeholder: 8000000
+  geneId:
+    isHidden: true
+  variantMinLength:
+    isHidden: true
+  variantMaxLength:
+    isHidden: true
+  variantType:
+    defaultValue: ""
+  bioontology:
+    isHidden: true
+  sex:
+    isHidden: true
+  materialtype:
+    isHidden: true
+  freeFilters:
+    isHidden: true
+  accessid:
+    isHidden: true
+  filterLogic:
+    isHidden: true
+  geoCity:
+    isHidden: true

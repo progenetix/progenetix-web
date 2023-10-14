@@ -1,8 +1,10 @@
 import React from "react"
 import { ExternalLink } from "../../components/helpersShared/linkHelpers"
 import { Layout } from "../../components/Layout"
-import parametersConfig from "../shared/searchParameters.yaml"
-import requestTypesConfig from "./gao2021signatures_searchParameters.yaml"
+import parametersConfig from "../../config/searchParameters.yaml"
+import requestTypeConfig from "../../config/gao2021signatures_searchParameters.yaml"
+import requestTypeExamples from "../../config/gao2021signatures_searchExamples.yaml"
+
 import BiosamplesSearchPanel from "../../components/searchForm/BiosamplesSearchPanel"
 import { SubsetHistogram } from "../../components/SVGloaders"
 import Panel from "../../components/Panel"
@@ -93,7 +95,8 @@ export default function gao2021signatures_dataPage({ cytoBands }) {
       </Panel>
       <BiosamplesSearchPanel
         parametersConfig={parametersConfig}
-        requestTypesConfig={requestTypesConfig}
+        requestTypeConfig={requestTypeConfig}
+        requestTypeExamples={requestTypeExamples}
         cytoBands={cytoBands}
       />
     </Layout>

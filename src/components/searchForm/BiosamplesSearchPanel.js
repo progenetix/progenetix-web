@@ -8,14 +8,15 @@ import PropTypes from "prop-types"
 // import cn from "classnames"
 
 BiosamplesSearchPanel.propTypes = {
-  requestTypesConfig: PropTypes.object.isRequired,
+  requestTypeConfig: PropTypes.object.isRequired,
   parametersConfig: PropTypes.object.isRequired,
   collapsed: false
 }
 
 export default function BiosamplesSearchPanel({
-  requestTypesConfig,
+  requestTypeConfig,
   parametersConfig,
+  requestTypeExamples,
   cytoBands,
   collapsed
 }) {
@@ -39,9 +40,6 @@ export default function BiosamplesSearchPanel({
     clearQuery()
     setQuery(formValues)
   }
-
-  // button className="button ml-3"
-  //    className="icon has-text-info"
 
   return  (
     <>
@@ -70,7 +68,8 @@ export default function BiosamplesSearchPanel({
       >
         <BiosamplesSearchForm
           cytoBands={cytoBands}
-          requestTypesConfig={requestTypesConfig}
+          requestTypeConfig={requestTypeConfig}
+          requestTypeExamples={requestTypeExamples}
           parametersConfig={parametersConfig}
           isQuerying={isLoading}
           setSearchQuery={onValidFormQuery}

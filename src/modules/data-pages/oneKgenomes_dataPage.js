@@ -1,8 +1,10 @@
 import React from "react"
 import { ExternalLink } from "../../components/helpersShared/linkHelpers"
 import { Layout } from "../../components/Layout"
-import parametersConfig from "../shared/searchParameters.yaml"
-import requestTypesConfig from "./oneKgenomes_searchParameters.yaml"
+import parametersConfig from "../../config/searchParameters.yaml"
+import requestTypeConfig from "../../config/oneKgenomes_searchParameters.yaml"
+import requestTypeExamples from "../../config/oneKgenomes_searchExamples.yaml"
+
 import BiosamplesSearchPanel from "../../components/searchForm/BiosamplesSearchPanel"
 import { SubsetHistogram } from "../../components/SVGloaders"
 import Panel from "../../components/Panel"
@@ -38,7 +40,8 @@ export default function oneKgenomes_dataPage({ cytoBands }) {
       </Panel>
       <BiosamplesSearchPanel
         parametersConfig={parametersConfig}
-        requestTypesConfig={requestTypesConfig}
+        requestTypeConfig={requestTypeConfig}
+        requestTypeExamples={requestTypeExamples}
         cytoBands={cytoBands}
         collapsed={false}
       />

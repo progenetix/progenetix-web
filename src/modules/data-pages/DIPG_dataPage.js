@@ -1,8 +1,10 @@
 import React from "react"
 import { ExternalLink } from "../../components/helpersShared/linkHelpers"
 import { Layout } from "../../components/Layout"
-import parametersConfig from "../shared/searchParameters.yaml"
-import requestTypesConfig from "./DIPG_searchParameters.yaml"
+import parametersConfig from "../../config/searchParameters.yaml"
+import requestTypeConfig from "../../config/DIPG_searchParameters.yaml"
+import requestTypeExamples from "../../config/DIPG_searchExamples.yaml"
+
 import BiosamplesSearchPanel from "../../components/searchForm/BiosamplesSearchPanel"
 import Panel from "../../components/Panel"
 // import Link from "next/link"
@@ -34,7 +36,8 @@ export default function DIPG_dataPage({ cytoBands }) {
       </Panel>
       <BiosamplesSearchPanel
         parametersConfig={parametersConfig}
-        requestTypesConfig={requestTypesConfig}
+        requestTypeConfig={requestTypeConfig}
+        requestTypeExamples={requestTypeExamples}
         cytoBands={cytoBands}
       />
     </Layout>

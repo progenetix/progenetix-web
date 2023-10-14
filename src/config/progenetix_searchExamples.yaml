@@ -1,0 +1,67 @@
+---
+- label: "CDKN2A Deletion Example"
+  note: "Example for focal CDKN2A deletion matches."
+  description: |
+    This example shows the query for CNV deletion variants overlapping the
+    CDKN2A gene's coding region with at least a single base, but limited
+    to "highly focal" hits (here i.e. <= ~1Mbp in size). The query can be modified e.g. through changing the position parameters or diagnosis.
+  parameters:
+    referenceName:
+      defaultValue: "refseq:NC_000009.12"
+    start:
+      defaultValue: "21500001-21975098"
+    end:
+      defaultValue: "21967753-22500000"
+    variantType:
+      defaultValue: "EFO:0030067"
+    bioontology:
+      defaultValue: ["NCIT:C3058"]
+- label: "MYC Duplication"
+  note: "Example for focal MYC Duplications."
+  description: >-
+    Query example for an "any overlap", focal deletion in MYC where the
+    search will be limited to cell lines, searched with limit to the "EFO:0030035"
+    material code.
+  parameters:
+    referenceName:
+      defaultValue: "refseq:NC_000008.11"
+    start:
+      defaultValue: "124000000-127736593"
+    end:
+      defaultValue: "127740957-130000000"
+    variantType:
+      defaultValue: "EFO:0030070"
+- label: "TP53 Del. in Cell Lines"
+  note: "Example for TP53 deletion"
+  description: |
+    Query example for an "any overlap", focal deletion in TP53 where the
+    search will be limited to cell lines, searched with limit to the "EFO:0030035"
+    material code.
+  parameters:
+    referenceName:
+      defaultValue: "refseq:NC_000017.11"
+    start:
+      defaultValue: "5000000-7676592"
+    end:
+      defaultValue: "7669608-10000000"
+    variantType:
+      defaultValue: "EFO:0030067"
+    freeFilters:
+      defaultValue: "EFO:0030035"
+- label: "K-562 Cell Line"
+  note: "Instances of K-562 and daughter cell lines, searched by Cellosaurus id"
+  description: |
+    The query retrieves all instances of K-562 and derived cell lines
+    using the "cellosaurus:CVCL_0004" identifier. This is an example for a
+    pure "non-variant" query.
+  parameters:
+    referenceName:
+      defaultValue: ""
+    start:
+      defaultValue: ""
+    end:
+      defaultValue: ""
+    variantType:
+      defaultValue: ""
+    referenceid:
+      defaultValue: ["cellosaurus:CVCL_0004"]

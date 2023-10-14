@@ -1,7 +1,9 @@
 import React from "react"
 import { Layout } from "../../components/Layout"
-import parametersConfig from "../shared/searchParameters.yaml"
-import requestTypesConfig from "./arraymap_searchParameters.yaml"
+import parametersConfig from "../../config/searchParameters.yaml"
+import requestTypeConfig from "../../config/arraymap_searchParameters.yaml"
+import requestTypeExamples from "../../config/arraymap_searchExamples.yaml"
+
 import BiosamplesSearchPanel from "../../components/searchForm/BiosamplesSearchPanel"
 import Panel from "../../components/Panel"
 
@@ -25,7 +27,8 @@ export default function arraymap_dataPage({ cytoBands }) {
       </Panel>
       <BiosamplesSearchPanel
         parametersConfig={parametersConfig}
-        requestTypesConfig={requestTypesConfig}
+        requestTypeConfig={requestTypeConfig}
+        requestTypeExamples={requestTypeExamples}
         cytoBands={cytoBands}
       />
     </Layout>

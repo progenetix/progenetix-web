@@ -20,9 +20,9 @@ body {
 
 @import "button-link";
 
-@import "src/modules/shared/BeaconForm";
-@import "src/modules/shared/Nav";
-@import "src/modules/shared/Subsets";
+@import "BeaconForm";
+@import "Nav";
+@import "Subsets";
 
 @import "~bulma/sass/base/_all";
 @import "~bulma/sass/elements/_all";
