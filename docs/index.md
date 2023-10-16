@@ -1,4 +1,3 @@
-
 # Progenetix Cancer Genomics Platform Documentation Site
 
 The Progenetix database and cancer genomic information resource
