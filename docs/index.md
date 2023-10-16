@@ -1,10 +1,27 @@
-# Progenetix Cancer Genomics Resource Documentation
 
-The Progenetix database and cancer genomic information resource  contains genome profiles of more than 100’000 individual cancer genome screening experiments. The genomic profiling data was derived from genomic arrays and chromosomal [Comparative Genomic Hybridization (CGH)](https://en.wikipedia.org/wiki/Comparative_genomic_hybridization) as well as Whole Genome or Whole Exome Sequencing (WGS, WES) studies. Genomic profiles are either processed from various raw data formats or are extracted from published experimental results.
+# Progenetix Cancer Genomics Platform Documentation Site
+
+The Progenetix database and cancer genomic information resource
+contains genome profiles of more than 100’000 individual cancer genome screening
+experiments. The genomic profiling data was derived from genomic arrays and chromosomal
+[Comparative Genomic Hybridization (CGH)](https://en.wikipedia.org/wiki/Comparative_genomic_hybridization)
+as well as Whole Genome or Whole Exome Sequencing (WGS, WES) studies. Genomic profiles
+are either processed from various raw data formats or are extracted from published
+experimental results.
+![progenetix arraymap cancercelllines logo](/img/arraymap-cancercelllines-progenetix-logos-1200x240.png){: style="float: right; width: 400px; margin-top: 0px;"}
+Additionally to the CNV-centric _progenetix_ collection the platforms ecosystem
+contains additional datasets with partially overlapping content. [_cancercelllines.org_](https://cancercelllines.org)
+is an information resource presenting known mutations from (as of 2023) more than 
+16000 cancer cell lines, additional to more than 5000 CNV profiles from cell line
+profiling experiments. [_arrayMap_](http://arraymap.org) represents the subset of
+the [_progenetix_](https://progenetix.org) data for which probe-specific data from
+genomic array experiments is available.
+
 
 !!! tip "Tracking News"
 
-    For occasional news and messages - and to submit feedback - we suggest that you follow Progenetix on Mastodon ((@progenetix@genomic.social)[https://genomic.social/@progenetix].
+    For occasional news and messages - and to submit feedback - we suggest that you
+    follow Progenetix on Mastodon \@progenetix\@genomic.social [:fontawesome-brands-mastodon:](https://genomic.social/@progenetix)
 
 !!! example "Citation"
 
