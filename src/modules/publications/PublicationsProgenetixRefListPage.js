@@ -17,7 +17,7 @@ export default function PublicationsProgenetixRefListPage() {
     float: "right",
     width: "400px",
     border: "0px",
-    margin: "-90px -10px 0px 0px"
+    margin: "-100px -10px 0px 0px"
   }
 
   return (
@@ -25,15 +25,13 @@ export default function PublicationsProgenetixRefListPage() {
     
       <Panel heading="Articles Citing - or Using - Progenetix" className="content">
         <div>
-          <img src={"/img/progenetix-arraymap-1200x180.png"} style={imgHere} />
+          <img src={"/img/arraymap-cancercelllines-progenetix-logos-1200x240.png"} style={imgHere} />
           This page lists articles which we found to have made use of, or referred to, the Progenetix resource ecosystem. These articles may not necessarily contain original case profiles themselves.
         </div>
         <div>
           Please <a href="mailto:contact@progenetix.org">contact us</a> to alert
-          us about additional articles you are aware of.
-          <br/>
-          <b>New Oct 2021</b> You can now directly submit suggestions for matching
-          publications to the{" "}
+          us about additional articles you are aware of. Also, you can now directly
+          submit suggestions for matching publications to the{" "}
           <ExternalLink
             href="https://github.com/progenetix/oncopubs"
             label="oncopubs repository on Github"
