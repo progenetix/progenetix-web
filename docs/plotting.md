@@ -38,21 +38,21 @@ Please **use option 1** if accessing complete entities (i.e. only using a single
 #### Examples
 
 * customized plot for glioblastoma CNV frequencies, limited to chromosomes 7, 9 and 10
-    - `progenetix.org/services/collationPlots/?id=NCIT:C3058&chr2plot=7,9,10&colorschema=redgreen&size_plotimage_w_px=640`
+    - `progenetix.org/services/collationPlots/?id=NCIT:C3058&plotChros=7,9,10&colorschema=redgreen&size_plotimage_w_px=640`
 
-![](http://progenetix.org/services/collationPlots/?id=NCIT:C3058&chr2plot=7,9,10&colorschema=redgreen&size_plotimage_w_px=640)
+![](http://progenetix.org/services/collationPlots/?id=NCIT:C3058&plotChros=7,9,10&colorschema=redgreen&size_plotimage_w_px=640)
 
 ## Additional plot parameters
 
 Plot parameters can be added to the request using a standard `&__parameter__=__value__`
 syntax.
 
-* `chr2plot`
+* `plotChros`
     - comma-concatenated list of chromosomes to plot
     - default is 1 -> 22 since X & Y are not always correctly normalized for CNV
   frequencies
-        *  `chr2plot=1,2,3,44,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X,Y`
-        *  `chr2plot=9`
+        *  `plotChros=1,2,3,44,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X,Y`
+        *  `plotChros=9`
 * `size_plotimage_w_px`
     - modifies the width of the plot image in px (default 800)
     - <http://progenetix.org/services/collationPlots/?id=PMID:22824167&size_plotimage_w_px=1084>
@@ -70,8 +70,8 @@ syntax.
     - format is `chro` `:` `start` `-` `end` `:` `some text`
     - multiple labels can be concatenated by `,`
     - colors are randomized from a "decent" palette
-    - <http://progenetix.org/services/collationPlots/?id=pgx:icdom-80123&value_plot_y_max=80&chr2plot=5,8&labels=5:0-48000000:Frequent+5p+gain,8:127735434-127742951:MYC&marker_text_px=12>
-    ![](http://progenetix.org/services/collationPlots/?id=pgx:icdom-80123&value_plot_y_max=80&chr2plot=5,8&labels=5:0-48000000:Frequent+5p+gain,8:127735434-127742951:MYC&marker_text_px=12)
+    - <http://progenetix.org/services/collationPlots/?id=pgx:icdom-80123&value_plot_y_max=80&plotChros=5,8&labels=5:0-48000000:Frequent+5p+gain,8:127735434-127742951:MYC&marker_text_px=12>
+    ![](http://progenetix.org/services/collationPlots/?id=pgx:icdom-80123&value_plot_y_max=80&plotChros=5,8&labels=5:0-48000000:Frequent+5p+gain,8:127735434-127742951:MYC&marker_text_px=12)
 * `marker_text_px`
     - text size for the labels (default 10)
 * `marker_opacity`
@@ -86,8 +86,8 @@ syntax.
         *  `greenred`
         *  `bluered`
 
-    - <http://progenetix.org/services/collationPlots/?id=NCIT:C7376&size_plotarea_h_px=40&value_plot_y_max=50&colorschema=bluered&chr2plot=1,3,9,17,22>
-![](http://progenetix.org/services/collationPlots/?id=NCIT:C7376&size_plotarea_h_px=40&value_plot_y_max=50&colorschema=bluered&chr2plot=1,3,9,17,22)
+    - <http://progenetix.org/services/collationPlots/?id=NCIT:C7376&size_plotarea_h_px=40&value_plot_y_max=50&colorschema=bluered&plotChros=1,3,9,17,22>
+![](http://progenetix.org/services/collationPlots/?id=NCIT:C7376&size_plotarea_h_px=40&value_plot_y_max=50&colorschema=bluered&plotChros=1,3,9,17,22)
 
 
 

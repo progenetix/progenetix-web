@@ -14,7 +14,7 @@ information (though you still will find examples e.g. on the [`use-cases`](/use-
 !!! warn "Plot parameters lost the `-` prefix"
 
     We have removed the `-` prefix from the plot parameter names; e.g. the previous
-    `-chr2plot` selector is now simply `chr2plot`. 
+    `-plotChros` selector is now simply `plotChros`. 
 
 <!--more-->
 

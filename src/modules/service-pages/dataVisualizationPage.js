@@ -135,7 +135,7 @@ function DataVisualizationForm({ isQuerying, sampleCount, onSubmit }) {
       <div className="columns">
         <div className="column">
           <InputField
-            name="chr2plot"
+            name="plotChros"
             label="Chromosomes"
             infoText="The chromosomes to be included in the plot, in the order they should appear. The values should just be the comma-separated chromosome numbers (e.g. '1,3,19,X' - unquoted, no spaces). The default is chr 1-22."
             errors={errors}

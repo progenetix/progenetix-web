@@ -50,7 +50,7 @@ An excerpt of the segment file would look like below:
 #meta=>biosample_count=78
 #plotpars=>title="Testing Custom Plot Parameters"
 #plotpars=>subtitle="Some Chromosomes, Colors etc."
-#plotpars=>chr2plot="3,5,7,8,11,13,16"
+#plotpars=>plotChros="3,5,7,8,11,13,16"
 #plotpars=>color_var_dup_hex=#EE4500;color_var_del_hex=#09F911
 #plotpars=>size_title_left_px=300
 #plotpars=>size_text_title_left_px=10
