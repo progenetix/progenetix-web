@@ -74,7 +74,7 @@ export function SubsetHistogram({ id, filter, datasetIds, plotRegionLabels, plot
 export function CallsetHistogram({ csid, datasetIds }) {
   const componentRef = useRef()
   const { width } = useContainerDimensions(componentRef)
-  const url = `${SITE_DEFAULTS.API_PATH}beacon/biosamples/?analysisIds=${csid}&datasetIds=${datasetIds}&output=samplesplot&plot_width=${width}`
+  const url = `${SITE_DEFAULTS.API_PATH}services/sampleplots?analysisIds=${csid}&datasetIds=${datasetIds}&plot_width=${width}`
   // width > 0 to make sure the component is mounted and avoid double fetch
   const dataEffect = useExtendedSWR(width > 0 && url, svgFetcher)
   return (
@@ -87,7 +87,7 @@ export function CallsetHistogram({ csid, datasetIds }) {
 export function BiosamplePlot({ biosid, datasetIds, plotRegionLabels, plotChros}) {
   const componentRef = useRef()
   const { width } = useContainerDimensions(componentRef)
-  const url = `${SITE_DEFAULTS.API_PATH}beacon/biosamples/${biosid}/?datasetIds=${datasetIds}&output=samplesplot&plot_width=${width}&plotRegionLabels=${plotRegionLabels}&plotChros=${plotChros}&forceEmptyPlot=true`
+  const url = `${SITE_DEFAULTS.API_PATH}services/sampleplots/${biosid}?datasetIds=${datasetIds}&plot_width=${width}&plotRegionLabels=${plotRegionLabels}&plotChros=${plotChros}&forceEmptyPlot=true`
   // width > 0 to make sure the component is mounted and avoid double fetch
   const dataEffect = useExtendedSWR(width > 0 && url, svgFetcher)
   return (
