@@ -128,7 +128,7 @@ function PublicationDetails({ publication, id }) {
 
       {progenetixBiosamplesCount > 0 && (
         <div className="mb-5">
-          <SubsetHistogram id={id} filter={id} datasetIds="progenetix" />
+          <SubsetHistogram id={id} datasetIds="progenetix" />
         </div>
       )}
     </section>

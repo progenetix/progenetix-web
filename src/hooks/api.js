@@ -338,10 +338,9 @@ export function useCytomapper(querytext) {
   return useProgenetixApi(url)
 }
 
-export function useSubsethistogram({ datasetIds, id, filter, plotRegionLabels, plotGeneSymbols, plotCytoregionLabels, size, plotChros }) {
+export function useSubsethistogram({ datasetIds, id, plotRegionLabels, plotGeneSymbols, plotCytoregionLabels, size, plotChros }) {
   const svgbaseurl = subsetHistoBaseLink(id, datasetIds)
   const params = []
-  filter && params.push(["filter", filter])
   plotRegionLabels && params.push(["plotRegionLabels", plotRegionLabels])
   plotGeneSymbols && params.push(["plotGeneSymbols", plotGeneSymbols])
   plotCytoregionLabels && params.push(["plotCytoregionLabels", plotCytoregionLabels])
@@ -401,7 +400,7 @@ export function useGeneSymbol({ geneId }) {
 }
 
 export function subsetHistoBaseLink(id, datasetIds) {
-  return `${SITE_DEFAULTS.API_PATH}services/intervalFrequencies/?datasetIds=${datasetIds}&id=${id}&output=histoplot`
+  return `${SITE_DEFAULTS.API_PATH}services/collationplots/?datasetIds=${datasetIds}&id=${id}`
 }
 
 // the targets are resolved by `bycon` (bycon/services/ids.py)
