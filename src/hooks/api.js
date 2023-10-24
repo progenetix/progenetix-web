@@ -313,19 +313,11 @@ export function getServiceItemUrl(id, collection, datasetIds) {
   return `${SITE_DEFAULTS.API_PATH}services/${collection}?id=${id}&datasetIds=${datasetIds}`
 }
 
-export function getDataItemPageUrl(id, entity, datasetIds) {
-  return `${SITE_DEFAULTS.API_PATH}${entity}/?datasetIds=${datasetIds}&${
-    entity == "variants" ? "_id" : "id"
-  }=${id}`
-}
-
 export function NoResultsHelp(id, entity) {
-  const url = getDataItemPageUrl(id, entity, SITE_DEFAULTS.DATASETID)
   return (
     <div className="notification is-size-5">
-      This page will only show content if called with a specific biosample ID
-      which already exists in Progenetix {" "}
-      <strong>{entity}</strong> database, e.g. <a href={url}>{url}</a>.
+      This page will only show content if called with an existing {entity} ID;{" "}
+      is not valid.
     </div>
   )
 }
