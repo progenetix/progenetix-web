@@ -73,7 +73,7 @@ export function SubsetHistogram({ id, datasetIds, plotRegionLabels, plotGeneSymb
 export function CallsetHistogram({ csid, datasetIds }) {
   const componentRef = useRef()
   const { width } = useContainerDimensions(componentRef)
-  const url = `${SITE_DEFAULTS.API_PATH}services/sampleplots?analysisIds=${csid}&datasetIds=${datasetIds}&plot_width=${width}`
+  const url = `${SITE_DEFAULTS.API_PATH}services/sampleplots?plotType=samplesplot&analysisIds=${csid}&datasetIds=${datasetIds}&plot_width=${width}`
   // width > 0 to make sure the component is mounted and avoid double fetch
   const dataEffect = useExtendedSWR(width > 0 && url, svgFetcher)
   return (
