@@ -89,8 +89,6 @@ function DataVisualizationPanel({ datasetIds, accessid, fileId, skip, limit, sam
     "limit": limit,
     "randno": randNo,
     "plotWidth": width,
-    "includeHandovers": "true",
-    "onlyHandovers": "true",
     ...formValues
   })
   const onSubmit = (values) => {

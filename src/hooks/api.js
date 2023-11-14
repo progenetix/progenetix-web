@@ -207,13 +207,10 @@ export function buildQueryParameters(queryData) {
 }
 
 export function useDataVisualization(queryData) {
-
   var q_path = "beacon/biosamples"
-
   if (queryData.fileId && queryData.fileId != "null") {
-    q_path = "services/samplesPlotter"
+    q_path = "services/sampleplots"
   }
-
   return useProgenetixApi(
     queryData
       ? `${SITE_DEFAULTS.API_PATH}${q_path}/?${buildDataVisualizationParameters(
