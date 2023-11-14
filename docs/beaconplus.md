@@ -97,7 +97,6 @@ for more information.
 "filters": [
     {
         "id": "NCIT:C4536",
-        "scope": "biosamples",
         "includeDescendantTerms": false
     }
 ],
@@ -181,15 +180,15 @@ The root path provides the standard `BeaconInfoResponse`.
 * [/biosamples/pgxbs-kftva5c9/](http://progenetix.org/beacon/biosamples/pgxbs-kftva5c9/)
   - retrieval of a single biosample
 
-##### `/biosamples/{id}/genomicVariations/`
+##### `/biosamples/{id}/g_variants/`
 
-* [/biosamples/pgxbs-kftva5c9/genomicVariations/](http://progenetix.org/beacon/biosamples/pgxbs-kftva5c9/genomicVariations/)
+* [/biosamples/pgxbs-kftva5c9/g_variants/](http://progenetix.org/beacon/biosamples/pgxbs-kftva5c9/g_variants/)
   - retrieval of all variants from a single biosample
   - currently - and especially since for a mostly CNV containing resource - `variants` means "variant instances" (or as in the early v2 draft `variantsInSample`)
 
 ##### `/biosamples/{id}/analyses/`
 
-* [/biosamples/pgxbs-kftva5c9/analyses/](http://progenetix.org/beacon/biosamples/pgxbs-kftva5c9/genomicVariations/)
+* [/biosamples/pgxbs-kftva5c9/analyses/](http://progenetix.org/beacon/biosamples/pgxbs-kftva5c9/analyses/)
 
 ----
 
@@ -202,7 +201,9 @@ The root path provides the standard `BeaconInfoResponse`.
   - in Progenetix, this particular code will be part of the annotation for the _biosample(s)_ associated with the returned individual
 * [/individuals/?filters=PATO:0020001,NCIT:C9291](http://progenetix.org/beacon/individuals/?filters=PATO:0020001,NCIT:C9291)
   - this query returns information about individuals with an anal carcinoma (**NCIT:C9291**) and a known male genotypic sex (**PATO:0020001**)
-  - in Progenetix, the information about its sex is associated with the _Individual_ object (and rtherefore in the _individuals_ collection), whereas the information about the cancer type is a property of the _Biosample_ (and therefore stored in the _biosamples_ collection)
+  - in Progenetix, the information about its sex is associated with the _Individual_ object (and rtherefore in the _individuals_ collection), whereas the information about the cancer type is a property of the _Biosample_ (and therefore stored in the _biosamples_ collection). However,
+  cross entity queries are no problem since we support full aggregation across the different
+  models.
 
 ##### `/individuals/{id}/`
 

@@ -44,6 +44,7 @@ markdown_extensions:
   - pymdownx.mark
   - pymdownx.tilde
   - pymdownx.saneheaders
+  - pymdownx.snippets
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
@@ -81,7 +82,6 @@ theme:
     - navigation.instant
     - navigation.tracking
     - navigation.sections
-    # - toc.integrate
   custom_dir: extra
       
 plugins:
@@ -100,6 +100,5 @@ extra:
 extra_css:
   - css/theme_overrides.css
 extra_javascript:
-  # - https://unpkg.com/mermaid/dist/mermaid.min.js
   - https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js
     
