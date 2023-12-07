@@ -159,95 +159,95 @@ This table is maintained in parallel with the [Beacon v2 documentation](http://d
 
 === "Used terms"
 
-```
-id: SO:0001059
-label: sequence_alteration
-  |
-  |-id: SO:0000159
-  | label: deletion
-  |
-  |-id: SO:0000667
-  | label: insertion
-  |
-  |-id: SO:1000002
-  | label: substitution
+    ```
+    id: SO:0001059
+    label: sequence_alteration
       |
-      |-id: SO:0002007
-      | label: MNV (multiple nucleotide variant)
+      |-id: SO:0000159
+      | label: deletion
       |
-      |-id: SO:0001483
-        label: SNV (single nucleotide variant)
-```
+      |-id: SO:0000667
+      | label: insertion
+      |
+      |-id: SO:1000002
+      | label: substitution
+          |
+          |-id: SO:0002007
+          | label: MNV (multiple nucleotide variant)
+          |
+          |-id: SO:0001483
+            label: SNV (single nucleotide variant)
+    ```
 
 === "Extended tree"
 
-```
-id: SO:0001059
-label: sequence_alteration
-  |
-  |-id: SO:0001744
-  | label: UPD (uniparental disomy)
-  |
-  |-id: SO:0000159
-  | label: deletion
-  |
-  |-id: SO:1000032
-  | label: delins
-  |
-  |-id: SO:0000667
-  | label: insertion
-  |
-  |-id: SO:1000036
-  | label: inversion
-  |
-  |-id: SO:0000248
-  | label: sequence_length_alteration
-  |   |
-  |   |-id: SO:0001019
-  |   | label: copy_number_variation
-  |   |   |
-  |   |   |-id: SO:0001742
-  |   |   | label: copy_number_gain
-  |   |   |
-  |   |   |-id: SO:0001743
-  |   |   | label: copy_number_loss
-  |   |   |
-  |   |   |-id: SO:0002210
-  |   |     label: presence_absence_variation
-  |   |
-  |   |-id: SO:0002096
-  |   | label: short_tandem_repeat_variation
-  |   |
-  |   |-id: SO:0000207
-  |     label: simple_sequence_length_variation
-  |
-  |-id: SO:0001785
-  | label: structural_alteration
-  |   |
-  |   |-id: SO:0001784
-  |   | label: complex_structural_alteration
-  |   |   |
-  |   |   |-id: SO:0002062
-  |   |     label: complex_chromosomal_rearrangement
-  |   |
-  |   |-id: SO:0001872
-  |   | label: rearrangement_region
-  |   |
-  |   |-id: SO:0000199
-  |     label: translocation
-  |       |
-  |       |-id: SO:1000044
-  |         label: chromosomal_translocation
-  |
-  |-id: SO:1000002
-  | label: substitution
+    ```
+    id: SO:0001059
+    label: sequence_alteration
       |
-      |-id: SO:0002007
-      | label: MNV (multiple nucleotide variant)
+      |-id: SO:0001744
+      | label: UPD (uniparental disomy)
       |
-      |-id: SO:0001483
-        label: SNV (single nucleotide variant)
-```
+      |-id: SO:0000159
+      | label: deletion
+      |
+      |-id: SO:1000032
+      | label: delins
+      |
+      |-id: SO:0000667
+      | label: insertion
+      |
+      |-id: SO:1000036
+      | label: inversion
+      |
+      |-id: SO:0000248
+      | label: sequence_length_alteration
+      |   |
+      |   |-id: SO:0001019
+      |   | label: copy_number_variation
+      |   |   |
+      |   |   |-id: SO:0001742
+      |   |   | label: copy_number_gain
+      |   |   |
+      |   |   |-id: SO:0001743
+      |   |   | label: copy_number_loss
+      |   |   |
+      |   |   |-id: SO:0002210
+      |   |     label: presence_absence_variation
+      |   |
+      |   |-id: SO:0002096
+      |   | label: short_tandem_repeat_variation
+      |   |
+      |   |-id: SO:0000207
+      |     label: simple_sequence_length_variation
+      |
+      |-id: SO:0001785
+      | label: structural_alteration
+      |   |
+      |   |-id: SO:0001784
+      |   | label: complex_structural_alteration
+      |   |   |
+      |   |   |-id: SO:0002062
+      |   |     label: complex_chromosomal_rearrangement
+      |   |
+      |   |-id: SO:0001872
+      |   | label: rearrangement_region
+      |   |
+      |   |-id: SO:0000199
+      |     label: translocation
+      |       |
+      |       |-id: SO:1000044
+      |         label: chromosomal_translocation
+      |
+      |-id: SO:1000002
+      | label: substitution
+          |
+          |-id: SO:0002007
+          | label: MNV (multiple nucleotide variant)
+          |
+          |-id: SO:0001483
+            label: SNV (single nucleotide variant)
+    ```
 
 | [Sequence Ontology](http://www.sequenceontology.org/) | Definition |
 | ------------------------------------------- | --------------------------------------------- |
