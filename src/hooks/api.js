@@ -82,13 +82,12 @@ export async function tryFetch(url, fallBack = "N/A") {
  * When param is null no query will be triggered.
  */
 
-// This Beacon query only retrieves the counts & handovers using a custom `output=handoversonly`
+// This Beacon query only retrieves the counts & handovers using a custom `includeHandovers=true`
 // parameter, to avoid "double-loading" of the results.
-// TODO: refactor using requestedGranularity ...
 export function useBeaconQuery(queryData) {
   return useProgenetixApi(
     queryData
-      ? `${SITE_DEFAULTS.API_PATH}beacon/biosamples/?includeHandovers=true&requestedGranularity=record&onlyHandovers=true&${buildQueryParameters(queryData)}`
+      ? `${SITE_DEFAULTS.API_PATH}beacon/biosamples/?includeHandovers=true&requestedGranularity=count&${buildQueryParameters(queryData)}`
       : null
   )
 }
