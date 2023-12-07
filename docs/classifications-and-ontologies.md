@@ -25,6 +25,7 @@ parameters such as platform technologies. Overall, the Progenetix resource uses 
 | cellosaurus  | Cellosaurus - a knowledge resource on cell lines [^5]| cellosaurus:CVCL_1650 |
 | UBERON       | Uberon Anatomical Ontology[^6]   |UBERON:0000992|
 | cbioportal   | cBioPortal[^9]                   | [cbioportal:msk_impact_2017](http://progenetix.org/services/ids/cbioportal:msk_impact_2017) |
+| SO | Sequence Ontology[^11]       | [SO:0000704](http://progenetix.org/services/ids/SO:0000704) |
 
 
 ### Private filters
@@ -139,6 +140,176 @@ label: copy number assessment
                    region does not extend >3Mb (varying 1-5Mb) and may exist in a large number of
                    copies
 ```
+This table is maintained in parallel with the [Beacon v2 documentation](http://docs.genomebeacons.org/variant-queries/#term-use-comparison).
+
+| [EFO](http://www.ebi.ac.uk/efo/EFO_0030063) | Beacon | [VCF](https://samtools.github.io/hts-specs/) | SO       | GA4GH [VRS](https://vrs.ga4gh.org/en/latest/terms_and_model.html#copynumberchange)[^1] | Notes |
+| ------------------------------------------- | ------------------------------------------------------------------------------ | -------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| <nobr>[`EFO:0030070`](http://www.ebi.ac.uk/efo/EFO_0030070)</nobr> copy number gain | `DUP`[^2] or<br/><nobr>[`EFO:0030070`](http://www.ebi.ac.uk/efo/EFO_0030070)</nobr> | `DUP`<br/><nobr>`SVCLAIM=D`[^3]</nobr> | [`SO:0001742`](http://www.sequenceontology.org/browser/current_release/term/SO:0001742) copy_number_gain | <nobr>[`EFO:0030070`](http://www.ebi.ac.uk/efo/EFO_0030070) gain  | a sequence alteration whereby the copy number of a given genomic region is greater than the reference sequence |
+| [`EFO:0030071`](http://www.ebi.ac.uk/efo/EFO_0030071) low-level copy number gain| `DUP`[^2] or<br/><nobr>[`EFO:0030071`](http://www.ebi.ac.uk/efo/EFO_0030071)</nobr> | `DUP`<br/><nobr>`SVCLAIM=D`[^3]</nobr> | [`SO:0001742`](http://www.sequenceontology.org/browser/current_release/term/SO:0001742) copy_number_gain   | <nobr>[`EFO:0030071`](http://www.ebi.ac.uk/efo/EFO_0030071)</nobr> low-level gain |                                                                                                                             |
+| [`EFO:0030072`](http://www.ebi.ac.uk/efo/EFO_0030072) high-level copy number gain | `DUP`[^2] or<br/><nobr>[`EFO:0030072`](http://www.ebi.ac.uk/efo/EFO_0030072)</nobr> | `DUP`<br/><nobr>`SVCLAIM=D`[^3]</nobr> | [`SO:0001742`](http://www.sequenceontology.org/browser/current_release/term/SO:0001742) copy_number_gain | <nobr>[`EFO:0030072`](http://www.ebi.ac.uk/efo/EFO_0030072)</nobr> high-level gain | commonly but not consistently used for >=5 copies on a bi-allelic genome region                                             |
+| [`EFO:0030073`](http://www.ebi.ac.uk/efo/EFO_0030073) focal genome amplification  | `DUP`[^2] or<br/><nobr>[`EFO:0030073`](http://www.ebi.ac.uk/efo/EFO_0030073)</nobr> | `DUP`<br/><nobr>`SVCLAIM=D`[^3]</nobr> | [`SO:0001742`](http://www.sequenceontology.org/browser/current_release/term/SO:0001742) copy_number_gain | <nobr>[`EFO:0030072`](http://www.ebi.ac.uk/efo/EFO_0030072)</nobr> high-level gain[^4]  | commonly but not consistently used for >=5 copies on a bi-allelic genome region, of limited size (operationally max. 1-5Mb) |
+| [`EFO:0030067`](http://www.ebi.ac.uk/efo/EFO_0030067) copy number loss            | `DEL`[^2] or<br/><nobr>[`EFO:0030067`](http://www.ebi.ac.uk/efo/EFO_0030067)</nobr> | `DEL`<br/><nobr>`SVCLAIM=D`[^3]</nobr> | [`SO:0001743`](http://www.sequenceontology.org/browser/current_release/term/SO:0001743) copy_number_loss | <nobr>[`EFO:0030067`](http://www.ebi.ac.uk/efo/EFO_0030067)</nobr> loss            | a sequence alteration whereby the copy number of a given genomic region is smaller than the reference sequence              |
+| [`EFO:0030068`](http://www.ebi.ac.uk/efo/EFO_0030068) low-level copy number loss  | `DEL`[^2] or<br/><nobr>[`EFO:0030068`](http://www.ebi.ac.uk/efo/EFO_0030068)</nobr> | `DEL`<br/><nobr>`SVCLAIM=D`[^3]</nobr> | [`SO:0001743`](http://www.sequenceontology.org/browser/current_release/term/SO:0001743) copy_number_loss | <nobr>[`EFO:0030068`](http://www.ebi.ac.uk/efo/EFO_0030068)</nobr> low-level loss  |                                                                                             |
+| [`EFO:0020073`](http://www.ebi.ac.uk/efo/EFO_0020073) high-level copy number loss  | `DEL`[^2] or<br/><nobr>[`EFO:0020073`](https://github.com/EBISPOT/efo/issues/1941)</nobr> | `DEL`<br/><nobr>`SVCLAIM=D`[^3]</nobr> | [`SO:0001743`](http://www.sequenceontology.org/browser/current_release/term/SO:0001743) copy_number_loss | <nobr>[`EFO:0020073`](https://github.com/EBISPOT/efo/issues/1941)</nobr> high-level loss  | a loss of several copies; also used in cases where a complete genomic deletion cannot be asserted |
+| [`EFO:0030069`](http://www.ebi.ac.uk/efo/EFO_0030069) complete genomic deletion   | `DEL`[^2] or<br/><nobr>[`EFO:0030069`](http://www.ebi.ac.uk/efo/EFO_0030069)</nobr> | `DEL`<br/><nobr>`SVCLAIM=D`[^3]</nobr> | [`SO:0001743`](http://www.sequenceontology.org/browser/current_release/term/SO:0001743) copy_number_loss | <nobr>[`EFO:0030069`](http://www.ebi.ac.uk/efo/EFO_0030069)</nobr> complete genomic loss   | complete genomic deletion (e.g. homozygous deletion on a bi-allelic genome region)                                          |
+-------------------------------------------------------------------------------
+## Sequence Variation (SNV Ontology)
+```
+id: SO:0001059
+label: sequence_alteration
+  |
+  |-id: SO:0001744
+  | label: UPD (uniparental disomy)
+  |
+  |-id: SO:0000159
+  | label: deletion
+  |
+  |-id: SO:1000032
+  | label: delins
+  |
+  |-id: SO:0000667
+  | label: insertion
+  |
+  |-id: SO:1000036
+  | label: inversion
+  |
+  |-id: SO:0000248
+  | label: sequence_length_alteration
+  |   |
+  |   |-id: SO:0001019
+  |   | label: copy_number_variation
+  |   |   |
+  |   |   |-id: SO:0001742
+  |   |   | label: copy_number_gain
+  |   |   |
+  |   |   |-id: SO:0001743
+  |   |   | label: copy_number_loss
+  |   |   |
+  |   |   |-id: SO:0002210
+  |   |     label: presence_absence_variation
+  |   |
+  |   |-id: SO:0002096
+  |   | label: short_tandem_repeat_variation
+  |   |
+  |   |-id: SO:0000207
+  |     label: simple_sequence_length_variation
+  |
+  |-id: SO:0001785
+  | label: structural_alteration
+  |   |
+  |   |-id: SO:0001784
+  |   | label: complex_structural_alteration
+  |   |   |
+  |   |   |-id: SO:0002062
+  |   |     label: complex_chromosomal_rearrangement
+  |   |
+  |   |-id: SO:0001872
+  |   | label: rearrangement_region
+  |   |
+  |   |-id: SO:0000199
+  |     label: translocation
+  |       |
+  |       |-id: SO:1000044
+  |         label: chromosomal_translocation
+  |
+  |-id: SO:1000002
+  | label: substitution
+      |
+      |-id: SO:0002007
+      | label: MNV (multiple nucleotide variant)
+      |
+      |-id: SO:0001483
+        label: SNV (single nucleotide variant)
+```
+| [Sequence Ontology](http://www.sequenceontology.org/) | Definition |
+| ------------------------------------------- | --------------------------------------------- |
+| [`SO:0001059`](http://www.sequenceontology.org/browser/current_release/term/SO:0001059) sequence_alteration | A sequence alteration is a sequence feature whose extent is the deviation from another sequence. |
+| [`SO:0001483`](http://www.sequenceontology.org/browser/current_release/term/SO:0001483) SNV | SNVs are single nucleotide positions in genomic DNA at which different sequence alternatives exist. |
+| [`SO:0002007`](http://www.sequenceontology.org/browser/current_release/term/SO:0002007) MNV | An MNV is a multiple nucleotide variant (substitution) in which the inserted sequence is the same length as the replaced sequence. |
+| [`SO:0000159`](http://www.sequenceontology.org/browser/current_release/term/SO:0000159) deletion | The point at which one or more contiguous nucleotides were excised. |
+| [`SO:0000667`](http://www.sequenceontology.org/browser/current_release/term/SO:0000667) insertion | The sequence of one or more nucleotides added between two adjacent nucleotides in the sequence. |
+
+## Variant Schemas
+
+### GA4GH "Variant Representation" schema
+
+The "Genomic Knowledge Standards" (GKS) of the Global Alliance for Genomics and
+Health [GA4GH](http://ga4gh.org) develops a modern schema for the unambiguous
+representation, transmission and recovery of sequence variants (genomic and
+beyond).
+The first release of the GA4GH Variation Representation Specification
+([vr-spec v1.0](https://github.com/ga4gh/vr-spec/releases/tag/1.0.0))
+does not yet include the option to represent structural variants. However, the
+internal roadmap of the project points towards an extension for CNV
+representation in 2020.
+
+### Links
+
+* _vr-spec_ [repository](https://github.com/ga4gh/vr-spec)
+* [documentation](https://vr-spec.readthedocs.io/en/1.0/)
+
+
+### Ad-Hoc & "Community" Formats
+
+### _Progenetix_ `Variant` schema
+
+The [Progenetix](http://progenetix.org) cancer genomics resource store their millions of CNVs
+in as data objects in [MongoDB](http://mongodb.org) document databases. The
+format of the single variants is based on the Beacon v2 default model with some
+modifications (e.g. incorporating the VRS 1.3 `RelativeCopyNumber` concept but
+w/ slightly rewrapped components).
+
+The _Progenetix_ data serves as the repository behind the
+[Beacon<span style="color: red; font-weight: 800;">+</span>](http://beaconplus.progenetix.org)
+forward looking implementation of the [ELIXIR Beacon](http://beacon-project.io) project.
+Accordingly, upon export through the API variants are re-mapped to a Beacon v2 representation.
+
+#### Progenetix CNV example
+
+```json
+{
+  "id": "pgxvar-5bab576a727983b2e00b8d32",
+  "variant_internal_id": "11:52900000-134452384:DEL",
+  "callset_id": "pgxcs-kftvldsu",
+  "biosample_id": "pgxbs-kftva59y",
+  "individual_id": "pgxind-kftx25eh",
+  "variant_state": { "id": "EFO:0030067", "label": "copy number loss" },
+  "type": "RelativeCopyNumber",
+  "location": {
+    "sequence_id": "refseq:NC_000011.10",
+    "chromosome": "11",
+    "type": "SequenceLocation",
+    "interval": { "start": 52900000, "end": 134452384 }
+    },
+  "updated": "2022-03-29T14:36:47.454674"
+}
+```
+#### Progenetix SNV example
+
+```json
+  {
+    "updated": "2023-05-25T17:03:45.096849",
+    "callset_id": "pgxcs-kl8hg1r8",
+    "biosample_id": "pgxbs-kl8hg1r4",
+    "id": "pgxvar-5be1840772798347f0ed9d9d",
+    "variant_internal_id": "5:67589139:G>A",
+    "location": {
+      "sequence_id": "refseq:NC_000005.10",
+      "chromosome": "5",
+      "start": 67589138,
+      "end": 67589139
+    },
+    "individual_id": "pgxind-kl8hg1r5",
+    "info": { "version": "v23" },
+    "reference_sequence": "G",
+    "sequence": "A",
+    "variant_state": { "id": "SO:0001059", "label": "sequence_alteration" }
+  }
+```
+
+### Links
+
+* schema in _progenetix/bycon_ [code repository](https://github.com/progenetix/bycon/blob/master/schemas/src/progenetix-database-schemas/pgxVariant.yaml)
 
 -------------------------------------------------------------------------------
 
@@ -196,3 +367,4 @@ The current version of the JSON Schema data schema for the geolocation object ca
 [^8]: Supports [TCGA](https://portal.gdc.cancer.gov) Sample UUID.
 [^9]: Supports [cBioPortal](https://www.cbioportal.org/datasets) Study ID.
 [^10]: Cohorts defined in Progenetix involving a collection of related samples. Currently includes (add `pgx:cohort-`): arraymap, 2021progenetix, DIPG, TCGA, TCGAcancers, [gao2021signatures](http://progenetix.org/progenetix-cohorts/gao-2021-signatures/).
+[^11]: [Sequence Ontology](https://www.sequenceontology.org/) ID
