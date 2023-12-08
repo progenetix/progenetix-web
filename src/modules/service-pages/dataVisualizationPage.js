@@ -39,7 +39,7 @@ const DataVisualizationPage = withUrlQuery(({ urlQuery }) => {
         <div ref={componentRef}>
           {sampleCount > sampleMaxNo && (
             <p>
-              Please limit the visualization to about {sampleMaxNo} samples...
+              Please limit the visualization to about {sampleMaxNo} samples; otherwise this might time out...
             </p>
           )}
           {width > 0 && (
@@ -49,7 +49,6 @@ const DataVisualizationPage = withUrlQuery(({ urlQuery }) => {
               fileId={fileId}
               skip={skip}
               limit={limit}
-              sampleCount={sampleCount}
               width={width}
             />
           )}
@@ -74,23 +73,16 @@ function NoResultsHelp() {
 }
 
 // TODO: rewrite to use simple plot endpoint calls instead of the biosamples + handovers construct...
-function DataVisualizationPanel({ datasetIds, accessid, fileId, skip, limit, sampleCount, width }) {
+function DataVisualizationPanel({ datasetIds, accessid, fileId, skip, limit, width }) {
   const [formValues, setFormValues] = useState({})
-
-  var randNo = null
-  if (sampleCount > sampleMaxNo) {
-    randNo = sampleMaxNo
-  }
-
   const dataResult = useDataVisualization({
     "datasetIds": datasetIds,
     "accessid": accessid,
     "fileId": fileId,
     "skip": skip,
     "limit": limit,
-    "randno": randNo,
     "plotWidth": width,
-    "requestedGranularity": "count",
+      "requestedGranularity": "count",
     "includeHandovers": "true",
     ...formValues
   })
@@ -104,7 +96,6 @@ function DataVisualizationPanel({ datasetIds, accessid, fileId, skip, limit, sam
         <div className="mb-6 column">
           <DataVisualizationForm
             isQuerying={false}
-            sampleCount={sampleCount}
             onSubmit={onSubmit}
           />
         </div>
@@ -118,17 +109,12 @@ function DataVisualizationPanel({ datasetIds, accessid, fileId, skip, limit, sam
   )
 }
 
-function DataVisualizationForm({ isQuerying, sampleCount, onSubmit }) {
-  var randNo = null
-  if (sampleCount > sampleMaxNo) {
-    randNo = sampleMaxNo
-  }
+function DataVisualizationForm({ isQuerying, onSubmit }) {
 
   const defaultValues = {
     "group_by": "",
     "plotRegionLabels": null,
-    "plotGeneSymbols": null,
-    "randno": randNo
+    "plotGeneSymbols": null
   }
   const { register, handleSubmit, errors, control } = useForm({ defaultValues })
   return (
@@ -143,20 +129,6 @@ function DataVisualizationForm({ isQuerying, sampleCount, onSubmit }) {
             register={register}
           />
         </div>
-{/*
-        <div className="column">
-          <InputField
-            name="randno"
-            label="Random Samples (no.)"
-            errors={errors}
-            infoText="Use this to pull a random selection, e.g. if the number of samples is very high (>1000)."
-            register={register}
-          />
-        </div>
-
-      </div>
-      <div className="columns">
-*/}   
         <div className="column">
           <SelectField
             name="group_by"

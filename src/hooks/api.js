@@ -326,9 +326,19 @@ export function useCytomapper(querytext) {
   return useProgenetixApi(url)
 }
 
-export function useSubsethistogram({ datasetIds, id, plotRegionLabels, plotGeneSymbols, plotCytoregionLabels, size, plotChros }) {
+export function useSubsethistogram({
+  datasetIds,
+  id,
+  fileId,
+  plotRegionLabels,
+  plotGeneSymbols,
+  plotCytoregionLabels,
+  size,
+  plotChros
+}) {
   const svgbaseurl = subsetHistoBaseLink(id, datasetIds)
   const params = []
+  fileId && params.push(["fileId", fileId])
   plotRegionLabels && params.push(["plotRegionLabels", plotRegionLabels])
   plotGeneSymbols && params.push(["plotGeneSymbols", plotGeneSymbols])
   plotCytoregionLabels && params.push(["plotCytoregionLabels", plotCytoregionLabels])
