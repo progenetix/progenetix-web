@@ -151,7 +151,7 @@ export function DatasetResultBox({ data: responseSet, query }) {
           </div>
           <div>
             <b>Retrieved Samples: </b>
-            {paginatedResultsCount}
+            {resultsCount}
           </div>
           {info.counts.variants > 0 ? (
             <div>
