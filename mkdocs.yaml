@@ -14,6 +14,7 @@ nav:
   - Services API: services
   - File Formats: file-formats
   - Beacon+ API & bycon: beaconplus
+  - Analysis in R - pgxRpi: pgxRpi
   - Plotting & Visualizations: plotting
   - Use Case Examples: use-cases
   - Classifications, Ontologies & Standards: classifications-and-ontologies
