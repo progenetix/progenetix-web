@@ -9,7 +9,7 @@ One of the main use cases for the Progenetix resource is the exploration of freq
     - the overall amount of CNVs in the samples
     - the local specificity, i.e. the "focality" of the CNVs
 
-The [Progenetix Search Page](http://progenetix.org/biosamples/) supports the exploration of regional CNVs through
+The [Progenetix Search Page](http://progenetix.org/search/) supports the exploration of regional CNVs through
 
 * support for inserting positions of genes or cytobands into standard Beacon query parameter fields
 * selection support for hierarchical disease annotations
@@ -19,7 +19,22 @@ The response of the queries for genomic variants provide some basic statistics, 
 
 ### Example Procedure
 
-**TBD**
+* go to the [Progenetix Search Page](http://progenetix.org/search/) (or the equivalent
+  page at other resources)
+* retrive the gene coordinates by clicking the `Gene Spans` button and typing the
+  start f a HUGO gene symbol (e.g. `CDK`); select the gene of interest
+* the panel should now show the coordinates (start + end + reference/chromosome);
+  select `Apply` to insert the values into the form
+* the values represent the genome coordinates for the maximum coding region of the
+  gene; if you want to include the flanking regions, you can change the values
+  accordingly or convert into a bracket query by changing those to ranges around
+  start end end
+    - e.g. change the `start` value from `60778331` to `60000000-60778330` and the
+      `end` value from `60794852` to `60794853-61500000`; here the start bracket
+      and the end brackets cover regions just outside the CDR, e.g. to match small CNVs
+      that cober the whole region
+* select the `Variant Type`
+* `Query Database`
 
 ---
 

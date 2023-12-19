@@ -137,6 +137,7 @@ classDiagram
         variant_type
         ...
     }
+
 ```
 
 ## Data Query Model
