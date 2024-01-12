@@ -1,21 +1,21 @@
 import React, { useState } from "react"
 import { useBeaconQuery } from "../../hooks/api"
 import Panel from "../Panel"
-// import { FaSlidersH } from "react-icons/fa"
 import { BiosamplesSearchForm } from "./BiosamplesSearchForm"
 import { BiosamplesResults } from "../searchResults/BiosamplesResults"
 import PropTypes from "prop-types"
 // import cn from "classnames"
 
 BiosamplesSearchPanel.propTypes = {
-  requestTypeConfig: PropTypes.object.isRequired,
   parametersConfig: PropTypes.object.isRequired,
+  beaconQueryTypes: PropTypes.object.isRequired,
+  requestTypeExamples: PropTypes.object.isRequired,
   collapsed: false
 }
 
 export default function BiosamplesSearchPanel({
-  requestTypeConfig,
   parametersConfig,
+  beaconQueryTypes,
   requestTypeExamples,
   cytoBands,
   collapsed
@@ -68,9 +68,9 @@ export default function BiosamplesSearchPanel({
       >
         <BiosamplesSearchForm
           cytoBands={cytoBands}
-          requestTypeConfig={requestTypeConfig}
-          requestTypeExamples={requestTypeExamples}
           parametersConfig={parametersConfig}
+          beaconQueryTypes={beaconQueryTypes}
+          requestTypeExamples={requestTypeExamples}
           isQuerying={isLoading}
           setSearchQuery={onValidFormQuery}
         />

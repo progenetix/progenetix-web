@@ -20,17 +20,14 @@ import dynamic from "next/dynamic"
 import { getVisualizationLink } from "../../modules/service-pages/dataVisualizationPage"
 
 const HANDOVER_IDS = {
-  histoplot: "histoplot", //  "pgx:HO.histoplot",
-  biosamples: "biosamples", //  "pgx:HO.biosamples",
-  biosamplestable: "biosamplestable", //  "pgx:HO.biosamplestable",
-  // biosamplevariants: "biosamplevariants", //  "pgx:HO.biosamplevariants",
-  // biosamplepgxsegvariants: "biosamplepgxsegvariants", //  "pgx:HO.biosamples-pgxseg",
-  // biosamplevcfvariants: "biosamplevcfvariants", //  "pgx:HO.biosamples-vcf",
-  phenopackets: "phenopackets", //  "pgx:HO.phenopackets",
-  UCSClink: "UCSClink", //  "pgx:HO.bedfile2ucsc"
+  histoplot: "histoplot",
+  biosamples: "biosamples",
+  biosamplestable: "biosamplestable",
+  phenopackets: "phenopackets",
+  UCSClink: "UCSClink",
   variants: "variants",
   pgxseg: "pgxseg",
-  vcf: "vcf" //  "EDAM:3016"
+  vcf: "vcf"
 }
 
 const TABS = {
@@ -332,8 +329,8 @@ function CnvHistogramPreview({ url: urlString }) {
   const { width } = useContainerDimensions(componentRef)
   url.search = new URLSearchParams([
     ...url.searchParams.entries(),
-    ["plot_width", width]
-  ]).toString()
+    // ["plotPars=plot_width", width]
+  ]).toString() + "&plotPars=plot_width=" + width
   let withoutOrigin = replaceWithProxy(url)
   // width > 0 to make sure the component is mounted and avoid double fetch
   const dataEffect = useExtendedSWR(width > 0 && withoutOrigin, svgFetcher)

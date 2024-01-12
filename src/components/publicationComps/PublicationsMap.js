@@ -9,7 +9,8 @@ import {
 import { PublicationCompactTable } from "./PublicationTables"
 import { groupBy } from "lodash"
 import useDeepCompareEffect from "use-deep-compare-effect"
-import ReactDOM from "react-dom"
+// import ReactDOM from "react-dom"
+import { createRoot } from 'react-dom';
 
 export default function PublicationsMap({ publications, height }) {
   const mapRef = useRef(null)
@@ -28,9 +29,11 @@ export default function PublicationsMap({ publications, height }) {
       const randomId = Math.random().toString(36).substring(2, 15)
       const geoLocation = publications[0].provenance.geoLocation
       const radius = 3000 + 2000 * publications.length
+      const root = document.getElementById('root');
+      const reactRoot = createRoot(root);
       const render = () =>
         // eslint-disable-next-line react/no-render-return-value
-        ReactDOM.render(
+          reactRoot.render(
           <PublicationCompactTable publications={publications} />,
           document.getElementById(randomId)
         )

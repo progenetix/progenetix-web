@@ -1,67 +1,150 @@
 ---
-- label: "CDKN2A Deletion Example"
+- label: "CNV Example"
   note: "Example for focal CDKN2A deletion matches."
   description: |
     This example shows the query for CNV deletion variants overlapping the
     CDKN2A gene's coding region with at least a single base, but limited
-    to "highly focal" hits (here i.e. <= ~1Mbp in size). The query can be modified e.g. through changing the position parameters or diagnosis.
+    to "focal" hits (here i.e. <= ~2Mbp in size). The query is against the
+    examplez collection and can be modified e.g. through changing the position
+    parameters or data source.
+  img: /img/BeaconBracketQuery-limited-match-graphics.png
   parameters:
     referenceName:
-      defaultValue: "refseq:NC_000009.12"
+      isHidden: false
+      defaultValue: "9" #"refseq:NC_000009.12"
     start:
-      defaultValue: "21500001-21975098"
+      isHidden: false
+      defaultValue: "21000001-21975098"
     end:
-      defaultValue: "21967753-22500000"
+      isHidden: false
+      defaultValue: "21967753-23000000"
     variantType:
+      isHidden: false
       defaultValue: "EFO:0030067"
-    bioontology:
-      defaultValue: ["NCIT:C3058"]
-- label: "MYC Duplication"
-  note: "Example for focal MYC Duplications."
-  description: >-
-    Query example for an "any overlap", focal deletion in MYC where the
-    search will be limited to cell lines, searched with limit to the "EFO:0030035"
-    material code.
-  parameters:
-    referenceName:
-      defaultValue: "refseq:NC_000008.11"
-    start:
-      defaultValue: "124000000-127736593"
-    end:
-      defaultValue: "127740957-130000000"
-    variantType:
-      defaultValue: "EFO:0030070"
-- label: "TP53 Del. in Cell Lines"
-  note: "Example for TP53 deletion"
+    alternateBases:
+      isHidden: true
+    referenceBases:
+      isHidden: true
+    allTermsFilters:
+      isHidden: false
+      defaultValue: [NCIT:C3058]
+
+- label: "SNV Example"
+  note: "Example for specific EIF4A1 mutation"
   description: |
-    Query example for an "any overlap", focal deletion in TP53 where the
-    search will be limited to cell lines, searched with limit to the "EFO:0030035"
-    material code.
+    This example shows a core Beacon query, against a specific
+    mutation in the EIF4A1 gene, in the DIPG childhood brain tumor dataset.
   parameters:
     referenceName:
-      defaultValue: "refseq:NC_000017.11"
+      isHidden: false
+      defaultValue: "17" #"refseq:NC_000017.11"
     start:
-      defaultValue: "5000000-7676592"
-    end:
-      defaultValue: "7669608-10000000"
+      isHidden: false
+      defaultValue: 7577121
     variantType:
-      defaultValue: "EFO:0030067"
+      isHidden: false
+      defaultValue: "SO:0001059"
+    alternateBases:
+      isHidden: false
+      defaultValue: "A"
+    referenceBases:
+      isHidden: false
+      defaultValue: "G"
+
+- label: "Range Example"
+  note: "Example for EIF4A1 transcript region matches (precise variants)"
+  description: |
+    As in the standard SNV query, this example shows a Beacon query against
+    mutations in the `EIF4A1` gene in the DIPG childhood brain tumor dataset.
+    However, this range + wildcard query will return any variant with
+    alternate bases (indicated through "N").
+    Since parameters will be interpreted using an "AND" paradigm, either <i>Alternate
+    Bases</i> OR <i>Variant Type</i> should be specified.
+    The exact variants which were being found can be retrieved through the variant
+    handover [H—>O] link.
+  parameters:
+    datasetIds:
+      isHidden: false
+      defaultValue: ["progenetix"]
+    referenceName:
+      isHidden: false
+      defaultValue: "17" # "refseq:NC_000017.11"
+    start:
+      isHidden: false
+      defaultValue: 7572826
+    end:
+      isHidden: false
+      defaultValue: 7579005
+    variantType:
+      isHidden: false
+      defaultValue: "SO:0001059"
+    alternateBases:
+      isHidden: false
+      defaultValue: ""
+    referenceBases:
+      isHidden: false
+      defaultValue: ""
+  img: /img/BeaconRangeQuery-graphics.png
+
+- label: "Gene Match"
+  note: |
+    Where supported beacons can discover variants overlap with the region of a known gene.
+  description: |
+    Beacons in v2 can support the discovery of variants with overlap with the
+    genomic location of a gene, indicated by its symbol (e.g. `CDK2`). Additional
+    parameters can _optionally_ be used to make matches more specific:
+    - `variantMinLength` and `variantMaxLength` to limit matched CNV sizes
+    - `genomicAlleleShortForm` (e.g. `V600E` with `BRAF`)
+    - `variantType` and `alternateBases` to specify variants
+  img: /img/BeaconGeneQuery-graphics.png
+  parameters:
+    geneId:
+      isHidden: false
+      defaultValue:
+        data:
+          symbol: CDK2
+        label: "CDK2 (12:55966830-55972789)"
+    referenceName:
+      isHidden: true
+    start:
+      isHidden: true
+    end:
+      isHidden: true
+    variantMinLength:
+      isHidden: false
+    variantMaxLength:
+      isHidden: false
+    variantType:
+      isHidden: false
+    alternateBases:
+      isHidden: false
+    referenceBases:
+      isHidden: true
+
+- label: "Identifier - HeLa"
+  note: "Samples can be identified through identifiers."
+  description: |
+    This example retrieves _HeLa_ instances - including cell lines derived from
+    _HeLa_ - by _HeLa's_ _cellosaurus_ identifier `cellosaurus:CVCL_0030`.
+  parameters:
+    aminoacidChange:
+      isHidden: true
+    geneId:
+      isHidden: true
+    referenceName:
+      isHidden: true
+    start:
+      isHidden: true
+    end:
+      isHidden: true
+    variantType:
+      isHidden: true
+    alternateBases:
+      isHidden: true
+    referenceBases:
+      isHidden: true
+    allTermsFilters:
+      isHidden: true
     freeFilters:
-      defaultValue: "EFO:0030035"
-- label: "K-562 Cell Line"
-  note: "Instances of K-562 and daughter cell lines, searched by Cellosaurus id"
-  description: |
-    The query retrieves all instances of K-562 and derived cell lines
-    using the "cellosaurus:CVCL_0004" identifier. This is an example for a
-    pure "non-variant" query.
-  parameters:
-    referenceName:
-      defaultValue: ""
-    start:
-      defaultValue: ""
-    end:
-      defaultValue: ""
-    variantType:
-      defaultValue: ""
-    referenceid:
-      defaultValue: ["cellosaurus:CVCL_0004"]
+      isHidden: false
+      defaultValue: cellosaurus:CVCL_0030

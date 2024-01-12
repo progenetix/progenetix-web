@@ -1,4 +1,3 @@
-import cn from "classnames"
 import {
   checkIntegerRange,
   makeFilters,
@@ -10,7 +9,6 @@ import { markdownToReact } from "../../utils/md"
 import { useForm } from "react-hook-form"
 import {
   CytoBandsUtility,
-  FormUtilitiesButtons,
   GeneSpansUtility,
   useFormUtilities
 } from "./BiosamplesFormUtilities"
@@ -23,10 +21,12 @@ import { withUrlQuery } from "../../hooks/url-query"
 import { GeoCitySelector } from "./GeoCitySelector"
 import { GeneSymbolSelector } from "./GeneSymbolSelector"
 import ChromosomePreview from "./ChromosomePreview"
+import { FaCogs } from "react-icons/fa"
+import cn from "classnames"
 
 export const BiosamplesSearchForm = withUrlQuery(
   ({ urlQuery, setUrlQuery, ...props }) => (
-    <Form {...props} urlQuery={urlQuery} setUrlQuery={setUrlQuery} />
+    <BeaconSearchForm {...props} urlQuery={urlQuery} setUrlQuery={setUrlQuery} />
   )
 )
 export default BiosamplesSearchForm
@@ -35,7 +35,7 @@ BiosamplesSearchForm.propTypes = {
   cytoBands: PropTypes.object.isRequired,
   isQuerying: PropTypes.bool.isRequired,
   setSearchQuery: PropTypes.func.isRequired,
-  requestTypeConfig: PropTypes.object.isRequired,
+  beaconQueryTypes: PropTypes.object.isRequired,
   requestTypeExamples: PropTypes.object.isRequired,
   parametersConfig: PropTypes.object.isRequired
 }
@@ -55,10 +55,12 @@ function useIsFilterlogicWarningVisible(watch) {
   const referenceid = watch("referenceid")
   const clinicalClasses = watch("clinicalClasses")
   const cohorts = watch("cohorts")
-  const freeFilters = watch("freeFilters")
+  const allTermsFilters = watch("allTermsFilters")
   const sex = watch("sex")
+  const freeFilters = watch("freeFilters")
   const materialtype = watch("materialtype")
   const filters = makeFilters({
+    allTermsFilters,
     freeFilters,
     bioontology,
     referenceid,
@@ -70,23 +72,23 @@ function useIsFilterlogicWarningVisible(watch) {
   return filterLogic === "AND" && filters.length > 1
 }
 
-export function Form({
-  cytoBands,
-  isQuerying,
-  setSearchQuery,
-  requestTypeConfig,
-  requestTypeExamples,
-  parametersConfig,
-  urlQuery,
-  setUrlQuery
-}) {
+export function BeaconSearchForm({
+    cytoBands,
+    isQuerying,
+    setSearchQuery,
+    beaconQueryTypes,
+    requestTypeExamples,
+    parametersConfig,
+    urlQuery,
+    setUrlQuery
+  }) {
   // const autoExecuteSearch = urlQuery.executeSearch === "true"
 
   const [example, setExample] = useState(null)
   let parameters = useMemo(
     () =>
-      makeParameters(parametersConfig, requestTypeConfig, example),
-    [example, parametersConfig, requestTypeConfig]
+      makeParameters(parametersConfig, example),
+    [example, parametersConfig]
   )
 
   const initialValues = transform(parameters, (r, v, k) => {
@@ -113,10 +115,26 @@ export function Form({
   // reset form when default values changes
   useDeepCompareEffect(() => reset(initialValues), [initialValues])
   
-  // biosubsets lookup
-  const { data: biosubsetsResponse, isLoading: isBioSubsetsDataLoading } = useBioSubsets(
-    watch
-  )
+  // all subsets lookup ----------------------------------------------------- //
+  var ct = ""
+  const {
+    data: allsubsetsResponse,
+    isLoading: isAllSubsetsDataLoading 
+  } = useFiteringTerms( watch, ct )
+  const allsubsetsOptions = allsubsetsResponse?.response?.filteringTerms?.map((value) => ({
+    value: value.id,
+    label: `${value.id}: ${value.label} (${value.count})`
+  }))
+  parameters = merge({}, parameters, {
+    allTermsFilters: { options: allsubsetsOptions }
+  })
+
+  // biosubsets lookup ------------------------------------------------------ //
+  ct = "NCIT,pgx:icdom,pgx:icdot,UBERON"
+  const {
+    data: biosubsetsResponse,
+    isLoading: isBioSubsetsDataLoading
+  } = useFiteringTerms( watch, ct )
   
   const biosubsetsOptions = biosubsetsResponse?.response.results.map((value) => ({
     value: value.id,
@@ -127,33 +145,35 @@ export function Form({
     bioontology: { options: biosubsetsOptions }
   })
   
-  // referenceid lookup
-  const { data: refsubsetsResponse, isLoading: isRefSubsetsDataLoading } = useReferencesSubsets(
-    watch
-  )
-  
-  const refsubsetsOptions = refsubsetsResponse?.response.results.map((value) => ({
+  // referenceid lookup ----------------------------------------------------- //
+  ct = "PMID,GEOseries,GEOplatform,cellosaurus"
+  const {
+    data: refsubsetsResponse,
+    isLoading: isRefSubsetsDataLoading
+  } = useFiteringTerms( watch, ct )
+  const refsubsetsOptions = refsubsetsResponse?.response?.filteringTerms?.map((value) => ({
     value: value.id,
     label: `${value.id}: ${value.label} (${value.count})`
-  }))
-    
+  }))   
   parameters = merge({}, parameters, {
     referenceid: { options: refsubsetsOptions }
   })
   
-// clinical lookup
-const { data: clinicalResponse, isLoading: isClinicalDataLoading } = useClinicalSubsets(
-  watch
-)
+  // clinical lookup -------------------------------------------------------- //
+  ct = "TNM,NCITgrade,NCITstage,EFOfus"
+  const {
+    data: clinicalResponse,
+    isLoading: isClinicalDataLoading
+  } = useFiteringTerms( watch, ct )
+  const clinicalOptions = clinicalResponse?.response?.filteringTerms?.map((value) => ({
+    value: value.id,
+    label: `${value.id}: ${value.label} (${value.count})`
+  }))
+  parameters = merge({}, parameters, {
+    clinicalClasses: { options: clinicalOptions }
+  })
 
-const clinicalOptions = clinicalResponse?.response.results.map((value) => ({
-  value: value.id,
-  label: `${value.id}: ${value.label} (${value.count})`
-}))
-  
-parameters = merge({}, parameters, {
-  clinicalClasses: { options: clinicalOptions }
-})
+  // ======================================================================== //
 
   const {
     cytoBandPanelOpen,
@@ -184,46 +204,46 @@ parameters = merge({}, parameters, {
   return (
     <>
       <div>
-        <div className="buttons">
-          <ExamplesButtons
-            onExampleClicked={handleExampleClicked(
-              reset,
-              setExample,
-              setUrlQuery
-            )}
-            requestTypeConfig={requestTypeConfig}
-        requestTypeExamples={requestTypeExamples}
-          />
-          <FormUtilitiesButtons
-            onCytoBandClick={onCytoBandClick}
-            cytoBandPanelOpen={cytoBandPanelOpen}
-            onGeneSpansClick={onGeneSpansClick}
-            geneSpansPanelOpen={geneSpansPanelOpen}
-          />
-        </div>
-        <ExampleDescription example={example} />
-        {cytoBandPanelOpen && (
-          <CytoBandsUtility
-            onClose={onCytoBandCloseClick}
-            setFormValue={setValue}
-          />
-        )}
-        {geneSpansPanelOpen && (
-          <GeneSpansUtility
-            onClose={onGeneSpansCloseClick}
-            setFormValue={setValue}
-          />
-        )}
+        <QuerytypesTabs
+          onQuerytypeClicked={handleQuerytypeClicked(
+            reset,
+            setExample,
+            setUrlQuery
+          )}
+          beaconQueryTypes={beaconQueryTypes}
+        />
         <form onSubmit={handleSubmit(onSubmit)}>
           {errors?.global?.message && (
             <div className="notification is-warning">
               {errors.global.message}
             </div>
           )}
-          <SelectField {...parameters.datasetIds} {...selectProps} />
           <SelectField {...parameters.assemblyId} {...selectProps} />
+          {!parameters.datasetIds.isHidden && (
+            <SelectField
+              {...parameters.datasetIds} {...selectProps}
+            />
+          )}
+          <div className="columns my-0">
+            <InputField
+              className={cn(
+                !parameters.genomicAlleleShortForm.isHidden && "column",
+                "py-0 mb-3"
+              )}
+              {...parameters.genomicAlleleShortForm} {...fieldProps}
+            />
+            <InputField
+              className={cn(
+                !parameters.aminoacidChange.isHidden && "column",
+                "py-0 mb-3"
+              )}
+              {...parameters.aminoacidChange} {...fieldProps}
+            />
+          </div>
           {!parameters.geneId.isHidden && (
-            <GeneSymbolSelector {...parameters.geneId} {...selectProps} />
+            <GeneSymbolSelector
+              {...parameters.geneId} {...selectProps}
+            />
           )}
           <div className="columns my-0">
             <SelectField
@@ -287,8 +307,6 @@ parameters = merge({}, parameters, {
                 validate: checkIntegerRange
               }}
             />
-          </div>
-          <div className="columns my-0">
             <InputField
               className={cn(
                 !parameters.referenceBases.isHidden && "column",
@@ -363,11 +381,13 @@ parameters = merge({}, parameters, {
               {...selectProps}
             />
           </div>
+          <InputField {...parameters.freeFilters} {...fieldProps} />
           <div className="columns my-0">
-            <InputField
+            <SelectField
               className="column py-0 mb-3"
-              {...parameters.freeFilters}
-              {...fieldProps}
+              {...parameters.allTermsFilters}
+              {...selectProps}
+              isLoading={isAllSubsetsDataLoading}
             />
             <SelectField
               className="column py-0 mb-3"
@@ -391,6 +411,24 @@ parameters = merge({}, parameters, {
               }
             />
           </div>
+          <InputField {...parameters.accessid} {...fieldProps} />
+          {!parameters.geoCity.isHidden && (
+            <div className="columns my-0">
+              <GeoCitySelector
+                className={cn("column", "py-0 mb-3")}
+                {...parameters.geoCity}
+                {...selectProps}
+              />
+              <div
+                className={cn("column", "py-0 mb-3", {
+                  "is-invisible": !showGeoDistance,
+                  "animate__fadeIn animate__animated": showGeoDistance
+                })}
+              >
+                <InputField {...parameters.geodistanceKm} {...fieldProps} />
+              </div>
+            </div>
+          )}
           <div className="columns my-0">
             <InputField
               className={cn(
@@ -415,30 +453,12 @@ parameters = merge({}, parameters, {
               }}
             />
           </div>
-          <InputField {...parameters.accessid} {...fieldProps} />
-          {!parameters.geoCity.isHidden && (
-            <div className="columns my-0">
-              <GeoCitySelector
-                className={cn("column", "py-0 mb-3")}
-                {...parameters.geoCity}
-                {...selectProps}
-              />
-              <div
-                className={cn("column", "py-0 mb-3", {
-                  "is-invisible": !showGeoDistance,
-                  "animate__fadeIn animate__animated": showGeoDistance
-                })}
-              >
-                <InputField {...parameters.geodistanceKm} {...fieldProps} />
-              </div>
-            </div>
-          )}
           <ChromosomePreview watch={watch} cytoBands={cytoBands} />
           <div className="field mt-5">
             <div className="control">
               <button
                 type="submit"
-                className={cn("button", "is-primary", {
+                className={cn("button", "is-primary is-fullwidth", {
                   "is-loading": isQuerying
                 })}
               >
@@ -448,22 +468,138 @@ parameters = merge({}, parameters, {
           </div>
         </form>
       </div>
+      <div style={{ "padding-top": "20px" }}>
+        {geneSpansPanelOpen && (
+          <GeneSpansUtility
+            onClose={onGeneSpansCloseClick}
+            setFormValue={setValue}
+          />
+        )}
+        {cytoBandPanelOpen && (
+          <CytoBandsUtility
+            onClose={onCytoBandCloseClick}
+            setFormValue={setValue}
+          />
+        )}
+        <div className="buttons">
+          <FormUtilitiesButtons
+            onCytoBandClick={onCytoBandClick}
+            cytoBandPanelOpen={cytoBandPanelOpen}
+            onGeneSpansClick={onGeneSpansClick}
+            geneSpansPanelOpen={geneSpansPanelOpen}
+          />
+
+        </div>
+
+        <div className="buttons">
+          <ExamplesButtons
+            onExampleClicked={handleExampleClicked(
+              reset,
+              setExample,
+              setUrlQuery
+            )}
+            requestTypeExamples={requestTypeExamples}
+          />
+        </div>
+        <ExampleDescription example={example} />
+        
+      </div>
+      {example?.img && (
+          <div>
+            <img src={example.img}/>
+          </div>
+      )}
     </>
+  )
+}
+
+function QuerytypesTabs({ beaconQueryTypes, onQuerytypeClicked }) {
+  const startType = beaconQueryTypes[0]
+  const [selectedTab, setSelectedTab] = useState(startType)
+  // onQuerytypeClicked(selectedTab)
+  return (
+    <div className="tabs is-boxed">
+      <ul>
+        {Object.entries(beaconQueryTypes || []).map(([id, value]) => (
+          <li
+            className={cn({
+              "is-active": selectedTab.label === value.label
+            })}
+            key={id}
+            onClick={() => {onQuerytypeClicked(value), setSelectedTab(value)}}
+          >
+            <a>{value.label}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
+export function InfodotTab(short, full) {
+  return (
+    <span>
+      <a alt={full}>{short}</a>
+    </span>
   )
 }
 
 function ExamplesButtons({ requestTypeExamples, onExampleClicked }) {
   return (
-    <div>
-      {Object.entries(requestTypeExamples || []).map(([id, value]) => (
-        <button
-          key={id}
-          className="button is-light"
-          onClick={() => onExampleClicked(value)}
-        >
-          {value.label}
-        </button>
-      ))}
+    <div className="column is-full" style={{ padding: "0px" }}>
+      <div className="columns">
+        <div className="column is-one-fifth label">
+          Query Examples
+        </div>
+        <div className="column">
+          {Object.entries(requestTypeExamples || []).map(([id, value]) => (
+            <button
+              key={id}
+              className="button is-link is-outlined"
+              onClick={() => onExampleClicked(value)}
+            >
+              {value.label}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function FormUtilitiesButtons({
+  onGeneSpansClick,
+  geneSpansPanelOpen,
+  onCytoBandClick,
+  cytoBandPanelOpen
+}) {
+  return (
+    <div className="column is-full" style={{ padding: "0px" }}>
+      <div className="columns">
+        <div className="column is-one-fifth label">
+          Form Utilities
+        </div>
+        <div className="column is-full">
+          <button
+            className={cn("button is-warning", [geneSpansPanelOpen && "is-link"])}
+            onClick={onGeneSpansClick}
+          >
+            <span className="icon">
+              <FaCogs />
+            </span>
+            <span>Gene Spans</span>
+          </button>
+          <button
+            className={cn("button is-warning", [cytoBandPanelOpen && "is-link"])}
+            onClick={onCytoBandClick}
+          >
+            <span className="icon">
+              <FaCogs />
+            </span>
+            <span>Cytoband(s)</span>
+          </button>
+        </div>
+      </div>
     </div>
   )
 }
@@ -480,21 +616,18 @@ function ExampleDescription({ example }) {
 
 function makeParameters(
   parametersConfig,
-  requestTypeConfig,
   example
 ) {
   // merge base parameters config and request config
   const mergedConfigs = merge(
     {}, // important to not mutate the object
-    parametersConfig,
-    requestTypeConfig?.parameters,
+    parametersConfig.parameters,
     example?.parameters ?? {}
   )
   // add name the list
   let parameters = transform(mergedConfigs, (r, v, k) => {
     r[k] = { name: k, ...v }
   })
-
   return parameters
 }
 
@@ -520,18 +653,21 @@ function validateForm(formValues) {
     start,
     end,
     geneId,
+    aminoacidChange,
+    genomicAlleleShortForm,
     bioontology,
     clinicalClasses,
     referenceid,
     cohorts,
-    freeFilters
+    freeFilters,
+    allTermsFilters
   } = formValues
 
   const errors = []
   const setMissing = (name) =>
     errors.push([name, { type: "manual", message: "Parameter is missing" }])
 
-  if (!referenceName && !referenceBases && !alternateBases && !start && !end && !variantType && !geneId && !bioontology && !referenceid && !freeFilters && !clinicalClasses && !cohorts) {
+  if (!referenceName && !referenceBases && !alternateBases && !start && !end && !variantType && !geneId && !aminoacidChange && !genomicAlleleShortForm && !bioontology && !referenceid && !allTermsFilters && !freeFilters && !clinicalClasses && !cohorts) {
     !referenceName && setMissing("referenceName")
     !referenceBases && setMissing("referenceBases")
     !alternateBases && setMissing("alternateBases")
@@ -543,7 +679,8 @@ function validateForm(formValues) {
     !clinicalClasses && setMissing("clinicalClasses")
     !referenceid && setMissing("referenceid")
     !freeFilters && setMissing("freeFilters")
-    !cohorts && setMissing("freeFilters")
+    !allTermsFilters && setMissing("allTermsFilters")
+    !cohorts && setMissing("allTermsFilters")
   }
 
   const queryError = validateBeaconQuery(formValues)
@@ -554,7 +691,6 @@ function validateForm(formValues) {
     }
     errors.push(["global", error])
   }
-
   return errors
 }
 
@@ -563,31 +699,18 @@ const handleExampleClicked = (reset, setExample, setUrlQuery) => (example) => {
   setExample(example)
 }
 
+const handleQuerytypeClicked = (reset, setExample, setUrlQuery) => (example) => {
+  setUrlQuery({}, { replace: true })
+  setExample(example)
+}
+
 // Maps FilteringTerms hook to apiReply usable by DataFetchSelect
-function useBioSubsets(watchForm) {
+function useFiteringTerms(watchForm, ct) {
   const datasetIds = watchForm("datasetIds")
   return useCollationsByType({
     datasetIds,
     method: "counts",
-    collationTypes: "NCIT,pgx:icdom,pgx:icdot,UBERON"
-  })
-}
-
-function useReferencesSubsets(watchForm) {
-  const datasetIds = watchForm("datasetIds")
-  return useCollationsByType({
-    datasetIds,
-    method: "counts",
-    collationTypes: "PMID,GEOseries,GEOplatform,cellosaurus"
-  })
-}
-
-function useClinicalSubsets(watchForm) {
-  const datasetIds = watchForm("datasetIds")
-  return useCollationsByType({
-    datasetIds,
-    method: "counts",
-    collationTypes: "TNM,NCITgrade,NCITstage,EFOfus"
+    collationTypes: ct
   })
 }
 
@@ -604,4 +727,3 @@ function FilterLogicWarning({ isVisible }) {
     </span>
   )
 }
-
