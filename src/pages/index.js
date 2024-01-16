@@ -6,14 +6,17 @@ import React from "react"
 import { sample } from "lodash"
 import { SITE, SITE_DEFAULTS, tryFetch } from "../hooks/api"
 
-// const searchLink = 'Use case: Local CNV Frequencies <a href="/biosamples/">{↗}</a>'+
-
 const imgFocal = {
   float: "right",
-  width: "200px",
+  width: "250px",
   border: "0px",
-  margin: "-80px -20px 0px 10px"
+  margin: "-35px -20px 0px 10px"
 }
+
+// const histoLegend = {
+//   margin: "-4px 0px 18px 0px",
+//   display: "block"
+// }
 
 export default function Index({
   ncitCountResponse,
@@ -28,40 +31,25 @@ export default function Index({
   return (
 <Layout title="Progenetix" headline="Cancer genome data @ progenetix.org">
   <Panel className="content">
-    <div>
+    <p>
       The Progenetix database provides an overview of mutation data in
       cancer, with a focus on copy number abnormalities (CNV / CNA), for all
       types of human malignancies. The data is based on{" "}
-      <i>individual sample data</i> from currently{" "}
-      <span className="span-red">
-        {progenetixStats.response.results[0].counts.biosamples}
-      </span>{" "}
-      samples.
-      <SubsetHistogram datasetIds={SITE_DEFAULTS.DATASETID} id={randomSubset.id} />
-      <div className="has-text-centered">
-        <small>
-          Example for aggregated CNV data in {randomSubset.count} samples in{" "}
-          {randomSubset.label}.<br />
-          Here the frequency of regional{" "}
-          <span className="span-gain-color">
-            copy number gains
-          </span> and <span className="span-loss-color">losses</span> are
-          displayed for all 22 autosomes.
-        </small>
-      </div>
-    </div>
-  </Panel>
+      <i>individual sample data</i> of currently{" "}
+      <span className="span-red">{progenetixStats.response.results[0].counts.biosamples}</span>{" "}
+      samples from{" "}<span className="span-red">{ncitCountResponse}</span>{" "}
+      different cancer types (NCIt neoplasm classification)
+    </p>
 
-  <Panel heading="Progenetix Use Cases" className="content">
     <h4>
-      <InternalLink href="/biosamples/" label="Local CNV Frequencies" />
+      <InternalLink href="/search/" label="Local CNV Frequencies" />
     </h4>
 
     <p>
       <img src={"/img/9p-example-histogram.png"} style={imgFocal} />A
       typical use case on Progenetix is the search for local copy number
       aberrations - e.g. involving a gene - and the exploration of cancer
-      types with these CNVs. The <a href="/biosamples/">[ Search Page ]</a>{" "}
+      types with these CNVs. The <a href="/search/">[ Search Page ]</a>{" "}
       provides example use cases for designing queries. Results contain
       basic statistics as well as visualization and download options.
     </p>
@@ -74,14 +62,15 @@ export default function Index({
     </h4>
 
     <p>
-      The progenetix resource contains data of{" "}
-      <span className="span-red">{ncitCountResponse}</span> different cancer
-      types (NCIt neoplasm classification), mapped to a variety of
-      biological and technical categories. Frequency profiles of regional
+      Frequency profiles of regional
       genomic gains and losses for all categories (diagnostic entity,
-      publication, cohort ...) can be accessed through the{" "}
-      <a href="/subsets/biosubsets">[ Cancer Types ]</a> page with direct
-      visualization and options for sample retrieval and plotting options.
+      publication, cohort ...) can be accessed through the respective{" "}
+      Cancer Types pages with visualization and sample retrieval options. Below is
+      a typical example of the aggregated CNV data in {randomSubset.count} samples
+      in{" "}{randomSubset.label}{" "} with the frequency of regional{" "}
+      <span className="span-gain-color">copy number gains</span> and{" "}
+      <span className="span-loss-color">losses</span> displayed for the 22 autosomes.
+      <SubsetHistogram datasetIds={SITE_DEFAULTS.DATASETID} id={randomSubset.id} />
     </p>
 
     <h4>
@@ -90,7 +79,6 @@ export default function Index({
         label="Cancer Genomics Publications"
       />
     </h4>
-
     <p>
       Through the <a href="/publications">[ Publications ]</a> page
       Progenetix provides{" "}
@@ -116,7 +104,7 @@ export const getStaticProps = async () => {
     `${SITE}services/collations/?datasetIds=${SITE_DEFAULTS.DATASETID}&method=codematches&collationTypes=NCIT`
   )
   const subsetsReply = await tryFetch(
-    `${SITE}services/collations/?datasetIds=${SITE_DEFAULTS.DATASETID}&method=counts&collationTypes=icdom,NCIT,PMID,icdot,UBERON,NCITgrade,NCITstage`
+    `${SITE}services/collations/?datasetIds=${SITE_DEFAULTS.DATASETID}&method=counts&collationTypes=NCIT`
   )
 
   return {
