@@ -8,8 +8,8 @@ import { usePublicationList } from "../../hooks/api"
 import { WithData } from "../../components/Loader"
 // import { useAsyncSelect } from "../../hooks/asyncSelect"
 // import CustomSelect from "../../components/Select"
-import dynamic from "next/dynamic"
-import { sumBy } from "lodash"
+// import dynamic from "next/dynamic"
+// import { sumBy } from "lodash"
 import { matchSorter } from "match-sorter"
 import useDebounce from "../../hooks/debounce"
 
@@ -24,25 +24,12 @@ export default function PublicationsListPage() {
         <p>
           The current page lists articles describing whole genome screening
           (WGS, WES, aCGH, cCGH) experiments in cancer, registered in the
-          Progenetix publication collection. For each publication the table
-          indicates the numbers of samples analysed with a given technology and
-          if sample profiles are available in Progenetix.
-        </p>
-        <p>
-          Please <a href="mailto:contact@progenetix.org">contact us</a> to alert
-          us about additional articles you are aware of. The
+          Progenetix publication collection. Please submit information about additional
+          articles to our{" "}
+          <ExternalLink href="https://github.com/progenetix/oncopubs/issues" label="Github issue tracker" />
+          {" "}or email us at{" "}<a href="mailto:contact@progenetix.org">contact@progenetix.org</a>.{" "}The
           inclusion criteria are described{" "}
-          <InternalLink
-            href="https://docs.progenetix.org/publication-collection/"
-            label="in the documentation"
-          />.
-          <br/>
-          <b>New Oct 2021</b> You can now directly submit suggestions for matching
-          publications to the{" "}
-          <ExternalLink
-            href="https://github.com/progenetix/oncopubs"
-            label="oncopubs repository on Github"
-          />.
+          <InternalLink href="https://docs.progenetix.org/publication-collection/" label="in the documentation" />.
         </p>
       </article>
       <div className="mb-5">
@@ -79,7 +66,7 @@ function FilteredPublication({ publications, textSearch }) {
       <div className="mb-5">
         <PublicationTable publications={filteredPublications} />
       </div>
-      <PublicationsMapContainer publications={filteredPublications} />
+      {/*<PublicationsMapContainer publications={filteredPublications} />*/}
     </>
   )
 }
@@ -154,28 +141,28 @@ function GeoCityPublicationSelector({ setGeoCity }) {
 }
 */
 
-function PublicationsMapContainer({ publications }) {
-  const acghSum = sumBy(publications, "counts.acgh")
-  const ccghSum = sumBy(publications, "counts.ccgh")
-  const wesSum = sumBy(publications, "counts.wes")
-  const wgsSum = sumBy(publications, "counts.wgs")
-  const publicationsCount = publications.length
-  return (
-    <>
-      <div className="mb-5">
-        <PublicationsMap publications={publications} height={600} />
-      </div>
-      <p className="content">
-        Geographic distribution (by corresponding author) of the{" "}
-        <b>{acghSum}</b> genomic array, <b>{ccghSum}</b> chromosomal CGH and{" "}
-        <b>{wesSum + wgsSum}</b> whole genome/exome based cancer genome datasets
-        from the <b>{publicationsCount}</b> listed publications. Area sizes
-        correspond to the sample numbers reported from a given location.
-      </p>
-    </>
-  )
-}
+// function PublicationsMapContainer({ publications }) {
+//   const acghSum = sumBy(publications, "counts.acgh")
+//   const ccghSum = sumBy(publications, "counts.ccgh")
+//   const wesSum = sumBy(publications, "counts.wes")
+//   const wgsSum = sumBy(publications, "counts.wgs")
+//   const publicationsCount = publications.length
+//   return (
+//     <>
+//       <div className="mb-5">
+//         <PublicationsMap publications={publications} height={600} />
+//       </div>
+//       <p className="content">
+//         Geographic distribution (by corresponding author) of the{" "}
+//         <b>{acghSum}</b> genomic array, <b>{ccghSum}</b> chromosomal CGH and{" "}
+//         <b>{wesSum + wgsSum}</b> whole genome/exome based cancer genome datasets
+//         from the <b>{publicationsCount}</b> listed publications. Area sizes
+//         correspond to the sample numbers reported from a given location.
+//       </p>
+//     </>
+//   )
+// }
 
-const PublicationsMap = dynamic(() => import("../../components/publicationComps/PublicationsMap"), {
-  ssr: false
-})
+// const PublicationsMap = dynamic(() => import("../../components/publicationComps/PublicationsMap"), {
+//   ssr: false
+// })

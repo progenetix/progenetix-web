@@ -124,7 +124,7 @@ export function mkGeneParams(gene) {
 }
 
 export function makeFilters({
-  freeFilters,
+  allTermsFilters,
   clinicalClasses,
   bioontology,
   referenceid,
@@ -132,20 +132,14 @@ export function makeFilters({
   sex,
   materialtype
 }) {
-  const parsedFreeFilters =
-    freeFilters
-      ?.split(",")
-      .map((ff) => ff.trim())
-      .filter((v) => v != null && v.length !== 0) ?? []
-
   return [
+    ...(allTermsFilters ?? []),
     ...(bioontology ?? []),
     ...(clinicalClasses ?? []),
     ...(referenceid ?? []),
     ...(cohorts ? [cohorts] : []),
     ...(sex ? [sex] : []),
-    ...(materialtype ? [materialtype] : []),
-    ...parsedFreeFilters
+    ...(materialtype ? [materialtype] : [])
   ]
 }
 
@@ -158,7 +152,7 @@ export function buildQueryParameters(queryData) {
     cohorts,
     sex,
     materialtype,
-    freeFilters,
+    allTermsFilters,
     clinicalClasses,
     geneId,
     geoCity,
@@ -166,6 +160,7 @@ export function buildQueryParameters(queryData) {
     ...otherParams
   } = queryData
   // positions from the form have to be -1 adjusted (only first value if interval)
+
   const starts = []
   if (start) {
     const match = INTEGER_RANGE_REGEX.exec(start)
@@ -185,7 +180,7 @@ export function buildQueryParameters(queryData) {
     end1 && ends.push(end1)
   }
   const filters = makeFilters({
-    freeFilters,
+    allTermsFilters,
     clinicalClasses,
     bioontology,
     referenceid,
@@ -359,7 +354,7 @@ export function useCollationsById({ datasetIds }) {
   })
 
   if (data) {
-    const mappedResults = keyBy(data.response.results, "id")
+    const mappedResults = keyBy(data.response.filteringTerms, "id")
     return {
       data: {
         ...data,
@@ -372,7 +367,12 @@ export function useCollationsById({ datasetIds }) {
 }
 
 export function useCollations({ datasetIds, method, filters }) {
-  const url = `${SITE_DEFAULTS.API_PATH}services/collations/?datasetIds=${datasetIds}&method=${method}&filters=${filters}`
+  const url = `${SITE_DEFAULTS.API_PATH}beacon/filtering_terms/?datasetIds=${datasetIds}&method=${method}&filters=${filters}`
+  return useProgenetixApi(url)
+}
+
+export function useFiltersByType({ datasetIds, method, collationTypes }) {
+  const url = `${SITE_DEFAULTS.API_PATH}beacon/filtering_terms/?datasetIds=${datasetIds}&method=${method}&collationTypes=${collationTypes}`
   return useProgenetixApi(url)
 }
 
@@ -386,7 +386,7 @@ export function sampleSearchPageFiltersLink({
   sampleFilterScope,
   filters
 }) {
-  return `/filterSearch/?${sampleFilterScope}=${filters}&datasetIds=${datasetIds}`
+  return `/search/?${sampleFilterScope}=${filters}&datasetIds=${datasetIds}`
 }
 
 export function useGeoCity({ city }) {

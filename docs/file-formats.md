@@ -139,7 +139,7 @@ PMID:22824167 6.29  0.0 ... 8.18  4.4 ...
 
 #### CNV Status Matrix
 
-For endpoints with per biosample or callset / analysis delvery, the Progenetix
+For endpoints with per biosample or analysis / analysis delvery, the Progenetix
 API offers the delivery of a binned status matrix. This matrix can e.g. directly
 be used for clustering CNV patterns.
 
@@ -169,4 +169,4 @@ pgxcs-kftwwbry  pgxbs-kftvkzwp  NCIT:C3908  0.5801  0 0.6415  1.0
 
 ##### Examples
 
-* [progenetix.org/beacon/callsets/?output=pgxmatrix&filters=NCIT:C4443](http://progenetix.org/beacon/callsets/?output=pgxmatrix&filters=NCIT:C4443)
+* [progenetix.org/beacon/analyses/?output=pgxmatrix&filters=NCIT:C4443](http://progenetix.org/beacon/analyses/?output=pgxmatrix&filters=NCIT:C4443)

@@ -18,5 +18,5 @@ Notes and procedure of the data import and transformation:
  - When merging multiple individuals (resp. biosamples) into the one individual (resp. biosamples), a new entry is created and the old ones are deleted, but their ids as well as their "info.legacy_id"s are kept in the new entry's "info.legacy_id".
  - for part 1, we have mapped the GEO metadata to the DIPG ids, including separation of normals and tumors. The dipg ids in the form of "DIPG_BS_xxxx"(numbering from 0001 to 1067) as well as its respective GSM IDs are dropped into "info.legacy_id" when generating a timestamp id. 
  - for part 2, where dipg ids were not already present in progenetix, we have imported the data from "dipg db", with fields in the "variants" collection adapted to the current data schema. 
- - the DIPG cohort contributed 1067 individuals, 1108 biosamples, 900 callsets and 3009676 variants.
+ - the DIPG cohort contributed 1067 individuals, 1108 biosamples, 900 analyses and 3009676 variants.
 

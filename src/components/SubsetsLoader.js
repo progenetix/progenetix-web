@@ -67,7 +67,7 @@ function SubsetsResponse({ bioSubsetsHierarchies, allBioSubsets, datasetIds, def
         tree={tree}
         size={size}
         defaultTreeDepth={defaultTreeDepth}
-        sampleFilterScope="freeFilters"
+        sampleFilterScope="allTermsFilters"
       />
     </>
   )

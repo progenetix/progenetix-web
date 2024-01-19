@@ -57,7 +57,6 @@ function VariantResponse({ response, id }) {
   return <Variant variant={response.response.resultSets[0].results[0]} id={id} />
 }
 
-
 function Variant({ variant, id }) {
 
   var marker = variant.variantInternalId

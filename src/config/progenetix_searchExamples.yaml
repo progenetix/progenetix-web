@@ -11,7 +11,7 @@
   parameters:
     referenceName:
       isHidden: false
-      defaultValue: "9" #"refseq:NC_000009.12"
+      defaultValue: "refseq:NC_000009.12"
     start:
       isHidden: false
       defaultValue: "21000001-21975098"
@@ -37,7 +37,7 @@
   parameters:
     referenceName:
       isHidden: false
-      defaultValue: "17" #"refseq:NC_000017.11"
+      defaultValue: "refseq:NC_000017.11"
     start:
       isHidden: false
       defaultValue: 7577121
@@ -68,7 +68,7 @@
       defaultValue: ["progenetix"]
     referenceName:
       isHidden: false
-      defaultValue: "17" # "refseq:NC_000017.11"
+      defaultValue: "refseq:NC_000017.11"
     start:
       isHidden: false
       defaultValue: 7572826
@@ -144,7 +144,5 @@
     referenceBases:
       isHidden: true
     allTermsFilters:
-      isHidden: true
-    freeFilters:
       isHidden: false
-      defaultValue: cellosaurus:CVCL_0030
+      defaultValue: [cellosaurus:CVCL_0030]

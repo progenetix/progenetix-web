@@ -19,7 +19,7 @@ import VariantsDataTable from "../../components/searchResults/VariantsDataTable"
 const service = "collations"
 const exampleId = "cellosaurus:CVCL_0023"
 const datasetIds = SITE_DEFAULTS.DATASETID
-const searchPage = "filterSearch"
+const searchPage = "search"
 
 const CellLineDetailsPage = withUrlQuery(({ urlQuery }) => {
 

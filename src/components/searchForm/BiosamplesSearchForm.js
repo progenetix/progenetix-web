@@ -1,7 +1,7 @@
 import {
   checkIntegerRange,
   makeFilters,
-  useCollationsByType,
+  useFiltersByType,
   validateBeaconQuery
 } from "../../hooks/api"
 import React, { useMemo, useState } from "react" //useEffect, 
@@ -57,11 +57,9 @@ function useIsFilterlogicWarningVisible(watch) {
   const cohorts = watch("cohorts")
   const allTermsFilters = watch("allTermsFilters")
   const sex = watch("sex")
-  const freeFilters = watch("freeFilters")
   const materialtype = watch("materialtype")
   const filters = makeFilters({
     allTermsFilters,
-    freeFilters,
     bioontology,
     referenceid,
     clinicalClasses,
@@ -120,7 +118,7 @@ export function BeaconSearchForm({
   const {
     data: allsubsetsResponse,
     isLoading: isAllSubsetsDataLoading 
-  } = useFiteringTerms( watch, ct )
+  } = useFilteringTerms( watch, ct )
   const allsubsetsOptions = allsubsetsResponse?.response?.filteringTerms?.map((value) => ({
     value: value.id,
     label: `${value.id}: ${value.label} (${value.count})`
@@ -134,9 +132,9 @@ export function BeaconSearchForm({
   const {
     data: biosubsetsResponse,
     isLoading: isBioSubsetsDataLoading
-  } = useFiteringTerms( watch, ct )
+  } = useFilteringTerms( watch, ct )
   
-  const biosubsetsOptions = biosubsetsResponse?.response.results.map((value) => ({
+  const biosubsetsOptions = biosubsetsResponse?.response?.filteringTerms?.map((value) => ({
     value: value.id,
     label: `${value.id}: ${value.label} (${value.count})`
   }))
@@ -150,7 +148,7 @@ export function BeaconSearchForm({
   const {
     data: refsubsetsResponse,
     isLoading: isRefSubsetsDataLoading
-  } = useFiteringTerms( watch, ct )
+  } = useFilteringTerms( watch, ct )
   const refsubsetsOptions = refsubsetsResponse?.response?.filteringTerms?.map((value) => ({
     value: value.id,
     label: `${value.id}: ${value.label} (${value.count})`
@@ -164,7 +162,7 @@ export function BeaconSearchForm({
   const {
     data: clinicalResponse,
     isLoading: isClinicalDataLoading
-  } = useFiteringTerms( watch, ct )
+  } = useFilteringTerms( watch, ct )
   const clinicalOptions = clinicalResponse?.response?.filteringTerms?.map((value) => ({
     value: value.id,
     label: `${value.id}: ${value.label} (${value.count})`
@@ -381,7 +379,6 @@ export function BeaconSearchForm({
               {...selectProps}
             />
           </div>
-          <InputField {...parameters.freeFilters} {...fieldProps} />
           <div className="columns my-0">
             <SelectField
               className="column py-0 mb-3"
@@ -490,7 +487,6 @@ export function BeaconSearchForm({
           />
 
         </div>
-
         <div className="buttons">
           <ExamplesButtons
             onExampleClicked={handleExampleClicked(
@@ -514,6 +510,7 @@ export function BeaconSearchForm({
 }
 
 function QuerytypesTabs({ beaconQueryTypes, onQuerytypeClicked }) {
+  // console.log(beaconQueryTypes)
   const startType = beaconQueryTypes[0]
   const [selectedTab, setSelectedTab] = useState(startType)
   // onQuerytypeClicked(selectedTab)
@@ -659,7 +656,6 @@ function validateForm(formValues) {
     clinicalClasses,
     referenceid,
     cohorts,
-    freeFilters,
     allTermsFilters
   } = formValues
 
@@ -667,7 +663,7 @@ function validateForm(formValues) {
   const setMissing = (name) =>
     errors.push([name, { type: "manual", message: "Parameter is missing" }])
 
-  if (!referenceName && !referenceBases && !alternateBases && !start && !end && !variantType && !geneId && !aminoacidChange && !genomicAlleleShortForm && !bioontology && !referenceid && !allTermsFilters && !freeFilters && !clinicalClasses && !cohorts) {
+  if (!referenceName && !referenceBases && !alternateBases && !start && !end && !variantType && !geneId && !aminoacidChange && !genomicAlleleShortForm && !bioontology && !referenceid && !allTermsFilters && !clinicalClasses && !cohorts) {
     !referenceName && setMissing("referenceName")
     !referenceBases && setMissing("referenceBases")
     !alternateBases && setMissing("alternateBases")
@@ -678,9 +674,8 @@ function validateForm(formValues) {
     !bioontology && setMissing("bioontology")
     !clinicalClasses && setMissing("clinicalClasses")
     !referenceid && setMissing("referenceid")
-    !freeFilters && setMissing("freeFilters")
     !allTermsFilters && setMissing("allTermsFilters")
-    !cohorts && setMissing("allTermsFilters")
+    !cohorts && setMissing("cohorts")
   }
 
   const queryError = validateBeaconQuery(formValues)
@@ -705,9 +700,9 @@ const handleQuerytypeClicked = (reset, setExample, setUrlQuery) => (example) => 
 }
 
 // Maps FilteringTerms hook to apiReply usable by DataFetchSelect
-function useFiteringTerms(watchForm, ct) {
+function useFilteringTerms(watchForm, ct) {
   const datasetIds = watchForm("datasetIds")
-  return useCollationsByType({
+  return useFiltersByType({
     datasetIds,
     method: "counts",
     collationTypes: ct

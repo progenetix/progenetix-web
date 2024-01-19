@@ -39,7 +39,7 @@ The GA4GH data model for genomics recommends the use of a principle object hiera
     - in Progenetix identical variants from different sampleas are identified through
     a compact digest (`variantInternalId`) and can be used to retrieve those distinct
     variants (c.f. "line in VCF")
-* `callset`
+* `analysis`
     - the entirety of all variants, observed in a single experiment on a single sample
     - a _callset_ can be compared to a data column in a __VCF__ variant annotation file
     - _callset_ has an optional position in the object hierarchy, since _variants_ describe biological observations in a biosample

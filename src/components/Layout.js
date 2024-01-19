@@ -135,21 +135,25 @@ function Side({ onClick }) {
           label="1000 Genomes Reference Samples"
           isSub="isSub"
         />
+{/*
         <MenuInternalLinkItem
           href="/progenetix-cohorts/DIPG"
           label="DIPG Samples"
           isSub="isSub"
         />
+*/}
         <MenuInternalLinkItem
           href="/subsets/cbioportal-subsets"
           label="cBioPortal Studies"
           isSub="isSub"
         />
+{/*
         <MenuInternalLinkItem
           href="/progenetix-cohorts/gao-2021-signatures"
           label="Gao & Baudis, 2021"
           isSub="isSub"
         />
+*/}
         <MenuInternalLinkItem
           href="http://cancercelllines.org"
           label={

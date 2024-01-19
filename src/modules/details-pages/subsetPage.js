@@ -71,7 +71,7 @@ function SubsetResponse({ response, datasetIds }) {
 function Subset({ subset, datasetIds }) {
   
   const filters = subset.id
-  const sampleFilterScope = "freeFilters"
+  const sampleFilterScope = "allTermsFilters"
       
   return (
 <section className="content">

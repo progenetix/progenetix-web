@@ -32,8 +32,6 @@ parameters:
     isHidden: true
   materialtype:
     isHidden: true
-  freeFilters:
-    isHidden: true
   accessid:
     isHidden: true
   filterLogic:

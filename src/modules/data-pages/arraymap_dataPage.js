@@ -1,10 +1,10 @@
 import React from "react"
 import { Layout } from "../../components/Layout"
-import parametersConfig from "../../config/searchParameters.yaml"
-import requestTypeConfig from "../../config/arraymap_searchParameters.yaml"
+import parametersConfig from "../../config/beaconSearchParameters.yaml"
+import beaconQueryTypes from  "../../config/beaconQueryTypes.yaml"
 import requestTypeExamples from "../../config/arraymap_searchExamples.yaml"
-
 import BiosamplesSearchPanel from "../../components/searchForm/BiosamplesSearchPanel"
+
 import Panel from "../../components/Panel"
 
 export default function arraymap_dataPage({ cytoBands }) {
@@ -26,10 +26,11 @@ export default function arraymap_dataPage({ cytoBands }) {
         </div>
       </Panel>
       <BiosamplesSearchPanel
-        parametersConfig={parametersConfig}
-        requestTypeConfig={requestTypeConfig}
-        requestTypeExamples={requestTypeExamples}
         cytoBands={cytoBands}
+        parametersConfig={parametersConfig}
+        beaconQueryTypes={beaconQueryTypes}
+        requestTypeExamples={requestTypeExamples}
+        collapsed={false}
       />
     </Layout>
   )

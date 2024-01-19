@@ -23,7 +23,7 @@ Binned CNV mappings are generated through utility functions in the
 * a standard set of 1Mb genomic intervals (0-based interbase coordinates)
 is generated (with the last bands at pter and qter potentially differing in size)
 using coordinates from the current (GRCh38) cytoband mapping file
-* for each analysis/callset, all its CNV variants are collected and for each
+* for each analysis/analysis, all its CNV variants are collected and for each
 of the (currently 3106) intervals the sum of variant intersections is used to
 calculate the overlap fraction, for gains and losses separately (accommodating
 for the smaller sizes of q-telomeric bins)
@@ -95,7 +95,7 @@ p-arm and downstream shifts of interval positions.
 
 ## Data Model & Database
 
-The Progenetix data model is based on a hierarchy in which `variant`s are from `callset`s (or "analyses")
+The Progenetix data model is based on a hierarchy in which `variant`s are from `analysis`s (or "analyses")
 which are based on material from `biosample`s which were derived from `individual`s.
 
 These entities are represented in a MongoDB database with eponymous collections:
@@ -109,10 +109,10 @@ These entities are represented in a MongoDB database with eponymous collections:
 classDiagram
 
     Individual <-- Biosample : 1..n
-    Biosample <-- Callset : 1..n
-    Individual <-- Callset : 1..n
+    Biosample <-- Analysis : 1..n
+    Individual <-- Analysis : 1..n
     Biosample <-- Variant : 1..n
-    Callset <-- Variant : 1..n
+    Analysis <-- Variant : 1..n
 
     class Biosample{
         individual_id
@@ -124,7 +124,7 @@ classDiagram
         diseases
         ...
     }
-    class Callset{
+    class Analysis{
         individual_id
         biosample_id
         cnv_statusmaps

@@ -139,7 +139,7 @@ function sampleSearchHref({ id, progenetixSamplesCount }) {
   const datasetsIds = []
   if (progenetixSamplesCount > 0) datasetsIds.push("progenetix")
 
-  return `/biosamples/?freeFilters=${id}&datasetIds=${datasetsIds.join(
+  return `/biosamples/?allTermsFilters=${id}&datasetIds=${datasetsIds.join(
     ","
   )}&executeSearch=true`
 }

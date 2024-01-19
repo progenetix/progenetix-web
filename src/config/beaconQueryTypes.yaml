@@ -47,7 +47,7 @@
   img: /img/BeaconRangeQuery-graphics.png
   parameters:
     datasetIds:
-      placeholder: ["examplez"]
+      placeholder: ["progenetix"]
     referenceName:
       isHidden: false
     geneId:
@@ -80,7 +80,7 @@
   img: /img/BeaconGeneQuery-graphics.png
   parameters:
     datasetIds:
-      defaultValue: ["examplez"]
+      defaultValue: ["progenetix"]
     aminoacidChange:
       isHidden: true
     geneId:
@@ -115,7 +115,7 @@
     See also the [Beacon documentation](https://docs.genomebeacons.org/variant-queries/#beacon-sequence-queries) for more information.
   parameters:
     datasetIds:
-      placeholder: ["examplez"]
+      placeholder: ["progenetix"]
     referenceName:
       isHidden: false
     geneId:
@@ -154,7 +154,7 @@
   img: false
   parameters:
     datasetIds:
-      defaultValue: ["examplez"]
+      defaultValue: ["progenetix"]
     referenceName:
       isHidden: true
     start:
@@ -190,88 +190,88 @@
   examples: []
 
 
-- label: "Aminoacid"
-  infoText: ""
-  description: |
-    Annotated variants can potentially queried using the single amino acid
-    replacement format. The `aminoacidChange` parameter ~~may~~ **should** be
-    combined with e.g. a `geneId` to increase specificity.
-  img: false
-  parameters:
-    datasetIds:
-      defaultValue: ["examplez"]
-    aminoacidChange:
-      isHidden: false
-    geneId:
-      isHidden: false
-    genomicAlleleShortForm:
-      isHidden: true
-    referenceName:
-      isHidden: true
-    start:
-      isHidden: true
-    end:
-      isHidden: true
-    variantMinLength:
-      isHidden: true
-    variantMaxLength:
-      isHidden: true
-    variantType:
-      isHidden: true
-    alternateBases:
-      isHidden: true
-    referenceBases:
-      isHidden: true
-  examples:
-    - label: BRAF V600E
-      parameters:
-        aminoacidChange:
-          defaultValue: V600E
-        geneId:
-          defaultValue:
-            data:
-              symbol: BRAF
-            label: "BRAF"
+# - label: "Aminoacid"
+#   infoText: ""
+#   description: |
+#     Annotated variants can potentially queried using the single amino acid
+#     replacement format. The `aminoacidChange` parameter ~~may~~ **should** be
+#     combined with e.g. a `geneId` to increase specificity.
+#   img: false
+#   parameters:
+#     datasetIds:
+#       defaultValue: ["progenetix"]
+#     aminoacidChange:
+#       isHidden: false
+#     geneId:
+#       isHidden: false
+#     genomicAlleleShortForm:
+#       isHidden: true
+#     referenceName:
+#       isHidden: true
+#     start:
+#       isHidden: true
+#     end:
+#       isHidden: true
+#     variantMinLength:
+#       isHidden: true
+#     variantMaxLength:
+#       isHidden: true
+#     variantType:
+#       isHidden: true
+#     alternateBases:
+#       isHidden: true
+#     referenceBases:
+#       isHidden: true
+#   examples:
+#     - label: BRAF V600E
+#       parameters:
+#         aminoacidChange:
+#           defaultValue: V600E
+#         geneId:
+#           defaultValue:
+#             data:
+#               symbol: BRAF
+#             label: "BRAF"
 
-- label: "HGVS"
-  infoText: ""
-  description: |
-    Variants can be identified through their genomic HGVS short form (for the
-    supported reference genome). You may find more information in the [HGVS documentation](https://varnomen.hgvs.org/bg-material/simple/).
-  img: false
-  parameters:
-    datasetIds:
-      defaultValue: ["examplez"]
-    aminoacidChange:
-      isHidden: true
-    geneId:
-      isHidden: true
-    genomicAlleleShortForm:
-      isHidden: false
-    referenceName:
-      isHidden: true
-    start:
-      isHidden: true
-    end:
-      isHidden: true
-    variantMinLength:
-      isHidden: true
-    variantMaxLength:
-      isHidden: true
-    variantType:
-      isHidden: true
-    alternateBases:
-      isHidden: true
-    referenceBases:
-      isHidden: true
-  examples: []
+# - label: "HGVS"
+#   infoText: ""
+#   description: |
+#     Variants can be identified through their genomic HGVS short form (for the
+#     supported reference genome). You may find more information in the [HGVS documentation](https://varnomen.hgvs.org/bg-material/simple/).
+#   img: false
+#   parameters:
+#     datasetIds:
+#       defaultValue: ["progenetix"]
+#     aminoacidChange:
+#       isHidden: true
+#     geneId:
+#       isHidden: true
+#     genomicAlleleShortForm:
+#       isHidden: false
+#     referenceName:
+#       isHidden: true
+#     start:
+#       isHidden: true
+#     end:
+#       isHidden: true
+#     variantMinLength:
+#       isHidden: true
+#     variantMaxLength:
+#       isHidden: true
+#     variantType:
+#       isHidden: true
+#     alternateBases:
+#       isHidden: true
+#     referenceBases:
+#       isHidden: true
+#   examples: []
 
 - label: "Show All"
   infoText: "Display all form fields"
   img: false
   parameters:
     datasetIds:
-      defaultValue: ["examplez"]
+      defaultValue: ["progenetix"]
     aminoacidChange:
       isHidden: false
     geneId:
@@ -299,8 +299,6 @@
     clinicalClasses:
       isHidden: false
     accessid:
-      isHidden: false
-    freeFilters:
       isHidden: false
     allTermsFilters:
       isHidden: false

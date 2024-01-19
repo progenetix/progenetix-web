@@ -81,7 +81,7 @@ export function SubsetHistogram({
   )
 }
 
-export function CallsetHistogram({ csid, datasetIds }) {
+export function AnalysisHistogram({ csid, datasetIds }) {
   const componentRef = useRef()
   const { width } = useContainerDimensions(componentRef)
   const url = `${SITE_DEFAULTS.API_PATH}services/sampleplots?plotType=samplesplot&analysisIds=${csid}&datasetIds=${datasetIds}&plot_width=${width}`

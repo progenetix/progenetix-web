@@ -1,20 +1,20 @@
 import React from "react"
-import { ExternalLink } from "../../components/helpersShared/linkHelpers"
 import { Layout } from "../../components/Layout"
-import parametersConfig from "../../config/searchParameters.yaml"
-import requestTypeConfig from "../../config/oneKgenomes_searchParameters.yaml"
+import parametersConfig from "../../config/beaconSearchParameters.yaml"
+import beaconQueryTypes from  "../../config/beaconQueryTypes.yaml"
 import requestTypeExamples from "../../config/oneKgenomes_searchExamples.yaml"
-
 import BiosamplesSearchPanel from "../../components/searchForm/BiosamplesSearchPanel"
-import { SubsetHistogram } from "../../components/SVGloaders"
+
 import Panel from "../../components/Panel"
+import { SubsetHistogram } from "../../components/SVGloaders"
+import { ExternalLink } from "../../components/helpersShared/linkHelpers"
 
 export default function oneKgenomes_dataPage({ cytoBands }) {
   const imgHere = {
     float: "right",
     width: "200px",
     border: "0px",
-    margin: "-90px -20px 0px 0px"
+    margin: "0px -10px 10px 10px"
   }
 
   return (
@@ -39,10 +39,10 @@ export default function oneKgenomes_dataPage({ cytoBands }) {
         </div>
       </Panel>
       <BiosamplesSearchPanel
-        parametersConfig={parametersConfig}
-        requestTypeConfig={requestTypeConfig}
-        requestTypeExamples={requestTypeExamples}
         cytoBands={cytoBands}
+        parametersConfig={parametersConfig}
+        beaconQueryTypes={beaconQueryTypes}
+        requestTypeExamples={requestTypeExamples}
         collapsed={false}
       />
     </Layout>

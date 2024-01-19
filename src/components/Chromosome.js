@@ -13,18 +13,17 @@ const autoZoomFactor = 1.4
 export function Chromosome({
   bands,
   startRange,
-  chro,
+  refseqId,
   endRange,
   zoomStart = 0,
   zoomEnd = getMax(bands),
   width = 600,
   defaultAutoZoom = false
 }) {
+  const chro = refseq2chro(refseqId)
   const startRangeError = checkIntegerRange(startRange)
   const endRangeError = checkIntegerRange(endRange)
-
   const [autoZoom, setAutoZoom] = useState(defaultAutoZoom)
-
   const { start, startMax } = startRangeError ? {} : getStarts(startRange)
   const { end, endMin } = endRangeError ? {} : findEnds(endRange)
   if (autoZoom) {
@@ -38,9 +37,7 @@ export function Chromosome({
       width
     )
   const [source, target] = useSingleton()
-
   const bandsHeight = height * outerBandsHeightRatio
-
   const chroLabel = "Chromosome " + chro
 
   return (
@@ -142,6 +139,10 @@ export function Chromosome({
   )
 }
 
+export function refseq2chro(refseqId) {
+  return refseqId.replace(/refseq:NC_00000?0?0?/, "").replace(/\.\d\d?$/, "")
+}
+
 const verticalLine = (calcX) =>
   function VerticalLine(bandPosition, stroke) {
     return (
@@ -159,7 +160,6 @@ const verticalLine = (calcX) =>
 const annotation = (calcX) =>
   function VerticalLine(bandPosition, text, fill, position, anchor = "middle") {
     const x = calcX(bandPosition)
-
     let y = "0"
     let alignmentBaseline = "hanging"
     if (position === "bottom") {

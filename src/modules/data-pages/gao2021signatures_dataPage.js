@@ -1,7 +1,7 @@
 import React from "react"
 import { ExternalLink } from "../../components/helpersShared/linkHelpers"
 import { Layout } from "../../components/Layout"
-import parametersConfig from "../../config/searchParameters.yaml"
+import parametersConfig from "../../config/beaconSearchParameters.yaml"
 import requestTypeConfig from "../../config/gao2021signatures_searchParameters.yaml"
 import requestTypeExamples from "../../config/gao2021signatures_searchExamples.yaml"
 

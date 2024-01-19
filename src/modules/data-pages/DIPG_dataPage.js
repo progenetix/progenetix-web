@@ -1,9 +1,12 @@
 import React from "react"
-import { ExternalLink } from "../../components/helpersShared/linkHelpers"
 import { Layout } from "../../components/Layout"
-import parametersConfig from "../../config/searchParameters.yaml"
-import requestTypeConfig from "../../config/DIPG_searchParameters.yaml"
+import parametersConfig from "../../config/beaconSearchParameters.yaml"
+import beaconQueryTypes from  "../../config/beaconQueryTypes.yaml"
+// import beaconQueryTypes from  "../../config/DIPGqueryTypes.yaml"
 import requestTypeExamples from "../../config/DIPG_searchExamples.yaml"
+
+import { ExternalLink } from "../../components/helpersShared/linkHelpers"
+
 
 import BiosamplesSearchPanel from "../../components/searchForm/BiosamplesSearchPanel"
 import Panel from "../../components/Panel"
@@ -35,10 +38,11 @@ export default function DIPG_dataPage({ cytoBands }) {
         </div>
       </Panel>
       <BiosamplesSearchPanel
-        parametersConfig={parametersConfig}
-        requestTypeConfig={requestTypeConfig}
-        requestTypeExamples={requestTypeExamples}
         cytoBands={cytoBands}
+        parametersConfig={parametersConfig}
+        beaconQueryTypes={beaconQueryTypes}
+        requestTypeExamples={requestTypeExamples}
+        collapsed={false}
       />
     </Layout>
   )

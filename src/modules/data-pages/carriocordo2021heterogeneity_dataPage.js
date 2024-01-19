@@ -1,7 +1,7 @@
 import React from "react"
 import { ExternalLink } from "../../components/helpersShared/linkHelpers"
 import { Layout } from "../../components/Layout"
-import parametersConfig from "../../config/searchParameters.yaml"
+import parametersConfig from "../../config/beaconSearchParameters.yaml"
 import requestTypeConfig from "../../config/carriocordo2021heterogeneity_searchParameters.yaml"
 import requestTypeExamples from "../../config/carriocordo2021heterogeneity_searchExamples.yaml"
 

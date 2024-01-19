@@ -84,14 +84,19 @@ export function DatasetResultBox({ data: responseSet, query }) {
     visualizationLink = getVisualizationLink(id, visualizationAccessId, visualizationFileId, visualizationSkip, visualizationLimit, paginatedResultsCount)
   }
 
+  var retrievedCount = resultsCount
+  if (biosamplesReply?.data?.response?.resultSets[0].results) {
+    retrievedCount =  biosamplesReply?.data?.response?.resultSets[0].results.length
+  }
+
   // main / samples / variants
   const tabNames = []
   tabNames.push(TABS.results)
 
   biosamplesHandover && tabNames.push(TABS.samples)
-  biosamplesReply?.data?.response?.resultSets[0].results?.some(
-    (biosample) => !!biosample.provenance?.geoLocation
-  ) && tabNames.push(TABS.samplesMap)
+  // biosamplesReply?.data?.response?.resultSets[0].results?.some(
+  //   (biosample) => !!biosample.provenance?.geoLocation
+  // ) && tabNames.push(TABS.samplesMap)
 
   if (handoverById(HANDOVER_IDS.variants)) tabNames.push(TABS.variants)
 
@@ -148,7 +153,7 @@ export function DatasetResultBox({ data: responseSet, query }) {
           </div>
           <div>
             <b>Retrieved Samples: </b>
-            {resultsCount}
+            {retrievedCount}
           </div>
           {info.counts.variants > 0 ? (
             <div>
@@ -158,7 +163,7 @@ export function DatasetResultBox({ data: responseSet, query }) {
               </div>
               <div>
                 <b>Calls: </b>
-                {info.counts.callsets}
+                {info.counts.analyses}
               </div>
             </div>
           ) : null}
