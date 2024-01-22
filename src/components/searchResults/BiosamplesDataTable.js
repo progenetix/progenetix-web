@@ -67,17 +67,22 @@ export default function BiosamplesDataTable({ apiReply, datasetId }) {
               {externalReference.description}
             </div>
           ))
-      },
-      {
-        Header: TooltipHeader(
-          "CNV Fraction",
-          "Fraction of the sample's genome covered by CNV events (genomic gain or deletion)"
-        ),
-        accessor: "info.cnvstatistics.cnvfraction"
       }
     ],
     [datasetId]
   )
+
+
+// ,
+//       {
+//         Header: TooltipHeader(
+//           "CNV Fraction",
+//           "Fraction of the sample's genome covered by CNV events (genomic gain or deletion)"
+//         ),
+//         accessor: "info.cnvstatistics.cnvfraction"
+//       }
+
+
 
   return (
     <WithData

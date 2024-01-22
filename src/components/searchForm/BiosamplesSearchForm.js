@@ -497,8 +497,7 @@ export function BeaconSearchForm({
             requestTypeExamples={requestTypeExamples}
           />
         </div>
-        <ExampleDescription example={example} />
-        
+        <ExampleDescription example={example} />   
       </div>
       {example?.img && (
           <div>
