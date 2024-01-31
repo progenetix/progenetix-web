@@ -11,18 +11,28 @@ The standard format for (plot-)images generated on Progenetix is Scalable Vector
 On most pages where plots are being displayed there is a download option for the images - (please alert us where those are missing). Browsers also have the option to export SVGs themselves e.g. as PDF.
 
 
-## The `bycon` plotting library
+## The `byconaut` plotting library
 
-* read and write e.g. [Progentix `.pgxseg` segment files](/doc/fileformats.html)
+Functionality of the Progenetix and cancercellline.org plotting API is provided
+by the [`byconaut`](https://byconaut.progenetix.org/) software project. It supports:
+
 * render plots of sample-specific and aggregate CNV data, such as histograms clustered
   CNV sample strips
+* read and write e.g. [Progentix `.pgxseg` segment files](/doc/fileformats.html)
 
-#### Links
+!!! important "Plot Parameters and Documentation"
 
-* [`bycon` plot documentation](http://bycon.progenetix.org/plotting/) with all 
-  plot parameters
+    Please visit the documentation of the `byconaut` software repository for
+    documentation about the use of the plotting API, e.g. how to modify
+    plots using specific parameters (sizes, color, labels...):
 
-## Plot Types
+    * [`byconaut` plot documentation](https://byconaut.progenetix.org/plotting/) with all 
+      plot parameters
+
+## Plot Examples
+
+Below are just some plot examples; for detailed use please refer to the
+[documentation](https://byconaut.progenetix.org/plotting/).
 
 ### CNV Histogram Plots
 
@@ -37,64 +47,35 @@ Please **use option 1** if accessing complete entities (i.e. only using a single
 
 #### Examples
 
-* customized plot for glioblastoma CNV frequencies, limited to chromosomes 7, 9 and 10
-    - `progenetix.org/services/collationPlots/?id=NCIT:C3058&plotChros=7,9,10&colorschema=redgreen&size_plotimage_w_px=640`
+* customized plot for glioblastoma CNV frequencies, limited to chromosomes 7, 9
+  and 10 and 
+    - `services/collationPlots/?id=NCIT:C3058&plotPars=plotChros=7,9,10::size_plotimage_w_px=640`
 
-![](http://progenetix.org/services/collationPlots/?id=NCIT:C3058&plotChros=7,9,10&colorschema=redgreen&size_plotimage_w_px=640)
+![](https://progenetix.org/services/collationPlots/?id=NCIT:C3058&plotPars=plotChros=7,9,10::size_plotimage_w_px=640)
 
-## Additional plot parameters
+* plot with modified maximum Y - `value_plot_y_max` (histogram's maximum value
+  in percent) and some custom label, for the TCGA cancer samples
+    - `services/collationPlots/?id=pgx:cohort-TCGAcancers&plotPars=value_plot_y_max=50::plot_region_labels=5:0-48000000:Frequent+5p+gain,8:127735434-127742951:MYC::plot_marker_font_size=12`
 
-Plot parameters can be added to the request using a standard `&__parameter__=__value__`
-syntax.
+![](https://progenetix.org/services/collationPlots/?id=pgx:cohort-TCGAcancers&plotPars=value_plot_y_max=50::plot_region_labels=5:0-48000000:Frequent+5p+gain,8:127735434-127742951:MYC::plot_marker_font_size=12)
 
-* `plotChros`
-    - comma-concatenated list of chromosomes to plot
-    - default is 1 -> 22 since X & Y are not always correctly normalized for CNV
-  frequencies
-        *  `plotChros=1,2,3,44,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X,Y`
-        *  `plotChros=9`
-* `size_plotimage_w_px`
-    - modifies the width of the plot image in px (default 800)
-    - <http://progenetix.org/services/collationPlots/?id=PMID:22824167&size_plotimage_w_px=1084>
-* `size_plotarea_h_px`
-    - height of the plot area (excluding labels etc.) in px (default 100)
-    - <http://progenetix.org/services/collationPlots/?id=NCIT:C7376&size_plotarea_h_px=300>
-![](http://progenetix.org/services/collationPlots/?id=NCIT:C7376&size_plotarea_h_px=300)
-* `size_text_title_px`
-    - size in px of the title text (default 14)
-* `value_plot_y_max`
-    - modifies the histogram's maximum value in percent (default 100)
-    - <http://progenetix.org/services/collationPlots/?id=pgx:cohort-TCGAcancers&value_plot_y_max=50>
-* `labels`
-    - arbitrary labels (e.g. for genes or other regions of interest)
-    - format is `chro` `:` `start` `-` `end` `:` `some text`
-    - multiple labels can be concatenated by `,`
-    - colors are randomized from a "decent" palette
-    - <http://progenetix.org/services/collationPlots/?id=pgx:icdom-80123&value_plot_y_max=80&plotChros=5,8&labels=5:0-48000000:Frequent+5p+gain,8:127735434-127742951:MYC&marker_text_px=12>
-    ![](http://progenetix.org/services/collationPlots/?id=pgx:icdom-80123&value_plot_y_max=80&plotChros=5,8&labels=5:0-48000000:Frequent+5p+gain,8:127735434-127742951:MYC&marker_text_px=12)
-* `marker_text_px`
-    - text size for the labels (default 10)
-* `marker_opacity`
-    - opacity of the region overlay on the plot (default 0.2)
+* as above, but plastering some cancer driver genes on the plot by their gene
+  symbols (`plot_gene_symbols`):
+  - `services/collationPlots/?id=pgx:cohort-TCGAcancers&plotPars=value_plot_y_max=50::plot_gene_symbols=MYC,MYCN,REL,ERBB2,TP53,CDK1,EGFR,BCL2,RB1::plot_marker_font_size=10`
 
-    
-* `colorschema`
-    - change of colors used for gains and losses
-    - options
-        *  `orangeblue` (default)
-        *  `redgreen`
-        *  `greenred`
-        *  `bluered`
-
-    - <http://progenetix.org/services/collationPlots/?id=NCIT:C7376&size_plotarea_h_px=40&value_plot_y_max=50&colorschema=bluered&plotChros=1,3,9,17,22>
-![](http://progenetix.org/services/collationPlots/?id=NCIT:C7376&size_plotarea_h_px=40&value_plot_y_max=50&colorschema=bluered&plotChros=1,3,9,17,22)
+![](https://progenetix.org/services/collationPlots/?id=pgx:cohort-TCGAcancers&plotPars=value_plot_y_max=50::plot_gene_symbols=MYC,MYCN,REL,ERBB2,TP53,CDK1,EGFR,BCL2,RB1::plot_marker_font_size=10)
 
 
+### Sample Strip Plots
 
-## ~~The PGX plotting library~~
+* a sample plot, automatically clustered, from a search for Glioblastoma samples
+  in the TCGA cancers cohort (limited to 30 samples)
+    - it uses the `plotType=samplesplot` to force the per sample display
+    - `services/sampleplots?filters=NCIT:C3058,pgx:cohort-TCGAcancers&plotPars=plotGeneSymbols=CDKN2A,EGFR&limit=30&plotType=samplesplot`
 
-~~Plots on Progenetix are generated using the [PGX package](http://github.com/progenetix/PGX/), a set of Perl libraries for processing and graphical representation of CNV data. The package contains tools to~~
+![](https://progenetix.org/services/sampleplots?filters=NCIT:C3058,pgx:cohort-TCGAcancers&plotPars=plotGeneSymbols=CDKN2A,EGFR&limit=30&plotType=samplesplot)
 
-* ~~read and write e.g. [Progentix segment files](/doc/fileformats.html)
-* ~~generate binned status maps~~
-* ~~render plots of sample-specific and aggregate CNV data, such as histograms and CNV frequency heatmaps~~
+* as above, without the `plotType=samplesplot` using the `histoplot` default
+    - `services/sampleplots?filters=NCIT:C3058,pgx:cohort-TCGAcancers&plotPars=plotGeneSymbols=CDKN2A,EGFR&limit=30`
+
+![](https://progenetix.org/services/sampleplots?filters=NCIT:C3058,pgx:cohort-TCGAcancers&plotPars=plotGeneSymbols=CDKN2A,EGFR&limit=30)
