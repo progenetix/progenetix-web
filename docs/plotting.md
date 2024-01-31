@@ -20,7 +20,7 @@ by the [`byconaut`](https://byconaut.progenetix.org/) software project. It suppo
   CNV sample strips
 * read and write e.g. [Progentix `.pgxseg` segment files](/doc/fileformats.html)
 
-!!! important "Plot Parameters and Documentation"
+!!! alert "Plot Parameters and Documentation"
 
     Please visit the documentation of the `byconaut` software repository for
     documentation about the use of the plotting API, e.g. how to modify
@@ -45,7 +45,9 @@ There are two possibilities to plot CNV histograms through the Progenetix API w/
 
 Please **use option 1** if accessing complete entities (i.e. only using a single `filters` value) - this option is not limited through large sample numbers.
 
-#### Examples
+#### Examples (using progenetix.org)
+
+!!! 
 
 * customized plot for glioblastoma CNV frequencies, limited to chromosomes 7, 9
   and 10 and 
