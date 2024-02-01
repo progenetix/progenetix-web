@@ -34,32 +34,7 @@
       isHidden: true
     allTermsFilters:
       placeholder: [NCIT:C3058]
-  examples:
-    - label: "CDKN2A deletion"
-      note: "Focal CDKN2A deletion"
-      description: |
-        This example shows the query for CNV deletion variants overlapping the
-        CDKN2A gene's coding region with at least a single base, but limited
-        to "focal" hits (here i.e. <= ~2Mbp in size). The query is against the
-        examplez collection and can be modified e.g. through changing the position
-        parameters or data source.
-      img: /img/BeaconBracketQuery-limited-match-graphics.png
-      parameters:
-        referenceName:
-          isHidden: false
-          defaultValue: "refseq:NC_000009.12"
-        start:
-          isHidden: false
-          defaultValue: "21000001-21975098"
-        end:
-          isHidden: false
-          defaultValue: "21967753-23000000"
-        variantType:
-          isHidden: false
-          defaultValue: "EFO:0030067"
-        allTermsFilters:
-          isHidden: false
-          defaultValue: [NCIT:C3058]
+  examples: []
 
 
 - label: "Genomic Range"
