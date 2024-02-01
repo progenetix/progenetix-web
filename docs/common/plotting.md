@@ -34,38 +34,44 @@ by the [`byconaut`](https://byconaut.progenetix.org/) software project. It suppo
 Below are just some plot examples; for detailed use please refer to the
 [documentation](https://byconaut.progenetix.org/plotting/).
 
+Examples link to or are embedded from **{{api_site_label}}**.
+
 ### CNV Histogram Plots
 
 There are two possibilities to plot CNV histograms through the Progenetix API w/o using the user interface:
 
 1. direct visualization of pre-computed collations, e.g. publications or diagnosttic entities
-    * [progenetix.org/services/collationPlots/?datasetIds=progenetix&id=NCIT:C4443](http://progenetix.org/services/collationPlots/?datasetIds=progenetix&id=NCIT:C4443)
-2. a Beacon API query with the added option `&output=histoplot`
-    * [progenetix.org/beacon/biosamples/?limit=200&datasetIds=progenetix&referenceName=refseq:NC_000009.12&variantType=EFO:0030067&start=21500000,21975098&end=21967753,22500000&filters=NCIT:C3058&output=histoplot](http://progenetix.org/beacon/biosamples/?limit=200&datasetIds=progenetix&referenceName=refseq:NC_000009.12&variantType=EFO:0030067&start=21500000,21975098&end=21967753,22500000&filters=NCIT:C3058&output=histoplot)
+    * [services/collationPlots/?datasetIds=progenetix&id=NCIT:C4443]({{config.api_web_root}}/services/collationPlots/?datasetIds=progenetix&id=NCIT:C4443)
+2. a services API query in Beacon format, with the added option `&plotType=histoplot`
+   (which is actually the fallback so not strictly needed...)
+    * [services/sampleplots?limit=200&datasetIds=progenetix&referenceName=refseq:NC_000009.12&variantType=EFO:0030067&start=21500000,21975098&end=21967753,22500000&filters=NCIT:C3058&output=histoplot]({{config.api_web_root}}/services/sampleplots?limit=200&datasetIds=progenetix&referenceName=refseq:NC_000009.12&variantType=EFO:0030067&start=21500000,21975098&end=21967753,22500000&filters=NCIT:C3058&output=histoplot)
 
 Please **use option 1** if accessing complete entities (i.e. only using a single `filters` value) - this option is not limited through large sample numbers.
 
-#### Examples (using progenetix.org)
+#### Examples
 
-!!! 
+!!! note "Live Plot Generation"
+
+    The examples below are embedded using direct API calls to `progenetix.org`.
+
 
 * customized plot for glioblastoma CNV frequencies, limited to chromosomes 7, 9
   and 10 and 
     - `services/collationPlots/?id=NCIT:C3058&plotPars=plotChros=7,9,10::size_plotimage_w_px=640`
 
-![](https://progenetix.org/services/collationPlots/?id=NCIT:C3058&plotPars=plotChros=7,9,10::size_plotimage_w_px=640)
+![]({{config.api_web_root}}/services/collationPlots/?id=NCIT:C3058&plotPars=plotChros=7,9,10::size_plotimage_w_px=640)
 
 * plot with modified maximum Y - `value_plot_y_max` (histogram's maximum value
   in percent) and some custom label, for the TCGA cancer samples
     - `services/collationPlots/?id=pgx:cohort-TCGAcancers&plotPars=value_plot_y_max=50::plot_region_labels=5:0-48000000:Frequent+5p+gain,8:127735434-127742951:MYC::plot_marker_font_size=12`
 
-![](https://progenetix.org/services/collationPlots/?id=pgx:cohort-TCGAcancers&plotPars=value_plot_y_max=50::plot_region_labels=5:0-48000000:Frequent+5p+gain,8:127735434-127742951:MYC::plot_marker_font_size=12)
+![]({{config.api_web_root}}/services/collationPlots/?id=pgx:cohort-TCGAcancers&plotPars=value_plot_y_max=50::plot_region_labels=5:0-48000000:Frequent+5p+gain,8:127735434-127742951:MYC::plot_marker_font_size=12)
 
 * as above, but plastering some cancer driver genes on the plot by their gene
   symbols (`plot_gene_symbols`):
   - `services/collationPlots/?id=pgx:cohort-TCGAcancers&plotPars=value_plot_y_max=50::plot_gene_symbols=MYC,MYCN,REL,ERBB2,TP53,CDK1,EGFR,BCL2,RB1::plot_marker_font_size=10`
 
-![](https://progenetix.org/services/collationPlots/?id=pgx:cohort-TCGAcancers&plotPars=value_plot_y_max=50::plot_gene_symbols=MYC,MYCN,REL,ERBB2,TP53,CDK1,EGFR,BCL2,RB1::plot_marker_font_size=10)
+![]({{config.api_web_root}}/services/collationPlots/?id=pgx:cohort-TCGAcancers&plotPars=value_plot_y_max=50::plot_gene_symbols=MYC,MYCN,REL,ERBB2,TP53,CDK1,EGFR,BCL2,RB1::plot_marker_font_size=10)
 
 
 ### Sample Strip Plots
@@ -75,9 +81,9 @@ Please **use option 1** if accessing complete entities (i.e. only using a single
     - it uses the `plotType=samplesplot` to force the per sample display
     - `services/sampleplots?filters=NCIT:C3058,pgx:cohort-TCGAcancers&plotPars=plotGeneSymbols=CDKN2A,EGFR&limit=30&plotType=samplesplot`
 
-![](https://progenetix.org/services/sampleplots?filters=NCIT:C3058,pgx:cohort-TCGAcancers&plotPars=plotGeneSymbols=CDKN2A,EGFR&limit=30&plotType=samplesplot)
+![]({{config.api_web_root}}/services/sampleplots?filters=NCIT:C3058,pgx:cohort-TCGAcancers&plotPars=plotGeneSymbols=CDKN2A,EGFR&limit=30&plotType=samplesplot)
 
 * as above, without the `plotType=samplesplot` using the `histoplot` default
     - `services/sampleplots?filters=NCIT:C3058,pgx:cohort-TCGAcancers&plotPars=plotGeneSymbols=CDKN2A,EGFR&limit=30`
 
-![](https://progenetix.org/services/sampleplots?filters=NCIT:C3058,pgx:cohort-TCGAcancers&plotPars=plotGeneSymbols=CDKN2A,EGFR&limit=30)
+![]({{config.api_web_root}}/services/sampleplots?filters=NCIT:C3058,pgx:cohort-TCGAcancers&plotPars=plotGeneSymbols=CDKN2A,EGFR&limit=30)

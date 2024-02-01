@@ -5,7 +5,12 @@ copyright: '&copy; Copyright 2023, Michael Baudis and progenetix.org'
 repo_name: progenetix-web
 repo_url: https://github.com/progenetix/progenetix-web
 
-###############################################################################
+# vars for common files (shared between sites) #################################
+
+api_site_label: progenetix.org
+api_web_root: https://progenetix.org
+
+################################################################################
 
 nav:
   - Documentation Home: index.md
@@ -15,7 +20,7 @@ nav:
   - File Formats: file-formats
   - Beacon+ API & bycon: beaconplus
   - Analysis in R - pgxRpi: pgxRpi
-  - Plotting & Visualizations: plotting
+  - Plotting & Visualizations: common/plotting
   - Use Case Examples: use-cases
   - Classifications, Ontologies & Standards: classifications-and-ontologies
   - Publication Collection: publication-collection
@@ -26,7 +31,7 @@ nav:
   - cancercelllines.org &#8599;: http://cancercelllines.org
   - Baudisgroup @ UZH &#8599;: http://info.baudisgroup.org
 
-###############################################################################
+################################################################################
 
 markdown_extensions:
   - toc:
