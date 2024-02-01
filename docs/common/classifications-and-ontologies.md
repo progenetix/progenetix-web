@@ -1,13 +1,15 @@
 # Classifications, Ontologies and Standards
 
-The Progenetix resource utilizes standardized diagnostic coding systems, with a
-move towards hierarchical ontologies. As part of the coding process we have
-developed and provide several code mapping resources through repositories, the
-Progenetix website and APIs.
+The {{config.api_site_label}} resource utilizes standardized diagnostic coding
+systems, with a dedicated move towards hierarchical ontologies. As part of the
+coding process we have developed and provide several code mapping resources through repositories, the Progenetix website and APIs.
 
-Additionally to diagnostic and other clinical concepts, Progenetix increasingly
-uses hierarchical terms and concepts for the annotation and querying of technical
-parameters such as platform technologies. Overall, the Progenetix resource uses a query syntax based around the [Beacon v2 "filters"](https://beacon-project.io/v2/filters.html) concept with a [CURIE](https://www.w3.org/TR/2010/NOTE-curie-20101216/) based syntax.
+Additionally to diagnostic and other clinical concepts, {{config.api_site_label}}
+increasingly uses hierarchical terms and concepts for the annotation and querying
+of technical parameters such as platform technologies. Overall, the
+{{config.api_site_label}} resource uses a query style based around the
+[Beacon v2 "filters"](https://beacon-project.io/v2/filters.html) concept with a
+[CURIE](https://www.w3.org/TR/2010/NOTE-curie-20101216/) based syntax.
 
 -------------------------------------------------------------------------------
 
@@ -31,7 +33,7 @@ parameters such as platform technologies. Overall, the Progenetix resource uses 
 ### Private filters
 
 Since some classifications cannot directly be referenced, and in accordance with
-the upcoming Beacon v2 concept of "private filters", Progenetix uses
+the upcoming Beacon v2 concept of "private filters", {{config.api_site_label}} uses
 additionally a set of structured non-CURIE identifiers.
 
 For terms with a `pgx` prefix, the [identifiers.org resolver](http://identifiers.org/pgx/) will 
@@ -61,7 +63,7 @@ but now extended based on the whole "neoplasia" subtree of the NCI Thesaurus (`N
 
 ### ICD coding of tumor samples
 
-The Progenetix resource primarily used the coding schemas of the _International Classification of Diseases in Oncology__ (3rd edition; "ICD-O 3"), to classify all biosamples for which experimental data is available. Users can get a list of ICD-O 3 codes in the Progenetix format [through Progenetix collations](http://info.progenetix.org/doc/services/collations.html).
+The {{config.api_site_label}} resource primarily used the coding schemas of the _International Classification of Diseases in Oncology__ (3rd edition; "ICD-O 3"), to classify all biosamples for which experimental data is available. Users can get a list of ICD-O 3 codes in the Progenetix format [through Progenetix collations](http://info.progenetix.org/doc/services/collations.html).
 
 The mappings used here for the ICD morphology codings (mapped to ICDMORPHOLOGY and ICDMORPHOLOGYCODE) are derived from the original source file last accessed on 2016-08-18 from [the WHO](https://www.who.int/standards/classifications/other-classifications/international-classification-of-diseases-for-oncology). The primary codes have been updated from the 2011 update document [ICDO3Updates2011.pdf](http://www.who.int/classifications/icd/updates/ICDO3Updates2011.pdf).
 
@@ -85,16 +87,20 @@ are detailed in the related [icdot2uberon](https://github.com/progenetix/icdot2u
 
 ## Genomic Variations (CNV Ontology)
 
-<img src="../img/form-structural-variant-type-selector.png" style="float: right; width: 201px; margin-top: -15px; margin-left: 10px;"/>The Progenetix repository contains predominantly copy number variants. While we
-had limited CNV type annotations to the "minimum information content" - i.e. using
-`DUP` and `DEL` categories for indicating relative genomic copy number gains or losses,
-respectively, from 2022 Progenetix will move to a richer CNV classification in line
-with "common use practices". As part of the [ELIXIR h-CNV community](http://cnvar.org) and contributors
-to the GA4GH [Beacon project](http://genomebeacons.org) and [Variant Representation Specification (VRS)](http://vrs.org)
-we have co-developed a "CNV assessment ontology" which in January 2022 has been
-accepted into the [Experimental Factor Ontology (EFO)](https://www.ebi.ac.uk/ols/ontologies/efo)
-and is under discussion at [Sequence Ontology (SO)](https://github.com/The-Sequence-Ontology/SO-Ontologies/issues/568)
-and for use in VRS.
+<img src="../img/form-structural-variant-type-selector.png" style="float: right; width: 201px; margin-top: -15px; margin-left: 10px;"/>The {{config.api_site_label}} repository
+contains a large amount of genomic copy number variants. While we had limited CNV type
+annotations to the "minimum information content" - i.e. using `DUP` and `DEL`
+categories for indicating relative genomic copy number gains or losses,
+respectively - from 2022 {{config.api_site_label}} has moved to a richer CNV
+classification in line with "common use practices".
+
+As part of the [ELIXIR h-CNV community](http://cnvar.org) and contributors
+to the GA4GH [Beacon project](http://genomebeacons.org) and
+[Variant Representation Specification (VRS)](http://vrs.org) we have co-developed
+a "CNV assessment ontology" which in January 2022 has been accepted into the
+[Experimental Factor Ontology (EFO)](https://www.ebi.ac.uk/ols/ontologies/efo),
+has been adopted by the VRS 1.3 standard (w/ slight changes) and is under discussion
+at [Sequence Ontology (SO)](https://github.com/The-Sequence-Ontology/SO-Ontologies/issues/568).
 
 In January 2022 we switched the internal representation of CNV states to EFO codes
 and implemented the respective search functionality in the `bycon` package. Future
@@ -140,20 +146,11 @@ label: copy number assessment
                    region does not extend >3Mb (varying 1-5Mb) and may exist in a large number of
                    copies
 ```
-This table is maintained in parallel with the [Beacon v2 documentation](http://docs.genomebeacons.org/variant-queries/#term-use-comparison).
 
-| [EFO](http://www.ebi.ac.uk/efo/EFO_0030063) | Beacon | [VCF](https://samtools.github.io/hts-specs/) | SO       | GA4GH [VRS](https://vrs.ga4gh.org/en/latest/terms_and_model.html#copynumberchange)[^1] | Notes |
-| ------------------------------------------- | ------------------------------------------------------------------------------ | -------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
-| <nobr>[`EFO:0030070`](http://www.ebi.ac.uk/efo/EFO_0030070)</nobr><br/> copy number gain | `DUP`[^2] or<br/><nobr>[`EFO:0030070`](http://www.ebi.ac.uk/efo/EFO_0030070)</nobr> | `DUP`<br/><nobr>`SVCLAIM=D`[^3]</nobr> | [`SO:0001742`](http://www.sequenceontology.org/browser/current_release/term/SO:0001742) <br/> copy_number_gain | <nobr>[`EFO:0030070`](http://www.ebi.ac.uk/efo/EFO_0030070)</nobr> gain  | a sequence alteration whereby the copy number of a given genomic region is greater than the reference sequence |
-| <nobr>[`EFO:0030071`](http://www.ebi.ac.uk/efo/EFO_0030071)</nobr><br/> low-level copy number gain| `DUP`[^2] or<br/><nobr>[`EFO:0030071`](http://www.ebi.ac.uk/efo/EFO_0030071)</nobr> | `DUP`<br/><nobr>`SVCLAIM=D`[^3]</nobr> | [`SO:0001742`](http://www.sequenceontology.org/browser/current_release/term/SO:0001742) <br/> copy_number_gain | <nobr>[`EFO:0030071`](http://www.ebi.ac.uk/efo/EFO_0030071)</nobr><br/>low-level gain | |
-| <nobr>[`EFO:0030072`](http://www.ebi.ac.uk/efo/EFO_0030072)</nobr><br/> high-level copy number gain | `DUP`[^2] or<br/><nobr>[`EFO:0030072`](http://www.ebi.ac.uk/efo/EFO_0030072)</nobr> | `DUP`<br/><nobr>`SVCLAIM=D`[^3]</nobr> | [`SO:0001742`](http://www.sequenceontology.org/browser/current_release/term/SO:0001742) <br/> copy_number_gain | <nobr>[`EFO:0030072`](http://www.ebi.ac.uk/efo/EFO_0030072)</nobr><br/> high-level gain | commonly but not consistently used for >=5 copies on a bi-allelic genome region |
-| <nobr>[`EFO:0030073`](http://www.ebi.ac.uk/efo/EFO_0030073)</nobr><br/> focal genome amplification  | `DUP`[^2] or<br/><nobr>[`EFO:0030073`](http://www.ebi.ac.uk/efo/EFO_0030073)</nobr> | `DUP`<br/><nobr>`SVCLAIM=D`[^3]</nobr> | [`SO:0001742`](http://www.sequenceontology.org/browser/current_release/term/SO:0001742) <br/> copy_number_gain | <nobr>[`EFO:0030072`](http://www.ebi.ac.uk/efo/EFO_0030072)</nobr><br/> high-level gain[^4]  | commonly but not consistently used for >=5 copies on a bi-allelic genome region, of limited size (operationally max. 1-5Mb) |
-| <nobr>[`EFO:0030067`](http://www.ebi.ac.uk/efo/EFO_0030067)</nobr><br/> copy number loss | `DEL`[^2] or<br/><nobr>[`EFO:0030067`](http://www.ebi.ac.uk/efo/EFO_0030067)</nobr> | `DEL`<br/><nobr>`SVCLAIM=D`[^3]</nobr> | [`SO:0001743`](http://www.sequenceontology.org/browser/current_release/term/SO:0001743) <br/> copy_number_loss | <nobr>[`EFO:0030067`](http://www.ebi.ac.uk/efo/EFO_0030067)</nobr><br/> loss | a sequence alteration whereby the copy number of a given genomic region is smaller than the reference sequence |
-| <nobr>[`EFO:0030068`](http://www.ebi.ac.uk/efo/EFO_0030068)</nobr><br/> low-level copy number loss  | `DEL`[^2] or<br/><nobr>[`EFO:0030068`](http://www.ebi.ac.uk/efo/EFO_0030068)</nobr> | `DEL`<br/><nobr>`SVCLAIM=D`[^3]</nobr> | [`SO:0001743`](http://www.sequenceontology.org/browser/current_release/term/SO:0001743) <br/> copy_number_loss | <nobr>[`EFO:0030068`](http://www.ebi.ac.uk/efo/EFO_0030068)</nobr><br/> low-level loss  | |
-| <nobr>[`EFO:0020073`](http://www.ebi.ac.uk/efo/EFO_0020073)</nobr><br/> high-level copy number loss  | `DEL`[^2] or<br/><nobr>[`EFO:0020073`](https://github.com/EBISPOT/efo/issues/1941)</nobr> | `DEL`<br/><nobr>`SVCLAIM=D`[^3]</nobr> | [`SO:0001743`](http://www.sequenceontology.org/browser/current_release/term/SO:0001743) <br/> copy_number_loss | <nobr>[`EFO:0020073`](https://github.com/EBISPOT/efo/issues/1941)</nobr><br/> high-level loss  | a loss of several copies; also used in cases where a complete genomic deletion cannot be asserted |
-| <nobr>[`EFO:0030069`](http://www.ebi.ac.uk/efo/EFO_0030069)</nobr><br/> complete genomic deletion   | `DEL`[^2] or<br/><nobr>[`EFO:0030069`](http://www.ebi.ac.uk/efo/EFO_0030069)</nobr> | `DEL`<br/><nobr>`SVCLAIM=D`[^3]</nobr> | [`SO:0001743`](http://www.sequenceontology.org/browser/current_release/term/SO:0001743) <br/> copy_number_loss | <nobr>[`EFO:0030069`](http://www.ebi.ac.uk/efo/EFO_0030069)</nobr> complete genomic loss   | complete genomic deletion (e.g. homozygous deletion on a bi-allelic genome region) |
 
--------------------------------------------------------------------------------
+!!! important "CNV terminology"
+
+    Please see the variants annotation table at cnvar.org or in the [Beacon v2 documentation](http://docs.genomebeacons.org/variant-queries/#term-use-comparison).
 
 ## Sequence Variation (SNV Ontology)
 
@@ -302,12 +299,12 @@ Accordingly, upon export through the API variants are re-mapped to a Beacon v2 r
   "biosample_id": "pgxbs-kftva59y",
   "individual_id": "pgxind-kftx25eh",
   "variant_state": { "id": "EFO:0030067", "label": "copy number loss" },
-  "type": "RelativeCopyNumber",
+  "relative_copy_class": "partial loss",
   "location": {
     "sequence_id": "refseq:NC_000011.10",
     "chromosome": "11",
-    "type": "SequenceLocation",
-    "interval": { "start": 52900000, "end": 134452384 }
+    "start": 52900000,
+    "end": 134452384
     },
   "updated": "2022-03-29T14:36:47.454674"
 }
@@ -328,7 +325,6 @@ Accordingly, upon export through the API variants are re-mapped to a Beacon v2 r
       "end": 67589139
     },
     "individual_id": "pgxind-kl8hg1r5",
-    "info": { "version": "v23" },
     "reference_sequence": "G",
     "sequence": "A",
     "variant_state": { "id": "SO:0001059", "label": "sequence_alteration" }
@@ -357,7 +353,7 @@ A more detailed discussion of the problems and benefits of geographic provenance
 
 #### Geolocations Service
 
-The Progenetix API provides a service for [retrieving geographic coordinates](/https://docs.progenetix.org/services/#geographic-locations-cities-geolocations) as point coordinates, for the majority of cities.
+The {{config.api_site_label}} API provides a service for [retrieving geographic coordinates](/https://docs.progenetix.org/services/#geographic-locations-cities-geolocations) as point coordinates, for the majority of cities.
 
 #### `GeoLocation` schema
 
