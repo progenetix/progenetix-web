@@ -7,7 +7,7 @@ repo_url: https://github.com/progenetix/progenetix-web
 
 # vars for common files (shared between sites) #################################
 
-api_site_label: progenetix.org
+api_site_label: '[Progenetix](https://progenetix.org)'
 api_web_root: https://progenetix.org
 
 ################################################################################
@@ -22,7 +22,7 @@ nav:
   - Analysis in R - pgxRpi: pgxRpi
   - Plotting & Visualizations: common/plotting
   - Use Case Examples: use-cases
-  - Classifications, Ontologies & Standards: classifications-and-ontologies
+  - Classifications, Ontologies & Standards: common/classifications-and-ontologies
   - Publication Collection: publication-collection
   - Data Review: progenetix-data-review
   - Technical Notes: technical-notes
@@ -105,6 +105,6 @@ extra:
       link: https://github.com/progenetix
 extra_css:
   - css/theme_overrides.css
-extra_javascript:
-  - https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js
+# extra_javascript:
+#   - https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js
     

@@ -5,4 +5,4 @@ description: More granular annotation of CNV types
 date: 2022-01-17
 ---
 
-More information can be found in the [description of ontology use for CNVs](classifications-and-ontologies.md#genomic-variations-cnv-ontology).
+More information can be found in the [description of ontology use for CNVs](common/classifications-and-ontologies.md#genomic-variations-cnv-ontology).

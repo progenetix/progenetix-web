@@ -4,7 +4,7 @@
 
 ## Retrieve biosample information 
 
-You can select biosamples from specific groups of interests, chosen by a filter. The description about _filters_ is [here](https://docs.progenetix.org/classifications-and-ontologies/).
+You can select biosamples from specific groups of interests, chosen by a filter. The description about _filters_ is [here](https://docs.progenetix.org/common/classifications-and-ontologies/).
 
 ```
 biosamples <- pgxLoader(type="biosample", filters = "NCIT:C3512",codematches = TRUE)

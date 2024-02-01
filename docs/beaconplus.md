@@ -80,7 +80,7 @@ collections of MongoDB databases. These collections are addressed by scoped quer
 Filters represent a way to allow the resource provider to direct "self-scoped" query values to the corresponding attributes in their backend resource. In the Progenetix implementation, a lookup table followed by scope assignment is used to map prefixed filter values to the correct  attributes and collections. Most of the filter options are
 based on ontology terms or identifiers in CURIE format (e.g. `NCIT:C4033`, `cellosaurus:CVCL_0030` or `PMID:16004614`). For use case examples please
 look below; documentation of available ontologies and how to find out about available
-terms can be found on the [Classifications and Ontologies](classifications-and-ontologies.md) page.
+terms can be found on the [Classifications and Ontologies](common/classifications-and-ontologies.md) page.
 
 In Beacon v2, the new `FilteringTerms` schema adds options to specify different
 types of filters (`OntologyFilter`, `AlphanumericFilter`, `CustomFilter`) which can

@@ -10,7 +10,6 @@ The standard format for (plot-)images generated on Progenetix is Scalable Vector
 
 On most pages where plots are being displayed there is a download option for the images - (please alert us where those are missing). Browsers also have the option to export SVGs themselves e.g. as PDF.
 
-
 ## The `byconaut` plotting library
 
 Functionality of the Progenetix and cancercellline.org plotting API is provided
