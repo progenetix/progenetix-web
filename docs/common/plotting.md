@@ -40,10 +40,10 @@ Examples link to or are embedded from **{{api_site_label}}**.
 There are two possibilities to plot CNV histograms through the Progenetix API w/o using the user interface:
 
 1. direct visualization of pre-computed collations, e.g. publications or diagnosttic entities
-    * [services/collationPlots/?datasetIds=progenetix&id=NCIT:C4443]({{config.api_web_root}}/services/collationPlots/?datasetIds=progenetix&id=NCIT:C4443)
+    * [services/collationPlots/?datasetIds={{config.api_dataset_ids}}&id=NCIT:C4443]({{config.api_web_root}}/services/collationPlots/?datasetIds={{config.api_dataset_ids}}&id=NCIT:C4443)
 2. a services API query in Beacon format, with the added option `&plotType=histoplot`
    (which is actually the fallback so not strictly needed...)
-    * [services/sampleplots?limit=200&datasetIds=progenetix&referenceName=refseq:NC_000009.12&variantType=EFO:0030067&start=21500000,21975098&end=21967753,22500000&filters=NCIT:C3058&output=histoplot]({{config.api_web_root}}/services/sampleplots?limit=200&datasetIds=progenetix&referenceName=refseq:NC_000009.12&variantType=EFO:0030067&start=21500000,21975098&end=21967753,22500000&filters=NCIT:C3058&output=histoplot)
+    * [services/sampleplots?limit=200&datasetIds={{config.api_dataset_ids}}&referenceName=refseq:NC_000009.12&variantType=EFO:0030067&start=21500000,21975098&end=21967753,22500000&filters=NCIT:C3058&output=histoplot]({{config.api_web_root}}/services/sampleplots?limit=200&datasetIds={{config.api_dataset_ids}}&referenceName=refseq:NC_000009.12&variantType=EFO:0030067&start=21500000,21975098&end=21967753,22500000&filters=NCIT:C3058&output=histoplot)
 
 Please **use option 1** if accessing complete entities (i.e. only using a single `filters` value) - this option is not limited through large sample numbers.
 
@@ -56,33 +56,35 @@ Please **use option 1** if accessing complete entities (i.e. only using a single
 
 * customized plot for glioblastoma CNV frequencies, limited to chromosomes 7, 9
   and 10 and 
-    - `services/collationPlots/?id=NCIT:C3058&plotPars=plotChros=7,9,10::size_plotimage_w_px=640`
+    - `services/collationPlots/?datasetIds={{config.api_dataset_ids}}&id=NCIT:C3058&plotPars=plotChros=7,9,10::size_plotimage_w_px=640`
 
-![]({{config.api_web_root}}/services/collationPlots/?id=NCIT:C3058&plotPars=plotChros=7,9,10::size_plotimage_w_px=640)
+![]({{config.api_web_root}}/services/collationPlots/?datasetIds={{config.api_dataset_ids}}&id=NCIT:C3058&plotPars=plotChros=7,9,10::size_plotimage_w_px=640)
 
 * plot with modified maximum Y - `value_plot_y_max` (histogram's maximum value
-  in percent) and some custom label, for the TCGA cancer samples
-    - `services/collationPlots/?id=pgx:cohort-TCGAcancers&plotPars=value_plot_y_max=50::plot_region_labels=5:0-48000000:Frequent+5p+gain,8:127735434-127742951:MYC::plot_marker_font_size=12`
+  in percent) and some custom label
+    - `services/collationPlots/?id=pgx:icdom-80703&plotPars=value_plot_y_max=50::plot_region_labels=5:0-48000000:Frequent+5p+gain,8:127735434-127742951:MYC::plot_marker_font_size=12`
 
-![]({{config.api_web_root}}/services/collationPlots/?id=pgx:cohort-TCGAcancers&plotPars=value_plot_y_max=50::plot_region_labels=5:0-48000000:Frequent+5p+gain,8:127735434-127742951:MYC::plot_marker_font_size=12)
+![]({{config.api_web_root}}/services/collationPlots/?datasetIds={{config.api_dataset_ids}}&id=pgx:icdom-80703&plotPars=value_plot_y_max=50::plot_region_labels=5:0-48000000:Frequent+5p+gain,8:127735434-127742951:MYC::plot_marker_font_size=12)
 
 * as above, but plastering some cancer driver genes on the plot by their gene
   symbols (`plot_gene_symbols`):
-  - `services/collationPlots/?id=pgx:cohort-TCGAcancers&plotPars=value_plot_y_max=50::plot_gene_symbols=MYC,MYCN,REL,ERBB2,TP53,CDK1,EGFR,BCL2,RB1::plot_marker_font_size=10`
+  - `services/collationPlots/?datasetIds={{config.api_dataset_ids}}&id=pgx:icdom-80703&plotPars=value_plot_y_max=50::plot_gene_symbols=MYC,MYCN,REL,ERBB2,TP53,CCND1,EGFR,BCL2,RB1::plot_marker_font_size=10`
 
-![]({{config.api_web_root}}/services/collationPlots/?id=pgx:cohort-TCGAcancers&plotPars=value_plot_y_max=50::plot_gene_symbols=MYC,MYCN,REL,ERBB2,TP53,CDK1,EGFR,BCL2,RB1::plot_marker_font_size=10)
+![]({{config.api_web_root}}/services/collationPlots/?datasetIds={{config.api_dataset_ids}}&id=pgx:icdom-80703&plotPars=value_plot_y_max=50::plot_gene_symbols=MYC,MYCN,REL,ERBB2,TP53,CCND1,EGFR,BCL2,RB1::plot_marker_font_size=10)
 
 
 ### Sample Strip Plots
 
 * a sample plot, automatically clustered, from a search for Glioblastoma samples
-  in the TCGA cancers cohort (limited to 30 samples)
+  (limited to 30 samples)
+    - the `variantType=EFO:0030066` is used to only retrieve samples with a CNV
+      (this also avoids finding SNV samples & under-populating the CNV data...)
     - it uses the `plotType=samplesplot` to force the per sample display
-    - `services/sampleplots?filters=NCIT:C3058,pgx:cohort-TCGAcancers&plotPars=plotGeneSymbols=CDKN2A,EGFR&limit=30&plotType=samplesplot`
+    - `services/sampleplots?datasetIds={{config.api_dataset_ids}}&filters=NCIT:C4822&variantType=EFO:0030066&plotPars=plotGeneSymbols=CDKN2A,EGFR&limit=30&plotType=samplesplot`
 
-![]({{config.api_web_root}}/services/sampleplots?filters=NCIT:C3058,pgx:cohort-TCGAcancers&plotPars=plotGeneSymbols=CDKN2A,EGFR&limit=30&plotType=samplesplot)
+![]({{config.api_web_root}}/services/sampleplots?datasetIds={{config.api_dataset_ids}}&filters=NCIT:C4822&variantType=EFO:0030066&plotPars=plotGeneSymbols=CDKN2A,EGFR&limit=30&plotType=samplesplot)
 
 * as above, without the `plotType=samplesplot` using the `histoplot` default
-    - `services/sampleplots?filters=NCIT:C3058,pgx:cohort-TCGAcancers&plotPars=plotGeneSymbols=CDKN2A,EGFR&limit=30`
+    - `services/sampleplots?datasetIds={{config.api_dataset_ids}}&filters=NCIT:C4822&variantType=EFO:0030066&plotPars=plotGeneSymbols=CDKN2A,EGFR&limit=30`
 
-![]({{config.api_web_root}}/services/sampleplots?filters=NCIT:C3058,pgx:cohort-TCGAcancers&plotPars=plotGeneSymbols=CDKN2A,EGFR&limit=30)
+![]({{config.api_web_root}}/services/sampleplots?datasetIds={{config.api_dataset_ids}}&filters=NCIT:C4822&variantType=EFO:0030066&plotPars=plotGeneSymbols=CDKN2A,EGFR&limit=30)

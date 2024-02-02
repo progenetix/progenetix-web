@@ -9,6 +9,7 @@ repo_url: https://github.com/progenetix/progenetix-web
 
 api_site_label: '[Progenetix](https://progenetix.org)'
 api_web_root: https://progenetix.org
+api_dataset_ids: progenetix
 
 ################################################################################
 
