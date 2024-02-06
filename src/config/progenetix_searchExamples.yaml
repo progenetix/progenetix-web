@@ -27,7 +27,7 @@
       isHidden: true
     allTermsFilters:
       isHidden: false
-      defaultValue: [NCIT:C3058]
+      defaultValue: ["NCIT:C3058"]
 
 - label: "SNV Example"
   note: "Example for specific EIF4A1 mutation"
@@ -145,4 +145,4 @@
       isHidden: true
     allTermsFilters:
       isHidden: false
-      defaultValue: [cellosaurus:CVCL_0030]
+      defaultValue: ["cellosaurus:CVCL_0030"]

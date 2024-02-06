@@ -41,7 +41,7 @@ BiosamplesSearchForm.propTypes = {
 }
 
 function urlQueryToFormParam(urlQuery, key, parametersConfig) {
-  const isMulti = !!parametersConfig[key]?.isMulti ?? false
+  const isMulti = !!parametersConfig.parameters[key]?.isMulti ?? false
   const value = urlQuery[key]
   if (value == null) return value
   if (isMulti) {
@@ -132,13 +132,11 @@ export function BeaconSearchForm({
   const {
     data: biosubsetsResponse,
     isLoading: isBioSubsetsDataLoading
-  } = useFilteringTerms( watch, ct )
-  
+  } = useFilteringTerms( watch, ct ) 
   const biosubsetsOptions = biosubsetsResponse?.response?.filteringTerms?.map((value) => ({
     value: value.id,
     label: `${value.id}: ${value.label} (${value.count})`
   }))
-  
   parameters = merge({}, parameters, {
     bioontology: { options: biosubsetsOptions }
   })

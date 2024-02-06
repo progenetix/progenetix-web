@@ -49,7 +49,7 @@
     variantType:
       defaultValue: "EFO:0030067"
     allTermsFilters:
-      defaultValue: "EFO:0030035"
+      defaultValue: ["EFO:0030035"]
 - label: "K-562 Cell Line"
   note: "Instances of K-562 and daughter cell lines, searched by Cellosaurus id"
   description: |

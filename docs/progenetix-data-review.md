@@ -104,13 +104,3 @@ server corresponding to the **chr 1 only** arrays from GEO
 ![](http://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?datasetIds=progenetix&id=PMID:23417712)
 
 --------------------------------------------------------------------------------
-
-<!--
-* [X] **2021-09-07 [NCIT:C7431](http://progenetix.org/subsets/biosubsets/?filters=NCIT:C7431&datasetIds=progenetix) [FIXED](https://docs.progenetix.org/en/latest/changelog.html#bug-fix-frequency-maps)**
-
-* very strange frequency plot, with just some spikes; looks like either only 2 or such samples with only background are processed (while 3234 are listed), or some value error?
-* all (?) child terms are fine
-* `byconeer/frequencymapsCreator.py -d progenetix -p "NCIT:C7431"` doesn't help...
-
-![](http://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?datasetIds=progenetix&id=NCIT:C7431)
--->

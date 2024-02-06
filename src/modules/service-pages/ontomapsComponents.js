@@ -17,7 +17,7 @@ export function CodeGroups({ codeGroups, ontomapsUrl }) {
               {codeGroup.map((code) => (
                 <td key={code.id}>
                   <Link
-                    href={`/subsets/biosubsets?datasetIds=progenetix&filters=${code.id}`}
+                    href={`/subset/?datasetIds=progenetix&id=${code.id}`}
                   >
                     <a>{code.id}</a>
                   </Link>

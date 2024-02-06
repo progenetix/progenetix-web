@@ -252,7 +252,7 @@ parameters:
       "cellosaurus:CVCL_0004"; "NCIT:C3222"; "PMID:18559507").
       This field relies on the existence of the term in the Beacon `filteringTermsResponse`.
     options:
-      - value: ""
+      - value: [""]
         label: "(no selection)"
   accessid:
     label: Accession Prefilter
