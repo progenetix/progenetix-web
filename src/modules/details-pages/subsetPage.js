@@ -8,7 +8,7 @@ import { Loader } from "../../components/Loader"
 import { Layout } from "../../components/Layout"
 import { ShowJSON } from "../../components/RawData"
 import { SubsetHistogram } from "../../components/SVGloaders"
-import { ExternalLink } from "../../components/helpersShared/linkHelpers"
+import { ExternalLink, InternalLink } from "../../components/helpersShared/linkHelpers"
 import { withUrlQuery } from "../../hooks/url-query"
 
 const service = "collations"
@@ -99,7 +99,16 @@ function Subset({ subset, datasetIds }) {
   <ul>
     <li>{subset.count} samples</li>
     <li>{subset.codeMatches} direct <i>{subset.id}</i> code  matches</li>
-    <li>{subset.cnvAnalyses} CNV analyses</li>
+    <li>{subset.cnvAnalyses} CNV analyses
+      <ul>
+        <li>
+          <InternalLink
+            href={`${SITE_DEFAULTS.API_PATH}services/intervalFrequencies/${subset.id}/?output=pgxfreq`}
+            label="Download CNV frequencies"
+          />
+        </li>
+      </ul>
+    </li>
   </ul>
 
   <h5>Search Samples</h5>
