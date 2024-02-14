@@ -149,7 +149,6 @@ parameters:
       single value, or in case of fuzzy requests for e.g. copy number variants
       the end provided as a range for the possible occurrence of
       the CNV end (e.g. "21967753-22500000").
-    isHidden: true
   variantMinLength:
     label: Min Variant Length
     type: number

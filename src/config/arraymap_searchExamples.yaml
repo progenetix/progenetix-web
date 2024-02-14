@@ -14,8 +14,9 @@
       defaultValue: "21967753-22500000"
     variantType:
       defaultValue: "EFO:0030067"
-    bioontology:
-      defaultValue: ["NCIT:C3058"]
+    allTermsFilters:
+      defaultValue: ["NCIT:C3058", "pgx:cohort-arraymap"]
+      isHidden: false
 - label: "MYC Duplication"
   note: "Example for focal MYC Duplications."
   description: |
@@ -31,8 +32,9 @@
       defaultValue: "127740957-130000000"
     variantType:
       defaultValue: "EFO:0030070"
-    bioontology:
-      defaultValue: ["pgx:icdom-80463"]
+    allTermsFilters:
+      defaultValue: ["pgx:icdom-80463", "pgx:cohort-arraymap"]
+      isHidden: false
 - label: "TP53 Del. in Cell Lines"
   note: "Example for TP53 deletion"
   description: >-
@@ -49,7 +51,8 @@
     variantType:
       defaultValue: "EFO:0030067"
     allTermsFilters:
-      defaultValue: ["EFO:0030035"]
+      defaultValue: ["EFO:0030035", "pgx:cohort-arraymap"]
+      isHidden: false
 - label: "K-562 Cell Line"
   note: "Instances of K-562 and daughter cell lines, searched by Cellosaurus id"
   description: |
@@ -67,3 +70,6 @@
       defaultValue: ""
     referenceid:
       defaultValue: ["cellosaurus:CVCL_0004"]
+    allTermsFilters:
+      defaultValue: ["pgx:cohort-arraymap"]
+      isHidden: false

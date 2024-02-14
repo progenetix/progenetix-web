@@ -5,10 +5,7 @@ description: ""
 parameters:
   datasetIds:
     defaultValue: ["progenetix"]
-    isHidden: true
-  cohorts:
-    defaultValue: ["pgx:cohort-TCGA"]
-    # isHidden: true
+    isHidden: false
   assemblyId:
     isHidden: true
   referenceName:
@@ -31,3 +28,6 @@ parameters:
     placeholder: ""
   materialtype:
     placeholder: "EFO:0009656" #"EFO:0009656"
+  allTermsFilters:
+    defaultValue: ["pgx:cohort-TCGA"]
+    isHidden: false

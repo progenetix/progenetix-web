@@ -14,8 +14,9 @@
       defaultValue: "21967753-22500000"
     variantType:
       defaultValue: "EFO:0030067"
-    bioontology:
-      defaultValue: ["NCIT:C3058"]
+    allTermsFilters:
+      defaultValue: ["NCIT:C3058", "pgx:cohort-TCGA"]
+      isHidden: false
 - label: "MYC Duplication"
   note: "Example for focal MYC Duplications."
   description: |
@@ -31,3 +32,6 @@
       defaultValue: "EFO:0030070"
     materialtype:
       defaultValue: "EFO:0009656"
+    allTermsFilters:
+      defaultValue: ["pgx:cohort-TCGA"]
+      isHidden: false

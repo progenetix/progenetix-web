@@ -18,10 +18,13 @@
       isHidden: true
     referenceName:
       placeholder: "refseq:NC_000009.12"
+      isHidden: false
     start:
       placeholder: "21000001-21975098"
+      isHidden: false
     end:
       placeholder: "21967753-23000000"
+      isHidden: false
     variantType:
       placeholder: "EFO:0030067 (DEL)"
     alternateBases:
@@ -34,6 +37,7 @@
       isHidden: true
     allTermsFilters:
       placeholder: [NCIT:C3058]
+      isHidden: false
   examples: []
 
 

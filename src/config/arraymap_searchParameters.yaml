@@ -6,28 +6,6 @@ parameters:
   datasetIds:
     defaultValue: ["progenetix"]
     isHidden: true
-  cohorts:
+  allTermsFilters:
     defaultValue: ["pgx:cohort-arraymap"]
-    isHidden: true
-  assemblyId:
-    isHidden: true
-  referenceName:
-    placeholder: "9"
-  start:
-    placeholder: "19000001-21975098"
-  end:
-    placeholder: "21967753-24000000"
-  variantType:
-    placeholder: "EFO:0030067"
-  alternateBases:
-    placeholder: "N"
-    isHidden: true
-  referenceBases:
-    placeholder: ""
-    isHidden: true
-  accessid:
-    isHidden: true
-  sex:
-    placeholder: ""
-  materialtype:
-    placeholder: "" #"EFO:0009656"
+    isHidden: false
