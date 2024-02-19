@@ -23,6 +23,7 @@ const HANDOVER_IDS = {
   histoplot: "histoplot",
   biosamples: "biosamples",
   biosamplestable: "biosamplestable",
+  biosamplesmap: "biosamplesmap",
   phenopackets: "phenopackets",
   UCSClink: "UCSClink",
   variants: "variants",
@@ -51,6 +52,7 @@ export function DatasetResultBox({ data: responseSet, query }) {
 
   const biosamplesHandover = handoverById(HANDOVER_IDS.biosamples)
   const biosamplesTableHandover = handoverById(HANDOVER_IDS.biosamplestable)
+  const biosamplesmapURL = handoverById(HANDOVER_IDS.biosamplesmap) === undefined ? false : handoverById(HANDOVER_IDS.biosamplesmap).url
   const phenopacketsHandover = handoverById(HANDOVER_IDS.phenopackets)
   const variantsHandover = handoverById(HANDOVER_IDS.variants)
   const vcfHandover = handoverById(HANDOVER_IDS.vcf)
@@ -172,6 +174,14 @@ export function DatasetResultBox({ data: responseSet, query }) {
           {info.counts.variants > 0 ? (
             <div>
               <UCSCRegion query={query} />
+            </div>
+          ) : null}
+          {biosamplesmapURL ? (
+            <div>
+              <ExternalLink
+                label="Geographic Map"
+                href={biosamplesmapURL}
+              />
             </div>
           ) : null}
           {info.counts.variants > 0 ? (

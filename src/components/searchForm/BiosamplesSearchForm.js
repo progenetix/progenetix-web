@@ -142,7 +142,7 @@ export function BeaconSearchForm({
   })
   
   // referenceid lookup ----------------------------------------------------- //
-  ct = "pubmed,GEOseries,GEOplatform,cellosaurus"
+  ct = "pubmed,GEOseries,AEseries,GEOplatform,cellosaurus"
   const {
     data: refsubsetsResponse,
     isLoading: isRefSubsetsDataLoading
