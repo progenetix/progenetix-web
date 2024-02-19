@@ -19,7 +19,7 @@ nav:
   - Pages & Forms: ui
   - Services API: services
   - File Formats: file-formats
-  - Beacon+ API & bycon: beaconplus
+  - Beacon+ API Use: common/beacon-api
   - Analysis in R - pgxRpi: pgxRpi
   - Plotting & Visualizations: common/plotting
   - Use Case Examples: use-cases

@@ -182,6 +182,7 @@ function Node({
   const isSearchPossible = subset && canSearch(subset)
   const even = index % 2 === 0
   // const detailsPage = subsetId.match("cellosaurus") ? "celllines/cellline" : "subset"
+  const detailsPage = "subset"
   return (
     <div
       style={{
@@ -220,18 +221,18 @@ function Node({
               <Expander isOpen={isOpen} setOpen={setOpen} />
             </span>
           )}
-          <Tippy content={`Show data for subset ${subsetId}`}>
+          <Tippy content={`Show data for subset "${subset.label}"`}>
             <a
-              href={`/subset/?id=${subsetId}&datasetIds=${datasetIds}`}
+              href={`/${detailsPage}/?id=${subsetId}&datasetIds=${datasetIds}`}
             >
-              <span>{subsetId}</span>
+            {(subset?.label && (
+              <span className="Subsets__tree__label" title={subset.label}>
+                {subset.label}
+              </span>
+            )) || <span>&nbsp;</span>}
             </a>
           </Tippy>
-          {(subset?.label && (
-            <span className="Subsets__tree__label" title={subset.label}>
-              : {subset.label}
-            </span>
-          )) || <span>&nbsp;</span>}
+          <span>: {subsetId}</span>
           {isSearchPossible ? (
             <Tippy content={`Click to retrieve samples for ${subsetId}`}>
               <a

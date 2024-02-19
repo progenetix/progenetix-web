@@ -133,7 +133,7 @@ function SubsetResponse({ id, response, individual, datasetIds }) {
 function Subset({ id, subset, individual, datasetIds }) {
   
   const filters = id
-  const sampleFilterScope = "referenceid"
+  const sampleFilterScope = "allTermsFilters"
   const [showAll, setShowAll] = useState(false);
   // console.log(individual);
   // console.log(Object.keys(individual));

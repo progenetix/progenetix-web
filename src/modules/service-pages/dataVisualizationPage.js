@@ -31,7 +31,7 @@ const DataVisualizationPage = withUrlQuery(({ urlQuery }) => {
   return (
     <Layout
       title="Data visualization"
-      headline={`Data visualization (${sampleCount} samples)`}
+      headline={`Data visualization (${sampleCount} ${datasetIds} samples)`}
     >
       {!accessid && !fileId ? (
         <NoResultsHelp />
@@ -102,14 +102,13 @@ function DataVisualizationPanel({ datasetIds, accessid, fileId, skip, limit, wid
       <WithData
         background
         apiReply={dataResult}
-        render={(data) => <ResultPanel formValues={formValues} response={data} width={width} />}
+        render={(data) => <ResultPanel formValues={formValues} response={data} width={width} datasetIds={datasetIds} />}
       />
     </div>
   )
 }
 
 function DataVisualizationForm({ isQuerying, onSubmit }) {
-
   const defaultValues = {
     "plotRegionLabels": null,
     "plotGeneSymbols": null
@@ -259,7 +258,7 @@ function DataVisualizationForm({ isQuerying, onSubmit }) {
   )
 }
 
-function ResultPanel({ formValues, response, width }) {
+function ResultPanel({ formValues, response, width, datasetIds }) {
 
   const resultsHandovers = response.response.resultSets[0].resultsHandovers
   const handoverById = (givenId) =>
@@ -272,8 +271,8 @@ function ResultPanel({ formValues, response, width }) {
     }
   });
 
-  const histoplotUrl = handoverById(HANDOVER_IDS.histoplot).url + "&plotPars=" + mapped.join('::')
-  const samplesplotUrl = handoverById(HANDOVER_IDS.samplesplot).url + "&plotPars=" + mapped.join('::')
+  const histoplotUrl = handoverById(HANDOVER_IDS.histoplot).url + "&plotPars=" + mapped.join('::') + "&datasetIds=" + datasetIds
+  const samplesplotUrl = handoverById(HANDOVER_IDS.samplesplot).url + "&plotPars=" + mapped.join('::') + "&datasetIds=" + datasetIds
 
   return (
     <div>
@@ -303,7 +302,7 @@ function ResultPanel({ formValues, response, width }) {
 //   // { value: "NCITgrade", label: "NCIT Disease Grade" },
 //   // { value: "NCITstage", label: "NCIT Disease Stage" },
 //   // { value: "EFOfus", label: "followup status" },
-//   { value: "PMID", label: "Publication (PubMed ID)" },
+//   { value: "pubmed", label: "Publication (PubMed ID)" },
 //   // { value: "geo:GSE", label: "GEO Series ID" },
 //   // { value: "geo:GPL", label: "GEO Platform ID" },
 //   {
