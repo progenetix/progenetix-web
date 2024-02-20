@@ -28,7 +28,7 @@ export default function UBERONmapsPage() {
           className="Layout__img__topright Layout__img__width-40"
         />
         <p>
-          The <strong>ontologymaps</strong> service provides equivalency mapping
+          The <strong>ontologymappings</strong> service provides equivalency mapping
           between ICD-O and other classification systems, notably NCIt and
           UBERON. It makes use of the sample-level mappings developed for the
           individual samples in the Progenetix collection.

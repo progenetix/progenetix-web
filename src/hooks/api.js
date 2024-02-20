@@ -274,7 +274,7 @@ export function useProgenetixRefPublicationList({ geoCity, geodistanceKm }) {
   return useProgenetixApi(url)
 }
 
-export const ontologymapsBaseUrl = `${SITE_DEFAULTS.API_PATH}services/ontologymaps?`
+export const ontologymapsBaseUrl = `${SITE_DEFAULTS.API_PATH}services/ontologymappings?`
 
 export function ontologymapsUrl({ filters, filterPrecision }) {
   let params = new URLSearchParams({ filters: filters })
