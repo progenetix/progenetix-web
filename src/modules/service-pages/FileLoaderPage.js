@@ -1,4 +1,4 @@
-// import { SITE_DEFAULTS } from "../../hooks/api"
+import { SITE_DEFAULTS } from "../../hooks/api"
 import { Layout } from "../../components/Layout"
 import React, { useState } from "react"
 import { useDropzone } from "react-dropzone"
@@ -181,8 +181,9 @@ function Dropzone({ setResult }) {
 
 function Results({ results, onCancelClicked }) {
   const fileId = results.fileId
-  const visualizationLink = getVisualizationLink("", "", fileId, "", "")
-  const histoPlotLink = 'http://progenetix.test/services/sampleplots/?datasetIds=upload&fileId=' + fileId
+  // const visualizationLink = getVisualizationLink("", "", fileId, "", "")
+  const histoPlotLink = `${SITE_DEFAULTS.API_PATH}services/sampleplots/?datasetIds=upload&fileId=${fileId}`
+  const samplesPlotLink = `${SITE_DEFAULTS.API_PATH}services/sampleplots/?datasetIds=upload&plotType=samplesplot&fileId=${fileId}`
 
   console.log("histoPlotLink...", histoPlotLink)
 
@@ -192,11 +193,15 @@ function Results({ results, onCancelClicked }) {
         <div className="message-body content">
           <p>The file has been successfully uploaded!</p>
           <p>
-            <Link href={visualizationLink}>
+{/*            <Link href={visualizationLink}>
               <a className="button is-link">Visualization form</a>
             </Link>
+*/}           
             <Link href={histoPlotLink}>
               <a className="button is-link">CNV Histogram</a>
+            </Link>
+            <Link href={samplesPlotLink}>
+              <a className="button is-link">Samples Plot</a>
             </Link>
           </p>
           or{" "}
