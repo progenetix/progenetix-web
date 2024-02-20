@@ -5,7 +5,8 @@ import { useDropzone } from "react-dropzone"
 import { uploadFile } from "../../hooks/api"
 // import { getVisualizationLink } from "../service-pages/dataVisualizationPage"
 // import { SubsetHistogram } from "../../components/SVGloaders"
-import Link from "next/link"
+// import Link from "next/link"
+// import ExternalLink from "../../components/helpersShared/linkHelpers"
 import Panel from "../../components/Panel"
 
 export default function FileLoaderPage() {
@@ -197,12 +198,21 @@ function Results({ results, onCancelClicked }) {
               <a className="button is-link">Visualization form</a>
             </Link>
 */}           
-            <Link href={histoPlotLink}>
-              <a className="button is-link">CNV Histogram</a>
-            </Link>
-            <Link href={samplesPlotLink}>
-              <a className="button is-link">Samples Plot</a>
-            </Link>
+            <a
+              href={histoPlotLink}
+              className="button is-link" 
+              rel="noreferrer"
+              target="_blank">
+                CNV Histogram
+            </a>
+            {" "}
+            <a
+              href={samplesPlotLink}
+              className="button is-link" 
+              rel="noreferrer"
+              target="_blank">
+                Samples Plot
+            </a>
           </p>
           or{" "}
           <button onClick={onCancelClicked} className="button-link button-text">
