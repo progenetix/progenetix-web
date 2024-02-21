@@ -174,11 +174,11 @@ function Side({ onClick }) {
           isSub="isSub"
         />
         <MenuInternalLinkItem
-          href="/service-collection/ontologymaps"
+          href="/service-collection/ontologymappings"
           label="Services"
         />
         <MenuInternalLinkItem
-          href="/service-collection/ontologymaps"
+          href="/service-collection/ontologymappings"
           label="NCIt Mappings"
           isSub="isSub"
         />

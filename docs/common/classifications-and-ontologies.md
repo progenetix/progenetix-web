@@ -55,7 +55,7 @@ For terms with a `pgx` prefix, the [identifiers.org resolver](http://identifiers
 * based on [NCIt neoplasm core](https://evs.nci.nih.gov/ftp1/NCI_Thesaurus/Neoplasm/About_Core.html)
 but now extended based on the whole "neoplasia" subtree of the NCI Thesaurus (`NCIT:C3262` and child terms)
 * first implementation of NCIt concepts mapping in January 2017, then for a subset of arrayMap samples
-* now providing ICD-O 3 <=> NCIt mappings through the [ICDOntoologies](https://github.com/progenetix/ICDOntologies) mapping project with a [front-end an API](http://progenetix.org/service-collection/ontologymaps/) on the website
+* now providing ICD-O 3 <=> NCIt mappings through the [ICDOntoologies](https://github.com/progenetix/ICDOntologies) mapping project with a [front-end an API](http://progenetix.org/service-collection/ontologymappings/) on the website
 
 #### Current NCIt sample codes
 
