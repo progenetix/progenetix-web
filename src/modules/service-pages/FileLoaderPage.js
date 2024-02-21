@@ -3,7 +3,6 @@ import { Layout } from "../../components/Layout"
 import React, { useState } from "react"
 import { useDropzone } from "react-dropzone"
 import { uploadFile } from "../../hooks/api"
-import { FaExternalLinkAlt } from "react-icons/fa"
 // import { getVisualizationLink } from "../service-pages/dataVisualizationPage"
 // import { SubsetHistogram } from "../../components/SVGloaders"
 // import Link from "next/link"
@@ -201,18 +200,21 @@ function Results({ results, onCancelClicked }) {
 */}           
             <a
               href={histoPlotLink}
-              className="button is-link" 
+              className="button is-link"
+              style={{width : '200px'}}
               rel="noreferrer"
               target="_blank">
-                CNV Histogram  <FaExternalLinkAlt className="icon has-text-info is-small" />
+                CNV Histogram
             </a>
-            {" "}
+          </p>
+          <p>
             <a
               href={samplesPlotLink}
               className="button is-link" 
+              style={{width: '200px'}}
               rel="noreferrer"
               target="_blank">
-                Samples Plot  <FaExternalLinkAlt className="icon has-text-info is-small" />
+                Samples Plot
             </a>
           </p>
           or{" "}
