@@ -9,7 +9,7 @@ export function GeneSymbolSelector({
   control,
   errors,
   register,
-  className
+  // className
 }) {
   const { inputValue, onInputChange } = useAsyncSelect()
   const { data, isLoading } = useGeneSymbol({ geneId: inputValue })
@@ -32,7 +32,7 @@ export function GeneSymbolSelector({
       control={control}
       errors={errors}
       register={register}
-      className={className}
+      className={"column py-0 mb-3"}
       useOptionsAsValue
       isClearable
     />

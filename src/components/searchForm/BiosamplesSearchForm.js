@@ -236,11 +236,21 @@ export function BeaconSearchForm({
               {...parameters.aminoacidChange} {...fieldProps}
             />
           </div>
-          {!parameters.geneId.isHidden && (
-            <GeneSymbolSelector
-              {...parameters.geneId} {...selectProps}
+          <div className="columns my-0">
+            {!parameters.geneId.isHidden && (
+              <GeneSymbolSelector
+                {...parameters.geneId} {...selectProps} 
+              />
+            )}
+            <SelectField
+              className={cn(
+                !parameters.analysisOperation.isHidden && "column",
+                "py-0 mb-3"
+              )}
+              {...parameters.analysisOperation}
+              {...selectProps}
             />
-          )}
+          </div>
           <div className="columns my-0">
             <SelectField
               className={cn(

@@ -14,18 +14,19 @@ import React from "react"
 
 const entity = "variants"
 const exampleId = "pgxvar-5bab576a727983b2e00b8d32"
-const datasetIds = SITE_DEFAULTS.DATASETID
 
 const VariantDetailsPage = withUrlQuery(({ urlQuery }) => {
-  var { id } = urlQuery
+  var { id, datasetIds } = urlQuery
+  if (!datasetIds) {
+    datasetIds = SITE_DEFAULTS.DATASETID
+  }
   const hasAllParams = id && datasetIds
-
   return (
     <Layout title="Variant Details" headline="Variant Details">
       {!hasAllParams ? (
         NoResultsHelp(exampleId, entity)
       ) : (
-        <VariantLoader id={id} />
+        <VariantLoader id={id} datasetIds={datasetIds} />
       )}
     </Layout>
   )
@@ -44,6 +45,7 @@ function VariantLoader({ id, datasetIds }) {
           <VariantResponse
             response={response}
             id={id}
+            datasetIds={datasetIds}
           />
       )}
     />
@@ -57,7 +59,7 @@ function VariantResponse({ response, id }) {
   return <Variant variant={response.response.resultSets[0].results[0]} id={id} />
 }
 
-function Variant({ variant, id }) {
+function Variant({ variant, id, datasetIds }) {
 
   var marker = variant.variantInternalId
   var mParts = marker.split(':')
@@ -72,7 +74,6 @@ function Variant({ variant, id }) {
 
       <h5>Digest</h5>
       <p>{variant.variantInternalId}</p>
-
       {variant.variation?.molecularAttributes && (
         <>
           <h5>Molecular Attributes</h5>
@@ -83,28 +84,25 @@ function Variant({ variant, id }) {
           {variant.variation.molecularAttributes?.molecularEffects && (
             <li>Molecular effect: {variant.variation.molecularAttributes.molecularEffects[0].label}</li>
           )}
-
-            {variant.variation.molecularAttributes.aminoacidChanges && variant.variation.molecularAttributes.aminoacidChanges.length > 0 && variant.variation.molecularAttributes.aminoacidChanges[0] !== null && (
-                <li>Aminoacid changes:
-                  <ul>
-                    {variant.variation.molecularAttributes.aminoacidChanges.map((aa) => (
-                        <li key={aa}>
-                          {aa}
-                        </li>
-                    ))}
-                  </ul>
-                </li>
+          {variant.variation.molecularAttributes.aminoacidChanges && variant.variation.molecularAttributes.aminoacidChanges.length > 0 && variant.variation.molecularAttributes.aminoacidChanges[0] !== null && (
+              <li>Aminoacid changes:
+                <ul>
+                  {variant.variation.molecularAttributes.aminoacidChanges.map((aa) => (
+                      <li key={aa}>
+                        {aa}
+                      </li>
+                  ))}
+                </ul>
+              </li>
             )}
           </ul>
         </>
       )}
 
       {variant.variation?.identifiers && (
-
         <>
         <h5>Variant Identifiers</h5>
         <ul>
-
         {variant.variation.identifiers?.proteinHGVSIds && (
           <li>Protein HGVSids:
             <ul>

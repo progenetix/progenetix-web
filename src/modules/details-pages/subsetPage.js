@@ -15,8 +15,10 @@ const service = "collations"
 const exampleId = "NCIT:C3262"
 
 const SubsetDetailsPage = withUrlQuery(({ urlQuery }) => {
-  var { id } = urlQuery
-  var datasetIds = SITE_DEFAULTS.DATASETID
+  var { id, datasetIds } = urlQuery
+  if (!datasetIds) {
+    datasetIds = SITE_DEFAULTS.DATASETID
+  }
   const hasAllParams = id && datasetIds
   return (
     <Layout title="Subset Details">

@@ -71,33 +71,11 @@ export default function BiosamplesDataTable({ apiReply, datasetId }) {
     ],
     [datasetId]
   )
-
-
-// ,
-//       {
-//         Header: TooltipHeader(
-//           "CNV Fraction",
-//           "Fraction of the sample's genome covered by CNV events (genomic gain or deletion)"
-//         ),
-//         accessor: "info.cnvstatistics.cnvfraction"
-//       }
-
-
-
   return (
     <WithData
       apiReply={apiReply}
       render={(response) => (
         <div>
-{/*
-          <div className="mb-4">
-            <DownloadButton
-              label="Download Biosamples"
-              json={response.response.resultSets[0].results}
-              fileName="biosamples"
-            />
-          </div>
-*/}
           <Table columns={columns} data={response.response.resultSets[0].results} />
         </div>
       )}

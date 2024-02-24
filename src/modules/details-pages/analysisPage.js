@@ -13,8 +13,10 @@ const itemColl = "analyses"
 const exampleId = "pgxcs-kftvlijb"
 
 const AnalysisDetailsPage = withUrlQuery(({ urlQuery }) => {
-  var { id } = urlQuery
-  var datasetIds = SITE_DEFAULTS.DATASETID
+  var { id, datasetIds } = urlQuery
+  if (!datasetIds) {
+    datasetIds = SITE_DEFAULTS.DATASETID
+  }
   const hasAllParams = id && datasetIds
   return (
     <Layout title="Analysis Details" headline="Analysis Details">

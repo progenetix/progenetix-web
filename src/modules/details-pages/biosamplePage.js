@@ -16,10 +16,12 @@ import { pluralizeWord }  from "../../components/helpersShared/labelHelpers"
 
 const itemColl = "biosamples"
 const exampleId = "pgxbs-kftvir6m"
-const datasetIds = SITE_DEFAULTS.DATASETID
 
 const SampleDetailsPage = withUrlQuery(({ urlQuery }) => {
-  var { id } = urlQuery
+  var { id, datasetIds } = urlQuery
+  if (!datasetIds) {
+    datasetIds = SITE_DEFAULTS.DATASETID
+  }
   const hasAllParams = id && datasetIds
 
   const iURL = `${SITE_DEFAULTS.API_PATH}beacon/individuals/?biosampleIds=${id}&datasetIds=${datasetIds}&limit=1`
@@ -114,23 +116,6 @@ function Biosample({ biosId, biosample, individual, datasetIds }) {
     </li>
   ))}      
   </ul>
-
-  {biosample.celllineInfo && (
-    <>
-    <h5>Cell Line Info</h5>
-    <ul>
-    {biosample.celllineInfo.id && (
-      <li>
-        Instance of {" "}
-        <InternalLink
-          href={`/cellline/?id=${biosample.celllineInfo.id}&datasetIds=${ datasetIds }`}
-          label={biosample.celllineInfo.id}
-        />
-      </li>
-    )}
-    </ul>
-    </>
-  )}
 
   {/*------------------------------------------------------------------------*/}
 
