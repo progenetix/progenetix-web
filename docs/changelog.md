@@ -4,6 +4,16 @@ This page lists changes for the [Beacon+](http://beacon.progenetix.org/ui/)
 implementation of the ["Beacon" genomics API](http://beacon-project.io), as well
 as related updates for the [Progenetix](http://progenetix.org) front-end.
 
+## 2024-02-24 Adding `analysis_operation` to `analyses`
+
+This new parameter with its (so far) values
+
+* `"analysis_operation.id":"EDAM:operation_3961", "analysis_operation.label":"Copy number variation detection"`
+* `"analysis_operation.id":"EDAM:operation_3227", "analysis_operation.label":"Variant Calling"`
+
+... allows now the filtering of analyses based on the type of genomic profiling
+performed.
+
 ## 2023-06-12: Some schema changes...
 
 **Schema changes are now extensively tracked in [bycon.progenetix.org](http://bycon.progenetix.org)**
