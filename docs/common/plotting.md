@@ -2,7 +2,7 @@
 
 ## Image Formats
 
-The standard format for (plot-)images generated on Progenetix is Scalable Vector Graphics ([SVG](https://en.wikipedia.org/wiki/Scalable_Vector_Graphics)). As the name implies, SVG is _scalable_, i.e. images can be scaled up without loosing quality or expanding in storage size. However, some of teh generated images use also embedded rastered components which will deteriorate during scaling - this is e.g. the case for array probe plots.
+The standard format for (plot-)images generated on Progenetix is Scalable Vector Graphics ([SVG](https://en.wikipedia.org/wiki/Scalable_Vector_Graphics)). As the name implies, SVG is _scalable_, i.e. images can be scaled up without losing quality or expanding in storage size. However, some of the generated images use also embedded rastered components which will deteriorate during scaling - this is e.g. the case for array probe plots.
 
 !!! note "[Wikipedia](https://en.wikipedia.org/wiki/Scalable_Vector_Graphics)"
 
