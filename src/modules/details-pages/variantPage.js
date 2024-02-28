@@ -11,6 +11,7 @@ import { Layout } from "../../components/Layout"
 import { ShowJSON } from "../../components/RawData"
 import { BiosamplePlot } from "../../components/SVGloaders"
 import React from "react"
+import { refseq2chro } from "../../components/Chromosome"
 
 const entity = "variants"
 const exampleId = "pgxvar-5bab576a727983b2e00b8d32"
@@ -52,18 +53,22 @@ function VariantLoader({ id, datasetIds }) {
   )
 }
 
-function VariantResponse({ response, id }) {
+function VariantResponse({ response, id datasetIds }) {
   if (!response.response.resultSets[0].results[0]) {
     return NoResultsHelp(exampleId, entity)
   }
-  return <Variant variant={response.response.resultSets[0].results[0]} id={id} />
+  return (
+    <Variant
+      variant={response.response.resultSets[0].results[0]}
+      id={id}
+      datasetIds={datasetIds}
+   />
 }
 
 function Variant({ variant, id, datasetIds }) {
-
   var marker = variant.variantInternalId
   var mParts = marker.split(':')
-  const chro = mParts[0]
+  const chro = refseq2chro(mParts[0])
   marker = marker + " (" + mParts[1] + ")"
 
   return (
