@@ -102,7 +102,13 @@ function DataVisualizationPanel({ datasetIds, accessid, fileId, skip, limit, wid
       <WithData
         background
         apiReply={dataResult}
-        render={(data) => <ResultPanel formValues={formValues} response={data} width={width} datasetIds={datasetIds} />}
+        render={(data) =>
+          <ResultPanel
+            formValues={formValues}
+            response={data}
+            width={width}
+            datasetIds={datasetIds}
+          />}
       />
     </div>
   )
