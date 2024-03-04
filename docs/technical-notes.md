@@ -133,7 +133,7 @@ classDiagram
         }
     class Variant{
         biosample_id
-        callset_id
+        analysis_id
         variant_type
         ...
     }
