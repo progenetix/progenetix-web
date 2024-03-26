@@ -53,7 +53,7 @@ function VariantLoader({ id, datasetIds }) {
   )
 }
 
-function VariantResponse({ response, id datasetIds }) {
+function VariantResponse({ response, id, datasetIds }) {
   if (!response.response.resultSets[0].results[0]) {
     return NoResultsHelp(exampleId, entity)
   }
@@ -62,7 +62,7 @@ function VariantResponse({ response, id datasetIds }) {
       variant={response.response.resultSets[0].results[0]}
       id={id}
       datasetIds={datasetIds}
-   />
+   />)
 }
 
 function Variant({ variant, id, datasetIds }) {
