@@ -265,7 +265,6 @@ function DataVisualizationForm({ isQuerying, onSubmit }) {
 }
 
 function ResultPanel({ formValues, response, width, datasetIds }) {
-
   const resultsHandovers = response.response.resultSets[0].resultsHandovers
   const handoverById = (givenId) =>
     resultsHandovers.find(({ handoverType: { id } }) => id === givenId)
