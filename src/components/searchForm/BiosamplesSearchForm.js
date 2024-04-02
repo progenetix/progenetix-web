@@ -330,6 +330,8 @@ export function BeaconSearchForm({
               {...parameters.alternateBases}
             />
           </div>
+          <InputField {...parameters.cytoBands} {...fieldProps} />
+          <InputField {...parameters.variantQueryDigests} {...fieldProps} />
           <div className="columns my-0">
             <SelectField
               className={cn(
@@ -656,6 +658,8 @@ function validateForm(formValues) {
     alternateBases,
     start,
     end,
+    cytoBands,
+    variantQueryDigests,
     geneId,
     aminoacidChange,
     genomicAlleleShortForm,
@@ -663,6 +667,7 @@ function validateForm(formValues) {
     clinicalClasses,
     referenceid,
     cohorts,
+    freeFilters,
     allTermsFilters
   } = formValues
 
@@ -670,19 +675,22 @@ function validateForm(formValues) {
   const setMissing = (name) =>
     errors.push([name, { type: "manual", message: "Parameter is missing" }])
 
-  if (!referenceName && !referenceBases && !alternateBases && !start && !end && !variantType && !geneId && !aminoacidChange && !genomicAlleleShortForm && !bioontology && !referenceid && !allTermsFilters && !clinicalClasses && !cohorts) {
+  if (!referenceName && !referenceBases && !alternateBases && !start && !end && !variantQueryDigests && !cytoBands && !variantType && !geneId && !aminoacidChange && !genomicAlleleShortForm && !bioontology && !referenceid && !allTermsFilters && !freeFilters && !clinicalClasses && !cohorts) {
     !referenceName && setMissing("referenceName")
     !referenceBases && setMissing("referenceBases")
     !alternateBases && setMissing("alternateBases")
     !start && setMissing("start")
     !end && setMissing("end")
+    !cytoBands && setMissing("cytoBands")
+    !variantQueryDigests && setMissing("variantQueryDigests")
     !variantType && setMissing("variantType")
     !geneId && setMissing("geneId")
     !bioontology && setMissing("bioontology")
     !clinicalClasses && setMissing("clinicalClasses")
     !referenceid && setMissing("referenceid")
+    !freeFilters && setMissing("freeFilters")
     !allTermsFilters && setMissing("allTermsFilters")
-    !cohorts && setMissing("cohorts")
+    !cohorts && setMissing("allTermsFilters")
   }
 
   const queryError = validateBeaconQuery(formValues)

@@ -146,3 +146,36 @@
     allTermsFilters:
       isHidden: false
       defaultValue: ["cellosaurus:CVCL_0030"]
+
+- label: "Variant Short Form Example"
+  note: "This is an experimental example for short form vbariant(s) support."
+  description: |
+    This example shows a short form version of the CDKN2A deletion example.
+  parameters:
+    datasetIds:
+      isHidden: false
+      defaultValue: ["progenetix"]
+    cytoBands:
+      isHidden: true
+    variantQueryDigests:
+      isHidden: false
+      defaultValue: "9:21000001-21975098--21967753-24000000:DEL"
+    variantType:
+      isHidden: true
+    allTermsFilters:
+      isHidden: false
+      defaultValue: [NCIT:C3058]
+    aminoacidChange:
+      isHidden: true
+    geneId:
+      isHidden: true
+    referenceName:
+      isHidden: true
+    start:
+      isHidden: true
+    end:
+      isHidden: true
+    alternateBases:
+      isHidden: true
+    referenceBases:
+      isHidden: true

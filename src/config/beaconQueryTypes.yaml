@@ -41,7 +41,7 @@
   examples: []
 
 
-- label: "Genomic Range"
+- label: "Range"
   infoText: "Query for variants with overlap to a genomic range"
   description: |
     **Beacon Range Queries** are supposed to return matches of any variant with
@@ -110,7 +110,7 @@
       isHidden: false
   examples: []
 
-- label: "Sequence / Allele"
+- label: "Sequence"
   infoText: 'This represents the inputs for a "classic" Beacon SNV query'
   description: |
     **Sequence Queries** explore the existence of a specified sequence at a given
@@ -271,7 +271,51 @@
 #       isHidden: true
 #   examples: []
 
-- label: "Show All"
+- label: "Short Form"
+  infoText: "This example shows a short form version of the CDKN2A deletion example."
+  img: false
+  parameters:
+    datasetIds:
+      defaultValue: ["progenetix"]
+    cytoBands:
+      isHidden: true
+    variantQueryDigests:
+      isHidden: false
+    variantType:
+      isHidden: true
+    referenceName:
+      isHidden: true
+    start:
+      isHidden: true
+    end:
+      isHidden: true
+    alternateBases:
+      isHidden: true
+    referenceBases:
+      isHidden: true
+    bioontology:
+      isHidden: true
+    clinicalClasses:
+      isHidden: true
+    accessid:
+      isHidden: true
+    allTermsFilters:
+      isHidden: false
+    filterLogic:
+      isHidden: true
+    includeDescendantTerms:
+      isHidden: true
+    sex:
+      isHidden: true
+    materialtype:
+      isHidden: true
+    referenceid:
+      isHidden: true
+    cohorts:
+      isHidden: true
+  examples: []
+
+- label: "All Fields"
   infoText: "Display all form fields"
   img: false
   parameters:
@@ -288,6 +332,8 @@
     start:
       isHidden: false
     end:
+      isHidden: false
+    variantQueryDigests:
       isHidden: false
     variantMinLength:
       isHidden: false

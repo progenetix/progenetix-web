@@ -125,6 +125,30 @@ parameters:
       single value, or in case of fuzzy requests for e.g. copy number variants
       the end provided as a range for the possible occurrence of
       the CNV end (e.g. "21967753-22500000").
+  cytoBands:
+    label: Cytoband Annotation
+    type: string
+    placeholder: 8q24.12
+    infoText: |
+      The field for cytoband annotation style requests currently supports
+      single cytogenetic regions (resulting in a range request for the whole region).
+      Additionally, providing exactly 2, comma separated regions can be used to
+      create bracket requests or (experimentally) fusion requests (where the 2nd
+      region denotes the "mateName" chromosome of the fusion partner).
+      Example here would be the use of "8q24,14q32" to search for fusion events
+      involving MYC and IGH (_i.e._ the typical "Burkitt lymphoma fusion").
+    isHidden: true
+  variantQueryDigests:
+    label: Variation Shorthand(s)
+    type: string
+    placeholder: "9:9000001-21975098--21967753-24000000:DEL"
+    infoText: |
+      This experimental parameter allows to
+      * define a variant request in a concatenated `referenceName:start--end:variantType`
+        or `referenceName:start:referenceBases>alternateBases` format
+      * optionally comma-concatenate 2 or more of such strings, to identify samples
+        carrying matches for all of these variations
+    isHidden: true
   variantMinLength:
     label: Min Variant Length
     type: number

@@ -46,6 +46,18 @@ function QuerySummary({ query }) {
           {query.assemblyId}
         </li>
       )}
+      {query.cytoBands && (
+        <li>
+          <small>Cytobands: </small>
+          {query.cytoBands}
+        </li>
+      )}
+      {query.variantQueryDigests && (
+        <li>
+          <small>Short Form: </small>
+          {query.variantQueryDigests}
+        </li>
+      )}
       {query.geneId && (
         <li>
           <small>Gene: </small>
