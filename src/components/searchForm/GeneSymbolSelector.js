@@ -35,6 +35,7 @@ export function GeneSymbolSelector({
       className={"column py-0 mb-3"}
       useOptionsAsValue
       isClearable
+      isMulti
     />
   )
 }

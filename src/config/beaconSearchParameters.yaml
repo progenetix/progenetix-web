@@ -23,6 +23,7 @@ parameters:
     label: Gene Symbol
     placeholder: MYCN
     infoText: The gene symbol (HUGO), e.g. "TP53".
+    isMulti: true
     isHidden: true
   aminoacidChange:
     label: Aminoacid alteration

@@ -119,7 +119,7 @@ export function mkGeoParams(geoCity, geodistanceKm) {
 
 export function mkGeneParams(gene) {
   if (!gene) return null
-  const geneId = gene.data.symbol ?? []
+  const geneId = gene.map((gene) => gene.value).join(',')
   return { geneId }
 }
 
