@@ -28,7 +28,7 @@ export default function SelectField({
   options,
   control,
   rules,
-  // when false, we map the options to they values, otherwise we simply pass what react-select gives
+  // when false, we map the options to the values, otherwise we simply pass what react-select gives
   useOptionsAsValue = false,
   className,
   ...selectProps
