@@ -117,11 +117,11 @@ export function mkGeoParams(geoCity, geodistanceKm) {
   return { geoLongitude, geoLatitude, geoDistance }
 }
 
-export function mkGeneParams(gene) {
-  if (!gene) return null
-  const geneId = gene.map((gene) => gene.value).join(',')
-  return { geneId }
-}
+// export function mkGeneParams(gene) {
+//   if (!gene) return null
+//   const geneId = gene.map((gene) => gene.value).join(',')
+//   return { geneId }
+// }
 
 export function makeFilters({
   allTermsFilters,
@@ -157,7 +157,6 @@ export function buildQueryParameters(queryData) {
     materialtype,
     allTermsFilters,
     clinicalClasses,
-    geneId,
     geoCity,
     geodistanceKm,
     ...otherParams
@@ -192,11 +191,10 @@ export function buildQueryParameters(queryData) {
     sex,
     materialtype
   })
-  const geneParams = mkGeneParams(geneId) ?? {}
   const geoParams = mkGeoParams(geoCity, geodistanceKm) ?? {}
   return new URLSearchParams(
     flattenParams([
-      ...Object.entries({ ...otherParams, ...geneParams, ...geoParams }),
+      ...Object.entries({ ...otherParams, ...geoParams }),
       ["start", starts],
       ["end", ends],
       ["filters", filters]

@@ -22,8 +22,7 @@ parameters:
   geneId:
     label: Gene Symbol
     placeholder: MYCN
-    infoText: The gene symbol (HUGO), e.g. "TP53".
-    isMulti: true
+    infoText: One or more comma concatenated gene symbols (HUGO), e.g. "TP53,CDKN2A".
     isHidden: true
   aminoacidChange:
     label: Aminoacid alteration

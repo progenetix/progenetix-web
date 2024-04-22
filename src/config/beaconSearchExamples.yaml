@@ -100,10 +100,7 @@
   parameters:
     geneId:
       isHidden: false
-      defaultValue:
-        data:
-          symbol: CDK2
-        label: "CDK2 (12:55966830-55972789)"
+      defaultValue: CDK2
     referenceName:
       isHidden: true
     start:

@@ -61,7 +61,7 @@ function QuerySummary({ query }) {
       {query.geneId && (
         <li>
           <small>Gene: </small>
-          {query.geneId.value}
+          {query.geneId}
         </li>
       )}
       {query.referenceName && (
