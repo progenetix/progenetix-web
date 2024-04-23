@@ -239,7 +239,7 @@ export function BeaconSearchForm({
           <div className="columns my-0">
             <InputField
               className={cn(
-                !parameters.aminoacidChange.geneId && "column",
+                !parameters.geneId && "column",
                 "py-0 mb-3"
               )}
               {...parameters.geneId} {...fieldProps}

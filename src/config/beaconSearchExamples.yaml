@@ -98,6 +98,9 @@
     - `variantType` and `alternateBases` to specify variants
   img: /img/BeaconGeneQuery-graphics.png
   parameters:
+    datasetIds:
+      isHidden: false
+      defaultValue: ["cellz"]
     geneId:
       isHidden: false
       defaultValue: CDK2
@@ -109,10 +112,13 @@
       isHidden: true
     variantMinLength:
       isHidden: false
+      defaultValue: 10000
     variantMaxLength:
       isHidden: false
+      defaultValue: 5000000
     variantType:
       isHidden: false
+      defaultValue: "EFO:0030070"
     alternateBases:
       isHidden: false
     referenceBases:
