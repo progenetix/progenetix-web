@@ -95,21 +95,23 @@ function Subset({ subset, datasetIds }) {
       </ul>
 
     </>
-  )} 
+  )}
 
   <h5>Sample Counts</h5>
   <ul>
     <li>{subset.count} samples</li>
     <li>{subset.codeMatches} direct <i>{subset.id}</i> code  matches</li>
-    <li>{subset.cnvAnalyses} CNV analyses
-      <ul>
-        <li>
-          <InternalLink
-            href={`${SITE_DEFAULTS.API_PATH}services/intervalFrequencies/${subset.id}/?output=pgxfreq`}
-            label="Download CNV frequencies"
-          />
-        </li>
-      </ul>
+    <li>{subset.cnvAnalyses} CNV analyses</li>
+    {subset.frequencymapCnvAnalyses && (
+      <li>
+        {subset.frequencymapCnvAnalyses} {" CNV analyses used in frequency calculations"}
+      </li>
+    )}
+    <li>
+      <InternalLink
+        href={`${SITE_DEFAULTS.API_PATH}services/intervalFrequencies/${subset.id}/?output=pgxfreq`}
+        label="Download CNV frequencies"
+      />
     </li>
   </ul>
 
