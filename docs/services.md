@@ -98,10 +98,10 @@ exact gene symbol match
     - when using the REST syntax also only the exact match will be returned
 
 
-### Ontology Cross-Mapping (`ontologymappings`)
+### Ontology Cross-Mapping (`ontologymaps`)
 
-The `ontologymappings` service provides equivalency mapping between ICD-O and other
-classification systems, notably NCIt. The mappings are represented in the [ICDOntologies](https://github.com/progenetix/ICDOntologies) project and accessible trough a front-end in the [Progenetix Services area](http://progenetix.org/service-collection/ontologymappings).
+The `ontologymaps` service provides equivalency mapping between ICD-O and other
+classification systems, notably NCIt. The mappings are represented in the [ICDOntologies](https://github.com/progenetix/ICDOntologies) project and accessible trough a front-end in the [Progenetix Services area](http://progenetix.org/service-collection/ontologymaps).
 
 #### ICD-O Representation
 
@@ -131,23 +131,23 @@ Our resources use an internal representation of ICD-O 3 codes since no official 
 
 ##### NCIt and ICD-O 3
 
-* [progenetix.org/services/ontologymappings/?filters=pgx:icdom-85003](http://progenetix.org/services/ontologymappings/?filters=pgx:icdom-85003)
-* [http://progenetix.org/services/ontologymappings/?filters=NCIT](http://progenetix.org/services/ontologymappings/?filters=NCIT)
-* [progenetix.org/services/ontologymappings/?filters=pgx:icdom-85003,pgx:icdot-C50.9](http://progenetix.org/services/ontologymappings/?filters=pgx:icdom-85003,pgx:icdot-C50.9)
-* [progenetix.org/services/ontologymappings/?filters=icdom-85,icdot-C50&filterPrecision=start](http://progenetix.org/services/ontologymappings/?filters=icdom-85,icdot-C50&filterPrecision=start)
+* [progenetix.org/services/ontologymaps/?filters=pgx:icdom-85003](http://progenetix.org/services/ontologymaps/?filters=pgx:icdom-85003)
+* [http://progenetix.org/services/ontologymaps/?filters=NCIT](http://progenetix.org/services/ontologymaps/?filters=NCIT)
+* [progenetix.org/services/ontologymaps/?filters=pgx:icdom-85003,pgx:icdot-C50.9](http://progenetix.org/services/ontologymaps/?filters=pgx:icdom-85003,pgx:icdot-C50.9)
+* [progenetix.org/services/ontologymaps/?filters=icdom-85,icdot-C50&filterPrecision=start](http://progenetix.org/services/ontologymaps/?filters=icdom-85,icdot-C50&filterPrecision=start)
     - As in the example above, but by stemmming the query parameters and providing the `filterPrecision=start` pragma, the response will now be a list of matched data objects (inputs and equivalents)
 
 ##### UBERON and ICD-O 3 Topography
 
-* [progenetix.org/services/ontologymappings/?filters=UBERON&filterPrecision=start](http://progenetix.org/services/ontologymappings/?filters=UBERON&filterPrecision=start)
+* [progenetix.org/services/ontologymaps/?filters=UBERON&filterPrecision=start](http://progenetix.org/services/ontologymaps/?filters=UBERON&filterPrecision=start)
     - all mappings
-* [progenetix.org/services/ontologymappings/?filters=UBERON,icdot-C0&filterPrecision=start](http://progenetix.org/services/ontologymappings/?filters=UBERON,icdot-C0&filterPrecision=start)
+* [progenetix.org/services/ontologymaps/?filters=UBERON,icdot-C0&filterPrecision=start](http://progenetix.org/services/ontologymaps/?filters=UBERON,icdot-C0&filterPrecision=start)
     - all `C0...` ICD-O T matches
     - limited to `UBERON` mappings since the prefix was given, too (otherwise all the NCIT mappings would also be listed for these ICD-O T code matches)
 
 #### More Information
 
-* [Web Interface for ICD & NCIT](http://progenetix.org/service-collection/ontologymappings)
+* [Web Interface for ICD & NCIT](http://progenetix.org/service-collection/ontologymaps)
 * [Interface for ICD & UBERON](http://progenetix.org/service-collection/uberonmaps)
 
 

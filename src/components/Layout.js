@@ -173,13 +173,12 @@ function Side({ onClick }) {
           label="Progenetix Use"
           isSub="isSub"
         />
-{/*
         <MenuInternalLinkItem
-          href="/service-collection/ontologymappings"
+          href="/service-collection/ontologymaps"
           label="Services"
         />
         <MenuInternalLinkItem
-          href="/service-collection/ontologymappings"
+          href="/service-collection/ontologymaps"
           label="NCIt Mappings"
           isSub="isSub"
         />
@@ -188,7 +187,6 @@ function Side({ onClick }) {
           label="UBERON Mappings"
           isSub="isSub"
         />
-*/}
         <MenuInternalLinkItem
           href="/service-collection/uploader"
           label="Upload & Plot"
