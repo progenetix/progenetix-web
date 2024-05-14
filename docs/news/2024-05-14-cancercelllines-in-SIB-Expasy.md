@@ -8,9 +8,9 @@ links:
   - '[cancercelllines.org](https://cancercelllines.org)'
 ---
 
-![Expasy logo](/img/expasy-addon@2x.png){ style="float: right; margin: 0px 0px 10px 20px;" }
-Our recently launched cancer cell line genomics site [cancercelllines.org](https://cancercelllines.org) is now listed as one of the resources in the Swiss Institute of Bioinformatics’ [Expasy](https://expasy.org).
+![Expasy logo](/img/expasy-addon@2x.png){ style="width: 250px; float: right; margin: 0px 0px 10px 20px;" }
+Our recently launched cancer cell line genomics site [cancercelllines.org](https://cancercelllines.org) is now listed as one of the resources in the Swiss Institute of Bioinformatics’ [Expasy](https://expasy.org) catalogue. 
 <!--more-->
 
-catalogue. More information can be found in the article [linked from our site](http://info.baudisgroup.org/publications/2024-03-27-cancercelllines.org/).
+More information can be found in the article [linked from our site](http://info.baudisgroup.org/publications/2024-03-27-cancercelllines.org/).
 
