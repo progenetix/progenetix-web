@@ -5,7 +5,7 @@ import { PublicationFewCountTable } from "../../components/publicationComps/Publ
 import { ExternalLink }  from "../../components/helpersShared/linkHelpers"
 import { useProgenetixRefPublicationList } from "../../hooks/api"
 import { WithData } from "../../components/Loader"
-import dynamic from "next/dynamic"
+// import dynamic from "next/dynamic"
 import { matchSorter } from "match-sorter"
 import useDebounce from "../../hooks/debounce"
 import Panel from "../../components/Panel"
@@ -77,7 +77,7 @@ function FilteredPublication({ publications, textSearch }) {
       <Panel className="content">
         <PublicationFewCountTable publications={filteredPublications} />
       </Panel>
-      <PublicationsMapContainer publications={filteredPublications} />
+      {/*<PublicationsMapContainer publications={filteredPublications} />*/}
     </>
   )
 }
@@ -102,23 +102,23 @@ function PublicationsLoader({ textSearch }) {
   )
 }
 
-function PublicationsMapContainer({ publications }) {
-  const publicationsCount = publications.length
-  return (
-    <>
-      <div className="mb-5">
-        <PublicationsMap publications={publications} height={600} />
-      </div>
-      <p className="content">
-        Geographic distribution (by corresponding author) of the{" "}
-        <b>{publicationsCount}</b> listed publications which have been found to
-        cite and/or use Progenetix.
-      </p>
-    </>
-  )
-}
+// function PublicationsMapContainer({ publications }) {
+//   const publicationsCount = publications.length
+//   return (
+//     <>
+//       <div className="mb-5">
+//         <PublicationsMap publications={publications} height={600} />
+//       </div>
+//       <p className="content">
+//         Geographic distribution (by corresponding author) of the{" "}
+//         <b>{publicationsCount}</b> listed publications which have been found to
+//         cite and/or use Progenetix.
+//       </p>
+//     </>
+//   )
+// }
 
-const PublicationsMap = dynamic(() => import("../../components/publicationComps/PublicationsMap"), {
-  ssr: false
-})
+// const PublicationsMap = dynamic(() => import("../../components/publicationComps/PublicationsMap"), {
+//   ssr: false
+// })
 

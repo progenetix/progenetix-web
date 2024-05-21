@@ -16,7 +16,7 @@ import { svgFetcher } from "../../hooks/fetcher"
 import BiosamplesStatsDataTable from "./BiosamplesStatsDataTable"
 import { WithData } from "../Loader"
 import { openJsonInNewTab } from "../../utils/files"
-import dynamic from "next/dynamic"
+// import dynamic from "next/dynamic"
 import { getVisualizationLink } from "../../modules/service-pages/dataVisualizationPage"
 
 const HANDOVER_IDS = {
@@ -135,7 +135,7 @@ export function DatasetResultBox({ data: responseSet, query }) {
           />
           {"."}
         </p>
-        <BiosamplesMap apiReply={biosamplesReply} datasetId={id} />
+        {/*<BiosamplesMap apiReply={biosamplesReply} datasetId={id} />*/}
       </div>
     )
   } else if (selectedTab === TABS.variants) {
@@ -384,6 +384,6 @@ function PagedLink({ handover }) {
   )
 }
 
-const BiosamplesMap = dynamic(() => import("./BioSamplesMap"), {
-  ssr: false
-})
+// const BiosamplesMap = dynamic(() => import("./BioSamplesMap"), {
+//   ssr: false
+// })
