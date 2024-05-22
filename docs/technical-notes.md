@@ -140,16 +140,5 @@ classDiagram
 
 ```
 
-## Data Query Model
-
-==TBD==
-```mermaid
-flowchart
-
-    A(queries) --> B{ biosamples Q? }
-    B --> |yes| C[/ query biosamples /]
-    C --> D[ store biosample `_id` values ]
-```
-
 [^1]: Before April 2023 clustering and CNV visualization were performed using the
 [**PGX**](http://github.com/progenetix/PGX/) Perl libraries.

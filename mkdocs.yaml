@@ -16,18 +16,18 @@ api_dataset_ids: progenetix
 nav:
   - Documentation Home: index.md
   - News & Changes: news
-  - Pages & Forms: ui
+  # - Pages & Forms: ui
+  - Analysis in R - pgxRpi: pgxRpi
+  - Use Case Examples: use-cases
+  - Beacon+ API Use: common/beacon-api
   - Services API: services
   - File Formats: file-formats
-  - Beacon+ API Use: common/beacon-api
-  - Analysis in R - pgxRpi: pgxRpi
   - Plotting & Visualizations: common/plotting
-  - Use Case Examples: use-cases
   - Classifications, Ontologies & Standards: common/classifications-and-ontologies
   - Publication Collection: publication-collection
   - Data Review: progenetix-data-review
   - Technical Notes: technical-notes
-  - Progenetix Website Builds: progenetix-website-builds
+  # - Progenetix Website Builds: progenetix-website-builds
   - Progenetix Data &#8599;: http://progenetix.org
   - cancercelllines.org &#8599;: http://cancercelllines.org
   - Baudisgroup @ UZH &#8599;: http://info.baudisgroup.org
