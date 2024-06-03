@@ -373,8 +373,8 @@ export function useCollations({ datasetIds, method, filters }) {
   return useProgenetixApi(url)
 }
 
-export function useFiltersByType({ datasetIds, method, collationTypes }) {
-  const url = `${SITE_DEFAULTS.API_PATH}beacon/filtering_terms/?datasetIds=${datasetIds}&method=${method}&collationTypes=${collationTypes}`
+export function useFiltersByType({ datasetIds, method, mode, collationTypes }) {
+  const url = `${SITE_DEFAULTS.API_PATH}beacon/filtering_terms/?datasetIds=${datasetIds}&method=${method}&mode=${mode}&collationTypes=${collationTypes}`
   return useProgenetixApi(url)
 }
 

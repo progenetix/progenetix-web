@@ -112,13 +112,15 @@ export function BeaconSearchForm({
 
   // reset form when default values changes
   useDeepCompareEffect(() => reset(initialValues), [initialValues])
+
+  const mode = ""
   
   // all subsets lookup ----------------------------------------------------- //
   var ct = ""
   const {
     data: allsubsetsResponse,
     isLoading: isAllSubsetsDataLoading 
-  } = useFilteringTerms( watch, ct )
+  } = useFilteringTerms( watch, ct, "withpubmed" )
   const allsubsetsOptions = allsubsetsResponse?.response?.filteringTerms?.map((value) => ({
     value: value.id,
     label: `${value.id}: ${value.label} (${value.count})`
@@ -132,7 +134,7 @@ export function BeaconSearchForm({
   const {
     data: biosubsetsResponse,
     isLoading: isBioSubsetsDataLoading
-  } = useFilteringTerms( watch, ct ) 
+  } = useFilteringTerms( watch, ct, mode ) 
   const biosubsetsOptions = biosubsetsResponse?.response?.filteringTerms?.map((value) => ({
     value: value.id,
     label: `${value.id}: ${value.label} (${value.count})`
@@ -146,7 +148,7 @@ export function BeaconSearchForm({
   const {
     data: refsubsetsResponse,
     isLoading: isRefSubsetsDataLoading
-  } = useFilteringTerms( watch, ct )
+  } = useFilteringTerms( watch, ct, mode )
   const refsubsetsOptions = refsubsetsResponse?.response?.filteringTerms?.map((value) => ({
     value: value.id,
     label: `${value.id}: ${value.label} (${value.count})`
@@ -160,7 +162,7 @@ export function BeaconSearchForm({
   const {
     data: clinicalResponse,
     isLoading: isClinicalDataLoading
-  } = useFilteringTerms( watch, ct )
+  } = useFilteringTerms( watch, ct, mode )
   const clinicalOptions = clinicalResponse?.response?.filteringTerms?.map((value) => ({
     value: value.id,
     label: `${value.id}: ${value.label} (${value.count})`
@@ -717,11 +719,12 @@ const handleQuerytypeClicked = (reset, setExample, setUrlQuery) => (example) => 
 }
 
 // Maps FilteringTerms hook to apiReply usable by DataFetchSelect
-function useFilteringTerms(watchForm, ct) {
+function useFilteringTerms(watchForm, ct, mode) {
   const datasetIds = watchForm("datasetIds")
   return useFiltersByType({
     datasetIds,
     method: "counts",
+    mode: mode,
     collationTypes: ct
   })
 }
