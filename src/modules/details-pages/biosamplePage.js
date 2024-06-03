@@ -24,7 +24,7 @@ const SampleDetailsPage = withUrlQuery(({ urlQuery }) => {
   }
   const hasAllParams = id && datasetIds
 
-  const iURL = `${SITE_DEFAULTS.API_PATH}beacon/individuals/?biosampleIds=${id}&datasetIds=${datasetIds}&limit=1`
+  const iURL = `${SITE_DEFAULTS.API_PATH}beacon/biosamples/${id}/individuals?datasetIds=${datasetIds}&limit=1`
   var [individual, setIndividual] = useState([]);
   useEffect(() => {
     fetch( iURL )

@@ -295,7 +295,7 @@ Accordingly, upon export through the API variants are re-mapped to a Beacon v2 r
 {
   "id": "pgxvar-5bab576a727983b2e00b8d32",
   "variant_internal_id": "11:52900000-134452384:DEL",
-  "callset_id": "pgxcs-kftvldsu",
+  "analysis_id": "pgxcs-kftvldsu",
   "biosample_id": "pgxbs-kftva59y",
   "individual_id": "pgxind-kftx25eh",
   "variant_state": { "id": "EFO:0030067", "label": "copy number loss" },
@@ -314,7 +314,7 @@ Accordingly, upon export through the API variants are re-mapped to a Beacon v2 r
 ```json
   {
     "updated": "2023-05-25T17:03:45.096849",
-    "callset_id": "pgxcs-kl8hg1r8",
+    "analysis_id": "pgxcs-kl8hg1r8",
     "biosample_id": "pgxbs-kl8hg1r4",
     "id": "pgxvar-5be1840772798347f0ed9d9d",
     "variant_internal_id": "5:67589139:G>A",
