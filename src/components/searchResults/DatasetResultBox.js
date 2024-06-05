@@ -119,25 +119,25 @@ export function DatasetResultBox({ data: responseSet, query }) {
     tabComponent = (
       <BiosamplesDataTable apiReply={biosamplesReply} datasetId={id} />
     )
-  } else if (selectedTab === TABS.samplesMap) {
-    tabComponent = (
-      <div>
-        <h2 className="subtitle has-text-dark">Sample Origins</h2>
-        <p>
-          The map represents the origins of the matched samples, as derived from
-          the original publication or resource repository. In the majority of
-          cases this will correspond to the proxy information of the
-          corresponding author&apos;s institution. Additional information can be
-          found in the{" "}
-          <ExternalLink
-            href={`${SITE_DEFAULTS.MASTERDOCLINK}/geolocations.html`}
-            label="Geographic Coordinates documentation"
-          />
-          {"."}
-        </p>
-        {/*<BiosamplesMap apiReply={biosamplesReply} datasetId={id} />*/}
-      </div>
-    )
+  // } else if (selectedTab === TABS.samplesMap) {
+  //   tabComponent = (
+  //     <div>
+  //       <h2 className="subtitle has-text-dark">Sample Origins</h2>
+  //       <p>
+  //         The map represents the origins of the matched samples, as derived from
+  //         the original publication or resource repository. In the majority of
+  //         cases this will correspond to the proxy information of the
+  //         corresponding author&apos;s institution. Additional information can be
+  //         found in the{" "}
+  //         <ExternalLink
+  //           href={`${SITE_DEFAULTS.MASTERDOCLINK}/geolocations.html`}
+  //           label="Geographic Coordinates documentation"
+  //         />
+  //         {"."}
+  //       </p>
+  //       {/*<BiosamplesMap apiReply={biosamplesReply} datasetId={id} />*/}
+  //     </div>
+  //   )
   } else if (selectedTab === TABS.variants) {
     tabComponent = (
       <VariantsDataTable apiReply={variantsReply} datasetId={id} />
@@ -225,9 +225,13 @@ export function DatasetResultBox({ data: responseSet, query }) {
         </div>
       ) : null}
       {tabComponent ? <div>{tabComponent}</div> : null}
-      <hr/>
+{/* 
+    // TODO:Implement paginated downloads, e.g. on separate form
+    // page with hidden accessid ... parameters and fields for
+    // limit / skip ...
+    <hr/>
 
-      {biosamplesTableHandover?.pages && (
+     {biosamplesTableHandover?.pages && (
         <div className="tabs">
           <div>
             <b>Download Sample Data (TSV)</b>
@@ -305,6 +309,7 @@ export function DatasetResultBox({ data: responseSet, query }) {
           </div>
         </div>
       )}
+*/}    
     </div>
   )
 }

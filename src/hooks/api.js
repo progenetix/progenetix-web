@@ -374,6 +374,7 @@ export function useCollations({ datasetIds, method, filters }) {
 }
 
 export function useFiltersByType({ datasetIds, method, mode, collationTypes }) {
+  // TODO: construct URL w/o optional parameters if empty
   const url = `${SITE_DEFAULTS.API_PATH}beacon/filtering_terms/?datasetIds=${datasetIds}&method=${method}&mode=${mode}&collationTypes=${collationTypes}`
   return useProgenetixApi(url)
 }
