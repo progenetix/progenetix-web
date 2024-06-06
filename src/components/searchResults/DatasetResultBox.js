@@ -54,6 +54,8 @@ export function DatasetResultBox({ data: responseSet, responseMeta, query }) {
   const handoverById = (givenId) =>
     resultsHandovers.find(({ info: { contentId } }) => contentId === givenId)
 
+  // obviously should be looped somehow...
+
   const biosamplesHandover = handoverById(HANDOVER_IDS.biosamples)
   const biocount = biosamplesHandover.info.count  
   const biosamplesReply = useProgenetixApi(
@@ -77,7 +79,11 @@ export function DatasetResultBox({ data: responseSet, responseMeta, query }) {
   const variantsReply = useProgenetixApi(
     variantsHandover && replaceWithProxy(variantsHandover.url)
   )
+  const vcfHandover = handoverById(HANDOVER_IDS.vcf)
+  const pgxsegHandover = handoverById(HANDOVER_IDS.pgxseg)
   variantsHandover.pages = []
+  vcfHandover.pages = []
+  pgxsegHandover.pages = []
   cntr = 0
   skpr = 0
   while (cntr < varcount) {
@@ -85,12 +91,12 @@ export function DatasetResultBox({ data: responseSet, responseMeta, query }) {
     cntr += limit
     skpr += 1
     variantsHandover.pages.push({"url": variantsHandover.url + pagu, "label": "Part" + skpr})
+    vcfHandover.pages.push({"url": vcfHandover.url + pagu, "label": "Part" + skpr})
+    pgxsegHandover.pages.push({"url": pgxsegHandover.url + pagu, "label": "Part" + skpr})
   }
 
 
   // const phenopacketsHandover = handoverById(HANDOVER_IDS.phenopackets)
-  // const vcfHandover = handoverById(HANDOVER_IDS.vcf)
-  // const pgxsegHandover = handoverById(HANDOVER_IDS.pgxseg)
   const UCSCbedHandoverURL = handoverById(HANDOVER_IDS.UCSClink) === undefined ? false : handoverById(HANDOVER_IDS.UCSClink).url
 
 
@@ -296,7 +302,6 @@ export function DatasetResultBox({ data: responseSet, responseMeta, query }) {
           </div>
         </div>
       )}
-{/* 
       {vcfHandover?.pages && (
         <div className="tabs ">
           <div>
@@ -323,6 +328,7 @@ export function DatasetResultBox({ data: responseSet, responseMeta, query }) {
           </div>
         </div>
       )}
+{/* 
       {phenopacketsHandover?.pages && (
         <div className="tabs">
           <div>
