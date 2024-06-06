@@ -14,6 +14,7 @@ export function BiosamplesResults({ response, isLoading, error, query }) {
           <>
             <AlleleResponses
               biosampleResponseSets={response.response.resultSets}
+              responseMeta={response.meta}
               query={query}
             />
           </>
@@ -23,7 +24,7 @@ export function BiosamplesResults({ response, isLoading, error, query }) {
   )
 }
 
-function AlleleResponses({ biosampleResponseSets, query }) {
+function AlleleResponses({ biosampleResponseSets, responseMeta, query }) {
   if (biosampleResponseSets?.[0].resultsCount < 1) {
     return (
       <div className="notification">
@@ -32,7 +33,7 @@ function AlleleResponses({ biosampleResponseSets, query }) {
     )
   }
   return biosampleResponseSets.map((r, i) => (
-    <DatasetResultBox key={i} data={r} query={query} />
+    <DatasetResultBox key={i} data={r} responseMeta={responseMeta} query={query} />
   ))
 }
 

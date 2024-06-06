@@ -326,11 +326,11 @@ parameters:
     label: Skip Pages
     infoText: >
       The number of result pages to skip when retrieving data.
-    defaultValue: 0
-    isHidden: true
+    # defaultValue: 0
+    # isHidden: true
   limit:
     label: Response Limit / Page Size
     infoText: >
       The maximum number of biosamples to retrieve per page and also the size of response pages.
-    defaultValue: 100
-    isHidden: true
+    # defaultValue: 200
+    # isHidden: true

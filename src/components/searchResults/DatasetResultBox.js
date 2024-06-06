@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react"
 import {
   // MAX_HISTO_SAMPLES,
-  SITE_DEFAULTS,
+  // SITE_DEFAULTS,
   replaceWithProxy,
   useProgenetixApi,
   useExtendedSWR
@@ -38,7 +38,7 @@ const TABS = {
   variants: "Variants"
 }
 
-export function DatasetResultBox({ data: responseSet, query }) {
+export function DatasetResultBox({ data: responseSet, responseMeta, query }) {
   const {
     id,
     resultsHandovers,
@@ -47,24 +47,54 @@ export function DatasetResultBox({ data: responseSet, query }) {
     paginatedResultsCount
   } = responseSet
 
+  console.log(responseMeta)
+
+  const limit = responseMeta.receivedRequestSummary?.pagination?.limit ? responseMeta.receivedRequestSummary?.pagination?.limit : 121
+
   const handoverById = (givenId) =>
     resultsHandovers.find(({ info: { contentId } }) => contentId === givenId)
 
   const biosamplesHandover = handoverById(HANDOVER_IDS.biosamples)
-  const biosamplesTableHandover = handoverById(HANDOVER_IDS.biosamplestable)
-  const biosamplesmapURL = handoverById(HANDOVER_IDS.biosamplesmap) === undefined ? false : handoverById(HANDOVER_IDS.biosamplesmap).url
-  const phenopacketsHandover = handoverById(HANDOVER_IDS.phenopackets)
-  const variantsHandover = handoverById(HANDOVER_IDS.variants)
-  const vcfHandover = handoverById(HANDOVER_IDS.vcf)
-  const pgxsegHandover = handoverById(HANDOVER_IDS.pgxseg)
-  const UCSCbedHandoverURL = handoverById(HANDOVER_IDS.UCSClink) === undefined ? false : handoverById(HANDOVER_IDS.UCSClink).url
-
+  const biocount = biosamplesHandover.info.count  
   const biosamplesReply = useProgenetixApi(
     biosamplesHandover && replaceWithProxy(biosamplesHandover.url)
   )
+  const biosamplesTableHandover = handoverById(HANDOVER_IDS.biosamplestable)
+  biosamplesHandover.pages = []
+  biosamplesTableHandover.pages = []
+  var cntr = 0
+  var skpr = 0
+  while (cntr < biocount) {
+    const pagu = "&skip=" + skpr + "&limit=" + limit
+    cntr += limit
+    skpr += 1
+    biosamplesTableHandover.pages.push({"url": biosamplesTableHandover.url + pagu, "label": "Part" + skpr})
+    biosamplesHandover.pages.push({"url": biosamplesHandover.url + pagu, "label": "Part" + skpr})
+  }
+
+  const variantsHandover = handoverById(HANDOVER_IDS.variants)
+  const varcount = variantsHandover.info.count  
   const variantsReply = useProgenetixApi(
     variantsHandover && replaceWithProxy(variantsHandover.url)
   )
+  variantsHandover.pages = []
+  cntr = 0
+  skpr = 0
+  while (cntr < varcount) {
+    const pagu = "&skip=" + skpr + "&limit=" + limit
+    cntr += limit
+    skpr += 1
+    variantsHandover.pages.push({"url": variantsHandover.url + pagu, "label": "Part" + skpr})
+  }
+
+
+  // const phenopacketsHandover = handoverById(HANDOVER_IDS.phenopackets)
+  // const vcfHandover = handoverById(HANDOVER_IDS.vcf)
+  // const pgxsegHandover = handoverById(HANDOVER_IDS.pgxseg)
+  const UCSCbedHandoverURL = handoverById(HANDOVER_IDS.UCSClink) === undefined ? false : handoverById(HANDOVER_IDS.UCSClink).url
+
+
+  const biosamplesmapURL = handoverById(HANDOVER_IDS.biosamplesmap) === undefined ? false : handoverById(HANDOVER_IDS.biosamplesmap).url
 
   // the histogram is only rendered but correct handover is needed, obviously
   let histoplotUrl
@@ -74,16 +104,16 @@ export function DatasetResultBox({ data: responseSet, query }) {
     let visualizationAccessId = new URLSearchParams(
       new URL(histoplotUrl).search
     ).get("accessid")
-    let visualizationFileId = new URLSearchParams(
-      new URL(histoplotUrl).search
-    ).get("fileId")
-    let visualizationSkip = new URLSearchParams(
-      new URL(histoplotUrl).search
-    ).get("skip")
-    let visualizationLimit = new URLSearchParams(
-      new URL(histoplotUrl).search
-    ).get("limit")
-    visualizationLink = getVisualizationLink(id, visualizationAccessId, visualizationFileId, visualizationSkip, visualizationLimit, paginatedResultsCount)
+    // let visualizationFileId = new URLSearchParams(
+    //   new URL(histoplotUrl).search
+    // ).get("fileId")
+    // let visualizationSkip = new URLSearchParams(
+    //   new URL(histoplotUrl).search
+    // ).get("skip")
+    // let visualizationLimit = new URLSearchParams(
+    //   new URL(histoplotUrl).search
+    // ).get("limit")
+    visualizationLink = getVisualizationLink(id, visualizationAccessId, "", 0, 0, paginatedResultsCount)
   }
 
   var retrievedCount = resultsCount
@@ -225,10 +255,6 @@ export function DatasetResultBox({ data: responseSet, query }) {
         </div>
       ) : null}
       {tabComponent ? <div>{tabComponent}</div> : null}
-{/* 
-    // TODO:Implement paginated downloads, e.g. on separate form
-    // page with hidden accessid ... parameters and fields for
-    // limit / skip ...
     <hr/>
 
      {biosamplesTableHandover?.pages && (
@@ -270,6 +296,7 @@ export function DatasetResultBox({ data: responseSet, query }) {
           </div>
         </div>
       )}
+{/* 
       {vcfHandover?.pages && (
         <div className="tabs ">
           <div>
@@ -382,7 +409,7 @@ function PagedLink({ handover }) {
     <li>
       <ExternalLink
         href={handover.url}
-        label={handover.handoverType.label}
+        label={handover.label}
         download
       />
     </li>
