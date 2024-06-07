@@ -55,13 +55,9 @@ export function DatasetResultBox({ data: responseSet, responseMeta, query }) {
     resultsHandovers.find(({ info: { contentId } }) => contentId === givenId)
 
   // obviously should be looped somehow...
-
   const biosamplesHandover = handoverById(HANDOVER_IDS.biosamples)
-  const biocount = biosamplesHandover.info.count  
-  const biosamplesReply = useProgenetixApi(
-    biosamplesHandover && replaceWithProxy(biosamplesHandover.url)
-  )
   const biosamplesTableHandover = handoverById(HANDOVER_IDS.biosamplestable)
+  const biocount = biosamplesHandover.info.count  
   biosamplesHandover.pages = []
   biosamplesTableHandover.pages = []
   var cntr = 0
@@ -70,61 +66,49 @@ export function DatasetResultBox({ data: responseSet, responseMeta, query }) {
     const pagu = "&skip=" + skpr + "&limit=" + limit
     cntr += limit
     skpr += 1
-    biosamplesTableHandover.pages.push({"url": biosamplesTableHandover.url + pagu, "label": "Part" + skpr})
-    biosamplesHandover.pages.push({"url": biosamplesHandover.url + pagu, "label": "Part" + skpr})
+    biosamplesHandover.pages.push({"url": replaceWithProxy(biosamplesHandover.url + pagu), "label": "Part" + skpr})
+    biosamplesTableHandover.pages.push({"url": replaceWithProxy(biosamplesTableHandover.url + pagu), "label": "Part" + skpr})
   }
 
   const variantsHandover = handoverById(HANDOVER_IDS.variants)
-  const varcount = variantsHandover.info.count  
-  const variantsReply = useProgenetixApi(
-    variantsHandover && replaceWithProxy(variantsHandover.url)
-  )
   const vcfHandover = handoverById(HANDOVER_IDS.vcf)
   const pgxsegHandover = handoverById(HANDOVER_IDS.pgxseg)
-  variantsHandover.pages = []
-  vcfHandover.pages = []
-  pgxsegHandover.pages = []
-  cntr = 0
-  skpr = 0
-  while (cntr < varcount) {
-    const pagu = "&skip=" + skpr + "&limit=" + limit
-    cntr += limit
-    skpr += 1
-    variantsHandover.pages.push({"url": variantsHandover.url + pagu, "label": "Part" + skpr})
-    vcfHandover.pages.push({"url": vcfHandover.url + pagu, "label": "Part" + skpr})
-    pgxsegHandover.pages.push({"url": pgxsegHandover.url + pagu, "label": "Part" + skpr})
+  const varcount = variantsHandover?.info.count ? variantsHandover?.info.count : 0
+  // variants are optional and existence has to be checked at several places
+  if (varcount > 0) {
+    variantsHandover.pages = []
+    vcfHandover.pages = []
+    pgxsegHandover.pages = []
+    cntr = 0
+    skpr = 0
+    while (cntr < varcount) {
+      const pagu = "&skip=" + skpr + "&limit=" + limit
+      cntr += limit
+      skpr += 1
+      variantsHandover.pages.push({"url": replaceWithProxy(variantsHandover.url + pagu), "label": "Part" + skpr})
+      vcfHandover.pages.push({"url": replaceWithProxy(vcfHandover.url + pagu), "label": "Part" + skpr})
+      pgxsegHandover.pages.push({"url": replaceWithProxy(pgxsegHandover.url + pagu), "label": "Part" + skpr})
+    }
   }
-
 
   // const phenopacketsHandover = handoverById(HANDOVER_IDS.phenopackets)
   const UCSCbedHandoverURL = handoverById(HANDOVER_IDS.UCSClink) === undefined ? false : handoverById(HANDOVER_IDS.UCSClink).url
-
-
   const biosamplesmapURL = handoverById(HANDOVER_IDS.biosamplesmap) === undefined ? false : handoverById(HANDOVER_IDS.biosamplesmap).url
+
+  // Data retrieval; variants are optional and existence has to be checked at several places
+  const variantsReply = useProgenetixApi(varcount > 0 ? variantsHandover.pages[0].url : "")
+  const biosamplesReply = useProgenetixApi(biosamplesHandover.pages[0].url)
+  const retrievedSampleCount = biosamplesReply?.data?.response?.resultSets[0]?.results.length
 
   // the histogram is only rendered but correct handover is needed, obviously
   let histoplotUrl
   let visualizationLink
   if (handoverById(HANDOVER_IDS.histoplot)) {
-    histoplotUrl = handoverById(HANDOVER_IDS.histoplot).url
+    histoplotUrl = handoverById(HANDOVER_IDS.histoplot).url + "&limit=" + limit
     let visualizationAccessId = new URLSearchParams(
       new URL(histoplotUrl).search
     ).get("accessid")
-    // let visualizationFileId = new URLSearchParams(
-    //   new URL(histoplotUrl).search
-    // ).get("fileId")
-    // let visualizationSkip = new URLSearchParams(
-    //   new URL(histoplotUrl).search
-    // ).get("skip")
-    // let visualizationLimit = new URLSearchParams(
-    //   new URL(histoplotUrl).search
-    // ).get("limit")
-    visualizationLink = getVisualizationLink(id, visualizationAccessId, "", 0, 0, paginatedResultsCount)
-  }
-
-  var retrievedCount = resultsCount
-  if (biosamplesReply?.data?.response?.resultSets[0].results) {
-    retrievedCount =  biosamplesReply?.data?.response?.resultSets[0].results.length
+    visualizationLink = getVisualizationLink(id, visualizationAccessId, "", 0, limit, paginatedResultsCount)
   }
 
   // main / samples / variants
@@ -136,7 +120,7 @@ export function DatasetResultBox({ data: responseSet, responseMeta, query }) {
   //   (biosample) => !!biosample.provenance?.geoLocation
   // ) && tabNames.push(TABS.samplesMap)
 
-  if (handoverById(HANDOVER_IDS.variants)) tabNames.push(TABS.variants)
+  if (varcount > 0) tabNames.push(TABS.variants)
 
   const [selectedTab, setSelectedTab] = useState(tabNames[0])
 
@@ -191,7 +175,7 @@ export function DatasetResultBox({ data: responseSet, responseMeta, query }) {
           </div>
           <div>
             <b>Retrieved Samples: </b>
-            {retrievedCount}
+            {retrievedSampleCount}
           </div>
           {info.counts.variants > 0 ? (
             <div>
@@ -261,9 +245,12 @@ export function DatasetResultBox({ data: responseSet, responseMeta, query }) {
         </div>
       ) : null}
       {tabComponent ? <div>{tabComponent}</div> : null}
-    <hr/>
 
-     {biosamplesTableHandover?.pages && (
+      <br/>
+      <hr/>
+      <h2 className="subtitle has-text-dark">{id} Data Downloads</h2>
+
+      {biosamplesTableHandover?.pages && (
         <div className="tabs">
           <div>
             <b>Download Sample Data (TSV)</b>
