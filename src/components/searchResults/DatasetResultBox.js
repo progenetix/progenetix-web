@@ -47,8 +47,6 @@ export function DatasetResultBox({ data: responseSet, responseMeta, query }) {
     paginatedResultsCount
   } = responseSet
 
-  console.log(responseMeta)
-
   const limit = responseMeta.receivedRequestSummary?.pagination?.limit ? responseMeta.receivedRequestSummary?.pagination?.limit : 121
 
   const handoverById = (givenId) =>
@@ -57,7 +55,7 @@ export function DatasetResultBox({ data: responseSet, responseMeta, query }) {
   // obviously should be looped somehow...
   const biosamplesHandover = handoverById(HANDOVER_IDS.biosamples)
   const biosamplesTableHandover = handoverById(HANDOVER_IDS.biosamplestable)
-  const biocount = biosamplesHandover.info.count  
+  const biocount = biosamplesHandover?.info?.count ? biosamplesHandover.info.count : 0
   biosamplesHandover.pages = []
   biosamplesTableHandover.pages = []
   var cntr = 0
@@ -73,7 +71,7 @@ export function DatasetResultBox({ data: responseSet, responseMeta, query }) {
   const variantsHandover = handoverById(HANDOVER_IDS.variants)
   const vcfHandover = handoverById(HANDOVER_IDS.vcf)
   const pgxsegHandover = handoverById(HANDOVER_IDS.pgxseg)
-  const varcount = variantsHandover?.info.count ? variantsHandover?.info.count : 0
+  const varcount = variantsHandover?.info?.count ? variantsHandover.info.count : 0
   // variants are optional and existence has to be checked at several places
   if (varcount > 0) {
     variantsHandover.pages = []
@@ -112,16 +110,9 @@ export function DatasetResultBox({ data: responseSet, responseMeta, query }) {
   }
 
   // main / samples / variants
-  const tabNames = []
-  tabNames.push(TABS.results)
-
-  biosamplesHandover && tabNames.push(TABS.samples)
-  // biosamplesReply?.data?.response?.resultSets[0].results?.some(
-  //   (biosample) => !!biosample.provenance?.geoLocation
-  // ) && tabNames.push(TABS.samplesMap)
-
-  if (varcount > 0) tabNames.push(TABS.variants)
-
+  const tabNames = [TABS.results]
+  biocount > 0 && tabNames.push(TABS.samples)
+  varcount > 0 && tabNames.push(TABS.variants)
   const [selectedTab, setSelectedTab] = useState(tabNames[0])
 
   let tabComponent
