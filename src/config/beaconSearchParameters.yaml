@@ -249,10 +249,10 @@ parameters:
     options:
       - value: ""
         label: "(no selection)"
-      - value: PATO:0020002
-        label: Female genotypic Sex
-      - value: PATO:0020001
-        label: Male genotypic Sex
+      - value: NCIT:C16576
+        label: female
+      - value: NCIT:C20197
+        label: male
   allTermsFilters:
     label: Select Filters
     isMulti: true
