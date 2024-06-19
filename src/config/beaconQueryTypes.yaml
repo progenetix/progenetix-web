@@ -180,8 +180,6 @@
       isHidden: true
     allTermsFilters:
       isHidden: false
-    filterLogic:
-      isHidden: true
     includeDescendantTerms:
       isHidden: false
     sex:
@@ -301,10 +299,6 @@
       isHidden: true
     allTermsFilters:
       isHidden: false
-    filterLogic:
-      isHidden: true
-    includeDescendantTerms:
-      isHidden: true
     sex:
       isHidden: true
     materialtype:
@@ -353,8 +347,6 @@
       isHidden: false
     allTermsFilters:
       isHidden: false
-    filterLogic:
-      isHidden: true
     includeDescendantTerms:
       isHidden: false
     geoCity:

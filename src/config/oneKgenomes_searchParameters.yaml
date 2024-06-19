@@ -9,9 +9,6 @@ parameters:
   cohorts:
     defaultValue: ["pgx:cohort-oneKgenomes"]
     isHidden: true
-  assemblyId:
-    defaultValue: "GRCh38"
-    isHidden: true
   referenceName:
     placeholder: "17"
   start:

@@ -15,7 +15,7 @@ parameters:
     label: Genome Assembly
     infoText: |
       The genome reference assembly.
-    defaultValue: "GRCh38"
+    # defaultValue: "GRCh38"
     isHidden: true
     options:
       - GRCh38
@@ -272,11 +272,10 @@ parameters:
     label: Filter Logic
     isHidden: true
     infoText: |
-      Boolean logic for filter values; the default **AND** assumes different
-      logical scopes for used filters (e.g. collision occurr if multiple cancer
+      Boolean logic for filter values; the default **AND** in the Beacon stack assumes different
+      logical scopes for used filters (e.g. collisions occurr if multiple cancer
       diagnoses are used with AND). Please be aware that "Filters" here include
       the "Cancer Classification", "Biosample Type" and "Filters" fields.
-    defaultValue: "AND"
     options:
       - value: AND
         label: AND
@@ -289,7 +288,6 @@ parameters:
       terms; i.e. NCIT:C3052 - Digestive System Neoplasm will include results
       from gastric, esophagus, colon ... cancer. However, this parameter allows
       to limit searches to the exact code match.
-    defaultValue: "True"
     isHidden: true
     options:
       - value: "true"
@@ -330,7 +328,13 @@ parameters:
     # isHidden: true
   limit:
     label: Response Limit / Page Size
-    infoText: >
+    infoText: |
       The maximum number of biosamples to retrieve per page and also the size of response pages.
     # defaultValue: 200
     # isHidden: true
+  includeResultsetResponses:
+    label: Show results
+    infoText: |
+      We want also empty result boxes so it is ALL (incontrast to Beacon default HIT).
+    defaultValue: ALL
+    isHidden: true

@@ -41,12 +41,13 @@ function QuerySummary({ query }) {
   const filters = makeFilters(query)
   return (
     <ul className="BeaconPlus__query-summary">
-      {query.assemblyId && (
+{/*      {query.assemblyId && (
         <li>
           <small>Assembly: </small>
           {query.assemblyId}
         </li>
       )}
+*/}     
       {query.cytoBands && (
         <li>
           <small>Cytobands: </small>

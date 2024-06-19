@@ -9,8 +9,6 @@ parameters:
   cohorts:
     defaultValue: ["pgx:cohort-gao2021signatures"]
     # isHidden: true
-  assemblyId:
-    isHidden: true
   referenceName:
     placeholder: "9"
   start:
