@@ -163,8 +163,8 @@ The root path provides the standard `BeaconInfoResponse`.
 * [/individuals/?filters=NCIT:C7541]({{config.api_web_root}}/beacon/individuals/?filters=NCIT:C7541)
     - this example retrieves all individuals having an annotation associated with _NCIT:C7541_ (retinoblastoma)
     - in Progenetix, this particular code will be part of the annotation for the _biosample(s)_ associated with the returned individual
-* [/individuals/?filters=PATO:0020001,NCIT:C9291]({{config.api_web_root}}/beacon/individuals/?filters=PATO:0020001,NCIT:C9291)
-    - this query returns information about individuals with an anal carcinoma (**NCIT:C9291**) and a known male genotypic sex (**PATO:0020001**)
+* [/individuals/?filters=NCIT:C20197,NCIT:C9291]({{config.api_web_root}}/beacon/individuals/?filters=NCIT:C20197,NCIT:C9291)
+    - this query returns information about individuals with an anal carcinoma (**NCIT:C9291**) and a known male genotypic sex (**NCIT:C20197**)
     - in Progenetix, the information about its sex is associated with the _Individual_ object
       (stored in _individuals_), whereas the cancer type is a property of the _Biosample_.
       However, cross entity queries are supported through full aggregation across the different entities.

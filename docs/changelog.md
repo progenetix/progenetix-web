@@ -4,6 +4,28 @@ This page lists changes for the [Beacon+](http://beacon.progenetix.org/ui/)
 implementation of the ["Beacon" genomics API](http://beacon-project.io), as well
 as related updates for the [Progenetix](http://progenetix.org) front-end.
 
+## 2024-06-18 Switching ontology use for `individual.sex`
+
+While we had previously used the PATO terms for `genotypic sex` (PATO:0020001 
+or PATO:0020002) we have now recoded those to `"NCIT:C16576": "female" and "NCIT:C20197": "male"`
+to stay in line with the Beacon v2 documentation examples (which will probably drive implementations).
+
+```
+  sex:
+    label: Genotypic Sex
+    infoText: |
+      Genotypic sex of the individual.
+    defaultValue: ""
+    isHidden: true
+    options:
+      - value: ""
+        label: "(no selection)"
+      - value: NCIT:C16576
+        label: female
+      - value: NCIT:C20197
+        label: male
+```
+
 ## 2024-02-24 Adding `analysis_operation` to `analyses`
 
 This new parameter with its (so far) values
