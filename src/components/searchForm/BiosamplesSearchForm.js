@@ -463,6 +463,14 @@ export function BeaconSearchForm({
                 validate: checkIntegerRange
               }}
             />
+            <InputField
+              className={cn(
+                !parameters.includeResultsetResponses.isHidden && "column",
+                "py-0 mb-3"
+              )}
+              {...fieldProps}
+              {...parameters.includeResultsetResponses}
+            />
           </div>
           <ChromosomePreview watch={watch} cytoBands={cytoBands} />
           <div className="field mt-5">
