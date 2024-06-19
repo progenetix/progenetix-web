@@ -15,7 +15,8 @@ api_dataset_ids: progenetix
 
 nav:
   - Documentation Home: index.md
-  - News & Changes: news
+  - News: news
+  - Data Changes: changelog
   # - Pages & Forms: ui
   - Analysis in R - pgxRpi: pgxRpi
   - Use Case Examples: use-cases
