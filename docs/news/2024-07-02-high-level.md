@@ -7,6 +7,8 @@ links:
 ---
 
 ![Example Plot](/img/high-level-EGFR-glioblastoma-example-plot.svg){ style="" }
+
+
 Both the data model and the plot engine now support an separate color style for
 high level CNV events. In histograms those are overplotted on the standard
 color scheme - e.g. red areas where high level plots were detected, by their
