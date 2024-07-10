@@ -10,7 +10,7 @@ const imgFocal = {
   float: "right",
   width: "300px",
   border: "0px",
-  margin: "-35px -20px 0px 10px"
+  margin: "-35px -20px -10px 10px"
 }
 
 // const histoLegend = {
