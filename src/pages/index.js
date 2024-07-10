@@ -8,7 +8,7 @@ import { SITE, SITE_DEFAULTS, tryFetch } from "../hooks/api"
 
 const imgFocal = {
   float: "right",
-  width: "250px",
+  width: "300px",
   border: "0px",
   margin: "-35px -20px 0px 10px"
 }
@@ -68,8 +68,11 @@ export default function Index({
       Cancer Types pages with visualization and sample retrieval options. Below is
       a typical example of the aggregated CNV data in {randomSubset.count} samples
       in{" "}{randomSubset.label}{" "} with the frequency of regional{" "}
-      <span className="span-gain-color">copy number gains</span> and{" "}
-      <span className="span-loss-color">losses</span> displayed for the 22 autosomes.
+      <span className="span-dup-color">copy number gains</span>{" "}
+      (<span className="span-hldup-color">high level</span>){" "}and{" "}
+      <span className="span-del-color">losses</span>{" "}
+      (<span className="span-hldel-color">high level</span>){" "}
+      displayed for the 22 autosomes.
       <SubsetHistogram datasetIds={SITE_DEFAULTS.DATASETID} id={randomSubset.id} />
     </p>
 

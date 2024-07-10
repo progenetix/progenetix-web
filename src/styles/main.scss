@@ -50,12 +50,20 @@ body {
   color: #3333ff;
   font-weight: 700;
 }
-.span-loss-color {
+.span-del-color {
   color: #33a0ff;
   font-weight: 700;
 }
-.span-gain-color {
+.span-dup-color {
   color: #ffc633;
+  font-weight: 700;
+}
+.span-hldel-color {
+  color: #0033cc;
+  font-weight: 700;
+}
+.span-hldup-color {
+  color: #ff6600;
   font-weight: 700;
 }
 .span-purple {
