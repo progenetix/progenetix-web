@@ -46,7 +46,7 @@ export default function Index({
     </h4>
 
     <p>
-      <img src={"/img/9p-example-histogram.png"} style={imgFocal} />A
+      <img src={"/img/9p-example-histogram.svg"} style={imgFocal} />A
       typical use case on Progenetix is the search for local copy number
       aberrations - e.g. involving a gene - and the exploration of cancer
       types with these CNVs. The <a href="/search/">[ Search Page ]</a>{" "}
