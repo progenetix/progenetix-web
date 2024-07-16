@@ -43,8 +43,8 @@ export function DatasetResultBox({ data: responseSet, responseMeta, query }) {
     id,
     resultsHandovers,
     info,
-    resultsCount,
-    paginatedResultsCount
+    resultsCount
+    // paginatedResultsCount
   } = responseSet
 
   const limit = responseMeta.receivedRequestSummary?.pagination?.limit ? responseMeta.receivedRequestSummary?.pagination?.limit : 121
@@ -106,7 +106,7 @@ export function DatasetResultBox({ data: responseSet, responseMeta, query }) {
     let visualizationAccessId = new URLSearchParams(
       new URL(histoplotUrl).search
     ).get("accessid")
-    visualizationLink = getVisualizationLink(id, visualizationAccessId, "", 0, limit, paginatedResultsCount)
+    visualizationLink = getVisualizationLink(id, visualizationAccessId, "", 0, limit, resultsCount)
   }
 
   // main / samples / variants

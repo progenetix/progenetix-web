@@ -95,6 +95,7 @@ function DataVisualizationPanel({ datasetIds, accessid, fileId, skip, limit, wid
         <div className="mb-6 column">
           <DataVisualizationForm
             isQuerying={false}
+            limit={limit}
             onSubmit={onSubmit}
           />
         </div>
@@ -114,7 +115,7 @@ function DataVisualizationPanel({ datasetIds, accessid, fileId, skip, limit, wid
   )
 }
 
-function DataVisualizationForm({ isQuerying, onSubmit }) {
+function DataVisualizationForm({ isQuerying, limit, onSubmit }) {
   const defaultValues = {
     "plotRegionLabels": null,
     "plotGeneSymbols": null
@@ -234,7 +235,6 @@ function DataVisualizationForm({ isQuerying, onSubmit }) {
             errors={errors}
             register={register}
             infoText="Label gene positions by their symbols (e.g. MYC, TP53)"
-            defaultValue=""
           />
         </div>
         <div className="column">
@@ -245,6 +245,16 @@ function DataVisualizationForm({ isQuerying, onSubmit }) {
             register={register}
             infoText="Add one or more comma-concatenated custom labels to the plot in the form of '7:10000000-20000000:MyLabel,18:8500000-8600000:Strange Spot'"
             defaultValue=""
+          />
+        </div>
+        <div className="column">
+          <InputField
+            name="limit"
+            label="Limit"
+            errors={errors}
+            register={register}
+            infoText="Maximum number of samples processed"
+            defaultValue={limit}
           />
         </div>
       </div>
