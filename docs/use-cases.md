@@ -143,12 +143,12 @@ added (single) collation code.
 
 The sample annotations for any type of query - particularly but not limited to
 single identifier values - can be downloaded in either [Beacon v2 JSON](beaconplus.md#beacon-api)
-or in a tab-delimited text format (`&output=table`).
+or in a tab-delimited text format. You can also use `&limit=` to limit the number of samples to download, `&limit=0` indicates no limitations.
 
 ##### Examples
 
 * Download all TCGA cancer samples from Progenetix as tab-delimited table
-      - [progenetix.org/beacon/biosamples/?filters=pgx:cohort-TCGAcancers&output=table](http://progenetix.org/beacon/biosamples/?filters=pgx:cohort-TCGAcancers&output=table)
+      - [progenetix.org/services/sampletable/?filters=pgx:cohort-TCGAcancers](http://progenetix.org/services/sampletable/?filters=pgx:cohort-TCGAcancers)
 
 
  --------------------------------------------------------------------------------
