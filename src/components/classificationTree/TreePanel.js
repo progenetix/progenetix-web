@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { SubsetsTree } from "./SubsetsTree"
 import { sortBy } from "lodash"
-import { getOrMakeChild, getOrMakeNode } from "./tree"
+import { getOrMakeNode } from "./tree"
 
 export function TreePanel({
   tree,
@@ -58,24 +58,6 @@ export function buildTree(response, subsetById) {
       size++
     }
   }
-  return { tree, size }
-}
-
-export function buildTreeForDetails(response, subsetById) {
-  const rootSubset = response[0]
-  const tree = { id: "root", children: [], path: ["root"] }
-  let size = 1
-  const rootNode = getOrMakeChild(tree, rootSubset.id)
-  rootNode.subset = rootSubset
-  const childTerms = rootSubset.childTerms
-  childTerms.forEach((c) => {
-    // some subsets have themselves in the children list
-    if (rootSubset.code !== c) {
-      const node = getOrMakeChild(rootNode, c, randomStringGenerator)
-      node.subset = subsetById[node.id]
-      size++
-    }
-  })
   return { tree, size }
 }
 

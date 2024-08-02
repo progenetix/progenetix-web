@@ -2,8 +2,7 @@ import { useCollationsByType, useCollationsById } from "../hooks/api"
 import { WithData } from "./Loader"
 import React from "react"
 import { keyBy, merge } from "lodash"
-import { SubsetHistogram } from "./SVGloaders"
-import { buildTree, buildTreeForDetails, TreePanel } from "./classificationTree/TreePanel"
+import { buildTree, TreePanel } from "./classificationTree/TreePanel"
 
 export default function SubsetsHierarchyLoader({ collationTypes, datasetIds, defaultTreeDepth }) {
   const bioSubsetsHierarchiesReply = useCollationsByType({
@@ -37,36 +36,19 @@ export default function SubsetsHierarchyLoader({ collationTypes, datasetIds, def
 }
 
 function SubsetsResponse({ bioSubsetsHierarchies, allBioSubsets, datasetIds, defaultTreeDepth }) {
-  const isDetailPage = bioSubsetsHierarchies.length === 1
   // We merge both subsets from hierarchies and subsets from allSubsets.
   // This is because some children in the bioSubsetsHierarchies don't have labels or sample count information.
   const subsetById = merge(keyBy(bioSubsetsHierarchies, "id"), allBioSubsets)
-  const { tree, size } = isDetailPage
-    ? buildTreeForDetails(bioSubsetsHierarchies, subsetById)
-    : buildTree(bioSubsetsHierarchies, subsetById)
+  const { tree, size } = buildTree(bioSubsetsHierarchies, subsetById)
 
   return (
-    <>
-      {isDetailPage && (
-        <div className="mb-3">
-          <SubsetHistogram
-            id={bioSubsetsHierarchies[0].id}
-            datasetIds={datasetIds}
-            loaderProps={{
-              background: true,
-              colored: true
-            }}
-          />
-        </div>
-      )}
-      <TreePanel
-        datasetIds={datasetIds}
-        subsetById={subsetById}
-        tree={tree}
-        size={size}
-        defaultTreeDepth={defaultTreeDepth}
-        sampleFilterScope="allTermsFilters"
-      />
-    </>
+    <TreePanel
+      datasetIds={datasetIds}
+      subsetById={subsetById}
+      tree={tree}
+      size={size}
+      defaultTreeDepth={defaultTreeDepth}
+      sampleFilterScope="allTermsFilters"
+    />
   )
 }

@@ -112,7 +112,7 @@ function Side({ onClick }) {
         />
         <MenuInternalLinkItem
           href="/subsets/NCITclinical-subsets"
-          label="Clinical Categories"
+          label="TNM & Grade"
           isSub="isSub"
         />
         <MenuInternalLinkItem href="/search/" label="Search Samples" />

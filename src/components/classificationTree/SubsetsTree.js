@@ -9,7 +9,7 @@ import useDebounce from "../../hooks/debounce"
 // import { min } from "lodash"
 import { filterNode } from "./tree"
 
-const ROW_HEIGHT = 30
+const ROW_HEIGHT = 28
 
 export function SubsetsTree({
   tree,
@@ -26,7 +26,7 @@ export function SubsetsTree({
     filteredTree,
     debouncedSearchInput
   } = useFilterTree(tree)
-  const [levelSelector, setLevelSelector] = useState(2)
+  const [levelSelector, setLevelSelector] = useState(3)
 
   // console.log(filteredTree)
 
