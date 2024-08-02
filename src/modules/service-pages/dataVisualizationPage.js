@@ -34,7 +34,7 @@ const DataVisualizationPage = withUrlQuery(({ urlQuery }) => {
       headline={`Data visualization (${sampleCount} ${datasetIds} samples)`}
     >
       {!accessid && !fileId ? (
-        <NoResultsHelp />
+        <NoResults />
       ) : (
         <div ref={componentRef}>
           {sampleCount > sampleMaxNo && (
@@ -60,7 +60,7 @@ const DataVisualizationPage = withUrlQuery(({ urlQuery }) => {
 
 export default DataVisualizationPage
 
-function NoResultsHelp() {
+function NoResults() {
   return (
     <div className="notification is-size-5 content">
       This page will only show content if called with a specific <i>accessid</i>

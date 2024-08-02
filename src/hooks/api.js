@@ -29,8 +29,6 @@ export const SITE_DEFAULTS = {
 export const THISYEAR = new Date().getFullYear()
 export const BIOKEYS = ["icdoMorphology", "icdoTopography", "histologicalDiagnosis"]
 
-// "sampleOriginDetail"
-
 export function useProgenetixApi(...args) {
   const { data, error, ...other } = useExtendedSWR(...args)
   if (data) {
@@ -77,7 +75,6 @@ export async function tryFetch(url, fallBack = "N/A") {
     }
   }
 }
-
 /**
  * When param is null no query will be triggered.
  */
@@ -90,6 +87,15 @@ export function useBeaconQuery(queryData) {
       ? `${SITE_DEFAULTS.API_PATH}beacon/biosamples/?includeHandovers=true&requestedGranularity=count&${buildQueryParameters(queryData)}`
       : null
   )
+}
+
+export function urlRetrieveIds(urlQuery) {
+  var { id, datasetIds } = urlQuery
+  if (!datasetIds) {
+    datasetIds = SITE_DEFAULTS.DATASETID
+  }
+  const hasAllParams = id && datasetIds
+  return {id, datasetIds, hasAllParams}
 }
 
 export function useAggregatorQuery(queryData) {
@@ -306,11 +312,11 @@ export function getServiceItemUrl(id, collection, datasetIds) {
   return `${SITE_DEFAULTS.API_PATH}services/${collection}?id=${id}&datasetIds=${datasetIds}`
 }
 
-export function NoResultsHelp(id, entity) {
+export function NoResultsHelp(entity) {
   return (
     <div className="notification is-size-5">
-      This page will only show content if called with an existing {entity} ID;{" "}
-      is not valid.
+      This page will only show content if called with an existing {entity}{" "}
+      &quot;id&quot; value.
     </div>
   )
 }

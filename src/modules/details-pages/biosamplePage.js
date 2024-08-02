@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react"
 import {
-  SITE_DEFAULTS,
   BIOKEYS,
+  SITE_DEFAULTS,
   useDataItemDelivery,
-  NoResultsHelp
+  NoResultsHelp,
+  urlRetrieveIds
 } from "../../hooks/api"
 import { BeaconRESTLink, InternalLink, ReferenceLink } from "../../components/helpersShared/linkHelpers"
 import { WithData } from "../../components/Loader"
@@ -15,15 +16,10 @@ import { AnalysisHistogram } from "../../components/SVGloaders"
 import { pluralizeWord }  from "../../components/helpersShared/labelHelpers"
 
 const itemColl = "biosamples"
-const exampleId = "pgxbs-kftvir6m"
+// const exampleId = "pgxbs-kftvir6m"
 
 const SampleDetailsPage = withUrlQuery(({ urlQuery }) => {
-  var { id, datasetIds } = urlQuery
-  if (!datasetIds) {
-    datasetIds = SITE_DEFAULTS.DATASETID
-  }
-  const hasAllParams = id && datasetIds
-
+  const { id, datasetIds, hasAllParams } = urlRetrieveIds(urlQuery)
   const iURL = `${SITE_DEFAULTS.API_PATH}beacon/biosamples/${id}/individuals?datasetIds=${datasetIds}&limit=1`
   var [individual, setIndividual] = useState([]);
   useEffect(() => {
@@ -41,7 +37,7 @@ const SampleDetailsPage = withUrlQuery(({ urlQuery }) => {
   return (
     <Layout title="Sample Details">
       {!hasAllParams ? (
-        NoResultsHelp(exampleId, itemColl)
+        NoResultsHelp(itemColl)
       ) : (
         <BiosampleLoader biosId={id} individual={individual} datasetIds={datasetIds} />
       )}
@@ -78,7 +74,7 @@ function BiosampleLoader({ biosId, individual, datasetIds }) {
 
 function BiosampleResponse({ biosId, response, individual, datasetIds }) {
   if (!response.response.resultSets[0].results) {
-    return NoResultsHelp(exampleId, itemColl)
+    return NoResultsHelp(itemColl)
   }
   return <Biosample biosId={biosId} biosample={response.response.resultSets[0].results[0]} individual={individual} datasetIds={datasetIds} />
 }

@@ -8,7 +8,7 @@ import BiosamplesSearchPanel from "../../components/searchForm/BiosamplesSearchP
 import Panel from "../../components/Panel"
 import { SubsetHistogram } from "../../components/SVGloaders"
 import { ExternalLink } from "../../components/helpersShared/linkHelpers"
-import SubsetsLoader from  "../../components/SubsetsLoader"
+import SubsetsHierarchyLoader from  "../../components/SubsetsHierarchyLoader"
 
 export default function TCGA_dataPage({ cytoBands }) {
   const imgHere = {
@@ -43,7 +43,7 @@ export default function TCGA_dataPage({ cytoBands }) {
         collapsed={false}
       />
       <Panel heading="TCGA Cancer Studies">
-        <SubsetsLoader collationTypes="TCGAproject" datasetIds="progenetix" />
+        <SubsetsHierarchyLoader collationTypes="TCGAproject" datasetIds="progenetix" />
       </Panel>
 
     </Layout>

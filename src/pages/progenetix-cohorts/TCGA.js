@@ -1,4 +1,4 @@
-import Page from "../../modules/data-pages/TCGA_dataPage"
+import Page from "../../modules/data-pages/TCGAcancers_dataPage"
 import { getCytoBands } from "../../utils/genome"
 export default Page
 

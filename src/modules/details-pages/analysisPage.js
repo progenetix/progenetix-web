@@ -1,7 +1,7 @@
 import {
-  SITE_DEFAULTS,
   useDataItemDelivery,
-  NoResultsHelp
+  NoResultsHelp,
+  urlRetrieveIds
 } from "../../hooks/api"
 import { BeaconRESTLink, InternalLink } from "../../components/helpersShared/linkHelpers"
 
@@ -10,18 +10,14 @@ import { withUrlQuery } from "../../hooks/url-query"
 import { Layout } from "../../components/Layout"
 
 const itemColl = "analyses"
-const exampleId = "pgxcs-kftvlijb"
+// const exampleId = "pgxcs-kftvlijb"
 
 const AnalysisDetailsPage = withUrlQuery(({ urlQuery }) => {
-  var { id, datasetIds } = urlQuery
-  if (!datasetIds) {
-    datasetIds = SITE_DEFAULTS.DATASETID
-  }
-  const hasAllParams = id && datasetIds
+  const { id, datasetIds, hasAllParams } = urlRetrieveIds(urlQuery)
   return (
     <Layout title="Analysis Details" headline="Analysis Details">
       {!hasAllParams ? (
-        NoResultsHelp(exampleId, itemColl)
+        NoResultsHelp(itemColl)
       ) : (
         <AnalysisLoader csId={id} datasetIds={datasetIds} />
       )}
@@ -48,7 +44,7 @@ function AnalysisLoader({ csId, datasetIds }) {
 
 function AnalysisResponse({ response, csId, datasetIds }) {
   if (!response.response.resultSets[0].results) {
-    return NoResultsHelp(exampleId, itemColl)
+    return NoResultsHelp(itemColl)
   }
   return <Analysis analysis={response.response.resultSets[0].results[0]} csId={csId} datasetIds={datasetIds} />
 }

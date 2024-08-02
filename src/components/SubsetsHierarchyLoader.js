@@ -5,16 +5,14 @@ import { keyBy, merge } from "lodash"
 import { SubsetHistogram } from "./SVGloaders"
 import { buildTree, buildTreeForDetails, TreePanel } from "./classificationTree/TreePanel"
 
-export default function SubsetsLoader({ collationTypes, datasetIds, defaultTreeDepth }) {
+export default function SubsetsHierarchyLoader({ collationTypes, datasetIds, defaultTreeDepth }) {
   const bioSubsetsHierarchiesReply = useCollationsByType({
     datasetIds,
     method: "paths",
     collationTypes
   })
 
-  const allBioSubsetsReply = useCollationsById({
-    datasetIds
-  })
+  const allBioSubsetsReply = useCollationsById({datasetIds})
 
   return (
     <WithData

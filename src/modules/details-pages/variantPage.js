@@ -2,7 +2,7 @@ import {
   getDataItemUrl,
   useDataItemDelivery,
   NoResultsHelp,
-  SITE_DEFAULTS
+  urlRetrieveIds
 } from "../../hooks/api"
 import { ExternalLink, ReferenceLink } from "../../components/helpersShared/linkHelpers"
 import { WithData } from "../../components/Loader"
@@ -14,18 +14,14 @@ import React from "react"
 import { refseq2chro } from "../../components/Chromosome"
 
 const entity = "variants"
-const exampleId = "pgxvar-5bab576a727983b2e00b8d32"
+// const exampleId = "pgxvar-5bab576a727983b2e00b8d32"
 
 const VariantDetailsPage = withUrlQuery(({ urlQuery }) => {
-  var { id, datasetIds } = urlQuery
-  if (!datasetIds) {
-    datasetIds = SITE_DEFAULTS.DATASETID
-  }
-  const hasAllParams = id && datasetIds
+  const { id, datasetIds, hasAllParams } = urlRetrieveIds(urlQuery)
   return (
     <Layout title="Variant Details" headline="Variant Details">
       {!hasAllParams ? (
-        NoResultsHelp(exampleId, entity)
+        NoResultsHelp(entity)
       ) : (
         <VariantLoader id={id} datasetIds={datasetIds} />
       )}
@@ -55,7 +51,7 @@ function VariantLoader({ id, datasetIds }) {
 
 function VariantResponse({ response, id, datasetIds }) {
   if (!response.response.resultSets[0].results[0]) {
-    return NoResultsHelp(exampleId, entity)
+    return NoResultsHelp(entity)
   }
   return (
     <Variant

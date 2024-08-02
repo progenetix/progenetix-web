@@ -1,7 +1,7 @@
 import {
-  SITE_DEFAULTS,
   useDataItemDelivery,
-  NoResultsHelp
+  NoResultsHelp,
+  urlRetrieveIds
 } from "../../hooks/api"
 import { ReferenceLink, BeaconRESTLink, InternalLink, ExternalLink } from "../../components/helpersShared/linkHelpers"
 import { AncestryData } from "../../components/AncestryData"
@@ -11,18 +11,14 @@ import { Layout } from "../../components/Layout"
 import { ShowJSON } from "../../components/RawData"
 
 const itemColl = "individuals"
-const exampleId = "pgxind-kftx266l"
+// const exampleId = "pgxind-kftx266l"
 
 const IndividualDetailsPage = withUrlQuery(({ urlQuery }) => {
-  var { id, datasetIds } = urlQuery
-  if (!datasetIds) {
-    datasetIds = SITE_DEFAULTS.DATASETID
-  }
-  const hasAllParams = id && datasetIds
+  const { id, datasetIds, hasAllParams } = urlRetrieveIds(urlQuery)
   return (
     <Layout title="Individual Details">
       {!hasAllParams ? (
-        NoResultsHelp(exampleId, itemColl)
+        NoResultsHelp(itemColl)
       ) : (
         <IndividualLoader id={id} datasetIds={datasetIds} />
       )}
@@ -51,7 +47,7 @@ function IndividualLoader({ id, datasetIds }) {
 
 function IndividualResponse({ response, datasetIds }) {
   if (!response.response.resultSets[0].results) {
-    return NoResultsHelp(exampleId, itemColl)
+    return NoResultsHelp(itemColl)
   }
   return <Individual individual={response.response.resultSets[0].results[0]} datasetIds={datasetIds} />
 }

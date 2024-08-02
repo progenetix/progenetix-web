@@ -1,6 +1,6 @@
 import React from "react"
 import { Layout } from "../../components/Layout"
-import SubsetsLoader from  "../../components/SubsetsLoader"
+import SubsetsHierarchyLoader from  "../../components/SubsetsHierarchyLoader"
 
 export default function icdom_SubsetsPage() {
   return (
@@ -12,7 +12,7 @@ export default function icdom_SubsetsPage() {
           their ICD-O 3 topography codes (rewritten to an internal prefix system).
         </p>
       </div>
-      <SubsetsLoader collationTypes="icdot" datasetIds="progenetix" />
+      <SubsetsHierarchyLoader collationTypes="icdot" datasetIds="progenetix" />
     </Layout>
   )
 }

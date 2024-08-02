@@ -6,7 +6,7 @@ import { FaAngleDown, FaAngleRight } from "react-icons/fa"
 import Tippy from "@tippyjs/react"
 import { FixedSizeTree as VTree } from "react-vtree"
 import useDebounce from "../../hooks/debounce"
-import { min } from "lodash"
+// import { min } from "lodash"
 import { filterNode } from "./tree"
 
 const ROW_HEIGHT = 30
@@ -86,7 +86,7 @@ export function SubsetsTree({
         )}
         {checkedSubsets.map((subset) => (
           <li className="tag is-primary" key={subset.id}>
-            {subset.label} ({subset.count})
+            {subset.label ? subset.label : subset.id} ({subset.count})
           </li>
         ))}
       </ul>
@@ -179,7 +179,7 @@ function Node({
   style,
   setOpen
 }) {
-  const isSearchPossible = subset && canSearch(subset)
+  const isSearchPossible = true // subset && canSearch(subset)
   const even = index % 2 === 0
   const detailsPage = "subset"
   return (
@@ -221,17 +221,21 @@ function Node({
             </span>
           )}
           <Tippy content={`Show data for subset "${subset.label}"`}>
-            <a
-              href={`/${detailsPage}/?id=${subsetId}&datasetIds=${datasetIds}`}
-            >
+            <>
             {(subset?.label && (
               <span className="Subsets__tree__label" title={subset.label}>
-                {subset.label}
+              <a href={`/${detailsPage}/?id=${subsetId}&datasetIds=${datasetIds}`}>
+              {subset.label}</a>: {subsetId}
               </span>
-            )) || <span>&nbsp;</span>}
-            </a>
+            ))
+            || 
+              <span className="Subsets__tree__label" title={subsetId}>
+              <a href={`/${detailsPage}/?id=${subsetId}&datasetIds=${datasetIds}`}>
+              {subsetId}</a>: {subsetId}
+              </span>
+            }
+            </>
           </Tippy>
-          <span>: {subsetId}</span>
           {isSearchPossible ? (
             <Tippy content={`Click to retrieve samples for ${subsetId}`}>
               <a
@@ -352,11 +356,11 @@ function sampleSelectUrl({ subsets, datasetIds, sampleFilterScope }) {
   return sampleSearchPageFiltersLink({ datasetIds, sampleFilterScope, filters })
 }
 
-function canSearch(subset) {
-  // Only necessary for NCIT
-  if (!subset.id.includes("NCIT:")) return true
-  const minDepth = subset.hierarchyPaths
-    ? min(subset.hierarchyPaths?.map((hp) => hp.depth))
-    : 999
-  return minDepth >= 2
-}
+// function canSearch(subset) {
+//   // Only necessary for NCIT
+//   if (!subset.id.includes("NCIT:")) return true
+//   const minDepth = subset.hierarchyPaths
+//     ? min(subset.hierarchyPaths?.map((hp) => hp.depth))
+//     : 999
+//   return minDepth >= 2
+// }

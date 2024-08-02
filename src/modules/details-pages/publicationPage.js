@@ -10,13 +10,13 @@ const PublicationDetailsPage = withUrlQuery(({ urlQuery }) => {
   const { id } = urlQuery
   return (
     <Layout title="Publication Details">
-      {!id ? <NoResultsHelp /> : <PublicationLoader id={id} />}
+      {!id ? <NoResults /> : <PublicationLoader id={id} />}
     </Layout>
   )
 })
 export default PublicationDetailsPage
 
-function NoResultsHelp() {
+function NoResults() {
   return (
     <div className="notification is-size-5">
       This page will only show content if called with a specific Pubmed ID which
@@ -48,7 +48,7 @@ function PublicationResponse({ results, id }) {
       <PublicationDetails key={i} publication={publication} id={id} />
     ))
   } else {
-    return <NoResultsHelp />
+    return <NoResults />
   }
 }
 

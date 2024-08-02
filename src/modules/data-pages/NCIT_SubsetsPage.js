@@ -1,6 +1,6 @@
 import React from "react"
 import { Layout } from "../../components/Layout"
-import SubsetsLoader from  "../../components/SubsetsLoader"
+import SubsetsHierarchyLoader from  "../../components/SubsetsHierarchyLoader"
 
 export default function NCIT_SubsetsPage() {
   return (
@@ -19,7 +19,7 @@ export default function NCIT_SubsetsPage() {
           response.
         </p>
       </div>
-      <SubsetsLoader collationTypes="NCIT" datasetIds="progenetix" />
+      <SubsetsHierarchyLoader collationTypes="NCIT" datasetIds="progenetix" />
     </Layout>
   )
 }

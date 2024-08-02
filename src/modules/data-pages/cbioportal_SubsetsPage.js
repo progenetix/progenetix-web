@@ -1,7 +1,7 @@
 import React from "react"
 import { Layout } from "../../components/Layout"
 import Panel from "../../components/Panel"
-import SubsetsLoader from  "../../components/SubsetsLoader"
+import SubsetsHierarchyLoader from  "../../components/SubsetsHierarchyLoader"
 
 export default function cbioportal_SubsetsPage() {
   return (
@@ -12,7 +12,7 @@ export default function cbioportal_SubsetsPage() {
         </p>
       </div>
       <Panel heading="cBioPortal Studies">
-        <SubsetsLoader collationTypes="cbioportal" datasetIds="progenetix" />
+        <SubsetsHierarchyLoader collationTypes="cbioportal" datasetIds="progenetix" />
       </Panel>
     </Layout>
   )
