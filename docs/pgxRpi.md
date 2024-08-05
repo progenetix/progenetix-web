@@ -60,7 +60,7 @@ cnv_fraction_across_bin <- pgxLoader(type="cnv_fraction", filters = "NCIT:C2948"
 
 ## Query and visualize CNV frequencies 
 
-You can query the CNV frequency of specific filters. There are two available data formats. One is [`.pgxfreq`](https://docs.progenetix.org/file-formats/#pgxfreq-segment-cnv-frequencies). Another is [`.pgxmatrix`]([https://docs.progenetix.org/services/#cnv-frequency-matrix].
+You can query the CNV frequency of specific filters. There are two available data formats. One is [".pgxfreq"](https://docs.progenetix.org/file-formats/#pgxfreq-segment-cnv-frequencies). Another is [".pgxmatrix"](https://docs.progenetix.org/services/#cnv-frequency-matrix).
 
 ```
 frequency <- pgxLoader(type="cnv_frequency", output ='pgxfreq',
