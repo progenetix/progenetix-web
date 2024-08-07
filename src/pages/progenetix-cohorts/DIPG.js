@@ -1,11 +1,48 @@
-import Page from "../../modules/data-pages/DIPG_dataPage"
-import { getCytoBands } from "../../utils/genome"
-export default Page
+import React from "react"
+import { Layout } from "../../components/Layout"
+import { SubsetLoader } from "../../components/SubsetLoader"
+import Panel from "../../components/Panel"
+import { ExternalLink } from "../../components/helpersShared/linkHelpers"
 
-export const getStaticProps = async () => {
-  return {
-    props: {
-      cytoBands: await getCytoBands()
-    }
-  }
+const datasetIds = "progenetix"
+const subsetId = "pgx:cohort-DIPG"
+
+export default function Page() {
+  return (
+    <Layout title="TCGA Cancer Subsets" headline="">
+      <Panel heading="Genomic Variants in DIPG and Related Pediatric Gliomas">
+        <SubsetLoader
+          id={subsetId}
+          datasetIds={datasetIds}
+        />
+      </Panel>
+      <Panel>
+        <ThisSubset />
+      </Panel>
+    </Layout>
+  )
 }
+
+function ThisSubset() {
+  return (
+    <>
+    <div style={{ display: "flex" }}>
+      <img
+        src={"/img/project_DIPG.png"}
+        style={{
+          float: "right",
+          width: "200px",
+          border: "0px",
+          margin: "-20px -20px 0px 0px"
+        }}
+      />
+      This page allows the exploration of genomic variants in aggressive
+      childhood gliomas, enabled by the data originally collected for{" "}
+      <ExternalLink
+        href="http://info.baudisgroup.org/publications/2017-10-01-Integrated-Molecular/"
+        label="Mackay et al. (2017)"
+      />. 
+    </div>
+    </>
+    )
+} 

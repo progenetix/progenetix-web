@@ -7,10 +7,16 @@ export default function ChromosomePreview({ watch, cytoBands }) {
   const { width } = useContainerDimensions(componentRef)
   const startRange = watch("start")
   const endRange = watch("end")
+  const mateStartRange = watch("mateStart")
+  const mateEndRange = watch("mateEnd")
   const referenceName = watch("referenceName")
+  const mateName = watch("mateName")
   const chro = referenceName ? refseq2chro(referenceName) : ""
+  const mateChro = mateName ? refseq2chro(mateName) : ""
   const bands = cytoBands["chr" + chro]
+  const mateBands = cytoBands["chr" + mateChro]
   const shouldDisplay = (startRange || endRange) && bands
+  const shouldDisplayMate = (mateStartRange || mateEndRange) && mateBands
 
   return (
     <div ref={componentRef}>
@@ -20,6 +26,15 @@ export default function ChromosomePreview({ watch, cytoBands }) {
           refseqId={referenceName}
           startRange={startRange}
           endRange={endRange}
+          width={width}
+        />
+      )}
+      {shouldDisplayMate && (
+        <Chromosome
+          bands={mateBands}
+          refseqId={mateName}
+          startRange={mateStartRange}
+          endRange={mateEndRange}
           width={width}
         />
       )}

@@ -225,6 +225,13 @@ export function BeaconSearchForm({
           <div className="columns my-0">
             <InputField
               className={cn(
+                !parameters.geneId.isHidden && "column",
+                "py-0 mb-3"
+              )}
+              {...parameters.geneId} {...fieldProps}
+            />
+            <InputField
+              className={cn(
                 !parameters.genomicAlleleShortForm.isHidden && "column",
                 "py-0 mb-3"
               )}
@@ -239,29 +246,12 @@ export function BeaconSearchForm({
             />
           </div>
           <div className="columns my-0">
-            <InputField
-              className={cn(
-                !parameters.geneId && "column",
-                "py-0 mb-3"
-              )}
-              {...parameters.geneId} {...fieldProps}
-            />
             <SelectField
               className={cn(
                 !parameters.analysisOperation.isHidden && "column",
                 "py-0 mb-3"
               )}
               {...parameters.analysisOperation}
-              {...selectProps}
-            />
-          </div>
-          <div className="columns my-0">
-            <SelectField
-              className={cn(
-                !parameters.referenceName.isHidden && "column",
-                "py-0 mb-3"
-              )}
-              {...parameters.referenceName}
               {...selectProps}
             />
             <SelectField
@@ -274,6 +264,14 @@ export function BeaconSearchForm({
             />
           </div>
           <div className="columns my-0">
+            <SelectField
+              className={cn(
+                !parameters.referenceName.isHidden && "column",
+                "py-0 mb-3"
+              )}
+              {...parameters.referenceName}
+              {...selectProps}
+            />
             <InputField
               className={cn(
                 !parameters.start.isHidden && "column",
@@ -289,6 +287,35 @@ export function BeaconSearchForm({
               className={cn(!parameters.end.isHidden && "column", "py-0 mb-3")}
               {...fieldProps}
               {...parameters.end}
+              rules={{
+                validate: checkIntegerRange
+              }}
+            />
+          </div>
+          <div className="columns my-0">
+            <SelectField
+              className={cn(
+                !parameters.mateName.isHidden && "column",
+                "py-0 mb-3"
+              )}
+              {...parameters.mateName}
+              {...selectProps}
+            />
+            <InputField
+              className={cn(
+                !parameters.mateStart.isHidden && "column",
+                "py-0 mb-3"
+              )}
+              {...fieldProps}
+              {...parameters.mateStart}
+              rules={{
+                validate: checkIntegerRange
+              }}
+            />
+            <InputField
+              className={cn(!parameters.mateEnd.isHidden && "column", "py-0 mb-3")}
+              {...fieldProps}
+              {...parameters.mateEnd}
               rules={{
                 validate: checkIntegerRange
               }}
@@ -666,10 +693,13 @@ function validateForm(formValues) {
   const {
     variantType,
     referenceName,
+    mateName,
     referenceBases,
     alternateBases,
     start,
     end,
+    mateStart,
+    mateEnd,
     cytoBands,
     variantQueryDigests,
     geneId,
@@ -693,6 +723,9 @@ function validateForm(formValues) {
     !alternateBases && setMissing("alternateBases")
     !start && setMissing("start")
     !end && setMissing("end")
+    !mateName && setMissing("mateName")
+    !mateStart && setMissing("mateStart")
+    !mateEnd && setMissing("mateEnd")
     !cytoBands && setMissing("cytoBands")
     !variantQueryDigests && setMissing("variantQueryDigests")
     !variantType && setMissing("variantType")

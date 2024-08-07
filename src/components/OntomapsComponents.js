@@ -1,4 +1,4 @@
-import { ontologymapsUrl, useProgenetixApi } from "../../hooks/api"
+import { ontologymapsUrl, useProgenetixApi } from "../hooks/api"
 import Link from "next/link"
 
 export function CodeGroups({ codeGroups, ontomapsUrl }) {

@@ -84,6 +84,24 @@ function QuerySummary({ query }) {
           {query.end}
         </li>
       )}
+      {query.mateName && (
+        <li>
+          <small>Adjacent Chro: </small>
+          {query.mateName}
+        </li>
+      )}
+      {query.mateStart && (
+        <li>
+          <small>Adj. Start: </small>
+          {query.mateStart}
+        </li>
+      )}
+      {query.mateEnd && (
+        <li>
+          <small>Adj. End: </small>
+          {query.mateEnd}
+        </li>
+      )}
       {query.variantType && (
         <li>
           <small>Type: </small>

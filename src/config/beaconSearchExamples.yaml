@@ -186,3 +186,37 @@
       isHidden: true
     referenceBases:
       isHidden: true
+
+- label: "Fusion Example"
+  note: |
+    This is an experimental example for a fusion query (by positions).
+    http://progenetix.org/beacon/g_variants/?referenceName=8&mateName=12&start=45100000&end=47300000&mateStart=26200000&mateEnd=35600000&variantType=SO:0000806
+  description: |
+    This is an experimental example for a fusion query (by positions).
+  parameters:
+    datasetIds:
+      isHidden: false
+      defaultValue: ["progenetix"]
+    variantType:
+      isHidden: false
+      defaultValue: SO:0000806
+    allTermsFilters:
+      isHidden: false
+    referenceName:
+      isHidden: false
+      defaultValue: refseq:NC_000008.11
+    mateName:
+      isHidden: false
+      defaultValue: refseq:NC_000012.12
+    start:
+      isHidden: false
+      defaultValue: 45100000
+    end:
+      isHidden: false
+      defaultValue: 47300000
+    mateStart:
+      isHidden: false
+      defaultValue: 26200000
+    mateEnd:
+      isHidden: false
+      defaultValue: 35600000

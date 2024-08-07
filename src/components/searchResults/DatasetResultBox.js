@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react"
 import {
   // MAX_HISTO_SAMPLES,
   // SITE_DEFAULTS,
+  getVisualizationLink,
   replaceWithProxy,
   useProgenetixApi,
   useExtendedSWR
@@ -17,7 +18,6 @@ import BiosamplesStatsDataTable from "./BiosamplesStatsDataTable"
 import { WithData } from "../Loader"
 import { openJsonInNewTab } from "../../utils/files"
 // import dynamic from "next/dynamic"
-import { getVisualizationLink } from "../../modules/service-pages/dataVisualizationPage"
 
 const HANDOVER_IDS = {
   histoplot: "histoplot",

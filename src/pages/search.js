@@ -1,4 +1,4 @@
-import Page from "../modules/data-pages/searchPage"
+import Page from "../components/SearchPage"
 import { getCytoBands } from "../utils/genome"
 export default Page
 

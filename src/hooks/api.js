@@ -222,6 +222,11 @@ export function useDataVisualization(queryData) {
   )
 }
 
+export function getVisualizationLink(datasetIds, accessId, fileId, skip, limit, count) {
+  return `/service-collection/dataVisualization?datasetIds=${datasetIds}&accessid=${accessId}&fileId=${fileId}&sampleCount=${count}&skip=${skip}&limit=${limit}`
+}
+
+
 export function buildDataVisualizationParameters(queryData) {
   return new URLSearchParams(
     flattenParams([...Object.entries(queryData)]).filter(([, v]) => !!v)
