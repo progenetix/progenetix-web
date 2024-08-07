@@ -146,6 +146,36 @@
   examples: []
   img: false
 
+- label: "Genomic Fusion"
+  infoText: 'This is an experimental implementation for a fusion query (by positions).'
+  description: |
+    The current implementation uses th existing `mateName` as well as the proposed
+    `mateStart` and `mateEnd` parameters to pass positional information (similar
+    to a *range request*) for a second genomic location, _i.e._ the fusion partner
+    (in the sense of a VRS v2 *Adjacency*.)
+  parameters:
+    datasetIds:
+      placeholder: ["progenetix"]
+    referenceName:
+      isHidden: false
+    mateName:
+      isHidden: false
+    start:
+      isHidden: false
+    end:
+      isHidden: false
+    mateStart:
+      isHidden: false
+    mateEnd:
+      isHidden: false
+    variantType:
+      defaultValue: "SO:0000806"
+    alternateBases:
+      isHidden: false
+    referenceBases:
+      isHidden: false
+  examples: []
+  img: false
 
 - label: "Sample Data"
   infoText: ""

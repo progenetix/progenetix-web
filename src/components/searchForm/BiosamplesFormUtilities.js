@@ -77,7 +77,7 @@ export function GeneSpansUtility({ onClose, setFormValue }) {
   const onApply = (optionValue) => {
     setFormValue("start", optionValue.start)
     setFormValue("end", optionValue.end)
-    setFormValue("referenceName", optionValue.referenceName)
+    setFormValue("referenceName", "refseq:"+optionValue.accessionVersion)
     onClose()
   }
   const renderValue = (optionValue) => (
@@ -89,7 +89,16 @@ export function GeneSpansUtility({ onClose, setFormValue }) {
         End: <b>{optionValue.end}</b>
       </div>
       <div>
-        Reference: <b>{optionValue.referenceName}</b>
+        Chromosome: <b>{optionValue.referenceName}</b>
+      </div>
+      <div>
+        Sequence Accession: <b>refseq:{optionValue.accessionVersion}</b>
+      </div>
+      <div>
+        Please use the <b>Apply</b> button to copy the values to the{" "}
+        <i>referenceName</i>, <i>start</i> and <i>end</i> fields. For use in 
+        Fusion queries (<i>mateName</i> etc.) you have to insert the values
+        manually.
       </div>
     </div>
   )
@@ -150,7 +159,7 @@ export function CytoBandsUtility({ onClose, setFormValue }) {
   const onApply = (data) => {
     setFormValue("start", data.response.results[0].genomic_location.interval.start.value)
     setFormValue("end", data.response.results[0].genomic_location.interval.end.value)
-    setFormValue("referenceName", data.response.results[0].info.referenceName)
+    setFormValue("referenceName", data.response.results[0].genomic_location.sequence_id)
     onClose()
   }
   const onSubmit = (e) => {
@@ -224,7 +233,13 @@ function CytoBandsData({ data }) {
   return (
     <div className="content has-text-black">
       <div>
-        CytoBands: <b>{data[0].info.cytoBands}</b>
+        CytoBands: <b>{data[0].chromosome_location.chr}{data[0].info.cytoBands}</b>
+      </div>
+      <div>
+        Chromosome: <b>{data[0].chromosome_location.chr}</b>
+      </div>
+      <div>
+        Sequence ID: <b>{data[0].genomic_location.sequence_id}</b>
       </div>
       <div>
         Start: <b>{data[0].genomic_location.interval.start.value}</b>
@@ -233,7 +248,10 @@ function CytoBandsData({ data }) {
         End: <b>{data[0].genomic_location.interval.end.value}</b>
       </div>
       <div>
-        Chromosome: <b>{data[0].info.referenceName}</b>
+        Please use the <b>Apply</b> button to copy the values to the{" "}
+        <i>referenceName</i>, <i>start</i> and <i>end</i> fields. For use in 
+        Fusion queries (<i>mateName</i> etc.) you have to insert the values
+        manually.
       </div>
     </div>
   )

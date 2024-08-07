@@ -1,6 +1,6 @@
 import PropTypes from "prop-types"
 import Tippy from "@tippyjs/react"
-import { markdownToReact } from "../utils/md"
+import { MarkdownParser } from "./MarkdownParser"
 import { FaInfoCircle, FaLink } from "react-icons/fa"
 import React from "react"
 
@@ -9,7 +9,7 @@ Infodot.propTypes = {
 }
 export function Infodot({ infoText }) {
   return (
-    <Tippy theme="light-border" content={markdownToReact(infoText)}>
+    <Tippy theme="light-border" content={MarkdownParser(infoText)}>
       <span className="icon__wrapper">
         <FaInfoCircle className="ml-2 icon is-small has-text-grey-light" />
       </span>

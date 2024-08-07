@@ -1,7 +1,5 @@
 import React, { useRef, useState } from "react"
 import {
-  // MAX_HISTO_SAMPLES,
-  // SITE_DEFAULTS,
   getVisualizationLink,
   replaceWithProxy,
   useProgenetixApi,
@@ -16,8 +14,6 @@ import { ExternalLink } from "../helpersShared/linkHelpers"
 import { svgFetcher } from "../../hooks/fetcher"
 import BiosamplesStatsDataTable from "./BiosamplesStatsDataTable"
 import { WithData } from "../Loader"
-import { openJsonInNewTab } from "../../utils/files"
-// import dynamic from "next/dynamic"
 
 const HANDOVER_IDS = {
   histoplot: "histoplot",
@@ -398,6 +394,14 @@ function PagedLink({ handover }) {
       />
     </li>
   )
+}
+
+function openJsonInNewTab(dataJson) {
+  const jsonString = JSON.stringify(dataJson, null, 2)
+  const x = window.open()
+  x.document.open()
+  x.document.write(`<html><body><pre>${jsonString}</pre></body></html>`)
+  x.document.close()
 }
 
 // const BiosamplesMap = dynamic(() => import("./BioSamplesMap"), {

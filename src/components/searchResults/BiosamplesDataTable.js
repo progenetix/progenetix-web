@@ -4,7 +4,6 @@ import React from "react"
 import PropTypes from "prop-types"
 import { WithData } from "../Loader"
 import Table, { TooltipHeader } from "../Table"
-// import DownloadButton from "../DownloadButton"
 import Link from "next/link"
 
 export default function BiosamplesDataTable({ apiReply, datasetId }) {

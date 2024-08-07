@@ -5,7 +5,6 @@ import {
   validateBeaconQuery
 } from "../../hooks/api"
 import React, { useMemo, useState } from "react" //useEffect, 
-import { markdownToReact } from "../../utils/md"
 import { useForm } from "react-hook-form"
 import {
   CytoBandsUtility,
@@ -16,10 +15,10 @@ import PropTypes from "prop-types"
 import { merge, transform } from "lodash"
 import SelectField from "../formShared/SelectField"
 import InputField from "../formShared/InputField"
+import {MarkdownParser} from "../MarkdownParser"
 import useDeepCompareEffect from "use-deep-compare-effect"
 import { withUrlQuery } from "../../hooks/url-query"
 import { GeoCitySelector } from "./GeoCitySelector"
-// import { GeneSymbolSelector } from "./GeneSymbolSelector"
 import ChromosomePreview from "./ChromosomePreview"
 import { FaCogs } from "react-icons/fa"
 import cn from "classnames"
@@ -651,7 +650,7 @@ function ExampleDescription({ example }) {
   return example?.description ? (
     <article className="message is-info">
       <div className="message-body">
-        <div className="content">{markdownToReact(example?.description)}</div>
+        <div className="content">{MarkdownParser(example?.description)}</div>
       </div>
     </article>
   ) : null
