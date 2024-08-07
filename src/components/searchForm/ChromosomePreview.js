@@ -1,9 +1,11 @@
 import { Chromosome, refseq2chro } from "../Chromosome"
+import { Cytobands } from "../Cytobands"
 import React, { useRef } from "react"
 import { useContainerDimensions } from "../../hooks/containerDimensions"
 
-export default function ChromosomePreview({ watch, cytoBands }) {
+export default function ChromosomePreview({ watch }) {
   const componentRef = useRef()
+  const cytoBands = Cytobands()
   const { width } = useContainerDimensions(componentRef)
   const startRange = watch("start")
   const endRange = watch("end")

@@ -1,10 +1,19 @@
-import Page from "../components/SearchPage"
-import { getCytoBands } from "../utils/genome"
-export default Page
+import React from "react"
+import { Layout } from "../components/Layout"
+import BiosamplesSearchPanel from "../components/searchForm/BiosamplesSearchPanel"
+import parametersConfig from "../config/beaconSearchParameters.yaml"
+import beaconQueryTypes from  "../config/beaconQueryTypes.yaml"
+import requestTypeExamples from "../config/beaconSearchExamples.yaml"
 
-// This function gets called at build time on server-side.
-export const getStaticProps = async () => ({
-  props: {
-    cytoBands: await getCytoBands()
-  }
-})
+export default function Page() {
+  return (
+    <Layout title="Search Samples" headline="">
+      <BiosamplesSearchPanel
+        parametersConfig={parametersConfig}
+        beaconQueryTypes={beaconQueryTypes}
+        requestTypeExamples={requestTypeExamples}
+        collapsed={false}
+      />
+    </Layout>
+  )
+}

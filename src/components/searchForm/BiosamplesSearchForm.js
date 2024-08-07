@@ -32,7 +32,6 @@ export const BiosamplesSearchForm = withUrlQuery(
 export default BiosamplesSearchForm
 
 BiosamplesSearchForm.propTypes = {
-  cytoBands: PropTypes.object.isRequired,
   isQuerying: PropTypes.bool.isRequired,
   setSearchQuery: PropTypes.func.isRequired,
   beaconQueryTypes: PropTypes.object.isRequired,
@@ -71,7 +70,6 @@ function useIsFilterlogicWarningVisible(watch) {
 }
 
 export function BeaconSearchForm({
-    cytoBands,
     isQuerying,
     setSearchQuery,
     beaconQueryTypes,
@@ -499,7 +497,7 @@ export function BeaconSearchForm({
               {...parameters.includeResultsetResponses}
             />
           </div>
-          <ChromosomePreview watch={watch} cytoBands={cytoBands} />
+          <ChromosomePreview watch={watch} />
           <div className="field mt-5">
             <div className="control">
               <button

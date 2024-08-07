@@ -17,7 +17,6 @@ export default function BiosamplesSearchPanel({
   parametersConfig,
   beaconQueryTypes,
   requestTypeExamples,
-  cytoBands,
   collapsed
 }) {
   const [query, setQuery] = useState(null) // actual valid query
@@ -67,7 +66,6 @@ export default function BiosamplesSearchPanel({
         }
       >
         <BiosamplesSearchForm
-          cytoBands={cytoBands}
           parametersConfig={parametersConfig}
           beaconQueryTypes={beaconQueryTypes}
           requestTypeExamples={requestTypeExamples}
