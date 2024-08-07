@@ -175,7 +175,7 @@
     referenceBases:
       isHidden: false
   examples: []
-  img: false
+  img: /img/BeaconFusionQuery-graphics.png
 
 - label: "Sample Data"
   infoText: ""

@@ -193,6 +193,7 @@
     http://progenetix.org/beacon/g_variants/?referenceName=8&mateName=12&start=45100000&end=47300000&mateStart=26200000&mateEnd=35600000&variantType=SO:0000806
   description: |
     This is an experimental example for a fusion query (by positions).
+  img: /img/BeaconFusionQuery-graphics.png
   parameters:
     datasetIds:
       isHidden: false
