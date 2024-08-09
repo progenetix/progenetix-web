@@ -71,7 +71,9 @@ function Variant({ variant, id, datasetIds }) {
   var locations = []
   if (variant.location) {
     locations.push(variant.location)
-  } 
+  } else if (variant.sequenceAdjecencies) {
+    locations.push(...variant.sequenceAdjecencies)
+  }
 
   return (
     <section className="content">
