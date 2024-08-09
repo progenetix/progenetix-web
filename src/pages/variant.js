@@ -62,18 +62,35 @@ function VariantResponse({ response, id, datasetIds }) {
 }
 
 function Variant({ variant, id, datasetIds }) {
-  // TODO: derive variant parameters from location/adjacency etc.
-  var marker = variant.variantInternalId
-  var mParts = marker.split(':')
-  const chro = refseq2chro(mParts[0])
-  marker = marker + " (" + mParts[1] + ")"
+  // TODO: add variatrion type or sequence from VRS response
 
+  const v = variant.variation ? variant.variation : false
+  console.log(v)
   var locations = []
-  if (variant.location) {
-    locations.push(variant.location)
-  } else if (variant.sequenceAdjecencies) {
-    locations.push(...variant.sequenceAdjecencies)
+  var chros = []
+  var markers = []
+  if (v.subject) {
+    locations.push(v.subject)
+  } else if (v.location) {
+    locations.push(v.location)
+  } else if (v.adjoinedSequences) {
+    locations.push(...v.adjoinedSequences)
   }
+
+  console.log(locations)
+
+  locations.forEach(function (loc) {
+    if (loc.sequence_id) {
+      const chro = refseq2chro(loc.sequence_id)
+      chros.push(chro)
+      const i = loc.interval
+      const m = chro + ":" + i?.start?.value + "-" + i?.end.value
+      const l = "chr" + chro + " (" + i?.start?.value + "-" + i?.end.value + ")"
+      markers.push(m + ":" + l)
+    }
+  });
+
+  console.log(markers)
 
   return (
     <section className="content">
@@ -83,20 +100,20 @@ function Variant({ variant, id, datasetIds }) {
 
       <h5>Digest</h5>
       <p>{variant.variantInternalId}</p>
-      {variant.variation?.molecularAttributes && (
+      {v?.molecularAttributes && (
         <>
           <h5>Molecular Attributes</h5>
           <ul>
-          {variant.variation.molecularAttributes.geneIds && (
-            <li>Gene: <b>{variant.variation.molecularAttributes.geneIds[0]}</b></li>
+          {v.molecularAttributes.geneIds && (
+            <li>Gene: <b>{v.molecularAttributes.geneIds[0]}</b></li>
           )}
-          {variant.variation.molecularAttributes?.molecularEffects && (
-            <li>Molecular effect: {variant.variation.molecularAttributes.molecularEffects[0].label}</li>
+          {v.molecularAttributes?.molecularEffects && (
+            <li>Molecular effect: {v.molecularAttributes.molecularEffects[0].label}</li>
           )}
-          {variant.variation.molecularAttributes.aminoacidChanges && variant.variation.molecularAttributes.aminoacidChanges.length > 0 && variant.variation.molecularAttributes.aminoacidChanges[0] !== null && (
+          {v.molecularAttributes.aminoacidChanges && v.molecularAttributes.aminoacidChanges.length > 0 && variant.variation.molecularAttributes.aminoacidChanges[0] !== null && (
               <li>Aminoacid changes:
                 <ul>
-                  {variant.variation.molecularAttributes.aminoacidChanges.map((aa) => (
+                  {v.molecularAttributes.aminoacidChanges.map((aa) => (
                       <li key={aa}>
                         {aa}
                       </li>
@@ -108,14 +125,14 @@ function Variant({ variant, id, datasetIds }) {
         </>
       )}
 
-      {variant.variation?.identifiers && (
+      {v?.identifiers && (
         <>
         <h5>Variant Identifiers</h5>
         <ul>
-        {variant.variation.identifiers?.proteinHGVSIds && (
+        {v.identifiers?.proteinHGVSIds && (
           <li>Protein HGVSids:
             <ul>
-            {variant.variation.identifiers.proteinHGVSIds.map((ph) =>
+            {v.identifiers.proteinHGVSIds.map((ph) =>
               <li key={ph}>
                 {ph}
               </li>
@@ -124,7 +141,7 @@ function Variant({ variant, id, datasetIds }) {
           </li>
         )}
 
-        {variant.variation.identifiers?.genomicHGVSIds && (
+        {v.identifiers?.genomicHGVSIds && (
           <li>Genomic HGVSids:
             <ul>
             {variant.variation.identifiers.genomicHGVSIds.map((gh) =>
@@ -136,13 +153,13 @@ function Variant({ variant, id, datasetIds }) {
           </li>
         )}
 
-        {variant.variation.identifiers?.clinvarIds && (
+        {v.identifiers?.clinvarIds && (
             <li>ClinVar IDs:
               <ul>
                 <li>
                   <ExternalLink
                     href={`http://www.ncbi.nlm.nih.gov/clinvar/variation/${variant.variation.identifiers.clinvarIds[0]}`}
-                    label={variant.variation.identifiers.clinvarIds[1]}
+                    label={v.identifiers.clinvarIds[1]}
                   />
                 </li>
               </ul>
@@ -153,11 +170,11 @@ function Variant({ variant, id, datasetIds }) {
         </>
       )}
 
-      {variant.variation?.variantAlternativeIds && (
+      {v?.variantAlternativeIds && (
         <div>
           <h5>Variant Alternative IDs</h5>
           <ul>
-            {variant.variation.variantAlternativeIds.map((altid, key) => (
+            {v.variantAlternativeIds.map((altid, key) => (
                 <li key={key}>
                   {altid.id} - {altid.label}
                 </li>
@@ -166,18 +183,18 @@ function Variant({ variant, id, datasetIds }) {
         </div>
       )}
 
-      {variant.variation?.variantLevelData?.clinicalInterpretations && (
+      {v?.variantLevelData?.clinicalInterpretations && (
         <>
-        {variant.variation.variantLevelData && variant.variation.variantLevelData.clinicalInterpretations.length > 0 && (
+        {v.variantLevelData && variant.variation.variantLevelData.clinicalInterpretations.length > 0 && (
           <>
           <h5>Clinical Interpretations</h5>
-          <p>Clinical Relevance: <b>{variant.variation.variantLevelData.clinicalInterpretations[0].clinicalRelevance}</b></p>
+          <p>Clinical Relevance: <b>{v.variantLevelData.clinicalInterpretations[0].clinicalRelevance}</b></p>
           <table>
             <tr>
               <th>ID</th>
               <th>Description</th>
             </tr>
-            {variant.variation.variantLevelData.clinicalInterpretations?.map((clinicalInterpretations, key) => {
+            {v.variantLevelData.clinicalInterpretations?.map((clinicalInterpretations, key) => {
               return (
                 <tr key={key}>
                   <td>
@@ -213,10 +230,10 @@ function Variant({ variant, id, datasetIds }) {
 
       <ShowJSON data={variant} />
 
-      {variant.caseLevelData[0]?.biosampleId && marker && chro && (
+      {variant.caseLevelData[0]?.biosampleId && (
         <>
           <h5>Plot</h5>
-          <BiosamplePlot biosid={variant.caseLevelData[0].biosampleId} datasetIds={datasetIds} plotRegionLabels={marker} plotChros={chro} />
+          <BiosamplePlot biosid={variant.caseLevelData[0].biosampleId} datasetIds={datasetIds} plotRegionLabels={markers.join(",")} plotChros={chros.join(",")} />
         </>
       )}
 
