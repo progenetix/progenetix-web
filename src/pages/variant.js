@@ -62,10 +62,16 @@ function VariantResponse({ response, id, datasetIds }) {
 }
 
 function Variant({ variant, id, datasetIds }) {
+  // TODO: derive variant parameters from location/adjacency etc.
   var marker = variant.variantInternalId
   var mParts = marker.split(':')
   const chro = refseq2chro(mParts[0])
   marker = marker + " (" + mParts[1] + ")"
+
+  var locations = []
+  if (variant.location) {
+    locations.push(variant.location)
+  } 
 
   return (
     <section className="content">
