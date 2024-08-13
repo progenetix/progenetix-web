@@ -80,12 +80,24 @@ function Variant({ variant, id, datasetIds }) {
   console.log(locations)
 
   locations.forEach(function (loc) {
-    if (loc.sequence_id) {
-      const chro = refseq2chro(loc.sequence_id)
+    if (loc.sequenceReference) {
+      const chro = refseq2chro(loc.sequenceReference)
       chros.push(chro)
-      const i = loc.interval
-      const m = chro + ":" + i?.start?.value + "-" + i?.end.value
-      const l = "chr" + chro + " (" + i?.start?.value + "-" + i?.end.value + ")"
+      var start = 0
+      var end = 1
+      // TODO: This is a slightly ugly deparsing of the "evolving" VRS v2 options
+      if (loc.start && loc.end) {
+        start = loc.start
+        end = loc.end
+      } else if (loc.start) {
+        start = loc.start[0]
+        end = loc.start[1]
+      } else if (loc.end) {
+        start = loc.end[0]
+        end = loc.end[1]
+      }
+      const m = chro + ":" + start + "-" + end
+      const l = "chr" + chro + " (" + start + "-" + end + ")"
       markers.push(m + ":" + l)
     }
   });
