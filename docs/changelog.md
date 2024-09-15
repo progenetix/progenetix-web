@@ -4,6 +4,26 @@ This page lists changes for the [Beacon+](http://beacon.progenetix.org/ui/)
 implementation of the ["Beacon" genomics API](http://beacon-project.io), as well
 as related updates for the [Progenetix](http://progenetix.org) front-end.
 
+## 2024-09-10: Ongoing removal of samples from pure germline series
+
+So far of the currently 145264 samples the Progenetix collection consisted of 
+besides data from
+
+* 112674 cancer samples (including primary tumors, recurrences and metastases)
+* 5742 cancer cell line samples
+* 26848 germline samples consisting of
+    - germline references of tumor patients
+    - 3201 reference profiles from the 1000 genomes project
+    - samples from 58 "accidental" germline series (_i.e._ such being analyzed
+      in automated download & processing and then being kept for comparative purposes)
+
+We are now in the process of creating a new resource for the germline samples
+which will become available in the near future under the [refcnv.org](https://refcnv.org)
+address. While strengthening the focus of the Progenetix database this will provide
+a new general resource for germline CNV data e.g. as reference for rare disease
+applications.
+
+
 ## 2024-06-18 Switching ontology use for `individual.sex`
 
 While we had previously used the PATO terms for `genotypic sex` (PATO:0020001 
