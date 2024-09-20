@@ -59,7 +59,7 @@ but now extended based on the whole "neoplasia" subtree of the NCI Thesaurus (`N
 
 #### Current NCIt sample codes
 
-* [progenetix.org/services/collations?collationTypes=NCIT&output=text](http://progenetix.org/services/collations?collationTypes=NCIT&output=text)
+* [progenetix.org/services/collations?collationTypes=NCIT&deliveryKeys=id,label,count](http://progenetix.org/services/collations?collationTypes=NCIT&deliveryKeys=id,label,count)
 
 ### ICD coding of tumor samples
 
@@ -70,9 +70,9 @@ The mappings used here for the ICD morphology codings (mapped to ICDMORPHOLOGY a
 #### Current ICD-O sample codes
 
 * ICD-O Morphologies
-    - [progenetix.org/services/collations?collationTypes=icdom&output=text](http://progenetix.org/services/collations/?collationTypes=icdom&output=text)
+    - [progenetix.org/services/collations?collationTypes=icdom&deliveryKeys=id,label,count](http://progenetix.org/services/collations/?collationTypes=icdom&deliveryKeys=id,label,count)
 * ICD-O Topographies
-    - [progenetix.org/services/collations/?collationTypes=icdot&method=ids&output=text](http://progenetix.org/services/collations/?collationTypes=icdot&method=ids&output=text)
+    - [progenetix.org/services/collations/?collationTypes=icdot&deliveryKeys=id,label,count](http://progenetix.org/services/collations/?collationTypes=icdot&deliveryKeys=id,label,count)
 
 ### UBERON codes
 
@@ -81,7 +81,7 @@ are detailed in the related [icdot2uberon](https://github.com/progenetix/icdot2u
 
 #### Current UBERON sample codes
 
-* [progenetix.org/services/collations?collationTypes=UBERON&method=counts&output=text](http://progenetix.org/services/collations?collationTypes=UBERON&method=counts&output=text)
+* [progenetix.org/services/collations?collationTypes=UBERON&deliveryKeys=id,label,count](http://progenetix.org/services/collations?collationTypes=UBERON&deliveryKeys=id,label,count)
 
 --------------------------------------------------------------------------------
 
