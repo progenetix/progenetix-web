@@ -104,10 +104,10 @@ export const getStaticProps = async () => {
     `${SITE}services/dbstats/?datasetIds=${SITE_DEFAULTS.DATASETID}`
   )
   const ncitCountReply = await tryFetch(
-    `${SITE}services/collations/?datasetIds=${SITE_DEFAULTS.DATASETID}&method=codematches&collationTypes=NCIT`
+    `${SITE}services/collations/?datasetIds=${SITE_DEFAULTS.DATASETID}&collationTypes=NCIT&includeDescendantTerms=false&requestedGranularity=count`
   )
   const subsetsReply = await tryFetch(
-    `${SITE}services/collations/?datasetIds=${SITE_DEFAULTS.DATASETID}&method=counts&collationTypes=NCIT`
+    `${SITE}services/collations/?datasetIds=${SITE_DEFAULTS.DATASETID}&collationTypes=NCIT&deliveryKeys=count,id,label`
   )
 
   return {

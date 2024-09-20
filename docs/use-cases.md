@@ -89,8 +89,8 @@ queries and may lead to a time-out.
 
 ![Example query-based CNV histogram](http://progenetix.org/services/sampleplots/?referenceName=9&variantType=EFO:0030067&start=21500000&start=21975098&end=21967753&end=22500000&filters=NCIT:C3058&filters=pgx:cohort-celllines&output=histoplot)
 
-* [progenetix.org/services/sampleplots/?referenceName=9&variantType=EFO:0030067&start=21500000&start=21975098&end=21967753&end=22500000&filters=NCIT:C3058&filters=pgx:cohort-celllines&output=histoplot](http://progenetix.org/services/sampleplots/?referenceName=9&variantType=EFO:0030067&start=21500000&start=21975098&end=21967753&end=22500000&filters=NCIT:C3058&filters=pgx:cohort-celllines&output=histoplot)
-    - a search for samples with focal deletion in the _CDKN2A_ locus, limited to glioblastoma cell lines 
+* [progenetix.org/services/sampleplots/?geneId=CDKN2A&variantType=EFO:0030067&variantMaxLength=2000000&filters=NCIT:C3058&output=histoplot](http://progenetix.org/services/sampleplots/?geneId=CDKN2A&variantType=EFO:0030067&variantMaxLength=2000000&filters=NCIT:C3058&output=histoplot)
+    - a search for glioblastoma samples with a focal (here <= 2Mb) deletion in the _CDKN2A_ locus
 
 
 ### Example Procedure - Download CNV Frequencies
@@ -104,14 +104,14 @@ local, disease-specific CNV frequencies.
 
 All cancer codes for a given classification system can be retrieved though:
 
-* NCIT
-    - [progenetix.org/services/collations?filters=NCIT&output=text](http://progenetix.org/services/collations?filters=NCIT&output=text)
-* ICD-O Morphologies
-    - [progenetix.org/services/collations?filters=icdom&method=counts&output=text](http://progenetix.org/services/collations?filters=icdom&method=counts&output=text)
+* NCIt cancer codes `NCIT`
+    - [progenetix.org/services/collations?collationTypes=NCIT&deliveryKeys=id,label,count](http://progenetix.org/services/collations?collationTypes=NCIT&deliveryKeys=id,label,count)
+* ICD-O Morphologies `icdom`
+    - [progenetix.org/services/collations?collationTypes=icdom&deliveryKeys=id,label,count](http://progenetix.org/services/collations?collationTypes=icdom&deliveryKeys=id,label,count)
     - please be aware that we have to use transformed ICD-O codes; e.g.
   "ICD-O 8500/3" is represented as `pgx:icdom-85003` (`s/^(\d{4})\/(\d)$/pgx:icdom-$1$2/`)
-* ICD-O Topographies
-    - [progenetix.org/services/collations?filters=icdot&method=counts&output=text](http://progenetix.org/services/collations?filters=icdot&method=counts&output=text)
+* ICD-O Topographies `icdot`
+    - [progenetix.org/services/collations?collationTypes=icdot&deliveryKeys=id,label,count](http://progenetix.org/services/collations?collationTypes=icdot&deliveryKeys=id,label,count)
 
 #### Download the data file
 
@@ -134,8 +134,8 @@ added (single) collation code.
 
 ##### Examples
 
-* [progenetix.org/services/collationPlots/?id=pgx:icdom-85003](http://progenetix.org/services/collationPlots/?id=pgx:icdom-85003)
-* [progenetix.org/services/collationPlots/?id=PMID:22824167](http://progenetix.org/services/collationPlots/?id=PMID:22824167)
+* [progenetix.org/services/collationplots/?id=pgx:icdom-85003](http://progenetix.org/services/collationplots/?id=pgx:icdom-85003)
+* [progenetix.org/services/collationplots/?id=PMID:22824167](http://progenetix.org/services/collationplots/?id=PMID:22824167)
 
 --------------------------------------------------------------------------------
 

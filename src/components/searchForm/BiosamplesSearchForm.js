@@ -761,7 +761,7 @@ function useFilteringTerms(watchForm, ct, mode) {
   const datasetIds = watchForm("datasetIds")
   return useFiltersByType({
     datasetIds,
-    method: "counts",
+    deliveryKeys: "id,label,count",
     mode: mode,
     collationTypes: ct
   })

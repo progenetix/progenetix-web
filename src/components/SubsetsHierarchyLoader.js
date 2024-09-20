@@ -7,7 +7,7 @@ import { buildTree, TreePanel } from "./classificationTree/TreePanel"
 export default function SubsetsHierarchyLoader({ collationTypes, datasetIds, defaultTreeDepth }) {
   const bioSubsetsHierarchiesReply = useCollationsByType({
     datasetIds,
-    method: "paths",
+    deliveryKeys: "",
     collationTypes
   })
 

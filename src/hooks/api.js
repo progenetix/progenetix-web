@@ -234,7 +234,7 @@ export function buildDataVisualizationParameters(queryData) {
 }
 
 export function publicationDataUrl(id) {
-  return `${SITE_DEFAULTS.API_PATH}services/publications?filters=${id}&method=details`
+  return `${SITE_DEFAULTS.API_PATH}services/publications?filters=${id}`
 }
 
 export function usePublication(id) {
@@ -358,11 +358,10 @@ export function useSubsethistogram({
   return useExtendedSWR(size > 0 && `${svgbaseurl}&${searchQuery}`, svgFetcher)
 }
 
-// method is "counts" / "child_terms" for smaller payloads
 export function useCollationsById({ datasetIds }) {
   const { data, ...other } = useCollations({
     filters: "",
-    method: "counts",
+    deliveryKeys: "id,label,count",
     datasetIds
   })
 
@@ -379,19 +378,19 @@ export function useCollationsById({ datasetIds }) {
   return { data, ...other }
 }
 
-export function useCollations({ datasetIds, method, filters }) {
-  const url = `${SITE_DEFAULTS.API_PATH}beacon/filtering_terms/?datasetIds=${datasetIds}&method=${method}&filters=${filters}`
+export function useCollations({ datasetIds, deliveryKeys, filters }) {
+  const url = `${SITE_DEFAULTS.API_PATH}beacon/filtering_terms/?datasetIds=${datasetIds}&deliveryKeys=${deliveryKeys}&filters=${filters}`
   return useProgenetixApi(url)
 }
 
-export function useFiltersByType({ datasetIds, method, mode, collationTypes }) {
+export function useFiltersByType({ datasetIds, deliveryKeys, mode, collationTypes }) {
   // TODO: construct URL w/o optional parameters if empty
-  const url = `${SITE_DEFAULTS.API_PATH}beacon/filtering_terms/?datasetIds=${datasetIds}&method=${method}&mode=${mode}&collationTypes=${collationTypes}`
+  const url = `${SITE_DEFAULTS.API_PATH}beacon/filtering_terms/?datasetIds=${datasetIds}&deliveryKeys=${deliveryKeys}&mode=${mode}&collationTypes=${collationTypes}`
   return useProgenetixApi(url)
 }
 
-export function useCollationsByType({ datasetIds, method, collationTypes }) {
-  const url = `${SITE_DEFAULTS.API_PATH}services/collations/?datasetIds=${datasetIds}&method=${method}&collationTypes=${collationTypes}`
+export function useCollationsByType({ datasetIds, deliveryKeys, collationTypes }) {
+  const url = `${SITE_DEFAULTS.API_PATH}services/collations/?datasetIds=${datasetIds}&deliveryKeys=${deliveryKeys}&collationTypes=${collationTypes}`
   return useProgenetixApi(url)
 }
 
@@ -409,7 +408,7 @@ export function useGeoCity({ city }) {
 }
 
 export function useGeneSymbol({ geneId }) {
-  const url = geneId ? `${SITE_DEFAULTS.API_PATH}services/genespans/?geneId=${geneId}&filterPrecision=start&method=genespan` : null
+  const url = geneId ? `${SITE_DEFAULTS.API_PATH}services/genespans/?geneId=${geneId}&filterPrecision=start&deliveryKeys=symbol,referenceName,start,end` : null
   return useProgenetixApi(url)
 }
 

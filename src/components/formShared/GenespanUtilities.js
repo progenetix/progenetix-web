@@ -71,5 +71,5 @@ function geneLabel(gene) {
 }
 
 function geneSearchUrl(querytext) {
-  return `${basePath}services/genespans/?geneId=${querytext}&filterPrecision=start&method=genespan`
+  return `${basePath}services/genespans/?geneId=${querytext}&filterPrecision=start&deliveryKeys=symbol,referenceName,start,end`
 }
