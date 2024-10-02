@@ -20,7 +20,7 @@ export default function VariantsDataTable({ apiReply, datasetId }) {
         },
         {
         Header: "Variant type",
-        accessor: "variation.molecularAttributes.molecularEffects[0].label"
+        accessor: "variation.type"
         },
       {
         Header: TooltipHeader(
@@ -35,8 +35,16 @@ export default function VariantsDataTable({ apiReply, datasetId }) {
               V: {cld.variantId}
             </a>
             <br/>
+            <a href={`/analysis?id=${cld.analysisId}&datasetIds=${datasetId}`} target="_blank" rel="noreferrer">
+              A: {cld.analysisId}
+            </a>
+            <br/>
             <a href={`/biosample?id=${cld.biosampleId}&datasetIds=${datasetId}`} target="_blank" rel="noreferrer">
               B: {cld.biosampleId}
+            </a>
+            <br/>
+            <a href={`/individual?id=${cld.individualId}&datasetIds=${datasetId}`} target="_blank" rel="noreferrer">
+              I: {cld.individualId}
             </a>
           </div>
         ))
