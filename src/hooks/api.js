@@ -309,12 +309,12 @@ export function getDataItemUrl(id, entity, datasetIds) {
   return `${SITE_DEFAULTS.API_PATH}beacon/${entity}/${id}/?datasetIds=${datasetIds}`
 }
 
-export function useServiceItemDelivery(id, entity, datasetIds) {
-  return useProgenetixApi(getServiceItemUrl(id, entity, datasetIds))
+export function useServiceItemDelivery(id, service, datasetIds) {
+  return useProgenetixApi(getServiceItemUrl(id, service, datasetIds))
 }
 
-export function getServiceItemUrl(id, collection, datasetIds) {
-  return `${SITE_DEFAULTS.API_PATH}services/${collection}?id=${id}&datasetIds=${datasetIds}`
+export function getServiceItemUrl(id, service, datasetIds) {
+  return `${SITE_DEFAULTS.API_PATH}services/${service}?filters=${id}&datasetIds=${datasetIds}`
 }
 
 export function NoResultsHelp(entity) {
