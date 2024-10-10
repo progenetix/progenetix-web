@@ -70,7 +70,7 @@ external project such as TCGA
 
 This data can be accessed through the Progenetix API in data and image format.
 
-![Example CNV histogram with custom parameters](http://progenetix.org/cgi/PGX/cgi/collationPlots.cgi?id=NCIT:C7376&-size_plotarea_h_px=40&-value_plot_y_max=50&-colorschema=bluered&plotChros=1,3,9,17,22)
+![Example CNV histogram with custom parameters](http://progenetix.org/services/collationplots/?filters=NCIT:C7376&-size_plotarea_h_px=40&-value_plot_y_max=50&-colorschema=bluered&plotChros=1,3,9,17,22)
 
 Interval frequencies are per default stored in a 1Mb binned format. More
 information about the API use can be found [in the IntervalFrequencies API documentation](services.md#pgxseg-segment-cnv-frequencies).
@@ -134,8 +134,8 @@ added (single) collation code.
 
 ##### Examples
 
-* [progenetix.org/services/collationplots/?id=pgx:icdom-85003](http://progenetix.org/services/collationplots/?id=pgx:icdom-85003)
-* [progenetix.org/services/collationplots/?id=PMID:22824167](http://progenetix.org/services/collationplots/?id=PMID:22824167)
+* [progenetix.org/services/collationplots/?filters=pgx:icdom-85003](http://progenetix.org/services/collationplots/?filters=pgx:icdom-85003)
+* [progenetix.org/services/collationplots/?filters=PMID:22824167](http://progenetix.org/services/collationplots/?filters=PMID:22824167)
 
 --------------------------------------------------------------------------------
 
