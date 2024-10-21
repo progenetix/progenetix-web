@@ -104,7 +104,7 @@
   parameters:
     datasetIds:
       isHidden: false
-      defaultValue: ["cellz"]
+      defaultValue: ["progenetix"]
     geneId:
       isHidden: false
       defaultValue: CDK2
