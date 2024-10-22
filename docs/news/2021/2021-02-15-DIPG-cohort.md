@@ -10,7 +10,7 @@ Diffuse Intrinsic Pontine Glioma (DIPG) is a highly aggressive tumor type that o
 
 <!--more-->
 
-From these 18 publications studying DIPG with 1067 individuals, [Part 1] we have processed 273 individuals (364 biosamples, including 82 normals and 9 additional biosamples) through standard pipelines from raw files, where samples were deposited into public domains, e.g. GEO. [Part 2] For the rest 794 samples, we have collected CNV data and/or point mutation data directly from studies with annotation in "biosamples.info.provenance" as "dipg db import". All of these samples from the DIPG cohort are now part of progenetix with "biosamples.cohorts.id" as "pgxcohort-DIPG".
+From these 18 publications studying DIPG with 1067 individuals, [Part 1] we have processed 273 individuals (364 biosamples, including 82 normals and 9 additional biosamples) through standard pipelines from raw files, where samples were deposited into public domains, e.g. GEO. [Part 2] For the rest 794 samples, we have collected CNV data and/or point mutation data directly from studies with annotation in "biosamples.info.provenance" as "dipg db import". All of these samples from the DIPG cohort are now part of progenetix with "biosamples.cohorts.id" as "cohort-DIPG".
 
 
 Notes and procedure of the data import and transformation:
