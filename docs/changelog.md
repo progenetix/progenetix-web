@@ -4,6 +4,16 @@ This page lists changes for the [Beacon+](http://beacon.progenetix.org/ui/)
 implementation of the ["Beacon" genomics API](http://beacon-project.io), as well
 as related updates for the [Progenetix](http://progenetix.org) front-end.
 
+## 2024-11-02: Fix for missing TCGA analyses
+
+During import of the TCGA non-CNV variants the "analysis" objects somehow got
+lost although variants were imported correctly, leading to a missing association of
+those variants w/ their samples during query result aggregation. Fixed for all
+10007 samples by extracting the previously assigned `analysis_id` values together
+with the `biosample_id` values from the variants and generating the missing analysis
+objects. Now TCGA has working calls for "double hit" CNV + SNV events.
+
+
 ## 2024-09-10: Ongoing removal of samples from pure germline series
 
 So far of the currently 145264 samples the Progenetix collection consisted of 
