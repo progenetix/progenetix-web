@@ -6,7 +6,7 @@ import {
   NoResultsHelp,
   urlRetrieveIds
 } from "../hooks/api"
-import { BeaconRESTLink, InternalLink, ReferenceLink } from "../components/helpersShared/linkHelpers"
+import { InternalLink, ReferenceLink } from "../components/helpersShared/linkHelpers"
 import { WithData } from "../components/Loader"
 import { withUrlQuery } from "../hooks/url-query"
 import { AncestryData } from "../components/AncestryData"
@@ -225,48 +225,32 @@ function Biosample({ biosId, biosample, individual, datasetIds }) {
   <h5>Download</h5>
   <ul>
     <li>Sample data as{" "}
-      <BeaconRESTLink
-        entryType="biosamples"
-        idValue={biosId}
-        datasetIds={datasetIds}
+      <InternalLink
+        href={`/beacon/biosamples/${biosId}`}
         label="Beacon JSON"
       />
     </li>
     <li>Sample data as{" "}
-      <BeaconRESTLink
-        entryType="biosamples"
-        idValue={biosId}
-        responseType="phenopackets"
-        datasetIds={datasetIds}
+      <InternalLink
+        href={`/beacon/biosamples/${biosId}/phenopackets`}
         label="Beacon Phenopacket JSON"
       />
     </li>
     <li>Sample variants as{" "}
-      <BeaconRESTLink
-        entryType="biosamples"
-        idValue={biosId}
-        responseType="genomicVariations"
-        datasetIds={datasetIds}
+      <InternalLink
+        href={`/beacon/biosamples/${biosId}/genomicVariations`}
         label="Beacon JSON"
       />
     </li>
     <li>Sample variants as{" "}
-      <BeaconRESTLink
-        entryType="biosamples"
-        idValue={biosId}
-        responseType="genomicVariations"
-        datasetIds={datasetIds}
-        output="pgxseg"
+      <InternalLink
+        href={`/services/pgxsegvariants?biosample_ids=${biosId}`}
         label="Progenetix .pgxseg file"
       />
     </li>
     <li>Sample variants as{" "}
-      <BeaconRESTLink
-        entryType="biosamples"
-        idValue={biosId}
-        responseType="genomicVariations"
-        datasetIds={datasetIds}
-        output="vcf"
+      <InternalLink
+        href={`/services/vcfvariants?biosample_ids=${biosId}`}
         label="(experimental) VCF 4.4 file"
       />
     </li>

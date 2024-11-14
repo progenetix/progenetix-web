@@ -3,7 +3,7 @@ import {
   NoResultsHelp,
   urlRetrieveIds
 } from "../hooks/api"
-import { ReferenceLink, BeaconRESTLink, InternalLink, ExternalLink } from "../components/helpersShared/linkHelpers"
+import { ReferenceLink, InternalLink, ExternalLink } from "../components/helpersShared/linkHelpers"
 import { AncestryData } from "../components/AncestryData"
 import { WithData } from "../components/Loader"
 import { withUrlQuery } from "../hooks/url-query"
@@ -129,48 +129,32 @@ function Individual({ individual, datasetIds }) {
       <h5>Download</h5>
       <ul>
         <li>Subject data as{" "}
-          <BeaconRESTLink
-            entryType="individuals"
-            idValue={individual.id}
-            datasetIds={datasetIds}
+          <InternalLink
+            href={`/beacon/individuals/${individual.id}`}
             label="Beacon JSON"
           />
         </li>
         <li>Sample data as{" "}
-          <BeaconRESTLink
-            entryType="individuals"
-            idValue={individual.id}
-            responseType="phenopackets"
-            datasetIds={datasetIds}
+          <InternalLink
+            href={`/beacon/individuals/${individual.id}/phenopackets`}
             label="Beacon Phenopacket JSON"
           />
         </li>
         <li>Variants as{" "}
-          <BeaconRESTLink
-            entryType="individuals"
-            idValue={individual.id}
-            responseType="genomicVariations"
-            datasetIds={datasetIds}
+          <InternalLink
+            href={`/beacon/individuals/${individual.id}/genomicVariations`}
             label="Beacon JSON"
           />
         </li>
         <li>Variants as{" "}
-          <BeaconRESTLink
-            entryType="individuals"
-            idValue={individual.id}
-            responseType="genomicVariations"
-            datasetIds={datasetIds}
-            output="pgxseg"
+          <InternalLink
+            href={`/services/pgxsegvariants?individual_ids=${individual.id}`}
             label="Progenetix .pgxseg file"
           />
         </li>
         <li>Variants as{" "}
-          <BeaconRESTLink
-            entryType="individuals"
-            idValue={individual.id}
-            responseType="genomicVariations"
-            datasetIds={datasetIds}
-            output="vcf"
+          <InternalLink
+            href={`/services/vcfvariants?individual_ids=${individual.id}`}
             label="(experimental) VCF 4.4 file"
           />
         </li>
