@@ -1,14 +1,13 @@
 # Progenetix API Services `/services/`
 
-The _bycon_ environment provides a number of data services which make use of
-resources in the _Progenetix_ environment.
-
-Services are not part of the standard bycon distribution but installed from the
-[`byconaut`](https://guthub.com/progenetix/byconaut) package.
+The [`bycon`](https://guthub.com/progenetix/bycon) software stack underneath the 
+_Progenetix_ environment provides support for a number of data services which make
+use of special resources in _Progenetix_ or just provide alternative forms of data
+delivery such as tabular text  or VCF files or data plots.
 
 !!! note "Progenetix Beacon API"
 
-    For the main `Beacon` data API please see the [separate documentation page](/beaconplus).
+    For the standard `Beacon` data API please see the [separate documentation page](/beaconplus).
 
 ## Formats
 
@@ -23,6 +22,9 @@ format for JSON encoded data follows the standard Beacon response
 format where the main data is usually contained in the `response.results` list.
 
 ## Services
+
+Services enabled through [`bycon`](https://guthub.com/progenetix/bycon) and rendered
+through Progenetix are now documented through the [`bycon` software documentation](https://bycon.progenetix.org/API-services/). The special content of some of the Progenetix services is detailed below.
 
 ### Cancer Genomics Publications `publications`
 
@@ -78,7 +80,6 @@ content being contained in the `response.results` field.
 
 
 ### Gene Coordinates `genespans`
-
 
 * genomic mappings of gene coordinats
 * initially limited to _GRCh38_ and overall CDS extension
@@ -150,6 +151,7 @@ Our resources use an internal representation of ICD-O 3 codes since no official 
 * [Web Interface for ICD & NCIT](http://progenetix.org/service-collection/ontologymaps)
 * [Interface for ICD & UBERON](http://progenetix.org/service-collection/uberonmaps)
 
+<!--
 
 ### Public and Local Identifiers `ids`
 
@@ -168,6 +170,7 @@ and the service can also be used to access identifiers at Progenetix.
 
 * <https://identifiers.org/pgx:pgxbs-kftva5zv>
 
+-->
 
 ### Geographic Locations / Cities _geolocations_
 

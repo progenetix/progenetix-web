@@ -64,16 +64,11 @@ cancercelllines.org implements these core entities as data collections in a Mong
     parameters or `city` matches
 
 
-### `filters` Filters / Filtering Terms
+### Filters / Filtering Terms
 
 Besides variant parameters the Beacon protocol defines `filters` as (self-)scoped
-query parameters, e.fg. for phenotypes, diseases, biomedical performance or technical
-entities. Most of the filter options are based on ontology terms or identifiers in
-CURIE format (e.g. `NCIT:C4033`, `cellosaurus:CVCL_0030` or `PMID:16004614`). For use case examples please
-look below; documentation of available ontologies and how to find out about available
-terms can be found on the [Classifications and Ontologies](common/classifications-and-ontologies.md)
-page. Please see Beacon's [`Filters`](http://docs.genomebeacons.org/filters/) documentation
-for more information, e.g. about `OntologyFilter`, `AlphanumericFilter`, `CustomFilter` types.
+query parameters, e.g. for phenotypes, diseases, biomedical performance or technical
+entities.
 
 The Progenetix query filter system adopts a hierarchical logic for filtering terms.
 However, the `includeDescendantTerms` pragma can be used to modify this behaviour.
@@ -84,6 +79,15 @@ Examples for codes with hierarchical treatment within the filter space are:
 * Cellosaurus
     - derived cell lines are also accessible through the code of their parental line
 
+Most of the filter options are based on ontology terms or identifiers in
+CURIE format (e.g. `NCIT:C4033`, `cellosaurus:CVCL_0030` or `PMID:16004614`). Please
+see Beacon's [`Filters`](http://docs.genomebeacons.org/filters/) documentation
+for more information, e.g. about `OntologyFilter`, `AlphanumericFilter`, `CustomFilter` types.
+
+More documentation of available ontologies and how to find out about available
+terms can be found on the [Classifications and Ontologies](common/classifications-and-ontologies.md)
+page. 
+
 ##### Example
 
 ``` JSON
@@ -92,7 +96,7 @@ Examples for codes with hierarchical treatment within the filter space are:
 ],
 ```
 
-### Beacon-style JSON responses
+### Beacon JSON responses
 
 The Progenetix resource's API utilizes the `bycon` framework for implementation of
  the Beacon _v2_ API. The standard format for JSON responses corresponds to a generic Beacon v2
@@ -100,17 +104,14 @@ response. Depending on the endpoint, the main data will be a list of objects eit
 inside `response.results` or (mostly) in `response.resultSets[...].results`. Additionally,
 most API responses provide access to data using _handover_ objects.
 
-Example responses can be genrated through the [path examples](#beacon-v2-path-examples-in-progenetix)
-below. Please be aware that Beacon responses use `camelCased` parameter names.
+!!! info "Beacon API is implemented through `bycon`"
 
-### Beacon v2: Path Examples in Progenetix
+    Progenetix' Beacon API is implemented through the [`bycon`](https://github.com/progenetix/bycon/)
+    software. The code documentation site at [bycon.progenetix.org](https://bycon.progenetix.org)]
+    provides live [Beacon v2 path examples](https://bycon.progenetix.org/API) using the Progenetix resource.
 
-The Beacon v2 protocol uses a REST path structure for consistant data access.
-The [`bycon` project](https://github.com/progenetix/bycon/)
-implements an expanding set of those Beacon v2 paths for the {{config.api_site_label}}
-resource.
 
-----
+<!--
 
 #### Base `/`
 
@@ -219,6 +220,8 @@ CNV statistics or binned genome calls.
   identifier (K562)
 
 -------------------------------------------------------------------------------
+
+-->
 
 ## `bycon` Beacon Server
 

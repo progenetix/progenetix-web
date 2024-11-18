@@ -17,6 +17,7 @@ export function ExternalLink({ href, label, onClick }) {
   )
 }
 
+// TODO: This cries for a template / yaml ... and a better name
 export function ReferenceLink(externalReference) {
   if (externalReference.id.includes("cellosaurus:")) {
     return (
