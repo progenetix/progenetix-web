@@ -1,45 +1,35 @@
-import { useCollationsByType, useCollationsById } from "../hooks/api"
+// import { useCollationsByType, useCollationsById } from "../hooks/api"
+import { useCollationsByType } from "../hooks/api"
 import { WithData } from "./Loader"
 import React from "react"
-import { keyBy, merge } from "lodash"
+import { keyBy } from "lodash"
 import { buildTree, TreePanel } from "./classificationTree/TreePanel"
 
 export default function SubsetsHierarchyLoader({ collationTypes, datasetIds, defaultTreeDepth }) {
-  const bioSubsetsHierarchiesReply = useCollationsByType({
+  const collationsHierarchyReply = useCollationsByType({
     datasetIds,
     deliveryKeys: "",
     collationTypes
   })
 
-  const allBioSubsetsReply = useCollationsById({datasetIds})
-
   return (
     <WithData
-      apiReply={bioSubsetsHierarchiesReply}
+      apiReply={collationsHierarchyReply}
       background
-      render={(bioSubsetsHierarchiesResponse) => (
-        <WithData
-          apiReply={allBioSubsetsReply}
-          background
-          render={(allBioSubsetsResponse) => (
-            <SubsetsResponse
-              bioSubsetsHierarchies={bioSubsetsHierarchiesResponse.response.results}
-              allBioSubsets={allBioSubsetsResponse.response.results}
-              datasetIds={datasetIds}
-              defaultTreeDepth={defaultTreeDepth}
-            />
-          )}
+      render={(collationsHierarchyReply) => (
+        <SubsetsResponse
+          collationsHierarchies={collationsHierarchyReply.response.results}
+          datasetIds={datasetIds}
+          defaultTreeDepth={defaultTreeDepth}
         />
       )}
     />
   )
 }
 
-function SubsetsResponse({ bioSubsetsHierarchies, allBioSubsets, datasetIds, defaultTreeDepth }) {
-  // We merge both subsets from hierarchies and subsets from allSubsets.
-  // This is because some children in the bioSubsetsHierarchies don't have labels or sample count information.
-  const subsetById = merge(keyBy(bioSubsetsHierarchies, "id"), allBioSubsets)
-  const { tree, size } = buildTree(bioSubsetsHierarchies, subsetById)
+function SubsetsResponse({ collationsHierarchies, datasetIds, defaultTreeDepth }) {
+  const subsetById = keyBy(collationsHierarchies, "id")
+  const { tree, size } = buildTree(collationsHierarchies, subsetById)
 
   return (
     <TreePanel
