@@ -1,14 +1,12 @@
-// import { useCollationsByType, useCollationsById } from "../hooks/api"
-import { useCollationsByType } from "../hooks/api"
+import { useFilterTreesByType } from "../hooks/api"
 import { WithData } from "./Loader"
 import React from "react"
 import { keyBy } from "lodash"
 import { buildTree, TreePanel } from "./classificationTree/TreePanel"
 
 export default function SubsetsHierarchyLoader({ collationTypes, datasetIds, defaultTreeDepth }) {
-  const collationsHierarchyReply = useCollationsByType({
+  const collationsHierarchyReply = useFilterTreesByType({
     datasetIds,
-    deliveryKeys: "",
     collationTypes
   })
 
@@ -18,7 +16,7 @@ export default function SubsetsHierarchyLoader({ collationTypes, datasetIds, def
       background
       render={(collationsHierarchyReply) => (
         <SubsetsResponse
-          collationsHierarchies={collationsHierarchyReply.response.results}
+          collationsHierarchies={collationsHierarchyReply.response.filteringTerms}
           datasetIds={datasetIds}
           defaultTreeDepth={defaultTreeDepth}
         />

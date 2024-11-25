@@ -105,13 +105,13 @@ local, disease-specific CNV frequencies.
 All cancer codes for a given classification system can be retrieved though:
 
 * NCIt cancer codes `NCIT`
-    - [progenetix.org/services/collations?collationTypes=NCIT&deliveryKeys=id,label,count](http://progenetix.org/services/collations?collationTypes=NCIT&deliveryKeys=id,label,count)
+    - [progenetix.org/beacon/filtering_terms?collationTypes=NCIT](http://progenetix.org/beacon/filtering_terms?collationTypes=NCIT)
 * ICD-O Morphologies `icdom`
-    - [progenetix.org/services/collations?collationTypes=icdom&deliveryKeys=id,label,count](http://progenetix.org/services/collations?collationTypes=icdom&deliveryKeys=id,label,count)
+    - [progenetix.org/beacon/filtering_terms?collationTypes=icdom](http://progenetix.org/beacon/filtering_terms?collationTypes=icdom)
     - please be aware that we have to use transformed ICD-O codes; e.g.
   "ICD-O 8500/3" is represented as `pgx:icdom-85003` (`s/^(\d{4})\/(\d)$/pgx:icdom-$1$2/`)
 * ICD-O Topographies `icdot`
-    - [progenetix.org/services/collations?collationTypes=icdot&deliveryKeys=id,label,count](http://progenetix.org/services/collations?collationTypes=icdot&deliveryKeys=id,label,count)
+    - [progenetix.org/beacon/filtering_terms?collationTypes=icdot](http://progenetix.org/beacon/filtering_terms?collationTypes=icdot)
 
 #### Download the data file
 

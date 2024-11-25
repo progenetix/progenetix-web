@@ -359,9 +359,8 @@ export function useSubsethistogram({
 }
 
 export function useCollationsById({ datasetIds }) {
-  const { data, ...other } = useCollations({
-    filters: "",
-    deliveryKeys: "id,label,count",
+  const { data, ...other } = useFiltersByType({
+    collationTypes: "",
     datasetIds
   })
 
@@ -378,19 +377,14 @@ export function useCollationsById({ datasetIds }) {
   return { data, ...other }
 }
 
-export function useCollations({ datasetIds, deliveryKeys, filters }) {
-  const url = `${SITE_DEFAULTS.API_PATH}beacon/filtering_terms/?datasetIds=${datasetIds}&deliveryKeys=${deliveryKeys}&filters=${filters}`
-  return useProgenetixApi(url)
-}
-
-export function useFiltersByType({ datasetIds, deliveryKeys, mode, collationTypes }) {
+export function useFiltersByType({ datasetIds, collationTypes }) {
   // TODO: construct URL w/o optional parameters if empty
-  const url = `${SITE_DEFAULTS.API_PATH}beacon/filtering_terms/?datasetIds=${datasetIds}&deliveryKeys=${deliveryKeys}&mode=${mode}&collationTypes=${collationTypes}`
+  const url = `${SITE_DEFAULTS.API_PATH}beacon/datasets/${datasetIds}/filtering_terms/?collationTypes=${collationTypes}`
   return useProgenetixApi(url)
 }
 
-export function useCollationsByType({ datasetIds, deliveryKeys, collationTypes }) {
-  const url = `${SITE_DEFAULTS.API_PATH}services/collations/?datasetIds=${datasetIds}&deliveryKeys=${deliveryKeys}&collationTypes=${collationTypes}`
+export function useFilterTreesByType({ datasetIds, collationTypes }) {
+  const url = `${SITE_DEFAULTS.API_PATH}beacon/datasets/${datasetIds}/filtering_terms?collationTypes=${collationTypes}&mode=termTree`
   return useProgenetixApi(url)
 }
 

@@ -109,8 +109,6 @@ export function BeaconSearchForm({
 
   // reset form when default values changes
   useDeepCompareEffect(() => reset(initialValues), [initialValues])
-
-  const mode = ""
   
   // all subsets lookup ----------------------------------------------------- //
   var ct = ""
@@ -127,11 +125,11 @@ export function BeaconSearchForm({
   })
 
   // biosubsets lookup ------------------------------------------------------ //
-  ct = "NCIT,pgx:icdom,pgx:icdot,UBERON"
+  ct = "NCIT,icdom,icdot,UBERON"
   const {
     data: biosubsetsResponse,
     isLoading: isBioSubsetsDataLoading
-  } = useFilteringTerms( watch, ct, mode ) 
+  } = useFilteringTerms( watch, ct ) 
   const biosubsetsOptions = biosubsetsResponse?.response?.filteringTerms?.map((value) => ({
     value: value.id,
     label: `${value.id}: ${value.label} (${value.count})`
@@ -145,7 +143,7 @@ export function BeaconSearchForm({
   const {
     data: refsubsetsResponse,
     isLoading: isRefSubsetsDataLoading
-  } = useFilteringTerms( watch, ct, mode )
+  } = useFilteringTerms( watch, ct )
   const refsubsetsOptions = refsubsetsResponse?.response?.filteringTerms?.map((value) => ({
     value: value.id,
     label: `${value.id}: ${value.label} (${value.count})`
@@ -159,7 +157,7 @@ export function BeaconSearchForm({
   const {
     data: clinicalResponse,
     isLoading: isClinicalDataLoading
-  } = useFilteringTerms( watch, ct, mode )
+  } = useFilteringTerms( watch, ct )
   const clinicalOptions = clinicalResponse?.response?.filteringTerms?.map((value) => ({
     value: value.id,
     label: `${value.id}: ${value.label} (${value.count})`
@@ -757,12 +755,10 @@ const handleQuerytypeClicked = (reset, setExample, setUrlQuery) => (example) => 
 }
 
 // Maps FilteringTerms hook to apiReply usable by DataFetchSelect
-function useFilteringTerms(watchForm, ct, mode) {
+function useFilteringTerms(watchForm, ct) {
   const datasetIds = watchForm("datasetIds")
   return useFiltersByType({
     datasetIds,
-    deliveryKeys: "id,label,count",
-    mode: mode,
     collationTypes: ct
   })
 }
