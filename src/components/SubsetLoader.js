@@ -1,5 +1,5 @@
 import {
-  SITE_DEFAULTS,
+  basePath,
   useServiceItemDelivery,
   sampleSearchPageFiltersLink,
   NoResultsHelp
@@ -83,7 +83,7 @@ function Subset({ subset, datasetIds }) {
 
   <h5>
     <InternalLink
-      href={`${SITE_DEFAULTS.API_PATH}services/intervalFrequencies/${subset.id}/?output=pgxfreq`}
+      href={`${basePath}services/intervalFrequencies/${subset.id}/?output=pgxfreq`}
       label="Download CNV frequencies"
     />
   </h5>

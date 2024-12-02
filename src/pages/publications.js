@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 // import React, { useEffect, useState } from "react"
-import { Layout } from "../components/Layout"
+import { Layout } from "../site-specific/Layout"
 import { Infodot } from "../components/Infodot"
 import { ExternalLink, InternalLink }  from "../components/helpersShared/linkHelpers"
 import { PublicationTable } from "../components/publicationComps/PublicationTables"

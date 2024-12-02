@@ -69,7 +69,6 @@
   parameters:
     datasetIds:
       isHidden: false
-      defaultValue: ["progenetix"]
     referenceName:
       isHidden: false
       defaultValue: "refseq:NC_000017.11"

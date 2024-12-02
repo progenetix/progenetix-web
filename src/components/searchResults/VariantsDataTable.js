@@ -58,7 +58,7 @@ export default function VariantsDataTable({ apiReply, datasetId }) {
       apiReply={apiReply}
       render={(response) => (
         <div>
-          {response.response.resultSets[0].results && (
+          {response.response?.resultSets[0]?.results && (
             <Table columns={columns} data={response.response.resultSets[0].results} />
           )}
         </div>

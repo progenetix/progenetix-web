@@ -4,7 +4,7 @@ import { epmcUrl, EpmcLink, ExternalLink } from "../components/helpersShared/lin
 import { WithData } from "../components/Loader"
 import { withUrlQuery } from "../hooks/url-query"
 import { SubsetHistogram } from "../components/SVGloaders"
-import { Layout } from "../components/Layout"
+import { Layout } from "../site-specific/Layout"
 
 const PublicationDetailsPage = withUrlQuery(({ urlQuery }) => {
   const { id } = urlQuery

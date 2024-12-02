@@ -165,7 +165,6 @@ function Tree({
 // Node component receives all the data we created in the `treeWalker` +
 // internal openness state (`isOpen`), function to change internal openness
 // state (`toggle`) and `style` parameter that should be added to the root div.
-
 function Node({
   data: { isLeaf, subsetId, subset, nestingLevel },
   treeData: {

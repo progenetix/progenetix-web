@@ -7,7 +7,7 @@ import { ReferenceLink, InternalLink, ExternalLink } from "../components/helpers
 import { AncestryData } from "../components/AncestryData"
 import { WithData } from "../components/Loader"
 import { withUrlQuery } from "../hooks/url-query"
-import { Layout } from "../components/Layout"
+import { Layout } from "../site-specific/Layout"
 import { ShowJSON } from "../components/RawData"
 
 const itemColl = "individuals"

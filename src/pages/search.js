@@ -1,9 +1,9 @@
 import React from "react"
-import { Layout } from "../components/Layout"
 import BiosamplesSearchPanel from "../components/searchForm/BiosamplesSearchPanel"
 import parametersConfig from "../config/beaconSearchParameters.yaml"
 import beaconQueryTypes from  "../config/beaconQueryTypes.yaml"
-import requestTypeExamples from "../config/beaconSearchExamples.yaml"
+import { Layout } from "./../site-specific/Layout"
+import requestTypeExamples from "../site-specific/searchExamples.yaml"
 
 export default function Page() {
   return (

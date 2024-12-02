@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import {
   BIOKEYS,
-  SITE_DEFAULTS,
+  basePath,
   useDataItemDelivery,
   NoResultsHelp,
   urlRetrieveIds
@@ -10,7 +10,7 @@ import { InternalLink, ReferenceLink } from "../components/helpersShared/linkHel
 import { WithData } from "../components/Loader"
 import { withUrlQuery } from "../hooks/url-query"
 import { AncestryData } from "../components/AncestryData"
-import { Layout } from "../components/Layout"
+import { Layout } from "./../site-specific/Layout"
 import { ShowJSON } from "../components/RawData"
 import { AnalysisHistogram } from "../components/SVGloaders"
 import { pluralizeWord }  from "../components/helpersShared/labelHelpers"
@@ -20,7 +20,7 @@ const itemColl = "biosamples"
 
 const SampleDetailsPage = withUrlQuery(({ urlQuery }) => {
   const { id, datasetIds, hasAllParams } = urlRetrieveIds(urlQuery)
-  const iURL = `${SITE_DEFAULTS.API_PATH}beacon/biosamples/${id}/individuals?datasetIds=${datasetIds}&limit=1`
+  const iURL = `${basePath}beacon/biosamples/${id}/individuals?datasetIds=${datasetIds}&limit=1`
   var [individual, setIndividual] = useState([]);
   useEffect(() => {
     fetch( iURL )
@@ -114,6 +114,27 @@ function Biosample({ biosId, biosample, individual, datasetIds }) {
   </ul>
 
   {/*------------------------------------------------------------------------*/}
+
+  {biosample.celllineInfo && (
+    <>
+    <h5>Cell Line Info</h5>
+    <ul>
+    {biosample.celllineInfo.id && (
+      <li>
+        Instance of {" "}
+        <InternalLink
+          href={`/cellline/?id=${biosample.celllineInfo.id}&datasetIds=${ datasetIds }`}
+          label={biosample.celllineInfo.id}
+        />
+      </li>
+    )}
+    </ul>
+    </>
+  )}
+
+
+  {/*------------------------------------------------------------------------*/}
+
 
   <h5>Donor Details</h5>
 

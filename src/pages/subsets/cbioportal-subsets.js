@@ -1,5 +1,5 @@
 import React from "react"
-import { Layout } from "../../components/Layout"
+import { Layout } from "../../site-specific/Layout"
 import Panel from "../../components/Panel"
 import SubsetsHierarchyLoader from  "../../components/SubsetsHierarchyLoader"
 

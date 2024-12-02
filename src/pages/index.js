@@ -1,10 +1,10 @@
-import { Layout } from "../components/Layout"
+import { Layout } from "../site-specific/Layout"
 import Panel from "../components/Panel"
 import { SubsetHistogram } from "../components/SVGloaders"
 import { InternalLink }  from "../components/helpersShared/linkHelpers"
 import React from "react"
 import { sample } from "lodash"
-import { SITE, SITE_DEFAULTS, tryFetch } from "../hooks/api"
+import { SITE_DEFAULTS, tryFetch } from "../hooks/api"
 
 const imgFocal = {
   float: "right",
@@ -25,7 +25,7 @@ export default function Index({
 }) {
 
   const randomSubset = sample(
-    subsetsResponse.response.results.filter((s) => s.count > 30)
+    subsetsResponse.response.results.filter((s) => s.cnvAnalyses > 1)
   )
 
   return (
@@ -101,13 +101,13 @@ export default function Index({
 
 export const getStaticProps = async () => {
   const dbstatsReply = await tryFetch(
-    `${SITE}services/dbstats/?datasetIds=${SITE_DEFAULTS.DATASETID}`
+    `${SITE_DEFAULTS.SITE}services/dbstats/?datasetIds=${SITE_DEFAULTS.DATASETID}`
   )
   const ncitCountReply = await tryFetch(
-    `${SITE}services/collations/?datasetIds=${SITE_DEFAULTS.DATASETID}&collationTypes=NCIT&includeDescendantTerms=false&requestedGranularity=count`
+    `${SITE_DEFAULTS.SITE}services/collations/?datasetIds=${SITE_DEFAULTS.DATASETID}&collationTypes=NCIT&includeDescendantTerms=false&requestedGranularity=count`
   )
   const subsetsReply = await tryFetch(
-    `${SITE}services/collations/?datasetIds=${SITE_DEFAULTS.DATASETID}&collationTypes=NCIT&deliveryKeys=count,id,label`
+    `${SITE_DEFAULTS.SITE}services/collations/?datasetIds=${SITE_DEFAULTS.DATASETID}&collationTypes=NCIT&deliveryKeys=count,id,label,cnv_analyses`
   )
 
   return {

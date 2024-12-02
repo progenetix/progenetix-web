@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Infodot } from "../../components/Infodot"
-import { Layout } from "../../components/Layout"
+import { Layout } from "../../site-specific/Layout"
 import {
   ontologymapsBaseUrl,
   ontologymapsPrefUrl,

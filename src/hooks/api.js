@@ -1,11 +1,11 @@
 import swr from "swr"
 import defaultFetcher, { svgFetcher } from "./fetcher"
 import { keyBy } from "lodash"
+import SiteConfig from "../site-specific/config.js"
 
 // eslint-disable-next-line no-undef
 export const basePath = process.env.NEXT_PUBLIC_API_PATH
 export const useProxy = process.env.NEXT_PUBLIC_USE_PROXY === "true"
-export const SITE = process.env.NEXT_PUBLIC_SITE_URL
 
 export function useExtendedSWR(url, fetcher = defaultFetcher) {
   const { data, error, ...other } = swr(url, fetcher)
@@ -14,17 +14,15 @@ export function useExtendedSWR(url, fetcher = defaultFetcher) {
 
 export const SITE_DEFAULTS = {
   SITE: process.env.NEXT_PUBLIC_SITE_URL,
-  API_PATH: process.env.NEXT_PUBLIC_API_PATH,
   PREFETCH_PATH: process.env.NEXT_PUBLIC_PREFETCH_API_PATH,
-  DATASETID: "progenetix",
-  DATASETLABEL: "Progenetix",
-  PROJECTROOTLINK: "http://progenetix.org",
-  PROJECTDOCLINK: "https://docs.progenetix.org",
-  MASTERROOTLINK: "https://progenetix.org",
-  MASTERDOCLINK: "https://docs.progenetix.org",
-  NEWSLINK: "https://docs.progenetix.org/news",
-  ORGSITELINK: "https://info.baudisgroup.org"
+  DATASETID: SiteConfig.default_dataset_id,
+  PROJECTDOCLINK: SiteConfig.docs_master_site,
+  MASTERROOTLINK: SiteConfig.data_master_site,
+  MASTERDOCLINK: SiteConfig.docs_master_site,
+  NEWSLINK: SiteConfig.news_site,
+  ORGSITELINK: SiteConfig.organization_site
 }
+
 // export const MAX_HISTO_SAMPLES = 1000
 export const THISYEAR = new Date().getFullYear()
 export const BIOKEYS = ["icdoMorphology", "icdoTopography", "histologicalDiagnosis"]
@@ -84,7 +82,7 @@ export async function tryFetch(url, fallBack = "N/A") {
 export function useBeaconQuery(queryData) {
   return useProgenetixApi(
     queryData
-      ? `${SITE_DEFAULTS.API_PATH}beacon/biosamples/?includeHandovers=true&requestedGranularity=count&${buildQueryParameters(queryData)}`
+      ? `${basePath}beacon/biosamples/?includeHandovers=true&requestedGranularity=count&${buildQueryParameters(queryData)}`
       : null
   )
 }
@@ -101,7 +99,7 @@ export function urlRetrieveIds(urlQuery) {
 export function useAggregatorQuery(queryData) {
   return useProgenetixApi(
     queryData
-      ? `${SITE_DEFAULTS.API_PATH}services/aggregator/?requestedGranularity=boolean&${buildQueryParameters(queryData)}`
+      ? `${basePath}services/aggregator/?requestedGranularity=boolean&${buildQueryParameters(queryData)}`
       : null
   )
 }
@@ -215,7 +213,7 @@ export function useDataVisualization(queryData) {
   }
   return useProgenetixApi(
     queryData
-      ? `${SITE_DEFAULTS.API_PATH}${q_path}/?${buildDataVisualizationParameters(
+      ? `${basePath}${q_path}/?${buildDataVisualizationParameters(
           queryData
         )}`
       : null
@@ -234,7 +232,7 @@ export function buildDataVisualizationParameters(queryData) {
 }
 
 export function publicationDataUrl(id) {
-  return `${SITE_DEFAULTS.API_PATH}services/publications?filters=${id}`
+  return `${basePath}services/publications?filters=${id}`
 }
 
 export function usePublication(id) {
@@ -247,7 +245,7 @@ export function usePublicationList({ geoCity, geodistanceKm }) {
     filters: "PMID,genomes:>0",
     method: "details"
   }).toString()
-  const url = `${SITE_DEFAULTS.API_PATH}services/publications?${qParams}`
+  const url = `${basePath}services/publications?${qParams}`
   return useProgenetixApi(url)
 }
 
@@ -255,12 +253,12 @@ export function usePublicationList({ geoCity, geodistanceKm }) {
 
 export function useLiteratureSearchResults(t1s,t2s)
 {
-  return useProgenetixApi(`${SITE_DEFAULTS.API_PATH}cgi-bin/literatureSearch/literatureSearch.py?func=search&mode=exact&t1s=${t1s.join(",")}&t2s=${t2s.join(",")}`);
+  return useProgenetixApi(`${basePath}cgi-bin/literatureSearch/literatureSearch.py?func=search&mode=exact&t1s=${t1s.join(",")}&t2s=${t2s.join(",")}`);
 }
 
 export function useLiteratureCellLineMatches(cln)
 {
-  return useProgenetixApi(`${SITE_DEFAULTS.API_PATH}cgi-bin/literatureSearch/literatureSearch.py?func=relations&t1=${cln}`);
+  return useProgenetixApi(`${basePath}cgi-bin/literatureSearch/literatureSearch.py?func=relations&t1=${cln}`);
 }
 
 // \ ZHAW
@@ -271,7 +269,7 @@ export function usePublicationWithDataList({ geoCity, geodistanceKm }) {
     filters: "PMID,progenetix:>0",
     method: "details"
   }).toString()
-  const url = `${SITE_DEFAULTS.API_PATH}services/publications?${qParams}`
+  const url = `${basePath}services/publications?${qParams}`
   return useProgenetixApi(url)
 }
 
@@ -283,11 +281,11 @@ export function useProgenetixRefPublicationList({ geoCity, geodistanceKm }) {
     filters: "PMID,pgxuse:yes",
     method: "details"
   }).toString()
-  const url = `${SITE_DEFAULTS.API_PATH}services/publications?${qParams}`
+  const url = `${basePath}services/publications?${qParams}`
   return useProgenetixApi(url)
 }
 
-export const ontologymapsBaseUrl = `${SITE_DEFAULTS.API_PATH}services/ontologymaps?`
+export const ontologymapsBaseUrl = `${basePath}services/ontologymaps?`
 
 export function ontologymapsUrl({ filters, filterPrecision }) {
   let params = new URLSearchParams({ filters: filters })
@@ -306,7 +304,7 @@ export function useDataItemDelivery(id, entity, datasetIds) {
 }
 
 export function getDataItemUrl(id, entity, datasetIds) {
-  return `${SITE_DEFAULTS.API_PATH}beacon/${entity}/${id}/?datasetIds=${datasetIds}`
+  return `${basePath}beacon/${entity}/${id}/?datasetIds=${datasetIds}`
 }
 
 export function useServiceItemDelivery(id, service, datasetIds) {
@@ -314,7 +312,7 @@ export function useServiceItemDelivery(id, service, datasetIds) {
 }
 
 export function getServiceItemUrl(id, service, datasetIds) {
-  return `${SITE_DEFAULTS.API_PATH}services/${service}?filters=${id}&datasetIds=${datasetIds}`
+  return `${basePath}services/${service}?filters=${id}&datasetIds=${datasetIds}`
 }
 
 export function NoResultsHelp(entity) {
@@ -330,7 +328,7 @@ export function useCytomapper(querytext) {
   const url =
     querytext &&
     querytext.length > 0 &&
-    `${SITE_DEFAULTS.API_PATH}services/cytomapper/?cytoBands=${querytext}`
+    `${basePath}services/cytomapper/?cytoBands=${querytext}`
   return useProgenetixApi(url)
 }
 
@@ -379,12 +377,12 @@ export function useCollationsById({ datasetIds }) {
 
 export function useFiltersByType({ datasetIds, collationTypes }) {
   // TODO: construct URL w/o optional parameters if empty
-  const url = `${SITE_DEFAULTS.API_PATH}beacon/datasets/${datasetIds}/filtering_terms/?collationTypes=${collationTypes}`
+  const url = `${basePath}beacon/datasets/${datasetIds}/filtering_terms/?collationTypes=${collationTypes}`
   return useProgenetixApi(url)
 }
 
 export function useFilterTreesByType({ datasetIds, collationTypes }) {
-  const url = `${SITE_DEFAULTS.API_PATH}beacon/datasets/${datasetIds}/filtering_terms?collationTypes=${collationTypes}&mode=termTree`
+  const url = `${basePath}beacon/datasets/${datasetIds}/filtering_terms?collationTypes=${collationTypes}&mode=termTree`
   return useProgenetixApi(url)
 }
 
@@ -397,32 +395,32 @@ export function sampleSearchPageFiltersLink({
 }
 
 export function useGeoCity({ city }) {
-  const url = city ?`${SITE_DEFAULTS.API_PATH}services/geolocations?city=${city}` : null
+  const url = city ?`${basePath}services/geolocations?city=${city}` : null
   return useProgenetixApi(url)
 }
 
 export function useGeneSymbol({ geneId }) {
-  const url = geneId ? `${SITE_DEFAULTS.API_PATH}services/genespans/?geneId=${geneId}&filterPrecision=start&deliveryKeys=symbol,referenceName,start,end` : null
+  const url = geneId ? `${basePath}services/genespans/?geneId=${geneId}&filterPrecision=start&deliveryKeys=symbol,referenceName,start,end` : null
   return useProgenetixApi(url)
 }
 
 export function subsetHistoBaseLink(id, datasetIds) {
-  return `${SITE_DEFAULTS.API_PATH}services/collationplots/?datasetIds=${datasetIds}&filters=${id}`
+  return `${basePath}services/collationplots/?datasetIds=${datasetIds}&filters=${id}`
 }
 
 // the targets are resolved by `bycon` (bycon/services/ids.py)
 // TODO: make this a function here - UI links resolved in UI, API links in bycon
 export function subsetIdLink(id) {
-  return `${SITE_DEFAULTS.API_PATH}services/ids/${id}`
+  return `${basePath}services/ids/${id}`
 }
 
 export function subsetPgxsegLink(id) {
-  return `${SITE_DEFAULTS.API_PATH}services/intervalFrequencies/?&output=pgxseg&filters=${id}`
+  return `${basePath}services/intervalFrequencies/?&output=pgxseg&filters=${id}`
 }
 
 export async function uploadFile(formData) {
   // Default options are marked with *
-  const response = await fetch(`${SITE_DEFAULTS.API_PATH}services/uploader/`, {
+  const response = await fetch(`${basePath}services/uploader/`, {
     method: "POST",
     headers: {},
     body: formData
@@ -457,7 +455,7 @@ export const checkIntegerRange = (value) => {
 export function replaceWithProxy(
   url,
   useProxyOpt = useProxy,
-  basePathOpt = SITE_DEFAULTS.API_PATH
+  basePathOpt = basePath
 ) {
   if (!url) return false
   if (!useProxyOpt) return url

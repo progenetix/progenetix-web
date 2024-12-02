@@ -7,7 +7,7 @@ import {
 import { ExternalLink, ReferenceLink } from "../components/helpersShared/linkHelpers"
 import { WithData } from "../components/Loader"
 import { withUrlQuery } from "../hooks/url-query"
-import { Layout } from "../components/Layout"
+import { Layout } from "../site-specific/Layout"
 import { ShowJSON } from "../components/RawData"
 import { BiosamplePlot } from "../components/SVGloaders"
 import React from "react"

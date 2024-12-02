@@ -1,5 +1,5 @@
 import { SITE_DEFAULTS } from "../../hooks/api"
-import { Layout } from "../../components/Layout"
+import { Layout } from "../../site-specific/Layout"
 import React, { useState } from "react"
 import { useDropzone } from "react-dropzone"
 import { uploadFile } from "../../hooks/api"

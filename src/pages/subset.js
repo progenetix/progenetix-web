@@ -3,7 +3,7 @@ import {
   urlRetrieveIds
 } from "../hooks/api"
 import { SubsetLoader } from "../components/SubsetLoader"
-import { Layout } from "../components/Layout"
+import { Layout } from "../site-specific/Layout"
 import { withUrlQuery } from "../hooks/url-query"
 
 const SubsetDetailsPage = withUrlQuery(({ urlQuery }) => {

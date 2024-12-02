@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Layout } from "../components/Layout"
+import { Layout } from "../site-specific/Layout"
 import { Infodot } from "../components/Infodot"
 import { PublicationFewCountTable } from "../components/publicationComps/PublicationTables"
 import { ExternalLink }  from "../components/helpersShared/linkHelpers"

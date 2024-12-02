@@ -1,5 +1,5 @@
 import React from "react"
-import { Layout } from "../../components/Layout"
+import { Layout } from "../../site-specific/Layout"
 import SubsetsHierarchyLoader from  "../../components/SubsetsHierarchyLoader"
 
 export default function NCITclinical_SubsetsPage() {
