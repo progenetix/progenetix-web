@@ -14,6 +14,7 @@ import { ExternalLink } from "../helpersShared/linkHelpers"
 import { svgFetcher } from "../../hooks/fetcher"
 import BiosamplesStatsDataTable from "./BiosamplesStatsDataTable"
 import { WithData } from "../Loader"
+import { refseq2chro } from "../Chromosome"
 
 const HANDOVER_IDS = {
   histoplot: "histoplot",
@@ -380,8 +381,9 @@ function ucscHref(query) {
     ucscstart = query.start
     ucscend = query.start
   }
+  let chro = refseq2chro(query.referenceName)
 
-  return `http://www.genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr${query.referenceName}%3A${ucscstart}%2D${ucscend}`
+  return `http://www.genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr${chro}%3A${ucscstart}%2D${ucscend}`
 }
 
 function PagedLink({ handover }) {

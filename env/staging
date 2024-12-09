@@ -1,0 +1,4 @@
+NEXT_PUBLIC_API_PATH=/
+NEXT_PUBLIC_PREFETCH_API_PATH=https://staging.progenetix.org/
+NEXT_PUBLIC_USE_PROXY=false
+NEXT_PUBLIC_SITE_URL=https://staging.progenetix.org/
