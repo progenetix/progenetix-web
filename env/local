@@ -1,4 +1,3 @@
-SERVER=http://progenetix.test/
 NEXT_PUBLIC_API_PATH=http://progenetix.test/
 NEXT_PUBLIC_PREFETCH_API_PATH=http://progenetix.test/
 NEXT_PUBLIC_USE_PROXY=false
