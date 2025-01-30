@@ -70,9 +70,7 @@ export function Layout({ title, headline, children }) {
           <a rel="license" href="https://creativecommons.org/licenses/by/4.0">
             <img className="Layout__cc__icons" src="/img/cc-cc.svg" />
             <img className="Layout__cc__icons" src="/img/cc-by.svg" />
-          </a>
-          <br />
-          No responsibility is taken for the correctness of the data presented
+          </a>.{" "}No responsibility is taken for the correctness of the data presented
           nor the results achieved with the Progenetix tools.
         </div>
       </footer>
@@ -191,13 +189,11 @@ function Side({ onClick }) {
           label="Downloads & Use Cases"
           isSub="isSub"
         />
-
         <MenuInternalLinkItem
           href={`${SITE_DEFAULTS.MASTERDOCLINK}/services`}
           label="Sevices & API"
           isSub="isSub"
         />
-
         <MenuInternalLinkItem
           href={SITE_DEFAULTS.ORGSITELINK}
           label="Baudisgroup @ UZH"
