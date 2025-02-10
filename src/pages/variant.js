@@ -182,7 +182,7 @@ function Variant({ variant, id, datasetIds }) {
         </>
       )}
 
-      {v?.variantAlternativeIds && (
+      {v?.identifiers?.variantAlternativeIds && (
         <div>
           <h5>Variant Alternative IDs</h5>
           <ul>
@@ -195,7 +195,7 @@ function Variant({ variant, id, datasetIds }) {
         </div>
       )}
 
-      {v?.variantLevelData?.clinicalInterpretations && (
+      {v?.identifiers?.variantLevelData?.clinicalInterpretations && (
         <>
         {v.variantLevelData && variant.variation.variantLevelData.clinicalInterpretations.length > 0 && (
           <>
