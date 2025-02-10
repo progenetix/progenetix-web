@@ -4,6 +4,39 @@ This page lists changes for the [Beacon+](http://beacon.progenetix.org/ui/)
 implementation of the ["Beacon" genomics API](http://beacon-project.io), as well
 as related updates for the [Progenetix](http://progenetix.org) front-end.
 
+## 2025-02-10: Fix for bug in aggregation of `individuals.sex` values
+
+Due to a bug in the hierarchy codes for the `individuals.sex.id` parameter since
+switching from PATO to NCIT codes the aggregated data for "male" sex contained 
+**all** individuals with an annotated sex, _i.e._ both males and females.
+
+Performed normalization steps:
+
+1. fixing of the hierarchy, now reading as
+
+```
+NCIT:C27993 general qualifier 0 1
+NCIT:C17998 unknown 1 2
+NCIT:C20197 male  1 3
+NCIT:C16576 female  1 4
+```
+
+2. reassignment of missing codes to `NCIT:C17998`
+
+Commands run in the MongoDB backend:
+
+```
+db.individuals.updateMany({"sex.id":""},{$set:{"sex":{"id":"NCIT:C17998", "label":"unknown"}}})
+db.individuals.updateMany({"sex.id":"PATO:0020000"},{$set:{"sex":{"id":"NCIT:C17998", "label":"unknown"}}})
+```
+
+3. reaggregation of the `individuals.sex` values (here for `progenetix`)
+
+```
+./housekeepers/collationsCreator.py -d progenetix --collationTypes NCITsex
+./housekeepers/collationsFrequencymapsCreator.py  -d progenetix --collationTypes NCITsex --limit 0
+```
+
 ## 2024-11-02: Fix for missing TCGA analyses
 
 During import of the TCGA non-CNV variants the "analysis" objects somehow got
