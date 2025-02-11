@@ -4,6 +4,21 @@ This page lists changes for the [Beacon+](http://beacon.progenetix.org/ui/)
 implementation of the ["Beacon" genomics API](http://beacon-project.io), as well
 as related updates for the [Progenetix](http://progenetix.org) front-end.
 
+## 2025-02-11: Introducing the VRS derived `type` parameter for variants
+
+The internal variant model was updated to include the VRS v2 `type` parameter. In 
+contrast to the VRS model we just use it in the variant's root. So far, only
+`Allele`, `CopyNumberChange` and `Adjacency` are used.
+
+Update procedure, which in that form (and order) might be specific for Progenetix:
+
+```
+db.variants.updateMany({"variant_state.id":{$regex:/^EFO/}},{$set:{"type":"CopyNumberChange"}})
+db.variants.updateMany({"variant_state.id":{$regex:/^SO/}},{$set:{"type":"Allele"}})
+db.variants.updateMany({"adjoined_sequences":{$exists:true}},{$set:{"type":"Adjacency"}})
+db.variants.updateMany({"adjoined_sequences":{$exists:true}},{$unset:{"fusion_id":""}})
+```
+
 ## 2025-02-10: Fix for bug in aggregation of `individuals.sex` values
 
 Due to a bug in the hierarchy codes for the `individuals.sex.id` parameter since
