@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="./swagger-ui.css">
+<title>OpenAPI Progenetix Beacon Test</title>
+<body>
+<img src="/img/sitelogo@200width.png" alt="BeaconPlus Logo" style="position: absolute; top: 10px; right: 10px; width: 200px;">
+<div id="openapi">
+<script src="./swagger-ui-bundle.js"></script>
+<script>
+window.onload = function () {
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var modeValue = url.searchParams.get("mode");  
+  var api = "/api";
+  if (modeValue != null) {
+    api = "/api?mode=" + modeValue;
+  }
+  const ui = SwaggerUIBundle({
+    url: api,
+    dom_id: "#openapi"
+  })
+}
+</script>
+</div>
+</body>
+

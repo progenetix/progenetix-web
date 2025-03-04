@@ -173,6 +173,10 @@ function Side({ onClick }) {
           label="Upload & Plot"
         />
         <MenuInternalLinkItem
+          href="/OpenAPI"
+          label="OpenAPI Paths and Examples"
+        />
+        <MenuInternalLinkItem
           href="https://beaconplus.progenetix.org/"
           label={
             <>
