@@ -4,6 +4,25 @@ This page lists changes for the [Beacon+](http://beacon.progenetix.org/ui/)
 implementation of the ["Beacon" genomics API](http://beacon-project.io), as well
 as related updates for the [Progenetix](http://progenetix.org) front-end.
 
+## 2025-03-12: Sonme NCIT cjanges
+
+```
+db.biosamples.updateMany({"histological_diagnosis.id":{$in:["NCIT:C28327", "NCIT:C66951"]}},{$set:{"histological_diagnosis":{"id":"NCIT:C127907", "label":"Endocervical Adenocarcinoma, Usual-Type"}}})
+db.biosamples.updateMany({"histological_diagnosis.id":{$in:["NCIT:C66953"]}},{$set:{"histological_diagnosis":{"id":"NCIT:C180869", "label":"Cervical Mucinous Adenocarcinoma, Not Otherwise Specified"}}})
+db.biosamples.updateMany({"histological_diagnosis.id":{$in:["NCIT:C4462"]}},{$set:{"histological_diagnosis":{"id":"NCIT:C4614", "label":"Skin Papilloma"}}})
+db.biosamples.updateMany({"histological_diagnosis.id":{$in:["NCIT:C3234"]}},{$set:{"histological_diagnosis":{"id":"NCIT:C4456", "label":"Malignant Mesothelioma"}}})
+db.biosamples.updateMany({"histological_diagnosis.id":{$in:["NCIT:C4250"]}},{$set:{"histological_diagnosis":{"id":"NCIT:C6505", "label":"Atypical Lipomatous Tumor/Well Differentiated Liposarcoma"}}})
+db.biosamples.updateMany({"histological_diagnosis.id":{$in:["NCIT:C3753"]}},{$set:{"histological_diagnosis":{"id":"NCIT:C6284", "label":"Brain Germinoma"}}})
+db.biosamples.updateMany({"histological_diagnosis.id":{$in:["NCIT:C27892"]}},{$set:{"histological_diagnosis":{"id":"NCIT:C9385", "label":"Renal Cell Carcinoma"}}})
+db.biosamples.updateMany({"histological_diagnosis.id":{$in:["NCIT:C9385"]}},{$set:{"icdo_morphology":{"id":"pgx:icdom-8312", "label":"Renal cell carcinoma, NOS"}}})
+db.biosamples.updateMany({"histological_diagnosis.id":{$in:["NCIT:C128696"]}},{$set:{"histological_diagnosis":{"id":"NCIT:C4340", "label":"Peripheral T-Cell Lymphoma, Not Otherwise Specified"}}})
+db.biosamples.updateMany({"histological_diagnosis.id":{$in:["NCIT:C3916"]}},{$set:{"histological_diagnosis":{"id":"NCIT:C156757", "label":"Parathyroid Gland Adenoma"}}})
+db.biosamples.updateMany({"histological_diagnosis.id":{$in:["NCIT:C2996"]}, "icdo_topography.id":"pgx:icdot-C56.9"},{$set:{"histological_diagnosis":{"id":"NCIT:C8106", "label":"Ovarian Dysgerminoma"}}})
+db.biosamples.updateMany({"histological_diagnosis.id":{$in:["NCIT:C2996"]}, "icdo_topography.id":"pgx:icdot-C62.9"},{$set:{"histological_diagnosis":{"id":"NCIT:C8591", "label":"Testicular Germ Cell Tumor"}}})
+db.biosamples.updateMany({"histological_diagnosis.id":{$in:["NCIT:C3110"]}},{$set:{"histological_diagnosis":{"id":"NCIT:C4858", "label":"Placental Neoplasm"}}})
+db.biosamples.updateMany({"icdo_morphology.id":"pgx:icdom-92313"},{$set:{"histological_diagnosis":{"id":"NCIT:C27502", "label":"Extraskeletal Myxoid Chondrosarcoma"},"icdo_topography":{"id":"pgx:icdot-C49.9", "label":"Connective, subcutaneous and other soft tissues, NOS"}}})
+```
+
 ## 2025-02-11: Introducing the VRS derived `type` parameter for variants
 
 The internal variant model was updated to include the VRS v2 `type` parameter. In 
