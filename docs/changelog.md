@@ -4,7 +4,32 @@ This page lists changes for the [Beacon+](http://beacon.progenetix.org/ui/)
 implementation of the ["Beacon" genomics API](http://beacon-project.io), as well
 as related updates for the [Progenetix](http://progenetix.org) front-end.
 
-## 2025-03-12: Sonme NCIT cjanges
+## 2025-03-20: Fixing `PMID:` => `pubmed:`
+
+At some point in the far past identifiers.org did use `PMID` as PubMed CURIE prefix.
+AFAWK at some point already years ago NCBI pstarted to use `pubmed` ... and since identifiers.org
+doesn't resolve `PMID` anymore we're switching prefixes, too. Hope hiccups will be limited...
+
+```
+# repeat for all collections
+db.collations.find({"id":{$regex:/PMID/}}).forEach(function(doc) {
+  nid = doc.id.replace('PMID', 'pubmed');
+  db.collations.updateOne({"_id": doc._id}, {$set:{"id": nid, "namespace_prefix": "pubmed", "parent_terms": [nid], "child_terms": [nid], "hierarchy_paths": [ { "order": 0, "depth": 0, "path": [ nid ] } ]}});
+})
+
+db.biosamples.find({"references.pubmed.id":{$regex:/PMID/}}).forEach(function(doc) {
+  nid = doc.references.pubmed.id.replace('PMID', 'pubmed');
+  db.biosamples.updateOne({"_id": doc._id}, {$set:{"references.pubmed.id": nid}});
+})
+
+use _byconServicesDB 
+db.publications.find({"id":{$regex:/PMID/}}).forEach(function(doc) {
+  nid = doc.id.replace('PMID', 'pubmed');
+  db.publications.updateOne({"_id": doc._id}, {$set:{"id": nid}});
+})
+```
+
+## 2025-03-12: Sonme NCIT changes
 
 ```
 db.biosamples.updateMany({"histological_diagnosis.id":{$in:["NCIT:C28327", "NCIT:C66951"]}},{$set:{"histological_diagnosis":{"id":"NCIT:C127907", "label":"Endocervical Adenocarcinoma, Usual-Type"}}})
