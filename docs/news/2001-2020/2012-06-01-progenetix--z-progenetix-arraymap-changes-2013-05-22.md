@@ -63,7 +63,7 @@ Progenetix
 
 #### 2013-02-13
 
-* data fix: PMID 18160781 had missing loss values (due to irregular character encoding); fixed, thanks to Emanuela Felley-Bosco for the note!
+* data fix: pubmed 18160781 had missing loss values (due to irregular character encoding); fixed, thanks to Emanuela Felley-Bosco for the note!
 
 #### 2012-12-14
 

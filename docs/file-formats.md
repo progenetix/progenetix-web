@@ -127,15 +127,15 @@ The CNV frequency matrix contains interval CNV frequencies for genomic bins, sep
 ```
 #meta=>genome_binning=1Mb;interval_number=3106
 #group=>group_id=NCIT:C7376;label=Pleural Malignant Mesothelioma;dataset_id=progenetix;sample_count=240
-#group=>group_id=PMID:22824167;label=Beleut M et al. (2012)...;dataset_id=progenetix;sample_count=159
+#group=>group_id=pubmed:22824167;label=Beleut M et al. (2012)...;dataset_id=progenetix;sample_count=159
 group_id  1:0-1000000:gainF 1:1000000-2000000:gainF ...  1:0-1000000:lossF  1:1000000-2000000:lossF ...
 NCIT:C7376  9.58  7.92  ...  1.89 1.89  ...
-PMID:22824167 6.29  0.0 ... 8.18  4.4 ...
+pubmed:22824167 6.29  0.0 ... 8.18  4.4 ...
 ```
 
 ##### Examples
 
-* <http://progenetix.org/services/intervalFrequencies/?datasetIds=progenetix&output=pgxmatrix&filters=NCIT:C7376,PMID:22824167>
+* <http://progenetix.org/services/intervalFrequencies/?datasetIds=progenetix&output=pgxmatrix&filters=NCIT:C7376,pubmed:22824167>
 
 #### CNV Status Matrix
 

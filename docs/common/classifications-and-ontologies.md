@@ -21,7 +21,7 @@ of technical parameters such as platform technologies. Overall, the
 | ------------ | -------------------------------- | -------- |
 | NCIT         | NCIt Neoplasm[^1]                | NCIT:C27676 |
 | HP           | HPO[^2]                          | HP:0012209 |
-| PMID         | NCBI Pubmed ID                   | [PMID:18810378](http://progenetix.org/services/ids/PMID:18810378) |
+| pubmed         | NCBI Pubmed ID                   | [pubmed:18810378](http://progenetix.org/services/ids/pubmed:18810378) |
 | geo          | NCBI Gene Expression Omnibus[^3] | [geo:GPL6801](http://progenetix.org/services/ids/geo:GPL6801), [geo:GSE19399](http://progenetix.org/services/ids/geo:GSE19399), [geo:GSM491153](http://progenetix.org/services/ids/geo:GSM491153) |
 | arrayexpress | EBI ArrayExpress[^4]             | arrayexpress:E-MEXP-1008 |
 | cellosaurus  | Cellosaurus - a knowledge resource on cell lines [^5]| cellosaurus:CVCL_1650 |

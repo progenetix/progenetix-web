@@ -43,7 +43,7 @@ export default function PublicationsProgenetixRefListPage() {
           <div className="field column py-0 mb-3 is-one-third">
             <label className="label">
               Filter
-              <Infodot infoText={"Filter publications by keyword, PMID or year (greedy matching...)"} />
+              <Infodot infoText={"Filter publications by keyword, pubmed or year (greedy matching...)"} />
             </label>{" "}
             <input
               className="input"

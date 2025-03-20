@@ -135,7 +135,7 @@ added (single) collation code.
 ##### Examples
 
 * [progenetix.org/services/collationplots/?filters=pgx:icdom-85003](http://progenetix.org/services/collationplots/?filters=pgx:icdom-85003)
-* [progenetix.org/services/collationplots/?filters=PMID:22824167](http://progenetix.org/services/collationplots/?filters=PMID:22824167)
+* [progenetix.org/services/collationplots/?filters=pubmed:22824167](http://progenetix.org/services/collationplots/?filters=pubmed:22824167)
 
 --------------------------------------------------------------------------------
 

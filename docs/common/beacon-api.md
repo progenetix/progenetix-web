@@ -80,7 +80,7 @@ Examples for codes with hierarchical treatment within the filter space are:
     - derived cell lines are also accessible through the code of their parental line
 
 Most of the filter options are based on ontology terms or identifiers in
-CURIE format (e.g. `NCIT:C4033`, `cellosaurus:CVCL_0030` or `PMID:16004614`). Please
+CURIE format (e.g. `NCIT:C4033`, `cellosaurus:CVCL_0030` or `pubmed:16004614`). Please
 see Beacon's [`Filters`](http://docs.genomebeacons.org/filters/) documentation
 for more information, e.g. about `OntologyFilter`, `AlphanumericFilter`, `CustomFilter` types.
 
@@ -127,7 +127,7 @@ The root path provides the standard `BeaconInfoResponse`.
 
 ##### `/filtering_terms/` + query
 
-* [/filtering_terms/?filters=PMID]({{config.api_web_root}}/beacon/filtering_terms/?filters=PMID)
+* [/filtering_terms/?filters=pubmed]({{config.api_web_root}}/beacon/filtering_terms/?filters=pubmed)
 * [/filtering_terms/?filters=NCIT,icdom]({{config.api_web_root}}/beacon/filtering_terms/?filters=NCIT,icdom)
 
 ----

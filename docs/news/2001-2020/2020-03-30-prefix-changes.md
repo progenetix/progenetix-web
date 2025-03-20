@@ -1,5 +1,5 @@
 ---
-title: "CURIE Prefix Remapping - NCIT & PMID"
+title: "CURIE Prefix Remapping - NCIT & pubmed"
 template: post.html
 date: 2020-03-30
 author: '@mbaudis'
@@ -27,6 +27,6 @@ In line with the use in [Monarch](https://monarchinitiative.org) and other
 reference ontology based projects, we have switched the identifier formats:
 
 * `ncit:C12345` => `NCIT:C12345`
-* `pubmed:1234567` => `PMID:1234567`
+* `pubmed:1234567` => `pubmed:1234567`
 
 Please [report](mailto:contact@progenetix.org) broken links!

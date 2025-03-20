@@ -160,7 +160,7 @@ website endpoints. There is no check if the id exists; this is left to the web
 page handling itself.
 
 * <http://progenetix.org/services/ids/pgxbs-kftva5zv>
-* <http://progenetix.org/services/ids/PMID:28966033>
+* <http://progenetix.org/services/ids/pubmed:28966033>
 * <http://progenetix.org/services/ids/NCIT:C3262>
 * <http://progenetix.org/services/ids/cellosaurus:CVCL_0022>
 * <http://progenetix.org/services/ids/pgx:icdom-81703>

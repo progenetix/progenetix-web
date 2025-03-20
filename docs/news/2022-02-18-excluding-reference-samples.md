@@ -13,11 +13,11 @@ a term we had introduced into the Experimental Factor Ontology - are excluded fr
 pre-computed histograms. However, when e.g. calling up samples from publications
 using the search panel referencve samples will be included unless specifically excluded.
 
-![](http://progenetix.org/services/collationplots/?datasetIds=progenetix&filters=PMID:22824167)
-<div style="font-size:  0.8em;">Pre-computed CNV Frequencies for <a href="http://progenetix.org/publication/?filters=PMID:22824167">PMID:22824167</a>, now ommitting reference samples by default</div>
+![](http://progenetix.org/services/collationplots/?datasetIds=progenetix&filters=pubmed:22824167)
+<div style="font-size:  0.8em;">Pre-computed CNV Frequencies for <a href="http://progenetix.org/publication/?filters=pubmed:22824167">pubmed:22824167</a>, now ommitting reference samples by default</div>
 
 <!--more-->
 
-![](http://progenetix.org/services/samplesplot?datasetIds=progenetix&filters=PMID:22824167&plotType=histoplot)
-<div style="font-size:  0.8em;">All samples for <a href="http://progenetix.org/publication/?filters=PMID:22824167">PMID:22824167</a> were used when just retrieving by PMID</div>
+![](http://progenetix.org/services/samplesplot?datasetIds=progenetix&filters=pubmed:22824167&plotType=histoplot)
+<div style="font-size:  0.8em;">All samples for <a href="http://progenetix.org/publication/?filters=pubmed:22824167">pubmed:22824167</a> were used when just retrieving by pubmed</div>
 
