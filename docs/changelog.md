@@ -11,15 +11,17 @@ AFAWK at some point already years ago NCBI pstarted to use `pubmed` ... and sinc
 doesn't resolve `PMID` anymore we're switching prefixes, too. Hope hiccups will be limited...
 
 ```
-# repeat for all collections
-db.collations.find({"id":{$regex:/PMID/}}).forEach(function(doc) {
-  nid = doc.id.replace('PMID', 'pubmed');
-  db.collations.updateOne({"_id": doc._id}, {$set:{"id": nid, "namespace_prefix": "pubmed", "parent_terms": [nid], "child_terms": [nid], "hierarchy_paths": [ { "order": 0, "depth": 0, "path": [ nid ] } ]}});
-})
-
-db.biosamples.find({"references.pubmed.id":{$regex:/PMID/}}).forEach(function(doc) {
-  nid = doc.references.pubmed.id.replace('PMID', 'pubmed');
-  db.biosamples.updateOne({"_id": doc._id}, {$set:{"references.pubmed.id": nid}});
+var dbs = ["progenetix", "refcnv", "cellz", "examplez"]
+dbs.forEach(function(database) {
+  db = db.getSiblingDB(database)
+  db.collations.find({"id":{$regex:/PMID/}}).forEach(function(doc) {
+    nid = doc.id.replace('PMID', 'pubmed');
+    db.collations.updateOne({"_id": doc._id}, {$set:{"id": nid, "namespace_prefix": "pubmed", "parent_terms": [nid], "child_terms": [nid], "hierarchy_paths": [ { "order": 0, "depth": 0, "path": [ nid ] } ]}});
+  })
+  db.biosamples.find({"references.pubmed.id":{$regex:/PMID/}}).forEach(function(doc) {
+    nid = doc.references.pubmed.id.replace('PMID', 'pubmed');
+    db.biosamples.updateOne({"_id": doc._id}, {$set:{"references.pubmed.id": nid}});
+  })
 })
 
 use _byconServicesDB 
