@@ -81,6 +81,21 @@ function Subset({ subset, datasetIds }) {
     />
   </div>
 
+  {/*This is some TODO here - just prototyping an cohort ... matched refCNV fetch*/}
+
+  {!datasetIds.includes("refcnv") && (
+    <>
+      <h5>Reference Histogram (matching refCNV data)</h5>
+        <div className="mb-3">
+        <SubsetHistogram
+          id={subset.id}
+          datasetIds={["refcnv"]}
+          loaderProps={{background: true, colored: true}}
+        />
+      </div>
+    </>
+  )}
+
   <h5>
     <InternalLink
       href={`${basePath}services/intervalFrequencies/${subset.id}/?output=pgxfreq`}
