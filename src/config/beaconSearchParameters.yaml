@@ -324,9 +324,9 @@ parameters:
       - value: ""
         label: "(no selection)"
       - value: NCIT:C16576
-        label: female
+        label: female (NCIT:C16576)
       - value: NCIT:C20197
-        label: male
+        label: male (NCIT:C20197)
   allTermsFilters:
     label: Select Filters
     isMulti: true

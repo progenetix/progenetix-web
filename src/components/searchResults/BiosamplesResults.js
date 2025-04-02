@@ -4,6 +4,7 @@ import React from "react"
 import { makeFilters } from "../../hooks/api"
 
 export function BiosamplesResults({ response, isLoading, error, query }) {
+  // console.log(query)
   return (
     <>
       <div className="subtitle ">
