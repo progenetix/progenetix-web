@@ -10,7 +10,7 @@ import { Loader } from "../components/Loader"
 import { Layout } from "./../site-specific/Layout"
 import Panel from "../components/Panel"
 import { AncestryData } from "../components/AncestryData"
-import { LiteratureSearch } from "../components/LiteratureSearch"
+// import { LiteratureSearch } from "../components/LiteratureSearch"
 import { SubsetHistogram } from "../components/SVGloaders"
 import { ExternalLink, InternalLink } from "../components/helpersShared/linkHelpers"
 import { withUrlQuery } from "../hooks/url-query"
@@ -28,8 +28,8 @@ const CellLineDetailsPage = withUrlQuery(({ urlQuery }) => {
   const [plotGeneSymbols, setGeneSymbols] = useState("");
   const [plotCytoregionLabels, setCytoregionSymbols] = useState("");
 
-  const aURL = `${basePath}beacon/genomicVariations/?filters=${id}&datasetIds=${datasetIds}&variantType=SO:0001059&paginateResults=false`
-  const variantsReply = useProgenetixApi( aURL )
+  // const aURL = `${basePath}beacon/genomicVariations/?filters=${id}&datasetIds=${datasetIds}&variantType=SO:0001059&paginateResults=false`
+  // const variantsReply = useProgenetixApi( aURL )
 
   const iURL = `${basePath}beacon/individuals/?filters=${id}&datasetIds=${datasetIds}&limit=1`
   var [individual, setIndividual] = useState([]);
@@ -45,6 +45,9 @@ const CellLineDetailsPage = withUrlQuery(({ urlQuery }) => {
        });
    }, [setIndividual]);
 
+  // TODO: Doesn't work since async?
+  // var indexDisease = individual?.diseases[0]?.diseaseCode?.id
+
   return (
     <Layout title="Cell Line Details" headline="">
       {!hasAllParams ? (
@@ -53,9 +56,20 @@ const CellLineDetailsPage = withUrlQuery(({ urlQuery }) => {
       <>
 
         <Panel heading="" className="content">
-          <ThisSubsetLoader id={id} individual={individual} datasetIds={datasetIds} />
+          <ThisSubsetLoader
+            id={id}
+            individual={individual}
+            datasetIds={datasetIds}
+            setGeneSymbols={setGeneSymbols}
+            plotGeneSymbols={plotGeneSymbols}
+            plotCytoregionLabels={plotCytoregionLabels}
+            setCytoregionSymbols={setCytoregionSymbols}
+          />
         </Panel>
 
+        <VariantsPanel id={id} individual={individual} datasetIds={datasetIds} />
+
+{/*
         <Panel heading={`Annotated Variants for ${id}`} className="content">
           <VariantsDataTable apiReply={variantsReply} datasetId={datasetIds} />
         </Panel>
@@ -78,7 +92,19 @@ const CellLineDetailsPage = withUrlQuery(({ urlQuery }) => {
                 colored: true
               }}
             />
-          </div>     
+          </div>
+          {indexDisease?.id && (
+            <>
+              <h5>Matched Native Cancer Sample Histogram (Progenetix data)</h5>
+                <div className="mb-3">
+                <SubsetHistogram
+                  id={indexDisease?.id}
+                  datasetIds={["progenetix"]}
+                  loaderProps={{background: true, colored: true}}
+                />
+              </div>
+            </>
+          )}
         </Panel>
 
         <Panel heading={`Literature Derived Contextual Information`} className="content">
@@ -91,6 +117,7 @@ const CellLineDetailsPage = withUrlQuery(({ urlQuery }) => {
             setCytoregionSymbols={setCytoregionSymbols}
           />
         </Panel>
+*/}        
 
       </>
       )}
@@ -104,7 +131,7 @@ export default CellLineDetailsPage
 /*============================================================================*/
 /*============================================================================*/
 
-function ThisSubsetLoader({ id, individual, datasetIds }) {
+function ThisSubsetLoader({ id, individual, datasetIds, plotGeneSymbols, plotCytoregionLabels}) {
 
   const sURL = `${basePath}services/collations/${id}?datasetIds=${datasetIds}`
 
@@ -113,7 +140,14 @@ function ThisSubsetLoader({ id, individual, datasetIds }) {
   return (
     <Loader isLoading={isLoading} hasError={error} background>
       {data && (
-        <SubsetResponse id={id} individual={individual} response={data} datasetIds={datasetIds} />
+        <SubsetResponse
+          id={id}
+          individual={individual}
+          response={data}
+          datasetIds={datasetIds}
+          plotGeneSymbols={plotGeneSymbols}
+          plotCytoregionLabels={plotCytoregionLabels}
+        />
       )}
     </Loader>
   )
@@ -121,22 +155,31 @@ function ThisSubsetLoader({ id, individual, datasetIds }) {
 
 /*============================================================================*/
 
-function SubsetResponse({ id, response, individual, datasetIds }) {
+function SubsetResponse({ id, response, individual, datasetIds, plotGeneSymbols, plotCytoregionLabels }) {
   if (!response.response?.results[0]) {
     return NoResultsHelp(exampleId, "subsetdetails")
   }
-  return <Subset id={id} subset={response.response.results[0]} individual={individual} datasetIds={datasetIds} />
+  return <Subset
+    id={id}
+    subset={response.response.results[0]}
+    individual={individual}
+    datasetIds={datasetIds}
+    plotGeneSymbols={plotGeneSymbols}
+    plotCytoregionLabels={plotCytoregionLabels}
+  />
 }
 
 /*============================================================================*/
 
-function Subset({ id, subset, individual, datasetIds }) {
+function Subset({ id, subset, individual, datasetIds, plotGeneSymbols, plotCytoregionLabels }) {
   
   const filters = id
   const sampleFilterScope = "allTermsFilters"
   const [showAll, setShowAll] = useState(false);
-  // console.log(individual);
-  // console.log(Object.keys(individual));
+
+  // ... since we use the Phenopackets style, not the internal index_disease
+  console.log(individual);
+  var indexDisease = individual?.diseases?.[0].diseaseCode
   
   return (
 
@@ -160,39 +203,36 @@ function Subset({ id, subset, individual, datasetIds }) {
       </>
   )}
 
-
   {subset?.childTerms?.length > 1 && (
-      <>
-        <h5>Derived Cell Lines</h5>
-        <ul>
-          {subset.childTerms.slice(0, showAll ? subset.childTerms.length : 5).map(pt =>
-              <InternalLink
-                  href={`/cellline/?id=${pt}&datasetIds=${datasetIds}`}
-                  key={pt}
-                  label={pt}
-              />
-          )}
-        </ul>
-        {subset.childTerms.length > 5 && (
-            <button
-                onClick={() => setShowAll(!showAll)}
-                style={{
-                  backgroundColor: 'lightgrey',
-                  color: 'white',
-                  padding: '10px',
-                  borderRadius: '5px',
-                  border: 'none',
-                  cursor: 'pointer',
-                  outline: 'none',
-                  marginBottom: '10px',
-                }}
-            >
-              {showAll ? 'Show Less' : 'Show More'}
-            </button>
-
-
+    <>
+      <h5>Derived Cell Lines</h5>
+      <ul>
+        {subset.childTerms.slice(0, showAll ? subset.childTerms.length : 5).map(pt =>
+            <InternalLink
+                href={`/cellline/?id=${pt}&datasetIds=${datasetIds}`}
+                key={pt}
+                label={pt}
+            />
         )}
-      </>
+      </ul>
+      {subset.childTerms.length > 5 && (
+          <button
+              onClick={() => setShowAll(!showAll)}
+              style={{
+                backgroundColor: 'lightgrey',
+                color: 'white',
+                padding: '10px',
+                borderRadius: '5px',
+                border: 'none',
+                cursor: 'pointer',
+                outline: 'none',
+                marginBottom: '10px',
+              }}
+          >
+            {showAll ? 'Show Less' : 'Show More'}
+          </button>
+      )}
+    </>
   )}
 
 
@@ -200,11 +240,11 @@ function Subset({ id, subset, individual, datasetIds }) {
 
   <ul>
 
-  {individual?.indexDisease?.diseaseCode && (
+  {indexDisease && (
     <li>
       <b>Diagnosis</b>{": "}
-      {individual.indexDisease.diseaseCode.id}{" ("}
-      {individual.indexDisease.diseaseCode?.label}{")"}
+      {indexDisease?.id}{" ("}
+      {indexDisease?.label}{")"}
     </li>
       
   )}
@@ -223,10 +263,10 @@ function Subset({ id, subset, individual, datasetIds }) {
     </li>
   )}
 
-  {individual?.indexDisease?.onset && (
+  {indexDisease?.onset && (
       <li>
         <b>Age at Collection</b>{": "}
-        {individual.indexDisease.onset.age}
+        {indexDisease.onset.age}
       </li>
   )}
 
@@ -282,6 +322,41 @@ function Subset({ id, subset, individual, datasetIds }) {
     </li>
   </ul>
 
+  <h5>CNV Profiles</h5>
+    <p>The graphs shows the copy number gains (up, blue) and losses (down, orange)
+    as percentage of the cell line instances they were observed in. Off note, since
+    all instances arose from the same donor cell line one would expect all genomic
+    regions to be either 0 or 100 percent. Regions with diverging values are either
+    due to clonal divergence/progression and/or to experimental variability.
+    </p>
+  <SubsetHistogram
+    id={id}
+    datasetIds={datasetIds}
+    plotGeneSymbols={plotGeneSymbols}
+    plotCytoregionLabels={plotCytoregionLabels}
+    loaderProps={{
+      background: true,
+      colored: true
+    }}
+  />
+  {indexDisease?.id && (
+    <>
+      <p>Where there is data available in Progenetix, the histogram below shows the CNV profile of the
+      native cancer sample matching the cell line assigned diagnosis.
+      </p>
+      <SubsetHistogram
+        id={indexDisease.id}
+        datasetIds={["progenetix"]}
+        plotGeneSymbols={plotGeneSymbols}
+        plotCytoregionLabels={plotCytoregionLabels}
+        loaderProps={{
+          background: true,
+          colored: true
+        }}
+      />
+    </>
+  )}
+
   {/*<ShowJSON data={subset} />*/}
   
 </section>
@@ -290,4 +365,13 @@ function Subset({ id, subset, individual, datasetIds }) {
 
 /*============================================================================*/
 
+function VariantsPanel({ id, individual, datasetIds }) {
 
+  const aURL = `${basePath}beacon/individuals/${individual.id}/g_variants/?filters=${id}&variantType=SO:0001059&paginateResults=false`
+  const variantsReply = useProgenetixApi( aURL )
+  return (
+    <Panel heading={`Annotated Variants for ${id}`} className="content">
+      <VariantsDataTable apiReply={variantsReply} datasetId={datasetIds} />
+    </Panel>
+  )
+}
