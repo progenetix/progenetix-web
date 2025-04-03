@@ -32,6 +32,10 @@
       isHidden: true
     sex:
       isHidden: false
+    geoCity:
+      isHidden: false
+    geodistanceKm:
+      isHidden: false
 
 - label: "SNV Example"
   note: "Example for specific EIF4A1 mutation"
@@ -220,3 +224,4 @@
     mateEnd:
       isHidden: false
       defaultValue: 35600000
+

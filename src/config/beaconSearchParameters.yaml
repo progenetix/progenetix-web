@@ -393,7 +393,7 @@ parameters:
     isHidden: true
     label: Range (km)
     type: number
-    defaultValue: 100
+    defaultValue: 500
   skip:
     label: Skip Pages
     infoText: >
