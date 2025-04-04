@@ -77,7 +77,7 @@ export function GeneSpansUtility({ onClose, setFormValue }) {
   const onApply = (optionValue) => {
     setFormValue("start", optionValue.start)
     setFormValue("end", optionValue.end)
-    setFormValue("referenceName", "refseq:"+optionValue.accessionVersion)
+    setFormValue("referenceName", optionValue.referenceName)
     onClose()
   }
   const renderValue = (optionValue) => (
@@ -89,10 +89,10 @@ export function GeneSpansUtility({ onClose, setFormValue }) {
         End: <b>{optionValue.end}</b>
       </div>
       <div>
-        Chromosome: <b>{optionValue.referenceName}</b>
+        Chromosome: <b>{optionValue.chromosome}</b>
       </div>
       <div>
-        Sequence Accession: <b>refseq:{optionValue.accessionVersion}</b>
+        Sequence Accession: <b>{optionValue.referenceName}</b>
       </div>
       <div>
         Please use the <b>Apply</b> button to copy the values to the{" "}

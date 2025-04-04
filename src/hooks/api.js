@@ -400,7 +400,7 @@ export function useGeoCity({ city }) {
 }
 
 export function useGeneSymbol({ geneId }) {
-  const url = geneId ? `${basePath}services/genespans/?geneId=${geneId}&filterPrecision=start&deliveryKeys=symbol,referenceName,start,end` : null
+  const url = geneId ? `${basePath}services/genespans/?geneId=${geneId}&deliveryKeys=symbol,referenceName,start,end,chromosome` : null
   return useProgenetixApi(url)
 }
 
