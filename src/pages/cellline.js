@@ -45,9 +45,6 @@ const CellLineDetailsPage = withUrlQuery(({ urlQuery }) => {
        });
    }, [setIndividual]);
 
-  // TODO: Doesn't work since async?
-  // var indexDisease = individual?.diseases[0]?.diseaseCode?.id
-
   return (
     <Layout title="Cell Line Details" headline="">
       {!hasAllParams ? (
