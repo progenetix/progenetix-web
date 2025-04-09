@@ -45,6 +45,9 @@ const CellLineDetailsPage = withUrlQuery(({ urlQuery }) => {
        });
    }, [setIndividual]);
 
+  // var indexDisease = individual.indexDisease;
+  console.log(individual);
+
   return (
     <Layout title="Cell Line Details" headline="">
       {!hasAllParams ? (
