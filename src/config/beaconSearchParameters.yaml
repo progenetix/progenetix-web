@@ -144,6 +144,7 @@ parameters:
         value: "refseq:NC_000023.11"
       - label: "Y (NC_000024.10)"
         value: "refseq:NC_000024.10"
+    isHidden: true
   variantType:
     label: "Variant Type"
     infoText: >-
@@ -192,6 +193,7 @@ parameters:
       The (1-based) stat of genomic position of the range in which the fusion partners
       breakpoint position should fall. In contrast to the general "start" parameter
       only a single value can be used.
+    isHidden: true
   mateEnd:
     label: Mate End
     placeholder: "23000000"
@@ -199,6 +201,7 @@ parameters:
       The (1-based) stat of genomic position of the range in which the fusion partners
       breakpoint position should fall. In contrast to the general "end" parameter
       only a single value can be used.
+    isHidden: true
   cytoBands:
     label: Cytoband Annotation
     type: string
