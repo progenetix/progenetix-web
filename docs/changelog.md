@@ -4,6 +4,22 @@ This page lists changes for the [Beacon+](http://beacon.progenetix.org/ui/)
 implementation of the ["Beacon" genomics API](http://beacon-project.io), as well
 as related updates for the [Progenetix](http://progenetix.org) front-end.
 
+
+## 2025-04-16: Reverting to `pgx:icdot-55003` for PDAC tumors
+
+In contrast to the original ICD-O system which limits the `8500/3` code to breast
+as locus/organ, newer use (e.g. WHO Blue Books, TCGA, NCI...) allow/require the use
+of `8500/3` for pancreatic adenocarcinomas (PDAC). Interestingly the 2025 SEER
+mappings allow both `8140/3` (Adenocarcinoma, NOS) and `8500/3` (Ductal Adenocarcinoma, NOS)
+for pancreas whwereas the Blue Book only list `8500/3`. So, as compromise we now
+remapped all PDAC (where identified easily as such) to `pgx:icdom-85003` (Ductal
+Adenocarcinoma, NOS) but left the other codes as `pgx:icdom-81403`.
+
+```
+db.biosamples.updateMany({"histological_diagnosis.id":"NCIT:C9120"}, {$set:{"icdo_morphology":{"id":"pgx:icdom-85003", "label":"Infiltrating duct carcinoma, NOS"}}})
+db.biosamples.updateMany({"icdo_topography.id":{$regex:/pgx:icdot-C25.\d/}, "notes":{$regex:/^.*?pancr.*?duct.*?carc.*?$/i}}, {$set:{"icdo_morphology":{"id":"pgx:icdom-85003", "label":"Infiltrating duct carcinoma, NOS"}}})
+```
+
 ## 2025-03-20: Fixing `PMID:` => `pubmed:`
 
 At some point in the far past identifiers.org did use `PMID` as PubMed CURIE prefix.
