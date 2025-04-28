@@ -5,7 +5,7 @@ import {
   createCircle,
   getLatlngFromGeoJSON,
   useMap
-} from "../mapComps/map"
+} from "../GeoMaps"
 import { PublicationCompactTable } from "./PublicationTables"
 import { groupBy } from "lodash"
 import useDeepCompareEffect from "use-deep-compare-effect"

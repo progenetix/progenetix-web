@@ -153,7 +153,7 @@ function QuerySummary({ query }) {
           {filters.join(", ")}
         </li>
       )}
-      {filters.length > 1 && (
+      {filters.length > 1 && query.filterLogic && (
         <li>
           <small>Filter Logic: </small>
           {query.filterLogic}
