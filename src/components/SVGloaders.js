@@ -94,10 +94,10 @@ export function AnalysisHistogram({ csid, datasetIds }) {
   )
 }
 
-export function BiosamplePlot({ biosid, datasetIds, plotRegionLabels, plotChros}) {
+export function BiosamplePlot({ biosid, datasetIds, plotPars}) {
   const componentRef = useRef()
   const { width } = useContainerDimensions(componentRef)
-  const url = `${basePath}services/sampleplots/${biosid}?plotType=samplesplot&datasetIds=${datasetIds}&plotPars=plot_width=${width}::plotRegionLabels=${plotRegionLabels}::plotChros=${plotChros}::forceEmptyPlot=true`
+  const url = `${basePath}services/sampleplots/${biosid}?plotType=samplesplot&datasetIds=${datasetIds}&plotPars=plot_width=${width}::${plotPars}::forceEmptyPlot=true`
   // width > 0 to make sure the component is mounted and avoid double fetch
   const dataEffect = useExtendedSWR(width > 0 && url, svgFetcher)
   return (

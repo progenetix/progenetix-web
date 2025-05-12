@@ -245,7 +245,11 @@ function Variant({ variant, id, datasetIds }) {
       {variant.caseLevelData[0]?.biosampleId && (
         <>
           <h5>Plot</h5>
-          <BiosamplePlot biosid={variant.caseLevelData[0].biosampleId} datasetIds={datasetIds} plotRegionLabels={markers.join(",")} plotChros={chros.join(",")} />
+          <BiosamplePlot
+            biosid={variant.caseLevelData[0].biosampleId}
+            datasetIds={datasetIds}
+            plotPars={`plotRegionLabels=${markers.join(",")}::plotChros=${chros.join(",")}`}
+          />
         </>
       )}
 
