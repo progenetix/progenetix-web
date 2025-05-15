@@ -7,6 +7,8 @@ import SiteConfig from "../site-specific/config.js"
 export const basePath = process.env.NEXT_PUBLIC_API_PATH
 export const useProxy = process.env.NEXT_PUBLIC_USE_PROXY === "true"
 
+export const siteDataset = SiteConfig.default_dataset_id
+
 export function useExtendedSWR(url, fetcher = defaultFetcher) {
   const { data, error, ...other } = swr(url, fetcher)
   return { data, error, ...other, isLoading: !data && !error }
@@ -15,8 +17,9 @@ export function useExtendedSWR(url, fetcher = defaultFetcher) {
 export const SITE_DEFAULTS = {
   SITE: process.env.NEXT_PUBLIC_SITE_URL,
   PREFETCH_PATH: process.env.NEXT_PUBLIC_PREFETCH_API_PATH,
+  SITE_LOGO: SiteConfig.website_logo,
   DATASETID: SiteConfig.default_dataset_id,
-  PROJECTDOCLINK: SiteConfig.docs_master_site,
+  PROJECTDOCLINK: SiteConfig.docs_project_site,
   MASTERROOTLINK: SiteConfig.data_master_site,
   MASTERDOCLINK: SiteConfig.docs_master_site,
   NEWSLINK: SiteConfig.news_site,
@@ -87,6 +90,14 @@ export function useBeaconQuery(queryData) {
   )
 }
 
+export function useSubsetsQuery(queryData) {
+  return useProgenetixApi(
+    queryData
+      ? `${basePath}services/collationplots/?${buildFilterParameters(queryData)}`
+      : null
+  )
+}
+
 export function urlRetrieveIds(urlQuery) {
   var { id, datasetIds } = urlQuery
   if (!datasetIds) {
@@ -149,6 +160,35 @@ export function makeFilters({
   ]
 }
 
+export function buildFilterParameters(queryData) {
+  const {
+    bioontology,
+    referenceid,
+    cohorts,
+    analysisOperation,
+    sex,
+    materialtype,
+    allTermsFilters,
+    clinicalClasses
+  } = queryData
+
+  const filters = makeFilters({
+    allTermsFilters,
+    clinicalClasses,
+    bioontology,
+    referenceid,
+    cohorts,
+    analysisOperation,
+    sex,
+    materialtype
+  })
+  return new URLSearchParams(
+    flattenParams([
+      ["filters", filters]
+    ]).filter(([, v]) => !!v)
+  ).toString()
+}
+
 export function buildQueryParameters(queryData) {
   const {
     start,
@@ -206,6 +246,7 @@ export function buildQueryParameters(queryData) {
   ).toString()
 }
 
+
 export function useDataVisualization(queryData) {
   var q_path = "beacon/biosamples"
   if (queryData.fileId && queryData.fileId != "null") {
@@ -223,7 +264,6 @@ export function useDataVisualization(queryData) {
 export function getVisualizationLink(datasetIds, accessId, fileId, skip, limit, count) {
   return `/service-collection/dataVisualization?datasetIds=${datasetIds}&accessid=${accessId}&fileId=${fileId}&sampleCount=${count}&skip=${skip}&limit=${limit}`
 }
-
 
 export function buildDataVisualizationParameters(queryData) {
   return new URLSearchParams(
@@ -356,6 +396,7 @@ export function useSubsethistogram({
   return useExtendedSWR(size > 0 && `${svgbaseurl}&${searchQuery}`, svgFetcher)
 }
 
+
 export function useCollationsById({ datasetIds }) {
   const { data, ...other } = useFiltersByType({
     collationTypes: "",
@@ -375,14 +416,16 @@ export function useCollationsById({ datasetIds }) {
   return { data, ...other }
 }
 
+
 export function useFiltersByType({ datasetIds, collationTypes }) {
   // TODO: construct URL w/o optional parameters if empty
   const url = `${basePath}beacon/datasets/${datasetIds}/filtering_terms/?collationTypes=${collationTypes}`
   return useProgenetixApi(url)
 }
 
-export function useFilterTreesByType({ datasetIds, collationTypes }) {
-  const url = `${basePath}beacon/datasets/${datasetIds}/filtering_terms?collationTypes=${collationTypes}&mode=termTree`
+// general site listings for collations etc. are bound to the default dataset
+export function useFilterTreesByType({ collationTypes }) {
+  const url = `${basePath}beacon/datasets/${siteDataset}/filtering_terms?collationTypes=${collationTypes}&mode=termTree`
   return useProgenetixApi(url)
 }
 
@@ -400,7 +443,7 @@ export function useGeoCity({ city }) {
 }
 
 export function useGeneSymbol({ geneId }) {
-  const url = geneId ? `${basePath}services/genespans/?geneId=${geneId}&deliveryKeys=symbol,referenceName,start,end,chromosome` : null
+  const url = geneId ? `${basePath}services/genespans/?geneId=${geneId}&filterPrecision=start&deliveryKeys=symbol,referenceName,start,end` : null
   return useProgenetixApi(url)
 }
 
