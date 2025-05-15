@@ -4,7 +4,7 @@ import SubsetsSearchPanel from "../components/subsetsForm/SubsetsSearchPanel"
 import parConfig from "../config/beaconSearchParameters.yaml"
 import subsetsParMods from "../config/subsetsSearchParametersMods.yaml"
 import { Layout } from "./../site-specific/Layout"
-import requestTypeExamples from "../site-specific/searchExamples.yaml"
+import subsetsExamples from "../site-specific/subsetsExamples.yaml"
 
 const parametersConfig = merge(
   parConfig,
@@ -16,7 +16,7 @@ export default function Page() {
     <Layout title="Search and Compare Subsets" headline="">
       <SubsetsSearchPanel
         parametersConfig={parametersConfig}
-        requestTypeExamples={requestTypeExamples}
+        requestTypeExamples={subsetsExamples}
         collapsed={false}
       />
     </Layout>

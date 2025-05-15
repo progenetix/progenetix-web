@@ -23,7 +23,7 @@ export default SubsetsSearchForm
 SubsetsSearchForm.propTypes = {
   isQuerying: PropTypes.bool.isRequired,
   setSearchQuery: PropTypes.func.isRequired,
-  // requestTypeExamples: PropTypes.object.isRequired,
+  requestTypeExamples: PropTypes.object.isRequired,
   parametersConfig: PropTypes.object.isRequired
 }
 
@@ -39,12 +39,13 @@ function urlQueryToFormParam(urlQuery, key, parametersConfig) {
 function SubsetSearchForm({
     isQuerying,
     setSearchQuery,
-    // requestTypeExamples,
+    requestTypeExamples,
     parametersConfig,
-    urlQuery
+    urlQuery,
+    setUrlQuery
   }) {
 
-  const [example] = useState(null)
+  const [example, setExample] = useState(null)
   let parameters = useMemo(
     () =>
       makeParameters(parametersConfig, example),
@@ -214,7 +215,7 @@ function SubsetSearchForm({
           </div>
         </form>
       </div>
-{/*      <div style={{ "padding-top": "20px" }}>
+      <div style={{ "padding-top": "20px" }}>
         <div className="buttons">
           <ExamplesButtons
             onExampleClicked={handleExampleClicked(
@@ -226,13 +227,7 @@ function SubsetSearchForm({
           />
         </div>
         <ExampleDescription example={example} />   
-      </div>
-      {example?.img && (
-          <div>
-            <img src={example.img}/>
-          </div>
-      )}
-*/}    
+      </div>  
       </>
   )
 }
@@ -245,39 +240,39 @@ export function InfodotTab(short, full) {
   )
 }
 
-// function ExamplesButtons({ requestTypeExamples, onExampleClicked }) {
-//   return (
-//     <div className="column is-full" style={{ padding: "0px" }}>
-//       <div className="columns">
-//         <div className="column is-one-fifth label">
-//           Query Examples
-//         </div>
-//         <div className="column">
-//           {Object.entries(requestTypeExamples || []).map(([id, value]) => (
-//             <button
-//               key={id}
-//               className="button is-link is-outlined"
-//               onClick={() => onExampleClicked(value)}
-//             >
-//               {value.label}
-//             </button>
-//           ))}
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
+function ExamplesButtons({ requestTypeExamples, onExampleClicked }) {
+  return (
+    <div className="column is-full" style={{ padding: "0px" }}>
+      <div className="columns">
+        <div className="column is-one-fifth label">
+          Query Examples
+        </div>
+        <div className="column">
+          {Object.entries(requestTypeExamples || []).map(([id, value]) => (
+            <button
+              key={id}
+              className="button is-link is-outlined"
+              onClick={() => onExampleClicked(value)}
+            >
+              {value.label}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
 
 
-// function ExampleDescription({ example }) {
-//   return example?.description ? (
-//     <article className="message is-info">
-//       <div className="message-body">
-//         <div className="content">{MarkdownParser(example?.description)}</div>
-//       </div>
-//     </article>
-//   ) : null
-// }
+function ExampleDescription({ example }) {
+  return example?.description ? (
+    <article className="message is-info">
+      <div className="message-body">
+        <div className="content">{MarkdownParser(example?.description)}</div>
+      </div>
+    </article>
+  ) : null
+}
 
 function makeParameters(
   parametersConfig,
@@ -356,4 +351,13 @@ function useFilteringTerms(watchForm, ct) {
     collationTypes: ct
   })
 }
+
+const handleExampleClicked = (reset, setExample, setUrlQuery) => (example) => {
+  setUrlQuery({}, { replace: true })
+  setExample(example)
+  console.log("Example clicked", example)
+
+}
+
+
 
