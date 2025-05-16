@@ -9,6 +9,8 @@ import PropTypes from "prop-types"
 import {MarkdownParser} from "../MarkdownParser"
 import { merge, transform } from "lodash"
 import SelectField from "../formShared/SelectField"
+import InputField from "../formShared/InputField"
+import {GeneSymbolSelector} from "../formShared/GeneSymbolSelector"
 import useDeepCompareEffect from "use-deep-compare-effect"
 import { withUrlQuery } from "../../hooks/url-query"
 import cn from "classnames"
@@ -175,20 +177,15 @@ function SubsetSearchForm({
             {...selectProps}
             isLoading={isRefSubsetsDataLoading}
           />
-{/*            
-            <InputField
-              className={cn(
-                !parameters.cohorts.isHidden && "column",
-                "py-0 mb-3"
-              )}
-              {...fieldProps}
-              {...parameters.cohorts}
-            />
-*/}          
           <SelectField
             {...parameters.bioontology}
             {...selectProps}
             isLoading={isBioSubsetsDataLoading}
+          />
+          <SelectField
+            {...parameters.referenceid}
+            {...selectProps}
+            isLoading={isRefSubsetsDataLoading}
           />
           <SelectField
             {...parameters.clinicalClasses}
@@ -200,7 +197,18 @@ function SubsetSearchForm({
             {...selectProps}
             isLoading={isAllSubsetsDataLoading}
           />
-     
+          <GeneSymbolSelector
+            {...selectProps}
+            name="plotGeneSymbols"
+            label="Gene Symbol(s) for Labeling"
+          />
+          <InputField
+            name="plotChros"
+            label="Chromosomes to Plot"
+            infoText="The chromosomes to be included in the plot, in the order they should appear. The values should just be the comma-separated chromosome numbers (e.g. '1,3,19,X' - unquoted, no spaces). The default is chr 1-22."
+            errors={errors}
+            register={register}
+          />
           <div className="field mt-5">
             <div className="control">
               <button
@@ -209,7 +217,7 @@ function SubsetSearchForm({
                   "is-loading": isQuerying
                 })}
               >
-                Query Database
+                Retrieve CNV Profiles
               </button>
             </div>
           </div>

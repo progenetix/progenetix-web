@@ -1,6 +1,6 @@
 # Progenetix API Services `/services/`
 
-The [`bycon`](https://guthub.com/progenetix/bycon) software stack underneath the 
+The [`bycon`](https://github.com/progenetix/bycon) software stack underneath the 
 _Progenetix_ environment provides support for a number of data services which make
 use of special resources in _Progenetix_ or just provide alternative forms of data
 delivery such as tabular text  or VCF files or data plots.
@@ -23,7 +23,7 @@ format where the main data is usually contained in the `response.results` list.
 
 ## Services
 
-Services enabled through [`bycon`](https://guthub.com/progenetix/bycon) and rendered
+Services enabled through [`bycon`](https://github.com/progenetix/bycon) and rendered
 through Progenetix are now documented through the [`bycon` software documentation](https://bycon.progenetix.org/API-services/). The special content of some of the Progenetix services is detailed below.
 
 ### Cancer Genomics Publications `publications`

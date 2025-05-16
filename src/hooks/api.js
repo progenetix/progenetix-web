@@ -132,6 +132,20 @@ export function mkGeoParams(geoCity, geodistanceKm) {
   return { geoLongitude, geoLatitude, geoDistance }
 }
 
+export function makePlotGeneSymbols({
+  plotGeneSymbols
+}) {
+  var geneSymbols = []
+  if (plotGeneSymbols) {
+    for (let i = 0; i < plotGeneSymbols.length; i++) {
+      geneSymbols.push(plotGeneSymbols[i].value)
+    }
+  }
+  return geneSymbols
+}
+
+
+
 // export function mkGeneParams(gene) {
 //   if (!gene) return null
 //   const geneId = gene.map((gene) => gene.value).join(',')
@@ -443,7 +457,7 @@ export function useGeoCity({ city }) {
 }
 
 export function useGeneSymbol({ geneId }) {
-  const url = geneId ? `${basePath}services/genespans/?geneId=${geneId}&filterPrecision=start&deliveryKeys=symbol,referenceName,start,end` : null
+  const url = geneId ? `${basePath}services/genespans/?geneId=${geneId}&filterPrecision=start&deliveryKeys=symbol,referenceName,chromosome,start,end` : null
   return useProgenetixApi(url)
 }
 

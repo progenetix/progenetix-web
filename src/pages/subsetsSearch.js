@@ -1,6 +1,6 @@
 import React from "react"
 import { merge } from "lodash"
-import SubsetsSearchPanel from "../components/subsetsForm/SubsetsSearchPanel"
+import SubsetsSearchPanel from "../components/searchForm/SubsetsSearchPanel"
 import parConfig from "../config/beaconSearchParameters.yaml"
 import subsetsParMods from "../config/subsetsSearchParametersMods.yaml"
 import { Layout } from "./../site-specific/Layout"
