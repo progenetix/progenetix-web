@@ -34,7 +34,8 @@ export function SubsetHistogram({
   plotCytoregionLabels,
   title,
   description,
-  size: givenSize 
+  size: givenSize,
+  plotChros
 }) {
   const componentRef = useRef()
   const { width } = useContainerDimensions(componentRef)
@@ -49,7 +50,8 @@ export function SubsetHistogram({
           plotRegionLabels,
           plotGeneSymbols,
           plotCytoregionLabels,
-          size
+          size,
+          plotChros
         })}
       />
       <div className="img-legend">
@@ -94,10 +96,10 @@ export function AnalysisHistogram({ csid, datasetIds }) {
   )
 }
 
-export function BiosamplePlot({ biosid, datasetIds, plotPars}) {
+export function BiosamplePlot({ biosid, datasetIds, plotRegionLabels, plotChros}) {
   const componentRef = useRef()
   const { width } = useContainerDimensions(componentRef)
-  const url = `${basePath}services/sampleplots/${biosid}?plotType=samplesplot&datasetIds=${datasetIds}&plotPars=plot_width=${width}::${plotPars}::forceEmptyPlot=true`
+  const url = `${basePath}services/sampleplots/${biosid}?plotType=samplesplot&datasetIds=${datasetIds}&plotPars=plot_width=${width}::plotRegionLabels=${plotRegionLabels}::plotChros=${plotChros}::forceEmptyPlot=true`
   // width > 0 to make sure the component is mounted and avoid double fetch
   const dataEffect = useExtendedSWR(width > 0 && url, svgFetcher)
   return (
