@@ -56,7 +56,7 @@ export default function Index({
 
     <h4>
       <InternalLink
-        href="/subsets/NCIT-subsets"
+        href="/subsetsSearch/"
         label="Cancer CNV Profiles"
       />
     </h4>
@@ -65,8 +65,10 @@ export default function Index({
       Frequency profiles of regional
       genomic gains and losses for all categories (diagnostic entity,
       publication, cohort ...) can be accessed through the respective{" "}
-      Cancer Types pages with visualization and sample retrieval options. Below is
-      a typical example of the aggregated CNV data in {randomSubset.count} samples
+      Cancer Types pages (e.g. <InternalLink href="/subsets/NCIT-subsets/"
+      label="NCIT Neoplasia Codes" />) and compared through the <InternalLink
+      href="/subsetsSearch/" label="Compare CNV Profiles" /> option. Below is
+      an example of aggregated CNV data in {randomSubset.count} samples
       in{" "}{randomSubset.label}{" "} with the frequency of regional{" "}
       <span className="span-dup-color">copy number gains</span>{" "}
       (<span className="span-hldup-color">high level</span>){" "}and{" "}
