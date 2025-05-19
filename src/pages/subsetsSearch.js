@@ -1,5 +1,5 @@
 import React from "react"
-import { merge } from "lodash"
+import { concat, merge } from "lodash"
 import SubsetsSearchPanel from "../components/searchForm/SubsetsSearchPanel"
 import parConfig from "../config/beaconSearchParameters.yaml"
 import subsetsParMods from "../config/subsetsSearchParametersMods.yaml"
@@ -15,7 +15,7 @@ const parametersConfig = merge(
   subsetsParLoc
 )
 
-const subsetsExamples = merge(
+const subsetsExamples = concat(
   baseSubsetsExamples,
   locSubsetsExamples
 )
