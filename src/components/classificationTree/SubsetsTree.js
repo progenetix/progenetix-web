@@ -87,11 +87,13 @@ export function SubsetsTree({
               Compare Subsets from Selection
             </a>
           </div>
-          <div className="column is-half">
-            <a className="button is-primary " href={selectSamplesHref || null}>
-              Search Samples from Selection
-            </a>
-          </div>
+          {checkedSubsets.length === 1 && (
+            <div className="column is-half">
+              <a className="button is-primary " href={selectSamplesHref || null}>
+                Search Samples from Selection
+              </a>
+            </div>
+          )}
         </div>
       )}
       <div className="columns" style={{ padding: "10px" }}>
