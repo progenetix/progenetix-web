@@ -1,7 +1,7 @@
 # Change Log
 
-This page lists changes for the [Beacon+](http://beacon.progenetix.org/ui/)
-implementation of the ["Beacon" genomics API](http://beacon-project.io), as well
+This page lists changes for the [Beacon+](http://beaconplus.progenetix.org)
+implementation of the ["Beacon" genomics API](https://genomebeacons.org), as well
 as related updates for the [Progenetix](http://progenetix.org) front-end.
 
 

@@ -7,7 +7,7 @@ Genomics & Health GA4GH with technical implementation through the
 <a href="https://beacon-project.io">ELIXIR Beacon project</a>. Since 2015 the
 [Theoretical Cytogenetics and Oncogenomics Group](https://baudisgroup.org)
 at the University of Zurich has contributed to Beacon development, partially with the
-[Beacon<sup><span style="color: #d00;">+</span></sup> demonstrator](https://beacon.progenetix.org/ui/),
+[Beacon<sup><span style="color: #d00;">+</span></sup> demonstrator](https://beaconplus.progenetix.org),
 to show current functionality and test future Beacon protocol extensions. The
 Beacon<sup><span style="color: #d00;">+</span></sup> as well as the [Progenetix](https://progenetix.org)
 and [cancercelllines.org](https://cancercelllines.org) websites run on top of the
@@ -227,7 +227,7 @@ CNV statistics or binned genome calls.
 
 The [`bycon`](https://github.com/progenetix/bycon) project provides a combination of a Beacon-protocol based API with additional API services, used as backend and middleware for the Progenetix resource.
 
-`bycon` has been developed to support Beacon protocol development following earlier implementations of Beacon+ ("beaconPlus") with now deprected Perl libraries. The work tightly integrates with the [ELIXIR Beacon](http://beacon-project.io) project.
+`bycon` has been developed to support Beacon protocol development following earlier implementations of Beacon+ ("beaconPlus") with now deprected Perl libraries. The work tightly integrates with the [ELIXIR Beacon](https://genomebeacons.org) project.
 
 `bycon` has its own documentation at [bycon.progenetix.org](http://bycon.progenetix.org).
 

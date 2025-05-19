@@ -286,7 +286,7 @@ w/ slightly rewrapped components).
 
 The _Progenetix_ data serves as the repository behind the
 [Beacon<span style="color: red; font-weight: 800;">+</span>](http://beaconplus.progenetix.org)
-forward looking implementation of the [ELIXIR Beacon](http://beacon-project.io) project.
+forward looking implementation of the [ELIXIR Beacon](https://genomebeacons.org) project.
 Accordingly, upon export through the API variants are re-mapped to a Beacon v2 representation.
 
 #### Progenetix CNV example

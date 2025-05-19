@@ -57,22 +57,17 @@ With exception of some utility scripts and external dependencies (e.g. [MongoDB]
 
 ### [`bycon`](https://github.com/progenetix/bycon)
 
-- Python based service based on the [GA4GH Beacon protocol](http://beacon-project.io)
+- Python based service based on the [GA4GH Beacon protocol](https://genomebeacons.org)
 - software powering the Progenetix resource
-- [Beacon<span style="vertical-align: super; color: red; font-weight: 800;">+</span>](http://beacon.progenetix.org/ui/) implementation(s) use the same code base
+- [Beacon<span style="vertical-align: super; color: red; font-weight: 800;">+</span>](http://beaconplus.progenetix.org) implementation(s) use the same code base
+- since 2024 also contains the core front-end project (React based, `beaconplusWeb`)
 
 ### [`progenetix-web`](https://github.com/progenetix/progenetix-web)
 
 - website for Progenetix and its Beacon<span style="vertical-align: super; color: red; font-weight: 800;">+</span> implementations
-- provides Beacon interfaces for the `bycon` server, as well as other Progenetix sevices (e.g. the [publications](http://progenetix.org/publications/) repository)
+- provides Beacon interfaces for the `bycon` server, as well as other Progenetix services (e.g. the [publications](http://progenetix.org/publications/) repository)
 - implemented as [React](https://reactjs.org) / [Next.js](https://nextjs.org) project
 - contains this documentation tree here as `mkdocs` project, with files in the `docs` directory
-
-### [`PGX`](https://github.com/progenetix/PGX)
-
-- a Perl ibrary providing utility functions for Progenetix CNV data
-- used for data transformation, e.g. binning of segmental CNV data
-- main purpose now in providing the various plots (CNV histograms, clusterd CNV profiles, array plots)
 
 ### Additional Projects
 
@@ -91,11 +86,3 @@ variant information is displayed.
 * There, all gene results are listed. Gene of interest can be visualised on the CNV
 frequency plot by clicking on the gene.
 
-#### [`icdot2uberon`](https://github.com/progenetix/icdot2uberon)
-
-* mappings between ICD-O 3 topographies and UBERON anatomical sites
-
-#### [`ICDOntologies`](https://github.com/progenetix/ICDOntologies)
-
-* mappings between ICD-O 3 morphology / topography pairs and NCIt neoplasm core
-  cancer ontology

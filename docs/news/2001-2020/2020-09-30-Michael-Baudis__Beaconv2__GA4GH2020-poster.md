@@ -30,7 +30,7 @@ Version 2 of the protocol is slated to provide fundamental changes, towards a In
 
 #### Additional Links
 
-* [Beacon Website](http://beacon-project.io)
+* [Beacon Website](https://genomebeacons.org)
 * [SchemaBlocks {S}[B]](https://schemablocks.org)
 * [Beacon+ in Progenetix](https://beaconplus.progenetix.org/)
 * [Bycon Project](https://github.com/progenetix/bycon)
