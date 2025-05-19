@@ -3,7 +3,7 @@ title: "Minimum Error Calibration and Normalization for Genomic Copy Number Anal
 date: 2019-07-31
 template: post.html
 author: '@mbaudis'
-excerpt_link: https://info.baudisgroup.org/publications/2019-07-31-publication-Mecan4CNA-biorxiv/
+excerpt_link: https://baudisgroup.org/publications/2019-07-31-publication-Mecan4CNA-biorxiv/
 pdf_file_name: 2019-07-31___Gao-and-Baudis__Minimum-Error-Calibration-and-Normalization-for-Genomic-Copy-Number-Analysis__biorXiv.pdf
 pdf_file_type: article    # slides poster article
 www_link:

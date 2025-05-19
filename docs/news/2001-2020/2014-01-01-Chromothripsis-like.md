@@ -4,7 +4,7 @@ date: 2014-01-01
 template: post.html
 pdf_file_name: 24476156.pdf
 pdf_file_type: article
-excerpt_link: https://info.baudisgroup.org/publications/2008-2015/2014-01-01-Chromothripsis-like/
+excerpt_link: https://baudisgroup.org/publications/2008-2015/2014-01-01-Chromothripsis-like/
 www_link: http://europepmc.org/abstract/MED/24476156
 category:
   - about

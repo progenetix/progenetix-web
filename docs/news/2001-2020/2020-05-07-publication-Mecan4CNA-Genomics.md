@@ -5,7 +5,7 @@ template: post.html
 authors:
  - '@mbaudis'
  - '@bo'
-excerpt_link: https://info.baudisgroup.org/publications/2020-05-07-publication-Mecan4CNA-Genomics/
+excerpt_link: https://baudisgroup.org/publications/2020-05-07-publication-Mecan4CNA-Genomics/
 pdf_file_name: 2020-05-06___Bo-Gao-and-Michael-Baudis__Minimum-error-calibration-and-normalization-for-genomic-copy-number-analysis__Genomics.pdf
 pdf_file_type: article    # slides poster article
 www_link:

@@ -3,7 +3,7 @@ title: "Geographic assessment of cancer genome profiling studies"
 date: 2020-04-02
 template: post.html
 author: '@mbaudis'
-excerpt_link: https://info.baudisgroup.org/publications/2020-04-02-publication-geography-assesment-DATABASE/
+excerpt_link: https://baudisgroup.org/publications/2020-04-02-publication-geography-assesment-DATABASE/
 pdf_file_name: 2020-04-02___Carrio-Cordo,-Baudis-et-al.__Geographic-Assessment-of-Cancer-Genome-Profiling-Studies__DATABASE.pdf
 pdf_file_type: article    # slides poster article
 www_link:

@@ -5,7 +5,7 @@ template: post.html
 pdf_file_name: 18088415.pdf
 pdf_file_type: article
 permalink: /publications/18088415.html
-excerpt_link: http://info.baudisgroup.org/publications/18088415.html
+excerpt_link: http://baudisgroup.org/publications/18088415.html
 www_link: http://europepmc.org/abstract/MED/18088415
 category:
   - about

@@ -5,7 +5,7 @@
 defines an open standard for genomics data discovery by the Global Alliance for
 Genomics & Health GA4GH with technical implementation through the
 <a href="https://beacon-project.io">ELIXIR Beacon project</a>. Since 2015 the
-[Theoretical Cytogenetics and Oncogenomics Group](https://info.baudisgroup.org)
+[Theoretical Cytogenetics and Oncogenomics Group](https://baudisgroup.org)
 at the University of Zurich has contributed to Beacon development, partially with the
 [Beacon<sup><span style="color: #d00;">+</span></sup> demonstrator](https://beacon.progenetix.org/ui/),
 to show current functionality and test future Beacon protocol extensions. The

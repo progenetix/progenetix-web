@@ -5,7 +5,7 @@ template: post.html
 authors:
   - "@mbaudis"
   - "@qingyao"
-excerpt_link: https://info.baudisgroup.org/publications/2020-03-16-snp2pop-scientificreports/
+excerpt_link: https://baudisgroup.org/publications/2020-03-16-snp2pop-scientificreports/
 pdf_file_name: 2020-03-16___Huang-Q-and-Baudis-M__Population-assignment-from cancer genomes-with-SNP2pop__ScientificReports.pdf
 pdf_file_type: article    # slides poster article
 www_link:

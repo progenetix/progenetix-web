@@ -5,7 +5,7 @@ template: post.html
 authors:
  - '@mbaudis'
  - '@KyleGao'
-excerpt_link: https://info.baudisgroup.org/publications/2020-12-18-publication-Bo-classifiers/
+excerpt_link: https://baudisgroup.org/publications/2020-12-18-publication-Bo-classifiers/
 pdf_file_name:
 pdf_file_type: article    # slides poster article
 www_link:

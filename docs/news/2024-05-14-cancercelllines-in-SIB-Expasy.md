@@ -12,5 +12,5 @@ links:
 Our recently launched cancer cell line genomics site [cancercelllines.org](https://cancercelllines.org) is now listed as one of the resources in the Swiss Institute of Bioinformatics’ [Expasy](https://expasy.org) catalogue. 
 <!--more-->
 
-More information can be found in the article [linked from our site](http://info.baudisgroup.org/publications/2024-03-27-cancercelllines.org/).
+More information can be found in the article [linked from our site](http://baudisgroup.org/publications/2024-03-27-cancercelllines.org/).
 

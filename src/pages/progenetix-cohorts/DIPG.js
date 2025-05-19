@@ -39,7 +39,7 @@ function ThisSubset() {
       This page allows the exploration of genomic variants in aggressive
       childhood gliomas, enabled by the data originally collected for{" "}
       <ExternalLink
-        href="http://info.baudisgroup.org/publications/2017-10-01-Integrated-Molecular/"
+        href="http://baudisgroup.org/publications/2017-10-01-Integrated-Molecular/"
         label="Mackay et al. (2017)"
       />. 
     </div>

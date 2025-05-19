@@ -5,7 +5,7 @@ template: post.html
 pdf_file_name: 11751233.pdf
 pdf_file_type: article
 permalink: /publications/11751233.html
-excerpt_link: http://info.baudisgroup.org/publications/11751233.html
+excerpt_link: http://baudisgroup.org/publications/11751233.html
 www_links_formatted:
   - '<a href="http://europepmc.org/abstract/MED/11751233">[ EPMC ]</a>'
   - '<a href="https://academic.oup.com/bioinformatics/article/17/12/1228/225653">[ Bioinformatics ]</a>'

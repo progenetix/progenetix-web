@@ -20,7 +20,7 @@ Conclusion:
 
 With the Beacon v2 protocol - as a major upgrade from the v1 standard - currently being under review as GA4GH standard, work is focussing on its implementation in a wide set of use cases, from access protected clinical information systems to public-access research databases. Importantly, an ELIXIR-supported implementation study by members of the ELIXIR h-CNV community (cnvar.org) will explore the generation of Beacon v2 powered CNV implementations by various major European genomics resources, in the fields of human genetics / rare diseases and cancer genomics.
 
-**Poster** [[PDF]](http://info.baudisgroup.org/pdf/2022-06-13___Michael-Baudis-Progenetix-ESHG-poster.pdf)
+**Poster** [[PDF]](http://baudisgroup.org/pdf/2022-06-13___Michael-Baudis-Progenetix-ESHG-poster.pdf)
 
 
 ??? Note "References"
