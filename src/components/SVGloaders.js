@@ -40,6 +40,8 @@ export function SubsetHistogram({
   const componentRef = useRef()
   const { width } = useContainerDimensions(componentRef)
   const size = givenSize || width
+  const idNo = id.split(",").length
+  // const dsNo = datasetIds.split(",").length
   return (
     <div ref={componentRef}>
       <SVGloader
@@ -70,10 +72,14 @@ export function SubsetHistogram({
         <Link href={subsetHistoBaseLink(id, datasetIds)}>
           <a>Download SVG</a>
         </Link>
-        {" | "}
-        <Link href={subsetIdLink(id)}>
-          <a>Go to {id}</a>
-        </Link>
+        {idNo === 1 && (
+          <>
+          {" | "}
+          <Link href={subsetIdLink(id)}>
+            <a>Go to {id}</a>
+          </Link>
+          </>
+        )}
         {" | "}
         <Link href={subsetPgxsegLink(id)}>
           <a>Download CNV Frequencies</a>
