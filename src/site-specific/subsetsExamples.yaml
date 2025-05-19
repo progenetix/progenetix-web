@@ -10,7 +10,7 @@
 #         - NCIT:C3493
 #         - NCIT:C4450
 #         - NCIT:C4917
-- label: "B-Cell Lymphomas (ICD-O)"
+- label: "B-Cell Lymphomas"
   note: Some types of B-NHL
   description: |
     This example compares several types of B-cell lymphomas as defined by their ICD-O 3 code.
