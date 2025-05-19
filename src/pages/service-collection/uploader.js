@@ -1,7 +1,7 @@
 import { Layout } from "../../site-specific/Layout"
 import React, { useState } from "react"
 import { useDropzone } from "react-dropzone"
-import { basePath, uploadFile } from "../../hooks/api"
+import { uploadFile } from "../../hooks/api"
 import Panel from "../../components/Panel"
 
 export default function FileLoaderPage() {
@@ -178,8 +178,8 @@ function Dropzone({ setResult }) {
 function Results({ results, onCancelClicked }) {
   const fileId = results.fileId
   // const visualizationLink = getVisualizationLink("", "", fileId, "", "")
-  const histoPlotLink = `${basePath}services/sampleplots/?datasetIds=upload&fileId=${fileId}`
-  const samplesPlotLink = `${basePath}services/sampleplots/?datasetIds=upload&plotType=samplesplot&fileId=${fileId}`
+  const histoPlotLink = `/services/sampleplots/?datasetIds=upload&fileId=${fileId}`
+  const samplesPlotLink = `/services/sampleplots/?datasetIds=upload&plotType=samplesplot&fileId=${fileId}`
 
   console.log("histoPlotLink...", histoPlotLink)
 

@@ -182,7 +182,7 @@ function Variant({ variant, id, datasetIds }) {
         </>
       )}
 
-      {v?.identifiers?.variantAlternativeIds && (
+      {v?.variantAlternativeIds && (
         <div>
           <h5>Variant Alternative IDs</h5>
           <ul>
@@ -195,7 +195,7 @@ function Variant({ variant, id, datasetIds }) {
         </div>
       )}
 
-      {v?.identifiers?.variantLevelData?.clinicalInterpretations && (
+      {v?.variantLevelData?.clinicalInterpretations && (
         <>
         {v.variantLevelData && variant.variation.variantLevelData.clinicalInterpretations.length > 0 && (
           <>
@@ -245,11 +245,7 @@ function Variant({ variant, id, datasetIds }) {
       {variant.caseLevelData[0]?.biosampleId && (
         <>
           <h5>Plot</h5>
-          <BiosamplePlot
-            biosid={variant.caseLevelData[0].biosampleId}
-            datasetIds={datasetIds}
-            plotPars={`plotRegionLabels=${markers.join(",")}::plotChros=${chros.join(",")}`}
-          />
+          <BiosamplePlot biosid={variant.caseLevelData[0].biosampleId} datasetIds={datasetIds} plotRegionLabels={markers.join(",")} plotChros={chros.join(",")} />
         </>
       )}
 

@@ -1,4 +1,4 @@
-import { sampleSearchPageFiltersLink } from "../../hooks/api"
+import { sampleSearchPageFiltersLink, subsetSearchPageFiltersLink } from "../../hooks/api"
 import { subsetCountLabel } from "../helpersShared/labelHelpers"
 import React, { useEffect, useMemo, useState } from "react"
 import cn from "classnames"
@@ -34,6 +34,9 @@ export function SubsetsTree({
   const selectSamplesHref =
     hasSelectedSubsets &&
     sampleSelectUrl({ subsets: checkedSubsets, datasetIds, sampleFilterScope })
+  const selectSubsetsHref =
+    hasSelectedSubsets &&
+    subsetSelectUrl({ subsets: checkedSubsets, datasetIds, sampleFilterScope })
 
   const height = Math.min(size * ROW_HEIGHT, 800)
   return (
@@ -75,9 +78,15 @@ export function SubsetsTree({
           </>
         )}
         {hasSelectedSubsets && (
-          <a className="button is-primary " href={selectSamplesHref || null}>
-            Search Samples from selection
-          </a>
+          <div>
+            <a className="button is-primary " href={selectSubsetsHref || null}>
+              Compare Subsets from Selection
+            </a>
+            {" "}
+            <a className="button is-primary " href={selectSamplesHref || null}>
+              Search Samples from Selection
+            </a>
+          </div>
         )}{" "}
       </div>
       <ul className="tags">
@@ -353,6 +362,12 @@ function sampleSelectUrl({ subsets, datasetIds, sampleFilterScope }) {
   const filters = subsets.map(({ id }) => id).join(",")
   // here the `bioontology` parameter has to be used instead of `filters` for transfer to the search form
   return sampleSearchPageFiltersLink({ datasetIds, sampleFilterScope, filters })
+}
+
+function subsetSelectUrl({ subsets, datasetIds, sampleFilterScope }) {
+  const filters = subsets.map(({ id }) => id).join(",")
+  // here the `bioontology` parameter has to be used instead of `filters` for transfer to the search form
+  return subsetSearchPageFiltersLink({ datasetIds, sampleFilterScope, filters })
 }
 
 // function canSearch(subset) {

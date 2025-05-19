@@ -1,0 +1,56 @@
+sitePars:
+  longName: Progenetix Cancer Genomics Information Resource
+  firstYear: 2000
+  orgSiteLink: https://baudisgroup.org/
+  orgSiteLabel: Computational Oncogenomics Group
+  siteLogo: /img/progenetix-logo-black.png
+  siteLogoAlt: Progenetix Logo
+  docLink: https://docs.progenetix.org
+
+layoutSideItems:
+  - href: /subsetsSearch/
+    label: CNV Profiles
+  - href: /subsets/NCIT-subsets/
+    label: ... by NCIT
+    isSub: isSub
+  - href: /subsets/icdom-subsets/
+    label: ... by ICD-O Morphology
+    isSub: isSub
+  - href: /subsets/icdot-subsets/
+    label: ... by ICD-O Site
+    isSub: isSub
+  - href: /subsets/NCITclinical-subsets/
+    label: ... by TNM & Grade
+    isSub: isSub
+  - href: /search/
+    label: Search Samples
+  - href: /progenetix-cohorts/arraymap/
+    label: arrayMap
+  - href: /progenetix-cohorts/TCGA/
+    label: TCGA Data
+    isSub: isSub
+  - href: /progenetix-cohorts/cbioportal-subsets/
+    label: cBioPortal Studies
+    isSub: isSub
+  - href: /publications/
+    label: Publication DB
+  - href: /publicationsProgenetixRef/
+    label: Progenetix Use
+    isSub: isSub
+  - href: /service-collection/ontologymaps/
+    label: NCIT - ICD-O Mappings
+  - href: /service-collection/uberonmaps/
+    label: UBERON Mappings
+    isSub: isSub
+  - href: /service-collection/uploader/
+    label: Upload & Plot
+  - href: /OpenAPI/
+    label: OpenAPI Paths and Examples
+  - href: http://cancercelllines.org
+    label: Cancer Cell Lines
+  - href: https://beaconplus.progenetix.org
+    label: Beacon+
+  - href: https://docs.progenetix.org
+    label: Documentation
+  - href: https://baudisgroup.org/
+    label: Baudisgroup @ UZH

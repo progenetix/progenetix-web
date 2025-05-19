@@ -4,7 +4,8 @@ import { SubsetHistogram } from "../components/SVGloaders"
 import { InternalLink }  from "../components/helpersShared/linkHelpers"
 import React from "react"
 import { sample } from "lodash"
-import { SITE_DEFAULTS, tryFetch } from "../hooks/api"
+import { DATASETDEFAULT, tryFetch, THISSITE } from "../hooks/api"
+// import layoutConfig from "../site-specific/layout.yaml"
 
 const imgFocal = {
   float: "right",
@@ -12,11 +13,6 @@ const imgFocal = {
   border: "0px",
   margin: "-35px -20px -10px 10px"
 }
-
-// const histoLegend = {
-//   margin: "-4px 0px 18px 0px",
-//   display: "block"
-// }
 
 export default function Index({
   ncitCountResponse,
@@ -75,7 +71,7 @@ export default function Index({
       <span className="span-del-color">losses</span>{" "}
       (<span className="span-hldel-color">high level</span>){" "}
       displayed for the 22 autosomes.
-      <SubsetHistogram datasetIds={SITE_DEFAULTS.DATASETID} id={randomSubset.id} />
+      <SubsetHistogram datasetIds={DATASETDEFAULT} id={randomSubset.id} />
     </p>
 
     <h4>
@@ -103,13 +99,13 @@ export default function Index({
 
 export const getStaticProps = async () => {
   const dbstatsReply = await tryFetch(
-    `${SITE_DEFAULTS.SITE}services/dbstats/?datasetIds=${SITE_DEFAULTS.DATASETID}`
+    `${THISSITE}services/dbstats/?datasetIds=${DATASETDEFAULT}`
   )
   const ncitCountReply = await tryFetch(
-    `${SITE_DEFAULTS.SITE}services/collations/?datasetIds=${SITE_DEFAULTS.DATASETID}&collationTypes=NCIT&includeDescendantTerms=false&requestedGranularity=count`
+    `${THISSITE}services/collations/?datasetIds=${DATASETDEFAULT}&collationTypes=NCIT&includeDescendantTerms=false&requestedGranularity=count`
   )
   const subsetsReply = await tryFetch(
-    `${SITE_DEFAULTS.SITE}services/collations/?datasetIds=${SITE_DEFAULTS.DATASETID}&collationTypes=NCIT&deliveryKeys=count,id,label,cnv_analyses`
+    `${THISSITE}services/collations/?datasetIds=${DATASETDEFAULT}&collationTypes=NCIT&deliveryKeys=count,id,label,cnv_analyses`
   )
 
   return {

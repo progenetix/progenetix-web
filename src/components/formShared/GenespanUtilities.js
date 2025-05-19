@@ -61,7 +61,7 @@ function geneLabel(gene) {
   return (
     gene.symbol +
     " (" +
-    gene.chromosome +
+    gene.referenceName +
     ":" +
     gene.start +
     "-" +
@@ -71,5 +71,5 @@ function geneLabel(gene) {
 }
 
 function geneSearchUrl(querytext) {
-  return `${basePath}services/genespans/?geneId=${querytext}&deliveryKeys=symbol,referenceName,chromosome,start,end`
+  return `${basePath}services/genespans/?geneId=${querytext}&filterPrecision=start&deliveryKeys=symbol,referenceName,start,end`
 }

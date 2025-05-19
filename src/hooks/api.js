@@ -7,28 +7,16 @@ import SiteConfig from "../site-specific/config.js"
 export const basePath = process.env.NEXT_PUBLIC_API_PATH
 export const useProxy = process.env.NEXT_PUBLIC_USE_PROXY === "true"
 
-export const siteDataset = SiteConfig.default_dataset_id
-
 export function useExtendedSWR(url, fetcher = defaultFetcher) {
   const { data, error, ...other } = swr(url, fetcher)
   return { data, error, ...other, isLoading: !data && !error }
 }
 
-export const SITE_DEFAULTS = {
-  SITE: process.env.NEXT_PUBLIC_SITE_URL,
-  PREFETCH_PATH: process.env.NEXT_PUBLIC_PREFETCH_API_PATH,
-  SITE_LOGO: SiteConfig.website_logo,
-  DATASETID: SiteConfig.default_dataset_id,
-  PROJECTDOCLINK: SiteConfig.docs_project_site,
-  MASTERROOTLINK: SiteConfig.data_master_site,
-  MASTERDOCLINK: SiteConfig.docs_master_site,
-  NEWSLINK: SiteConfig.news_site,
-  ORGSITELINK: SiteConfig.organization_site
-}
-
 // export const MAX_HISTO_SAMPLES = 1000
 export const THISYEAR = new Date().getFullYear()
+export const THISSITE = process.env.NEXT_PUBLIC_SITE_URL
 export const BIOKEYS = ["icdoMorphology", "icdoTopography", "histologicalDiagnosis"]
+export const DATASETDEFAULT = SiteConfig.default_dataset_id
 
 export function useProgenetixApi(...args) {
   const { data, error, ...other } = useExtendedSWR(...args)
@@ -80,6 +68,15 @@ export async function tryFetch(url, fallBack = "N/A") {
  * When param is null no query will be triggered.
  */
 
+export function urlRetrieveIds(urlQuery) {
+  var { id, datasetIds } = urlQuery
+  if (!datasetIds) {
+    datasetIds = DATASETDEFAULT
+  }
+  return { id, datasetIds }
+}
+
+
 // This Beacon query only retrieves the counts & handovers using a custom `includeHandovers=true`
 // parameter, to avoid "double-loading" of the results.
 export function useBeaconQuery(queryData) {
@@ -96,15 +93,6 @@ export function useSubsetsQuery(queryData) {
       ? `${basePath}services/collationplots/?${buildFilterParameters(queryData)}`
       : null
   )
-}
-
-export function urlRetrieveIds(urlQuery) {
-  var { id, datasetIds } = urlQuery
-  if (!datasetIds) {
-    datasetIds = SITE_DEFAULTS.DATASETID
-  }
-  const hasAllParams = id && datasetIds
-  return {id, datasetIds, hasAllParams}
 }
 
 export function useAggregatorQuery(queryData) {
@@ -143,14 +131,6 @@ export function makePlotGeneSymbols({
   }
   return geneSymbols
 }
-
-
-
-// export function mkGeneParams(gene) {
-//   if (!gene) return null
-//   const geneId = gene.map((gene) => gene.value).join(',')
-//   return { geneId }
-// }
 
 export function makeFilters({
   allTermsFilters,
@@ -438,8 +418,8 @@ export function useFiltersByType({ datasetIds, collationTypes }) {
 }
 
 // general site listings for collations etc. are bound to the default dataset
-export function useFilterTreesByType({ collationTypes }) {
-  const url = `${basePath}beacon/datasets/${siteDataset}/filtering_terms?collationTypes=${collationTypes}&mode=termTree`
+export function useFilterTreesByType({ datasetIds, collationTypes }) {
+  const url = `${basePath}beacon/datasets/${datasetIds}/filtering_terms?collationTypes=${collationTypes}&mode=termTree`
   return useProgenetixApi(url)
 }
 
@@ -449,6 +429,14 @@ export function sampleSearchPageFiltersLink({
   filters
 }) {
   return `/search/?${sampleFilterScope}=${filters}&datasetIds=${datasetIds}`
+}
+
+export function subsetSearchPageFiltersLink({
+  datasetIds,
+  sampleFilterScope,
+  filters
+}) {
+  return `/subsetsSearch/?${sampleFilterScope}=${filters}&datasetIds=${datasetIds}`
 }
 
 export function useGeoCity({ city }) {

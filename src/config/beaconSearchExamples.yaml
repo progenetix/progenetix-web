@@ -14,10 +14,10 @@
       defaultValue: "refseq:NC_000009.12"
     start:
       isHidden: false
-      defaultValue: "21000001-21975098"
+      defaultValue: "21000001,21975098"
     end:
       isHidden: false
-      defaultValue: "21967753-23000000"
+      defaultValue: "21967753,23000000"
     variantType:
       isHidden: false
       defaultValue: "EFO:0030067"
@@ -31,10 +31,6 @@
     analysisOperation:
       isHidden: true
     sex:
-      isHidden: false
-    geoCity:
-      isHidden: false
-    geodistanceKm:
       isHidden: false
 
 - label: "SNV Example"
@@ -105,9 +101,6 @@
     - `variantType` and `alternateBases` to specify variants
   img: /img/BeaconGeneQuery-graphics.png
   parameters:
-    datasetIds:
-      isHidden: false
-      defaultValue: ["progenetix"]
     geneId:
       isHidden: false
       defaultValue: CDK2
@@ -162,11 +155,6 @@
   description: |
     This example shows a short form version of the CDKN2A deletion example.
   parameters:
-    datasetIds:
-      isHidden: false
-      defaultValue: ["progenetix"]
-    cytoBands:
-      isHidden: true
     variantQueryDigests:
       isHidden: false
       defaultValue: "9:21000001-21975098--21967753-24000000:DEL"
@@ -198,9 +186,6 @@
     This is an experimental example for a fusion query (by positions).
   img: /img/BeaconFusionQuery-graphics.png
   parameters:
-    datasetIds:
-      isHidden: false
-      defaultValue: ["progenetix"]
     variantType:
       isHidden: false
       defaultValue: SO:0000806
@@ -224,4 +209,3 @@
     mateEnd:
       isHidden: false
       defaultValue: 35600000
-

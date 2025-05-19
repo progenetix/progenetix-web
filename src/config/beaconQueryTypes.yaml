@@ -51,8 +51,6 @@
     See also the [Beacon documentation](https://docs.genomebeacons.org/variant-queries/#beacon-range-queries) for more information.
   img: /img/BeaconRangeQuery-graphics.png
   parameters:
-    datasetIds:
-      placeholder: ["progenetix"]
     referenceName:
       isHidden: false
     geneId:
@@ -84,8 +82,6 @@
     See also the [Beacon documentation](https://docs.genomebeacons.org/variant-queries/#beacon-geneid-queries) for more information.    
   img: /img/BeaconGeneQuery-graphics.png
   parameters:
-    datasetIds:
-      defaultValue: ["progenetix"]
     aminoacidChange:
       isHidden: true
     geneId:
@@ -119,8 +115,6 @@
     variants such as SNVs and INDELs.
     See also the [Beacon documentation](https://docs.genomebeacons.org/variant-queries/#beacon-sequence-queries) for more information.
   parameters:
-    datasetIds:
-      placeholder: ["progenetix"]
     referenceName:
       isHidden: false
     geneId:
@@ -149,13 +143,11 @@
 - label: "Genomic Fusion"
   infoText: 'This is an experimental implementation for a fusion query (by positions).'
   description: |
-    The current implementation uses th existing `mateName` as well as the proposed
+    The current implementation uses the xisting `mateName` as well as the proposed
     `mateStart` and `mateEnd` parameters to pass positional information (similar
     to a *range request*) for a second genomic location, _i.e._ the fusion partner
     (in the sense of a VRS v2 *Adjacency*.)
   parameters:
-    datasetIds:
-      placeholder: ["progenetix"]
     referenceName:
       isHidden: false
     mateName:
@@ -188,8 +180,6 @@
     See also the [Beacon `filters` documentation](https://docs.genomebeacons.org/filters/#using-filters-in-queries) for more information.        
   img: false
   parameters:
-    datasetIds:
-      defaultValue: ["progenetix"]
     referenceName:
       isHidden: true
     start:
@@ -303,8 +293,6 @@
   infoText: "This example shows a short form version of the CDKN2A deletion example."
   img: false
   parameters:
-    datasetIds:
-      defaultValue: ["progenetix"]
     cytoBands:
       isHidden: true
     variantQueryDigests:
@@ -343,8 +331,6 @@
   infoText: "Display all form fields"
   img: false
   parameters:
-    datasetIds:
-      defaultValue: ["progenetix"]
     aminoacidChange:
       isHidden: false
     geneId:

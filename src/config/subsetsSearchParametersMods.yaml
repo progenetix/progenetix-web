@@ -1,7 +1,10 @@
 ---
 description: |
-  These settings modify the general form parameters for the subsets selection
-  form - basically hiding most & changing some info texts.
+  These settings are for the subsets selection form. Here we re-use the fields
+  from the `beaconSearchParameters` and then set everything but parameters suitable
+  for `collations...` endpoints to `isHidden: true` - basically everything
+  apart from `datasetIds` and the scoped `filters` parameters (e.g. `bioontology`,
+  `allTermsFilters`...).
 parameters:
   datasetIds:
     isHidden: false

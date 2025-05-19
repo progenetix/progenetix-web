@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { SITE_DEFAULTS, useSubsetsQuery } from "../../hooks/api"
+import { useSubsetsQuery } from "../../hooks/api"
 import Panel from "../Panel"
 import { SubsetsSearchForm } from "./SubsetsSearchForm"
 import { SubsetsResults } from "../searchResults/SubsetsResults"
@@ -19,12 +19,6 @@ export default function SubsetsSearchPanel({
   requestTypeExamples,
   collapsed
 }) {
-
-  // console.log(parametersConfig)
-
-  if (!parametersConfig.parameters.datasetIds?.defaultValue) {
-    parametersConfig.parameters.datasetIds.defaultValue = [SITE_DEFAULTS.DATASETID]
-  }
   
   const [query, setQuery] = useState(null) // actual valid query
   const [searchCollapsed, setSearchCollapsed] = useState(collapsed)

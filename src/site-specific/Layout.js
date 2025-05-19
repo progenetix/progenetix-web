@@ -2,11 +2,14 @@ import React, { useState } from "react"
 import cn from "classnames"
 import { FaBars, FaTimes } from "react-icons/fa"
 import { ErrorBoundary } from "react-error-boundary"
+import { MarkdownParser } from "../components/MarkdownParser"
 import Head from "next/head"
 import {ErrorFallback, MenuInternalLinkItem} from "../components/MenuHelpers"
-import { SITE_DEFAULTS, THISYEAR } from "../hooks/api"
+import Panel from "../components/Panel"
+import { THISYEAR } from "../hooks/api"
+import layoutConfig from "../site-specific/layout.yaml"
 
-export function Layout({ title, headline, children }) {
+export function Layout({ title, headline, leadPanelMarkdown, tailPanelMarkdown, children }) {
   const [sideOpen, setSideOpen] = useState(false)
   return (
     <div className="Layout__app">
@@ -45,18 +48,26 @@ export function Layout({ title, headline, children }) {
                 // reset the state of your app so the error doesn't happen again
               }}
             >
+              {leadPanelMarkdown && (
+                <Panel heading="" className="content">
+                  {MarkdownParser(leadPanelMarkdown)}
+                </Panel>
+              )}
               {children}
+              {tailPanelMarkdown && (
+                <Panel heading="" className="content">
+                  {MarkdownParser(tailPanelMarkdown)}
+                </Panel>
+              )}
             </ErrorBoundary>
           </div>
         </div>
       </main>
       <footer className="footer">
         <div className="content container has-text-centered">
-          © 2000 - {THISYEAR} Progenetix Cancer Genomics Information Resource by
+          © {layoutConfig.sitePars.firstYear} - {THISYEAR} {layoutConfig.sitePars.longName} by
           the{" "}
-          <a href={SITE_DEFAULTS.ORGSITELINK}>
-            Computational Oncogenomics Group
-          </a>{" "}
+          <a href={layoutConfig.sitePars.orgSiteLink}>{layoutConfig.sitePars.orgSiteLabel}</a>{" "}
           at the{" "}
           <a href="https://www.mls.uzh.ch/en/research/baudis/">
             University of Zurich
@@ -81,133 +92,25 @@ export function Layout({ title, headline, children }) {
 }
 
 function Side({ onClick }) {
+
   return (
     <div onClick={onClick}>
       <a href="/">
         <img
           className="Layout__side-logo"
-          src="/img/progenetix-logo-black.png"
-          alt="progenetix"
+          src={layoutConfig.sitePars.siteLogo}
+          alt={layoutConfig.sitePars.siteLogoAlt}
         />
       </a>
       <ul className="Layout__side__items">
-        <MenuInternalLinkItem href="/subsetsSearch/" label="Compare CNV Profiles" />
-        <MenuInternalLinkItem
-          href="/subsets/NCIT-subsets"
-          label="CNV Profiles by Cancer Type"
-        />
-        <MenuInternalLinkItem
-          href="/subsets/NCIT-subsets"
-          label="NCIT Neoplasia Codes"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem
-          href="/subsets/icdom-subsets"
-          label="ICD-O Morphologies"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem
-          href="/subsets/icdot-subsets"
-          label="ICD-O Organ Sites"
-          isSub="isSub"
-        />
-{/*        <MenuInternalLinkItem
-          href="/subsets/NCITclinical-subsets"
-          label="TNM & Grade"
-          isSub="isSub"
-        />
-*/}        
-        <MenuInternalLinkItem href="/search/" label="Search Samples" />
-        <MenuInternalLinkItem
-          href="/progenetix-cohorts/arraymap"
-          label="Data Cohorts"
-        />
-        <MenuInternalLinkItem
-          href="/progenetix-cohorts/arraymap"
-          label="arrayMap"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem
-          href="/progenetix-cohorts/TCGA"
-          label="TCGA Cancer Samples"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem
-          href="/subsets/cbioportal-subsets"
-          label="cBioPortal Studies"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem
-          href="http://cancercelllines.org"
-          label={
-            <>
-              Cancer Cell Lines<sup style={{ color: "red" }}>o</sup>
-            </>
-          }
-        />
-        <MenuInternalLinkItem href="/publications" label="Publication DB" />
-        <MenuInternalLinkItem
-          href="/publications"
-          label="Genome Profiling"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem
-          href="/publicationsProgenetixRef"
-          label="Progenetix Use"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem
-          href="/service-collection/ontologymaps"
-          label="Services"
-        />
-        <MenuInternalLinkItem
-          href="/service-collection/ontologymaps"
-          label="NCIt Mappings"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem
-          href="/service-collection/uberonmaps"
-          label="UBERON Mappings"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem
-          href="/service-collection/uploader"
-          label="Upload & Plot"
-        />
-        <MenuInternalLinkItem
-          href="/OpenAPI"
-          label="OpenAPI Paths and Examples"
-        />
-        <MenuInternalLinkItem
-          href="https://beaconplus.progenetix.org/"
-          label={
-            <>
-              Beacon<sup style={{ color: "red" }}>+</sup>
-            </>
-          }
-        />
-        <MenuInternalLinkItem href={SITE_DEFAULTS.MASTERDOCLINK} label="Documentation" />
-        <MenuInternalLinkItem
-          href={SITE_DEFAULTS.NEWSLINK}
-          label="News"
-          isSub="isSub"
-        />
-        <MenuInternalLinkItem
-          href={`${SITE_DEFAULTS.MASTERDOCLINK}/use-cases`}
-          label="Downloads & Use Cases"
-          isSub="isSub"
-        />
-
-        <MenuInternalLinkItem
-          href={`${SITE_DEFAULTS.MASTERDOCLINK}/services`}
-          label="Sevices & API"
-          isSub="isSub"
-        />
-
-        <MenuInternalLinkItem
-          href={SITE_DEFAULTS.ORGSITELINK}
-          label="Baudisgroup @ UZH"
-        />
+        {layoutConfig.layoutSideItems.map((item, i) => (
+          <MenuInternalLinkItem
+            key={i}
+            href={item.href}
+            label={item.label}
+            isSub={item.isSub}
+          />
+        ))}
       </ul>
     </div>
   )
