@@ -10,6 +10,8 @@
 #         - NCIT:C3493
 #         - NCIT:C4450
 #         - NCIT:C4917
+#   plotChros:
+#     defaultValue: "1,8,17"
 - label: "B-Cell Lymphomas"
   note: Some types of B-NHL
   description: |
@@ -26,3 +28,5 @@
         - pgx:icdom-96793
         - pgx:icdom-96703
         - pgx:icdom-98233
+    plotChros:
+      defaultValue: "1,2,3,6,7,8,9,11,12,13,16,17,18,19"

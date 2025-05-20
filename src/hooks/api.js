@@ -13,8 +13,8 @@ export function useExtendedSWR(url, fetcher = defaultFetcher) {
 }
 
 // export const MAX_HISTO_SAMPLES = 1000
-export const THISYEAR = new Date().getFullYear()
 export const THISSITE = process.env.NEXT_PUBLIC_SITE_URL
+export const THISYEAR = new Date().getFullYear()
 export const BIOKEYS = ["icdoMorphology", "icdoTopography", "histologicalDiagnosis"]
 export const DATASETDEFAULT = SiteConfig.default_dataset_id
 
