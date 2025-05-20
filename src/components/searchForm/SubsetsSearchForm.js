@@ -197,6 +197,10 @@ function SubsetSearchForm({
             {...selectProps}
             isLoading={isAllSubsetsDataLoading}
           />
+          <SelectField
+            {...parameters.plotType}
+            {...selectProps}
+          />
           <GeneSymbolSelector
             {...selectProps}
             name="plotGeneSymbols"

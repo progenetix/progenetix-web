@@ -18,6 +18,7 @@ export function SubsetsResults({query}) {
         id={filters}
         plotGeneSymbols={plotGeneSymbols}
         plotChros={plotChros}
+        plotType={query.plotType}
       />
     </>
   )
