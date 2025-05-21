@@ -15,10 +15,10 @@ const parametersConfig = merge(
   subsetsParLoc
 )
 
-const subsetsExamples = concat(
-  baseSubsetsExamples,
-  locSubsetsExamples
-)
+var subsetsExamples = locSubsetsExamples.examples
+if (!locSubsetsExamples.skipDefaults) {
+  subsetsExamples = concat(subsetsExamples, baseSubsetsExamples.examples)
+}
 
 if (!parametersConfig.parameters?.datasetIds?.defaultValue) {
   parametersConfig.parameters.datasetIds.defaultValue = [DATASETDEFAULT]

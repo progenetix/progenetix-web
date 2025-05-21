@@ -374,15 +374,13 @@ export function useSubsethistogram({
   plotGeneSymbols,
   plotCytoregionLabels,
   size,
-  plotChros,
-  plotType
+  plotChros
 }) {
   const svgbaseurl = subsetHistoBaseLink(id, datasetIds)
   const params = []
   const plotParsVals = []
   fileId && params.push(["fileId", fileId])
   size && plotParsVals.push("plot_width="+size)
-  plotType && params.push(["plotType", plotType])
   plotRegionLabels && plotParsVals.push("plot_region_labels="+plotRegionLabels.join(","))
   plotGeneSymbols && plotParsVals.push("plot_gene_symbols="+plotGeneSymbols.join(","))
   plotCytoregionLabels && plotParsVals.push("plot_cytoregion_labels="+plotCytoregionLabels.join(","))
@@ -391,6 +389,7 @@ export function useSubsethistogram({
   const searchQuery = new URLSearchParams(params).toString()
   return useExtendedSWR(size > 0 && `${svgbaseurl}&${searchQuery}`, svgFetcher)
 }
+
 
 export function useCollationsById({ datasetIds }) {
   const { data, ...other } = useFiltersByType({

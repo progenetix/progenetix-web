@@ -35,20 +35,6 @@ parameters:
     infoText: |
       General selection of all subsets (potentially) available for display.
 
-# <-------------------------- added for subsets -----------------------------> #
-
-  plotType:
-    label: Plot Type
-    infoText: |
-      Select the type of plot you want to display.
-    options:
-      - value: histoplot
-        label: CNV Frequency Histogram Plot
-      - value: histoheatplot
-        label: Heatmap-like  CNV Frequency Plot
-    isHidden: false
-    isMulti: false
-
 # <----------------- below do not apply to subsets in any case --------------> #
 
   assemblyId:
