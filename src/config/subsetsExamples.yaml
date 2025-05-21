@@ -46,10 +46,10 @@ examples:
       and [cancercelllines.org](https://cancercelllines.org/). Note: Progenetix also
       contains a minority subset of cell lines.
 
-      For details about the plot parameter use plese see the `bycon` [API documantation](https://bycon.progenetix.org/plotting/).
+      For details about the plot parameter use plese see the `bycon` [API documentation](https://bycon.progenetix.org/plotting/)
+      and particularly the []list of plot parameters](https://bycon.progenetix.org/generated/plot_defaults/).
       Note: In the entry field the parameters are assigned by `:` and concatenated by `;`
       (e.g. `plot_area_color:#ccffdd;plot_gene_symbols=ESR1,MYC,CCND1,ERBB2,TP53`).
-
     parameters:
       datasetIds:
         defaultValue:
