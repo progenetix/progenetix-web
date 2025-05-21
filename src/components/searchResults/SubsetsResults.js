@@ -7,6 +7,9 @@ export function SubsetsResults({query}) {
   const filters = makeFilters(query).join(",")
   const plotGeneSymbols = makePlotGeneSymbols(query)
   const plotChros = query.plotChros ? query.plotChros.trim().split(",") : null
+  const plotParsString = query.plotParsString ? query.plotParsString.trim().replace(/:/g, "=").split(";").join("::") : null
+
+  console.log(plotParsString)
 
   return (
     <>
@@ -18,6 +21,7 @@ export function SubsetsResults({query}) {
         id={filters}
         plotGeneSymbols={plotGeneSymbols}
         plotChros={plotChros}
+        plotParsString={plotParsString}
       />
     </>
   )

@@ -374,7 +374,8 @@ export function useSubsethistogram({
   plotGeneSymbols,
   plotCytoregionLabels,
   size,
-  plotChros
+  plotChros,
+  plotParsString
 }) {
   const svgbaseurl = subsetHistoBaseLink(id, datasetIds)
   const params = []
@@ -385,6 +386,7 @@ export function useSubsethistogram({
   plotGeneSymbols && plotParsVals.push("plot_gene_symbols="+plotGeneSymbols.join(","))
   plotCytoregionLabels && plotParsVals.push("plot_cytoregion_labels="+plotCytoregionLabels.join(","))
   plotChros && plotParsVals.push("plot_chros="+plotChros.join(","))
+  plotParsString && plotParsVals.push(plotParsString)
   plotParsVals.length > 0 && params.push(["plotPars", plotParsVals.join("::")])
   const searchQuery = new URLSearchParams(params).toString()
   return useExtendedSWR(size > 0 && `${svgbaseurl}&${searchQuery}`, svgFetcher)

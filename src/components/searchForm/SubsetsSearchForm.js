@@ -209,6 +209,13 @@ function SubsetSearchForm({
             errors={errors}
             register={register}
           />
+          <InputField
+            name="plotParsString"
+            label="Additional Plot Parameters"
+            infoText="Plot parameters in string format. The parameters are separated by **semicolons**, and the key and value are separated by a colon. For example: 'plot_axis_y_max:70;plot_labelcol_width:300'."
+            errors={errors}
+            register={register}
+          />
           <div className="field mt-5">
             <div className="control">
               <button
