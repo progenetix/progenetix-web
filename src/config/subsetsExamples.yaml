@@ -24,7 +24,7 @@ description: |-
       plotChros:
         defaultValue: 1,3,5,7,8,11,16,17,20
       plotParsString:
-        defaultValue: "plot_axis_y_max:75,plot_area_color:#ccffdd"
+        defaultValue: "plot_axis_y_max:75;plot_area_color:#ccffdd"
 
   ```
 examples:

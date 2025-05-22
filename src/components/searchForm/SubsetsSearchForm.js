@@ -197,24 +197,23 @@ function SubsetSearchForm({
             {...selectProps}
             isLoading={isAllSubsetsDataLoading}
           />
+{/*          <GeneSymbolSelector
+            {...parameters.plotGeneSymbols}
+            {...selectProps}
+          />
+*/}       
           <GeneSymbolSelector
             {...selectProps}
             name="plotGeneSymbols"
             label="Gene Symbol(s) for Labeling"
           />
           <InputField
-            name="plotChros"
-            label="Chromosomes to Plot"
-            infoText="The chromosomes to be included in the plot, in the order they should appear. The values should just be the comma-separated chromosome numbers (e.g. '1,3,19,X' - unquoted, no spaces). The default is chr 1-22."
-            errors={errors}
-            register={register}
+            {...parameters.plotChros}
+            {...fieldProps}
           />
           <InputField
-            name="plotParsString"
-            label="Additional Plot Parameters"
-            infoText="Plot parameters in string format. The parameters are separated by **semicolons**, and the key and value are separated by a colon. For example: 'plot_axis_y_max:70;plot_labelcol_width:300'."
-            errors={errors}
-            register={register}
+            {...parameters.plotParsString}
+            {...fieldProps}
           />
           <div className="field mt-5">
             <div className="control">
