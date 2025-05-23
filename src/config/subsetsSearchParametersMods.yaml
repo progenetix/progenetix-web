@@ -47,7 +47,7 @@ parameters:
       - value: histosparkplot
         label: Sparkline Frequency Plot
       - value: histocircleplot
-        label: Circular Frequency Histogram (single dataset only)
+        label: Circular Frequency Histograms
     isHidden: false
     isMulti: false
   plotChros:
