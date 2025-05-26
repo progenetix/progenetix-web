@@ -28,7 +28,10 @@ examples:
     description: |
       Here the CNV profiles from all TCGA projects are pre-selected.
     parameters:
-      allTermsFilter:
+      datasetIds:
+        defaultValue:
+          - progenetix
+      allTermsFilters:
         defaultValue:
           -  pgx:TCGA-ACC
           -  pgx:TCGA-BLCA
