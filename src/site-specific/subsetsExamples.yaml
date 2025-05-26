@@ -23,3 +23,45 @@ examples:
           - pgx:icdom-98233
       plotChros:
         defaultValue: "1,2,3,6,7,8,9,11,12,13,16,17,18,19"
+  - label: "TCGA Projects"
+    note: TCGA Projects
+    description: |
+      Here the CNV profiles from all TCGA projects are pre-selected.
+    parameters:
+      allTermsFilter:
+        defaultValue:
+          -  pgx:TCGA-ACC
+          -  pgx:TCGA-BLCA
+          -  pgx:TCGA-BRCA
+          -  pgx:TCGA-CESC
+          -  pgx:TCGA-CHOL
+          -  pgx:TCGA-COAD
+          -  pgx:TCGA-DLBC
+          -  pgx:TCGA-ESCA
+          -  pgx:TCGA-GBM
+          -  pgx:TCGA-HNSC
+          -  pgx:TCGA-KICH
+          -  pgx:TCGA-KIRC
+          -  pgx:TCGA-KIRP
+          -  pgx:TCGA-LAML
+          -  pgx:TCGA-LGG
+          -  pgx:TCGA-LIHC
+          -  pgx:TCGA-LUAD
+          -  pgx:TCGA-LUSC
+          -  pgx:TCGA-MESO
+          -  pgx:TCGA-OV
+          -  pgx:TCGA-PAAD
+          -  pgx:TCGA-PCPG
+          -  pgx:TCGA-PRAD
+          -  pgx:TCGA-READ
+          -  pgx:TCGA-SARC
+          -  pgx:TCGA-SKCM
+          -  pgx:TCGA-STAD
+          -  pgx:TCGA-TGCT
+          -  pgx:TCGA-THCA
+          -  pgx:TCGA-THYM
+          -  pgx:TCGA-UCEC
+          -  pgx:TCGA-UCS
+          -  pgx:TCGA-UVM
+      plotParsString:
+        defaultValue: "plot_axis_y_max:75;plot_area_height:60"
