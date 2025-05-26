@@ -67,4 +67,4 @@ examples:
           -  pgx:TCGA-UCS
           -  pgx:TCGA-UVM
       plotParsString:
-        defaultValue: "plot_axis_y_max:75;plot_area_height:60"
+        defaultValue: plot_axis_y_max:80;plot_area_height:40;plot_label_y_values:0,50
