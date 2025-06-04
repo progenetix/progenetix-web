@@ -29,7 +29,7 @@ layoutSideItems:
   - href: /progenetix-cohorts/TCGA/
     label: TCGA Data
     isSub: isSub
-  - href: /progenetix-cohorts/cbioportal-subsets/
+  - href: /subsets/cbioportal-subsets/
     label: cBioPortal Studies
     isSub: isSub
   - href: /publications/
