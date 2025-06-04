@@ -14,7 +14,7 @@ const parametersConfig = merge(
   searchParLoc
 )
 
-const searchExamples = concat(
+const searchExamples = merge(
   baseSearchExamples,
   locSearchExamples
 )
