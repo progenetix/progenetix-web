@@ -21,8 +21,12 @@ examples:
           - pgx:icdom-96793
           - pgx:icdom-96703
           - pgx:icdom-98233
+      plotType:
+        defaultValue: histocircleplot
       plotChros:
         defaultValue: "1,2,3,6,7,8,9,11,12,13,16,17,18,19"
+      plotParsString:
+        defaultValue: plot_labelcol_width:240;plot_axis_y_max:75;plot_area_height:65;plot_label_y_values:0,50
   - label: "TCGA Projects"
     note: TCGA Projects
     description: |
