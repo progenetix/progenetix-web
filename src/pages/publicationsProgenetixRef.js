@@ -69,7 +69,7 @@ export default function PublicationsProgenetixRefListPage() {
 
 function FilteredPublication({ publications, textSearch }) {
   const filteredPublications = matchSorter(publications, textSearch, {
-    keys: ["id", "authors", "title", "pubYear", "pubmedid", "provenance.geoLocation.properties.city"],
+    keys: ["id", "authors", "title", "pubYear", "pubmedid", "geoLocation.properties.city"],
     threshold: matchSorter.rankings.CONTAINS
   })
   return (

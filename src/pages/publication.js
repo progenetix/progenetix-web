@@ -84,7 +84,7 @@ function PublicationDetails({ publication, id }) {
       </ul>
 
       <h5>Origin</h5>
-      <p>{publication.provenance.geoLocation.properties?.city}, {publication.provenance.geoLocation.properties?.country}</p>
+      <p>{publication.geoLocation?.properties?.city}, {publication.geoLocation?.properties?.country}</p>
 
       {publication.progenetixCurator && (
         <div>
