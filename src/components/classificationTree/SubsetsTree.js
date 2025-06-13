@@ -237,7 +237,7 @@ function Node({
               <Expander isOpen={isOpen} setOpen={setOpen} />
             </span>
           )}
-          <Tippy content={`Show data for subset "${subset.label}"`}>
+          <Tippy content={`Show data for subset "${subset.label ? subset.label : subsetId}"`}>
             <>
             {(subset?.label && (
               <span className="Subsets__tree__label" title={subset.label}>
