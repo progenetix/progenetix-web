@@ -38,27 +38,17 @@ The response of the queries for genomic variants provide some basic statistics, 
 
 ---
 
-## Visualize CNV patterns
+## Visualize CNV patterns [CNV Profiles](http://progenetix.org/subsetsSearch/)
 
 The Progenetix resource contains pre-computed CNV frequency profiles for all diagnostic
 and technical (e.g. derived from a publication or technical platform) categories. These
 profiles provide a rapid overview of CNV events along the genome but also can serve for
 the exploration of possible genomic subsets hidden behind the overview profiles.
 
-
-#### CNV profile clustering
-
-
-
 ### Example Procedure
 
-**TBD**
-
----
-
-## Download or Plot CNV Frequencies
-
-### Collation plots
+The [CNV Profiles](http://progenetix.org/subsetsSearch/) page provides some examples such as for the concurrent
+(clustered) display of all disease projects from the TCGA project.
 
 The Progenetix resource provides pre-computed CNV frequencies for all its
 "collations" such as
@@ -75,12 +65,12 @@ This data can be accessed through the Progenetix API in data and image format.
 Interval frequencies are per default stored in a 1Mb binned format. More
 information about the API use can be found [in the IntervalFrequencies API documentation](services.md#pgxseg-segment-cnv-frequencies).
 
-### Query-based histograms
+## Query-based histograms
 
 The Progenetix Beacon responses - depending on their type - usually contain a _handover_
 URL to retrieve CNV histogram and/or sample plots of the samples matched by the query.
-The `bycon` API now offers a direct access to the histograms without the need to deparse
-JSON response first. The switch to the histogram is ionitiated by adding `&output=histoplot`
+The `bycon` services API now offers a direct access to the histograms without the need to deparse
+JSON response first. The switch to the histogram is initiated by adding `&output=histoplot`
 to the Beacon query URL. Then, the API will first query the samples and then perfor
 a handover to the plotting API. Please be aware that this procedure is best suited for limited
 queries and may lead to a time-out.
@@ -93,14 +83,14 @@ queries and may lead to a time-out.
     - a search for glioblastoma samples with a focal (here <= 2Mb) deletion in the _CDKN2A_ locus
 
 
-### Example Procedure - Download CNV Frequencies
+## Download CNV Frequencies
 
 Typical cases for the use of collation-specific frequency data could be e.g.
 the visualization of CNV tracks with 3rd party tools such as [Circos](http://www.circos.ca/software/)
 or integration in data analysis workflows, e.g. for comparing target genes to
 local, disease-specific CNV frequencies.
 
-#### Getting cancer type CNV frequencies
+### Getting cancer type CNV frequencies
 
 All cancer codes for a given classification system can be retrieved though:
 
@@ -118,7 +108,7 @@ All cancer codes for a given classification system can be retrieved though:
 For any of those codes one can create a `.pgxseg` file downloader link for the
 ["IntervalFrequencies" service](services.md#pgxseg-segment-cnv-frequencies):
 
-##### Examples
+#### Examples
 
 * [progenetix.org/services/intervalFrequencies/?output=pgxseg&filters=NCIT:C105555](http://progenetix.org/services/intervalFrequencies/?output=pgxseg&filters=NCIT:C105555)
 * [progenetix.org/services/intervalFrequencies/?output=pgxseg&filters=icdom-85003](http://progenetix.org/services/intervalFrequencies/?output=pgxseg&filters=icdom-85003)

@@ -72,15 +72,20 @@ For visualization, while clustering is performed on the matrix with separate val
 * for CNV frequencies, a mixed color is generated fro the combined gain and loss values for each 1Mb bin
   - technically, each of the red, green, blue channels of the RGB values for the gain and loss frequencies the channel values for DUP and DEL are added, normalized for the overall maximum CNV frequency in the data  
 
-```Perl
-for my $i (0..2) {
-    $dupRGB->[$i] = int($dupRGB->[$i] * $dupF / $maxF);
-    $delRGB->[$i] = int($delRGB->[$i] * $delF / $maxF);
-    if (($dupRGB->[$i] + $delRGB->[$i]) < 255) {
-        $RGB[$i] = $dupRGB->[$i] + $delRGB->[$i] }
-    else {
-        $RGB[$i] = 255 }
-}
+```Python
+    def __mix_frequencies_2_rgb(self, gain_f, loss_f, max_f=80):
+        rgb = [127, 127, 127]
+        if (h_i := self.plv.get("plot_heat_intensity", 1)) < 0.1:
+            h_i = 0.1
+        f_f = max_f / h_i
+        dup_rgb = list(ImageColor.getcolor(self.plv["plot_dup_color"], "RGB"))
+        del_rgb = list(ImageColor.getcolor(self.plv["plot_del_color"], "RGB"))
+        for i in (0,1,2):
+            dup_rgb[i] = int(dup_rgb[i] * gain_f / f_f)
+            del_rgb[i] = int(del_rgb[i] * loss_f / f_f)
+            if (rgb[i] := dup_rgb[i] + del_rgb[i]) > 255:
+                rgb[i] = 255
+        return f'rgb({",".join([str(x) for x in rgb])})'
 ```
 
 Clustering can be omitted by setting `Cluster Tree Width` to `0`.
