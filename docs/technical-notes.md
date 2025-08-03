@@ -74,18 +74,15 @@ For visualization, while clustering is performed on the matrix with separate val
 
 ```Python
     def __mix_frequencies_2_rgb(self, gain_f, loss_f, max_f=80):
-        rgb = [127, 127, 127]
         if (h_i := self.plv.get("plot_heat_intensity", 1)) < 0.1:
             h_i = 0.1
         f_f = max_f / h_i
         dup_rgb = list(ImageColor.getcolor(self.plv["plot_dup_color"], "RGB"))
         del_rgb = list(ImageColor.getcolor(self.plv["plot_del_color"], "RGB"))
-        for i in (0,1,2):
-            dup_rgb[i] = int(dup_rgb[i] * gain_f / f_f)
-            del_rgb[i] = int(del_rgb[i] * loss_f / f_f)
-            if (rgb[i] := dup_rgb[i] + del_rgb[i]) > 255:
-                rgb[i] = 255
-        return f'rgb({",".join([str(x) for x in rgb])})'
+        rgb = [127, 127, 127]
+        for i, c in enumerate(rgb):
+            rgb[i] = int((dup_rgb[i] * gain_f + del_rgb[i] * loss_f) / f_f)
+        return f'rgb({",".join([str(min(x, 255)) for x in rgb])})'
 ```
 
 Clustering can be omitted by setting `Cluster Tree Width` to `0`.
