@@ -1,9 +1,9 @@
 # Progenetix Cancer Genomics Platform Documentation Site
 
 The Progenetix database and cancer genomic information resource
-contains genome profiles of more than 150’000 individual cancer genome screening
-experiments. The genomic profiling data was derived from genomic arrays and chromosomal
-[Comparative Genomic Hybridization (CGH)](https://en.wikipedia.org/wiki/Comparative_genomic_hybridization)
+contains genome profiles of more than 240’000 individual cancer genome screening
+experiments (July 2025). The genomic profiling data was derived from genomic
+arrays and chromosomal [Comparative Genomic Hybridization (CGH)](https://en.wikipedia.org/wiki/Comparative_genomic_hybridization)
 as well as Whole Genome or Whole Exome Sequencing (WGS, WES) studies. Genomic profiles
 are either processed from various raw data formats or are extracted from published
 experimental results. Since 2024 the database also includes information on somatic
@@ -12,10 +12,10 @@ or cancer cell lines.
 
 ![progenetix arraymap cancercelllines logo](/img/arraymap-cancercelllines-progenetix-logos-1200x240.png){: style="float: right; width: 400px; margin-top: 0px;"}
 [_cancercelllines.org_](https://cancercelllines.org)
-is an information resource presenting known mutations from (as of 2023) more than 
+is an information resource presenting known mutations from (as of 2025) more than 
 16000 cancer cell lines, additional to more than 5000 CNV profiles from cell line
-profiling experiments. [_arrayMap_](http://arraymap.org) represents the subset of
-the [_progenetix_](https://progenetix.org) data for which probe-specific data from
+profiling experiments. [_arrayMap_](http://arraymap.org) represents the subsetP of
+the [_Progenetix_](https://progenetix.org) data for which probe-specific data from
 genomic array experiments is available.
 
 
@@ -27,9 +27,9 @@ genomic array experiments is available.
 
 !!! example "Citation"
 
-    Huang Q, Carrio-Cordo P, Gao B, Paloots R, Baudis M. (2021) **The Progenetix
+    * Huang Q, Carrio-Cordo P, Gao B, Paloots R, Baudis M. (2021) **The Progenetix
     oncogenomic resource in 2021.** _Database (Oxford)._ 2021 Jul 17    
-    progenetix.org: **Progenetix oncogenomic online resource** (2022)   
+    * progenetix.org: **Progenetix oncogenomic online resource** (2025)   
     
 
 ??? tip "Additional Articles & Citation Options"
@@ -49,7 +49,21 @@ The __Progenetix__ database and cancer genomic information resource was publicly
 
 Additional information - e.g. about contacts or related publications - is available through the [group page](http://baudisgroup.org) of the Baudis group at the University of Zürich. For a list of publication by the Baudis group you can go to the [group's website](https://baudisgroup.org/categories/publications.html),  [EuropePMC](https://europepmc.org/search?query=0000-0002-9903-4248) or any of the links here.
 
-----
+
+## Programmatic Access through the Beacon API
+
+Progenetix and related resources support programmatic access trough the 
+Global Alliance for Genomics and Health's Beacon API. Progenetix has been
+instrumental in the _implementation driven development_ of the Beacon protocol
+and was one of the resources used during the GA4GH product approval for Beacon
+v2 in 2022.
+
+Progenetix runs on the `bycon` software stack (see below); please follow the
+documentation at [bycon.progenetix.org/API-beacon](https://bycon.progenetix.org/API-beacon). Additionally to the direct
+data access using following the Beacon specifications we also provide the [pgxRpi](pgxRpi)
+package for loading data from Progenetix (and other Beacon compatible resources)
+into an **R** environment.
+
 
 ## Progenetix Source Code
 
@@ -69,6 +83,8 @@ With exception of some utility scripts and external dependencies (e.g. [MongoDB]
 - implemented as [React](https://reactjs.org) / [Next.js](https://nextjs.org) project
 - contains this documentation tree here as `mkdocs` project, with files in the `docs` directory
 
+<!--
+
 ### Additional Projects
 
 #### Information extraction for cancer cell line genes
@@ -85,4 +101,6 @@ variant information is displayed.
 * By scrolling down, you can find the section **Literature Derived Contextual Information**.
 * There, all gene results are listed. Gene of interest can be visualised on the CNV
 frequency plot by clicking on the gene.
+
+-->
 

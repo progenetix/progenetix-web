@@ -17,8 +17,6 @@ def main():
     installation and the front end. Just started...
     """
     site_path = path.join(dir_path, "src")
-    # TODO: Uses a yaml duplicate of the `config.js` file since I need to look up
-    # how to read in parameters from .js into Python ...
     ds_default = "___none___"
     sp_conf_file = path.join(site_path, "site-specific", "config.js")
     with open(sp_conf_file) as spf:

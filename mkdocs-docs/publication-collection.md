@@ -31,4 +31,4 @@ Note that, despite containing data about tumor samples at a whole-genome level, 
     Whole-genome screening techniques: **cCGH** chromosomal Comparative Genomic Hybridization; **aCGH** genomic arrays (including single color oligonucleotide, SNP, and large-insert clone arrays); **WES** Whole Exome Sequencing; **WGS** Whole Genome Sequencing
 
 [^2]:
-    In principle, methylation arrays could be considered as "genome screening experiments", since one may extract e.g. CNV profiles from some platforms/experiments. However, at this time we do not consider them as "compatible" platforms.
+    In principle, methylation arrays could be considered as "genome screening experiments", since one may extract e.g. CNV profiles from some platforms/experiments. However, at this time we do not consider them as "compatible" platforms with some exceptions being made for cases with reviewed data.

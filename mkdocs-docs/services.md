@@ -1,4 +1,4 @@
-# Progenetix API Services `/services/`
+# Progenetix Services API - `/services/`
 
 The [`bycon`](https://github.com/progenetix/bycon) software stack underneath the 
 _Progenetix_ environment provides support for a number of data services which make

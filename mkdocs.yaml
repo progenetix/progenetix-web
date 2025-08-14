@@ -13,11 +13,16 @@ api_dataset_ids: progenetix
 
 ################################################################################
 
+docs_dir: mkdocs-docs
+extra_css:
+  - css/theme_overrides.css
+
+################################################################################
+
 nav:
   - Documentation Home: index.md
   - News: news
   - Data Changes: changelog
-  # - Pages & Forms: ui
   - Analysis in R - pgxRpi: pgxRpi
   - Use Case Examples: use-cases
   - Beacon+ API Use: common/beacon-api
@@ -28,7 +33,6 @@ nav:
   - Publication Collection: publication-collection
   - Data Review: progenetix-data-review
   - Technical Notes: technical-notes
-  # - Progenetix Website Builds: progenetix-website-builds
   - Progenetix Data &#8599;: http://progenetix.org
   - cancercelllines.org &#8599;: http://cancercelllines.org
   - Baudisgroup @ UZH &#8599;: http://baudisgroup.org
@@ -53,11 +57,6 @@ markdown_extensions:
   - pymdownx.tilde
   - pymdownx.saneheaders
   - pymdownx.snippets
-  # - pymdownx.superfences:
-  #     custom_fences:
-  #       - name: mermaid
-  #         class: mermaid
-  #         format: !!python/name:mermaid2.fence_mermaid   
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.tasklist:
@@ -73,7 +72,6 @@ markdown_extensions:
 ###############################################################################
 
 theme:
-  # name: readthedocs
   name: material
   palette:
     primary: deep orange
@@ -90,7 +88,7 @@ theme:
     - navigation.instant
     - navigation.tracking
     - navigation.sections
-  custom_dir: extra
+  custom_dir: mkdocs-extra
       
 plugins:
     - search
@@ -105,8 +103,3 @@ extra:
       link: https://genomic.social/@progenetix
     - icon: fontawesome/brands/github 
       link: https://github.com/progenetix
-extra_css:
-  - css/theme_overrides.css
-# extra_javascript:
-#   - https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js
-    
