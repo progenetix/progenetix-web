@@ -18,7 +18,9 @@ a variation is now being provided for CNV frequencies.
     - column 5 (log2) can be empty or dot, if column 6 exists and contains status value
     - undefined fields in existing columns are replaced with the "." character
 ```
-biosample_id    reference_name  start   end log2    variant_type    reference_sequence  sequence    variant_state_id    variant_state_label
+biosample_id	reference_name	start	end	log2	variant_type	reference_sequence	sequence	variant_state_id	variant_state_label
+pgxbs-kftvjv8w	2	79005161	90144630	-0.2239	DEL	.	.	EFO:0030068	low-level loss
+pgxbs-kftvjv8w	11	11228096	14560216	0.7632	DUP	.	.	EFO:0030072	high-level gain
 ```
 * header (optional)
     - header lines start with the `#` character
@@ -39,33 +41,58 @@ biosample_id    reference_name  start   end log2    variant_type    reference_se
         * additional information about the file
         * (so far) only informative
 
-For example, this API call retireves the variants for 78 samples from two NCIt
-cancer types (please be aware of the `&filterLogic=OR` pragma!):
+#### Examples:
 
-* [progenetix.org/beacon/genomicVariations/?filters=NCIT:C6393,NCIT:C4504&filterLogic=OR&output=pgxseg](http://progenetix.org/beacon/genomicVariations/?filters=NCIT:C6393,NCIT:C4504&filterLogic=OR&output=pgxseg)
+* [/services/pgxsegvariants/pgxbs-kftvjv8w](http://progenetix.org/services/pgxsegvariants/pgxbs-kftvjv8w)
+* [/services/pgxsegvariants/?filters=NCIT:C6393](http://progenetix.org/services/pgxsegvariants/?filters=NCIT:C6393)
 
-An excerpt of the segment file would look like below:
+#### Processing Note
+
+* `pgxseg` lines can be deparsed using this regular expression (Python flavor):
+```python
+re.compile(
+    r"""
+    (?P<biosample_id>[^:]+)((?:::)|\t)
+    (?P<reference_name>[\w:]+)(?:\2)
+    (?P<start>\d+)(?:\2)
+    (?P<end>\d+)(?:\2)
+    (?P<value>[^\s]*)(?:\2)
+    (?P<variant_type>[\w]*)(?:\2)
+    (?P<reference_sequence>[\.ACGTN]*)(?:\2)
+    (?P<sequence>[\.ACGTN]*)(?:\2)
+    (?:
+        (?P<variant_state_id>[\w:]*)(?:\2)
+        (?P<variant_state_label>[\w\- ]*)
+        ((?:\2)(?P<__other__>.*))?
+    )?        
+    """, re.X)
+```
+* the `value` parameter is used by local convention; e.g. as `log2` value or
+  absolute count (e.g. copy number)
+* columns after `sequence` are optional and up for future definition; e.g.
+  `variant_state_id` and `variant_state_label` are used to indicate the variant
+  state, such as "loss" or "high-level gain" (see EFO and SO)
+    - in case these are indicated they *should take precedence over the `variant_type`
+      annotation*
+
+An excerpt of the file would look like below:
 
 ```
-#meta=>biosample_count=78
-#plotpars=>title="Testing Custom Plot Parameters"
-#plotpars=>subtitle="Some Chromosomes, Colors etc."
-#plotpars=>plotChros="3,5,7,8,11,13,16"
-#plotpars=>color_var_dup_hex=#EE4500;color_var_del_hex=#09F911
-#plotpars=>size_title_left_px=300
-#plotpars=>size_text_title_left_px=10
-#sample=>biosample_id=pgxbs-kftvhhmm;group_id=NCIT:C6393;group_label="Invasive Ductal and Invasive Lobular Breast Carcinoma"
-#sample=>biosample_id=GSM252886;group_id=NCIT:C4504;group_label="Malignant Breast Phyllodes Tumor"
-biosample_id  chro  start stop  mean  variant_type  probes
-pgxbs-kftvhhmm  1 911484  11993973  -0.4486 DEL .
-pgxbs-kftvhhmm  1 12158755  22246766  0.2859 DUP  .
-pgxbs-kftvhhmm  1 22346353  24149880  -0.5713 DEL .
-pgxbs-kftvhhmm  1 24160170  33603123  0.0812  . .
-pgxbs-kftvhhmm  1 33683474  37248987  -0.6478 DEL .
-pgxbs-kftvhhmm  1 37391587  248655165 0.0342  . .
-pgxbs-kftvhhmm  2 110819  240942225 -0.0007 . .
-pgxbs-kftvhhmm  3 119131  4655519 -0.0122 . .
-pgxbs-kftvhhmm  3 4662952 4857477 0.9273 DUP  .
+#sample=>id=pgxbs-kftvhubq;biosample_id=pgxbs-kftvhubq;individual_id=pgxind-kftx3rie;biosample_name=cb5043e3-c1c1-4b06-9135-1aada484ba4b;notes=Primary Tumor;histological_diagnosis_id=NCIT:C6393;histological_diagnosis_label=Invasive Breast Ductal Carcinoma and Invasive Lobular Carcinoma;pathological_stage_id=NCIT:C27968;pathological_stage_label=Stage IIB;biosample_status_id=EFO:0009656;biosample_status_label=neoplastic sample;sample_origin_type_id=OBI:0001479;sample_origin_type_label=specimen from organism;sampled_tissue_id=UBERON:0000310;sampled_tissue_label=breast;tnm=NCIT:C48724::T2 Stage Finding&&NCIT:C48706::N1 Stage Finding&&NCIT:C48699::M0 Stage Finding;age_iso=P61Y2M13D;icdo_morphology_id=pgx:icdom-85223;icdo_morphology_label=Infiltrating duct and lobular carcinoma;icdo_topography_id=pgx:icdot-C50.9;icdo_topography_label=Breast, NOS;pubmed_id=23000897;pubmed_label=Cancer Genome Atlas Network. (2012): Comprehensive molecular portraits of human breast...;tcgaproject_id=pgx:TCGA-BRCA;tcgaproject_label=Breast invasive carcinoma;cohorts=pgx:cohort-TCGA::TCGA samples&&pgx:cohort-2021progenetix::Version at Progenetix Update 2021&&pgx:cohort-TCGAcancers::TCGA Cancer samples;geoprov_city=Chapel Hill;geoprov_country=United States of America;geoprov_iso_alpha3=USA;geoprov_long_lat=-79.06::35.91
+# ... more sample lines
+biosample_id	reference_name	start	end	log2	variant_type	reference_sequence	sequence	variant_state_id	variant_state_label
+pgxbs-kftvi7s5	1	3301765	34493787	0.1927	DUP	.	.	EFO:0030071	low-level gain
+pgxbs-kftvhmav	1	7994229	7996294	-1.4841	DEL	.	.	EFO:0020073	high-level loss
+pgxbs-kftvhqsu	1	19765862	19766132	-1.7355	DEL	.	.	EFO:0020073	high-level loss
+pgxbs-kftvhygw	1	43911001	44679178	0.3129	DUP	.	.	EFO:0030071	low-level gain
+pgxbs-kftvhygw	1	46710934	47016934	0.2956	DUP	.	.	EFO:0030071	low-level gain
+pgxbs-kftvht9x	1	60402269	60402865	-1.2955	DEL	.	.	EFO:0020073	high-level loss
+pgxbs-kftvhmav	1	74571388	74571389		SNV	T	A	SO:0001483	SNP
+pgxbs-kftvi6ts	1	84174010	84226850	0.3655	DUP	.	.	EFO:0030071	low-level gain
+pgxbs-kftvhv13	1	85190631	85190632		SNV	T	C	SO:0001483	SNP
+pgxbs-kftvhqsu	1	102396750	103156433	-0.3723	DEL	.	.	EFO:0030068	low-level loss
+pgxbs-kftvi4rx	1	165094663	165210937	0.977	DUP	.	.	EFO:0030072	high-level gain
+pgxbs-kftvht9x	1	171282243	171282244		SNV	C	A	SO:0001483	SNP
 ...
 ```
 
