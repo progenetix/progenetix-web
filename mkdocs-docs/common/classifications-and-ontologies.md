@@ -299,7 +299,6 @@ Accordingly, upon export through the API variants are re-mapped to a Beacon v2 r
   "biosample_id": "pgxbs-kftva59y",
   "individual_id": "pgxind-kftx25eh",
   "variant_state": { "id": "EFO:0030067", "label": "copy number loss" },
-  "relative_copy_class": "partial loss",
   "location": {
     "sequence_id": "refseq:NC_000011.10",
     "chromosome": "11",
