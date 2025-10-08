@@ -248,37 +248,37 @@ CihIoVC0BBr6akkbTlMrjMWnUCjaEudMSTaUjxSKi4ymoyRSL7VCcYHRjJSkUCguLBqxx02hUChC
 />
 <line x1="30.0"  y1="111.7"  x2="60.5"  y2="111.7"  class="DEL"  />
 <a
-xlink:href="http://genome.ucsc.edu/cgi-bin/hgTracks?db=GRCh38&amp;position=chr9%3A19719573-21133233"
+xlink:href="http://www.genome.ucsc.edu/cgi-bin/hgTracks?db=GRCh38&amp;position=chr9%3A19719573-21133233"
 xlink:show="new"
 xlink:title="-0.4306 at 9:19719573-21133233">
 <line x1="30.0"  y1="159"  x2="60.5"  y2="159"  class="DEL"  /></a>
 <line x1="61.5"  y1="130.7"  x2="99.5"  y2="130.7"  class="DEL"  />
 <a
-xlink:href="http://genome.ucsc.edu/cgi-bin/hgTracks?db=GRCh38&amp;position=chr9%3A21181455-22943510"
+xlink:href="http://www.genome.ucsc.edu/cgi-bin/hgTracks?db=GRCh38&amp;position=chr9%3A21181455-22943510"
 xlink:show="new"
 xlink:title="-1.646 at 9:21181455-22943510">
 <line x1="61.5"  y1="159"  x2="99.5"  y2="159"  class="DEL"  /></a>
 <line x1="100.1"  y1="112.3"  x2="186"  y2="112.3"  class="DEL"  />
 <a
-xlink:href="http://genome.ucsc.edu/cgi-bin/hgTracks?db=GRCh38&amp;position=chr9%3A22973195-26958441"
+xlink:href="http://www.genome.ucsc.edu/cgi-bin/hgTracks?db=GRCh38&amp;position=chr9%3A22973195-26958441"
 xlink:show="new"
 xlink:title="-0.4644 at 9:22973195-26958441">
 <line x1="100.1"  y1="159"  x2="186"  y2="159"  class="DEL"  /></a>
 <line x1="186.4"  y1="99.2"  x2="190.5"  y2="99.2"  class="DUP"  />
 <a
-xlink:href="http://genome.ucsc.edu/cgi-bin/hgTracks?db=GRCh38&amp;position=chr9%3A26975570-27166161"
+xlink:href="http://www.genome.ucsc.edu/cgi-bin/hgTracks?db=GRCh38&amp;position=chr9%3A26975570-27166161"
 xlink:show="new"
 xlink:title="0.3693 at 9:26975570-27166161">
 <line x1="186.4"  y1="159"  x2="190.5"  y2="159"  class="DUP"  /></a>
 <line x1="190.7"  y1="77.1"  x2="191.3"  y2="77.1"  class="DUP"  />
 <a
-xlink:href="http://genome.ucsc.edu/cgi-bin/hgTracks?db=GRCh38&amp;position=chr9%3A27173064-27203136"
+xlink:href="http://www.genome.ucsc.edu/cgi-bin/hgTracks?db=GRCh38&amp;position=chr9%3A27173064-27203136"
 xlink:show="new"
 xlink:title="1.7836 at 9:27173064-27203136">
 <line x1="190.7"  y1="159"  x2="191.3"  y2="159"  class="DUP"  /></a>
 <line x1="191.4"  y1="101.5"  x2="420"  y2="101.5"  class="DUP"  />
 <a
-xlink:href="http://genome.ucsc.edu/cgi-bin/hgTracks?db=GRCh38&amp;position=chr9%3A27209471-37812790"
+xlink:href="http://www.genome.ucsc.edu/cgi-bin/hgTracks?db=GRCh38&amp;position=chr9%3A27209471-37812790"
 xlink:show="new"
 xlink:title="0.2266 at 9:27209471-37812790">
 <line x1="191.4"  y1="159"  x2="420"  y2="159"  class="DUP"  /></a>
