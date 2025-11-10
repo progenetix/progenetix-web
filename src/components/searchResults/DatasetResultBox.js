@@ -15,6 +15,7 @@ import { svgFetcher } from "../../hooks/fetcher"
 import BiosamplesStatsDataTable from "./BiosamplesStatsDataTable"
 import { WithData } from "../Loader"
 import { refseq2chro } from "../Chromosome"
+import { AggregatedPlots } from "../AggregatedPlots"
 
 const HANDOVER_IDS = {
   histoplot: "histoplot",
@@ -40,6 +41,7 @@ export function DatasetResultBox({ data: responseSet, responseMeta, query }) {
     id,
     resultsHandovers,
     info,
+    summaryResults,
     resultsCount
   } = responseSet
 
@@ -237,6 +239,8 @@ export function DatasetResultBox({ data: responseSet, responseMeta, query }) {
       {tabComponent ? <div>{tabComponent}</div> : null}
 
       <br/>
+      <AggregatedPlots summaryResults={summaryResults} />
+      <br/>
       <hr/>
       <h2 className="subtitle has-text-dark">{id} Data Downloads</h2>
 
@@ -377,15 +381,13 @@ function UCSCRegion({ query }) {
 
 function ucscHref(query) {
 
-  let ucscstart = query.start
-  let ucscend = query.end
-  if (query.start > 0) {
-    ucscstart = query.start
-    ucscend = query.start
-  }
+  let ucscpos = query.start + "," + query.end
+  ucscpos = ucscpos.split(",").filter(Number)
+  let start = Math.min.apply(Math, ucscpos)
+  let end = Math.max.apply(Math, ucscpos)
   let chro = refseq2chro(query.referenceName)
 
-  return `http://www.genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr${chro}%3A${ucscstart}%2D${ucscend}`
+  return `http://www.genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr${chro}%3A${start}%2D${end}`
 }
 
 function PagedLink({ handover }) {
