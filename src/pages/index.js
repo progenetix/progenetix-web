@@ -1,5 +1,6 @@
 import { Layout } from "../site-specific/Layout"
 import Panel from "../components/Panel"
+import DatasetStats from "../components/DatasetStats"
 import { SubsetHistogram } from "../components/SVGloaders"
 import { InternalLink }  from "../components/helpersShared/linkHelpers"
 import React from "react"
@@ -92,6 +93,11 @@ export default function Index({
       indicated.
     </p>
   </Panel>
+
+  <Panel heading={`Some Content Statistics for ${DATASETDEFAULT}`}>
+    <DatasetStats dataset_id={DATASETDEFAULT} />
+  </Panel>
+
 </Layout>
 
   )
