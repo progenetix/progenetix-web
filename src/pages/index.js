@@ -1,6 +1,5 @@
 import { Layout } from "../site-specific/Layout"
 import Panel from "../components/Panel"
-import DatasetStats from "../components/DatasetStats"
 import { SubsetHistogram } from "../components/SVGloaders"
 import { InternalLink }  from "../components/helpersShared/linkHelpers"
 import React from "react"
@@ -57,7 +56,6 @@ export default function Index({
         label="Cancer CNV Profiles"
       />
     </h4>
-
     <p>
       Frequency profiles of regional
       genomic gains and losses for all categories (diagnostic entity,
@@ -77,12 +75,23 @@ export default function Index({
 
     <h4>
       <InternalLink
-        href="/publications"
-        label="Cancer Genomics Publications"
+        href="dataDashboard"
+        label="Progenetix Content Statistics"
       />
     </h4>
     <p>
-      Through the <a href="/publications">[ Publications ]</a> page
+      More detailed statistics on the Progenetix content can be found on
+      the Statistics page.
+    </p>
+
+    <h4>
+      <InternalLink
+        href="publications"
+        label="Cancer Genome Screening Publications"
+      />
+    </h4>
+    <p>
+      Through the Publications page
       Progenetix provides{" "}
       <span className="span-red">
         {progenetixStats.response.results[0].counts.publications}
@@ -92,12 +101,8 @@ export default function Index({
       and possible availability in the Progenetix sample collection are
       indicated.
     </p>
-  </Panel>
 
-  <Panel heading={`Some Content Statistics for ${DATASETDEFAULT}`}>
-    <DatasetStats dataset_id={DATASETDEFAULT} />
   </Panel>
-
 </Layout>
 
   )

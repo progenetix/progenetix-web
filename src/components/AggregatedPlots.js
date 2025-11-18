@@ -9,17 +9,47 @@ import {
     // VictoryZoomContainer
 } from 'victory';
 
-export function AggregatedPlots({ summaryResults }) {
+//----------------------------------------------------------------------------//
+
+const padd_l = 70
+const padd_r = 30
+const padd_t = 30
+const padd_b = 120
+const plot_h = 250
+
+var col_no = 25
+
+const barStyle = {
+  data: {
+    fill: "#c43a31",
+    fillOpacity: 0.4,
+    stroke: "#c43a31",
+    strokeWidth: 2,
+  },
+  labels: {
+    fontSize: 12,
+    fill: "#c43a31",
+  },
+}
+
+
+//----------------------------------------------------------------------------//
+
+export function AggregatedPlots({ summaryResults, filterUnknowns }) {
     return (
         <>
         {summaryResults ? (
             summaryResults.map((r) => (
                 <>
                 {r["concepts"].length == 1 && (
-                    <AggregatedPlot agg={r} />
+                    <AggregatedPlot agg={r} filterUnknowns={filterUnknowns} />
                 )
                 }
-                </>
+{/*                {r["concepts"].length == 2 && (
+                    <AggregatedStackedPlot agg={r} />
+                )
+                }
+*/}                </>
                 )
             )
         ) : (
@@ -29,17 +59,34 @@ export function AggregatedPlots({ summaryResults }) {
     )
 }
 
+//----------------------------------------------------------------------------//
+
+// NOT IMPLEMENTED YET - already fails at some point due to lack of data check?
+// function AggregatedStackedPlot({ agg }) {
+//     console.log(agg);
+//     let dictionary = Object.assign({}, ...agg["distribution"].map((x) => (
+//             {
+//                 [x.conceptValues[0].id]: {
+//                     "label": x.conceptValues[0].label,
+//                     "count": x.count,
+//                     "secondary": x.conceptValues[1]
+//                 }
+//             }
+//         )
+//     ));
+//     console.log(dictionary);
+
+// }
 
 
-function AggregatedPlot({ agg }) {
-
+function AggregatedPlot({ agg, filterUnknowns }) {
     var dist_all = agg["distribution"].map(item => ({
       id: item.conceptValues[0].id,
       label: `${item.conceptValues[0].label} (${item.conceptValues[0].id}, ${item.count})`,
       count: item.count
     }))
 
-    const agg_l = agg["label"]
+    var agg_l = agg["label"]
 
     dist_all = agg["sorted"] ? dist_all : dist_all.sort((a, b) => a.count < b.count ? 1 : -1)
 
@@ -50,7 +97,6 @@ function AggregatedPlot({ agg }) {
         count: 0
     }
 
-    var col_no = 25
     var i = 0
     dist_all.forEach(function (item) {
         i += 1
@@ -66,6 +112,15 @@ function AggregatedPlot({ agg }) {
         dist.push(other)
     }
 
+    if (filterUnknowns == true) {
+        var lb = dist.length
+        dist = dist.filter(item => item.id !== "unknown")
+        var la = dist.length
+        if (lb != la) {
+            agg_l += " (unknowns removed)"
+        }
+     }
+
     const [boundingRect, setBoundingRect] = useState({ width: 0, height: 0 });
     const containerRef = useCallback((node) => {
         if (node !== null) { setBoundingRect(node.getBoundingClientRect()); }
@@ -76,13 +131,7 @@ function AggregatedPlot({ agg }) {
         c = 0
     }
 
-    const padd_l = 70
-    const padd_r = 30
-    const padd_t = 30
-    const padd_b = 120
-
-    const plot_h = 250
-
+    // TODO: 
     var outer_w = boundingRect.width
 
     const padd = outer_w / c
@@ -111,18 +160,7 @@ function AggregatedPlot({ agg }) {
                     theme={VictoryTheme.clean}
                     labelComponent={<VictoryTooltip />}
                     labels={({ label }) => label}
-                    style={{
-                      data: {
-                        fill: "#c43a31",
-                        fillOpacity: 0.4,
-                        stroke: "#c43a31",
-                        strokeWidth: 2,
-                      },
-                      labels: {
-                        fontSize: 12,
-                        fill: "#c43a31",
-                      },
-                    }}
+                    style={barStyle}
                 />
                 <VictoryAxis
                     crossAxis 
@@ -141,11 +179,3 @@ function AggregatedPlot({ agg }) {
         </>
     );
 }
-
-                // containerComponent={
-                //     <VictoryZoomContainer
-                //       zoomDimension="x"
-                //       zoomDomain={{ x: [0, 15] }}
-                //       minimumZoom={{ x: 1 }}
-                //     />
-                //   }
