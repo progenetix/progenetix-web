@@ -240,7 +240,7 @@ export function DatasetResultBox({ data: responseSet, responseMeta, query }) {
 
       <br/>
       <hr/>
-      <h2 className="subtitle has-text-dark">Matched Data {id} Overview</h2>
+      <h2 className="subtitle has-text-dark">Matched {id} Data  Overview</h2>
       <AggregatedPlots summaryResults={summaryResults} filterUnknowns={true} />
       <br/>
       <hr/>
