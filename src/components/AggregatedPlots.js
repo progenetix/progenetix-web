@@ -1,9 +1,11 @@
 import React, { useState, useCallback } from "react";
 import {
     VictoryChart,
+    // VictoryContainer,
     VictoryLabel,
     VictoryAxis,
     VictoryBar,
+    // VictoryPie,
     VictoryStack,
     VictoryTheme,
     VictoryTooltip,
@@ -60,8 +62,13 @@ function AggregatedStackedPlot({ agg, filterUnknowns }) {
     var agg_l = agg["label"]
 
     agg["distribution"].forEach(function (v) {
+        console.log(Object.keys(v))
+        console.log(v["conceptValues"])
         let cvs = v["conceptValues"];
         let c = v["count"]
+        if (cvs.length == 0) {
+            cvs = [{"id": "undefined", "label": "undefined"}];
+        }
         let k1 = cvs[0]["id"];
         let l1 = cvs[0]["label"];
         var k2 = "undefined";
@@ -112,10 +119,14 @@ function AggregatedStackedPlot({ agg, filterUnknowns }) {
     })
 
     var i = 0
+    var max_y = 0
     for (const [first, seconds] of sortedEntries) {
         i += 1
         if (i <= col_no) {
             dist.push([first, seconds])
+            if (seconds["sum"] > max_y) {
+                max_y = seconds["sum"]
+            }
         } else {
             other_count += seconds["sum"]
             for (const s of Object.keys(secondKeys)) {
@@ -131,6 +142,10 @@ function AggregatedStackedPlot({ agg, filterUnknowns }) {
     if (other_count > 0) {
         dist.push(["other", others["other"]])
         console.log("Adding other...")
+    }
+
+    if (other_count > max_y * 1.25) {
+        max_y = other_count * 0.9
     }
 
     var barData = [];
@@ -157,9 +172,15 @@ function AggregatedStackedPlot({ agg, filterUnknowns }) {
 
     return (
         <div ref={containerRef} style={{ display: "flex", flexDirection: "row", alignItems: "flex-start", width: "100%", marginBottom: "0px" }}>
-            <StackedBarChart
-                bar_data={barData} col_no={dist.length} outer_w={outer_w} title={agg_l}
-            />
+{/*            {dist.length <= 5 ? (
+                <SimplePieChart
+                    bar_data={barData} col_no={dist.length} outer_w={outer_w} title={agg_l}
+                />
+            ) : (
+*/}                <StackedBarChart
+                    bar_data={barData} col_no={dist.length} outer_w={outer_w} max_y={max_y} title={agg_l}
+                />
+            {/*)}*/}
         </div>
     );
 
@@ -167,7 +188,30 @@ function AggregatedStackedPlot({ agg, filterUnknowns }) {
 
 //----------------------------------------------------------------------------//
 
-function StackedBarChart({ bar_data, col_no, outer_w, title}) {
+// function SimplePieChart({ bar_data, outer_w}) { //, title
+
+//     return(
+
+//                 <VictoryPie
+//                     theme={VictoryTheme.material}
+//                     radius={outer_w * 0.05}
+//                     height={outer_w * 0.2}
+//                     width={outer_w * 0.2}
+//                     style={{ labels: { fontSize: 6} }}
+//                     // width={10}
+//                     // innerRadius={30}
+//                     // outerRadius={40}
+//                     data={bar_data[0]}
+//                     x="collabel"         
+//                     y="count"
+//                 />
+//     )
+// }
+
+
+//----------------------------------------------------------------------------//
+
+function StackedBarChart({ bar_data, col_no, outer_w, max_y, title}) {
 
     const padd_l = 70
     const padd_r = 30
@@ -179,7 +223,7 @@ function StackedBarChart({ bar_data, col_no, outer_w, title}) {
 
     return(
         <VictoryChart
-            domain={{ x: [0.5, col_no + 0.5] }}
+            domain={{ x: [0.5, col_no + 0.5], y: [0, max_y * 1.1] }}
             height={plot_h}
             width={outer_w}
             theme={VictoryTheme.material}
@@ -200,7 +244,7 @@ function StackedBarChart({ bar_data, col_no, outer_w, title}) {
                         data={data}
                         x="collabel"         
                         y="count"
-                        labelComponent={<VictoryTooltip />}
+                        labelComponent={<VictoryTooltip  />}
                     />
                 ))}
             </VictoryStack>
@@ -212,110 +256,19 @@ function StackedBarChart({ bar_data, col_no, outer_w, title}) {
             />
             <VictoryAxis
                 dependentAxis 
-                style={{}}
+                style={{
+                  axis: {
+                    stroke: "transparent",
+                  },
+                  tickLabels: {
+                    fontSize: 8,
+                  },
+                  grid: {
+                    stroke: "#d9d9d9",
+                    size: 5,
+                  },
+                }}
             />
         </VictoryChart>
     )
 }
-//----------------------------------------------------------------------------//
-
-// function AggregatedPlot({ agg, filterUnknowns }) {
-//     var dist_all = agg["distribution"].map(item => ({
-//       id: item.conceptValues[0].id,
-//       label: `${item.conceptValues[0].label} (${item.conceptValues[0].id}, ${item.count})`,
-//       count: item.count
-//     }))
-
-//     var agg_l = agg["label"]
-
-//     dist_all = agg["sorted"] ? dist_all : dist_all.sort((a, b) => a.count < b.count ? 1 : -1)
-
-//     var dist = []
-//     var other = {
-//         id: "other",
-//         label: "other...",
-//         count: 0
-//     }
-
-//     var i = 0
-//     dist_all.forEach(function (item) {
-//         i += 1
-//         if (i < col_no) {
-//             dist.push(item)
-//         } else {
-//             other["count"] += item["count"]
-//         }
-//     });
-
-//     if (other["count"] > 0) {
-//         other["label"] += " (" + other.count +")"
-//         dist.push(other)
-//     }
-
-//     if (filterUnknowns == true) {
-//         var lb = dist.length
-//         dist = dist.filter(item => item.id !== "unknown")
-//         var la = dist.length
-//         if (lb != la) {
-//             agg_l += " (unknowns removed)"
-//         }
-//      }
-
-//     const [boundingRect, setBoundingRect] = useState({ width: 0, height: 0 });
-//     const containerRef = useCallback((node) => {
-//         if (node !== null) { setBoundingRect(node.getBoundingClientRect()); }
-//     }, []);
-
-//     var c = dist.length
-//     if (c < 1) {
-//         c = 0
-//     }
-
-//     // TODO: 
-//     var outer_w = boundingRect.width
-
-//     const padd = outer_w / c
-
-//     return (
-//         <>
-//         {dist && dist.length > 1 && (
-//         <div ref={containerRef} style={{ display: "flex", flexDirection: "row", alignItems: "flex-start", width: "100%", marginBottom: "0px" }}>
-//             <VictoryChart
-//                 domainPadding={{ x: padd }}
-//                 height={plot_h}
-//                 width={outer_w}
-//                 theme={VictoryTheme.material}
-//                 padding={{left: padd_l, top: padd_t, right: padd_r, bottom: padd_b}}
-//               >
-//                 <VictoryLabel         
-//                     text={agg_l}         
-//                     textAnchor="middle"
-//                     x={outer_w * 0.5}        
-//                     y={padd_t - 15}
-//                 />
-//                 <VictoryBar
-//                     data={dist}
-//                     x="id"         
-//                     y="count"
-//                     theme={VictoryTheme.clean}
-//                     labelComponent={<VictoryTooltip />}
-//                     labels={({ label }) => label}
-//                     style={barStyle}
-//                 />
-//                 <VictoryAxis
-//                     crossAxis 
-//                     style={{
-//                       tickLabels: { angle: -60, textAnchor: "end" },
-//                     }}
-//                 />
-//                 <VictoryAxis
-//                     dependentAxis 
-//                     style={{}}
-//                 />
-//             </VictoryChart>
-//         </div>
-
-//         )}
-//         </>
-//     );
-// }
