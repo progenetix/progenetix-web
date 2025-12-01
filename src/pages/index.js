@@ -1,6 +1,7 @@
 import { Layout } from "../site-specific/Layout"
 import Panel from "../components/Panel"
 import { SubsetHistogram } from "../components/SVGloaders"
+import { AggregatedPlots } from "../components/AggregatedPlots"
 import { InternalLink }  from "../components/helpersShared/linkHelpers"
 import React from "react"
 import { sample } from "lodash"
@@ -17,6 +18,7 @@ const imgFocal = {
 export default function Index({
   ncitCountResponse,
   progenetixStats,
+  summaryResults,
   subsetsResponse
 }) {
 
@@ -72,7 +74,7 @@ export default function Index({
       displayed for the 22 autosomes.
       <SubsetHistogram datasetIds={DATASETDEFAULT} id={randomSubset.id} />
     </p>
-
+{/*
     <h4>
       <InternalLink
         href="dataDashboard"
@@ -84,7 +86,7 @@ export default function Index({
       the Statistics page.
     </p>
 
-    <h4>
+*/}    <h4>
       <InternalLink
         href="publications"
         label="Cancer Genome Screening Publications"
@@ -103,6 +105,18 @@ export default function Index({
     </p>
 
   </Panel>
+  <Panel>
+    <h4>
+      <InternalLink
+        href="dataDashboard"
+        label="Some Progenetix Content Statistics"
+      />
+    </h4>
+    <AggregatedPlots
+      summaryResults={summaryResults}
+      filterUnknowns={false}
+    />
+  </Panel>
 </Layout>
 
   )
@@ -111,6 +125,9 @@ export default function Index({
 export const getStaticProps = async () => {
   const dbstatsReply = await tryFetch(
     `${THISSITE}services/dbstats/?datasetIds=${DATASETDEFAULT}`
+  )
+  const aggregationReply = await tryFetch(
+    `${THISSITE}beacon/datasets/${DATASETDEFAULT}?requestedGranularity=aggregated`
   )
   const ncitCountReply = await tryFetch(
     `${THISSITE}services/collations/?datasetIds=${DATASETDEFAULT}&collationTypes=NCIT&includeDescendantTerms=false&requestedGranularity=count`
@@ -122,6 +139,7 @@ export const getStaticProps = async () => {
   return {
     props: {
       progenetixStats: dbstatsReply,
+      summaryResults: aggregationReply.summaryResults,
       ncitCountResponse: ncitCountReply.responseSummary.numTotalResults,
       subsetsResponse: subsetsReply
     }
