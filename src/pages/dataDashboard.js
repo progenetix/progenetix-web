@@ -26,7 +26,7 @@ Please allow for some loading time.`
   return (
     <Layout title={title} headline={title} leadPanelMarkdown={leadText}>
       <Panel>
-        <DatasetStats dataset_id={datasetIds} age_splits={ageSplits} filterUnknowns={true} />
+        <DatasetStats dataset_id={datasetIds} age_splits={ageSplits} requestedGranularity="aggregated" filterUnknowns={true} />
       </Panel>
     </Layout>
   )
