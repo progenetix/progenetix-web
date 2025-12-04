@@ -114,7 +114,7 @@ export default function Index({
     </h4>
     <AggregatedPlots
       summaryResults={summaryResults}
-      filterUnknowns={false}
+      filterUnknowns={true}
     />
   </Panel>
 </Layout>
