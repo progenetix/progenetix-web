@@ -86,7 +86,8 @@ export default function Index({
       the Statistics page.
     </p>
 
-*/}    <h4>
+*/}   
+    <h4>
       <InternalLink
         href="publications"
         label="Cancer Genome Screening Publications"
@@ -105,7 +106,7 @@ export default function Index({
     </p>
 
   </Panel>
-  <Panel>
+  <Panel className="content">
     <h4>
       <InternalLink
         href="dataDashboard"
