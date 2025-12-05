@@ -230,6 +230,21 @@ function StackedBarChart({ barData, legendData, col_no, outer_w, max_y, title}) 
                 x={outer_w * 0.5}        
                 y={padd_t - 15}
             />
+            <VictoryAxis
+                dependentAxis 
+                style={{
+                  axis: {
+                    stroke: "transparent",
+                  },
+                  tickLabels: {
+                    fontSize: 8,
+                  },
+                  grid: {
+                    stroke: "#d9d9d9",
+                    size: 5,
+                  },
+                }}
+            />
             <VictoryStack
                 colorScale={"qualitative"}
             >
@@ -246,32 +261,25 @@ function StackedBarChart({ barData, legendData, col_no, outer_w, max_y, title}) 
             <VictoryAxis
                 crossAxis 
                 style={{
-                  tickLabels: { angle: -60, textAnchor: "end" },
-                }}
-            />
-            <VictoryAxis
-                dependentAxis 
-                style={{
-                  axis: {
-                    stroke: "transparent",
-                  },
-                  tickLabels: {
-                    fontSize: 8,
-                  },
-                  grid: {
-                    stroke: "#d9d9d9",
-                    size: 5,
-                  },
+                    tickLabels: {
+                        angle: -60,
+                        textAnchor: "end"
+                    },
+                    grid: {
+                        stroke: "transparent",
+                    }
                 }}
             />
             {legendData.length > 1 && (
             <VictoryLegend
-                x={outer_w * 0.65}
-                y={padd_t}
-                orientation="horizontal"
-                itemsPerRow={3}
-                data={legendData}
+                dependentAxis 
                 colorScale={"qualitative"}
+                x={outer_w * 0.75}
+                y={18}
+                orientation="horizontal"
+                rowGutter={{ top: 0, bottom: -5 }}
+                itemsPerRow={2}
+                data={legendData}
             />)}
         </VictoryChart>
     )
