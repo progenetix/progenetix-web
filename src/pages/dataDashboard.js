@@ -10,8 +10,14 @@ export default function StatsPage({summaryResults, counts}) {
 
 
   const title = `${DATASETDEFAULT} Data Content Overview`
-  const leadText = `This page shows some data statistics for the ${DATASETDEFAULT}
-dataset. Please allow for some loading time.`
+  const leadText = `
+<p>This page shows some data statistics for the ${DATASETDEFAULT} dataset. Please
+allow for some loading time.
+</p>
+<p>The summary statistics are based on a test version of the Beacon v2 aggregation
+API and are subject to change. Particularly numbers might be incomplete and do not
+reflect the full dataset content at this time.</p>
+`
 
   return (
 <Layout title={title} headline={title} leadPanelMarkdown={leadText}>
