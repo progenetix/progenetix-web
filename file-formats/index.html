@@ -1,0 +1,1055 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for the Progenetix oncogenomics resource">
+      
+      
+        <meta name="author" content="Michael Baudis">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../img/site-logo-topright.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Progenetix File Formats - Progenetix Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M3.604%203.089A.75.75%200%200%201%204%203.75V8.5h.75a.75.75%200%200%201%200%201.5h-3a.75.75%200%201%201%200-1.5h.75V5.151l-.334.223a.75.75%200%200%201-.832-1.248l1.5-1a.75.75%200%200%201%20.77-.037M8.75%205.5a.75.75%200%200%200%200%201.5h11.5a.75.75%200%200%200%200-1.5zm0%206a.75.75%200%200%200%200%201.5h11.5a.75.75%200%200%200%200-1.5zm0%206a.75.75%200%200%200%200%201.5h11.5a.75.75%200%200%200%200-1.5zM5.5%2015.75c0-.704-.271-1.286-.72-1.686a2.3%202.3%200%200%200-1.53-.564c-.535%200-1.094.178-1.53.565-.449.399-.72.982-.72%201.685a.75.75%200%200%200%201.5%200c0-.296.104-.464.217-.564A.8.8%200%200%201%203.25%2015c.215%200%20.406.072.533.185.113.101.217.268.217.565%200%20.332-.069.48-.21.657-.092.113-.216.24-.403.419l-.147.14c-.152.144-.33.313-.52.504l-1.5%201.5a.75.75%200%200%200-.22.53v.25c0%20.414.336.75.75.75H5A.75.75%200%200%200%205%2019H3.31l.47-.47c.176-.176.333-.324.48-.465l.165-.156a6%206%200%200%200%20.536-.566c.358-.447.539-.925.539-1.593%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/theme_overrides.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#data-file-formats-pgxseg-variants-pgxfreq-segmental-cnv-frequencies" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Progenetix Documentation" class="md-header__button md-logo" aria-label="Progenetix Documentation" data-md-component="logo">
+      
+  <img src="../img/site-logo-topright.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Progenetix Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Progenetix File Formats
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/progenetix/progenetix-web" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    progenetix-web
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Progenetix Documentation" class="md-nav__button md-logo" aria-label="Progenetix Documentation" data-md-component="logo">
+      
+  <img src="../img/site-logo-topright.png" alt="logo">
+
+    </a>
+    Progenetix Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/progenetix/progenetix-web" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    progenetix-web
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../news" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelog" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Changes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pgxRpi" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Analysis in R - pgxRpi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use-cases" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Use Case Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../common/beacon-api" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Beacon+ API Use
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../services" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../common/plotting" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plotting & Visualizations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../common/classifications-and-ontologies" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classifications, Ontologies & Standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../publication-collection" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Publication Collection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../progenetix-data-review" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Review
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../technical-notes" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technical Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http://progenetix.org" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Progenetix Data &#8599;
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http://cancercelllines.org" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    cancercelllines.org &#8599;
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http://baudisgroup.org" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Baudisgroup @ UZH &#8599;
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data-file-formats-pgxseg-variants-pgxfreq-segmental-cnv-frequencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data File Formats - .pgxseg Variants &amp; .pgxfreq Segmental CNV Frequencies
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data File Formats - .pgxseg Variants &amp; .pgxfreq Segmental CNV Frequencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pgxseg-sample-variant-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pgxseg Sample Variant Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pgxfreq-segment-cnv-frequencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pgxfreq Segment CNV Frequencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-matrix-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Matrix Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="progenetix-file-formats">Progenetix File Formats<a class="headerlink" href="#progenetix-file-formats" title="Permanent link">&para;</a></h1>
+<h2 id="data-file-formats-pgxseg-variants-pgxfreq-segmental-cnv-frequencies">Data File Formats - <code>.pgxseg</code> Variants &amp; <code>.pgxfreq</code> Segmental CNV Frequencies<a class="headerlink" href="#data-file-formats-pgxseg-variants-pgxfreq-segmental-cnv-frequencies" title="Permanent link">&para;</a></h2>
+<p>Progenetix uses a variation of a standard tab-separated columnar text file such
+as produced by array or sequencing CNV software, with an optional metadata header
+for e.g. plot or grouping instructions.</p>
+<p>Wile the first edition only was geared towards sample-linked segment annotations,
+a variation is now being provided for CNV frequencies.</p>
+<h3 id="pgxseg-sample-variant-files"><code>pgxseg</code> Sample Variant Files<a class="headerlink" href="#pgxseg-sample-variant-files" title="Permanent link">&para;</a></h3>
+<ul>
+<li>a standard tab-delimited Progenetix segments file<ul>
+<li>an additional header may exist</li>
+<li>only first 5 columns are necessary <em>but</em> complete lines might be expected from downstream parsers</li>
+<li>columns <strong>have to use these column headers</strong>:</li>
+<li>column 5 (log2) can be empty or dot, if column 6 exists and contains status value</li>
+<li>undefined fields in existing columns are replaced with the "." character
+<div class="highlight"><pre><span></span><code>biosample_id    reference_name  start   end log2    variant_type    reference_sequence  sequence    variant_state_id    variant_state_label
+pgxbs-kftvjv8w  2   79005161    90144630    -0.2239 DEL .   .   EFO:0030068 low-level loss
+pgxbs-kftvjv8w  11  11228096    14560216    0.7632  DUP .   .   EFO:0030072 high-level gain
+</code></pre></div></li>
+</ul>
+</li>
+<li>header (optional)<ul>
+<li>header lines start with the <code>#</code> character</li>
+<li>Plot parameters:<ul>
+<li>lines start with <code>#plotpars=&gt;</code></li>
+<li>parameters are added in <code>parameter_name=value;other_parameter=itsValue</code> format - see below</li>
+<li>basically any <a href="https://github.com/progenetix/PGX/blob/master/config/plotdefaults.yaml">plot parameter from PGX</a> can be used</li>
+</ul>
+</li>
+<li>Sample / grouping parameters<ul>
+<li>the <code>biosample_id</code> parameter is required to assign values (e.g. group labels) to samples</li>
+<li><code>biosample_id</code> has to correspond to the identifiers used in column 1 of the following segments data</li>
+<li><code>parameter=value</code> pairs are semicolon-separated</li>
+<li>values may be wrapped in double quotation marks (<code>group_label="Ductal Breast Carcinoma"</code>)</li>
+<li><code>group_id</code> <strong>should</strong> be used for grouping</li>
+</ul>
+</li>
+<li>this is a convention for the Progenetix plotting engine</li>
+<li><code>group_label</code> is optional for grouping / labeling of the groups</li>
+<li>Metadata<ul>
+<li>lines start with <code>#meta=&gt;</code></li>
+<li>additional information about the file</li>
+<li>(so far) only informative</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="examples">Examples:<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h4>
+<ul>
+<li><a href="http://progenetix.org/services/pgxsegvariants/pgxbs-kftvjv8w">/services/pgxsegvariants/pgxbs-kftvjv8w</a></li>
+<li><a href="http://progenetix.org/services/pgxsegvariants/?filters=NCIT:C6393">/services/pgxsegvariants/?filters=NCIT:C6393</a></li>
+</ul>
+<h4 id="processing-note">Processing Note<a class="headerlink" href="#processing-note" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>pgxseg</code> lines can be deparsed using this regular expression (Python flavor):
+<div class="highlight"><pre><span></span><code><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    (?P&lt;biosample_id&gt;[^:]+)((?:::)|\t)</span>
+<span class="sd">    (?P&lt;reference_name&gt;[\w:]+)(?:\2)</span>
+<span class="sd">    (?P&lt;start&gt;\d+)(?:\2)</span>
+<span class="sd">    (?P&lt;end&gt;\d+)(?:\2)</span>
+<span class="sd">    (?P&lt;value&gt;[^\s]*)(?:\2)</span>
+<span class="sd">    (?P&lt;variant_type&gt;[\w]*)(?:\2)</span>
+<span class="sd">    (?P&lt;reference_sequence&gt;[\.ACGTN]*)(?:\2)</span>
+<span class="sd">    (?P&lt;sequence&gt;[\.ACGTN]*)(?:\2)</span>
+<span class="sd">    (?:</span>
+<span class="sd">        (?P&lt;variant_state_id&gt;[\w:]*)(?:\2)</span>
+<span class="sd">        (?P&lt;variant_state_label&gt;[\w\- ]*)</span>
+<span class="sd">        ((?:\2)(?P&lt;__other__&gt;.*))?</span>
+<span class="sd">    )?        </span>
+<span class="sd">    &quot;&quot;&quot;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+</code></pre></div></li>
+<li>the <code>value</code> parameter is used by local convention; e.g. as <code>log2</code> value or
+  absolute count (e.g. copy number)</li>
+<li>columns after <code>sequence</code> are optional and up for future definition; e.g.
+  <code>variant_state_id</code> and <code>variant_state_label</code> are used to indicate the variant
+  state, such as "loss" or "high-level gain" (see EFO and SO)<ul>
+<li>in case these are indicated they <em>should take precedence over the <code>variant_type</code>
+  annotation</em></li>
+</ul>
+</li>
+</ul>
+<p>An excerpt of the file would look like below:</p>
+<div class="highlight"><pre><span></span><code>#sample=&gt;id=pgxbs-kftvhubq;biosample_id=pgxbs-kftvhubq;individual_id=pgxind-kftx3rie;biosample_name=cb5043e3-c1c1-4b06-9135-1aada484ba4b;notes=Primary Tumor;histological_diagnosis_id=NCIT:C6393;histological_diagnosis_label=Invasive Breast Ductal Carcinoma and Invasive Lobular Carcinoma;pathological_stage_id=NCIT:C27968;pathological_stage_label=Stage IIB;biosample_status_id=EFO:0009656;biosample_status_label=neoplastic sample;sample_origin_type_id=OBI:0001479;sample_origin_type_label=specimen from organism;sampled_tissue_id=UBERON:0000310;sampled_tissue_label=breast;tnm=NCIT:C48724::T2 Stage Finding&amp;&amp;NCIT:C48706::N1 Stage Finding&amp;&amp;NCIT:C48699::M0 Stage Finding;age_iso=P61Y2M13D;icdo_morphology_id=pgx:icdom-85223;icdo_morphology_label=Infiltrating duct and lobular carcinoma;icdo_topography_id=pgx:icdot-C50.9;icdo_topography_label=Breast, NOS;pubmed_id=23000897;pubmed_label=Cancer Genome Atlas Network. (2012): Comprehensive molecular portraits of human breast...;tcgaproject_id=pgx:TCGA-BRCA;tcgaproject_label=Breast invasive carcinoma;cohorts=pgx:cohort-TCGA::TCGA samples&amp;&amp;pgx:cohort-2021progenetix::Version at Progenetix Update 2021&amp;&amp;pgx:cohort-TCGAcancers::TCGA Cancer samples;geoprov_city=Chapel Hill;geoprov_country=United States of America;geoprov_iso_alpha3=USA;geoprov_long_lat=-79.06::35.91
+# ... more sample lines
+biosample_id    reference_name  start   end log2    variant_type    reference_sequence  sequence    variant_state_id    variant_state_label
+pgxbs-kftvi7s5  1   3301765 34493787    0.1927  DUP .   .   EFO:0030071 low-level gain
+pgxbs-kftvhmav  1   7994229 7996294 -1.4841 DEL .   .   EFO:0020073 high-level loss
+pgxbs-kftvhqsu  1   19765862    19766132    -1.7355 DEL .   .   EFO:0020073 high-level loss
+pgxbs-kftvhygw  1   43911001    44679178    0.3129  DUP .   .   EFO:0030071 low-level gain
+pgxbs-kftvhygw  1   46710934    47016934    0.2956  DUP .   .   EFO:0030071 low-level gain
+pgxbs-kftvht9x  1   60402269    60402865    -1.2955 DEL .   .   EFO:0020073 high-level loss
+pgxbs-kftvhmav  1   74571388    74571389        SNV T   A   SO:0001483  SNP
+pgxbs-kftvi6ts  1   84174010    84226850    0.3655  DUP .   .   EFO:0030071 low-level gain
+pgxbs-kftvhv13  1   85190631    85190632        SNV T   C   SO:0001483  SNP
+pgxbs-kftvhqsu  1   102396750   103156433   -0.3723 DEL .   .   EFO:0030068 low-level loss
+pgxbs-kftvi4rx  1   165094663   165210937   0.977   DUP .   .   EFO:0030072 high-level gain
+pgxbs-kftvht9x  1   171282243   171282244       SNV C   A   SO:0001483  SNP
+...
+</code></pre></div>
+<h3 id="pgxfreq-segment-cnv-frequencies"><code>pgxfreq</code> Segment CNV Frequencies<a class="headerlink" href="#pgxfreq-segment-cnv-frequencies" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">New suffix <code>pgxfreq</code></p>
+<p>With the November 2022 update we changed the file suffix to <code>pgxfreq</code> to
+keep a clean separation between the (usually binned) CNV frequency files and
+the (usually raw) representation of sample-specific CNVs (and other variants).</p>
+</div>
+<p>In the frequency file (compared to the <code>.pgxseg</code> format):</p>
+<ul>
+<li><code>group_id</code> values replace the <code>biosample_id</code><ul>
+<li>multiple groups can be concatenated in the file</li>
+</ul>
+</li>
+<li><code>chro</code>, <code>start</code> and <code>end</code> are the same as in the sample files</li>
+<li><code>gain_frequency</code> and <code>loss_frequency</code> indicate the <em>percent</em> values for gains
+and losses overlapping the segment, respectively</li>
+<li>additional CNV types are under evaluation</li>
+</ul>
+<p>Examples can be derived from the Progenetix "Services" API:</p>
+<ul>
+<li><a href="http://progenetix.org/services/intervalFrequencies/pgx:cohort-TCGAcancers/?output=pgxfreq">/services/intervalFrequencies/pgx:cohort-TCGAcancers/?output=pgxfreq</a><ul>
+<li>single group in REST syntax (here overall CNV frequencies in &gt;11000 cancer samples from the TCGA sample collection)</li>
+</ul>
+</li>
+<li><a href="http://progenetix.org/services/intervalFrequencies/?filters=icdom-81403,icdom-81443&amp;output=pgxfreq">/services/intervalFrequencies/?filters=icdom-81403,icdom-81443&amp;output=pgxfreq</a><ul>
+<li>2 sets using the <code>filters</code> parameter</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code>#meta=&gt;genome_binning=1Mb;interval_number=3106
+#group=&gt;group_id=icdom-81403;label=Adenocarcinoma, NOS;dataset_id=progenetix;sample_count=18559
+group_id  chro  start end gain_frequency  loss_frequency  index
+icdom-81403 1 0 1000000 8.8 9.12  0
+icdom-81403 1 1000000 2000000 8.49  8.68  1
+icdom-81403 1 2000000 3000000 9.81  13.19 2
+icdom-81403 1 3000000 4000000 10.02 15.84 3
+icdom-81403 1 4000000 5000000 7.94  15.91 4
+...
+icdom-81403 2 228000000 229000000 7.37  6.62  477
+icdom-81403 2 229000000 230000000 7.39  6.89  478
+icdom-81403 2 230000000 231000000 8.3 7.0 479
+icdom-81403 2 231000000 232000000 8.24  6.86  480
+icdom-81403 2 232000000 233000000 9.1 7.89  481
+...
+</code></pre></div>
+<h3 id="data-matrix-files">Data Matrix Files<a class="headerlink" href="#data-matrix-files" title="Permanent link">&para;</a></h3>
+<h4 id="cnv-frequency-matrix">CNV Frequency Matrix<a class="headerlink" href="#cnv-frequency-matrix" title="Permanent link">&para;</a></h4>
+<p>The CNV frequency matrix contains interval CNV frequencies for genomic bins, separate for gain and loss frquencies:</p>
+<ul>
+<li>header similar to segment frequency files</li>
+<li>first column with group identifier</li>
+<li>standard genome binning on GRCh38 results in 2 x 3106[^1] value columns</li>
+<li>header line indicates genomic ranges for the bins</li>
+<li>first all gain frequencies (in %), then all losses</li>
+</ul>
+<div class="highlight"><pre><span></span><code>#meta=&gt;genome_binning=1Mb;interval_number=3106
+#group=&gt;group_id=NCIT:C7376;label=Pleural Malignant Mesothelioma;dataset_id=progenetix;sample_count=240
+#group=&gt;group_id=pubmed:22824167;label=Beleut M et al. (2012)...;dataset_id=progenetix;sample_count=159
+group_id  1:0-1000000:gainF 1:1000000-2000000:gainF ...  1:0-1000000:lossF  1:1000000-2000000:lossF ...
+NCIT:C7376  9.58  7.92  ...  1.89 1.89  ...
+pubmed:22824167 6.29  0.0 ... 8.18  4.4 ...
+</code></pre></div>
+<h5 id="examples_1">Examples<a class="headerlink" href="#examples_1" title="Permanent link">&para;</a></h5>
+<ul>
+<li><a href="http://progenetix.org/services/intervalFrequencies/?datasetIds=progenetix&amp;output=pgxmatrix&amp;filters=NCIT:C7376,pubmed:22824167">progenetix.org/services/intervalFrequencies/?datasetIds=progenetix&amp;output=pgxmatrix&amp;filters=NCIT:C7376,pubmed:22824167</a></li>
+</ul>
+<h4 id="cnv-status-matrix">CNV Status Matrix<a class="headerlink" href="#cnv-status-matrix" title="Permanent link">&para;</a></h4>
+<p>For endpoints with per biosample or analysis / analysis delvery, the Progenetix
+API offers the delivery of a binned status matrix. This matrix can e.g. directly
+be used for clustering CNV patterns.</p>
+<ul>
+<li>id columns, followed by<ul>
+<li>all "gain status" columns (e.g. 3106[^1], see above), followed by</li>
+<li>all "loss status" columns</li>
+</ul>
+</li>
+<li>the status is indicated by a coverage value, i.e. the fraction of how much the
+binned interval overlaps with one or more CNVs of the given type.</li>
+</ul>
+<p>The header will contain sample specific information.</p>
+<div class="highlight"><pre><span></span><code>#meta=&gt;id=progenetix
+#meta=&gt;assemblyId=GRCh38
+#meta=&gt;filters=NCIT:C4443
+#meta=&gt;genome_binning=1Mb;interval_number=3106
+#meta=&gt;no_info_columns=3;no_interval_columns=6212
+#sample=&gt;biosample_id=pgxbs-kftvktaz;analysis_ids=pgxcs-kftwu9ca;group_id=NCIT:C6650;group_label=Ampulla of Vater adenocarcinoma;NCIT::id=NCIT:C6650;NCIT::label=Ampulla of Vater adenocarcinoma
+#sample=&gt;biosample_id=pgxbs-kftvkyeq;analysis_ids=pgxcs-kftwvv3p;group_id=NCIT:C3908;group_label=Ampulla of Vater Carcinoma;NCIT::id=NCIT:C3908;NCIT::label=Ampulla of Vater Carcinoma
+...
+#meta=&gt;biosampleCount=26;analysisCount=26
+analysis_id biosample_id  group_id  1:0-1000000:DUP 1:1000000-2000000:DUP 1:2000000-3000000:DUP 1:3000000-4000000:DUP  ...
+pgxcs-kftwu9ca  pgxbs-kftvktaz  NCIT:C6650  0 0.3434  1.0 1.0
+pgxcs-kftwwbry  pgxbs-kftvkzwp  NCIT:C3908  0.5801  0 0.6415  1.0
+...
+</code></pre></div>
+<h5 id="examples_2">Examples<a class="headerlink" href="#examples_2" title="Permanent link">&para;</a></h5>
+<ul>
+<li><a href="http://progenetix.org/beacon/analyses/?output=pgxmatrix&amp;filters=NCIT:C4443">progenetix.org/beacon/analyses/?output=pgxmatrix&amp;filters=NCIT:C4443</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; Copyright 2023, Michael Baudis and progenetix.org
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+      
+    
+    
+    
+      
+      
+    
+    <a href="https://genomic.social/@progenetix" target="_blank" rel="noopener me" title="genomic.social" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M433 179.1c0-97.2-63.7-125.7-63.7-125.7-62.5-28.7-228.6-28.4-290.5 0 0 0-63.7 28.5-63.7 125.7 0 115.7-6.6 259.4 105.6 289.1 40.5 10.7 75.3 13 103.3 11.4 50.8-2.8 79.3-18.1 79.3-18.1l-1.7-36.9s-36.3 11.4-77.1 10.1c-40.4-1.4-83-4.4-89.6-54-.6-4.6-.9-9.3-.9-13.9 85.6 20.9 158.7 9.1 178.7 6.7 56.1-6.7 105-41.3 111.2-72.9 9.8-49.8 9-121.5 9-121.5zm-75.1 125.2h-46.6V190.1c0-49.7-64-51.6-64 6.9v62.5H201V197c0-58.5-64-56.6-64-6.9v114.2H90.3c0-122.1-5.2-147.9 18.4-175 25.9-28.9 79.8-30.8 103.8 6.1l11.6 19.5 11.6-19.5c24.1-37.1 78.1-34.8 103.8-6.1 23.7 27.3 18.4 53 18.4 175"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/progenetix" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.tabs.link", "search.highlight", "search.share", "navigation.instant", "navigation.tracking", "navigation.sections"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
