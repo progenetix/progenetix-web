@@ -131,10 +131,10 @@ export const getStaticProps = async () => {
     `${THISSITE}beacon/datasets/${DATASETDEFAULT}?requestedGranularity=aggregated`
   )
   const ncitCountReply = await tryFetch(
-    `${THISSITE}services/collations/?datasetIds=${DATASETDEFAULT}&collationTypes=NCIT&includeDescendantTerms=false&requestedGranularity=count`
+    `${THISSITE}services/collations/?datasetIds=${DATASETDEFAULT}&collationTypes=NCITneoplasm&includeDescendantTerms=false&requestedGranularity=count`
   )
   const subsetsReply = await tryFetch(
-    `${THISSITE}services/collations/?datasetIds=${DATASETDEFAULT}&collationTypes=NCIT&deliveryKeys=count,id,label,cnv_analyses`
+    `${THISSITE}services/collations/?datasetIds=${DATASETDEFAULT}&collationTypes=NCITneoplasm&deliveryKeys=count,id,label,cnv_analyses`
   )
 
   return {

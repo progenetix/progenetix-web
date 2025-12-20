@@ -19,7 +19,7 @@ export default function Page() {
           response.
         </p>
       </div>
-      <SubsetsHierarchyLoader collationTypes="NCIT" datasetIds="progenetix" />
+      <SubsetsHierarchyLoader collationTypes="NCITneoplasm" datasetIds="progenetix" />
     </Layout>
   )
 }
