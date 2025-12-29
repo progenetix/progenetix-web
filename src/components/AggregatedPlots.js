@@ -2,8 +2,11 @@ import React, { useState, useCallback } from "react";
 import dynamic from "next/dynamic";
 const Plot = dynamic(() => import("react-plotly.js"), { ssr: false, })
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 // import {PlotParams} from 'react-plotly.js';
 =======
+=======
+>>>>>>> Stashed changes
 import MakeTraces from "./AggregationData";
 
 >>>>>>> Stashed changes
@@ -40,6 +43,7 @@ export function AggregatedPlots({ summaryResults, filterUnknowns }) {
 
 //----------------------------------------------------------------------------//
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 function AggregatedStackedPlot({ agg, filterUnknowns, filterOthers }) {
 
@@ -177,6 +181,9 @@ function AggregatedStackedPlot({ agg, filterUnknowns, filterOthers }) {
 =======
 function AggregationPlot({ agg, filterUnknowns, filterOthers }) {
 >>>>>>> Stashed changes
+=======
+function AggregationPlot({ agg, filterUnknowns, filterOthers }) {
+>>>>>>> Stashed changes
 
     let {tracesData} = MakeTraces({ agg, filterUnknowns, filterOthers, colNo });
 
@@ -190,6 +197,7 @@ function AggregationPlot({ agg, filterUnknowns, filterOthers }) {
     return (
         <>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             {dist.length > 0 ? (
                 <div ref={containerRef} style={{ display: "flex", flexDirection: "row", alignItems: "flex-start", width: "100%", marginBottom: "0px" }}>
                    <>
@@ -202,6 +210,8 @@ function AggregationPlot({ agg, filterUnknowns, filterOthers }) {
                         <StackedPlotlyBar
                             tracesData={tracesData} outer_w={outer_w} title={agg_l}
 =======
+=======
+>>>>>>> Stashed changes
             {tracesData[0].x.length > 0 ? (
                 <div ref={containerRef} style={{ display: "flex", flexDirection: "row", alignItems: "flex-start", width: "100%", marginBottom: "0px" }}>
                    <>
@@ -213,6 +223,9 @@ function AggregationPlot({ agg, filterUnknowns, filterOthers }) {
                     ) : (
                         <StackedPlotlyBar
                             tracesData={tracesData} outer_w={outer_w} title={agg["label"]}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                         />
                     )}
@@ -251,11 +264,14 @@ function SimplePlotlyPie({ tracesData, outer_w, title}) { //, title
 
 function StackedPlotlyBar({ tracesData, outer_w, title}) { //, title
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     return (
       <Plot
         data={tracesData}
         layout={ {barmode: 'stack', width: outer_w, height: 240, title: {text: title}} }
 =======
+=======
+>>>>>>> Stashed changes
     for (let trace of tracesData) {
         trace.type = 'bar';
     }
@@ -273,6 +289,9 @@ function StackedPlotlyBar({ tracesData, outer_w, title}) { //, title
                 }
             }
         }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       />
     );
