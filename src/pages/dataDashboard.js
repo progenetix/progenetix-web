@@ -1,6 +1,6 @@
 import React from "react"
 import Panel from "./../components/Panel"
-import { AggregatedPlots } from "./../components/AggregatedPlots"
+import { SummaryPlots } from "./../components/summaries/SummaryPlots"
 import {Layout} from "./../site-specific/Layout"
 import { DATASETDEFAULT, tryFetch, THISSITE } from "./../hooks/api"
 
@@ -8,12 +8,9 @@ import { DATASETDEFAULT, tryFetch, THISSITE } from "./../hooks/api"
 
 export default function StatsPage({summaryResults, counts}) {
 
-
   const title = `${DATASETDEFAULT} Data Content Overview`
-  const leadText = `This page shows some data statistics for the ${DATASETDEFAULT} dataset.
-  Please allow for some loading time. The summary statistics are based on a test version of the Beacon v2 aggregation
-API and are subject to change. Particularly numbers might be incomplete and do not
-reflect the full dataset content at this time.`
+  const leadText = `This page shows some data statistics for the ${DATASETDEFAULT}
+dataset. Please allow for some loading time.`
 
   return (
 <Layout title={title} headline={title} leadPanelMarkdown={leadText}>
@@ -26,7 +23,7 @@ reflect the full dataset content at this time.`
     </ul>
   </Panel>
   <Panel heading="Some Content Statistics">
-    <AggregatedPlots
+    <SummaryPlots
       summaryResults={summaryResults}
       filterUnknowns={true}
     />
@@ -40,7 +37,6 @@ export const getStaticProps = async () => {
     `${THISSITE}beacon/datasets/${DATASETDEFAULT}?requestedGranularity=aggregated`
   )
 
-  console.log(aggregationReply)
 
   return {
     props: {

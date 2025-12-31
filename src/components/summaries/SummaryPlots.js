@@ -1,15 +1,15 @@
 import React, { useState, useCallback } from "react";
 import dynamic from "next/dynamic";
 const Plot = dynamic(() => import("react-plotly.js"), { ssr: false, })
-import MakeTraces from "./AggregationData";
+import SummaryTraces from "./SummaryTraces";
 
 //----------------------------------------------------------------------------//
 
-var colNo = 20
+var colNo = 15
 
 //----------------------------------------------------------------------------//
 
-export function AggregatedPlots({ summaryResults, filterUnknowns }) {
+export function SummaryPlots({ summaryResults, filterUnknowns }) {
 
     const filterOthers = false //true
 
@@ -38,7 +38,7 @@ export function AggregatedPlots({ summaryResults, filterUnknowns }) {
 
 function AggregationPlot({ agg, filterUnknowns, filterOthers }) {
 
-    let {tracesData} = MakeTraces({ agg, filterUnknowns, filterOthers, colNo });
+    let {tracesData} = SummaryTraces({ agg, filterUnknowns, filterOthers, colNo });
 
     const [boundingRect, setBoundingRect] = useState({ width: 0, height: 0 });
     const containerRef = useCallback((node) => {
@@ -77,17 +77,17 @@ function AggregationPlot({ agg, filterUnknowns, filterOthers }) {
 //----------------------------------------------------------------------------//
 //----------------------------------------------------------------------------//
 
-
 function SimplePlotlyPie({ tracesData, outer_w, title}) { //, title
-    let pieData = {
-        type: "pie",
-        hole: .4,
-        values: tracesData[0]["y"],
-        labels: tracesData[0]["x"],
+    for (let trace of tracesData) {
+        trace.type = 'pie';
+        trace.hole = 0.4;
+        trace.values = trace["y"];
+        trace.labels = trace["x"];
+        trace.hoverinfo = "text";
     }
     return (
       <Plot
-        data={[pieData]}
+        data={tracesData}
         layout={ {width: outer_w, height: 400, title: {text: title}} }
       />
     );
@@ -98,6 +98,7 @@ function SimplePlotlyPie({ tracesData, outer_w, title}) { //, title
 function StackedPlotlyBar({ tracesData, outer_w, title}) { //, title
     for (let trace of tracesData) {
         trace.type = 'bar';
+        trace.hoverinfo = "text";
     }
     return (
       <Plot
@@ -107,10 +108,7 @@ function StackedPlotlyBar({ tracesData, outer_w, title}) { //, title
                 barmode: 'stack',
                 width: outer_w,
                 height: 240,
-                title: {text: title},
-                yaxis2: {
-                    side: 'right'
-                }
+                title: {text: title}
             }
         }
       />

@@ -1,15 +1,16 @@
 
 //----------------------------------------------------------------------------//
 
-export default function MakeTraces({ agg, filterUnknowns, filterOthers, colNo }) {
+export default function SummaryTraces({ agg, filterUnknowns, filterOthers, colNo }) {
 
-    let presorted = agg["sorted"] ? true : false
-    let distribution = agg["distribution"]
-    let keyedProps = []
+    let presorted       = agg["sorted"] ? true : false
+    let distribution    = agg["distribution"]
 
     // getting all keys and generating the sums for sorting
     // for 1..n dimensions but downstream only 1 or 2 are used so far
+    let keyedProps      = []
     distribution.forEach(function (v) {
+        // console.log(v)
         let cvs = v["conceptValues"];
         let c = v["count"]
         cvs.forEach(function (cv, index) {
@@ -25,7 +26,7 @@ export default function MakeTraces({ agg, filterUnknowns, filterOthers, colNo })
     });
 
     // sorting & limiting the first dimension based on the "sum" key
-    let sortedFirsts = Object.keys(keyedProps[0]).map(function(key) {
+    let sortedFirsts    = Object.keys(keyedProps[0]).map(function(key) {
       return keyedProps[0][key];
     });
     sortedFirsts = presorted ? sortedFirsts : sortedFirsts.sort((a, b) => a.sum < b.sum ? 1 : -1);
@@ -75,6 +76,25 @@ export default function MakeTraces({ agg, filterUnknowns, filterOthers, colNo })
 
     return MultiTraces({filteredFirsts, other, otherIds, filterOthers, sortedSeconds, distribution});
 
+}
+
+//----------------------------------------------------------------------------//
+
+function SingleTrace({filteredFirsts, other, filterOthers}) {
+    if (other["sum"] > 0 && filterOthers == false) {
+        filteredFirsts.push(other)
+    }
+    let xs = [];
+    let ys = [];
+    let hos = [];
+    for (const first of filteredFirsts) {
+        console.log("...SingleTrace first:", first)
+        xs.push(first["id"]);
+        ys.push(first["sum"]);
+        hos.push(`${first["label"]}: ${first["sum"]}`);
+    }
+    const tracesData = [{x: xs, y: ys, hovertext: hos}];
+    return ({tracesData})
 }
 
 //----------------------------------------------------------------------------//
@@ -136,21 +156,4 @@ function CountMatches(distribution, id1, id2) {
     return c
 }
 
-//----------------------------------------------------------------------------//
-
-function SingleTrace({filteredFirsts, other, filterOthers}) {
-    if (other["sum"] > 0 && filterOthers == false) {
-        filteredFirsts.push(other)
-    }
-    let xs = [];
-    let ys = [];
-    let hos = [];
-    for (const first of filteredFirsts) {
-        xs.push(first["id"]);
-        ys.push(first["sum"]);
-        hos.push(`${first["label"]}: ${first["sum"]}`);
-    }
-    const tracesData = [{x: xs, y: ys, hovertext: hos}];
-    return ({tracesData})
-}
 

@@ -1,7 +1,7 @@
 import { Layout } from "../site-specific/Layout"
 import Panel from "../components/Panel"
 import { SubsetHistogram } from "../components/SVGloaders"
-import { AggregatedPlots } from "../components/AggregatedPlots"
+import SummaryPlots from "../components/summaries/SummaryPlots"
 import { InternalLink }  from "../components/helpersShared/linkHelpers"
 import React from "react"
 import { sample } from "lodash"
@@ -113,7 +113,7 @@ export default function Index({
         label="Some Progenetix Content Statistics"
       />
     </h4>
-    <AggregatedPlots
+    <SummaryPlots
       summaryResults={summaryResults}
       filterUnknowns={true}
     />
