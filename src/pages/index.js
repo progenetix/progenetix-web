@@ -1,7 +1,7 @@
 import { Layout } from "../site-specific/Layout"
 import Panel from "../components/Panel"
 import { SubsetHistogram } from "../components/SVGloaders"
-import SummaryPlots from "../components/summaries/SummaryPlots"
+import { SummaryPlots } from "../components/summaries/SummaryPlots"
 import { InternalLink }  from "../components/helpersShared/linkHelpers"
 import React from "react"
 import { sample } from "lodash"
