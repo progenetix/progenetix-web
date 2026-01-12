@@ -5,13 +5,16 @@ import SummaryTraces from "./SummaryTraces";
 
 //----------------------------------------------------------------------------//
 
-var colNo = 15
+const colNo = 20
+const includeOthers = true
+// const includeOthers = false
+const dashboardPies = ["selectedPlatformTechnologies", "sampleCountries"]
+const dashboardSankeys = ["selectedDiagnosesBySex"]
+// let sankeyHeight = 400
 
 //----------------------------------------------------------------------------//
 
 export function SummaryPlots({ summaryResults, filterUnknowns }) {
-
-    const filterOthers = false //true
 
     return (
         <>
@@ -19,10 +22,9 @@ export function SummaryPlots({ summaryResults, filterUnknowns }) {
             summaryResults.map((r) => (
                 <>
                 {r["concepts"].length > 0 && (
-                    <AggregationPlot
-                        agg={r}
+                    <SummaryPlot
+                        summary={r}
                         filterUnknowns={filterUnknowns}
-                        filterOthers={filterOthers}
                     />
                 )}
                 </>
@@ -36,17 +38,12 @@ export function SummaryPlots({ summaryResults, filterUnknowns }) {
 
 //----------------------------------------------------------------------------//
 
-function AggregationPlot({ agg, filterUnknowns, filterOthers }) {
+function SummaryPlot({ summary, filterUnknowns }) {
 
-    let concepts        = agg["concepts"]
-    console.log(Object.keys(agg));
+    console.log("==>> Plot for", summary["label"]);
+    let summaryId = summary["id"]
 
-    let dims = 1
-    if (concepts && concepts.length > 0) {
-        dims = concepts.length
-    }
-
-    let {tracesData, sankeyLabels, sankeyLinks} = SummaryTraces({ agg, filterUnknowns, filterOthers, colNo });
+    let {tracesData, sankeyLabels, sankeyLinks} = SummaryTraces({ summary, filterUnknowns, colNo, includeOthers });
 
     const [boundingRect, setBoundingRect] = useState({ width: 0, height: 0 });
     const containerRef = useCallback((node) => {
@@ -55,42 +52,42 @@ function AggregationPlot({ agg, filterUnknowns, filterOthers }) {
 
     const outer_w = boundingRect.width
 
-    // console.log("tracesData for", agg["label"], ":", tracesData.length, concepts.length);
+    // console.log("tracesData for", summary["label"], ":", tracesData.length, concepts.length);
 
     if (tracesData.length == 0) {
         return <></>;
     }
 
-    if (tracesData[0].x.length <= 8 && dims < 2 && !agg["sorted"]) {
-        console.log("Rendering SimplePlotlyPie for", agg["label"]);
+    if (dashboardPies.includes(summaryId)) {
+        console.log("Rendering SimplePlotlyPie for", summary["label"]);
         return (
         <div ref={containerRef} style={{ display: "flex", flexDirection: "row", alignItems: "flex-start", width: "100%", marginBottom: "0px" }}>
             <SimplePlotlyPie
-                tracesData={tracesData} outer_w={outer_w} title={agg["label"]}
+                tracesData={tracesData} outer_w={outer_w} title={summary["label"]}
             />
         </div>
         );
     }
 
-    if (tracesData[0].x.length <= 8 && dims == 2 && sankeyLabels && sankeyLabels.length > 0) {
-        console.log("Rendering SankeyPlot for", agg["label"]);
+    if (dashboardSankeys.includes(summaryId)) {
+        console.log("Rendering SankeyPlot for", summary["label"]);
         return (
         <div ref={containerRef} style={{ display: "flex", flexDirection: "row", alignItems: "flex-start", width: "100%", marginBottom: "0px" }}>
             <SankeyPlot
                 sankeyLabels={sankeyLabels}
                 sankeyLinks={sankeyLinks}
                 outer_w={outer_w}
-                title={agg["label"] + " - Sankey Diagram"}
+                title={summary["label"] + " - Sankey Diagram"}
             />
         </div>
         );
     }
 
-    console.log("Rendering StackedPlotlyBar for", agg["label"]);
+    console.log("Rendering StackedPlotlyBar for", summary["label"]);
     return (
     <div ref={containerRef} style={{ display: "flex", flexDirection: "row", alignItems: "flex-start", width: "100%", marginBottom: "0px" }}>
         <StackedPlotlyBar
-            tracesData={tracesData} outer_w={outer_w} title={agg["label"]}
+            tracesData={tracesData} outer_w={outer_w} title={summary["label"]}
         />
      </div>
     );
@@ -105,8 +102,8 @@ function SimplePlotlyPie({ tracesData, outer_w, title}) { //, title
     for (let trace of tracesData) {
         trace.type = 'pie';
         trace.hole = 0.4;
-        trace.values = trace["y"];
-        trace.labels = trace["x"];
+        trace.values = trace.y;
+        trace.labels = trace.x;
         trace.hoverinfo = "text";
     }
     return (
@@ -131,7 +128,7 @@ function StackedPlotlyBar({ tracesData, outer_w, title}) { //, title
             {
                 barmode: 'stack',
                 width: outer_w,
-                height: 240,
+                height: 400,
                 title: {text: title}
             }
         }
@@ -158,12 +155,9 @@ function SankeyPlot({ sankeyLabels, sankeyLinks, outer_w, title}) { //, title
 
     let sankeyLayout = {
         width: outer_w,
-        height: 400,
+        // height: 400,
         title: {text: title}
     };
-
-    console.log("SankeyPlot sankeyData:", sankeyData[0]);
-    console.log("SankeyPlot sankeyLayout:", sankeyLayout);
 
     return (
       <Plot
