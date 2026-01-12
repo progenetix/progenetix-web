@@ -101,8 +101,8 @@ function SimplePlotlyPie({ tracesData, outer_w, title}) { //, title
     for (let trace of tracesData) {
         trace.type = 'pie';
         trace.hole = 0.4;
-        trace.values = trace["y"];
-        trace.labels = trace["x"];
+        trace.values = trace.y;
+        trace.labels = trace.x;
         trace.hoverinfo = "text";
     }
     return (
@@ -154,7 +154,7 @@ function SankeyPlot({ sankeyLabels, sankeyLinks, outer_w, title}) { //, title
 
     let sankeyLayout = {
         width: outer_w,
-        height: 400,
+        // height: 400,
         title: {text: title}
     };
 
