@@ -1,0 +1,3482 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for the Progenetix oncogenomics resource">
+      
+      
+        <meta name="author" content="Michael Baudis">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../img/site-logo-topright.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Progenetix News - Progenetix Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M3.604%203.089A.75.75%200%200%201%204%203.75V8.5h.75a.75.75%200%200%201%200%201.5h-3a.75.75%200%201%201%200-1.5h.75V5.151l-.334.223a.75.75%200%200%201-.832-1.248l1.5-1a.75.75%200%200%201%20.77-.037M8.75%205.5a.75.75%200%200%200%200%201.5h11.5a.75.75%200%200%200%200-1.5zm0%206a.75.75%200%200%200%200%201.5h11.5a.75.75%200%200%200%200-1.5zm0%206a.75.75%200%200%200%200%201.5h11.5a.75.75%200%200%200%200-1.5zM5.5%2015.75c0-.704-.271-1.286-.72-1.686a2.3%202.3%200%200%200-1.53-.564c-.535%200-1.094.178-1.53.565-.449.399-.72.982-.72%201.685a.75.75%200%200%200%201.5%200c0-.296.104-.464.217-.564A.8.8%200%200%201%203.25%2015c.215%200%20.406.072.533.185.113.101.217.268.217.565%200%20.332-.069.48-.21.657-.092.113-.216.24-.403.419l-.147.14c-.152.144-.33.313-.52.504l-1.5%201.5a.75.75%200%200%200-.22.53v.25c0%20.414.336.75.75.75H5A.75.75%200%200%200%205%2019H3.31l.47-.47c.176-.176.333-.324.48-.465l.165-.156a6%206%200%200%200%20.536-.566c.358-.447.539-.925.539-1.593%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/theme_overrides.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Progenetix Documentation" class="md-header__button md-logo" aria-label="Progenetix Documentation" data-md-component="logo">
+      
+  <img src="../img/site-logo-topright.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Progenetix Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Progenetix News
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/progenetix/progenetix-web" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    progenetix-web
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Progenetix Documentation" class="md-nav__button md-logo" aria-label="Progenetix Documentation" data-md-component="logo">
+      
+  <img src="../img/site-logo-topright.png" alt="logo">
+
+    </a>
+    Progenetix Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/progenetix/progenetix-web" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    progenetix-web
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelog" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Changes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pgxRpi" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Analysis in R - pgxRpi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use-cases" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Use Case Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../common/beacon-api" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Beacon+ API Use
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../services" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../file-formats" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../common/plotting" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plotting & Visualizations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../common/classifications-and-ontologies" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classifications, Ontologies & Standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../publication-collection" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Publication Collection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../progenetix-data-review" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Review
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../technical-notes" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technical Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http://progenetix.org" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Progenetix Data &#8599;
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http://cancercelllines.org" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    cancercelllines.org &#8599;
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http://baudisgroup.org" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Baudisgroup @ UZH &#8599;
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+
+  <h1 id="progenetix-news">Progenetix News<a class="headerlink" href="#progenetix-news" title="Permanent link">&para;</a></h1>
+  
+  
+
+  
+
+  
+  
+  
+  
+    
+    
+      
+    
+  
+    
+    
+      
+    
+  
+    
+    
+      
+    
+  
+    
+    
+      
+    
+  
+    
+    
+      
+    
+  
+    
+    
+      
+    
+  
+    
+    
+      
+    
+  
+    
+    
+      
+    
+  
+    
+    
+      
+    
+  
+    
+    
+      
+    
+  
+    
+    
+      
+    
+  
+    
+    
+      
+    
+  
+    
+    
+      
+    
+  
+    
+    
+      
+    
+  
+    
+    
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+    
+    
+         
+        
+          
+          
+            
+          
+        
+      
+    
+  
+
+<!--
+First, upcoming events are processed with the "oldest" (i.e. closest in the
+future) first if any exist
+-->
+
+  
+
+<!--
+Then, previous events are processed with the latest first
+-->
+
+  
+<!--
+  <h2 id="previous">Previous <a class="headerlink" href="#previous">&para;</a></h2>
+-->
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      July 02, 2024
+      
+    </span>
+</aside>
+<h3 class="title_news">Data model and plotting update</h3>
+      
+<h5 class="title_news">Now with "high level" support</h5>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p><img alt="Example Plot" src="/img/high-level-EGFR-glioblastoma-example-plot.svg" style="" /></p>
+<p>Both the data model and the plot engine now support an separate color style for
+high level CNV events. In histograms those are overplotted on the standard
+color scheme - e.g. red areas where high level plots were detected, by their
+absolute frequency. In the example plot above we performed a search for high-level
+gains involving EGFR, in glioblastomas, and then only plotted chromosomes 7 and 9.
+While the ~100% peak at EGFR is expected, additionally nearly 70% of the matched
+samples have a focal and high level deletion involving the CDKN2A locus. </p>
+
+<a href="/news/2024-07-02-high-level/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      May 14, 2024
+      
+    </span>
+</aside>
+<h3 class="title_news">cancercelllines.org listed in Expasy</h3>
+      
+<h5 class="title_news">Entry in the Swiss Institute of Bioinformatics Catalogue</h5>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p><img alt="Expasy logo" src="/img/expasy-addon@2x.png" style="width: 250px; float: right; margin: 0px 0px 10px 20px;" />
+Our recently launched cancer cell line genomics site <a href="https://cancercelllines.org">cancercelllines.org</a> is now listed as one of the resources in the Swiss Institute of Bioinformatics’ <a href="https://expasy.org">Expasy</a> catalogue. </p>
+
+<a href="/news/2024-05-14-cancercelllines-in-SIB-Expasy/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      March 27, 2024
+      
+    </span>
+</aside>
+<h3 class="title_news">cancercelllines.org - a Novel Resource for Genomic Variants in Cancer Cell Lines</h3>
+      
+<h5 class="title_news">DATABASE Article</h5>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <h4 id="rahel-paloots-and-michael-baudis">Rahel Paloots and Michael Baudis<a class="headerlink" href="#rahel-paloots-and-michael-baudis" title="Permanent link">&para;</a></h4>
+<h5 id="database-oxford-2024-apr-302024baae030-doi-101093databasebaae030">Database (Oxford). 2024 Apr 30:2024:baae030.  <a href="https://doi.org/10.1093/database/baae030">doi: 10.1093/database/baae030</a><a class="headerlink" href="#database-oxford-2024-apr-302024baae030-doi-101093databasebaae030" title="Permanent link">&para;</a></h5>
+<h5 id="bioarxiv-preprint-2023-12-13-httpsdoiorg10110120231212571281">bioarXiv preprint (2023-12-13): <a href="https://doi.org/10.1101/2023.12.12.571281">https://doi.org/10.1101/2023.12.12.571281</a><a class="headerlink" href="#bioarxiv-preprint-2023-12-13-httpsdoiorg10110120231212571281" title="Permanent link">&para;</a></h5>
+<p><img alt="DATABASE logo" src="/img/logo-database-journal-300x150.png" style="float: right; width: 150px; margin-top: -100px;" />
+<strong>Abstract</strong>: Cancer cell lines are an important component in biological and medical research, enabling studies of cellular mechanisms as well as the development and testing of pharmaceuticals. Genomic alterations in cancer cell lines are widely studied as models for oncogenetic events and are represented in a wide range of primary resources. We have created a comprehensive, curated knowledge resource - cancercelllines.org - with the aim to enable easy access to genomic profiling data in cancer cell lines, curated from a variety of resources and integrating both copy number and single nucleotide variants (SNVs) data. We have gathered over 5,600 copy number profiles as well as SNV annotations for 16,000 cell lines and provide this data with mappings to the GRCh38 reference genome. Both genomic variations and associated curated metadata can be queried through the GA4GH Beacon v2 API and a graphical user interface with extensive data retrieval enabled using GA4GH data schemas under a permissive licensing scheme.</p>
+<p><strong>Availability and Implementation</strong>: Our resource is publicly available on the web at <a href="https://cancercelllines.org">cancercelllines.org</a>.</p>
+<a href="/news/2024-03-27-cancercelllines.org/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      July 20, 2023
+      
+    </span>
+</aside>
+<h3 class="title_news">Progenetix as SIB and ELIXIR Resource</h3>
+      
+<h5 class="title_news">Recognizing the Progenetix platform as Swiss contribution to the European bioinformatics resources ecosystem</h5>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p><img alt="elixir logo" src="/img/elixir-dark-background-230x160.png" style="width: 250px; float: right; margin: 0px 0px 10px 20px;" />
+The Progenetix resource has finally been recognized as an official contribution to the ELIXIR European bioinformatics informatics ecosystem. Besides <a href="https://expasy.org">Expasy</a> Progenetix now is linked through ELIXIR's resource page. Or just go directly to <a href="https://progenetix.org">progenetix.org</a> (and its daughter project <a href="https://cancercelllines.org">cancercelllines.org</a>).</p>
+
+<a href="/news/2023-07-20-progenetix-as-SIB-ELIXIR-resource/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      June 01, 2023
+      
+    </span>
+</aside>
+<h3 class="title_news">Implementing <code>alphanumeric</code> filters</h3>
+      
+<h5 class="title_news">Age queries as first use case for comparator queries</h5>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p><img alt="age query image" src="/img/age-query.png" style="float: right; margin: 0px 0px 10px 20px;" width="280" />
+While the Beacon v2 API has <em>in principle</em> support for an <code>alphanumeric</code> <a href="http://docs.genomebeacons.org/filters/#filter-types">filter
+type</a> so far in <a href="http://bycon.progenetix.org/"><code>bycon</code></a>
+there had been no dedicated support. With yesterday's <code>v1.0.49</code> update the library
+now supports such queries, implemented &amp; tested specifically for age (...at diagnosis)
+values. </p>
+
+<a href="/news/2023-06-01-age-filters/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      May 09, 2023
+      
+    </span>
+</aside>
+<h3 class="title_news">Plotting now handled by Python - Goodbye Perl and PGX</h3>
+      
+<h5 class="title_news">The plotting code has been re-implemented as part of the <pre>bycon</pre></h5>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p>The last month has seen the transition from the <em>Perl</em>-based PGX plotting apps
+to new libraries implemented as part of the main <a href="http://bycon.progenetix.org/"><code>bycon</code></a>
+<em>Python</em> library stack. Very few of the options have been removed although some
+(probably color side bars for clustering items ...) will be added again.</p>
+
+<a href="/news/2023-05-09-uploads-to-plots/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      March 09, 2023
+      
+    </span>
+</aside>
+<h3 class="title_news">New plotting documentation and changes in parameter handling</h3>
+      
+<h5 class="title_news">Separate page for plot options and parameters</h5>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p>Inspired by some request regarding plotting of large sample numbers we've added
+a <a href="/plotting/">dedicated page</a> to this site as the one-stop place for plot generation
+information (though you still will find examples e.g. on the <a href="/use-cases/"><code>use-cases</code></a> page).</p>
+<div class="admonition warn">
+<p class="admonition-title">Plot parameters lost the <code>-</code> prefix</p>
+<p>We have removed the <code>-</code> prefix from the plot parameter names; e.g. the previous
+<code>-plotChros</code> selector is now simply <code>plotChros</code>. </p>
+</div>
+
+<a href="/news/2023-03-09-plotting-docs/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      November 03, 2022
+      
+    </span>
+</aside>
+<h3 class="title_news">New <code>.pgxfreq</code> Interval Frequencies File Type</h3>
+      
+<h5 class="title_news">Changed suffix and upcoming additions...</h5>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p>With the November 2022 update we changed the file suffix to <code>pgxfreq</code> to keep a
+clean separation between the (usually binned) CNV frequency files and the 
+(usually raw) representation of sample-specific CNVs (and other variants).</p>
+
+<a href="/news/2022-11-03-pgxfreq/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      August 22, 2022
+      
+    </span>
+</aside>
+<h3 class="title_news">Geographic Maps</h3>
+      
+<h5 class="title_news">Displaying geolocations query results or user-provided data on a map</h5>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p>This new feature utilizes the <code>geolocations</code> service to:</p>
+<ul>
+<li>display of matched cities on a map using the <code>&amp;output=map</code> option</li>
+<li>load arbitrary data from a hosted data table (e.g. on Github)</li>
+</ul>
+
+<a href="/news/2022-08-22-geographic-maps/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      August 12, 2022
+      
+    </span>
+</aside>
+<h3 class="title_news">Variant Types Update</h3>
+      
+<h5 class="title_news">Correcting Hierarchical Queries for Variant Type</h5>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p>The <code>variantType</code> query parameter - recommended only for non-precise variants, i.e. such w/o a
+specified allele - is now being expanded correctly. In Progenetix these are only CNVs, all
+expressed as (sub)classes of <em>EFO:0030066</em> (relative copy number variation):</p>
+<p><div class="highlight"><pre><span></span><code><span class="w">  </span><span class="nt">EFO:0030066</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">child_terms</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EFO:0030066</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EFO:0030067</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EFO:0030068</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EFO:0030069</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EFO:0030070</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EFO:0030071</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EFO:0030072</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EFO:0030073</span>
+<span class="w">  </span><span class="nt">EFO:0030070</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">child_terms</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EFO:0030070</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EFO:0030071</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EFO:0030072</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EFO:0030073</span><span class="w">   </span>
+</code></pre></div>
+...etc.
+<a href="/news/2022-08-12-variantType-fixes/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      June 13, 2022
+      
+    </span>
+</aside>
+<h3 class="title_news">Implementation of the GA4GH Beacon protocol for discovery and sharing of genomic copy number variation data</h3>
+      
+<h5 class="title_news">Poster Abstract | ESHG Vienna 2022</h5>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p><strong>Background &amp; Objectives</strong> Genomic copy number variations (CNV) are a major contributor to inter-individual genomic variation, can be causative events in rare diseases, but especially represent the majority of the mutational landscape in the most malignancies. While specific CNV events and some recurring patterns have contributed to the identification of individual cancer drivers and the recognition of cancer  subtypes, the complexity of genomic CNV patterns requires large amounts of well-defined genomic profiles for statistically meaningful analyses. At the other end of the spectrum, in the area of rare disease genomics the potential pathogenicity of individual CNV events requires validation against a vast set of disease-related and reference genomic profiles and annotations.</p>
+
+<a href="/news/2022-06-13-Michael-poster-ESHG/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      April 13, 2022
+      
+    </span>
+</aside>
+<h3 class="title_news">CNVs in Prenatal Tests & Maternal Malignancies</h3>
+      
+<h5 class="title_news">Publication indicating rare CNV signatures from a nationwide Dutch screening program</h5>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p>In a new publication in the <em>Journal of Clinical Oncology</em> CJ Heesterbeek, SM Aukema and 
+the co-authors from the Dutch NIPT Consortium report about the incidence and diagnostic
+significance of incidential detection om maternal copy number variations in a large
+screening program aimed at detecting chromosomal imbalances in embryos, for a prediction
+of developmental abnormalities.</p>
+
+<a href="/news/2022-04-13-Dutch-NIPT-paper/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      April 11, 2022
+      
+    </span>
+</aside>
+<h3 class="title_news">Paginated Downloads</h3>
+      
+<h5 class="title_news">Chunk-wise downloads of search results</h5>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p><img src="/img/biosamples-result-paging.png" style="float: right; width: 250px; margin: -120px 0px 5px 20px;"/>Throught its <a href="http://progenetix.org/biosamples/">Search Samples</a> page Progenetix has
+always offered options to download search results (biosamples, variants) in different formats (JSON,
+tab-delimited tables, <a href="https://docs.progenetix.org/file-formats/#pgxseg-sample-variant-files"><em>pgxseg</em></a> files ...). However, especially for large results with 
+thousands of samples and potentially millions of variants this led to inconsistent behaviour
+e.g. time-outs or dropped connections.</p>
+<p>Now, API responses are capped through the <code>limit</code> parameter to default "sensible" values
+which, however, can be adjusted for systematic data access &amp; retrieval. This functionality
+is also implemented in the sample search form, allowing e.g. the limited retrieval of
+a subset of samples from large or general cancer types, or the "paging" through consecutive
+sample groups for partitioned data retrieval.</p>
+
+<a href="/news/2022-04-11-paginated-downloads/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      March 30, 2022
+      
+    </span>
+</aside>
+<h3 class="title_news">VRSified Variants</h3>
+      
+<h5 class="title_news">Variant Response in GA4GH Variant Representation Standard (VRS) Format</h5>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p>The variant format served through the API has now changed to a format commpatible with the
+GA4GH Variant Representation Standard (<a href="http://vrs.ga4gh.org">VRS</a> version (bleeding edge version...).</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">VRSified CNV</label><label for="__tabbed_1_2">Legacy CNV</label><label for="__tabbed_1_3">VRSified SNV</label><label for="__tabbed_1_4">Legacy SNV</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;caseLevelData&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;analysisId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pgxcs-kftwfurn&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;biosampleId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pgxbs-kftvj7rz&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pgxvar-5c86664409d374f2dc4eeb93&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;variation&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;end&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Number&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">62947165</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Number&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">23029501</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;sequenceId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;refseq:NC_000018.10&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SequenceLocation&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;relativeCopyClass&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;partial loss&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;updated&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2022-03-29T15:06:46.526020&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;variantInternalId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;18:23029501-62947165:DEL&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;caseLevelData&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;analysisId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pgxcs-kftwfurn&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;biosampleId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pgxbs-kftvj7rz&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pgxvar-5c86664409d374f2dc4eeb93&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;variantInternalId&quot;</span><span class="p">:</span><span class="w"> </span><span class="nt">&quot;18:23029501-62947165:DEL&quot;</span>
+<span class="w">    </span><span class="nt">&quot;referenceName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;18&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">23029501</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;end&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">62947165</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;variantType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DEL&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;updated&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2022-03-29T15:06:46.526020&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;caseLevelData&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;analysisId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pgxcs-kl8hg4ky&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;biosampleId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pgxbs-kl8hg4ku&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pgxvar-5be1840772798347f0eda0d8&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;variation&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;end&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Number&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7577121</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Number&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7577120</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SequenceInterval&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;sequenceId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;refseq:NC_000017.11&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SequenceLocation&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;sequence&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;G&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;LiteralSequenceExpression&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;updated&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2022-03-29T15:35:35.700954&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;variantInternalId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;17:7577121:C&gt;G&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;caseLevelData&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;analysisId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pgxcs-kl8hg4ky&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;biosampleId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pgxbs-kl8hg4ku&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pgxvar-5be1840772798347f0eda0d8&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;variantInternalId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;17:7577121:C&gt;G&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7577120</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;end&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7577121</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;referenceName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;17&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;referenceBases&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;C&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;alternateBases&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;G&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;updated&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2022-03-29T15:35:35.700954&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<a href="/news/2022-03-30-vrsified-variants/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      February 18, 2022
+      
+    </span>
+</aside>
+<h3 class="title_news">Histogram Improvements</h3>
+      
+<h5 class="title_news">Excluding reference samples from default plots</h5>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p>So far all samples matching a grouping code ("collation"; disease, publication etc.)
+have been included when generating the pre-computed CNV frequencies. However, the
+potential inclusion of normal/refernce samples sometimes lead to "dampened" CNV
+profiles. Now, samples labeled as "reference sample" (<a href="http://www.ebi.ac.uk/efo/EFO_0009654"><code>EFO:0009654</code></a>) - 
+a term we had introduced into the Experimental Factor Ontology - are excluded from
+pre-computed histograms. However, when e.g. calling up samples from publications
+using the search panel referencve samples will be included unless specifically excluded.</p>
+<p><img alt="" src="http://progenetix.org/services/collationplots/?datasetIds=progenetix&amp;filters=pubmed:22824167" /></p>
+<div style="font-size:  0.8em;">Pre-computed CNV Frequencies for <a href="http://progenetix.org/publication/?filters=pubmed:22824167">pubmed:22824167</a>, now ommitting reference samples by default</div>
+
+
+<a href="/news/2022-02-18-excluding-reference-samples/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      February 18, 2022
+      
+    </span>
+</aside>
+<h3 class="title_news">Query-based histograms</h3>
+      
+<h5 class="title_news">Direct generation of histogram plots from Beacon queries</h5>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p>So far, the plot API only provided (documented) access to generate CNV histogram
+plots <a href="../../use-cases/#collation-plots">from "collations"</a> with pre-computed frequencies.
+The <code>bycon</code> API now offers a direct access to the histograms, by adding <code>&amp;output=histoplot</code>
+to a Beacon (biosamples) query URL. The server will first query the samples and then perform
+a handover to the plotting API. Please be aware that this procedure is best suited for limited
+queries and may lead to a time-out.</p>
+
+<a href="/news/2022-02-18-query-based-histograms/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      February 11, 2022
+      
+    </span>
+</aside>
+<h3 class="title_news">Genomic Interval Changes</h3>
+      
+<h5 class="title_news">New positions for the 1Mb interval maps</h5>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p>So far, CNV histograms and .pgxseg segment and matrix files used a 1Mb genome binning,
+based on the consecutive assignment of 1Mb intervals from 1pter -&gt; Yqter. This resulted
+in <strong>3102</strong> intervals, with the last interval of each chromosome being smaller.</p>
+<p>On 2022-02-11 we have changed the procedure. Now, the last interval of the short
+arm of any chromosome is terminated at the centromere, leading to</p>
+<ul>
+<li>a (potentially) shortened "last p" interval</li>
+<li>a shift of most interval positions</li>
+<li>a changed interval number from 3102 to <strong>3106</strong></li>
+</ul>
+
+<a href="/news/2022-02-11-change-interval-map/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      January 21, 2022
+      
+    </span>
+</aside>
+<h3 class="title_news">CNV Ontology Proposal - Now Live at EFO</h3>
+      
+<h5 class="title_news">EFO Ontology contains now terms for (relative) CNV levels</h5>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p><img alt="EFO copy number assessment tree" src="/img/EFO-CNV-tree.png" style="float: right; width: 250px; margin-top: -15px;" />As part of the hCNV-X work - related to "Workflows and Tools for hCNV Data Exchange
+Procedures" and to the intersection with Beacon and GA4GH VRS - we have now a <a href="https://github.com/hcnv/hCNV-X/blob/main/docs/cnv-ontology-proposal.md">new
+proposal</a>
+for the creation of an ontology for the annotation of (relative) CNV events. The CNV 
+representation ontology is targeted for adoption by Sequence Ontology (SO)
+and then to be used by an updated version of the VRS standard. Please see the
+discussions linked from the <a href="https://github.com/hcnv/hCNV-X/blob/main/docs/cnv-ontology-proposal.md">proposal page</a>.
+However, we have also contributed the CNV proposal to EFO where it has gotten
+live on January 21.</p>
+
+<a href="/news/2021-12-22-cnv-ontology-proposal-note/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      January 17, 2022
+      
+    </span>
+</aside>
+<h3 class="title_news">Introducing variant_state classes for CNVs</h3>
+      
+<h5 class="title_news">More granular annotation of CNV types</h5>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p>More information can be found in the <a href="common/classifications-and-ontologies.md#genomic-variations-cnv-ontology">description of ontology use for CNVs</a>.</p>
+<a href="/news/2022-01-17-cnv-state-classes/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      January 17, 2022
+      
+    </span>
+</aside>
+<h3 class="title_news">Term-specific queries</h3>
+      
+<h5 class="title_news">Allowing the de-selection of descendant terms in ontology filters</h5>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p><img src="/img/2022-01-17-includeDescendantTerms-ui.png" style="float: right; width: 222px; margin-top: -15px;" alt="includeDescendantTerms selector" />So far (and still as standard), any
+selected filter will also include matches on its child terms; i.e. "NCIT:C3052 -
+Digestive System Neoplasm" will include results from gastric, esophagus, colon
+... cancer. Here we introduce a selector for the search panel to make use of the Beacon v2
+filters <code>includeDescendantTerms</code> pragma, which can be set to <em>false</em> if one only
+wants to query for the term itself and exclude any child terms from the matching.</p>
+<p>Please be aware that this can only be applied globally and will affect all filtering
+terms used in a query. More information is available in the <a href="beaconplus.md#filters-filters-filtering-terms">Filtering Terms</a> documentation.</p>
+<a href="/news/2022-01-17-term-queries/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      January 10, 2022
+      
+    </span>
+</aside>
+<h3 class="title_news">BUG FIX Frequency Maps</h3>
+      
+<h5 class="title_news">Fix "only direct code matches" frequencies</h5>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p>Pre-computed Progenetix CNV frequency histograms (e.g. for NCIT codes) are based
+samples from all child terms; e.g. <code>NCIT:C3262</code> will display an overview of all
+neoplasias, although no single case has this specific code.</p>
+<p>However, there had been a bug when under specific circumstances (code has some
+mapped samples and code has more samples in child terms) only the direct matches
+were used to compute the frequencies although the full number of samples was indicated
+in the plot legend. FIXED.</p>
+<a href="/news/2022-01-10-frewquencies-bug-fix/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      October 12, 2021
+      
+    </span>
+</aside>
+<h3 class="title_news">Publications - Updated publication listings</h3>
+      
+<h5 class="title_news">Progenetix citations page and better map</h5>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <h3 id="progenetixuse-page"><a href="http://progenetix.org/publicationsProgenetixRef"><code>Progenetixuse</code></a> Page<a class="headerlink" href="#progenetixuse-page" title="Permanent link">&para;</a></h3>
+<p>We have introduced a new publications listing page which contains links to articles
+that <a href="http://progenetix.org/publicationsProgenetixRef">cite or use Progenetix</a> and
+resources from this "ecosystem." Please <a href="mailto:contact@progenetix.org">let us know</a>
+if you are aware of other such cases - frequently the publications do not use
+a proper citation format but just refer to "according tho the Progenetix resource"
+or similar in the text.</p>
+
+<a href="/news/2021/2021-10-12-progenetixuse-and-maps/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      August 31, 2021
+      
+    </span>
+</aside>
+<h3 class="title_news">API: Biosample Schema Update</h3>
+      
+<h5 class="title_news">Conversion of `biocharacteristics` array to separate parameters</h5>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p>The <a href="http://progenetix.org/services/schemas/Biosample/"><code>Biosample</code> schema</a> used for exporting Progenetix data has been adjusted with respect to representation of "bio-"classifications. The previous <code>biocharacteristics</code> list parameter has been deprecated and its previous content is now expressed in<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>:</p>
+<ul>
+<li><code>histologicalDiagnosis</code> (PXF)</li>
+<li><code>sampledTissue</code> (PXF)</li>
+<li><code>icdoMorphology</code> (pgx)</li>
+<li><code>icdoTopography</code> (pgx)</li>
+</ul>
+
+<a href="/news/2021/2021-08-31-biocharacteristics-removal/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      August 03, 2021
+      
+    </span>
+</aside>
+<h3 class="title_news">Progenetix - An open reference resource for copy number vatiation data in cancer</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <h3 id="qingyao-huang">Qingyao Huang<a class="headerlink" href="#qingyao-huang" title="Permanent link">&para;</a></h3>
+<h4 id="cancer-genomics-consortium-annual-meeting-2021-aug-1-4">Cancer Genomics Consortium Annual Meeting 2021 Aug 1-4<a class="headerlink" href="#cancer-genomics-consortium-annual-meeting-2021-aug-1-4" title="Permanent link">&para;</a></h4>
+<p><img src="https://baudisgroup.org/assets/img/2021-08-03_CGC-session-info.png" style="margin-left: auto; margin-right:auto" /></p>
+<h4 id="additional-links">Additional Links<a class="headerlink" href="#additional-links" title="Permanent link">&para;</a></h4>
+<ul>
+<li><a href="http://progenetix.org/storage-ext/recordings/2021-08-03___Qingyao__CGC_recording.mp4">Video Recording of Presentation</a></li>
+<li><a href="https://baudisgroup.org/pdf/2021-08-03___Qingyao-Huang__CGC-progenetix-presentation__slides.pdf">Slides PDF</a></li>
+</ul>
+<a href="/news/2021/2021-08-03-Qingyao-Huang__Progenetix-oncogenomic-resource__CGC-talk/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      July 02, 2021
+      
+    </span>
+</aside>
+<h3 class="title_news">API: Beacon Paths Updates</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p>For testing the rapidly evolving <a href="https://beacon-project.io/categories/beaconv2.html">Beacon v2</a>
+API, we have now implemented more paths/endpoints which mostly conform to the
+brand new &amp; still "flexible" v2.0.0-draft.4 version. Please check the
+<a href="https://github.com/ga4gh-beacon/implementations-v2/blob/main/progenetix-examples.md">documentation and examples</a>.</p>
+<a href="/news/2021/2021-07-02-beacon-paths-updates/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      July 01, 2021
+      
+    </span>
+</aside>
+<h3 class="title_news">API: JSON Exports now camelCased</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p>In "forward-looking" conformity with the <a href="https://beacon-project.io/categories/beaconv2.html">Beacon v2</a>
+API, the JSON attributes of the API responses has been changed from <code>snake_cased</code>
+to <code>camelCased</code>. Please adjust your code, where necessary.</p>
+
+<a href="/news/2021/2021-07-01-json-camelCased/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      June 30, 2021
+      
+    </span>
+</aside>
+<h3 class="title_news">The Progenetix oncogenomic resource in 2021</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <h3 id="the-progenetix-oncogenomic-resource-in-2021">The Progenetix oncogenomic resource in 2021<a class="headerlink" href="#the-progenetix-oncogenomic-resource-in-2021" title="Permanent link">&para;</a></h3>
+<h4 id="qingyao-huang-paula-carrio-cordo-bo-gao-rahel-paloots-michael-baudis">Qingyao Huang, Paula Carrio Cordo, Bo Gao, Rahel Paloots, Michael Baudis<a class="headerlink" href="#qingyao-huang-paula-carrio-cordo-bo-gao-rahel-paloots-michael-baudis" title="Permanent link">&para;</a></h4>
+<h5 id="database-oxford-2021-jul-172021baab043">Database (Oxford). 2021 Jul 17;2021:baab043.<a class="headerlink" href="#database-oxford-2021-jul-172021baab043" title="Permanent link">&para;</a></h5>
+<ul>
+<li>doi: 10.1093/database/baab043.</li>
+<li>pubmed: 34272855</li>
+<li>PMCID: PMC8285936.</li>
+<li>bioRxiv. doi: <a href="https://doi.org/10.1101/2021.02.15.428237">doi.org/10.1101/2021.02.15.428237</a></li>
+</ul>
+<p><img alt="DATABASE logo" src="http://baudisgroup.org/assets/img/logo-database-journal-300x150.png" style="float: right; width: 150px; margin-top: -100px;" />This article provides an overview of recent changes and additions to the Progenetix database and the services provided through the resource.</p>
+
+<a href="/news/2021/2021-06-30-Progenetix-2021/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      April 29, 2021
+      
+    </span>
+</aside>
+<h3 class="title_news">New feature - LOH data</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p><img style="float: right; width: 200px; margin-left: 15px; margin-bottom-10px;" src="http://info.progenetix.org/assets/img/new-variant-selector.png" />Loss of heterozygosity (LOH) is a phenomenon frequently observed in cancer genomes where the selective pressure to keep only the susceptible gene product from one allele removes the other healthy allele from the pool; In this context, copy neutral - loss of heterozygosity (CN-LOH) is commonly observed in haematological malignancies (O'keefe et al., 2010 and Mulligan et al., 2007). To Progenetix oncogenomic resource, comprising of nearly 800 cancer types (by NCIt classification) as of 2021, we expanded the new feature of LOH in our data collection, in addition to the total copy number, to open the door for the analysis of frequency and impact of this phenomenon.</p>
+<p><em>Update 2021-01-28:</em></p>
+<p>LOH variants can now be queried through the <a href="">Search</a> and <a href="">Beacon+</a> interfaces, either as specific variants or together with deletions.</p>
+<p>Please be aware that in contrast to the "complete for chromosomes 1-22" DUP and DEL calls, LOH is only determined for a subset of samples and therefore will be underreported in the statistics section.</p>
+
+<a href="/news/2021/2021-01-14-LOH-data/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      April 29, 2021
+      
+    </span>
+</aside>
+<h3 class="title_news">Improved Data Access through Histograms</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p><img src="http://info.progenetix.org/assets/img/histogram-new-options.png" style="margin-left: auto; margin-right:auto" /></p>
+<p>Histograms for static datasets (e.g. NCIT codes, publications ...) provide now
+links to the dataset details page as well as a download option for the binned
+CNV frequency data.</p>
+<a href="/news/2021/2021-04-29-improved-histogram-options/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      April 15, 2021
+      
+    </span>
+</aside>
+<h3 class="title_news">Signatures of Discriminative CNA in 31 Cancer Subtypes</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <h4 id="bo-gao-and-michael-baudis-2021">Bo Gao and Michael Baudis (2021)<a class="headerlink" href="#bo-gao-and-michael-baudis-2021" title="Permanent link">&para;</a></h4>
+<h5 id="accepted-at-frontiers-in-genetics-2021-04-15">Accepted at <em>Frontiers in Genetics</em>, 2021-04-15<a class="headerlink" href="#accepted-at-frontiers-in-genetics-2021-04-15" title="Permanent link">&para;</a></h5>
+<h4 id="abstract">Abstract<a class="headerlink" href="#abstract" title="Permanent link">&para;</a></h4>
+<p>Copy number aberrations (CNA) are one of the most important classes of genomic mutations relatedto oncogenetic effects. In the past three decades, a vast amount of CNA data has been generated bymolecular-cytogenetic and genome sequencing based methods. While this data has been instrumentalin the identification of cancer-related genes and promoted research into the relation between CNA andhisto-pathologically defined cancer types, the heterogeneity of source data and derived CNV profilespose great challenges for data integration and comparative analysis. Furthermore, a majority of exist-ing studies have been focused on the association of CNA to pre-selected ”driver” genes with limitedapplication to rare drivers and other genomic elements.</p>
+
+<a href="/news/2021/2021-04-15-publication-Bo-classifiers/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      February 22, 2021
+      
+    </span>
+</aside>
+<h3 class="title_news">Beacon+ and Progenetix Queries by Gene Symbol</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p><img src="http://info.progenetix.org/assets/img/gene-symbol-selector-example.png", style="float: right; width: 127px; margin-top: -15px;" />We have introduced a simple option to search directly by Gene Symbol, which will match to <em>any</em> genomic variant with partial overlap to the specified gene. This works by expanding the Gene Symbol (e.g. <em>TP53</em>, <em>CDKN2A</em> ...) into a range query for its genomic coordinates (maximum CDR).</p>
+<p>Such queries - which would e.g. return all whole-chromosome CNV events covering the gene of interest, too - should be narrowed by providing e.g. <code>Variant Type</code> and <code>Maximum Size</code> (e.g. 2000000) values.</p>
+
+<a href="/news/2021/2021-02-22-gene-symbol-queries/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      February 15, 2021
+      
+    </span>
+</aside>
+<h3 class="title_news">Diffuse Intrinsic Pontine Glioma (DIPG) cohort</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p>Diffuse Intrinsic Pontine Glioma (DIPG) is a highly aggressive tumor type that originate from glial cells in the pon area of brainstem, which controls vital functions including breathing, blood pressure and heart rate. DIPG occurs frequently in the early childhood and has a 5-year survival rate below 1 percent. Progenetix has now incorporated the DIPG cohort, consisting of 1067 individuals from 18 publications. The measured data include copy number variation as well as (in part) point mutations on relevant genes, e.g. TP53, NF1, ATRX, TERT promoter.</p>
+
+<a href="/news/2021/2021-02-15-DIPG-cohort/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      February 06, 2021
+      
+    </span>
+</aside>
+<h3 class="title_news">TCGA CNV Data</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p><img src="http://info.progenetix.org/assets/img/tcga.png", style="float: right; width: 100px; />While the Progenetix resource has provided access to the CNV data from The Cancer Genome Annotation Project (TCGA*; <a href="https://www.cancer.gov/tcga">www.cancer.gov/tcga</a>) for quite some time, we have now launched a <a href="http://progenetix.org/progenetix-cohorts/TCGA/">dedicated search page</a> to facilitate data access and visualization using the standard Progenetix tools.</p>
+<p>Additionally, the <a href="http://progenetix.org/progenetix-cohorts/TCGA/">TCGA page</a> section priovides pre-computed CNV frequency data for the individual TCGA studies.</p>
+<a href="/news/2021/2021-02-06-TCGA-cohort/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      February 06, 2021
+      
+    </span>
+</aside>
+<h3 class="title_news">arrayMap is Back</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p><img src="http://info.progenetix.org/assets/img/arraymap_black_180.png", style="float: right;" />After some months of dormancy, the <em>arrayMap</em> resource has been relaunched through integration with the new <em>Progenetix</em> site. All of the oiginal arrayMap data has now been integrated into Progenetix, and of today the <a href="http://arraymap.org"><code>arraymap.org</code></a> domain maps to a standard Progenetix search page, where only data samples with existing source data (e.g. probe specific array files) will be presented.</p>
+
+<a href="/news/2021/2021-02-06-arraymap-cohort/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      January 04, 2021
+      
+    </span>
+</aside>
+<h3 class="title_news">Website updates</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p>The new year brings some refinements to biosamples <a href="http://progenetix.org/biosamples/">search</a> and display:</p>
+<ul>
+<li>added example for a pure filter search (HeLa)</li>
+<li>made UCSC link depending on variants</li>
+<li>added info pop-ups to biosamples table header</li>
+<li>removed <em>DEL</em> and <em>DUP</em> fractions from biosamples table</li>
+<li>added label display for <code>external_references</code> items in biosamples table</li>
+</ul>
+<p>Enjoy ...</p>
+<a href="/news/2021/2021-01-04-website-biosample-table-mods/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      December 18, 2020
+      
+    </span>
+</aside>
+<h3 class="title_news">Genomic Copy Number Signatures...</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <h3 id="genomic-copy-number-signatures-based-classifiers-for-subtype-identification-in-cancer">Genomic Copy Number Signatures Based Classifiers for Subtype Identification in Cancer<a class="headerlink" href="#genomic-copy-number-signatures-based-classifiers-for-subtype-identification-in-cancer" title="Permanent link">&para;</a></h3>
+<h4 id="bo-gao-and-michael-baudis-2020">Bo Gao and Michael Baudis (2020)<a class="headerlink" href="#bo-gao-and-michael-baudis-2020" title="Permanent link">&para;</a></h4>
+<h5 id="biorxiv-2020-12-18">bioRxiv, 2020-12-18<a class="headerlink" href="#biorxiv-2020-12-18" title="Permanent link">&para;</a></h5>
+
+<a href="/news/2001-2020/2020-12-18-publication-Bo-classifiers/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      October 21, 2020
+      
+    </span>
+</aside>
+<h3 class="title_news">API and Services Documentation</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p>Following the launch of the updated Progenetix website (new interface, now much
+more data with &gt;130'000 samples...) and the recent introduction of the new
+Python based <a href="http://github.com/progenetix/bycon"><code>bycon</code></a> API for <a href="https://beaconplus.progenetix.org/">BeaconPlus</a> and <a href="/doc/services/services.html">Progenetix Services</a>
+we now also have some structured information for the different API options.</p>
+<a href="/news/2001-2020/2020-10-21-API-documentation/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      October 09, 2020
+      
+    </span>
+</aside>
+<h3 class="title_news">pgx namespace and persistant identifiers</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p>While the <code>pgx</code> prefix had been registered in 2017 with <a href="https://registry.identifiers.org/registry/pgx">identifiers.org</a>
+we recently changed the resolver and target mappings on the Progenetix server.
+This went hand-in-hand with the generation of unique &amp; persistant identifiers
+for the main data items.</p>
+
+<a href="/news/2001-2020/2020-10-09-pgx-namespace/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      October 01, 2020
+      
+    </span>
+</aside>
+<h3 class="title_news">bycon powered BeaconPlus</h3>
+      
+<h5 class="title_news">Moving to a new, Python-based API</h5>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p>We've changed the Beacon backend to the <code>bycon</code> code base. The new project's
+codebase is accessible through the <a href="http://github.com/progenetix/bycon/"><code>bycon</code></a>
+project. Contributions welcome!</p>
+<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="http://progenetix.org/beacon/genomicVariations/?referenceBases=G&amp;alternateBases=A&amp;assemblyId=GRCh38&amp;referenceName=17&amp;start=7577120">progenetix.org/beacon/genomicVariations/?referenceBases=G&amp;alternateBases=A&amp;assemblyId=GRCh38&amp;referenceName=17&amp;start=7577120</a></li>
+</ul>
+<a href="/news/2001-2020/2020-10-01-bycon-as-api/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      September 30, 2020
+      
+    </span>
+</aside>
+<h3 class="title_news">GA4GH Beacon v2 at GA4GH Plenary</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <h2 id="ga4gh-beacon-v2-evolving-reference-standard-for-genomic-data-exchange">GA4GH Beacon v2 - Evolving Reference Standard for Genomic Data Exchange<a class="headerlink" href="#ga4gh-beacon-v2-evolving-reference-standard-for-genomic-data-exchange" title="Permanent link">&para;</a></h2>
+<h4 id="ga4gh-8th-plenary"><a href="https://broadinstitute.swoogo.com/ga4gh-8th-plenary/455678">GA4GH 8th Plenary</a><a class="headerlink" href="#ga4gh-8th-plenary" title="Permanent link">&para;</a></h4>
+<h3 id="gary-saunders-jordi-rambla-de-argila-anthony-brookes-juha-tornroos-and-michael-baudis">Gary Saunders, Jordi Rambla de Argila, Anthony Brookes, Juha Törnroos and Michael Baudis<a class="headerlink" href="#gary-saunders-jordi-rambla-de-argila-anthony-brookes-juha-tornroos-and-michael-baudis" title="Permanent link">&para;</a></h3>
+<h5 id="for-the-elixir-beacon-project-ga4gh-discovery-work-stream-and-the-international-network-of-beacon-api-developers">For the ELIXIR Beacon project, GA4GH Discovery work stream and the international network of Beacon API developers<a class="headerlink" href="#for-the-elixir-beacon-project-ga4gh-discovery-work-stream-and-the-international-network-of-beacon-api-developers" title="Permanent link">&para;</a></h5>
+<p>The Beacon driver project was one of the earliest initiatives of the Global Alliance for Genomics and Health with the Beacon v1.0 API as first approved GA4GH standard.
+Version 2 of the protocol is slated to provide fundamental changes, towards a Internet of Genomics foundational standard:</p>
+
+<a href="/news/2001-2020/2020-09-30-Michael-Baudis__Beaconv2__GA4GH2020-poster/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      September 30, 2020
+      
+    </span>
+</aside>
+<h3 class="title_news">Progenetix at GA4GH 2020 Plenary</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <h4 id="ga4gh-8th-plenary"><a href="https://broadinstitute.swoogo.com/ga4gh-8th-plenary/455678">GA4GH 8th Plenary</a><a class="headerlink" href="#ga4gh-8th-plenary" title="Permanent link">&para;</a></h4>
+<h3 id="michael-baudis">Michael Baudis<a class="headerlink" href="#michael-baudis" title="Permanent link">&para;</a></h3>
+<p>The Progenetix oncogenomics resource provides sample-specific cancer
+genome profiling data and biomedical annotations as well as provenance data from cancer studies. Especially through currently 113322 curated genomic copy number number (CNV) profiles from 1600 individual studies representing over 500 cancer types (NCIt), Progenetix empowers aggregate and comparative analyses which vastly exceed individual studies or single diagnostic concepts.</p>
+
+<a href="/news/2001-2020/2020-09-30-Michael-Baudis__Progenetix-and-Beacon__GA4GH2020-poster/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      September 21, 2020
+      
+    </span>
+</aside>
+<h3 class="title_news">New Progenetix Website</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p>The <a href="http:progenetix.org">Progenetix website</a> has been completely rebuilt using a JavaScript / React based framework and API based content delivery. At its core, the site is built around the <a href="https://genomebeacons.org">Beacon</a> standard, with
+some extensions for data colections and advanced query options.</p>
+<a href="/news/2001-2020/2020-09-21-new-progenetix-site/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      August 05, 2020
+      
+    </span>
+</aside>
+<h3 class="title_news">Progenetix now licensed under CC-BY 4.0</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p>After many years of using a CreativeCommons CC-BY-SA ("attribution + share alike"),
+the Progenetix resource has dropped the "SA - share alike" attribute and is now
+"attribution" only. This may facilitate the use of the data in more complex and/or
+commercial scenarios - enjoy!</p>
+
+<a href="/news/2001-2020/2020-08-05-CC-BY/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      May 06, 2020
+      
+    </span>
+</aside>
+<h3 class="title_news">Error Calibration ... for CNA Analysis</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <h3 id="minimum-error-calibration-and-normalization-for-genomic-copy-number-analysis">Minimum Error Calibration and Normalization for Genomic Copy Number Analysis.<a class="headerlink" href="#minimum-error-calibration-and-normalization-for-genomic-copy-number-analysis" title="Permanent link">&para;</a></h3>
+<h4 id="bo-gao-and-michael-baudis-2020">Bo Gao and Michael Baudis (2020)<a class="headerlink" href="#bo-gao-and-michael-baudis-2020" title="Permanent link">&para;</a></h4>
+<h5 id="biorxiv-2019-07-31-doi-101101720854">bioRxiv, 2019-07-31. <a href="https://doi.org/10.1101/720854">DOI 10.1101/720854</a><a class="headerlink" href="#biorxiv-2019-07-31-doi-101101720854" title="Permanent link">&para;</a></h5>
+<h5 id="genomics-volume-112-issue-5-september-2020-pages-3331-3341-accepted-2020-05-06-doiorg101016jygeno202005008">Genomics, Volume 112, Issue 5, September 2020, Pages 3331-3341, accepted 2020-05-06 <a href="https://doi.org/10.1016/j.ygeno.2020.05.008">doi.org/10.1016/j.ygeno.2020.05.008</a>.<a class="headerlink" href="#genomics-volume-112-issue-5-september-2020-pages-3331-3341-accepted-2020-05-06-doiorg101016jygeno202005008" title="Permanent link">&para;</a></h5>
+
+<a href="/news/2001-2020/2020-05-07-publication-Mecan4CNA-Genomics/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      April 02, 2020
+      
+    </span>
+</aside>
+<h3 class="title_news">Geographic assessment of cancer genome profiling studies</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <h3 id="geographic-assessment-of-cancer-genome-profiling-studies">Geographic assessment of cancer genome profiling studies.<a class="headerlink" href="#geographic-assessment-of-cancer-genome-profiling-studies" title="Permanent link">&para;</a></h3>
+<h4 id="paula-carrio-cordo-elise-acheson-qingyao-huang-and-michael-baudis-2020">Paula Carrio Cordo, Elise Acheson, Qingyao Huang and Michael Baudis (2020)<a class="headerlink" href="#paula-carrio-cordo-elise-acheson-qingyao-huang-and-michael-baudis-2020" title="Permanent link">&para;</a></h4>
+<h5 id="database-volume-2020-2020-baaa009-doiorg101093databasebaaa009">DATABASE, Volume 2020, 2020, baaa009, <a href="https://doi.org/10.1093/database/baaa009">doi.org/10.1093/database/baaa009</a><a class="headerlink" href="#database-volume-2020-2020-baaa009-doiorg101093databasebaaa009" title="Permanent link">&para;</a></h5>
+
+<a href="/news/2001-2020/2020-04-02-publication-geography-assesment-DATABASE/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      March 30, 2020
+      
+    </span>
+</aside>
+<h3 class="title_news">CURIE Prefix Remapping - NCIT & pubmed</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p>Wherever possible, data annotation in <em>Progenetix</em> uses <em>{S}[B]</em> <a href="https://schemablocks.org/schemas/sb-phenopackets/OntologyClass.html"><em>OntologyClass</em></a>
+objects for categorical values, with CURIEs as <em>id</em> values. So far, the
+<em>Progenetix</em> databases had used <code>pubmed:</code> for <em>PubMed</em> identifiers and <code>ncit:</code>
+for NCI Metathesaurus (Neoplasm) ids.</p>
+
+<a href="/news/2001-2020/2020-03-30-prefix-changes/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      March 16, 2020
+      
+    </span>
+</aside>
+<h3 class="title_news">Population assignment from cancer genomes</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <h3 id="enabling-population-assignment-from-cancer-genomes-with-snp2pop">Enabling population assignment from cancer genomes with SNP2pop.<a class="headerlink" href="#enabling-population-assignment-from-cancer-genomes-with-snp2pop" title="Permanent link">&para;</a></h3>
+<h4 id="huang-q-and-baudis-m-2020">Huang Q and Baudis M. (2020)<a class="headerlink" href="#huang-q-and-baudis-m-2020" title="Permanent link">&para;</a></h4>
+<h5 id="sci-rep-10-4846-2020-doiorg101038s41598-020-61854-x">Sci Rep 10, 4846 (2020). <a href="https://doi.org/10.1038/s41598-020-61854-x">doi.org/10.1038/s41598-020-61854-x</a><a class="headerlink" href="#sci-rep-10-4846-2020-doiorg101038s41598-020-61854-x" title="Permanent link">&para;</a></h5>
+
+<a href="/news/2001-2020/2020-03-16-snp2pop-scientificreports/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      January 20, 2020
+      
+    </span>
+</aside>
+<h3 class="title_news">BeaconPlus in ELIXIR Beacon Network</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p>The Beacon<span style="color: red; font-weight: 800;">+</span> implementation of
+the <a href="http://ga4gh.org">GA4GH</a> <em>Beacon</em> protocol has become a part of the <a href="https://beacon-network.elixir-europe.org">ELIXIR
+Beacon Network</a>, an expanding
+Beacon service to query multiple Beacon resources and aggregate their query
+results.</p>
+
+<a href="/news/2001-2020/2020-01-20-beaconplus-in-network/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      October 14, 2019
+      
+    </span>
+</aside>
+<h3 class="title_news">Beacon Variants in UCSC Browser</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <p>The response element of the Beacon+ interface now contains a link for
+displaying the matched variants e.g. of e.g. a CNV query in the UCSC
+genome browser.</p>
+<a href="/news/2001-2020/2019-10-14-ucsc-handover/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      July 31, 2019
+      
+    </span>
+</aside>
+<h3 class="title_news">Minimum Error Calibration and Normalization for Genomic Copy Number Analysis</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <h3 id="minimum-error-calibration-and-normalization-for-genomic-copy-number-analysis">Minimum Error Calibration and Normalization for Genomic Copy Number Analysis.<a class="headerlink" href="#minimum-error-calibration-and-normalization-for-genomic-copy-number-analysis" title="Permanent link">&para;</a></h3>
+<h4 id="bo-gao-and-michael-baudis-2019">Bo Gao and Michael Baudis (2019)<a class="headerlink" href="#bo-gao-and-michael-baudis-2019" title="Permanent link">&para;</a></h4>
+<h5 id="biorxiv-2019-07-31-doi-101101720854">bioRxiv, 2019-07-31. <a href="https://doi.org/10.1101/720854">DOI 10.1101/720854</a><a class="headerlink" href="#biorxiv-2019-07-31-doi-101101720854" title="Permanent link">&para;</a></h5>
+
+<a href="/news/2001-2020/2019-07-31-publication-Mecan4CNA-biorxiv/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      April 03, 2018
+      
+    </span>
+</aside>
+<h3 class="title_news">New info.progenetix.org site</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <h2 id="launch-of-new-infoprogenetixorg-resource-site">Launch of new <em>info.progenetix.org</em> resource site<a class="headerlink" href="#launch-of-new-infoprogenetixorg-resource-site" title="Permanent link">&para;</a></h2>
+<p>Today, we started to provide a new documentation structure for our group's work and software projects.</p>
+<p>The site is assumed, over time, to replace the <a href="http://wiki.progenetix.org">previous Progenetix guide</a>.</p>
+<a href="/news/2001-2020/2018-04-03-news-new-progenetix-Site/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      January 01, 2015
+      
+    </span>
+</aside>
+<h3 class="title_news">arrayMap 2014: an...</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <h3 id="arraymap-2014-an-updated-cancer-genome-resource">arrayMap 2014: an updated cancer genome resource.<a class="headerlink" href="#arraymap-2014-an-updated-cancer-genome-resource" title="Permanent link">&para;</a></h3>
+<h4 id="cai-h-gupta-s-rath-p-ai-n-baudis-m">Cai H, Gupta S, Rath P, Ai N, Baudis M.<a class="headerlink" href="#cai-h-gupta-s-rath-p-ai-n-baudis-m" title="Permanent link">&para;</a></h4>
+<p><strong>Abstract</strong> Somatic copy number aberrations (CNA) represent a mutation type encountered in the majority of cancer genomes. Here, we present the 2014 edition of arrayMap (<a href="http://www.arraymap.org">www.arraymap.org</a>), a publicly accessible collection of pre-processed oncogenomic array data sets and CNA profiles, representing a vast range of human malignancies. Since the initial release, we have enhanced this resource both in content and especially with regard to data mining support.</p>
+
+<a href="/news/2001-2020/2015-01-01-arrayMap-2014-an/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      January 01, 2014
+      
+    </span>
+</aside>
+<h3 class="title_news">Chromothripsis-like...</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <h3 id="chromothripsis-like-patterns-are-recurring-but-heterogeneously-distributed-features-in-a-survey-of-22347-cancer-genome-screens">Chromothripsis-like patterns are recurring but heterogeneously distributed features in a survey of 22,347 cancer genome screens.<a class="headerlink" href="#chromothripsis-like-patterns-are-recurring-but-heterogeneously-distributed-features-in-a-survey-of-22347-cancer-genome-screens" title="Permanent link">&para;</a></h3>
+<h4 id="cai-h-kumar-n-bagheri-hc-von-mering-c-robinson-md-baudis-m">Cai H, Kumar N, Bagheri HC, von Mering C, Robinson MD, Baudis M.<a class="headerlink" href="#cai-h-kumar-n-bagheri-hc-von-mering-c-robinson-md-baudis-m" title="Permanent link">&para;</a></h4>
+<p><strong>Abstract</strong> BACKGROUND: Chromothripsis is a recently discovered phenomenon of genomic rearrangement, possibly arising during a single genome-shattering event. This could provide an alternative paradigm in cancer development, replacing the gradual accumulation of genomic changes with a "one-off" catastrophic event. However, the term has been used with varying operational definitions, with the minimal consensus being a large number of locally clustered copy number aberrations.</p>
+
+<a href="/news/2001-2020/2014-01-01-Chromothripsis-like/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      January 01, 2014
+      
+    </span>
+</aside>
+<h3 class="title_news">Progenetix: 12 years...</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <h3 id="progenetix-12-years-of-oncogenomic-data-curation">Progenetix: 12 years of oncogenomic data curation.<a class="headerlink" href="#progenetix-12-years-of-oncogenomic-data-curation" title="Permanent link">&para;</a></h3>
+<h4 id="cai-h-kumar-n-ai-n-gupta-s-rath-p-baudis-m">Cai H, Kumar N, Ai N, Gupta S, Rath P, Baudis M.<a class="headerlink" href="#cai-h-kumar-n-ai-n-gupta-s-rath-p-baudis-m" title="Permanent link">&para;</a></h4>
+<p><strong>Abstract</strong> DNA copy number aberrations (CNAs) can be found in the majority of cancer genomes and are crucial for understanding the potential mechanisms underlying tumor initiation and progression. Since the first release in 2001, the Progenetix project (<a href="http://www.progenetix.org">www.progenetix.org</a>) has provided a reference resource dedicated to provide the most comprehensive collection of genome-wide CNA profiles.</p>
+
+<a href="/news/2001-2020/2014-01-01-Progenetix-12-years/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      May 22, 2013
+      
+    </span>
+</aside>
+<h3 class="title_news">Progenetix &amp; arrayMap Changes (2012-06-01 - 2013-05-22)</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <h4 id="2013-05-22">2013-05-22<a class="headerlink" href="#2013-05-22" title="Permanent link">&para;</a></h4>
+<ul>
+<li>bug fix: fixing lack of clustering for CNA frequency profiles in the analysis section</li>
+<li>removed "Series Search" from the arrayMap side bar; kind of confusing - just search for the samples &amp; select the series</li>
+</ul>
+<h4 id="2013-05-12">2013-05-12<a class="headerlink" href="#2013-05-12" title="Permanent link">&para;</a></h4>
+<ul>
+<li>introduced a method to combine sample annotations and segmentation files for user data processing (see "FAQ &amp; GUIDE")</li>
+<li>fixed some array plot presentation and replotting problems</li>
+</ul>
+<h4 id="2013-05-05">2013-05-05<a class="headerlink" href="#2013-05-05" title="Permanent link">&para;</a></h4>
+<ul>
+<li>consolidation of script names - again, don't use deep links (besides for "api.cgi?...")</li>
+<li>moving of remaining sample selection options (random sample number, segments number, age range) to the sample selection page, leaving the pre-analysis page (now "prepare.cgi") for plotting/grouping options</li>
+<li>fixed the KM-style survival plots</li>
+</ul>
+<h4 id="2013-04-10">2013-04-10<a class="headerlink" href="#2013-04-10" title="Permanent link">&para;</a></h4>
+<ul>
+<li>re-factoring of the cytobands plotting for histograms and heatmaps; this also fixes missing histogram tiles</li>
+<li>analysis output page: the circular histogram/connections plot and group specific histograms are now all available as both SVG and PNG image files</li>
+</ul>
+<h4 id="2013-04-06">2013-04-06<a class="headerlink" href="#2013-04-06" title="Permanent link">&para;</a></h4>
+<p>Some changes to the plotting options:</p>
+<ul>
+<li>the circular plot is now added as a default; and connections are drawn in for &lt;= 30 samples (subject to change)</li>
+<li>one can now mark up multiple genes (or other loci of interest), for all plot types</li>
+</ul>
+<h4 id="2013-03-25">2013-03-25<a class="headerlink" href="#2013-03-25" title="Permanent link">&para;</a></h4>
+<ul>
+<li>added option to create custom analysis groups based on text match values</li>
+<li>rewritten circular plot code</li>
+</ul>
+<h4 id="2013-02-27">2013-02-27<a class="headerlink" href="#2013-02-27" title="Permanent link">&para;</a></h4>
+<ul>
+<li>copied data for PMIDs 17327916, 17311676, 18506749 and 18246049 from arrayMap to
+Progenetix</li>
+</ul>
+<h4 id="2013-02-24">2013-02-24<a class="headerlink" href="#2013-02-24" title="Permanent link">&para;</a></h4>
+<ul>
+<li>bug fix: gene selector was broken for about a week; fixed</li>
+</ul>
+<h4 id="2013-02-17">2013-02-17<a class="headerlink" href="#2013-02-17" title="Permanent link">&para;</a></h4>
+<ul>
+<li>In many places, images are now converted sever side to PNG data streams and embedded into the web pages. This will substantially decrease web data traffic and page download times. Fully linked SVG images (including region links etc.) are still available through the analysis pipeline.</li>
+</ul>
+<h4 id="2013-02-13">2013-02-13<a class="headerlink" href="#2013-02-13" title="Permanent link">&para;</a></h4>
+<ul>
+<li>data fix: pubmed 18160781 had missing loss values (due to irregular character encoding); fixed, thanks to Emanuela Felley-Bosco for the note!</li>
+</ul>
+<h4 id="2012-12-14">2012-12-14<a class="headerlink" href="#2012-12-14" title="Permanent link">&para;</a></h4>
+<ul>
+<li>moved the region filter from the analysis to the sample selection page</li>
+<li>added a "mark region" option to the analysis page: one now can highlight a genome region in histograms and matrix plots</li>
+</ul>
+<h4 id="2012-11-29">2012-11-29<a class="headerlink" href="#2012-11-29" title="Permanent link">&para;</a></h4>
+<ul>
+<li>added "select all" option to entity lists</li>
+<li>implemented first version of sample-to-entity match score</li>
+<li>added single sample annotation input field to "User File Processing"; i.e. one can now type in CNA data for a single case, and have this visualised and similar cases listed</li>
+<li>added per sample CNA visualisation to the samples details listings (currently if up to 100 samples)</li>
+<li>added direct access to sample details listing to the subsets pages</li>
+</ul>
+<h4 id="2012-11-09">2012-11-09<a class="headerlink" href="#2012-11-09" title="Permanent link">&para;</a></h4>
+<ul>
+<li>adding of abstract search to the publication search page</li>
+</ul>
+<h4 id="2012-10-25">2012-10-25<a class="headerlink" href="#2012-10-25" title="Permanent link">&para;</a></h4>
+<ul>
+<li>introduction of a matching function for similar cases by CNA profile, accessible through the sample details pages of both Progenetix and arraymap</li>
+</ul>
+<h4 id="2012-10-22">2012-10-22<a class="headerlink" href="#2012-10-22" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Introduction of SEER groups</li>
+</ul>
+<h4 id="2012-09-26">2012-09-26<a class="headerlink" href="#2012-09-26" title="Permanent link">&para;</a></h4>
+<p>The database now contains the copy number status for different interval sizes (e.g. 1MB). With this, users can now create their own data plots (histograms etc.) using more than 10000 cancer copy number profiles with a high resolution. The options here are still being tested and improved - comments welcome!</p>
+<h4 id="2012-09-18">2012-09-18<a class="headerlink" href="#2012-09-18" title="Permanent link">&para;</a></h4>
+<ul>
+<li>added a new export file format "ANNOTATED SEGMENTS FILE", which uses the first columns for standard segment annotation, followed by some diagnostic and clinical data; i.e., the information for a case is repeated for each segment:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>GSM255090   22  25063244    25193559    1   NA  C50 8500/3  breast  Infiltrating duct carcinoma, NOS    Carcinomas: breast ca.  NA  1   51  0.58  
+GSM255090   22  25368299    48899534    -1  NA  C50 8500/3  breast  Infiltrating duct carcinoma, NOS    Carcinomas: breast ca.  NA  1   51  0.58  
+GSM255091   1   2224111 30146401    -1  NA  C50 8500/3  breast  Infiltrating duct carcinoma, NOS    Carcinomas: breast ca.  NA  0   72  0.54  
+GSM255091   1   35418712    37555461    1   NA  C50 8500/3  breast  Infiltrating duct carcinoma, NOS    Carcinomas: breast ca.  NA  0   72  0.54  
+</code></pre></div>
+<h4 id="2012-09-13">2012-09-13<a class="headerlink" href="#2012-09-13" title="Permanent link">&para;</a></h4>
+<ul>
+<li>added gene selection for region specific replotting of array data</li>
+</ul>
+<h4 id="2012-08-22">2012-08-22<a class="headerlink" href="#2012-08-22" title="Permanent link">&para;</a></h4>
+<ul>
+<li>the gene database has been changed to the last version of the complete (HUGO names only) Ensembl gene list for HG18; previously, only a subset of "cancer related genes" was offered in the gene selection search fields</li>
+</ul>
+<h4 id="2012-07-04">2012-07-04<a class="headerlink" href="#2012-07-04" title="Permanent link">&para;</a></h4>
+<ul>
+<li>some interface and form elements have been streamlined (e.g. less commonly used selector fields, sample selection options)</li>
+<li>some common options are now displayed only if activated (e.g. "mouse over" to see all files available for download)</li>
+<li>icon quality has been enhanced for all but the details pages</li>
+</ul>
+<h4 id="2012-06-13">2012-06-13<a class="headerlink" href="#2012-06-13" title="Permanent link">&para;</a></h4>
+<ul>
+<li>New: All pre-generated histogram and ideogram plots are now produced based on a 1Mb matrix, with a 500Kb minimum size filter to remove CNV/platform dependent background from some high resolution array platforms. The unfiltered data can still be visualized through the standard analysis procedures.</li>
+<li>Bug fix: Interactive segment size filtering so far only worked for region specific queries, but not as a general filter (see above). This has been fixed; a minimum segment size in the visualization options now will remove all smaller segments.</li>
+</ul>
+<h4 id="2012-06-01">2012-06-01<a class="headerlink" href="#2012-06-01" title="Permanent link">&para;</a></h4>
+<ul>
+<li>NEW: change log; that is what is shown here</li>
+<li>FEATURE: The interval selector now has options to include the p-arms of acrocentric chromosomes (though the data itself there may be incompletely annotated!). Feature requested by Melody Lam.</li>
+</ul>
+<a href="/news/2001-2020/2012-06-01-progenetix--z-progenetix-arraymap-changes-2013-05-22/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      April 02, 2012
+      
+    </span>
+</aside>
+<h3 class="title_news">arrayMap feature update(s)</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <h2 id="arraymap-feature-updates">arrayMap feature update(s)<a class="headerlink" href="#arraymap-feature-updates" title="Permanent link">&para;</a></h2>
+<p>Over the last weeks, we have introduced a number of new search/ordering features to arrayMap. Some of those mimic functions previously implemented in Progenetix. Overall, the highlights are:</p>
+
+<dl>
+<dt><img style="margin: 0px 10px 2px 10px;vertical-align: middle;" src="/p/bt_icd_ns.png" />ICD entity aggregation</dt>
+<dd style="margin: 0px 0px 10px 70px;">all ICD-O entities with their according samples</dd>
+<dt><img style="margin: 0px 10px 2px 10px;vertical-align: middle;" src="/p/bt_loc_ns.png" />ICD locus aggregation</dt>
+<dd style="margin: 0px 0px 10px 70px;">all tumor loci with their according samples</dd>
+<dt><img style="margin: 0px 10px 2px 10px;vertical-align: middle;" src="/p/bt_gr_ns.png" />Clinical group aggregation</dt>
+<dd style="margin: 0px 0px 10px 70px;">clinical super-entities (e.g. "breast ca.": all carcinoma types with locus breast)  with their samples</dd>
+<dt><img style="margin: 0px 10px 2px 10px;vertical-align: middle;" src="/p/bt_pub_ns.png" />Publication aggregation</dt>
+<dd style="margin: 0px 0px 10px 70px;">all publication with samples in arrayMap</dd>
+</dl>
+<p>In contrast to Progenetix, we do not offer precomputed SCNA histograms. However, users can generate them on the fly, but should consider the specific challenges in doing so (e.g. noise background in frequency calculations).</p>
+<a href="/news/2001-2020/2012-04-02-compbio-arraymap-feature-updates/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      January 01, 2007
+      
+    </span>
+</aside>
+<h3 class="title_news">Genomic imbalances in 5918 malignant tumors</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <h3 id="genomic-imbalances-in-5918-malignant-epithelial-tumors-an-explorative-meta-analysis-of-chromosomal-cgh-data">Genomic imbalances in 5918 malignant epithelial tumors: an explorative meta-analysis of chromosomal CGH data.<a class="headerlink" href="#genomic-imbalances-in-5918-malignant-epithelial-tumors-an-explorative-meta-analysis-of-chromosomal-cgh-data" title="Permanent link">&para;</a></h3>
+<h4 id="baudis-m">Baudis M.<a class="headerlink" href="#baudis-m" title="Permanent link">&para;</a></h4>
+<p><strong>Abstract</strong> BACKGROUND: Chromosomal abnormalities have been associated with most human malignancies, with gains and losses on some genomic regions associated with particular entities. METHODS: Of the 15429 cases collected for the Progenetix molecular-cytogenetic database, 5918 malignant epithelial neoplasias analyzed by chromosomal Comparative Genomic Hybridization (CGH) were selected for further evaluation. For the 22 clinico-pathological entities with more than 50 cases, summary profiles for genomic imbalances were generated from case specific data and analyzed.</p>
+
+<a href="/news/2001-2020/2007-01-01-publication-Genomic-imbalances/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      March 01, 2006
+      
+    </span>
+</aside>
+<h3 class="title_news">Online database and...</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <h3 id="online-database-and-bioinformatics-toolbox-to-support-data-mining-in-cancer-cytogenetics">Online database and bioinformatics toolbox to support data mining in cancer cytogenetics.<a class="headerlink" href="#online-database-and-bioinformatics-toolbox-to-support-data-mining-in-cancer-cytogenetics" title="Permanent link">&para;</a></h3>
+<h4 id="baudis-m">Baudis M.<a class="headerlink" href="#baudis-m" title="Permanent link">&para;</a></h4>
+<a href="/news/2001-2020/2006-03-01-publication-Online-database-and/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+      <div class="blog-post-preview">
+<aside class="blog-post-aside">
+    <span>
+      
+      <span class="twemoji">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.75 0a.75.75 0 0 1 .75.75V3h9V.75a.75.75 0 0 1 1.5 0V3h2.75c.966 0 1.75.784 1.75 1.75v16a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-16C1.5 3.784 2.284 3 3.25 3H6V.75A.75.75 0 0 1 6.75 0M21 9.5H3v11.25c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25Zm-17.75-5a.25.25 0 0 0-.25.25V8h18V4.75a.25.25 0 0 0-.25-.25Z"/></svg>
+      </span>
+      December 01, 2001
+      
+    </span>
+</aside>
+<h3 class="title_news">Progenetix.net: an...</h3>
+      
+<!-- Use a hidden p tag to provide a preview -->
+      <h3 id="progenetixnet-an-online-repository-for-molecular-cytogenetic-aberration-data">Progenetix.net: an online repository for molecular cytogenetic aberration data.<a class="headerlink" href="#progenetixnet-an-online-repository-for-molecular-cytogenetic-aberration-data" title="Permanent link">&para;</a></h3>
+<h4 id="baudis-m-cleary-ml">Baudis M, Cleary ML.<a class="headerlink" href="#baudis-m-cleary-ml" title="Permanent link">&para;</a></h4>
+<p><strong>Abstract</strong> Through sequencing projects and, more recently, array-based expression analysis experiments, a wealth of genetic data has become accessible via online resources. In contrast, few of the (molecular-) cytogenetic aberration data collected in the last decades are available in a format suitable for data mining procedures. <a href="http://www.progenetix.net">www.progenetix.net</a> is a new online repository for previously published chromosomal aberration data, allowing the addition of band-specific information about chromosomal imbalances to oncologic data analysis efforts.</p>
+
+<a href="/news/2001-2020/2001-12-01-publication-Progenetix-net-an/">
+  <span class="twemoji">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg>
+  </span>
+  Continue reading
+</a>
+</div>
+    
+  
+
+
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; Copyright 2023, Michael Baudis and progenetix.org
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+      
+    
+    
+    
+      
+      
+    
+    <a href="https://genomic.social/@progenetix" target="_blank" rel="noopener me" title="genomic.social" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M433 179.1c0-97.2-63.7-125.7-63.7-125.7-62.5-28.7-228.6-28.4-290.5 0 0 0-63.7 28.5-63.7 125.7 0 115.7-6.6 259.4 105.6 289.1 40.5 10.7 75.3 13 103.3 11.4 50.8-2.8 79.3-18.1 79.3-18.1l-1.7-36.9s-36.3 11.4-77.1 10.1c-40.4-1.4-83-4.4-89.6-54-.6-4.6-.9-9.3-.9-13.9 85.6 20.9 158.7 9.1 178.7 6.7 56.1-6.7 105-41.3 111.2-72.9 9.8-49.8 9-121.5 9-121.5zm-75.1 125.2h-46.6V190.1c0-49.7-64-51.6-64 6.9v62.5H201V197c0-58.5-64-56.6-64-6.9v114.2H90.3c0-122.1-5.2-147.9 18.4-175 25.9-28.9 79.8-30.8 103.8 6.1l11.6 19.5 11.6-19.5c24.1-37.1 78.1-34.8 103.8-6.1 23.7 27.3 18.4 53 18.4 175"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/progenetix" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.tabs.link", "search.highlight", "search.share", "navigation.instant", "navigation.tracking", "navigation.sections"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
