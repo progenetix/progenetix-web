@@ -18,7 +18,7 @@ const imgFocal = {
 export default function Index({
   ncitCountResponse,
   progenetixStats,
-  summaryResults,
+  resultsAggregation,
   subsetsResponse
 }) {
 
@@ -114,7 +114,7 @@ export default function Index({
       />
     </h4>
     <SummaryPlots
-      summaryResults={summaryResults}
+      resultsAggregation={resultsAggregation}
       filterUnknowns={true}
     />
   </Panel>
@@ -140,7 +140,7 @@ export const getStaticProps = async () => {
   return {
     props: {
       progenetixStats: dbstatsReply,
-      summaryResults: aggregationReply.response.collections[0].summaryResults,
+      resultsAggregation: aggregationReply.response.collections[0].resultsAggregation,
       ncitCountResponse: ncitCountReply.responseSummary.numTotalResults,
       subsetsResponse: subsetsReply
     }
