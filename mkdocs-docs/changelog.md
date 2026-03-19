@@ -4,6 +4,12 @@ This page lists changes for the [Beacon+](http://beaconplus.progenetix.org)
 implementation of the ["Beacon" genomics API](https://genomebeacons.org), as well
 as related updates for the [Progenetix](http://progenetix.org) front-end.
 
+## 2026-03-20: Update gene annotation database
+
+* Update reference genome annotations from GRCh38.p13 to GRCh38.p14.
+* Add gene annotations for the T2T-CHM13v2.0 assembly.
+* All data was sourced from NCBI using the Datasets command-line tool (retrieved on 2026-03-18).
+
 
 ## 2025-04-16: Reverting to `pgx:icdot-55003` for PDAC tumors
 
