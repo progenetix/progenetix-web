@@ -18,7 +18,7 @@ const imgFocal = {
 export default function Index({
   ncitCountResponse,
   progenetixStats,
-  resultsAggregation,
+  // resultsAggregation,
   subsetsResponse
 }) {
 
@@ -113,11 +113,11 @@ export default function Index({
         label="Some Progenetix Content Statistics"
       />
     </h4>
-    <SummaryPlots
+{/*    <SummaryPlots
       resultsAggregation={resultsAggregation}
       filterUnknowns={true}
     />
-  </Panel>
+*/}  </Panel>
 </Layout>
 
   )
@@ -127,9 +127,9 @@ export const getStaticProps = async () => {
   const dbstatsReply = await tryFetch(
     `${THISSITE}services/dbstats/?datasetIds=${DATASETDEFAULT}`
   )
-  const aggregationReply = await tryFetch(
-    `${THISSITE}beacon/datasets/${DATASETDEFAULT}?requestedGranularity=aggregated`
-  )
+  // const aggregationReply = await tryFetch(
+  //   `${THISSITE}beacon/datasets/${DATASETDEFAULT}?requestedGranularity=aggregated`
+  // )
   const ncitCountReply = await tryFetch(
     `${THISSITE}services/collations/?datasetIds=${DATASETDEFAULT}&collationTypes=NCITneoplasm&includeDescendantTerms=false&requestedGranularity=count`
   )
@@ -140,7 +140,7 @@ export const getStaticProps = async () => {
   return {
     props: {
       progenetixStats: dbstatsReply,
-      resultsAggregation: aggregationReply.response.collections[0].resultsAggregation,
+      // resultsAggregation: aggregationReply.response.collections[0].resultsAggregation,
       ncitCountResponse: ncitCountReply.responseSummary.numTotalResults,
       subsetsResponse: subsetsReply
     }
