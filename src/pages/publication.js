@@ -1,6 +1,6 @@
 import React from "react"
 import { usePublication } from "../hooks/api"
-import { epmcUrl, EpmcLink, ExternalLink } from "../components/helpersShared/linkHelpers"
+import { epmcUrl, orcidUrl, EpmcLink, ExternalLink } from "../components/helpersShared/linkHelpers"
 import { WithData } from "../components/Loader"
 import { withUrlQuery } from "../hooks/url-query"
 import { SubsetHistogram } from "../components/SVGloaders"
@@ -80,6 +80,14 @@ function PublicationDetails({ publication, id }) {
       )}
       {publication.contact?.email != "" && (
         <li>{publication.contact.email}</li>
+      )}  
+      {publication.contact?.orcid != "" && (
+        <li>
+          <ExternalLink
+            href={orcidUrl(publication.contact.orcid)}
+            label={publication.contact.orcid}
+          />
+        </li>
       )}  
       </ul>
 
