@@ -79,7 +79,7 @@ function PublicationDetails({ publication, id }) {
         <li>{publication.contact.affiliation}</li>
       )}
       {publication.contact?.email != "" && (
-        <li>{publication.contact.email}</li>
+        <li>email:{" "}{publication.contact.email}</li>
       )}  
       {publication.contact?.orcid != "" && (
         <li>ORCID:{" "}
