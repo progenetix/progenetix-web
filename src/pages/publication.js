@@ -82,7 +82,7 @@ function PublicationDetails({ publication, id }) {
         <li>{publication.contact.email}</li>
       )}  
       {publication.contact?.orcid != "" && (
-        <li>
+        <li>ORCID:{" "}
           <ExternalLink
             href={orcidUrl(publication.contact.orcid)}
             label={publication.contact.orcid}
