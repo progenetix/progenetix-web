@@ -59,19 +59,13 @@ function Subset({ subset, datasetIds }) {
     </>
   )}
 
-  <h5>Sample Counts</h5>
+  <h5>Samples</h5>
   <ul>
-    <li>{subset.count} samples</li>
-    <li>{subset.codeMatches} direct <i>{subset.id}</i> code  matches</li>
-    {subset.cnvAnalyses && (
-      <li>{subset.cnvAnalyses} CNV analyses</li>
-    )}
-    {subset.frequencymapCnvAnalyses && (
-      <li>
-        {subset.frequencymapCnvAnalyses} {" CNV analyses used in frequency calculations"}
-      </li>
-    )}
+    {subset.count &&  (<li>{subset.count} samples</li>)}
+    {subset.codeMatches &&  (<li>{subset.codeMatches} direct <i>{subset.id}</i> code  matches</li>)}
+    {subset.cnvAnalyses &&  (<li>{subset.cnvAnalyses} CNV analyses</li>)}
   </ul>
+
   <h5>CNV Histogram</h5>
   <div className="mb-3">
     <SubsetHistogram

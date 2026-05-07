@@ -6,8 +6,6 @@ import {
 } from "../hooks/api"
 import cn from "classnames"
 import { Loader } from "./Loader"
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 const service = "collations"
 
 export function LiteratureSearch({ id, datasetIds, plotGeneSymbols, setGeneSymbols, plotCytoregionLabels, setCytoregionSymbols})
@@ -88,7 +86,7 @@ function GeneComponent({cellline, genes, plotGeneSymbols, setGeneSymbols})
     return (
         <section className="content">
             <table>
-                {plotGeneSymbols.length >= 1 ? <tr><td colSpan="9" align="center"><Button contained color="secondary" onClick={() => window.location.reload(true)}>Clear Annotations</Button></td></tr> : ""}
+                {plotGeneSymbols.length >= 1 ? <tr><td colSpan="9" align="center"><button onClick={() => window.location.reload(true)}>Clear Annotations</button></td></tr> : ""}
                 {genes.map((gene,i)=>(<GeneResultSet key={`${i}`} gene={gene} cellline={cellline} plotGeneSymbols={plotGeneSymbols} setGeneSymbols={setGeneSymbols}/>))}
             </table>
         </section>
@@ -100,7 +98,7 @@ function CytobandComponent({cellline, cytobands, plotCytoregionLabels, setCytore
   return (
     <section className="content">
       <table>
-        {plotCytoregionLabels.length >= 1 ? <tr><td colSpan="9" align="center"><Button contained color="secondary" onClick={() => window.location.reload(true)}>Clear Annotations</Button></td></tr> : ""}
+        {plotCytoregionLabels.length >= 1 ? <tr><td colSpan="9" align="center"><button onClick={() => window.location.reload(true)}>Clear Annotations</button></td></tr> : ""}
         {cytobands.map((cytoband,i)=>(<CytobandResultSet key={`${i}`} cytoband={cytoband} cellline={cellline} plotCytoregionLabels={plotCytoregionLabels} setCytoregionSymbols={setCytoregionSymbols}/>))}
       </table>
     </section>
@@ -156,10 +154,9 @@ function GeneResultSet({cellline, gene, plotGeneSymbols, setGeneSymbols})
     return (
         <Loader isLoading={isLoading} hasError={error} background>
             {data && data.pairs.length > 0 ? <tr><td>
-                {labelButton && plotGeneSymbols.length > 1 ? <Button disabled variant="contained">{gene}</Button> :
-                    <Tooltip title={`add gene ${gene} to the plot!`}>
-                        <Button onClick={()=>addGeneLabel(gene, plotGeneSymbols, setGeneSymbols, setLabelButton)}>{gene}</Button>
-                    </Tooltip>}
+                {labelButton && plotGeneSymbols.length > 1 ? <button disabled>{gene}</button> :
+                    <button onClick={()=>addGeneLabel(gene, plotGeneSymbols, setGeneSymbols, setLabelButton)}>{gene}</button>
+                }
             </td>
                 {expand ?
                     <td>{data.pairs.map((pair,i)=>(<ResultRow key={`${i}`} pair={pair}/>))}</td>
@@ -171,7 +168,7 @@ function GeneResultSet({cellline, gene, plotGeneSymbols, setGeneSymbols})
                     <td>&nbsp;</td>
                     :
                     <td>
-                        <Button color="secondary" onClick={() => {setExpand(!expand)}}>{expand ? <b>Close</b> : <b>More Abstracts</b>}</Button>
+                        <button color="secondary" onClick={() => {setExpand(!expand)}}>{expand ? <b>Close</b> : <b>More Abstracts</b>}</button>
                     </td>
                 }
             </tr> : ""}
@@ -189,10 +186,9 @@ function CytobandResultSet({cellline, cytoband, plotCytoregionLabels, setCytoreg
     return (
         <Loader isLoading={isLoading} hasError={error} background>
             {data && data.pairs.length > 0 ? <tr><td>
-                {cytobandLabelButton && plotCytoregionLabels?.length > 1 ? <Button disabled variant="contained">{cytoband}</Button> :
-                    <Tooltip title={`add cytoband ${cytoband} to the plot!`}>
-                        <Button onClick={()=>addCytobandLabel(cytoband, plotCytoregionLabels, setCytoregionSymbols, setCytobandLabelButton)}>{cytoband}</Button>
-                    </Tooltip>}
+                {cytobandLabelButton && plotCytoregionLabels?.length > 1 ? <button disabled>{cytoband}</button> :
+                    <button onClick={()=>addCytobandLabel(cytoband, plotCytoregionLabels, setCytoregionSymbols, setCytobandLabelButton)}>{cytoband}</button>
+                }
             </td>
                 {expand ?
                     <td>{data.pairs.map((pair,i)=>(<ResultRow key={`${i}`} pair={pair}/>))}</td>
@@ -204,7 +200,7 @@ function CytobandResultSet({cellline, cytoband, plotCytoregionLabels, setCytoreg
                     <td>&nbsp;</td>
                     :
                     <td>
-                        <Button color="secondary" onClick={() => {setExpand(!expand)}}>{expand ? <b>Close</b> : <b>Expand</b>}</Button>
+                        <button color="secondary" onClick={() => {setExpand(!expand)}}>{expand ? <b>Close</b> : <b>Expand</b>}</button>
                     </td>
                 }
             </tr> : ""}
@@ -237,7 +233,7 @@ function ResultSet({cellline,entity})
 //                     <td colSpan="3"  style={{border: '0px'}}>
 //                         <a target="_blank" rel="noreferrer" href={"https://pubmed.ncbi.nlm.nih.gov/"+pair.pmid}>{pair.title} ({pair.pmid})</a>
 //                     </td>
-//                     <td style={{border: '0px'}}><Button onClick={() => {setShowAbstract(!showAbstract)}}>{!showAbstract ? <p>Abstract</p> : <p>Close Abstract</p>}</Button></td>
+//                     <td style={{border: '0px'}}><button onClick={() => {setShowAbstract(!showAbstract)}}>{!showAbstract ? <p>Abstract</p> : <p>Close Abstract</p>}</button></td>
 //                 </tr>
 //                 {showAbstract ?
 //                     <tr>
@@ -263,7 +259,7 @@ function ResultRow({pair})
                     <td style={{border: '0px'}}>
                         <a target="_blank" rel="noreferrer" href={"https://pubmed.ncbi.nlm.nih.gov/"+pair.pmid}>{pair.title}</a>
                     </td>
-                    <td style={{border: '0px'}}><Button onClick={() => {setShowAbstract(!showAbstract)}}>{!showAbstract ? <p>Abstract</p> : <p>Close Abstract</p>}</Button></td>
+                    <td style={{border: '0px'}}><button onClick={() => {setShowAbstract(!showAbstract)}}>{!showAbstract ? <p>Abstract</p> : <p>Close Abstract</p>}</button></td>
                 </tr>
                 {showAbstract ?
                     <tr>

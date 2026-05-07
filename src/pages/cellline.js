@@ -17,7 +17,6 @@ import { withUrlQuery } from "../hooks/url-query"
 import VariantsDataTable from "../components/searchResults/VariantsDataTable"
 
 const exampleId = "cellosaurus:CVCL_0023"
-const searchPage = "filterSearch"
 
 const CellLineDetailsPage = withUrlQuery(({ urlQuery }) => {
   var { id, datasetIds } = urlRetrieveIds(urlQuery)
@@ -237,40 +236,43 @@ function Subset({ id, subset, individual, datasetIds }) {
   )}
 
   <h5>Samples</h5>
-
-{/*  
-  {individual.biosamples && individual.biosamples.length > 0 &&
-    <>
-    <h6>Biosamples</h6>
-        <ul>
-    {individual.biosamples.map((bs, i) => (
-      <li key={i}>
-      <InternalLink
-        href={`/biosample/?id=${bs}&datasetIds=${ datasetIds }`}
-        label={bs}
-      />
-      </li>
-    ))}
-    </ul>
-    </>
-  }
-*/}
-  
   <ul>
-    <li>
-      {subset.count} samples (
-      {subset.codeMatches} direct <i>{subset.id}</i> matches;{" "}
-      {subset.cnvAnalyses} CNV analyses)
-    </li>
-    <li>Select <i>{subset.id}</i> samples in the{" "}
-      <a
-        rel="noreferrer"
-        target="_blank"
-        href={ sampleSearchPageFiltersLink({datasetIds, searchPage, sampleFilterScope, filters}) }
-      >{" "}Search Form
-      </a>
-    </li>
+    {subset.count &&  (<li>{subset.count} samples</li>)}
+    {subset.codeMatches &&  (<li>{subset.codeMatches} direct <i>{subset.id}</i> code  matches</li>)}
+    {subset.cnvAnalyses &&  (<li>{subset.cnvAnalyses} CNV analyses</li>)}
   </ul>
+
+  <h5>CNV Histogram</h5>
+  <div className="mb-3">
+    <SubsetHistogram
+      id={subset.id}
+      datasetIds={datasetIds}
+      loaderProps={{background: true, colored: true}}
+    />
+  </div>
+
+  <h5>
+    <InternalLink
+      href={`${basePath}services/intervalFrequencies/${subset.id}`}
+      label="Download CNV frequencies"
+    />
+  </h5>
+  <p>
+    Download CNV frequency data for genomic 1Mb bins.
+  </p>
+
+  <h5>
+    <InternalLink
+      href={ sampleSearchPageFiltersLink({datasetIds, sampleFilterScope, filters}) }
+      label={`Search for ${subset.id} Samples`}
+      rel="noreferrer"
+      target="_blank"
+    />
+  </h5>
+  <p>
+    Select samples through the search form, e.g. by querying for specific
+    genomic variants or phenotypes.
+  </p> 
 
   <h5>More Information</h5>
   <ul>

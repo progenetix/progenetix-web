@@ -23,7 +23,7 @@ export default function Index({
 }) {
 
   const randomSubset = sample(
-    subsetsResponse.response.results.filter((s) => s.cnvAnalyses > 1)
+    subsetsResponse.response.results.filter((s) => s.count > 10)
   )
 
   return (

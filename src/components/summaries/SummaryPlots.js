@@ -42,7 +42,7 @@ function SummaryPlot({ summary, filterUnknowns }) {
 
     let {summaryId, summaryLabel, tracesData, sankeyLabels, sankeyLinks} = SummaryTraces({ summary, filterUnknowns, colNo, includeOthers });
 
-    console.log("==>> Plot for", summaryId, summaryLabel, tracesData);
+    // console.log("==>> Plot for", summaryId, summaryLabel, tracesData);
 
     const [boundingRect, setBoundingRect] = useState({ width: 0, height: 0 });
     const containerRef = useCallback((node) => {

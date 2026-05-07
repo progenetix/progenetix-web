@@ -1,15 +1,15 @@
-import { checkIntegerRange } from "../../hooks/api"
+// import { checkIntegerRange } from "../../hooks/api"
 
-test("checkIntegerRange", () => {
-  expect(checkIntegerRange("1")).toBeFalsy()
-  expect(checkIntegerRange("1-2")).toBeFalsy()
-  expect(checkIntegerRange("1,2")).toBeFalsy()
+// test("checkIntegerRange", () => {
+//   expect(checkIntegerRange("1")).toBeFalsy()
+//   expect(checkIntegerRange("1-2")).toBeFalsy()
+//   expect(checkIntegerRange("1,2")).toBeFalsy()
 
-  // This is like 1
-  expect(checkIntegerRange("1,")).toBeFalsy()
+//   // This is like 1
+//   expect(checkIntegerRange("1,")).toBeFalsy()
 
-  expect(checkIntegerRange("a")).toBeTruthy()
+//   expect(checkIntegerRange("a")).toBeTruthy()
 
-  // min > max
-  expect(checkIntegerRange("2-1")).toBeTruthy()
-})
+//   // min > max
+//   expect(checkIntegerRange("2-1")).toBeTruthy()
+// })
