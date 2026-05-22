@@ -1,6 +1,12 @@
 [![License: CC0-1.0](https://img.shields.io/badge/License-CC0%201.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)
 
-# Progenetix Websites Code
+> [!IMPORTANT]
+>
+> Since 2026-05-22 the `progenetix-web` project has been moved to [Codeberg](https://codeberg.org/Progenetix/progenetix-web).
+> This is in line with the general move of the projects maintained by the Baudis Group at UZH away from Github, to a not-for-profit, Europe based hosting organization.
+
+
+# **LEGACY** Progenetix Websites Code
 
 The Progenetix sites are build from this project using 2 different toolchains:
 
